@@ -135,11 +135,13 @@ def _char_display_width(ch: str) -> int:
     # Basic emoji heuristic (covers most common emoji)
     code = ord(ch)
     if (
-        0x1F300 <= code <= 0x1FAFF  # Misc symbols & pictographs, supplemental symbols & pictographs, etc.
+        0x1F300
+        <= code
+        <= 0x1FAFF  # Misc symbols & pictographs, supplemental symbols & pictographs, etc.
         or 0x1F600 <= code <= 0x1F64F  # Emoticons
         or 0x1F680 <= code <= 0x1F6FF  # Transport & Map
-        or 0x2600 <= code <= 0x26FF    # Misc symbols
-        or 0x2700 <= code <= 0x27BF    # Dingbats
+        or 0x2600 <= code <= 0x26FF  # Misc symbols
+        or 0x2700 <= code <= 0x27BF  # Dingbats
     ):
         return 2
 
@@ -235,7 +237,10 @@ def wrap_text(text: str, max_width: int) -> List[str]:
                         room = max_width
                     taken: List[str] = []
                     taken_w = 0
-                    while idx < len(tok) and taken_w + _char_display_width(tok[idx]) <= room:
+                    while (
+                        idx < len(tok)
+                        and taken_w + _char_display_width(tok[idx]) <= room
+                    ):
                         taken.append(tok[idx])
                         taken_w += _char_display_width(tok[idx])
                         idx += 1
@@ -323,7 +328,9 @@ class CLIUI:
         self.term_width: int = width
         self.margin: int = max(0, margin)
         self.padding: int = max(0, padding)
-        self.color_enabled: bool = _supports_color() if color_enabled is None else bool(color_enabled)
+        self.color_enabled: bool = (
+            _supports_color() if color_enabled is None else bool(color_enabled)
+        )
         self.theme: ColorTheme = theme or ColorTheme()
         self.box: BoxStyle = {
             "heavy": HEAVY_BOX,
@@ -347,7 +354,7 @@ class CLIUI:
     # ------------------------ Rules & Headings -----------------------------
     def rule(self, char: Optional[str] = None) -> None:
         """Print a horizontal rule spanning the content width."""
-        h = (char or self.box.h)
+        h = char or self.box.h
         inner_width = max(1, self.term_width - self.margin * 2)
         self.text(h * inner_width)
 
@@ -368,15 +375,15 @@ class CLIUI:
     def banner(self, title: str, subtitle: Optional[str] = None) -> None:
         """Print a decorative banner with title and optional subtitle."""
         inner_w = self._panel_inner_width()
-        
+
         # Center the title
         title_s = self.styled(title, "title")
         title_vis = visible_width(_strip_ansi(title_s))
         title_pad = max(0, (inner_w - title_vis) // 2)
         centered_title = (" " * title_pad) + title_s
-        
+
         lines = [centered_title]
-        
+
         # Center the subtitle if provided
         if subtitle:
             subtitle_s = self.styled(subtitle, "subtitle")
@@ -384,7 +391,7 @@ class CLIUI:
             subtitle_pad = max(0, (inner_w - subtitle_vis) // 2)
             centered_subtitle = (" " * subtitle_pad) + subtitle_s
             lines.append(centered_subtitle)
-        
+
         self.panel(lines, title=None)
 
     # ------------------------ Panels --------------------------------------
@@ -425,10 +432,14 @@ class CLIUI:
                 f"{self.box.h * (self.padding + filler_right)}{self.box.tr}"
             )
         else:
-            top = f"{self.box.tl}{self.box.h * (inner_w + self.padding * 2)}{self.box.tr}"
+            top = (
+                f"{self.box.tl}{self.box.h * (inner_w + self.padding * 2)}{self.box.tr}"
+            )
 
         # Build bottom and sides
-        bottom = f"{self.box.bl}{self.box.h * (inner_w + self.padding * 2)}{self.box.br}"
+        bottom = (
+            f"{self.box.bl}{self.box.h * (inner_w + self.padding * 2)}{self.box.br}"
+        )
         left = f"{self.box.v}{' ' * self.padding}"
         right = f"{' ' * self.padding}{self.box.v}"
 
@@ -466,6 +477,7 @@ class CLIUI:
 
         # Measure column widths (max of header and content)
         col_widths = [0] * num_cols
+
         def measure(s: str) -> int:
             return visible_width(_strip_ansi(s))
 
@@ -478,7 +490,7 @@ class CLIUI:
 
         # Compute available width for a borderless table with single spaces between cols
         # We'll just pad with spaces; if it overflows, we reduce widths from the last column backward.
-        spacing = (num_cols - 1)  # one space between columns
+        spacing = num_cols - 1  # one space between columns
         total = sum(col_widths) + spacing
         max_total = content_w
         if total > max_total:
@@ -507,7 +519,9 @@ class CLIUI:
         if headers is not None:
             header_cells: List[str] = []
             for i, h in enumerate(headers):
-                header_cells.append(self.styled(align_text(h, col_widths[i], "center"), "heading"))
+                header_cells.append(
+                    self.styled(align_text(h, col_widths[i], "center"), "heading")
+                )
             print(prefix + " ".join(header_cells))
             # Use full content width for the separator line
             print(prefix + self.box.h * content_w)
@@ -542,5 +556,3 @@ class CLIUI:
 
     def error(self, text: str) -> None:
         self.text(self.styled(text, "error"))
-
-

@@ -6,22 +6,25 @@
 """
 
 from pymilvus import DataType, FieldSchema, CollectionSchema
-from core.oxm.milvus.milvus_collection_base import MilvusCollectionWithSuffix, IndexConfig
+from core.oxm.milvus.milvus_collection_base import (
+    MilvusCollectionWithSuffix,
+    IndexConfig,
+)
 
 
 class EpisodicMemoryCollection(MilvusCollectionWithSuffix):
     """
     情景记忆 Milvus Collection
-    
+
     使用方式：
         # 使用 Collection
         collection.async_collection().insert([...])
         collection.async_collection().search([...])
     """
-    
+
     # Collection 基础名称
     _COLLECTION_NAME = "episodic_memory"
-    
+
     # Collection Schema 定义
     _SCHEMA = CollectionSchema(
         fields=[
@@ -31,94 +34,107 @@ class EpisodicMemoryCollection(MilvusCollectionWithSuffix):
                 is_primary=True,
                 auto_id=False,
                 max_length=100,
-                description="事件唯一标识"
+                description="事件唯一标识",
             ),
             FieldSchema(
                 name="vector",
                 dtype=DataType.FLOAT_VECTOR,
                 dim=1024,  # BAAI/bge-m3 模型的向量维度
-                description="文本向量"
+                description="文本向量",
             ),
             FieldSchema(
                 name="user_id",
                 dtype=DataType.VARCHAR,
                 max_length=100,
-                description="用户ID"
+                description="用户ID",
             ),
             FieldSchema(
                 name="group_id",
                 dtype=DataType.VARCHAR,
                 max_length=100,
-                description="群组ID"
+                description="群组ID",
+            ),
+            FieldSchema(
+                name="participants",
+                dtype=DataType.ARRAY,
+                element_type=DataType.VARCHAR,
+                max_capacity=100,
+                max_length=100,
+                description="参与者列表（用于群组记忆的用户过滤）",
             ),
             FieldSchema(
                 name="event_type",
                 dtype=DataType.VARCHAR,
                 max_length=50,
-                description="事件类型"
+                description="事件类型（如 conversation, email 等）",
             ),
             FieldSchema(
-                name="timestamp",
+                name="memory_sub_type",
+                dtype=DataType.VARCHAR,
+                max_length=50,
+                description="记忆子类型（episode/semantic_memory/event_log 等）",
+            ),
+            FieldSchema(
+                name="timestamp", dtype=DataType.INT64, description="事件时间戳"
+            ),
+            FieldSchema(
+                name="start_time",
                 dtype=DataType.INT64,
-                description="事件时间戳"
+                description="语义记忆开始时间（仅 semantic_memory 类型有效）",
+            ),
+            FieldSchema(
+                name="end_time",
+                dtype=DataType.INT64,
+                description="语义记忆结束时间（仅 semantic_memory 类型有效）",
             ),
             FieldSchema(
                 name="episode",
                 dtype=DataType.VARCHAR,
                 max_length=10000,
-                description="情景描述"
+                description="情景描述",
             ),
             FieldSchema(
                 name="search_content",
                 dtype=DataType.VARCHAR,
                 max_length=5000,
-                description="搜索内容"
+                description="搜索内容",
             ),
             FieldSchema(
-                name="detail",
+                name="metadata",
                 dtype=DataType.VARCHAR,
                 max_length=50000,
-                description="非检索用的详细信息JSON"
+                description="非检索用的详细信息JSON（元数据）",
             ),
             FieldSchema(
-                name="created_at",
-                dtype=DataType.INT64,
-                description="创建时间戳"
+                name="created_at", dtype=DataType.INT64, description="创建时间戳"
             ),
             FieldSchema(
-                name="updated_at",
-                dtype=DataType.INT64,
-                description="更新时间戳"
-            )
+                name="updated_at", dtype=DataType.INT64, description="更新时间戳"
+            ),
         ],
         description="情景记忆向量集合",
-        enable_dynamic_field=True
+        enable_dynamic_field=True,
     )
-    
+
     # 索引配置
     _INDEX_CONFIGS = [
         # 向量字段索引（用于相似度搜索）
         IndexConfig(
             field_name="vector",
             index_type="HNSW",  # 高效的近似最近邻搜索
-            metric_type="L2",   # 欧氏距离
+            metric_type="L2",  # 欧氏距离
             params={
-                "M": 16,            # 每个节点的最大边数
-                "efConstruction": 200  # 构建时的搜索宽度
-            }
+                "M": 16,  # 每个节点的最大边数
+                "efConstruction": 200,  # 构建时的搜索宽度
+            },
         ),
         # 标量字段索引（用于过滤）
         IndexConfig(
-            field_name="user_id",
-            index_type="AUTOINDEX"  # 自动选择最适合的索引类型
+            field_name="user_id", index_type="AUTOINDEX"  # 自动选择最适合的索引类型
         ),
-        IndexConfig(
-            field_name="group_id",
-            index_type="AUTOINDEX"
-        ),
-        IndexConfig(
-            field_name="timestamp",
-            index_type="AUTOINDEX"
-        )
+        IndexConfig(field_name="group_id", index_type="AUTOINDEX"),
+        IndexConfig(field_name="memory_sub_type", index_type="AUTOINDEX"),  # 记忆子类型索引
+        IndexConfig(field_name="timestamp", index_type="AUTOINDEX"),
+        IndexConfig(field_name="start_time", index_type="AUTOINDEX"),  # 语义记忆开始时间索引
+        IndexConfig(field_name="end_time", index_type="AUTOINDEX"),  # 语义记忆结束时间索引
     ]
-    

@@ -14,6 +14,7 @@ from .manager import MigrationManager
 # Module-level logger for this file
 logger = logging.getLogger(__name__)
 
+
 def show_help():
     """Display help information"""
     help_text = """
@@ -52,29 +53,49 @@ def show_help():
 
 def main():
     """Main CLI entry point"""
-    if len(sys.argv) == 1 or (len(sys.argv) == 2 and sys.argv[1] in ["--help", "-h", "help"]):
+    if len(sys.argv) == 1 or (
+        len(sys.argv) == 2 and sys.argv[1] in ["--help", "-h", "help"]
+    ):
         show_help()
         return
 
     # Parse global arguments
     parser = argparse.ArgumentParser(description="MongoDB Migration Tool")
-    parser.add_argument("--uri", help="MongoDB connection URI (overrides environment variables)")
-    parser.add_argument("--database", help="MongoDB database name (overrides environment variables)")
+    parser.add_argument(
+        "--uri", help="MongoDB connection URI (overrides environment variables)"
+    )
+    parser.add_argument(
+        "--database", help="MongoDB database name (overrides environment variables)"
+    )
     parser.add_argument("--path", type=Path, help="Custom migrations directory path")
 
     # Parse subcommands
     subparsers = parser.add_subparsers(dest="command", help="Available commands")
 
     # new-migration subcommand
-    new_migration_parser = subparsers.add_parser("new-migration", help="Create new migration")
-    new_migration_parser.add_argument("-n", "--name", required=True, help="Migration name")
+    new_migration_parser = subparsers.add_parser(
+        "new-migration", help="Create new migration"
+    )
+    new_migration_parser.add_argument(
+        "-n", "--name", required=True, help="Migration name"
+    )
 
     # migrate subcommand
     migrate_parser = subparsers.add_parser("migrate", help="Run migrations")
-    migrate_parser.add_argument("--distance", type=int, help="Number of migrations to run")
-    migrate_parser.add_argument("--backward", action="store_true", help="Roll back migrations")
-    migrate_parser.add_argument("--no-use-transaction", action="store_true", help="Disable transactions")
-    migrate_parser.add_argument("--stream-output", action="store_true", help="Stream child process output to current stdout/stderr in real time")
+    migrate_parser.add_argument(
+        "--distance", type=int, help="Number of migrations to run"
+    )
+    migrate_parser.add_argument(
+        "--backward", action="store_true", help="Roll back migrations"
+    )
+    migrate_parser.add_argument(
+        "--no-use-transaction", action="store_true", help="Disable transactions"
+    )
+    migrate_parser.add_argument(
+        "--stream-output",
+        action="store_true",
+        help="Stream child process output to current stdout/stderr in real time",
+    )
 
     # Parse arguments
     args = parser.parse_args()
@@ -85,7 +106,9 @@ def main():
             uri=args.uri,
             database=args.database,
             migrations_path=args.path or MigrationManager.MIGRATIONS_DIR,
-            use_transaction=not args.no_use_transaction if args.command == "migrate" else True,
+            use_transaction=(
+                not args.no_use_transaction if args.command == "migrate" else True
+            ),
             distance=args.distance if args.command == "migrate" else None,
             backward=args.backward if args.command == "migrate" else False,
             stream_output=(args.stream_output if args.command == "migrate" else False),

@@ -68,4 +68,37 @@ Practicality: Preference for practical advice vs. theoretical discussion.
 5. Include brief reasoning for each dimension when possible
 6. Maintain existing insights from the old profile while incorporating new observations
 7. If a dimension cannot be inferred from either the old profile or new conversation, do not include it
+ 
+Output Requirements:
+- Return ONLY one fenced JSON code block (```json ... ```), no extra text outside the code block.
+- Use ASCII quotes only (no smart quotes).
+- Evidence format: prefer "[conversation_id:EVENT_ID]" or raw "EVENT_ID" that appears in the conversation memcells.
+- Include only observed dimensions; omit unknown or unsupported ones.
+- The fields must align with the existing schema used by the system.
+
+JSON Template:
+```json
+{
+  "user_profiles": [
+    {
+      "user_id": "USER_ID",
+      "user_name": "USER_NAME",
+      "personality": [],
+      "way_of_decision_making": [],
+      "working_habit_preference": [],
+      "interests": [],
+      "tendency": [],
+      "motivation_system": [],
+      "fear_system": [],
+      "value_system": [],
+      "humor_use": [],
+      "colloquialism": [],
+      "output_reasoning": ""
+    }
+  ]
+}
+```
+
+Field Item Schema (for list fields):
+- Each item must be: {"value": string, "evidences": [string], "level": string?}
 """

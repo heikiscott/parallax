@@ -2,5 +2,3 @@
 
 Per project rules, do not add executable code here.
 """
-
-

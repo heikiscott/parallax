@@ -10,19 +10,21 @@ try:
     from beanie import before_event, Insert, Update
     from pydantic import Field, BaseModel
     from common_utils.datetime_utils import get_now_with_timezone
-    
+
     BEANIE_AVAILABLE = True
 except ImportError:
     BEANIE_AVAILABLE = False
 
 
 if BEANIE_AVAILABLE:
+
     class AuditBase(BaseModel):
         """
         审计基类
-        
+
         包含通用的时间戳字段和自动处理逻辑
         """
+
         # 系统字段
         created_at: Optional[datetime] = Field(default=None, description="创建时间")
         updated_at: Optional[datetime] = Field(default=None, description="更新时间")
@@ -44,11 +46,14 @@ else:
     class AuditBase:
         """
         审计基类占位符
-        
+
         当 Beanie 依赖不可用时使用
         """
+
         def __init__(self):
-            raise ImportError("Beanie ODM is not available. Please install beanie to use AuditBase.")
+            raise ImportError(
+                "Beanie ODM is not available. Please install beanie to use AuditBase."
+            )
 
 
 # 导出

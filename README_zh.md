@@ -1,19 +1,38 @@
 <div align="center">
-  <h1>EverMemOS 🧠</h1>
-  <p><strong>让 AI 拥有真正的记忆</strong> · 企业级智能记忆系统</p>
-  <p>
-    <img alt="Python" src="https://img.shields.io/badge/Python-3.10+-blue.svg" />
-    <img alt="License" src="https://img.shields.io/badge/License-Apache%202.0-green.svg" />
-    <img alt="Status" src="https://img.shields.io/badge/Status-Production-brightgreen.svg" />
-  </p>
-  <p>
-    <a href="README.md">English</a> | <a href="README_zh.md">简体中文</a>
-  </p>
+
+<h1>EverMemOS </h1>
+
+<p><strong>每次交流，都由理解驱动</strong> · 企业级智能记忆系统</p>
+
+<p>
+  <img alt="Python" src="https://img.shields.io/badge/Python-3.10+-3776AB?style=flat-square&logo=python&logoColor=white" />
+  <img alt="License" src="https://img.shields.io/badge/License-Apache%202.0-D22128?style=flat-square&logo=apache&logoColor=white" />
+  <img alt="Docker" src="https://img.shields.io/badge/Docker-Supported-2496ED?style=flat-square&logo=docker&logoColor=white" />
+  <img alt="FastAPI" src="https://img.shields.io/badge/FastAPI-Latest-009688?style=flat-square&logo=fastapi&logoColor=white" />
+  <img alt="MongoDB" src="https://img.shields.io/badge/MongoDB-7.0+-47A248?style=flat-square&logo=mongodb&logoColor=white" />
+  <img alt="Elasticsearch" src="https://img.shields.io/badge/Elasticsearch-8.x-005571?style=flat-square&logo=elasticsearch&logoColor=white" />
+  <img alt="Milvus" src="https://img.shields.io/badge/Milvus-2.4+-00A3E0?style=flat-square" />
+  <img alt="Redis" src="https://img.shields.io/badge/Redis-7.x-DC382D?style=flat-square&logo=redis&logoColor=white" />
+   <a href="https://github.com/EverMind-AI/EverMemOS/releases">
+    <img alt="Release" src="https://img.shields.io/badge/release-v1.0.0-4A90E2?style=flat-square" />
+  </a>
+</p>
+
+<p>
+  <a href="README.md">English</a> | <a href="README_zh.md">简体中文</a>
+</p>
+
 </div>
 
-> 让每一次对话，都建立在理解之上。
+---
 
-EverMemOS 是新一代的AI记忆系统，专为企业和组织设计。它能够从海量对话数据中提取、存储和检索结构化记忆，让AI助手真正理解用户、群组和业务上下文。
+> 💬 **不止记忆，更是远见。**
+
+**EverMemOS** 是一个着眼未来的**智能系统**。  
+传统的 AI 记忆仅是“回顾过去”的数据库，而 EverMemOS 让 AI 不仅能“记住”发生了什么，更能“理解”这些记忆的意义，并据此指导当下的行动与决策。在EverMemOS的演示工具中，你可以看到EverMemOS如何从你的历史信息中提取重要信息，然后在对话时记住你的**喜好、习惯和历史**，就像一个真正认识你的**朋友**。
+在 **LoCoMo** 基准测试中，我们基于 EverMemOS 的方法在 **LLM-Judge** 评测下达到了  **92.3% 的推理准确率**，优于我们测试的同类方法。
+
+---
 
 ## 📢 最新动态
 
@@ -21,11 +40,12 @@ EverMemOS 是新一代的AI记忆系统，专为企业和组织设计。它能�
 <tr>
 <td width="100%" style="border: none;">
 
-**[2025-10-28]**  **🎉 v1.0.0 首个稳定版本发布！**
+**[2025-11-02] 🎉 🎉 🎉 EverMemOS v1.0.0 版本发布！**
 
-- ✨ **稳定版本**: AI记忆系统代码开源！
-- 📚 **文档完善**: 快速开始指南和 API 文档
-
+- ✨  **稳定版本**：AI 记忆系统正式开源  
+- 📚  **文档完善**：提供快速开始指南与完整 API 说明 
+- 📈  **基准测试**：LoCoMo数据集基准测试流程
+- 🖥️  **演示工具**：用容易上手的demo快速开始
 
 </td>
 </tr>
@@ -33,15 +53,39 @@ EverMemOS 是新一代的AI记忆系统，专为企业和组织设计。它能�
 
 ---
 
-🎯 **核心愿景**：构建永不遗忘的AI记忆，让每一次对话都建立在前序理解之上。
+## 🎯 核心愿景  
+构建永不遗忘的 AI 记忆，让每一次对话都建立在前序理解之上。
 
-💡 **独特优势**：
-- 🧠 **多层次记忆提取** - Episode记忆、用户画像、群组特征全面捕获
-- 🔍 **智能检索融合** - 关键词、向量、混合检索 + Rerank重排序
-- 💾 **多存储架构** - MongoDB + Elasticsearch + Milvus 一体化存储
-- 🏗️ **分层设计** - Agentic → Memory → Business → Infrastructure 清晰分层
+---
+
+## 💡 独特优势
+
+### 🔗 脉络有绪  
+不止“碎片”，串联“故事”：自动串联对话片段，构建清晰主题脉络，让 AI “看得明白”。  
+
+> 面对多线程对话时，它能自然地区分“A 项目的进度讨论”和“B 团队的策略规划”，并在每个主题中维持连贯的上下文逻辑。  
+> 从零散片语到完整叙事，AI 不再“听懂一句”，而是“听懂整件事”。
+
+---
+
+### 🧠 感知有据  
+不止“检索”，智能“感知”：主动捕捉记忆与任务间的深层关联，让 AI 在关键时刻“想得周到”。  
+
+> 想象一下：当用户请求“推荐食物”时，AI 会主动联想到“你两天前刚做了牙科手术”这一关键信息，自动调整建议，避开不适宜的选项。  
+> 这是一种 **上下文自觉 (Contextual Awareness)** —— 让 AI 的思考真正建立在理解之上，而非孤立回应。
+
+---
+
+### 💾 画像有灵  
+不止“档案”，动态“成长”：实时更新用户画像，越聊越懂你，让 AI “认得真切”。  
+
+> 你的每一次交流都会悄然更新 AI 对你的理解——偏好、风格、关注点都在持续演化。  
+> 随着互动的深入，它不只是“记住你说过什么”，而是在“学习你是谁”。
+
+---
 
 ## 📑 目录
+
 
 <div align="center">
 <table>
@@ -80,13 +124,61 @@ EverMemOS 是新一代的AI记忆系统，专为企业和组织设计。它能�
 
 **EverMemOS** 是一个开源项目，旨在为对话式 AI 智能体提供长期记忆能力。本代码库是论文《EverMemOS》的官方实现。它从对话中提取、构建和检索信息，使智能体能够维持上下文、回忆过去的互动，并逐步建立用户画像。这使得对话变得更具个性化、连贯性和智能。
 
-## 🎯 核心概念
+## 🎯 系统框架
 
-- **记忆单元 (MemCell):** 从对话中提取的原子化记忆单位。它代表一条独立的信息，如一个事实、一个事件或用户的偏好。
-- **用户画像 (User Profile):** 根据多个记忆单元聚合而成的用户特征、偏好和历史的结构化摘要。
-- **记忆提取 (Memory Extraction):** 处理原始对话日志、识别有意义的片段，并将其转换为结构化的记忆单元和用户画像的流水线。
-- **记忆增强对话 (Memory-Enhanced Conversation):** 利用提取的记忆为大语言模型 (LLM) 提供相关上下文，使其能够生成更具信息量和个性化的回应。
+EverMemOS 围绕两条主线运行：**记忆构筑**与**记忆感知**。它们组成认知闭环，使系统持续吸收、沉淀并运用过往信息，让每次回应立足真实上下文与长期记忆。
 
+<p align="center">
+  <img src="figs/overview.png" alt="Overview" />
+</p>
+
+### 🧩 记忆构筑
+
+记忆构筑层：根据原始对话数据构筑结构化、可检索的长期记忆。
+
+- **核心要素**
+  - ⚛️ **记忆单元**：从对话中提炼的核心记忆结构单元，便于后续组织与引用
+  - 🗂️ **多层次记忆**：将相关片段按主题与脉络整合，形成可复用的多层次记忆
+  - 🏷️ **多类型记忆**：覆盖情节、画像、偏好、关系、语义知识、基础事实与核心记忆
+
+- **工作流程**
+  1. **记忆单元提取**：识别对话中的关键信息，生成记忆单元
+  2. **结构记忆构筑**：按主题与参与者整合，形成情节与画像
+  3. **智能存储索引**：持久化保存，并建立关键词与语义索引，支持快速召回
+
+### 🔎 记忆感知
+
+记忆感知层：针对查询快速召回相关记忆，通过多轮推理与智能融合，实现精准的上下文感知。
+
+#### 🎯 智能检索工具
+
+- **🧪 混合检索 (RRF 融合)**  
+  并行执行语义与关键词检索，采用 Reciprocal Rank Fusion 算法无缝融合
+
+- **📊 智能重排序 (Reranker)**  
+  批量并发处理 + 指数退避重试，在高吞吐下保持稳定性  
+  对候选记忆按深度相关性重新排序，让最关键的信息优先呈现
+
+#### 🤖 Agentic 智能检索
+
+- **🎓 LLM 引导的多轮召回**  
+  对于不充分的情况，生成 2-3 个互补查询，并行检索并融合
+  自动识别缺失信息，主动补足检索盲区
+
+- **🔀 多查询并行策略**  
+  当单一查询无法完整表达意图时，生成多个互补视角的查询  
+  通过多路 RRF 融合，提升复杂意图的理解覆盖度
+
+- **⚡ 轻量级快速模式**  
+  对延迟敏感的场景，跳过 LLM 调用，RRF融合混合检索
+  在速度与质量间灵活平衡
+
+#### 🧠 推理融合
+
+- **上下文整合**：将召回的多层次记忆（情节、画像、偏好）与当前对话拼接
+- **可追溯推理**：模型基于明确的记忆证据生成回复，避免幻觉
+
+💡 通过 **"结构化记忆 → 多策略召回 → 智能检索 → 上下文推理"** 的认知闭环，让 AI 始终"带着记忆思考"，实现真正的上下文自觉。
 
 
 ## 📁 项目结构
@@ -127,45 +219,101 @@ memsys-opensource/
 ### 环境要求
 
 - Python 3.10+
-- uv（推荐的包管理器）
-- [MongoDB Installation Guide](docs/usage/MONGODB_GUIDE_zh.md), Redis, Elasticsearch, Milvus (可选)
+- uv
+- Docker 和 Docker Compose
 
 ### 安装步骤
 
+#### 使用 Docker 启动依赖服务 ⭐
+
+使用 Docker Compose 一键启动所有依赖服务（MongoDB、Elasticsearch、Milvus、Redis）：
 
 ```bash
 # 1. 克隆项目
 git clone https://github.com/your-org/memsys_opensource.git
 cd memsys_opensource
 
-# 2. 安装 uv（如果还没有安装）
+# 2. 启动 Docker 服务
+docker-compose up -d
+
+# 3. 验证服务状态
+docker-compose ps
+
+# 4. 安装 uv（如果还没有安装）
 curl -LsSf https://astral.sh/uv/install.sh | sh
 
-# 3. 安装项目依赖
+# 5. 安装项目依赖
 uv sync
 
-# 4. 配置环境变量
+# 6. 配置环境变量
 cp env.template .env
-
 # 编辑 .env 文件，填入必要的配置
-#   - LLM_API_KEY: 默认使用 OpenRouter，请填入您的 OpenRouter API Key。
-#   - DEEPINFRA_API_KEY: 填入您的 DeepInfra API Key，用于 Embedding 和 Rerank 服务。
-#   - 其他数据库 (MongoDB/Redis/ES/Milvus) 根据您的本地或远程部署情况进行配置。
-
+#   - LLM_API_KEY: 填入您的 LLM API Key（用于记忆提取）
+#   - DEEPINFRA_API_KEY: 填入您的 DeepInfra API Key（用于 Embedding 和 Rerank）
 ```
 
-### 如何使用
+**Docker 服务说明**：
+- **MongoDB** (27017): 主数据库，存储记忆单元和画像
+- **Elasticsearch** (19200): 关键词检索引擎（BM25）
+- **Milvus** (19530): 向量数据库，语义检索
+- **Redis** (6479): 缓存服务
 
-#### 1. 运行演示：记忆提取和交互式聊天
+> 💡 详细的 Docker 配置和管理，请参考 [Docker 部署指南](DOCKER_DEPLOYMENT.md)
+
+> 📖 MongoDB 详细安装指南：[MongoDB Installation Guide](docs/usage/MONGODB_GUIDE_zh.md)
+
+---
+
+#### 🎯 运行演示：记忆提取和交互式聊天
 
 演示部分展示了 EverMemOS 的端到端功能。
+
+---
+
+**🚀 快速开始：简单演示（推荐）** ⭐
+
+体验 EverMemOS 最快的方式！只需 2 步就能看到记忆存储和检索的完整流程：
+
+```bash
+# 步骤 1：启动 API 服务器（终端 1）
+uv run python src/bootstrap.py start_server.py
+
+# 步骤 2：运行简单演示（终端 2）
+uv run python src/bootstrap.py demo/simple_demo.py
+```
+
+**它会做什么：**
+- 存储 4 条关于运动爱好的对话消息
+- 等待 10 秒建立索引
+- 用 3 个不同的查询搜索相关记忆
+- 展示完整的工作流程和友好的说明
+
+**适合人群：** 首次使用者、快速测试、理解核心概念
+
+查看演示代码 [`demo/simple_demo.py`](demo/simple_demo.py)
+
+---
+
+我们还设置了完整的体验场景：
+
+**前置条件：启动 API 服务器**
+
+```bash
+# 终端 1：启动 API 服务器（必需）
+uv run python src/bootstrap.py start_server.py
+```
+
+> 💡 **提示**：API 服务器需要一直运行，请保持此终端打开。下面的所有操作都需要在另一个终端中进行。
+
+---
 
 **步骤 1: 提取记忆**
 
 运行记忆提取脚本，处理示例对话数据并构建记忆数据库：
 
 ```bash
-python demo/extract_memory.py
+# 终端 2：运行提取脚本
+uv run python src/bootstrap.py demo/extract_memory.py
 ```
 
 该脚本将：
@@ -174,43 +322,49 @@ python demo/extract_memory.py
 - 生成用户画像并保存到 `demo/memcell_outputs/` 目录
 
 > **💡 提示**:
-> 默认情况下，脚本会提取 **助手 (ASSISTANT)** 场景的记忆。您可以选择性地提取 **群聊 (GROUP_CHAT)** 场景的记忆：
-> 1. 打开 `demo/extract_memory.py` 文件。
-> 2. 找到 `EXTRACT_CONFIG` 配置部分。
-> 3. 将 `scenario_type` 从 `ScenarioType.ASSISTANT` 修改为 `ScenarioType.GROUP_CHAT`。
-> 4. 再次运行提取脚本。
->
-> 您可以只运行一种场景，也可以两种都运行。
+> 配置非常简单！`extract_memory.py` 使用 HTTP API，只需 2 个参数即可运行。
+> 详细的配置说明和使用指南请参阅 [Demo 文档](demo/README_zh.md)。
 
 **步骤 2: 与记忆聊天**
 
 提取记忆后，启动交互式聊天演示：
 
 ```bash
-python demo/chat_with_memory.py
+# 终端 2：运行聊天程序（确保 API 服务器仍在运行）
+uv run python src/bootstrap.py demo/chat_with_memory.py
 ```
 
 这将启动一个命令行界面，您可以与一个利用了刚提取的记忆的智能体进行对话。更多关于聊天功能的使用技巧和推荐问题，请参阅 [Demo 指南](demo/README_zh.md)。
 
-#### 2. 运行评估：性能测试
+**交互流程：**
+1. **选择语言**：在中文和 English 之间选择界面语言。
+2. **选择场景模式**：
+   - **助手模式**：单人对话，基于个人记忆的智能助手。
+   - **群聊模式**：多人群聊，基于群组记忆的对话分析。
+3. **选择对话群组**：从数据库中可用的群组中选择。
+4. **开始聊天**：与记忆增强的 AI 智能体互动。
+
+---
+
+#### 📊 运行评估：性能测试
 
 评估框架提供了一种系统化的方法来衡量记忆系统的性能，基于 LoCoMo 评估数据集。
 
 ```bash
 # 阶段 1: 记忆单元提取
-python evaluation/locomo_evaluation/stage1_memcells_extraction.py
+uv run python src/bootstrap.py evaluation/locomo_evaluation/stage1_memcells_extraction.py
 
 # 阶段 2: 索引构建
-python evaluation/locomo_evaluation/stage2_index_building.py
+uv run python src/bootstrap.py evaluation/locomo_evaluation/stage2_index_building.py
 
 # 阶段 3: 记忆检索
-python evaluation/locomo_evaluation/stage3_memory_retrivel.py
+uv run python src/bootstrap.py evaluation/locomo_evaluation/stage3_memory_retrivel.py
 
 # 阶段 4: 回应生成
-python evaluation/locomo_evaluation/stage4_response.py
+uv run python src/bootstrap.py evaluation/locomo_evaluation/stage4_response.py
 
 # 阶段 5: 评估
-python evaluation/locomo_evaluation/stage5_eval.py
+uv run python src/bootstrap.py evaluation/locomo_evaluation/stage5_eval.py
 ```
 
 每个脚本对应评估流水线中的一个阶段，从数据处理到性能评分。
@@ -218,10 +372,25 @@ python evaluation/locomo_evaluation/stage5_eval.py
 > **⚙️ 评估配置**:
 > 在运行评估前，您可以修改 `evaluation/locomo_evaluation/config.py` 文件来调整实验设置：
 > - **`ExperimentConfig.experiment_name`**: 修改此变量可以更改实验结果的保存目录。
-> - **`ExperimentConfig.llm_service`**: 选择要使用的 LLM 服务 (例如, `"openai"` 或 `"vllm"`)。
+> - **`ExperimentConfig.llm_service`**: 选择要使用的 LLM 服务，并设置相应参数 (例如, `"openai"` 或 `"vllm"`)。
 > - **`ExperimentConfig.llm_config`**: 在此字典中配置所选 LLM 服务的具体参数，如模型、API 地址 (`base_url`) 和密钥 (`api_key`)。
 
-#### 3. 调用 API 接口
+---
+
+#### 🔌 调用 API 接口
+
+**前置条件：启动 API 服务器**
+
+在调用 API 之前，请确保已启动 API 服务器：
+
+```bash
+# 启动 API 服务器
+uv run python src/bootstrap.py start_server.py
+```
+
+> 💡 **提示**：API 服务器需要一直运行，请保持此终端打开。下面的 API 调用需要在另一个终端中进行。
+
+---
 
 使用 V3 API 存储单条消息记忆：
 
@@ -239,19 +408,34 @@ curl -X POST http://localhost:1995/api/v3/agentic/memorize \
   }'
 ```
 
-#### 4. 批量存储群聊记忆
+**API 功能说明**：
+
+- **`/api/v3/agentic/memorize`**: 存储单条消息记忆
+- **`/api/v3/agentic/retrieve_lightweight`**: 轻量级记忆检索（Embedding + BM25 + RRF）
+- **`/api/v3/agentic/retrieve_agentic`**: Agentic 记忆检索（LLM 引导的多轮智能检索）
+
+更多 API 详情请参考 [Agentic V3 API 文档](docs/api_docs/agentic_v3_api_zh.md)。
+
+---
+
+#### 📦 批量存储群聊记忆
 
 EverMemOS 支持标准化的群聊数据格式（[GroupChatFormat](data_format/group_chat/group_chat_format.md)），可以使用脚本批量存储：
 
 ```bash
-# 使用脚本批量存储
+# 使用脚本批量存储（中文数据）
 uv run python src/bootstrap.py src/run_memorize.py \
-  --input data/group_chat.json \
+  --input data/group_chat_zh.json \
+  --api-url http://localhost:1995/api/v3/agentic/memorize
+
+# 或者使用英文数据
+uv run python src/bootstrap.py src/run_memorize.py \
+  --input data/group_chat_en.json \
   --api-url http://localhost:1995/api/v3/agentic/memorize
 
 # 验证文件格式
 uv run python src/bootstrap.py src/run_memorize.py \
-  --input data/group_chat.json \
+  --input data/group_chat_zh.json \
   --validate-only
 ```
 
@@ -311,6 +495,7 @@ uv run python src/bootstrap.py src/run_memorize.py \
 ### 演示与评估
 - [📖 演示指南](demo/README_zh.md) - 交互式示例和记忆提取演示
 - [📊 数据指南](data/README_zh.md) - 示例对话数据和格式规范
+- [📊 评估指南](evaluation/locomo_evaluation/README_zh.md) - 在公开数据集LoCoMo上测试基于EverMemOS的方法
 
 ## 🏗️ 架构设计
 
@@ -332,7 +517,7 @@ EverMemOS 采用分层架构设计，主要包括：
 在开始贡献之前，请阅读我们的 [贡献指南](CONTRIBUTING.md)，了解：
 - 开发环境设置
 - 代码规范和最佳实践
-- Git 提交规范（Gitemoji）
+- Git 提交规范
 - Pull Request 流程
 
 ## 🌟 加入我们
@@ -351,8 +536,8 @@ EverMemOS 采用分层架构设计，主要包括：
 
 - **GitHub Issues**: [提交问题和建议](https://github.com/your-org/memsys_opensource/issues)
 - **讨论区**: [参与讨论](https://github.com/your-org/memsys_opensource/discussions)
-- **邮箱**: [待补充联系邮箱]
-- **社区**: [待补充社区链接]
+- **邮箱**: []
+- **社区**: []
 
 ### 贡献者
 
@@ -382,7 +567,7 @@ EverMemOS 采用分层架构设计，主要包括：
 
 感谢以下项目和社区的灵感和支持：
 
-- （待补充）
+- （）
 
 ---
 

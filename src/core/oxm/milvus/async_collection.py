@@ -9,24 +9,28 @@ from pymilvus.client.types import CompactionPlans, CompactionState, Replica
 
 T = TypeVar('T')
 
+
 def async_wrap(func: Callable[..., T]) -> Callable[..., asyncio.Future[T]]:
     """将同步方法包装成异步方法的装饰器"""
+
     @wraps(func)
     async def run(*args, **kwargs) -> T:
         loop = asyncio.get_running_loop()
         return await loop.run_in_executor(None, lambda: func(*args, **kwargs))
+
     return run
+
 
 class AsyncCollection:
     """异步版本的Collection类
-    
+
     这个类包装了pymilvus的Collection类，提供异步接口。
     所有的同步操作都会在事件循环的默认执行器中执行。
     """
-    
+
     def __init__(self, collection: Collection):
         """初始化AsyncCollection
-        
+
         Args:
             collection: pymilvus的Collection实例
         """
@@ -34,7 +38,7 @@ class AsyncCollection:
 
     def __getattr__(self, name: str) -> Any:
         """拦截所有对原始collection的属性访问
-        
+
         如果是方法调用，包装成异步方法
         如果是属性访问，直接返回
         """
@@ -56,7 +60,7 @@ class AsyncCollection:
         data: Union[List, Dict],
         partition_name: Optional[str] = None,
         timeout: Optional[float] = None,
-        **kwargs
+        **kwargs,
     ) -> MutationResult:
         """异步插入数据"""
         return await async_wrap(self._collection.insert)(
@@ -74,12 +78,20 @@ class AsyncCollection:
         output_fields: Optional[List[str]] = None,
         timeout: Optional[float] = None,
         round_decimal: int = -1,
-        **kwargs
+        **kwargs,
     ) -> SearchResult:
         """异步搜索"""
         return await async_wrap(self._collection.search)(
-            data, anns_field, param, limit, expr, partition_names,
-            output_fields, timeout, round_decimal, **kwargs
+            data,
+            anns_field,
+            param,
+            limit,
+            expr,
+            partition_names,
+            output_fields,
+            timeout,
+            round_decimal,
+            **kwargs,
         )
 
     async def query(
@@ -88,7 +100,7 @@ class AsyncCollection:
         output_fields: Optional[List[str]] = None,
         partition_names: Optional[List[str]] = None,
         timeout: Optional[float] = None,
-        **kwargs
+        **kwargs,
     ) -> List:
         """异步查询"""
         return await async_wrap(self._collection.query)(
@@ -100,7 +112,7 @@ class AsyncCollection:
         expr: str,
         partition_name: Optional[str] = None,
         timeout: Optional[float] = None,
-        **kwargs
+        **kwargs,
     ) -> MutationResult:
         """异步删除"""
         return await async_wrap(self._collection.delete)(
@@ -116,7 +128,7 @@ class AsyncCollection:
         partition_names: Optional[List[str]] = None,
         replica_number: Optional[int] = None,
         timeout: Optional[float] = None,
-        **kwargs
+        **kwargs,
     ) -> None:
         """异步加载"""
         return await async_wrap(self._collection.load)(
@@ -131,7 +143,7 @@ class AsyncCollection:
         self,
         is_clustering: Optional[bool] = False,
         timeout: Optional[float] = None,
-        **kwargs
+        **kwargs,
     ) -> None:
         """异步压缩"""
         return await async_wrap(self._collection.compact)(
@@ -142,7 +154,7 @@ class AsyncCollection:
         self,
         timeout: Optional[float] = None,
         is_clustering: Optional[bool] = False,
-        **kwargs
+        **kwargs,
     ) -> CompactionState:
         """异步获取压缩状态"""
         return await async_wrap(self._collection.get_compaction_state)(
@@ -153,18 +165,13 @@ class AsyncCollection:
         self,
         timeout: Optional[float] = None,
         is_clustering: Optional[bool] = False,
-        **kwargs
+        **kwargs,
     ) -> CompactionPlans:
         """异步获取压缩计划"""
         return await async_wrap(self._collection.get_compaction_plans)(
             timeout, is_clustering, **kwargs
         )
 
-    async def get_replicas(
-        self,
-        timeout: Optional[float] = None,
-        **kwargs
-    ) -> Replica:
+    async def get_replicas(self, timeout: Optional[float] = None, **kwargs) -> Replica:
         """异步获取副本信息"""
         return await async_wrap(self._collection.get_replicas)(timeout, **kwargs)
-    

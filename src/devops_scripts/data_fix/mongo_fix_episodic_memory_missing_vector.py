@@ -71,19 +71,14 @@ async def _fetch_candidates(
 
     query: Dict[str, Any] = {"$and": and_filters}
 
-    cursor = (
-        EpisodicMemory.find(query)
-        .sort("-created_at")  # 最近优先
-        .limit(size)
-    )
+    cursor = EpisodicMemory.find(query).sort("-created_at").limit(size)  # 最近优先
 
     results = await cursor.to_list()
     return results
 
 
 async def _process_one(
-    document: EpisodicMemory,
-    semaphore: asyncio.Semaphore,
+    document: EpisodicMemory, semaphore: asyncio.Semaphore
 ) -> Tuple[Optional[str], Optional[str]]:
     """
     处理单个文档：向量化 episode 并回写 vector 与 vector_model。
@@ -102,12 +97,7 @@ async def _process_one(
 
             # 精确按 _id 更新，避免覆盖其他字段
             await EpisodicMemory.find({"_id": document.id}).update(
-                {
-                    "$set": {
-                        "vector": vector_list,
-                        "vector_model": model_name,
-                    }
-                }
+                {"$set": {"vector": vector_list, "vector_model": model_name}}
             )
 
             return str(document.id), None
@@ -215,31 +205,23 @@ async def run_fix(
         succeeded,
         failed,
     )
-    return {"total": processed_total, "succeeded": succeeded, "failed": failed, "errors": errors}
+    return {
+        "total": processed_total,
+        "succeeded": succeeded,
+        "failed": failed,
+        "errors": errors,
+    }
 
 
 def _parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(
-        description="修复历史 EpisodicMemory 缺失向量数据",
+    parser = argparse.ArgumentParser(description="修复历史 EpisodicMemory 缺失向量数据")
+    parser.add_argument(
+        "--limit", type=int, default=1000, help="最多处理的文档数量（默认 1000）"
     )
     parser.add_argument(
-        "--limit",
-        type=int,
-        default=1000,
-        help="最多处理的文档数量（默认 1000）",
+        "--batch", type=int, default=200, help="每次从数据库拉取的文档数量（默认 200）"
     )
-    parser.add_argument(
-        "--batch",
-        type=int,
-        default=200,
-        help="每次从数据库拉取的文档数量（默认 200）",
-    )
-    parser.add_argument(
-        "--concurrency",
-        type=int,
-        default=8,
-        help="并发度（默认 8）",
-    )
+    parser.add_argument("--concurrency", type=int, default=8, help="并发度（默认 8）")
     parser.add_argument(
         "--start-created-at",
         dest="start_created_at",
@@ -286,5 +268,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-

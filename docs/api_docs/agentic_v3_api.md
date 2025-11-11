@@ -1,80 +1,80 @@
-# Agentic Layer V3 API 文档
+# Agentic Layer V3 API Documentation
 
-## 概述
+## Overview
 
-Agentic Layer V3 API 提供了专门用于处理群聊记忆的接口，采用简单直接的消息格式，无需任何预处理或格式转换。
+The Agentic Layer V3 API provides specialized interfaces for processing group chat memories, using a simple and direct message format without any preprocessing or format conversion.
 
-## 主要特性
+## Key Features
 
-- ✅ **简单直接**：采用最简单的单条消息格式，无需复杂的数据结构
-- ✅ **无需转换**：不需要任何格式转换或适配
-- ✅ **逐条处理**：实时处理每条消息，适合消息流场景
-- ✅ **集中式适配**：所有格式转换逻辑集中在 `group_chat_converter.py`，保持单一职责
-- ✅ **向后兼容**：V2 接口依然可用，支持渐进式迁移
-- ✅ **详细错误信息**：提供清晰的错误提示和数据统计
+- ✅ **Simple and Direct**: Uses the simplest single message format, no complex data structures required
+- ✅ **No Conversion Needed**: No format conversion or adaptation required
+- ✅ **Sequential Processing**: Real-time processing of each message, suitable for message stream scenarios
+- ✅ **Centralized Adaptation**: All format conversion logic centralized in `group_chat_converter.py`, maintaining single responsibility
+- ✅ **Backward Compatible**: V2 interface still available, supporting gradual migration
+- ✅ **Detailed Error Messages**: Provides clear error prompts and data statistics
 
-## 接口对比
+## Interface Comparison
 
-| 特性 | V2 接口 | V3 接口 ⭐ |
-|------|---------|-----------|
-| 端点 | `/api/v2/agentic/memorize` | `/api/v3/agentic/memorize` |
-| 输入格式 | 内部格式 | **简单直接格式** |
-| 处理方式 | 逐条（需外部转换） | **逐条（无需转换）** |
-| 格式复杂度 | 高 | **低（最简单）** |
-| 推荐场景 | 已有转换逻辑 | **实时消息流（推荐）** |
+| Feature | V2 Interface | V3 Interface ⭐ |
+|---------|-------------|----------------|
+| Endpoint | `/api/v2/agentic/memorize` | `/api/v3/agentic/memorize` |
+| Input Format | Internal Format | **Simple Direct Format** |
+| Processing Method | Sequential (requires external conversion) | **Sequential (no conversion needed)** |
+| Format Complexity | High | **Low (simplest)** |
+| Recommended Scenario | Existing conversion logic | **Real-time message streams (recommended)** |
 
-**V3 接口的优势**：
-- ✅ 格式最简单，直接传入必要字段即可
-- ✅ 无需任何格式转换或适配
-- ✅ 适合实时消息处理场景
-- ✅ 性能最优（无转换开销）
+**Advantages of V3 Interface**:
+- ✅ Simplest format, just pass required fields directly
+- ✅ No format conversion or adaptation needed
+- ✅ Suitable for real-time message processing scenarios
+- ✅ Optimal performance (no conversion overhead)
 
-## 接口说明
+## Interface Specification
 
 ### POST `/api/v3/agentic/memorize`
 
-逐条存储单条群聊消息记忆
+Store a single group chat message memory
 
-#### 请求格式
+#### Request Format
 
 **Content-Type**: `application/json`
 
-**请求体**：简单直接的单条消息格式（无需预转换）
+**Request Body**: Simple direct single message format (no pre-conversion needed)
 
 ```json
 {
   "group_id": "group_123",
-  "group_name": "项目讨论组",
+  "group_name": "Project Discussion Group",
   "message_id": "msg_001",
   "create_time": "2025-01-15T10:00:00+08:00",
   "sender": "user_001",
-  "sender_name": "张三",
-  "content": "今天讨论下新功能的技术方案",
+  "sender_name": "Zhang San",
+  "content": "Let's discuss the technical approach for the new feature today",
   "refer_list": ["msg_000"]
 }
 ```
 
-**字段说明**：
+**Field Descriptions**:
 
-| 字段 | 类型 | 必需 | 说明 |
-|------|------|------|------|
-| group_id | string | 否 | 群组ID |
-| group_name | string | 否 | 群组名称 |
-| message_id | string | 是 | 消息唯一标识 |
-| create_time | string | 是 | 消息创建时间（ISO 8601格式） |
-| sender | string | 是 | 发送者用户ID |
-| sender_name | string | 否 | 发送者名称（默认使用 sender） |
-| content | string | 是 | 消息内容 |
-| refer_list | array | 否 | 引用的消息ID列表 |
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| group_id | string | No | Group ID |
+| group_name | string | No | Group name |
+| message_id | string | Yes | Unique message identifier |
+| create_time | string | Yes | Message creation time (ISO 8601 format) |
+| sender | string | Yes | Sender user ID |
+| sender_name | string | No | Sender name (defaults to sender) |
+| content | string | Yes | Message content |
+| refer_list | array | No | List of referenced message IDs |
 
-#### 响应格式
+#### Response Format
 
-**成功响应 (200 OK)**
+**Success Response (200 OK)**
 
 ```json
 {
   "status": "ok",
-  "message": "记忆存储成功，共保存 1 条记忆",
+  "message": "Memory stored successfully, 1 memory saved",
   "result": {
     "saved_memories": [
       {
@@ -82,7 +82,7 @@ Agentic Layer V3 API 提供了专门用于处理群聊记忆的接口，采用�
         "user_id": "user_001",
         "group_id": "group_123",
         "timestamp": "2025-01-15T10:00:00",
-        "content": "用户讨论了新功能的技术方案"
+        "content": "User discussed technical approach for the new feature"
       }
     ],
     "count": 1
@@ -90,25 +90,25 @@ Agentic Layer V3 API 提供了专门用于处理群聊记忆的接口，采用�
 }
 ```
 
-**错误响应 (400 Bad Request)**
+**Error Response (400 Bad Request)**
 
 ```json
 {
   "status": "failed",
   "code": "INVALID_PARAMETER",
-  "message": "数据格式错误：缺少必需字段 message_id",
+  "message": "Data format error: missing required field message_id",
   "timestamp": "2025-01-15T10:30:00+00:00",
   "path": "/api/v3/agentic/memorize"
 }
 ```
 
-**错误响应 (500 Internal Server Error)**
+**Error Response (500 Internal Server Error)**
 
 ```json
 {
   "status": "failed",
   "code": "SYSTEM_ERROR",
-  "message": "存储记忆失败，请稍后重试",
+  "message": "Failed to store memory, please try again later",
   "timestamp": "2025-01-15T10:30:00+00:00",
   "path": "/api/v3/agentic/memorize"
 }
@@ -116,49 +116,49 @@ Agentic Layer V3 API 提供了专门用于处理群聊记忆的接口，采用�
 
 ---
 
-## 使用场景
+## Use Cases
 
-### 1. 实时消息流处理
+### 1. Real-time Message Stream Processing
 
-适用于处理来自聊天应用的实时消息流，每收到一条消息就立即存储。
+Suitable for processing real-time message streams from chat applications, storing each message as it arrives.
 
-**示例**：
+**Example**:
 ```json
 {
   "group_id": "group_123",
-  "group_name": "项目讨论组",
+  "group_name": "Project Discussion Group",
   "message_id": "msg_001",
   "create_time": "2025-01-15T10:00:00+08:00",
   "sender": "user_001",
-  "sender_name": "张三",
-  "content": "今天讨论下新功能的技术方案",
+  "sender_name": "Zhang San",
+  "content": "Let's discuss the technical approach for the new feature today",
   "refer_list": []
 }
 ```
 
-### 2. 聊天机器人集成
+### 2. Chatbot Integration
 
-聊天机器人接收到用户消息后，可以直接调用 V3 接口存储记忆。
+After a chatbot receives a user message, it can directly call the V3 interface to store the memory.
 
-**示例**：
+**Example**:
 ```json
 {
   "group_id": "bot_conversation_123",
-  "group_name": "与AI助手的对话",
+  "group_name": "Conversation with AI Assistant",
   "message_id": "bot_msg_001",
   "create_time": "2025-01-15T10:05:00+08:00",
   "sender": "user_456",
-  "sender_name": "李四",
-  "content": "帮我总结下今天的会议内容",
+  "sender_name": "Li Si",
+  "content": "Help me summarize today's meeting content",
   "refer_list": []
 }
 ```
 
-### 3. 消息队列消费
+### 3. Message Queue Consumption
 
-从消息队列（如 Kafka）消费消息时，可以逐条调用 V3 接口处理。
+When consuming messages from a message queue (such as Kafka), you can call the V3 interface for each message.
 
-**Kafka 消费示例**：
+**Kafka Consumer Example**:
 ```python
 from kafka import KafkaConsumer
 import httpx
@@ -181,7 +181,7 @@ async def process_message(message):
         )
         return response.json()
 
-# Kafka 消费者
+# Kafka consumer
 consumer = KafkaConsumer('chat_messages')
 for msg in consumer:
     asyncio.run(process_message(msg.value))
@@ -189,41 +189,41 @@ for msg in consumer:
 
 ---
 
-## 使用示例
+## Usage Examples
 
-### 使用 curl 调用
+### Using curl
 
 ```bash
 curl -X POST http://localhost:1995/api/v3/agentic/memorize \
   -H "Content-Type: application/json" \
   -d '{
     "group_id": "group_123",
-    "group_name": "项目讨论组",
+    "group_name": "Project Discussion Group",
     "message_id": "msg_001",
     "create_time": "2025-01-15T10:00:00+08:00",
     "sender": "user_001",
-    "sender_name": "张三",
-    "content": "今天讨论下新功能的技术方案",
+    "sender_name": "Zhang San",
+    "content": "Let'\''s discuss the technical approach for the new feature today",
     "refer_list": []
   }'
 ```
 
-### 使用 Python 代码调用
+### Using Python Code
 
 ```python
 import httpx
 import asyncio
 
 async def call_v3_memorize():
-    # 简单直接的单条消息格式
+    # Simple direct single message format
     message_data = {
         "group_id": "group_123",
-        "group_name": "项目讨论组",
+        "group_name": "Project Discussion Group",
         "message_id": "msg_001",
         "create_time": "2025-01-15T10:00:00+08:00",
         "sender": "user_001",
-        "sender_name": "张三",
-        "content": "今天讨论下新功能的技术方案",
+        "sender_name": "Zhang San",
+        "content": "Let's discuss the technical approach for the new feature today",
         "refer_list": []
     }
     
@@ -233,28 +233,28 @@ async def call_v3_memorize():
             json=message_data
         )
         result = response.json()
-        print(f"保存了 {result['result']['count']} 条记忆")
+        print(f"Saved {result['result']['count']} memories")
 
 asyncio.run(call_v3_memorize())
 ```
 
-### 使用 run_memorize.py 脚本
+### Using run_memorize.py Script
 
-对于 GroupChatFormat 格式的 JSON 文件，可以使用 `run_memorize.py` 脚本批量处理：
+For JSON files in GroupChatFormat, you can use the `run_memorize.py` script for batch processing:
 
 ```bash
-# V3 接口（推荐）
+# V3 interface (recommended)
 python src/bootstrap.py src/run_memorize.py \
   --input data/group_chat.json \
   --api-url http://localhost:1995/api/v3/agentic/memorize
 
-# V2 接口（兼容模式）
+# V2 interface (compatibility mode)
 python src/bootstrap.py src/run_memorize.py \
   --input data/group_chat.json \
   --api-url http://localhost:1995/api/v2/agentic/memorize \
   --use-v2
 
-# 仅验证格式
+# Validate format only
 python src/bootstrap.py src/run_memorize.py \
   --input data/group_chat.json \
   --validate-only
@@ -262,66 +262,66 @@ python src/bootstrap.py src/run_memorize.py \
 
 ---
 
-## 常见问题
+## FAQ
 
-### 1. V3 接口和 V2 接口应该如何选择？
+### 1. How to choose between V3 and V2 interfaces?
 
-**推荐使用 V3 接口**，理由如下：
-- ✅ 格式更简单，只需要提供必要的字段
-- ✅ 无需任何格式转换或适配
-- ✅ 适合实时消息处理场景
-- ✅ 性能更好（无转换开销）
+**V3 interface is recommended** for the following reasons:
+- ✅ Simpler format, only required fields needed
+- ✅ No format conversion or adaptation required
+- ✅ Suitable for real-time message processing scenarios
+- ✅ Better performance (no conversion overhead)
 
-**仅在以下情况使用 V2 接口**：
-- 已有代码使用 V2 接口，需要保持兼容
-- 已有完善的格式转换逻辑
+**Use V2 interface only when**:
+- Existing code uses V2 interface and needs compatibility
+- Already have well-established format conversion logic
 
-### 2. 如何处理带引用的消息？
+### 2. How to handle messages with references?
 
-使用 `refer_list` 字段指定引用的消息ID列表：
+Use the `refer_list` field to specify the list of referenced message IDs:
 
 ```json
 {
   "message_id": "msg_002",
-  "content": "我同意你的方案",
+  "content": "I agree with your approach",
   "refer_list": ["msg_001"]
 }
 ```
 
-### 3. group_id 和 group_name 是必需的吗？
+### 3. Are group_id and group_name required?
 
-不是必需的，但**强烈推荐提供**：
-- `group_id` 用于标识群组，方便后续检索
-- `group_name` 用于显示和理解，提升可读性
+Not required, but **strongly recommended**:
+- `group_id` is used to identify the group for easier retrieval
+- `group_name` is used for display and understanding, improving readability
 
-### 4. 如何处理私聊消息？
+### 4. How to handle private chat messages?
 
-私聊消息可以不提供 `group_id`，或者使用特殊的私聊ID：
+Private chat messages can omit `group_id`, or use a special private chat ID:
 
 ```json
 {
   "group_id": "private_user001_user002",
-  "group_name": "与张三的私聊",
+  "group_name": "Private chat with Zhang San",
   "message_id": "private_msg_001",
   "create_time": "2025-01-15T10:00:00+08:00",
   "sender": "user_001",
-  "sender_name": "张三",
-  "content": "你好，最近怎么样？",
+  "sender_name": "Zhang San",
+  "content": "Hi, how are you doing?",
   "refer_list": []
 }
 ```
 
-### 5. 如何处理消息时间？
+### 5. How to handle message timestamps?
 
-`create_time` 必须使用 ISO 8601 格式，支持带时区：
+`create_time` must use ISO 8601 format, timezone support:
 
 ```json
 {
-  "create_time": "2025-01-15T10:00:00+08:00"  // 带时区
+  "create_time": "2025-01-15T10:00:00+08:00"  // with timezone
 }
 ```
 
-或不带时区（默认使用 UTC）：
+Or without timezone (defaults to UTC):
 
 ```json
 {
@@ -329,12 +329,12 @@ python src/bootstrap.py src/run_memorize.py \
 }
 ```
 
-### 6. 如何批量处理历史消息？
+### 6. How to batch process historical messages?
 
-使用 `run_memorize.py` 脚本：
+Use the `run_memorize.py` script:
 
-1. 准备 GroupChatFormat 格式的 JSON 文件
-2. 运行脚本，脚本会自动逐条调用 V3 接口
+1. Prepare a JSON file in GroupChatFormat
+2. Run the script, which will automatically call the V3 interface for each message
 
 ```bash
 python src/bootstrap.py src/run_memorize.py \
@@ -342,82 +342,82 @@ python src/bootstrap.py src/run_memorize.py \
   --api-url http://localhost:1995/api/v3/agentic/memorize
 ```
 
-### 7. 接口调用频率有限制吗？
+### 7. Are there rate limits for API calls?
 
-目前没有硬性限制，但建议：
-- 实时场景：每秒不超过 100 次请求
-- 批量导入：建议每条消息间隔 0.1 秒
+Currently no hard limits, but we recommend:
+- Real-time scenarios: No more than 100 requests per second
+- Batch import: Suggest 0.1 second interval between messages
 
-### 8. 如何处理错误？
+### 8. How to handle errors?
 
-接口会返回详细的错误信息：
+The interface returns detailed error messages:
 
 ```json
 {
   "status": "failed",
   "code": "INVALID_PARAMETER",
-  "message": "缺少必需字段: message_id"
+  "message": "Missing required field: message_id"
 }
 ```
 
-建议在客户端实现重试机制，对于 5xx 错误可以重试 3 次。
+We recommend implementing retry mechanism on the client side, with up to 3 retries for 5xx errors.
 
 ---
 
-## 架构说明
+## Architecture
 
-### 数据流
+### Data Flow
 
 ```
-客户端
+Client
   ↓
-  │ 简单直接的单条消息格式
+  │ Simple direct single message format
   ↓
 V3 Controller (agentic_v3_controller.py)
   ↓
-  │ 调用 group_chat_converter.py
+  │ Call group_chat_converter.py
   ↓
-格式转换 (convert_simple_message_to_memorize_input)
+Format Conversion (convert_simple_message_to_memorize_input)
   ↓
-  │ 内部格式
+  │ Internal format
   ↓
 Memory Manager (memory_manager.py)
   ↓
-  │ 记忆存储
+  │ Memory storage
   ↓
-数据库 / 向量库
+Database / Vector Database
 ```
 
-### 核心组件
+### Core Components
 
 1. **V3 Controller** (`agentic_v3_controller.py`)
-   - 接收简单直接的单条消息
-   - 调用 converter 进行格式转换
-   - 调用 memory_manager 存储记忆
+   - Receives simple direct single messages
+   - Calls converter for format conversion
+   - Calls memory_manager to store memories
 
 2. **Group Chat Converter** (`group_chat_converter.py`)
-   - 集中式适配层
-   - 负责所有格式转换逻辑
-   - 保持单一职责
+   - Centralized adaptation layer
+   - Responsible for all format conversion logic
+   - Maintains single responsibility
 
 3. **Memory Manager** (`memory_manager.py`)
-   - 记忆提取和存储
-   - 向量化
-   - 持久化
+   - Memory extraction and storage
+   - Vectorization
+   - Persistence
 
 ---
 
-## 迁移指南
+## Migration Guide
 
-### 从 V2 迁移到 V3
+### Migrating from V2 to V3
 
-#### V2 接口（旧）
+#### V2 Interface (Old)
 
 ```python
-# 需要先转换格式
+# Need to convert format first
 memorize_input = convert_group_chat_format_to_memorize_input(group_chat_data)
 
-# 逐条调用
+# Call sequentially
 for message in memorize_input["messages"]:
     response = await client.post(
         "http://localhost:1995/api/v2/agentic/memorize",
@@ -429,35 +429,36 @@ for message in memorize_input["messages"]:
     )
 ```
 
-#### V3 接口（新）
+#### V3 Interface (New)
 
 ```python
-# 直接调用，无需转换
+# Call directly, no conversion needed
 response = await client.post(
     "http://localhost:1995/api/v3/agentic/memorize",
     json={
         "group_id": "group_123",
-        "group_name": "项目讨论组",
+        "group_name": "Project Discussion Group",
         "message_id": "msg_001",
         "create_time": "2025-01-15T10:00:00+08:00",
         "sender": "user_001",
-        "sender_name": "张三",
-        "content": "今天讨论下新功能的技术方案",
+        "sender_name": "Zhang San",
+        "content": "Let's discuss the technical approach for the new feature today",
         "refer_list": []
     }
 )
 ```
 
-**迁移优势**：
-- 代码更简洁
-- 无需格式转换
-- 性能更好
+**Migration Benefits**:
+- Cleaner code
+- No format conversion needed
+- Better performance
 
 ---
 
-## 相关文档
+## Related Documentation
 
-- [GroupChatFormat 格式规范](../../data_format/group_chat/group_chat_format.md)
-- [V3 API 测试指南](../dev_docs/v3_api_testing_guide.md)
-- [run_memorize.py 使用指南](../dev_docs/run_memorize_usage.md)
-- [V2 API 文档](./agentic_v2_api.md)
+- [GroupChatFormat Specification](../../data_format/group_chat/group_chat_format.md)
+- [V3 API Testing Guide](../dev_docs/v3_api_testing_guide.md)
+- [run_memorize.py Usage Guide](../dev_docs/run_memorize_usage.md)
+- [V2 API Documentation](./agentic_v2_api.md)
+

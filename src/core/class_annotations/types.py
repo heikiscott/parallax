@@ -81,6 +81,7 @@ class StringEnumAnnotationKey(str, Enum):
     def to_key(self) -> str:
         return str(self.value)
 
+
 # Register virtual subclasses to satisfy isinstance/issubclass checks without metaclass conflicts
 AnnotationValueBase.register(StringEnumAnnotation)
 AnnotationKeyBase.register(StringEnumAnnotationKey)

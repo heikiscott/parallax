@@ -15,12 +15,24 @@ import uuid
 
 
 from core.di import get_bean_by_type, get_bean, service
-from infra_layer.adapters.out.persistence.repository.semantic_memory_raw_repository import SemanticMemoryRawRepository
-from infra_layer.adapters.out.persistence.repository.episodic_memory_raw_repository import EpisodicMemoryRawRepository
-from infra_layer.adapters.out.persistence.repository.core_memory_raw_repository import CoreMemoryRawRepository
-from infra_layer.adapters.out.persistence.repository.entity_raw_repository import EntityRawRepository
-from infra_layer.adapters.out.persistence.repository.relationship_raw_repository import RelationshipRawRepository
-from infra_layer.adapters.out.persistence.repository.behavior_history_raw_repository import BehaviorHistoryRawRepository
+from infra_layer.adapters.out.persistence.repository.semantic_memory_raw_repository import (
+    SemanticMemoryRawRepository,
+)
+from infra_layer.adapters.out.persistence.repository.episodic_memory_raw_repository import (
+    EpisodicMemoryRawRepository,
+)
+from infra_layer.adapters.out.persistence.repository.core_memory_raw_repository import (
+    CoreMemoryRawRepository,
+)
+from infra_layer.adapters.out.persistence.repository.entity_raw_repository import (
+    EntityRawRepository,
+)
+from infra_layer.adapters.out.persistence.repository.relationship_raw_repository import (
+    RelationshipRawRepository,
+)
+from infra_layer.adapters.out.persistence.repository.behavior_history_raw_repository import (
+    BehaviorHistoryRawRepository,
+)
 from .dtos.memory_query import FetchMemResponse, FetchMemRequest
 
 from .memory_models import (
@@ -38,79 +50,91 @@ from .memory_models import (
     Metadata,
 )
 
-from .dtos.memory_query import FetchMemResponse,FetchMemResponse
+from .dtos.memory_query import FetchMemResponse, FetchMemResponse
 
 logger = logging.getLogger(__name__)
 
 
 class FetchMemoryServiceInterface(ABC):
     """记忆获取服务接口"""
-    
+
     @abstractmethod
-    async def find_by_user_id(self, user_id: str, memory_type: MemoryType, version_range: Optional[Tuple[Optional[str], Optional[str]]] = None, limit: int = 10) -> FetchMemResponse:
+    async def find_by_user_id(
+        self,
+        user_id: str,
+        memory_type: MemoryType,
+        version_range: Optional[Tuple[Optional[str], Optional[str]]] = None,
+        limit: int = 10,
+    ) -> FetchMemResponse:
         """
         根据用户ID查找记忆
-        
+
         Args:
             user_id: 用户ID
             memory_type: 记忆类型
             limit: 返回数量限制
-            
+
         Returns:
             记忆查询响应
         """
         pass
 
     @abstractmethod
-    async def find_by_id(self, memory_id: str, memory_type: MemoryType) -> Optional[MemoryModel]:
+    async def find_by_id(
+        self, memory_id: str, memory_type: MemoryType
+    ) -> Optional[MemoryModel]:
         """
         根据记忆ID查找单个记忆
-        
+
         Args:
             memory_id: 记忆ID
             memory_type: 记忆类型
-            
+
         Returns:
             记忆模型，如果未找到则返回None
         """
         pass
-    
+
     @abstractmethod
-    async def find_episodic_by_event_id(self, event_id: str, user_id: str) -> Optional[EpisodicMemoryModel]:
+    async def find_episodic_by_event_id(
+        self, event_id: str, user_id: str
+    ) -> Optional[EpisodicMemoryModel]:
         """
         根据事件ID查找情景记忆
-        
+
         Args:
             event_id: 事件ID
             user_id: 用户ID
-            
+
         Returns:
             情景记忆模型，如果未找到则返回None
         """
         pass
-    
+
     @abstractmethod
     async def find_entity_by_entity_id(self, entity_id: str) -> Optional[EntityModel]:
         """
         根据实体ID查找实体
-        
+
         Args:
             entity_id: 实体ID
-            
+
         Returns:
             实体模型，如果未找到则返回None
         """
         pass
-    
+
     @abstractmethod
-    async def find_relationship_by_entity_ids(self, source_entity_id: str, target_entity_id: str) -> Optional[RelationModel]:
+    async def find_relationship_by_entity_ids(
+        self, source_entity_id: str, target_entity_id: str
+    ) -> Optional[RelationModel]:
         """
         根据实体ID查找关系
-        
+
         Args:
             source_entity_id: 源实体ID
             target_entity_id: 目标实体ID
-            
+
         Returns:
             关系模型，如果未找到则返回None
         """
@@ -120,10 +144,10 @@ class FetchMemoryServiceInterface(ABC):
 @service(name="fetch_memory_service", primary=True)
 class FetchMemoryServiceImpl(FetchMemoryServiceInterface):
     """记忆获取服务的真实实现
-    
+
     使用 DI 框架注入的 Repository 实例进行数据库访问。
     """
-    
+
     def __init__(self):
         """初始化服务"""
         self._semantic_repo = None
@@ -134,7 +158,7 @@ class FetchMemoryServiceImpl(FetchMemoryServiceInterface):
         self._behavior_repo = None
         self._employee_org_repo = None
         logger.info("FetchMemoryServiceImpl initialized")
-    
+
     def _get_repositories(self):
         """获取 Repository 实例"""
         if self._semantic_repo is None:
@@ -149,17 +173,19 @@ class FetchMemoryServiceImpl(FetchMemoryServiceInterface):
             self._relationship_repo = get_bean_by_type(RelationshipRawRepository)
         if self._behavior_repo is None:
             self._behavior_repo = get_bean_by_type(BehaviorHistoryRawRepository)
-    
-    async def _get_employee_metadata(self, user_id: str, source: str, memory_type: str, limit: int = None) -> Metadata:
+
+    async def _get_employee_metadata(
+        self, user_id: str, source: str, memory_type: str, limit: int = None
+    ) -> Metadata:
         """
         根据用户ID获取员工信息并创建Metadata
-        
+
         Args:
             user_id: 用户ID
             source: 数据来源
             memory_type: 记忆类型
             limit: 限制数量（可选）
-            
+
         Returns:
             Metadata 对象
         """
@@ -167,10 +193,10 @@ class FetchMemoryServiceImpl(FetchMemoryServiceInterface):
             # 确保仓库已初始化
             if self._employee_org_repo is None:
                 self._get_repositories()
-            
+
             # 查询员工组织信息
             employee_org = await self._employee_org_repo.get_by_user_id(user_id)
-            
+
             if employee_org:
                 return Metadata(
                     source=source,
@@ -179,33 +205,25 @@ class FetchMemoryServiceImpl(FetchMemoryServiceInterface):
                     limit=limit,
                     email=employee_org.email,
                     phone=employee_org.phone,
-                    full_name=employee_org.full_name
+                    full_name=employee_org.full_name,
                 )
             else:
                 # 如果没有找到员工信息，只返回基本信息
                 return Metadata(
-                    source=source,
-                    user_id=user_id,
-                    memory_type=memory_type,
-                    limit=limit
+                    source=source, user_id=user_id, memory_type=memory_type, limit=limit
                 )
         except Exception as e:
             logger.warning(f"获取员工信息失败: {e}，使用基本信息创建Metadata")
             return Metadata(
-                source=source,
-                user_id=user_id,
-                memory_type=memory_type,
-                limit=limit
+                source=source, user_id=user_id, memory_type=memory_type, limit=limit
             )
-    
+
     async def _convert_core_memory(self, core_memory) -> CoreMemoryModel:
         """转换核心记忆文档为模型"""
         metadata = await self._get_employee_metadata(
-            user_id=core_memory.user_id,
-            source="core_memory",
-            memory_type="multiple"
+            user_id=core_memory.user_id, source="core_memory", memory_type="multiple"
         )
-        
+
         return CoreMemoryModel(
             id=str(core_memory.id),
             user_id=core_memory.user_id,
@@ -243,17 +261,17 @@ class FetchMemoryServiceImpl(FetchMemoryServiceInterface):
             extend=core_memory.extend,
             created_at=core_memory.created_at,
             updated_at=core_memory.updated_at,
-            metadata=metadata
+            metadata=metadata,
         )
-    
+
     async def _convert_semantic_memory(self, semantic_memory) -> SemanticMemoryModel:
         """转换语义记忆文档为模型"""
         metadata = await self._get_employee_metadata(
             user_id=semantic_memory.user_id,
             source="user_input",
-            memory_type="semantic_memory"
+            memory_type="semantic_memory",
         )
-        
+
         return SemanticMemoryModel(
             id=str(semantic_memory.id),
             user_id=semantic_memory.user_id,
@@ -265,9 +283,9 @@ class FetchMemoryServiceImpl(FetchMemoryServiceInterface):
             source="用户输入",
             created_at=semantic_memory.created_at,
             updated_at=semantic_memory.updated_at,
-            metadata=metadata
+            metadata=metadata,
         )
-    
+
     def _convert_episodic_memory(self, episodic_memory) -> EpisodicMemoryModel:
         """转换情景记忆文档为模型"""
         return EpisodicMemoryModel(
@@ -277,7 +295,11 @@ class FetchMemoryServiceImpl(FetchMemoryServiceInterface):
             title=episodic_memory.subject,
             summary=episodic_memory.summary,
             participants=episodic_memory.participants or [],
-            location=episodic_memory.extend.get("location", "") if episodic_memory.extend else "",
+            location=(
+                episodic_memory.extend.get("location", "")
+                if episodic_memory.extend
+                else ""
+            ),
             key_events=episodic_memory.keywords or [],
             emotions={},
             created_at=episodic_memory.created_at,
@@ -285,10 +307,10 @@ class FetchMemoryServiceImpl(FetchMemoryServiceInterface):
             metadata=Metadata(
                 source="episodic_memory",
                 user_id=episodic_memory.user_id,
-                memory_type="episodic_memory"
-            )
+                memory_type="episodic_memory",
+            ),
         )
-    
+
     def _convert_entity(self, entity) -> EntityModel:
         """转换实体文档为模型"""
         return EntityModel(
@@ -302,12 +324,10 @@ class FetchMemoryServiceImpl(FetchMemoryServiceInterface):
             created_at=entity.created_at,
             updated_at=entity.updated_at,
             metadata=Metadata(
-                source="entity",
-                user_id=entity.user_id,
-                memory_type="entity"
-            )
+                source="entity", user_id=entity.user_id, memory_type="entity"
+            ),
         )
-    
+
     def _convert_relationship(self, relationship) -> RelationModel:
         """转换关系文档为模型"""
         return RelationModel(
@@ -315,24 +335,34 @@ class FetchMemoryServiceImpl(FetchMemoryServiceInterface):
             user_id="",  # 关系可能不属于特定用户
             source_entity_id=relationship.source_entity_id,
             target_entity_id=relationship.target_entity_id,
-            relation_type=relationship.relationship[0]["type"] if relationship.relationship else "未知关系",
-            relation_description=relationship.relationship[0]["content"] if relationship.relationship else "",
+            relation_type=(
+                relationship.relationship[0]["type"]
+                if relationship.relationship
+                else "未知关系"
+            ),
+            relation_description=(
+                relationship.relationship[0]["content"]
+                if relationship.relationship
+                else ""
+            ),
             strength=0.8,  # 默认强度
             created_at=relationship.created_at,
             updated_at=relationship.updated_at,
             metadata=Metadata(
                 source="relationship",
                 user_id=relationship.user_id,
-                memory_type="relation"
-            )
+                memory_type="relation",
+            ),
         )
-    
+
     def _convert_behavior_history(self, behavior) -> BehaviorHistoryModel:
         """转换行为历史文档为模型"""
         return BehaviorHistoryModel(
             id=str(behavior.id),
             user_id=behavior.user_id,
-            action_type=behavior.behavior_type[0] if behavior.behavior_type else "未知行为",
+            action_type=(
+                behavior.behavior_type[0] if behavior.behavior_type else "未知行为"
+            ),
             action_description=f"行为类型: {behavior.behavior_type}",
             context=behavior.meta or {},
             result="成功",
@@ -342,100 +372,127 @@ class FetchMemoryServiceImpl(FetchMemoryServiceInterface):
             metadata=Metadata(
                 source="behavior_history",
                 user_id=behavior.user_id,
-                memory_type="behavior_history"
-            )
+                memory_type="behavior_history",
+            ),
         )
-    
-    async def find_by_user_id(self, user_id: str, memory_type: MemoryType, version_range: Optional[Tuple[Optional[str], Optional[str]]] = None, limit: int = 10) -> FetchMemResponse:
+
+    async def find_by_user_id(
+        self,
+        user_id: str,
+        memory_type: MemoryType,
+        version_range: Optional[Tuple[Optional[str], Optional[str]]] = None,
+        limit: int = 10,
+    ) -> FetchMemResponse:
         """
         根据用户ID查找记忆
-        
+
         Args:
             user_id: 用户ID
             memory_type: 记忆类型
             version_range: 版本范围 (start, end)，左闭右闭区间 [start, end]。
                           如果不传或为None，则获取最新版本（按version倒序）
             limit: 返回数量限制
-            
+
         Returns:
             记忆查询响应
         """
-        logger.debug(f"Fetching {memory_type} memories for user {user_id}, limit: {limit}")
-        
+        logger.debug(
+            f"Fetching {memory_type} memories for user {user_id}, limit: {limit}"
+        )
+
         try:
             self._get_repositories()
             memories = []
-            
+
             match memory_type:
                 case MemoryType.MULTIPLE:
                     # 多类型查询：获取core_memory并转换为CoreMemoryModel
-                    core_memory_result = await self._core_repo.get_by_user_id(user_id, version_range=version_range)
+                    core_memory_result = await self._core_repo.get_by_user_id(
+                        user_id, version_range=version_range
+                    )
                     if core_memory_result:
                         # 如果version_range为None，core_memory_result是单个CoreMemory
                         # 如果version_range不为None，core_memory_result是List[CoreMemory]
                         if isinstance(core_memory_result, list):
-                            memories = [await self._convert_core_memory(core_memory) for core_memory in core_memory_result]
+                            memories = [
+                                await self._convert_core_memory(core_memory)
+                                for core_memory in core_memory_result
+                            ]
                         else:
-                            memories = [await self._convert_core_memory(core_memory_result)]
+                            memories = [
+                                await self._convert_core_memory(core_memory_result)
+                            ]
                     else:
                         memories = []
                 case MemoryType.SEMANTIC_MEMORY:
                     # 语义记忆：每个用户只有一个语义记忆文档
                     semantic_memory = await self._semantic_repo.get_by_user_id(user_id)
                     if semantic_memory:
-                        memories = [await self._convert_semantic_memory(semantic_memory)]
+                        memories = [
+                            await self._convert_semantic_memory(semantic_memory)
+                        ]
                     else:
                         memories = []
-                        
+
                 case MemoryType.EPISODIC_MEMORY:
                     # 情景记忆：按时间排序的事件列表
-                    episodic_memories = await self._episodic_repo.get_by_user_id(user_id, limit=limit)
-                    memories = [self._convert_episodic_memory(mem) for mem in episodic_memories]
-                    
+                    episodic_memories = await self._episodic_repo.get_by_user_id(
+                        user_id, limit=limit
+                    )
+                    memories = [
+                        self._convert_episodic_memory(mem) for mem in episodic_memories
+                    ]
+
                 case MemoryType.BASE_MEMORY:
                     # 基础记忆：从核心记忆中提取基础信息
                     core_memory = await self._core_repo.get_by_user_id(user_id)
                     if core_memory:
                         base_info = self._core_repo.get_base(core_memory)
-                        memories = [BaseMemoryModel(
-                            id=str(core_memory.id),
-                            user_id=core_memory.user_id,
-                            content=f"用户: {base_info.get('user_name', '未知')} | 职位: {base_info.get('position', '未知')} | 部门: {base_info.get('department', '未知')}",
-                            created_at=core_memory.created_at,
-                            updated_at=core_memory.updated_at,
-                            metadata={
-                                "user_name": base_info.get('user_name', ''),
-                                "position": base_info.get('position', ''),
-                                "department": base_info.get('department', ''),
-                                "company": base_info.get('company', ''),
-                                "location": base_info.get('location', ''),
-                                "contact": base_info.get('contact', {})
-                            }
-                        )]
+                        memories = [
+                            BaseMemoryModel(
+                                id=str(core_memory.id),
+                                user_id=core_memory.user_id,
+                                content=f"用户: {base_info.get('user_name', '未知')} | 职位: {base_info.get('position', '未知')} | 部门: {base_info.get('department', '未知')}",
+                                created_at=core_memory.created_at,
+                                updated_at=core_memory.updated_at,
+                                metadata={
+                                    "user_name": base_info.get('user_name', ''),
+                                    "position": base_info.get('position', ''),
+                                    "department": base_info.get('department', ''),
+                                    "company": base_info.get('company', ''),
+                                    "location": base_info.get('location', ''),
+                                    "contact": base_info.get('contact', {}),
+                                },
+                            )
+                        ]
                     else:
                         memories = []
-                        
+
                 case MemoryType.PROFILE:
                     # 个人档案：从核心记忆中提取个人特征
                     core_memory = await self._core_repo.get_by_user_id(user_id)
                     if core_memory:
                         profile_info = self._core_repo.get_profile(core_memory)
-                        memories = [ProfileModel(
-                            id=str(core_memory.id),
-                            user_id=core_memory.user_id,
-                            name=profile_info.get('personality', '未知'),
-                            age=profile_info.get('age', 0),
-                            gender=profile_info.get('gender', ''),
-                            occupation=profile_info.get('occupation', ''),
-                            interests=profile_info.get('interests', []),
-                            personality_traits=profile_info.get('personality_traits', {}),
-                            created_at=core_memory.created_at,
-                            updated_at=core_memory.updated_at,
-                            metadata=profile_info
-                        )]
+                        memories = [
+                            ProfileModel(
+                                id=str(core_memory.id),
+                                user_id=core_memory.user_id,
+                                name=profile_info.get('personality', '未知'),
+                                age=profile_info.get('age', 0),
+                                gender=profile_info.get('gender', ''),
+                                occupation=profile_info.get('occupation', ''),
+                                interests=profile_info.get('interests', []),
+                                personality_traits=profile_info.get(
+                                    'personality_traits', {}
+                                ),
+                                created_at=core_memory.created_at,
+                                updated_at=core_memory.updated_at,
+                                metadata=profile_info,
+                            )
+                        ]
                     else:
                         memories = []
-                        
+
                 case MemoryType.PREFERENCE:
                     # 个人偏好：从核心记忆中提取偏好设置
                     core_memory = await self._core_repo.get_by_user_id(user_id)
@@ -444,51 +501,69 @@ class FetchMemoryServiceImpl(FetchMemoryServiceInterface):
                         # 将偏好信息转换为多个 PreferenceModel
                         memories = []
                         for key, value in preference_info.items():
-                            memories.append(PreferenceModel(
-                                id=f"{core_memory.id}_{key}",
-                                user_id=core_memory.user_id,
-                                category="个人偏好",
-                                preference_key=key,
-                                preference_value=str(value),
-                                confidence_score=1.0,
-                                created_at=core_memory.created_at,
-                                updated_at=core_memory.updated_at,
-                                metadata={"source": "core_memory", "original_key": key}
-                            ))
+                            memories.append(
+                                PreferenceModel(
+                                    id=f"{core_memory.id}_{key}",
+                                    user_id=core_memory.user_id,
+                                    category="个人偏好",
+                                    preference_key=key,
+                                    preference_value=str(value),
+                                    confidence_score=1.0,
+                                    created_at=core_memory.created_at,
+                                    updated_at=core_memory.updated_at,
+                                    metadata={
+                                        "source": "core_memory",
+                                        "original_key": key,
+                                    },
+                                )
+                            )
                     else:
                         memories = []
-                            
+
                 case MemoryType.ENTITY:
                     # 实体：查询与用户相关的实体
-                    entities = await self._entity_repo.get_by_type("Person", limit=limit)
+                    entities = await self._entity_repo.get_by_type(
+                        "Person", limit=limit
+                    )
                     memories = [self._convert_entity(entity) for entity in entities]
-                    
+
                 case MemoryType.RELATION:
                     # 关系：查询人际关系
-                    relationships = await self._relationship_repo.get_by_relationship_type("人际关系", limit=limit)
-                    memories = [self._convert_relationship(rel) for rel in relationships]
-                    
+                    relationships = (
+                        await self._relationship_repo.get_by_relationship_type(
+                            "人际关系", limit=limit
+                        )
+                    )
+                    memories = [
+                        self._convert_relationship(rel) for rel in relationships
+                    ]
+
                 case MemoryType.BEHAVIOR_HISTORY:
                     # 行为历史：按时间排序的用户行为
-                    behaviors = await self._behavior_repo.get_by_user_id(user_id, limit=limit)
-                    memories = [self._convert_behavior_history(behavior) for behavior in behaviors]
-            
+                    behaviors = await self._behavior_repo.get_by_user_id(
+                        user_id, limit=limit
+                    )
+                    memories = [
+                        self._convert_behavior_history(behavior)
+                        for behavior in behaviors
+                    ]
+
             # 创建包含员工信息的metadata
             response_metadata = await self._get_employee_metadata(
                 user_id=user_id,
                 source="real_service",
                 memory_type=memory_type.value,
-                limit=limit
+                limit=limit,
             )
             print(f"---- response_metadata: {response_metadata}")
-            
+
             return FetchMemResponse(
                 memories=memories,
                 total_count=len(memories),
                 has_more=len(memories) == limit,
-                metadata=response_metadata
+                metadata=response_metadata,
             )
-            
+
         except Exception as e:
             logger.error(f"Error fetching memories for user {user_id}: {e}")
             # 即使出错也尝试获取员工信息
@@ -497,165 +572,191 @@ class FetchMemoryServiceImpl(FetchMemoryServiceInterface):
                     user_id=user_id,
                     source="real_service",
                     memory_type=memory_type.value,
-                    limit=limit
+                    limit=limit,
                 )
             except:
                 error_metadata = Metadata(
                     source="real_service",
                     user_id=user_id,
                     memory_type=memory_type.value,
-                    limit=limit
+                    limit=limit,
                 )
-            
+
             return FetchMemResponse(
-                memories=[],
-                total_count=0,
-                has_more=False,
-                metadata=error_metadata
+                memories=[], total_count=0, has_more=False, metadata=error_metadata
             )
-    
-    async def find_by_id(self, memory_id: str, memory_type: MemoryType) -> Optional[MemoryModel]:
+
+    async def find_by_id(
+        self, memory_id: str, memory_type: MemoryType
+    ) -> Optional[MemoryModel]:
         """
         根据记忆ID查找单个记忆
-        
+
         Args:
             memory_id: 记忆ID
             memory_type: 记忆类型
-            
+
         Returns:
             记忆模型，如果未找到则返回None
         """
         logger.debug(f"Fetching {memory_type} memory by ID: {memory_id}")
-        
+
         try:
             self._get_repositories()
-            
+
             match memory_type:
                 case MemoryType.SEMANTIC_MEMORY:
                     # 语义记忆通过用户ID查询
-                    semantic_memory = await self._semantic_repo.get_by_user_id(memory_id)
+                    semantic_memory = await self._semantic_repo.get_by_user_id(
+                        memory_id
+                    )
                     if semantic_memory:
                         return self._convert_semantic_memory(semantic_memory)
-                        
+
                 case MemoryType.EPISODIC_MEMORY:
                     # 情景记忆通过事件ID查询，需要用户ID
                     # 这里假设memory_id是event_id，需要额外的用户ID参数
-                    logger.warning("Episodic memory query by ID requires user_id, use find_episodic_by_event_id instead")
+                    logger.warning(
+                        "Episodic memory query by ID requires user_id, use find_episodic_by_event_id instead"
+                    )
                     return None
-                    
+
                 case MemoryType.ENTITY:
                     entity = await self._entity_repo.get_by_entity_id(memory_id)
                     if entity:
                         return self._convert_entity(entity)
-                        
+
                 case MemoryType.RELATION:
                     # 关系查询需要源实体ID和目标实体ID
-                    logger.warning("Relation query by ID requires source and target entity IDs, use find_relationship_by_entity_ids instead")
+                    logger.warning(
+                        "Relation query by ID requires source and target entity IDs, use find_relationship_by_entity_ids instead"
+                    )
                     return None
-                    
+
                 case MemoryType.BEHAVIOR_HISTORY:
                     # 行为历史通过用户ID查询
-                    behaviors = await self._behavior_repo.get_by_user_id(memory_id, limit=1)
+                    behaviors = await self._behavior_repo.get_by_user_id(
+                        memory_id, limit=1
+                    )
                     if behaviors:
                         return self._convert_behavior_history(behaviors[0])
-            
+
             return None
-            
+
         except Exception as e:
             logger.error(f"Error fetching memory by ID {memory_id}: {e}")
             return None
-    
-    async def find_episodic_by_event_id(self, event_id: str, user_id: str) -> Optional[EpisodicMemoryModel]:
+
+    async def find_episodic_by_event_id(
+        self, event_id: str, user_id: str
+    ) -> Optional[EpisodicMemoryModel]:
         """
         根据事件ID查找情景记忆
-        
+
         Args:
             event_id: 事件ID
             user_id: 用户ID
-            
+
         Returns:
             情景记忆模型，如果未找到则返回None
         """
-        logger.debug(f"Fetching episodic memory by event_id: {event_id}, user_id: {user_id}")
-        
+        logger.debug(
+            f"Fetching episodic memory by event_id: {event_id}, user_id: {user_id}"
+        )
+
         try:
             self._get_repositories()
-            episodic_memory = await self._episodic_repo.get_by_event_id(event_id, user_id)
+            episodic_memory = await self._episodic_repo.get_by_event_id(
+                event_id, user_id
+            )
             if episodic_memory:
                 return self._convert_episodic_memory(episodic_memory)
             return None
-            
+
         except Exception as e:
             logger.error(f"Error fetching episodic memory by event_id {event_id}: {e}")
             return None
-    
+
     async def find_entity_by_entity_id(self, entity_id: str) -> Optional[EntityModel]:
         """
         根据实体ID查找实体
-        
+
         Args:
             entity_id: 实体ID
-            
+
         Returns:
             实体模型，如果未找到则返回None
         """
         logger.debug(f"Fetching entity by entity_id: {entity_id}")
-        
+
         try:
             self._get_repositories()
             entity = await self._entity_repo.get_by_entity_id(entity_id)
             if entity:
                 return self._convert_entity(entity)
             return None
-            
+
         except Exception as e:
             logger.error(f"Error fetching entity by entity_id {entity_id}: {e}")
             return None
-    
-    async def find_relationship_by_entity_ids(self, source_entity_id: str, target_entity_id: str) -> Optional[RelationModel]:
+
+    async def find_relationship_by_entity_ids(
+        self, source_entity_id: str, target_entity_id: str
+    ) -> Optional[RelationModel]:
         """
         根据实体ID查找关系
-        
+
         Args:
             source_entity_id: 源实体ID
             target_entity_id: 目标实体ID
-            
+
         Returns:
             关系模型，如果未找到则返回None
         """
-        logger.debug(f"Fetching relationship by entity_ids: {source_entity_id} -> {target_entity_id}")
-        
+        logger.debug(
+            f"Fetching relationship by entity_ids: {source_entity_id} -> {target_entity_id}"
+        )
+
         try:
             self._get_repositories()
-            relationship = await self._relationship_repo.get_by_entity_ids(source_entity_id, target_entity_id)
+            relationship = await self._relationship_repo.get_by_entity_ids(
+                source_entity_id, target_entity_id
+            )
             if relationship:
                 return self._convert_relationship(relationship)
             return None
-            
+
         except Exception as e:
-            logger.error(f"Error fetching relationship by entity_ids {source_entity_id} -> {target_entity_id}: {e}")
+            logger.error(
+                f"Error fetching relationship by entity_ids {source_entity_id} -> {target_entity_id}: {e}"
+            )
             return None
-    
+
 
 def get_fetch_memory_service() -> FetchMemoryServiceInterface:
     """获取记忆获取服务实例
-    
+
     通过依赖注入框架获取服务实例，支持单例模式。
     """
     return get_bean("fetch_memory_service")
 
 
 # 便捷函数
-async def find_memories_by_user_id(user_id: str, memory_type: MemoryType, version_range: Optional[Tuple[Optional[str], Optional[str]]] = None, limit: int = 10) -> FetchMemResponse:
+async def find_memories_by_user_id(
+    user_id: str,
+    memory_type: MemoryType,
+    version_range: Optional[Tuple[Optional[str], Optional[str]]] = None,
+    limit: int = 10,
+) -> FetchMemResponse:
     """
     便捷函数：根据用户ID查找记忆
-    
+
     Args:
         user_id: 用户ID
         memory_type: 记忆类型
         version_range: 版本范围 (start, end)，左闭右闭区间 [start, end]
         limit: 返回数量限制
-        
+
     Returns:
         记忆查询响应
     """
@@ -663,14 +764,16 @@ async def find_memories_by_user_id(user_id: str, memory_type: MemoryType, versio
     return await service.find_by_user_id(user_id, memory_type, version_range, limit)
 
 
-async def find_memory_by_id(memory_id: str, memory_type: MemoryType) -> Optional[MemoryModel]:
+async def find_memory_by_id(
+    memory_id: str, memory_type: MemoryType
+) -> Optional[MemoryModel]:
     """
     便捷函数：根据记忆ID查找单个记忆
-    
+
     Args:
         memory_id: 记忆ID
         memory_type: 记忆类型
-        
+
     Returns:
         记忆模型，如果未找到则返回None
     """
@@ -678,14 +781,16 @@ async def find_memory_by_id(memory_id: str, memory_type: MemoryType) -> Optional
     return await service.find_by_id(memory_id, memory_type)
 
 
-async def find_episodic_memory_by_event_id(event_id: str, user_id: str) -> Optional[EpisodicMemoryModel]:
+async def find_episodic_memory_by_event_id(
+    event_id: str, user_id: str
+) -> Optional[EpisodicMemoryModel]:
     """
     便捷函数：根据事件ID查找情景记忆
-    
+
     Args:
         event_id: 事件ID
         user_id: 用户ID
-        
+
     Returns:
         情景记忆模型，如果未找到则返回None
     """
@@ -696,10 +801,10 @@ async def find_episodic_memory_by_event_id(event_id: str, user_id: str) -> Optio
 async def find_entity_by_entity_id(entity_id: str) -> Optional[EntityModel]:
     """
     便捷函数：根据实体ID查找实体
-    
+
     Args:
         entity_id: 实体ID
-        
+
     Returns:
         实体模型，如果未找到则返回None
     """
@@ -707,16 +812,20 @@ async def find_entity_by_entity_id(entity_id: str) -> Optional[EntityModel]:
     return await service.find_entity_by_entity_id(entity_id)
 
 
-async def find_relationship_by_entity_ids(source_entity_id: str, target_entity_id: str) -> Optional[RelationModel]:
+async def find_relationship_by_entity_ids(
+    source_entity_id: str, target_entity_id: str
+) -> Optional[RelationModel]:
     """
     便捷函数：根据实体ID查找关系
-    
+
     Args:
         source_entity_id: 源实体ID
         target_entity_id: 目标实体ID
-        
+
     Returns:
         关系模型，如果未找到则返回None
     """
     service = get_fetch_memory_service()
-    return await service.find_relationship_by_entity_ids(source_entity_id, target_entity_id)
+    return await service.find_relationship_by_entity_ids(
+        source_entity_id, target_entity_id
+    )

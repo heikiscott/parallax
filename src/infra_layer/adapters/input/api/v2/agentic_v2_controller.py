@@ -14,7 +14,7 @@ from core.interface.controller.base_controller import BaseController, post
 from agentic_layer.memory_manager import MemoryManager
 from agentic_layer.converter import (
     convert_dict_to_fetch_mem_request,
-    convert_dict_to_retrieve_mem_request
+    convert_dict_to_retrieve_mem_request,
 )
 from agentic_layer.dtos.memory_query import RetrieveMemRequest, RetrieveMemRequest
 from core.constants.errors import ErrorCode, ErrorStatus
@@ -23,15 +23,14 @@ from agentic_layer.converter import _handle_conversation_format
 logger = logging.getLogger(__name__)
 
 
-
-
 # ==================== 控制器实现 ====================
+
 
 @controller("agentic_v2_controller", primary=True)
 class AgenticV2Controller(BaseController):
     """
     Agentic Layer V2 API 控制器
-    
+
     提供独立的路由端点用于不同的记忆操作：
     - 记忆存储 (memorize): 将原始数据存储为记忆
     - 记忆获取 (fetch): 使用 KV 方式获取用户核心记忆
@@ -43,17 +42,17 @@ class AgenticV2Controller(BaseController):
     - 向量检索 (retrieve_vector): 基于语义向量相似度检索相关记忆（独立端点）
     - 混合检索 (retrieve_hybrid): 结合关键词和向量检索的混合方法（独立端点）
     """
-    
+
     def __init__(self):
         """初始化控制器"""
         super().__init__(
-            prefix="/api/v2/agentic", 
-            tags=["Agentic Layer V2"], 
-            default_auth="none"  # 根据实际需求调整认证策略
+            prefix="/api/v2/agentic",
+            tags=["Agentic Layer V2"],
+            default_auth="none",  # 根据实际需求调整认证策略
         )
         self.memory_manager = MemoryManager()
         logger.info("AgenticV2Controller initialized with MemoryManager")
-    
+
     @post(
         "/memorize",
         response_model=Dict[str, Any],
@@ -98,14 +97,14 @@ class AgenticV2Controller(BaseController):
                                         "user_id": "user_123",
                                         "group_id": "group_456",
                                         "timestamp": "2024-01-15T10:30:00",
-                                        "content": "用户讨论了咖啡偏好"
+                                        "content": "用户讨论了咖啡偏好",
                                     }
                                 ],
-                                "count": 1
-                            }
+                                "count": 1,
+                            },
                         }
                     }
-                }
+                },
             },
             400: {
                 "description": "请求参数错误",
@@ -116,10 +115,10 @@ class AgenticV2Controller(BaseController):
                             "code": ErrorCode.INVALID_PARAMETER.value,
                             "message": "数据格式错误，缺少必需字段",
                             "timestamp": "2024-01-15T10:30:00+00:00",
-                            "path": "/api/v2/agentic/memorize"
+                            "path": "/api/v2/agentic/memorize",
                         }
                     }
-                }
+                },
             },
             500: {
                 "description": "服务器内部错误",
@@ -130,23 +129,23 @@ class AgenticV2Controller(BaseController):
                             "code": ErrorCode.SYSTEM_ERROR.value,
                             "message": "存储记忆失败，请稍后重试",
                             "timestamp": "2024-01-15T10:30:00+00:00",
-                            "path": "/api/v2/agentic/memorize"
+                            "path": "/api/v2/agentic/memorize",
                         }
                     }
-                }
-            }
-        }
+                },
+            },
+        },
     )
     async def memorize_data(self, fastapi_request: FastAPIRequest) -> Dict[str, Any]:
         """
         存储记忆数据
-        
+
         Args:
             fastapi_request: FastAPI 请求对象
-            
+
         Returns:
             Dict[str, Any]: 记忆存储响应，包含已保存的记忆列表
-            
+
         Raises:
             HTTPException: 当请求处理失败时
         """
@@ -154,34 +153,31 @@ class AgenticV2Controller(BaseController):
             # 从请求中获取 JSON body
             body = await fastapi_request.json()
             logger.info("收到 memorize 请求: %s", body)
-            
+
             # 使用 converter 转换为 MemorizeRequest
-            memorize_request = await _handle_conversation_format(
-                body
-            )
+            memorize_request = await _handle_conversation_format(body)
             # 调用 memory_manager 的 memorize 方法
             logger.info("开始处理记忆请求")
             memories = await self.memory_manager.memorize(memorize_request)
-            
+
             # 返回统一格式的响应
             memory_count = len(memories) if memories else 0
             logger.info("处理记忆请求完成，保存了 %s 条记忆", memory_count)
             return {
                 "status": ErrorStatus.OK.value,
                 "message": f"记忆存储成功，共保存 {memory_count} 条记忆",
-                "result": {
-                    "saved_memories": memories,
-                    "count": memory_count
-                }
+                "result": {"saved_memories": memories, "count": memory_count},
             }
-            
+
         except ValueError as e:
             logger.error("memorize 请求参数错误: %s", e)
             raise HTTPException(status_code=400, detail=str(e)) from e
         except Exception as e:
             logger.error("memorize 请求处理失败: %s", e, exc_info=True)
-            raise HTTPException(status_code=500, detail="存储记忆失败，请稍后重试") from e
-    
+            raise HTTPException(
+                status_code=500, detail="存储记忆失败，请稍后重试"
+            ) from e
+
     @post(
         "/fetch",
         response_model=Dict[str, Any],
@@ -222,7 +218,7 @@ class AgenticV2Controller(BaseController):
                                         "user_id": "user_123",
                                         "timestamp": "2024-01-15T10:30:00",
                                         "content": "用户喜欢喝咖啡",
-                                        "summary": "咖啡偏好"
+                                        "summary": "咖啡偏好",
                                     }
                                 ],
                                 "total_count": 100,
@@ -230,12 +226,12 @@ class AgenticV2Controller(BaseController):
                                 "metadata": {
                                     "source": "fetch_mem_service",
                                     "user_id": "user_123",
-                                    "memory_type": "fetch"
-                                }
-                            }
+                                    "memory_type": "fetch",
+                                },
+                            },
                         }
                     }
-                }
+                },
             },
             400: {
                 "description": "请求参数错误",
@@ -246,10 +242,10 @@ class AgenticV2Controller(BaseController):
                             "code": ErrorCode.INVALID_PARAMETER.value,
                             "message": "user_id 不能为空",
                             "timestamp": "2024-01-15T10:30:00+00:00",
-                            "path": "/api/v2/agentic/fetch"
+                            "path": "/api/v2/agentic/fetch",
                         }
                     }
-                }
+                },
             },
             500: {
                 "description": "服务器内部错误",
@@ -260,53 +256,63 @@ class AgenticV2Controller(BaseController):
                             "code": ErrorCode.SYSTEM_ERROR.value,
                             "message": "获取记忆失败，请稍后重试",
                             "timestamp": "2024-01-15T10:30:00+00:00",
-                            "path": "/api/v2/agentic/fetch"
+                            "path": "/api/v2/agentic/fetch",
                         }
                     }
-                }
-            }
-        }
+                },
+            },
+        },
     )
     async def fetch_memories(self, fastapi_request: FastAPIRequest) -> Dict[str, Any]:
         """
         获取用户记忆数据
-        
+
         Args:
             fastapi_request: FastAPI 请求对象
-            
+
         Returns:
             Dict[str, Any]: 记忆获取响应
-            
+
         Raises:
             HTTPException: 当请求处理失败时
         """
         try:
             # 从请求中获取 JSON body
             body = await fastapi_request.json()
-            logger.info("收到 fetch 请求: user_id=%s, memory_type=%s", body.get("user_id"), body.get("memory_type"))
-            
+            logger.info(
+                "收到 fetch 请求: user_id=%s, memory_type=%s",
+                body.get("user_id"),
+                body.get("memory_type"),
+            )
+
             # 直接使用 converter 转换
             fetch_request = convert_dict_to_fetch_mem_request(body)
-            
+
             # 调用 memory_manager 的 fetch_mem 方法
             response = await self.memory_manager.fetch_mem(fetch_request)
-            
+
             # 返回统一格式的响应
             memory_count = len(response.memories) if response.memories else 0
-            logger.info("fetch 请求处理完成: user_id=%s, 返回 %s 条记忆", body.get("user_id"), memory_count)
+            logger.info(
+                "fetch 请求处理完成: user_id=%s, 返回 %s 条记忆",
+                body.get("user_id"),
+                memory_count,
+            )
             return {
                 "status": ErrorStatus.OK.value,
                 "message": f"记忆获取成功，共获取 {memory_count} 条记忆",
-                "result": response
+                "result": response,
             }
-            
+
         except ValueError as e:
             logger.error("fetch 请求参数错误: %s", e)
             raise HTTPException(status_code=400, detail=str(e)) from e
         except Exception as e:
             logger.error("fetch 请求处理失败: %s", e, exc_info=True)
-            raise HTTPException(status_code=500, detail="获取记忆失败，请稍后重试") from e
-    
+            raise HTTPException(
+                status_code=500, detail="获取记忆失败，请稍后重试"
+            ) from e
+
     @post(
         "/retrieve",
         response_model=Dict[str, Any],
@@ -356,11 +362,11 @@ class AgenticV2Controller(BaseController):
                                                 "user_id": "user_123",
                                                 "timestamp": "2024-01-15T10:30:00",
                                                 "summary": "讨论了咖啡偏好",
-                                                "group_id": "group_456"
+                                                "group_id": "group_456",
                                             }
                                         ],
                                         "scores": [0.95],
-                                        "original_data": []
+                                        "original_data": [],
                                     }
                                 ],
                                 "importance_scores": [0.85],
@@ -369,17 +375,17 @@ class AgenticV2Controller(BaseController):
                                 "query_metadata": {
                                     "source": "episodic_memory_es_repository",
                                     "user_id": "user_123",
-                                    "memory_type": "retrieve"
+                                    "memory_type": "retrieve",
                                 },
                                 "metadata": {
                                     "source": "episodic_memory_es_repository",
                                     "user_id": "user_123",
-                                    "memory_type": "retrieve"
-                                }
-                            }
+                                    "memory_type": "retrieve",
+                                },
+                            },
                         }
                     }
-                }
+                },
             },
             400: {
                 "description": "请求参数错误",
@@ -390,10 +396,10 @@ class AgenticV2Controller(BaseController):
                             "code": ErrorCode.INVALID_PARAMETER.value,
                             "message": "query 不能为空",
                             "timestamp": "2024-01-15T10:30:00+00:00",
-                            "path": "/api/v2/agentic/retrieve"
+                            "path": "/api/v2/agentic/retrieve",
                         }
                     }
-                }
+                },
             },
             500: {
                 "description": "服务器内部错误",
@@ -404,23 +410,25 @@ class AgenticV2Controller(BaseController):
                             "code": ErrorCode.SYSTEM_ERROR.value,
                             "message": "检索记忆失败，请稍后重试",
                             "timestamp": "2024-01-15T10:30:00+00:00",
-                            "path": "/api/v2/agentic/retrieve"
+                            "path": "/api/v2/agentic/retrieve",
                         }
                     }
-                }
-            }
-        }
+                },
+            },
+        },
     )
-    async def retrieve_memories(self, fastapi_request: FastAPIRequest) -> Dict[str, Any]:
+    async def retrieve_memories(
+        self, fastapi_request: FastAPIRequest
+    ) -> Dict[str, Any]:
         """
         检索相关记忆数据
-        
+
         Args:
             fastapi_request: FastAPI 请求对象
-            
+
         Returns:
             Dict[str, Any]: 记忆检索响应
-            
+
         Raises:
             HTTPException: 当请求处理失败时
         """
@@ -428,32 +436,38 @@ class AgenticV2Controller(BaseController):
             # 从请求中获取 JSON body
             body = await fastapi_request.json()
             query = body.get("query")
-            logger.info("收到 retrieve 请求: user_id=%s, query=%s", 
-                       body.get("user_id"), query)
-            
+            logger.info(
+                "收到 retrieve 请求: user_id=%s, query=%s", body.get("user_id"), query
+            )
+
             # 直接使用 converter 转换
             retrieve_request = convert_dict_to_retrieve_mem_request(body, query=query)
-            
+
             # 使用 retrieve_mem 方法（支持 keyword 和 hybrid）
             response = await self.memory_manager.retrieve_mem(retrieve_request)
-            
+
             # 返回统一格式的响应
             group_count = len(response.memories) if response.memories else 0
-            logger.info("retrieve 请求处理完成: user_id=%s, 返回 %s 个群组", 
-                       body.get("user_id"), group_count)
+            logger.info(
+                "retrieve 请求处理完成: user_id=%s, 返回 %s 个群组",
+                body.get("user_id"),
+                group_count,
+            )
             return {
                 "status": ErrorStatus.OK.value,
                 "message": f"记忆检索成功，共检索到 {group_count} 个群组",
-                "result": response
+                "result": response,
             }
-            
+
         except ValueError as e:
             logger.error("retrieve 请求参数错误: %s", e)
             raise HTTPException(status_code=400, detail=str(e)) from e
         except Exception as e:
             logger.error("retrieve 请求处理失败: %s", e, exc_info=True)
-            raise HTTPException(status_code=500, detail="检索记忆失败，请稍后重试") from e
-    
+            raise HTTPException(
+                status_code=500, detail="检索记忆失败，请稍后重试"
+            ) from e
+
     @post(
         "/retrieve_keyword",
         response_model=Dict[str, Any],
@@ -508,11 +522,11 @@ class AgenticV2Controller(BaseController):
                                                 "user_id": "user_123",
                                                 "timestamp": "2024-01-15T10:30:00",
                                                 "summary": "讨论了咖啡偏好",
-                                                "group_id": "group_456"
+                                                "group_id": "group_456",
                                             }
                                         ],
                                         "scores": [0.95],
-                                        "original_data": []
+                                        "original_data": [],
                                     }
                                 ],
                                 "importance_scores": [0.85],
@@ -521,17 +535,17 @@ class AgenticV2Controller(BaseController):
                                 "query_metadata": {
                                     "source": "episodic_memory_es_repository",
                                     "user_id": "user_123",
-                                    "memory_type": "retrieve_keyword"
+                                    "memory_type": "retrieve_keyword",
                                 },
                                 "metadata": {
                                     "source": "episodic_memory_es_repository",
                                     "user_id": "user_123",
-                                    "memory_type": "retrieve_keyword"
-                                }
-                            }
+                                    "memory_type": "retrieve_keyword",
+                                },
+                            },
                         }
                     }
-                }
+                },
             },
             400: {
                 "description": "请求参数错误",
@@ -542,10 +556,10 @@ class AgenticV2Controller(BaseController):
                             "code": ErrorCode.INVALID_PARAMETER.value,
                             "message": "query 不能为空",
                             "timestamp": "2024-01-15T10:30:00+00:00",
-                            "path": "/api/v2/agentic/retrieve_keyword"
+                            "path": "/api/v2/agentic/retrieve_keyword",
                         }
                     }
-                }
+                },
             },
             500: {
                 "description": "服务器内部错误",
@@ -556,23 +570,25 @@ class AgenticV2Controller(BaseController):
                             "code": ErrorCode.SYSTEM_ERROR.value,
                             "message": "关键词检索失败，请稍后重试",
                             "timestamp": "2024-01-15T10:30:00+00:00",
-                            "path": "/api/v2/agentic/retrieve_keyword"
+                            "path": "/api/v2/agentic/retrieve_keyword",
                         }
                     }
-                }
-            }
-        }
+                },
+            },
+        },
     )
-    async def retrieve_memories_keyword(self, fastapi_request: FastAPIRequest) -> Dict[str, Any]:
+    async def retrieve_memories_keyword(
+        self, fastapi_request: FastAPIRequest
+    ) -> Dict[str, Any]:
         """
         使用关键词（BM25）检索相关记忆数据
-        
+
         Args:
             fastapi_request: FastAPI 请求对象
-            
+
         Returns:
             Dict[str, Any]: 关键词记忆检索响应
-            
+
         Raises:
             HTTPException: 当请求处理失败时
         """
@@ -580,32 +596,41 @@ class AgenticV2Controller(BaseController):
             # 从请求中获取 JSON body
             body = await fastapi_request.json()
             query = body.get("query")
-            logger.info("收到 retrieve_keyword 请求: user_id=%s, query=%s", body.get("user_id"), query)
-            
+            logger.info(
+                "收到 retrieve_keyword 请求: user_id=%s, query=%s",
+                body.get("user_id"),
+                query,
+            )
+
             # 使用 converter 转换
             retrieve_request = convert_dict_to_retrieve_mem_request(body, query=query)
             retrieve_request.retrieve_method = RetrieveMethod.KEYWORD
-            
+
             # 调用 memory_manager 的 retrieve_mem_keyword 方法
             response = await self.memory_manager.retrieve_mem_keyword(retrieve_request)
-            
+
             # 返回统一格式的响应
             group_count = len(response.memories) if response.memories else 0
-            logger.info("retrieve_keyword 请求处理完成: user_id=%s, 返回 %s 个群组", 
-                       body.get("user_id"), group_count)
+            logger.info(
+                "retrieve_keyword 请求处理完成: user_id=%s, 返回 %s 个群组",
+                body.get("user_id"),
+                group_count,
+            )
             return {
                 "status": ErrorStatus.OK.value,
                 "message": f"关键词检索成功，共检索到 {group_count} 个群组",
-                "result": response
+                "result": response,
             }
-            
+
         except ValueError as e:
             logger.error("retrieve_keyword 请求参数错误: %s", e)
             raise HTTPException(status_code=400, detail=str(e)) from e
         except Exception as e:
             logger.error("retrieve_keyword 请求处理失败: %s", e, exc_info=True)
-            raise HTTPException(status_code=500, detail="关键词检索失败，请稍后重试") from e
-    
+            raise HTTPException(
+                status_code=500, detail="关键词检索失败，请稍后重试"
+            ) from e
+
     @post(
         "/retrieve_vector",
         response_model=Dict[str, Any],
@@ -660,11 +685,11 @@ class AgenticV2Controller(BaseController):
                                                 "user_id": "user_123",
                                                 "timestamp": "2024-01-15T10:30:00",
                                                 "summary": "讨论了咖啡偏好",
-                                                "group_id": "group_456"
+                                                "group_id": "group_456",
                                             }
                                         ],
                                         "scores": [0.95],
-                                        "original_data": []
+                                        "original_data": [],
                                     }
                                 ],
                                 "importance_scores": [0.85],
@@ -673,17 +698,17 @@ class AgenticV2Controller(BaseController):
                                 "query_metadata": {
                                     "source": "episodic_memory_milvus_repository",
                                     "user_id": "user_123",
-                                    "memory_type": "retrieve_vector"
+                                    "memory_type": "retrieve_vector",
                                 },
                                 "metadata": {
                                     "source": "episodic_memory_milvus_repository",
                                     "user_id": "user_123",
-                                    "memory_type": "retrieve_vector"
-                                }
-                            }
+                                    "memory_type": "retrieve_vector",
+                                },
+                            },
                         }
                     }
-                }
+                },
             },
             400: {
                 "description": "请求参数错误",
@@ -694,10 +719,10 @@ class AgenticV2Controller(BaseController):
                             "code": ErrorCode.INVALID_PARAMETER.value,
                             "message": "query 不能为空",
                             "timestamp": "2024-01-15T10:30:00+00:00",
-                            "path": "/api/v2/agentic/retrieve_vector"
+                            "path": "/api/v2/agentic/retrieve_vector",
                         }
                     }
-                }
+                },
             },
             500: {
                 "description": "服务器内部错误",
@@ -708,23 +733,25 @@ class AgenticV2Controller(BaseController):
                             "code": ErrorCode.SYSTEM_ERROR.value,
                             "message": "向量检索失败，请稍后重试",
                             "timestamp": "2024-01-15T10:30:00+00:00",
-                            "path": "/api/v2/agentic/retrieve_vector"
+                            "path": "/api/v2/agentic/retrieve_vector",
                         }
                     }
-                }
-            }
-        }
+                },
+            },
+        },
     )
-    async def retrieve_memories_vector(self, fastapi_request: FastAPIRequest) -> Dict[str, Any]:
+    async def retrieve_memories_vector(
+        self, fastapi_request: FastAPIRequest
+    ) -> Dict[str, Any]:
         """
         使用向量相似度检索相关记忆数据
-        
+
         Args:
             fastapi_request: FastAPI 请求对象
-            
+
         Returns:
             Dict[str, Any]: 向量记忆检索响应
-            
+
         Raises:
             HTTPException: 当请求处理失败时
         """
@@ -732,32 +759,41 @@ class AgenticV2Controller(BaseController):
             # 从请求中获取 JSON body
             body = await fastapi_request.json()
             query = body.get("query")
-            logger.info("收到 retrieve_vector 请求: user_id=%s, query=%s", body.get("user_id"), query)
-            
+            logger.info(
+                "收到 retrieve_vector 请求: user_id=%s, query=%s",
+                body.get("user_id"),
+                query,
+            )
+
             # 使用 converter 转换（RetrieveMemRequest 继承自 RetrieveMemRequest）
             retrieve_request = convert_dict_to_retrieve_mem_request(body, query=query)
             retrieve_request.retrieve_method = RetrieveMethod.VECTOR
-            
+
             # 调用 memory_manager 的 retrieve_mem_vector 方法
             response = await self.memory_manager.retrieve_mem_vector(retrieve_request)
-            
+
             # 返回统一格式的响应
             group_count = len(response.memories) if response.memories else 0
-            logger.info("retrieve_vector 请求处理完成: user_id=%s, 返回 %s 个群组", 
-                       body.get("user_id"), group_count)
+            logger.info(
+                "retrieve_vector 请求处理完成: user_id=%s, 返回 %s 个群组",
+                body.get("user_id"),
+                group_count,
+            )
             return {
                 "status": ErrorStatus.OK.value,
                 "message": f"向量检索成功，共检索到 {group_count} 个群组",
-                "result": response
+                "result": response,
             }
-            
+
         except ValueError as e:
             logger.error("retrieve_vector 请求参数错误: %s", e)
             raise HTTPException(status_code=400, detail=str(e)) from e
         except Exception as e:
             logger.error("retrieve_vector 请求处理失败: %s", e, exc_info=True)
-            raise HTTPException(status_code=500, detail="向量检索失败，请稍后重试") from e
-    
+            raise HTTPException(
+                status_code=500, detail="向量检索失败，请稍后重试"
+            ) from e
+
     @post(
         "/retrieve_hybrid",
         response_model=Dict[str, Any],
@@ -813,11 +849,11 @@ class AgenticV2Controller(BaseController):
                                                 "user_id": "user_123",
                                                 "timestamp": "2024-01-15T10:30:00",
                                                 "summary": "讨论了咖啡偏好",
-                                                "group_id": "group_456"
+                                                "group_id": "group_456",
                                             }
                                         ],
                                         "scores": [0.95],
-                                        "original_data": []
+                                        "original_data": [],
                                     }
                                 ],
                                 "importance_scores": [0.85],
@@ -826,17 +862,17 @@ class AgenticV2Controller(BaseController):
                                 "query_metadata": {
                                     "source": "retrieve_mem_hybrid_service",
                                     "user_id": "user_123",
-                                    "memory_type": "retrieve_hybrid"
+                                    "memory_type": "retrieve_hybrid",
                                 },
                                 "metadata": {
                                     "source": "retrieve_mem_hybrid_service",
                                     "user_id": "user_123",
-                                    "memory_type": "retrieve_hybrid"
-                                }
-                            }
+                                    "memory_type": "retrieve_hybrid",
+                                },
+                            },
                         }
                     }
-                }
+                },
             },
             400: {
                 "description": "请求参数错误",
@@ -847,10 +883,10 @@ class AgenticV2Controller(BaseController):
                             "code": ErrorCode.INVALID_PARAMETER.value,
                             "message": "query 不能为空",
                             "timestamp": "2024-01-15T10:30:00+00:00",
-                            "path": "/api/v2/agentic/retrieve_hybrid"
+                            "path": "/api/v2/agentic/retrieve_hybrid",
                         }
                     }
-                }
+                },
             },
             500: {
                 "description": "服务器内部错误",
@@ -861,23 +897,25 @@ class AgenticV2Controller(BaseController):
                             "code": ErrorCode.SYSTEM_ERROR.value,
                             "message": "混合检索失败，请稍后重试",
                             "timestamp": "2024-01-15T10:30:00+00:00",
-                            "path": "/api/v2/agentic/retrieve_hybrid"
+                            "path": "/api/v2/agentic/retrieve_hybrid",
                         }
                     }
-                }
-            }
-        }
+                },
+            },
+        },
     )
-    async def retrieve_memories_hybrid(self, fastapi_request: FastAPIRequest) -> Dict[str, Any]:
+    async def retrieve_memories_hybrid(
+        self, fastapi_request: FastAPIRequest
+    ) -> Dict[str, Any]:
         """
         使用混合方法检索相关记忆数据
-        
+
         Args:
             fastapi_request: FastAPI 请求对象
-            
+
         Returns:
             Dict[str, Any]: 混合记忆检索响应
-            
+
         Raises:
             HTTPException: 当请求处理失败时
         """
@@ -885,28 +923,37 @@ class AgenticV2Controller(BaseController):
             # 从请求中获取 JSON body
             body = await fastapi_request.json()
             query = body.get("query")
-            logger.info("收到 retrieve_hybrid 请求: user_id=%s, query=%s", body.get("user_id"), query)
-            
+            logger.info(
+                "收到 retrieve_hybrid 请求: user_id=%s, query=%s",
+                body.get("user_id"),
+                query,
+            )
+
             # 使用 converter 转换（RetrieveMemRequest 继承自 RetrieveMemRequest）
             retrieve_request = convert_dict_to_retrieve_mem_request(body, query=query)
             retrieve_request.retrieve_method = RetrieveMethod.HYBRID
-            
+
             # 调用 memory_manager 的 retrieve_mem_hybrid 方法
             response = await self.memory_manager.retrieve_mem_hybrid(retrieve_request)
-            
+
             # 返回统一格式的响应
             group_count = len(response.memories) if response.memories else 0
-            logger.info("retrieve_hybrid 请求处理完成: user_id=%s, 返回 %s 个群组", 
-                       body.get("user_id"), group_count)
+            logger.info(
+                "retrieve_hybrid 请求处理完成: user_id=%s, 返回 %s 个群组",
+                body.get("user_id"),
+                group_count,
+            )
             return {
                 "status": ErrorStatus.OK.value,
                 "message": f"混合检索成功，共检索到 {group_count} 个群组",
-                "result": response
+                "result": response,
             }
-            
+
         except ValueError as e:
             logger.error("retrieve_hybrid 请求参数错误: %s", e)
             raise HTTPException(status_code=400, detail=str(e)) from e
         except Exception as e:
             logger.error("retrieve_hybrid 请求处理失败: %s", e, exc_info=True)
-            raise HTTPException(status_code=500, detail="混合检索失败，请稍后重试") from e
+            raise HTTPException(
+                status_code=500, detail="混合检索失败，请稍后重试"
+            ) from e

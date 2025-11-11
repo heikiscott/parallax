@@ -102,4 +102,3 @@ CONVERSATION_PROFILE_EXTRACTION_PROMPT = """
 
 仅返回JSON对象，不要添加任何其他文本：
 """
-

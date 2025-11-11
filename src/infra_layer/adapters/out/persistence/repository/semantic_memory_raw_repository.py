@@ -12,7 +12,9 @@ from core.observation.logger import get_logger
 from core.di.decorators import repository
 from core.oxm.mongo.base_repository import BaseRepository
 
-from infra_layer.adapters.out.persistence.document.memory.semantic_memory import SemanticMemory
+from infra_layer.adapters.out.persistence.document.memory.semantic_memory import (
+    SemanticMemory,
+)
 
 logger = get_logger(__name__)
 
@@ -21,7 +23,7 @@ logger = get_logger(__name__)
 class SemanticMemoryRawRepository(BaseRepository[SemanticMemory]):
     """
     语义记忆原生 CRUD 仓库
-    
+
     提供对语义记忆文档的直接数据库操作，包括：
     - 基本 CRUD 操作（继承自 BaseRepository）
     - 文本搜索和查询
@@ -29,19 +31,18 @@ class SemanticMemoryRawRepository(BaseRepository[SemanticMemory]):
     - 统计和聚合查询
     - 事务管理（继承自 BaseRepository）
     """
-    
+
     def __init__(self):
         """初始化仓库"""
         super().__init__(SemanticMemory)
-    
-    
+
     async def get_by_user_id(self, user_id: str) -> Optional[SemanticMemory]:
         """
         根据用户ID获取语义记忆
-        
+
         Args:
             user_id: 用户ID
-            
+
         Returns:
             SemanticMemory 实例或 None
         """
@@ -50,22 +51,21 @@ class SemanticMemoryRawRepository(BaseRepository[SemanticMemory]):
         except Exception as e:
             logger.error("❌ 根据用户ID获取语义记忆失败: %s", e)
             return None
-    
-    
+
     async def update_by_user_id(
-        self, 
-        user_id: str, 
-        update_data: Dict[str, Any], 
-        session: Optional[AsyncIOMotorClientSession] = None
+        self,
+        user_id: str,
+        update_data: Dict[str, Any],
+        session: Optional[AsyncIOMotorClientSession] = None,
     ) -> Optional[SemanticMemory]:
         """
         根据用户ID更新语义记忆
-        
+
         Args:
             user_id: 用户ID
             update_data: 更新数据字典
             session: 可选的 MongoDB 会话，用于事务支持
-            
+
         Returns:
             更新后的 SemanticMemory 实例或 None
         """
@@ -82,20 +82,17 @@ class SemanticMemoryRawRepository(BaseRepository[SemanticMemory]):
         except Exception as e:
             logger.error("❌ 根据用户ID更新语义记忆失败: %s", e)
             raise e
-    
-    
+
     async def delete_by_user_id(
-        self, 
-        user_id: str, 
-        session: Optional[AsyncIOMotorClientSession] = None
+        self, user_id: str, session: Optional[AsyncIOMotorClientSession] = None
     ) -> bool:
         """
         根据用户ID删除语义记忆
-        
+
         Args:
             user_id: 用户ID
             session: 可选的 MongoDB 会话，用于事务支持
-            
+
         Returns:
             删除成功返回 True，否则返回 False
         """
@@ -109,7 +106,7 @@ class SemanticMemoryRawRepository(BaseRepository[SemanticMemory]):
         except Exception as e:
             logger.error("❌ 根据用户ID删除语义记忆失败: %s", e)
             return False
-    
-    
+
+
 # 导出
 __all__ = ["SemanticMemoryRawRepository"]

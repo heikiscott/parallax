@@ -18,7 +18,7 @@
         validate_group_chat_format_input,
         convert_group_chat_format_to_memorize_input
     )
-    
+
     # 验证格式
     if validate_group_chat_format_input(data):
         # 转换为内部格式
@@ -37,20 +37,20 @@ def convert_group_chat_format_to_memorize_input(
 ) -> Dict[str, Any]:
     """
     将 GroupChatFormat 格式转换为 memorize 接口输入格式
-    
+
     Args:
         group_chat_data: GroupChatFormat 格式的数据字典，包含：
             - version: 格式版本号
             - conversation_meta: 会话元信息（name, description, group_id, user_details等）
             - conversation_list: 消息列表
-    
+
     Returns:
         Dict[str, Any]: 适合 memorize 接口的输入格式，包含：
             - messages: 转换后的消息列表
             - group_id: 群组ID（可选）
             - raw_data_type: 数据类型（默认为 "Conversation"）
             - current_time: 当前时间（使用最后一条消息的时间）
-    
+
     Raises:
         ValueError: 当必需字段缺失时
     """
@@ -59,48 +59,50 @@ def convert_group_chat_format_to_memorize_input(
         raise ValueError("缺少必需字段: conversation_meta")
     if "conversation_list" not in group_chat_data:
         raise ValueError("缺少必需字段: conversation_list")
-    
+
     conversation_meta = group_chat_data["conversation_meta"]
     conversation_list = group_chat_data["conversation_list"]
-    
+
     if not conversation_list:
         raise ValueError("conversation_list 不能为空")
-    
+
     # 提取群组信息
     group_id = conversation_meta.get("group_id")
     group_name = conversation_meta.get("name")  # 从 conversation_meta 中提取群组名称
     user_details = conversation_meta.get("user_details", {})
     default_timezone = conversation_meta.get("default_timezone", "UTC")
-    
+    # 提取场景信息（新增字段，兼容性处理）
+    scene = conversation_meta.get("scene")
+    scene_desc = conversation_meta.get("scene_desc", {})
+
     # 提取所有用户ID列表
     user_id_list = list(user_details.keys())
-    
+
     # 转换消息列表
     messages = []
     for msg in conversation_list:
         converted_msg = _convert_message_to_internal_format(
-            msg, 
+            msg,
             group_id=group_id,
             user_id_list=user_id_list,
             user_details=user_details,
-            default_timezone=default_timezone
+            default_timezone=default_timezone,
         )
         messages.append(converted_msg)
-    
+
     # 获取最后一条消息的时间作为 current_time
     current_time = None
     if messages:
         last_msg = conversation_list[-1]
         create_time_str = last_msg.get("create_time")
         if create_time_str:
-            current_time = _parse_datetime_with_timezone(create_time_str, default_timezone)
-    
+            current_time = _parse_datetime_with_timezone(
+                create_time_str, default_timezone
+            )
+
     # 构建 memorize 接口输入格式
-    result = {
-        "messages": messages,
-        "raw_data_type": "Conversation",
-    }
-    
+    result = {"messages": messages, "raw_data_type": "Conversation"}
+
     # 添加可选字段
     if group_id:
         result["group_id"] = group_id
@@ -108,7 +110,12 @@ def convert_group_chat_format_to_memorize_input(
         result["group_name"] = group_name
     if current_time:
         result["current_time"] = current_time.isoformat()
-    
+    # 添加场景信息（新增字段，兼容性处理）
+    if scene:
+        result["scene"] = scene
+    if scene_desc:
+        result["scene_desc"] = scene_desc
+
     return result
 
 
@@ -117,11 +124,11 @@ def _convert_message_to_internal_format(
     group_id: Optional[str] = None,
     user_id_list: Optional[List[str]] = None,
     user_details: Optional[Dict[str, Any]] = None,
-    default_timezone: str = "UTC"
+    default_timezone: str = "UTC",
 ) -> Dict[str, Any]:
     """
     将单条消息从 GroupChatFormat 格式转换为内部格式
-    
+
     Args:
         message: GroupChatFormat 中的单条消息，包含：
             - message_id: 消息ID
@@ -135,9 +142,9 @@ def _convert_message_to_internal_format(
         user_id_list: 用户ID列表
         user_details: 用户详细信息字典
         default_timezone: 默认时区
-    
+
     Returns:
-        Dict[str, Any]: 转换后的消息格式，包含 _id, fullName, receiverId, roomId, 
+        Dict[str, Any]: 转换后的消息格式，包含 _id, fullName, receiverId, roomId,
                        userIdList, referList, content, createTime, createBy, updateTime, orgId 等
     """
     # 提取基本字段
@@ -147,15 +154,15 @@ def _convert_message_to_internal_format(
     create_time = message.get("create_time")
     content = message.get("content", "")
     refer_list = message.get("refer_list", [])
-    
+
     # 消息类型：目前只支持文本消息，固定为 1 (TEXT)
     msg_type = 1
-    
+
     # 如果 sender_name 为空，尝试从 user_details 中获取
     if not sender_name and sender_id and user_details:
         user_detail = user_details.get(sender_id, {})
         sender_name = user_detail.get("full_name", sender_id)
-    
+
     # 转换 refer_list 格式
     # GroupChatFormat 支持两种格式：字符串列表或 MessageReference 对象列表
     # 需要转换为字符串列表（message_id）
@@ -170,11 +177,13 @@ def _convert_message_to_internal_format(
                 ref_msg_id = refer.get("message_id")
                 if ref_msg_id:
                     converted_refer_list.append(ref_msg_id)
-    
+
     # 解析时间（如果没有时区信息，使用默认时区）
     parsed_create_time = _parse_datetime_with_timezone(create_time, default_timezone)
-    create_time_iso = parsed_create_time.isoformat() if parsed_create_time else create_time
-    
+    create_time_iso = (
+        parsed_create_time.isoformat() if parsed_create_time else create_time
+    )
+
     # 构建内部格式
     # 注意：这里的格式需要匹配 convert_single_message_to_raw_data 的期望输入
     internal_format = {
@@ -191,32 +200,31 @@ def _convert_message_to_internal_format(
         "orgId": None,  # GroupChatFormat 中没有 orgId，设为 None
         "msgType": msg_type,
     }
-    
+
     # 添加额外信息到 extra 字段（如果有）
     extra = message.get("extra")
     if extra:
         internal_format["extra"] = extra
-    
+
     return internal_format
 
 
 def _parse_datetime_with_timezone(
-    datetime_str: Optional[str],
-    default_timezone: str = "UTC"
+    datetime_str: Optional[str], default_timezone: str = "UTC"
 ) -> Optional[datetime]:
     """
     解析带时区的日期时间字符串
-    
+
     Args:
         datetime_str: ISO 8601 格式的日期时间字符串
         default_timezone: 如果字符串中没有时区信息，使用的默认时区
-    
+
     Returns:
         datetime 对象，如果解析失败则返回 None
     """
     if not datetime_str:
         return None
-    
+
     try:
         # 尝试使用 from_iso_format 解析
         # 如果没有时区信息，会使用提供的默认时区
@@ -233,9 +241,9 @@ def convert_simple_message_to_memorize_input(
 ) -> Dict[str, Any]:
     """
     将简单直接的单条消息格式转换为 memorize 接口输入格式
-    
+
     这是 V3 memorize 接口使用的简单格式，无需复杂的 GroupChatFormat 结构。
-    
+
     Args:
         message_data: 简单的单条消息数据，包含：
             - group_id (可选): 群组ID
@@ -246,10 +254,10 @@ def convert_simple_message_to_memorize_input(
             - sender_name (可选): 发送者名称
             - content (必需): 消息内容
             - refer_list (可选): 引用消息ID列表
-    
+
     Returns:
         Dict[str, Any]: 适合 memorize 接口的输入格式
-    
+
     Raises:
         ValueError: 当必需字段缺失时
     """
@@ -262,7 +270,10 @@ def convert_simple_message_to_memorize_input(
     sender_name = message_data.get("sender_name", sender)
     content = message_data.get("content", "")
     refer_list = message_data.get("refer_list", [])
-    
+    # 提取场景信息（新增字段，兼容性处理）
+    scene = message_data.get("scene")
+    scene_desc = message_data.get("scene_desc")
+
     # 验证必需字段
     if not message_id:
         raise ValueError("缺少必需字段: message_id")
@@ -272,7 +283,7 @@ def convert_simple_message_to_memorize_input(
         raise ValueError("缺少必需字段: sender")
     if not content:
         raise ValueError("缺少必需字段: content")
-    
+
     # 构建内部格式
     internal_message = {
         "_id": message_id,
@@ -288,14 +299,14 @@ def convert_simple_message_to_memorize_input(
         "orgId": None,
         "msgType": 1,  # TEXT
     }
-    
+
     # 构建 memorize 接口输入格式
     result = {
         "messages": [internal_message],
         "raw_data_type": "Conversation",
         "split_ratio": 0,  # 全部作为新消息
     }
-    
+
     # 添加可选字段
     if group_id:
         result["group_id"] = group_id
@@ -303,35 +314,40 @@ def convert_simple_message_to_memorize_input(
         result["group_name"] = group_name
     if create_time:
         result["current_time"] = create_time
-    
+    # 添加场景信息（新增字段，兼容性处理）
+    if scene:
+        result["scene"] = scene
+    if scene_desc:
+        result["scene_desc"] = scene_desc
+
     return result
 
 
 def validate_group_chat_format_input(data: Dict[str, Any]) -> bool:
     """
     验证输入数据是否符合 GroupChatFormat 规范
-    
+
     Args:
         data: 输入数据字典
-    
+
     Returns:
         bool: 是否符合规范
     """
     # 检查必需的顶层字段
     if "conversation_meta" not in data or "conversation_list" not in data:
         return False
-    
+
     meta = data["conversation_meta"]
     if "name" not in meta or "user_details" not in meta:
         return False
-    
+
     # 检查消息列表
     conversation_list = data["conversation_list"]
     if not isinstance(conversation_list, list):
         return False
-    
+
     user_ids = set(meta["user_details"].keys())
-    
+
     # 验证每条消息
     for msg in conversation_list:
         # 检查必需字段
@@ -339,11 +355,11 @@ def validate_group_chat_format_input(data: Dict[str, Any]) -> bool:
         for field in required_fields:
             if field not in msg:
                 return False
-        
+
         # 检查 sender 是否在 user_details 中
         if msg.get("sender") not in user_ids:
             return False
-        
+
         # 检查 refer_list 格式（如果有）
         refer_list = msg.get("refer_list", [])
         if refer_list:
@@ -355,6 +371,5 @@ def validate_group_chat_format_input(data: Dict[str, Any]) -> bool:
                 elif not isinstance(refer, str):
                     # 必须是字符串或字典
                     return False
-    
-    return True
 
+    return True

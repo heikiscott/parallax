@@ -116,19 +116,28 @@ class Backward:
     @staticmethod
     def _get_mongodb_uri() -> str:
         """Get MongoDB URI from environment variables"""
+        base_uri = None
         if uri := os.getenv("MONGODB_URI"):
-            return uri
+            base_uri = uri
+        else:
+            # Build URI from separate environment variables
+            host = os.getenv("MONGODB_HOST", "localhost")
+            port = os.getenv("MONGODB_PORT", "27017")
+            username = os.getenv("MONGODB_USERNAME", "")
+            password = os.getenv("MONGODB_PASSWORD", "")
+            database = os.getenv("MONGODB_DATABASE", "memsys")
 
-        # Build URI from separate environment variables
-        host = os.getenv("MONGODB_HOST", "localhost")
-        port = os.getenv("MONGODB_PORT", "27017")
-        username = os.getenv("MONGODB_USERNAME", "")
-        password = os.getenv("MONGODB_PASSWORD", "")
-        database = os.getenv("MONGODB_DATABASE", "memsys")
+            if username and password:
+                base_uri = f"mongodb://{username}:{password}@{host}:{port}/{database}"
+            else:
+                base_uri = f"mongodb://{host}:{port}/{database}"
 
-        if username and password:
-            return f"mongodb://{username}:{password}@{host}:{port}/{database}"
-        return f"mongodb://{host}:{port}/{database}"
+        # 追加 URI 参数（如果有）
+        uri_params = os.getenv("MONGODB_URI_PARAMS", "").strip()
+        if uri_params:
+            separator = '&' if ('?' in base_uri) else '?'
+            return f"{base_uri}{separator}{uri_params}"
+        return base_uri
 
     @staticmethod
     def _get_mongodb_database() -> str:
@@ -164,7 +173,7 @@ class Backward:
         # Generate migration content
         content = self.MIGRATION_TEMPLATE.format(
             description=migration_name.replace("_", " ").title(),
-            created_at=datetime.now().isoformat()
+            created_at=datetime.now().isoformat(),
         )
 
         # Write file
@@ -195,15 +204,17 @@ class Backward:
         cmd = [
             "beanie",
             *beanie_args,
-            "-uri", self.uri,
-            "-db", self.database,
-            "-p", str(self.migrations_path)
+            "-uri",
+            self.uri,
+            "-db",
+            self.database,
+            "-p",
+            str(self.migrations_path),
         ]
 
         logger.info(f"🚀 执行命令: {' '.join(cmd[3:])}")  # Hide python path
         logger.info(f"📍 数据库: {self.database}")
         logger.info(f"📁 迁移目录: {self.migrations_path}")
-
 
         # Snapshot migration logs before running
         before_names, before_current = self._snapshot_migration_log()
@@ -277,7 +288,9 @@ class Backward:
                 db = client[self.database]
                 coll = db["migrations_log"]
                 docs = list(
-                    coll.find({}, {"_id": 0, "name": 1, "is_current": 1, "ts": 1}).sort("ts", 1)
+                    coll.find({}, {"_id": 0, "name": 1, "is_current": 1, "ts": 1}).sort(
+                        "ts", 1
+                    )
                 )
                 names = [d.get("name") for d in docs if d.get("name")]
                 current = None
@@ -327,7 +340,11 @@ class Backward:
             logger.info("↩️ 回滚移除脚本: <无>")
 
         if before_current != after_current:
-            logger.info("📍 当前指针变更: %s -> %s", before_current or "<无>", after_current or "<无>")
+            logger.info(
+                "📍 当前指针变更: %s -> %s",
+                before_current or "<无>",
+                after_current or "<无>",
+            )
 
     # ---------- Public utility for manual query ----------
     def get_migration_history(self):
@@ -337,7 +354,9 @@ class Backward:
                 db = client[self.database]
                 coll = db["migrations_log"]
                 docs = list(
-                    coll.find({}, {"_id": 0, "name": 1, "is_current": 1, "ts": 1}).sort("ts", 1)
+                    coll.find({}, {"_id": 0, "name": 1, "is_current": 1, "ts": 1}).sort(
+                        "ts", 1
+                    )
                 )
                 return docs
         except Exception as e:

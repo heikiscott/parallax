@@ -1,7 +1,7 @@
 """Group Profile Extraction prompts for EverMemOS."""
 
 # ======================================
-# PARALLEL EXTRACTION PROMPTS 
+# PARALLEL EXTRACTION PROMPTS
 # ======================================
 
 CONTENT_ANALYSIS_PROMPT = """

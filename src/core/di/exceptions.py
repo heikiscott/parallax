@@ -8,12 +8,13 @@ from typing import Type, Any, List
 
 class DIException(Exception):
     """依赖注入系统基础异常"""
+
     pass
 
 
 class CircularDependencyError(DIException):
     """循环依赖异常"""
-    
+
     def __init__(self, dependency_chain: List[Type]):
         self.dependency_chain = dependency_chain
         chain_str = " -> ".join([cls.__name__ for cls in dependency_chain])
@@ -22,11 +23,11 @@ class CircularDependencyError(DIException):
 
 class BeanNotFoundError(DIException):
     """Bean未找到异常"""
-    
+
     def __init__(self, bean_type: Type = None, bean_name: str = None):
         self.bean_type = bean_type
         self.bean_name = bean_name
-        
+
         if bean_name:
             super().__init__(f"未找到名为 '{bean_name}' 的Bean")
         elif bean_type:
@@ -41,11 +42,11 @@ class BeanNotFoundError(DIException):
 
 class DuplicateBeanError(DIException):
     """重复Bean异常"""
-    
+
     def __init__(self, bean_type: Type = None, bean_name: str = None):
         self.bean_type = bean_type
         self.bean_name = bean_name
-        
+
         if bean_name:
             super().__init__(f"名为 '{bean_name}' 的Bean已存在")
         elif bean_type:
@@ -56,7 +57,7 @@ class DuplicateBeanError(DIException):
 
 class FactoryError(DIException):
     """Factory异常"""
-    
+
     def __init__(self, factory_type: Type, message: str = None):
         self.factory_type = factory_type
         default_msg = f"Factory '{factory_type.__name__}' 创建实例失败"
@@ -65,7 +66,7 @@ class FactoryError(DIException):
 
 class DependencyResolutionError(DIException):
     """依赖解析异常"""
-    
+
     def __init__(self, target_type: Type, missing_dependency: Type):
         self.target_type = target_type
         self.missing_dependency = missing_dependency
@@ -76,14 +77,14 @@ class DependencyResolutionError(DIException):
 
 class MockNotEnabledError(DIException):
     """Mock模式未启用异常"""
-    
+
     def __init__(self):
         super().__init__("Mock模式未启用，无法注册Mock实现")
 
 
 class PrimaryBeanConflictError(DIException):
     """Primary Bean冲突异常"""
-    
+
     def __init__(self, bean_type: Type, existing_primary: Type, new_primary: Type):
         self.bean_type = bean_type
         self.existing_primary = existing_primary
@@ -91,4 +92,4 @@ class PrimaryBeanConflictError(DIException):
         super().__init__(
             f"类型 '{bean_type.__name__}' 存在多个Primary实现: "
             f"'{existing_primary.__name__}' 和 '{new_primary.__name__}'"
-        ) 
+        )

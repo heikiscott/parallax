@@ -75,6 +75,7 @@ dependencies = [
     "html2text>=2025.4.15",
     "certifi>=2025.10.5",
     "aiolimiter>=1.2.1",
+    "nltk>=3.9.2",
 ]
 
 [build-system]
@@ -87,6 +88,26 @@ packages = ["src"]
 [tool.black]
 line-length = 88
 target-version = ['py312']
+exclude = '''
+(
+  /(
+      \.git
+    | \.hg
+    | \.mypy_cache
+    | \.tox
+    | \.venv
+    | _build
+    | buck-out
+    | build
+    | dist
+  )/
+  | migrations
+  | __pycache__
+)
+'''
+include = '\.pyi?$'
+skip-string-normalization = true
+skip-magic-trailing-comma = true
 
 [tool.isort]
 profile = "black"
@@ -103,7 +124,7 @@ addopts = "-v --tb=short"
 # 开发依赖 - 本地开发时使用
 dev = [
     "black>=25.1.0",
-    "ipdb>=0.13.13", 
+    "ipdb>=0.13.13",
     "isort>=6.0.1",
     "pytest>=8.4.2",
     "pytest-asyncio>=1.1.0",
@@ -111,6 +132,7 @@ dev = [
     "typer",
     "pyinstrument",
     "py-spy",
+    "pre-commit>=4.3.0",
 ]
 
 # CPU 版本 faiss - 本地开发和 macOS 使用
@@ -133,6 +155,25 @@ dev-full = [
 # 生产环境 - 仅包含 GPU 版本 faiss
 prod = [
     {include-group = "gpu"},
+]
+
+# Evaluation 评测框架依赖
+evaluation = [
+    # 终端美化和进度显示
+    "rich>=13.0.0",
+    # HTTP 请求库（在线 API 调用）
+    "requests>=2.31.0",
+]
+
+# Evaluation + 所有在线 API 客户端（完整测试环境）
+evaluation-full = [
+    {include-group = "evaluation"},
+    # Online Memory Systems API 客户端
+    "mem0ai>=1.0.0",          # Mem0
+    "zep-cloud>=3.9.0",       # Zep
+    "memobase>=0.0.26",       # Memobase
+    "supermemory>=3.4.0",     # Supermemory
+    #"memu-py>=0.2.2",         # Memu
 ]
 
 [project.scripts]

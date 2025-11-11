@@ -14,12 +14,15 @@ from datetime import datetime
 
 class RetrieveMethod(str, Enum):
     """检索方法枚举"""
+
     KEYWORD = "keyword"
     VECTOR = "vector"
     HYBRID = "hybrid"
 
+
 class MemoryType(str, Enum):
     """记忆类型枚举"""
+
     BASE_MEMORY = "base_memory"
     PROFILE = "profile"
     PREFERENCE = "preference"
@@ -30,31 +33,34 @@ class MemoryType(str, Enum):
     BEHAVIOR_HISTORY = "behavior_history"
     MULTIPLE = "multiple"  # 多类型查询
 
+
 class MemoryType_RAW(Enum):
     """Types of memories that can be extracted."""
-    EPISODE_SUMMARY = "episode_summary"      # 情节记忆
-    BASE_MEMORY = "baseMemory"                # 稳定、客观、可验证 Who He Is
-    PROFILE = "profile"                      # 能力与经验画像
-    PREFERENCES = "preferences"              # 偏好设置
-    RELATIONSHIPS = "relationships"          # 人际关系
-    SEMANTIC_SUMMARY = "semantic"              # 语义记忆
+
+    EPISODE_SUMMARY = "episode_summary"  # 情节记忆
+    BASE_MEMORY = "baseMemory"  # 稳定、客观、可验证 Who He Is
+    PROFILE = "profile"  # 能力与经验画像
+    PREFERENCES = "preferences"  # 偏好设置
+    RELATIONSHIPS = "relationships"  # 人际关系
+    SEMANTIC_SUMMARY = "semantic"  # 语义记忆
     GROUP_PROFILE = "group_profile"
 
 
 @dataclass
 class Metadata:
     """记忆元数据类"""
+
     # 必需字段
     source: str  # 数据来源
     user_id: str  # 用户ID
     memory_type: str  # 记忆类型
-    
+
     # 可选字段
     limit: Optional[int] = None  # 限制数量
     email: Optional[str] = None  # 邮箱
     phone: Optional[str] = None  # 电话
     full_name: Optional[str] = None  # 全名
-    
+
     def to_dict(self) -> Dict[str, Any]:
         """转换为字典格式"""
         result = {}
@@ -62,14 +68,17 @@ class Metadata:
             if value is not None:
                 result[key] = value
         return result
-    
+
     @classmethod
     def from_dict(cls, data: Dict[str, Any]) -> 'Metadata':
         """从字典创建 Metadata 对象"""
-        return cls(**{k: v for k, v in data.items() if k in cls.__annotations__}) 
+        return cls(**{k: v for k, v in data.items() if k in cls.__annotations__})
+
+
 @dataclass
 class BaseMemoryModel:
     """基础记忆模型"""
+
     id: str
     user_id: str
     content: str
@@ -81,6 +90,7 @@ class BaseMemoryModel:
 @dataclass
 class ProfileModel:
     """用户画像模型"""
+
     id: str
     user_id: str
     name: str
@@ -97,6 +107,7 @@ class ProfileModel:
 @dataclass
 class PreferenceModel:
     """用户偏好模型"""
+
     id: str
     user_id: str
     category: str
@@ -111,6 +122,7 @@ class PreferenceModel:
 @dataclass
 class EpisodicMemoryModel:
     """情景记忆模型"""
+
     id: str
     user_id: str
     episode_id: str
@@ -133,6 +145,7 @@ class EpisodicMemoryModel:
 @dataclass
 class SemanticMemoryModel:
     """语义记忆模型"""
+
     id: str
     user_id: str
     concept: str
@@ -149,6 +162,7 @@ class SemanticMemoryModel:
 @dataclass
 class EntityModel:
     """实体模型"""
+
     id: str
     user_id: str
     entity_name: str
@@ -164,6 +178,7 @@ class EntityModel:
 @dataclass
 class RelationModel:
     """关系模型"""
+
     id: str
     user_id: str
     source_entity_id: str
@@ -179,6 +194,7 @@ class RelationModel:
 @dataclass
 class BehaviorHistoryModel:
     """行为历史模型"""
+
     id: str
     user_id: str
     action_type: str
@@ -194,13 +210,14 @@ class BehaviorHistoryModel:
 @dataclass
 class CoreMemoryModel:
     """核心记忆模型"""
+
     id: str
     user_id: str
     version: str
     is_latest: bool
     version: str
     is_latest: bool
-    
+
     # ==================== BaseMemory 字段 ====================
     user_name: Optional[str] = None
     gender: Optional[str] = None
@@ -212,7 +229,7 @@ class CoreMemoryModel:
     hiredate: Optional[str] = None
     age: Optional[int] = None
     department: Optional[str] = None
-    
+
     # ==================== Profile 字段 ====================
     hard_skills: Optional[List[Dict[str, str]]] = None
     soft_skills: Optional[List[Dict[str, str]]] = None
@@ -230,7 +247,7 @@ class CoreMemoryModel:
     working_habit_preference: Optional[List[str]] = None
     interests: Optional[List[str]] = None
     tendency: Optional[List[str]] = None
-    
+
     # ==================== 通用字段 ====================
     extend: Optional[Dict[str, Any]] = None
     created_at: datetime = field(default_factory=datetime.now)
@@ -248,5 +265,5 @@ MemoryModel = Union[
     EntityModel,
     RelationModel,
     BehaviorHistoryModel,
-    CoreMemoryModel
+    CoreMemoryModel,
 ]

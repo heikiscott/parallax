@@ -10,7 +10,9 @@ from elasticsearch.helpers import async_streaming_bulk
 logger = get_logger(__name__)
 
 
-async def sync_episodic_memory_docs(batch_size: int, limit: Optional[int], days: Optional[int]) -> None:
+async def sync_episodic_memory_docs(
+    batch_size: int, limit: Optional[int], days: Optional[int]
+) -> None:
     """
     同步情景记忆文档到 Elasticsearch。
 
@@ -26,7 +28,7 @@ async def sync_episodic_memory_docs(batch_size: int, limit: Optional[int], days:
         EpisodicMemoryConverter,
     )
     from infra_layer.adapters.out.search.elasticsearch.memory.episodic_memory import (
-        EpisodicMemoryDoc
+        EpisodicMemoryDoc,
     )
 
     from common_utils.datetime_utils import get_now_with_timezone
@@ -56,7 +58,6 @@ async def sync_episodic_memory_docs(batch_size: int, limit: Optional[int], days:
         logger.error("获取 Elasticsearch 客户端失败: %s", e)
         raise
 
-
     async def generate_actions() -> AsyncIterator[Dict[str, Any]]:
         nonlocal total_processed
         skip = 0
@@ -69,10 +70,14 @@ async def sync_episodic_memory_docs(batch_size: int, limit: Optional[int], days:
                 break
 
             first_doc_time = (
-                mongo_docs[0].created_at if hasattr(mongo_docs[0], "created_at") else "未知"
+                mongo_docs[0].created_at
+                if hasattr(mongo_docs[0], "created_at")
+                else "未知"
             )
             last_doc_time = (
-                mongo_docs[-1].created_at if hasattr(mongo_docs[-1], "created_at") else "未知"
+                mongo_docs[-1].created_at
+                if hasattr(mongo_docs[-1], "created_at")
+                else "未知"
             )
             logger.info(
                 "准备批量写入第 %s - %s 个文档，时间范围: %s ~ %s",
@@ -109,9 +114,7 @@ async def sync_episodic_memory_docs(batch_size: int, limit: Optional[int], days:
     try:
         # 使用 streaming bulk 批量 upsert
         async for ok, info in async_streaming_bulk(
-            async_client,
-            generate_actions(),
-            chunk_size=batch_size,
+            async_client, generate_actions(), chunk_size=batch_size
         ):
             if ok:
                 success_count += 1
@@ -132,5 +135,3 @@ async def sync_episodic_memory_docs(batch_size: int, limit: Optional[int], days:
         logger.error("同步过程中发生错误: %s", exc)
         traceback.print_exc()
         raise
-
-

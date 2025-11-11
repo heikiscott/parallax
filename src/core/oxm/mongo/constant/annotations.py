@@ -14,5 +14,3 @@ class Toggle(StringEnumAnnotation):
 
     ENABLED = "enabled"
     DISABLED = "disabled"
-
-

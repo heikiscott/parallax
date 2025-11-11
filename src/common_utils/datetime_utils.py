@@ -5,12 +5,14 @@ from core.observation.logger import get_logger
 
 logger = get_logger(__name__)
 
+
 def get_timezone() -> ZoneInfo:
     """
     获取时区
     """
     tz = os.getenv("TZ", "Asia/Shanghai")
     return ZoneInfo(tz)
+
 
 timezone = get_timezone()
 
@@ -23,14 +25,14 @@ def get_now_with_timezone() -> datetime.datetime:
     return datetime.datetime.now(tz=timezone)
 
 
-
-def to_timezone(dt: datetime.datetime, tz: ZoneInfo=None) -> datetime.datetime:
+def to_timezone(dt: datetime.datetime, tz: ZoneInfo = None) -> datetime.datetime:
     """
     将datetime对象转换为指定时区
     """
     if tz is None:
         tz = timezone
     return dt.astimezone(tz)
+
 
 def to_iso_format(dt: datetime.datetime) -> str:
     """
@@ -44,14 +46,13 @@ def to_iso_format(dt: datetime.datetime) -> str:
     return dt.astimezone(timezone).isoformat()
 
 
-
 def from_timestamp(timestamp: int | float) -> datetime.datetime:
     """
     从时间戳转换为datetime对象，自动识别秒级和毫秒级精度
-    
+
     Args:
         timestamp: 时间戳，支持秒级（10位数字）和毫秒级（13位数字）
-        
+
     Returns:
         datetime.datetime(2025, 9, 16, 20, 17, 41, tzinfo=zoneinfo.ZoneInfo(key='Asia/Shanghai'))
     """
@@ -64,8 +65,9 @@ def from_timestamp(timestamp: int | float) -> datetime.datetime:
     else:
         # 秒级时间戳，直接使用
         timestamp_seconds = timestamp
-    
+
     return datetime.datetime.fromtimestamp(timestamp_seconds, tz=timezone)
+
 
 def to_timestamp(dt: datetime.datetime) -> int:
     """
@@ -91,17 +93,17 @@ def to_timestamp_ms_universal(time_value) -> int:
     - str: ISO格式时间字符串
     - datetime对象
     - None: 返回0
-    
+
     Args:
         time_value: 各种格式的时间值
-        
+
     Returns:
         int: 毫秒级时间戳，失败时返回0
     """
     try:
         if time_value is None:
             return 0
-            
+
         # 处理数字类型（时间戳）
         if isinstance(time_value, (int, float)):
             # 自动识别时间戳精度
@@ -111,7 +113,7 @@ def to_timestamp_ms_universal(time_value) -> int:
             else:
                 # 秒级时间戳，转换为毫秒级
                 return int(time_value * 1000)
-        
+
         # 处理字符串类型
         if isinstance(time_value, str):
             # 先尝试作为数字解析
@@ -122,27 +124,31 @@ def to_timestamp_ms_universal(time_value) -> int:
                 # 不是数字，尝试作为ISO格式时间字符串解析
                 dt = from_iso_format(time_value)
                 return to_timestamp_ms(dt)
-        
+
         # 处理datetime对象
         if isinstance(time_value, datetime.datetime):
             return to_timestamp_ms(time_value)
-            
+
         # 其他类型，尝试转换为字符串再解析
         return to_timestamp_ms_universal(str(time_value))
-        
+
     except Exception as e:
-        logger.error("[DateTimeUtils] to_timestamp_ms_universal - Error converting time value %s: %s", time_value, str(e))
+        logger.error(
+            "[DateTimeUtils] to_timestamp_ms_universal - Error converting time value %s: %s",
+            time_value,
+            str(e),
+        )
         return 0
 
 
 def from_iso_format(create_time, target_timezone: ZoneInfo = None) -> datetime.datetime:
     """
     将时间转换为带时区信息的datetime对象
-    
+
     Args:
         create_time: 时间对象或字符串，如 datetime对象 或 "2025-09-15T13:11:15.588000"
         target_timezone: 时区对象，如果为None，则使用TZ环境变量
-    
+
     Returns:
         带时区信息的datetime对象，默认为东八区时区
     """
@@ -157,7 +163,7 @@ def from_iso_format(create_time, target_timezone: ZoneInfo = None) -> datetime.d
         else:
             # 其他类型，尝试转换为字符串再解析
             dt = datetime.datetime.fromisoformat(str(create_time))
-        
+
         # 如果datetime对象没有时区信息，默认为指定时区
         if dt.tzinfo is None:
             # 使用指定的时区，默认为东八区
@@ -166,11 +172,13 @@ def from_iso_format(create_time, target_timezone: ZoneInfo = None) -> datetime.d
         else:
             # 如果已有时区信息，直接使用
             dt_localized = dt
-        
+
         # 统一转换为与get_timezone()一致的时区
         return dt_localized.astimezone(get_timezone())
-        
+
     except Exception as e:
         # 如果转换失败，返回当前时间的东八区时区对象
-        logger.error("[DateTimeUtils] from_iso_format - Error converting time: %s", str(e))
+        logger.error(
+            "[DateTimeUtils] from_iso_format - Error converting time: %s", str(e)
+        )
         return get_now_with_timezone()

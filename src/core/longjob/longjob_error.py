@@ -8,7 +8,7 @@ class FatalError(Exception):
     """
     致命错误，不应该重试
     用于标识那些重试也无法解决的错误
-    
+
     Examples:
         - 内存不足
         - 系统级错误
@@ -21,7 +21,7 @@ class BusinessLogicError(Exception):
     """
     业务逻辑错误，可以重试
     用于标识那些可能通过重试解决的错误
-    
+
     Examples:
         - 网络连接错误
         - 临时性数据库连接问题

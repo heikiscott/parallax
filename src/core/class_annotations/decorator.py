@@ -25,11 +25,15 @@ def _normalize_key(key: Union[str, AnnotationKeyBase]) -> str:
         return key.to_key()
     if isinstance(key, str):
         return key
-    raise TypeError(f"Annotation key must be str or AnnotationKeyBase, got {type(key).__name__}")
+    raise TypeError(
+        f"Annotation key must be str or AnnotationKeyBase, got {type(key).__name__}"
+    )
 
 
 def class_annotations(
-    annotations: Optional[Mapping[Union[str, AnnotationKeyBase], AnnotationValueBase]] = None,
+    annotations: Optional[
+        Mapping[Union[str, AnnotationKeyBase], AnnotationValueBase]
+    ] = None,
     /,
     **kwargs: AnnotationValueBase,
 ):
@@ -60,7 +64,9 @@ def class_annotations(
     # Validate value types early
     for k, v in provided.items():
         if not isinstance(v, AnnotationValueBase):
-            raise TypeError(f"Annotation '{k}' must be an instance of AnnotationValueBase, got {type(v).__name__}")
+            raise TypeError(
+                f"Annotation '{k}' must be an instance of AnnotationValueBase, got {type(v).__name__}"
+            )
 
     def _wrapper(cls: Type[Any]):
         notes = _ensure_notes_dict(cls)
@@ -68,5 +74,3 @@ def class_annotations(
         return cls
 
     return _wrapper
-
-

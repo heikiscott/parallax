@@ -1,4 +1,3 @@
-
 EVENT_LOG_PROMPT = """You are an expert episodic memory extraction analyst and information architect.  
 Your task is to analyze the given narrative or multi-turn conversation (called "EPISODE_TEXT") and produce an event log optimized for factual retrieval.
 

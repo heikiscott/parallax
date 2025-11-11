@@ -8,7 +8,9 @@ from .types import AnnotationKeyBase, AnnotationValueBase
 _NOTES_ATTR = "__notes__"
 
 
-def _collect_mro_notes(cls: Type[Any]) -> Tuple[MutableMapping[str, AnnotationValueBase], ...]:
+def _collect_mro_notes(
+    cls: Type[Any],
+) -> Tuple[MutableMapping[str, AnnotationValueBase], ...]:
     """
     Collect `__notes__` from MRO (base classes first, subclass last).
     Only include those that are dict-like.
@@ -34,7 +36,9 @@ def _merged_notes(cls: Type[Any]) -> Dict[str, AnnotationValueBase]:
     return merged
 
 
-def get_annotations(target: Union[Type[Any], Any], *, include_inherited: bool = True) -> Mapping[str, AnnotationValueBase]:
+def get_annotations(
+    target: Union[Type[Any], Any], *, include_inherited: bool = True
+) -> Mapping[str, AnnotationValueBase]:
     """
     Get all annotations attached to a class or instance.
 
@@ -50,7 +54,10 @@ def get_annotations(target: Union[Type[Any], Any], *, include_inherited: bool = 
 
 
 def get_annotation(
-    target: Union[Type[Any], Any], key: Union[str, AnnotationKeyBase], *, include_inherited: bool = True
+    target: Union[Type[Any], Any],
+    key: Union[str, AnnotationKeyBase],
+    *,
+    include_inherited: bool = True,
 ) -> Optional[AnnotationValueBase]:
     """
     Get a single annotation value by key from a class or instance.
@@ -61,8 +68,9 @@ def get_annotation(
 
 
 def has_annotation(
-    target: Union[Type[Any], Any], key: Union[str, AnnotationKeyBase], *, include_inherited: bool = True
+    target: Union[Type[Any], Any],
+    key: Union[str, AnnotationKeyBase],
+    *,
+    include_inherited: bool = True,
 ) -> bool:
     return get_annotation(target, key, include_inherited=include_inherited) is not None
-
-

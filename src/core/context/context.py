@@ -7,40 +7,49 @@ logger = logging.getLogger(__name__)
 
 
 # 创建一个 ContextVar，用于存储当前请求的数据库会话
-db_session_context: ContextVar[Optional[AsyncSession]] = ContextVar("db_session_context", default=None)
+db_session_context: ContextVar[Optional[AsyncSession]] = ContextVar(
+    "db_session_context", default=None
+)
 
 # 创建一个 ContextVar，用于存储当前用户的额外信息
-user_info_context: ContextVar[Optional[Dict[str, Any]]] = ContextVar("user_info_context", default=None)
+user_info_context: ContextVar[Optional[Dict[str, Any]]] = ContextVar(
+    "user_info_context", default=None
+)
 
 # 🔧 应用信息上下文变量，用于存储 task_id 等应用级别的上下文信息
-app_info_context: ContextVar[Optional[Dict[str, Any]]] = ContextVar("app_info_context", default=None)
+app_info_context: ContextVar[Optional[Dict[str, Any]]] = ContextVar(
+    "app_info_context", default=None
+)
 
 
 # 数据库会话相关函数
 def get_current_session() -> AsyncSession:
     """
     获取当前请求的数据库会话
-    
+
     Returns:
         AsyncSession: 当前请求的数据库会话
-        
+
     Raises:
         RuntimeError: 如果当前上下文中没有设置数据库会话
     """
     session = db_session_context.get()
     if session is None:
-        raise RuntimeError("数据库会话未在当前上下文中设置。请确保在请求中间件中正确初始化了会话。")
+        raise RuntimeError(
+            "数据库会话未在当前上下文中设置。请确保在请求中间件中正确初始化了会话。"
+        )
     return session
 
 
 def set_current_session(session: AsyncSession) -> Token:
     """
     设置当前请求的数据库会话
-    
+
     Args:
         session: 要设置的数据库会话
     """
     return db_session_context.set(session)
+
 
 def clear_current_session(token: Optional[Token] = None) -> None:
     """
@@ -55,11 +64,12 @@ def clear_current_session(token: Optional[Token] = None) -> None:
 class UserInfo(TypedDict):
     user_id: int
 
+
 # 用户上下文相关函数 - 只保留基础的数据存储和获取
 def get_current_user_info() -> Optional[UserInfo]:
     """
     获取当前用户的基础信息
-    
+
     Returns:
         Optional[Dict[str, Any]]: 当前用户的基础信息，如果未设置则返回None
     """
@@ -69,7 +79,7 @@ def get_current_user_info() -> Optional[UserInfo]:
 def set_current_user_info(user_info: UserInfo) -> Token:
     """
     设置当前用户的基础信息
-    
+
     Args:
         user_info: 要设置的用户信息
     """
@@ -90,7 +100,7 @@ def clear_current_user_context(token: Optional[Token] = None) -> None:
 def get_current_app_info() -> Optional[Dict[str, Any]]:
     """
     获取当前应用信息
-    
+
     Returns:
         Optional[Dict[str, Any]]: 当前应用信息，如果未设置则返回 None
     """
@@ -100,10 +110,10 @@ def get_current_app_info() -> Optional[Dict[str, Any]]:
 def set_current_app_info(app_info: Dict[str, Any]) -> Token:
     """
     设置当前应用信息到上下文变量
-    
+
     Args:
         app_info: 应用信息字典，包含 task_id 等
-        
+
     Returns:
         Token: 上下文变量token，用于后续清理
     """
@@ -113,7 +123,7 @@ def set_current_app_info(app_info: Dict[str, Any]) -> Token:
 def clear_current_app_info(token: Optional[Token] = None) -> None:
     """
     清理当前应用信息上下文变量
-    
+
     Args:
         token: 上下文变量token
     """
@@ -121,6 +131,3 @@ def clear_current_app_info(token: Optional[Token] = None) -> None:
         app_info_context.reset(token)
     else:
         app_info_context.set(None)
-
-
-

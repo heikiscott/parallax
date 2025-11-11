@@ -7,4 +7,3 @@ utils_dir = Path(__file__).parent
 src_dir = utils_dir.parent
 CURRENT_DIR = src_dir
 PROJECT_DIR = src_dir.parent
-

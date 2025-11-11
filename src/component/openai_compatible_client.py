@@ -7,7 +7,10 @@ from core.observation.logger import get_logger
 from component.config_provider import ConfigProvider
 
 from component.llm_adapter.llm.message import ChatMessage
-from component.llm_adapter.llm.completion import ChatCompletionRequest, ChatCompletionResponse
+from component.llm_adapter.llm.completion import (
+    ChatCompletionRequest,
+    ChatCompletionResponse,
+)
 from component.llm_adapter.llm.llm_backend_adapter import LLMBackendAdapter
 from component.llm_adapter.llm.openai_adapter import OpenAIAdapter
 from component.llm_adapter.llm.anthropic_adapter import AnthropicAdapter
@@ -23,7 +26,7 @@ class OpenAICompatibleClient:
     该客户端作为一个外观（Facade），管理多个LLM后端适配器，
     并根据配置提供统一的聊天完成服务。
     """
-    
+
     def __init__(self, config_provider: ConfigProvider):
         """
         初始化客户端。
@@ -49,7 +52,7 @@ class OpenAICompatibleClient:
         async with self._lock_creation_lock:
             if backend_name not in self._init_locks:
                 self._init_locks[backend_name] = asyncio.Lock()
-        
+
         # 使用后端特定的锁来确保并发安全
         async with self._init_locks[backend_name]:
             # 再次检查，因为可能在等待锁的过程中已经被其他协程初始化了
@@ -58,11 +61,13 @@ class OpenAICompatibleClient:
 
             llm_backends = self._config.get("llm_backends", {})
             if backend_name not in llm_backends:
-                raise ValueError(f"Backend '{backend_name}' not found in configuration.")
-                
+                raise ValueError(
+                    f"Backend '{backend_name}' not found in configuration."
+                )
+
             backend_config = llm_backends[backend_name]
             provider = backend_config.get("provider", "openai")
-            
+
             try:
                 adapter: LLMBackendAdapter
                 if provider in ["openai", "azure", "custom", "ollama"]:
@@ -73,17 +78,26 @@ class OpenAICompatibleClient:
                     adapter = GeminiAdapter(backend_config)
                 else:
                     raise ValueError(f"Unsupported provider type: {provider}")
-                
+
                 # 自动包装审计功能（未启动审计时返回原adapter）
                 from audit.adapter_wrapper import wrap_adapter_with_audit
+
                 adapter = wrap_adapter_with_audit(adapter, backend_name=backend_name)
-                
+
                 self._adapters[backend_name] = adapter
                 return adapter
             except Exception as e:
-                raise RuntimeError(f"Failed to initialize adapter for backend '{backend_name}': {e}") from e
+                raise RuntimeError(
+                    f"Failed to initialize adapter for backend '{backend_name}': {e}"
+                ) from e
 
-    def _get_param_with_priority(self, param_name: str, passed_value: Any, default_settings: dict, backend_config: dict) -> Any:
+    def _get_param_with_priority(
+        self,
+        param_name: str,
+        passed_value: Any,
+        default_settings: dict,
+        backend_config: dict,
+    ) -> Any:
         """
         获取参数优先级：传入参数 > backend_config > default_settings
         """
@@ -94,7 +108,7 @@ class OpenAICompatibleClient:
         if default_settings.get(param_name) is not None:
             return default_settings[param_name]
         return None
-    
+
     async def chat_completion(
         self,
         messages: List[ChatMessage],
@@ -127,29 +141,29 @@ class OpenAICompatibleClient:
         # 统一参数优先级处理
         final_params = {}
         param_definitions = {
-            # 下面backend_config有默认值 
+            # 下面backend_config有默认值
             "model": model,
-            # 下面default_settings有默认值 
-            "temperature": temperature, 
+            # 下面default_settings有默认值
+            "temperature": temperature,
             "max_tokens": max_tokens,
-            "top_p": top_p, 
-            "frequency_penalty": frequency_penalty, 
+            "top_p": top_p,
+            "frequency_penalty": frequency_penalty,
             "presence_penalty": presence_penalty,
-            "thinking_budget": thinking_budget, 
+            "thinking_budget": thinking_budget,
         }
         for name, value in param_definitions.items():
-            final_params[name] = self._get_param_with_priority(name, value, default_settings, backend_config)
+            final_params[name] = self._get_param_with_priority(
+                name, value, default_settings, backend_config
+            )
 
         # 组装请求
         request = ChatCompletionRequest(
-            messages=messages,
-            stream=stream,
-            **final_params
+            messages=messages, stream=stream, **final_params
         )
-        
+
         adapter = await self._get_adapter(backend_name)
         return await adapter.chat_completion(request)
-    
+
     def chat_completion_sync(
         self,
         messages: List[ChatMessage],
@@ -164,10 +178,10 @@ class OpenAICompatibleClient:
     ) -> Union[ChatCompletionResponse, AsyncGenerator[str, None]]:
         """
         执行聊天完成的同步版本。
-        
+
         注意：此方法不再支持同步调用，因为某些LLM适配器（如Gemini）
         内部会绑定事件循环，创建新的线程和事件循环会导致问题。
-        
+
         请使用异步版本 chat_completion() 方法。
         """
         raise NotImplementedError(
@@ -178,7 +192,7 @@ class OpenAICompatibleClient:
     def get_available_backends(self) -> List[str]:
         """获取可用后端列表"""
         return list(self._config.get("llm_backends", {}).keys())
-    
+
     async def get_available_models(self, backend: Optional[str] = None) -> List[str]:
         """获取指定后端的可用模型列表"""
         backend_name = backend or self._config.get("default_backend", "openai")
@@ -187,53 +201,57 @@ class OpenAICompatibleClient:
             return adapter.get_available_models()
         except (ValueError, RuntimeError):
             return []
-    
+
     def get_available_models_sync(self, backend: Optional[str] = None) -> List[str]:
         """
         获取指定后端的可用模型列表的同步版本。
-        
+
         注意：此方法不再支持同步调用，因为某些LLM适配器（如Gemini）
         内部会绑定事件循环，创建新的线程和事件循环会导致问题。
-        
+
         请使用异步版本 get_available_models() 方法。
         """
         raise NotImplementedError(
             "同步版本的模型获取不再支持，因为某些LLM适配器（如Gemini）内部会绑定事件循环。"
             "请使用异步版本 get_available_models() 方法。"
         )
-    
+
     def get_backend_info(self, backend: str) -> Optional[Dict[str, Any]]:
         """获取后端信息，隐藏敏感信息"""
         config = self._config.get("llm_backends", {}).get(backend)
         if config:
             safe_config = config.copy()
             if "api_key" in safe_config:
-                safe_config["api_key"] = f"***{safe_config['api_key'][-4:]}" if len(safe_config.get('api_key','')) > 4 else "***"
+                safe_config["api_key"] = (
+                    f"***{safe_config['api_key'][-4:]}"
+                    if len(safe_config.get('api_key', '')) > 4
+                    else "***"
+                )
             return safe_config
         return None
-    
+
     def reload_config(self):
         """重新加载配置并清空现有适配器实例和锁"""
         self._config = self.config_provider.get_config("llm_backends")
         self._adapters.clear()
         self._init_locks.clear()
-    
+
     async def close(self):
         """关闭所有适配器的HTTP客户端连接"""
         for adapter in self._adapters.values():
             if hasattr(adapter, 'close'):
                 await adapter.close()  # type: ignore
-    
+
     def close_sync(self):
         """
         关闭所有适配器的HTTP客户端连接的同步版本。
-        
+
         注意：此方法不再支持同步调用，因为某些LLM适配器（如Gemini）
         内部会绑定事件循环，创建新的线程和事件循环会导致问题。
-        
+
         请使用异步版本 close() 方法。
         """
         raise NotImplementedError(
             "同步版本的关闭操作不再支持，因为某些LLM适配器（如Gemini）内部会绑定事件循环。"
             "请使用异步版本 close() 方法。"
-        ) 
+        )

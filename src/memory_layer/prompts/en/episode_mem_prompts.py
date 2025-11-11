@@ -1,3 +1,11 @@
+DEFAULT_CUSTOM_INSTRUCTIONS = """
+When generating episodic memories, please follow these principles:
+1. Each episode should be a complete, independent story or event
+2. Preserve all important information, including names, times, places, emotions, etc.
+3. Use descriptive language to describe the episode, not dialogue format
+4. Highlight key information and emotional changes
+5. Ensure the episode content is conducive to subsequent retrieval
+"""
 
 EPISODE_GENERATION_PROMPT = """
 You are an episodic memory generation expert. Please convert the following content into an episodic memory.
@@ -58,4 +66,3 @@ Requirements:
 
 Return only the JSON object, do not add any other text:
 """
-

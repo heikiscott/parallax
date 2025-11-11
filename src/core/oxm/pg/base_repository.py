@@ -9,7 +9,7 @@ T = TypeVar('T', bound=get_auditable_model())
 
 class BaseSoftDeleteRepository(Generic[T], ABC):
     """支持软删除的基础仓储接口 - 纯业务接口，无技术实现细节"""
-    
+
     @abstractmethod
     async def add(self, entity: T) -> T:
         """添加新实体"""
@@ -48,4 +48,4 @@ class BaseSoftDeleteRepository(Generic[T], ABC):
     @abstractmethod
     async def count(self, include_deleted: bool = False) -> int:
         """统计实体数量（默认排除已删除）"""
-        raise NotImplementedError 
+        raise NotImplementedError

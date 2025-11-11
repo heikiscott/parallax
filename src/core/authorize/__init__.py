@@ -10,7 +10,7 @@ from .interfaces import AuthorizationStrategy, AuthorizationContext
 from .strategies import (
     DefaultAuthorizationStrategy,
     RoleBasedAuthorizationStrategy,
-    CustomAuthorizationStrategy
+    CustomAuthorizationStrategy,
 )
 from .decorators import (
     authorize,
@@ -18,22 +18,19 @@ from .decorators import (
     require_user,
     require_admin,
     custom_authorize,
-    check_and_apply_default_auth
+    check_and_apply_default_auth,
 )
 
 __all__ = [
     # 枚举
     'Role',
-    
     # 接口
     'AuthorizationStrategy',
     'AuthorizationContext',
-    
     # 策略实现
     'DefaultAuthorizationStrategy',
     'RoleBasedAuthorizationStrategy',
     'CustomAuthorizationStrategy',
-    
     # 装饰器
     'authorize',
     'require_anonymous',
