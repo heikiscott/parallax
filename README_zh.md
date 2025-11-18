@@ -7,7 +7,7 @@
 
 <p>
   <a href="https://everm.ai/" target="_blank">
-    <img alt="Website" src="https://img.shields.io/badge/Website-evermind--ai.com-4A90E2?style=flat-square&logo=link&logoColor=white" />
+    <img alt="Website" src="https://img.shields.io/badge/Website-everm--ai-4A90E2?style=flat-square&logo=link&logoColor=white" />
   </a>
 </p>
 
