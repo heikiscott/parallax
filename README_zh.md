@@ -220,7 +220,7 @@ memsys-opensource/
 │   └── utils/                 # 通用工具
 ├── demo/                             # 演示代码
 ├── data/                             # 示例对话数据
-├── evaluation/                       # 评估脚本
+├── eval/                             # 评估脚本
 │   └── src/                          # 评估框架源代码
 ├── docs/data_format/                      # 数据格式定义
 ├── docs/                             # 文档
@@ -373,65 +373,43 @@ uv run python src/bootstrap.py demo/chat_with_memory.py
 
 评估框架提供了一种统一的模块化方法来对标准数据集（LoCoMo、LongMemEval、PersonaMem）上的记忆系统进行基准测试。
 
-**快速测试（冒烟测试）**：
-
-```bash
-# 使用有限数据测试以验证一切正常
-# 默认：第一个对话，前 10 条消息，前 3 个问题
-uv run python -m evaluation.cli --dataset locomo --system parallax --smoke
-
-# 自定义冒烟测试：20 条消息，5 个问题
-uv run python -m evaluation.cli --dataset locomo --system parallax \
-    --smoke --smoke-messages 20 --smoke-questions 5
-
-# 测试不同数据集
-uv run python -m evaluation.cli --dataset longmemeval --system parallax --smoke
-uv run python -m evaluation.cli --dataset personamem --system parallax --smoke
-
-# 测试特定阶段（例如只测试搜索和回答阶段）
-uv run python -m evaluation.cli --dataset locomo --system parallax \
-    --smoke --stages search answer
-
-# 快速查看冒烟测试结果
-cat evaluation/results/locomo-parallax-smoke/report.txt
-```
 
 **完整评估**：
 
 ```bash
 # 在 LoCoMo 基准上评估 parallax
-uv run python -m evaluation.cli --dataset locomo --system parallax
+uv run python -m eval.cli --dataset locomo --system parallax
 
 # 在其他数据集上评估
-uv run python -m evaluation.cli --dataset longmemeval --system parallax
-uv run python -m evaluation.cli --dataset personamem --system parallax
+uv run python -m eval.cli --dataset longmemeval --system parallax
+uv run python -m eval.cli --dataset personamem --system parallax
 
 # 使用 --run-name 区分多次运行（用于 A/B 测试）
-uv run python -m evaluation.cli --dataset locomo --system parallax --run-name baseline
-uv run python -m evaluation.cli --dataset locomo --system parallax --run-name experiment1
+uv run python -m eval.cli --dataset locomo --system parallax --run-name baseline
+uv run python -m eval.cli --dataset locomo --system parallax --run-name experiment1
 
 # 如果中断则从检查点恢复（自动）
 # 只需重新运行相同命令 - 它会检测并从检查点恢复
-uv run python -m evaluation.cli --dataset locomo --system parallax
+uv run python -m eval.cli --dataset locomo --system parallax
 ```
 
 **查看结果**：
 
 ```bash
-# 结果保存到 evaluation/results/{dataset}-{system}[-{run-name}]/
-cat evaluation/results/locomo-parallax/report.txt          # 摘要指标
-cat evaluation/results/locomo-parallax/eval_results.json   # 每个问题的详细结果
-cat evaluation/results/locomo-parallax/pipeline.log        # 执行日志
+# 结果保存到 eval/results/{dataset}-{system}[-{run-name}]/
+cat eval/results/locomo-parallax/report.txt          # 摘要指标
+cat eval/results/locomo-parallax/eval_results.json   # 每个问题的详细结果
+cat eval/results/locomo-parallax/pipeline.log        # 执行日志
 ```
 
 评估流程包含 4 个阶段（添加 → 搜索 → 回答 → 评估），支持自动检查点和恢复。
 
 > **⚙️ 评估配置**:
-> - **数据准备**：需要将数据集放置在 `evaluation/data/` 中（参见 `evaluation/README.md`）
+> - **数据准备**：需要将数据集放置在 `eval/data/` 中（参见 `eval/README.md`）
 > - **环境配置**：在 `.env` 中配置 LLM API 密钥（参见 `env.template`）
-> - **安装依赖**：运行 `uv sync --group evaluation` 安装依赖
-> - **自定义配置**：复制并修改 `evaluation/config/systems/` 或 `evaluation/config/datasets/` 中的 YAML 文件
-> - **高级用法**：参见 `evaluation/README.md` 了解检查点管理、特定阶段运行和系统对比
+> - **安装依赖**：运行 `uv sync --group eval` 安装依赖
+> - **自定义配置**：复制并修改 `eval/config/systems/` 或 `eval/config/datasets/` 中的 YAML 文件
+> - **高级用法**：参见 `eval/README.md` 了解检查点管理、特定阶段运行和系统对比
 
 ---
 
@@ -654,7 +632,7 @@ uv run python src/bootstrap.py src/run_memorize.py \
 ### 演示与评估
 - [📖 演示指南](demo/README_zh.md) - 交互式示例和记忆提取演示
 - [📊 数据指南](data/README_zh.md) - 示例对话数据和格式规范
-- [📊 评估指南](evaluation/README_zh.md) - 在标准基准测试上测试基于Parallax的方法
+- [📊 评估指南](eval/README_zh.md) - 在标准基准测试上测试基于Parallax的方法
 
 ## 🏗️ 架构设计
 

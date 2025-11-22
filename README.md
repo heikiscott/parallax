@@ -33,18 +33,6 @@
 
 </div>
 
----
-
-> 💬 **More than memory — it's foresight.**
-
-**Parallax** is a forward-thinking **intelligent system**.  
-While traditional AI memory serves merely as a "look-back" database, Parallax enables AI not only to "remember" what happened, but also to "understand" the meaning behind these memories and use them to guide current actions and decisions. In the Parallax demo tools, you can see how Parallax extracts important information from your history, and then remembers your preferences, habits, and history during conversations, just like a **friend** who truly knows you.
-On the **LoCoMo** benchmark, our approach built upon Parallax achieved a reasoning accuracy of **92.3%** (evaluated by LLM-Judge), outperforming comparable methods in our evaluation.
-
----
-
-## 📢 Latest Updates
-
 <table>
 <tr>
 <td width="100%" style="border: none;">
@@ -376,28 +364,6 @@ This program loads `.env` via `python-dotenv`, verifies that at least one LLM ke
 
 The evaluation framework provides a unified, modular way to benchmark memory systems on standard datasets (LoCoMo, LongMemEval, PersonaMem).
 
-**Quick Test (Smoke Test)**:
-
-```bash
-# Test with limited data to verify everything works
-# Default: first conversation, first 10 messages, first 3 questions
-uv run python -m evaluation.cli --dataset locomo --system parallax --smoke
-
-# Custom smoke test: 20 messages, 5 questions
-uv run python -m evaluation.cli --dataset locomo --system parallax \
-    --smoke --smoke-messages 20 --smoke-questions 5
-
-# Test different datasets
-uv run python -m evaluation.cli --dataset longmemeval --system parallax --smoke
-uv run python -m evaluation.cli --dataset personamem --system parallax --smoke
-
-# Test specific stages (e.g., only search and answer)
-uv run python -m evaluation.cli --dataset locomo --system parallax \
-    --smoke --stages search answer
-
-# View smoke test results quickly
-cat evaluation/results/locomo-parallax-smoke/report.txt
-```
 
 **Full Evaluation**:
 

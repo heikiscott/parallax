@@ -1,0 +1,19 @@
+# Parallax System Configuration
+
+name: "parallax"
+version: "1.0"
+description: "Parallax"
+
+adapter: "parallax"
+
+# LLM configuration
+llm:
+  provider: "${LLM_PROVIDER:openai}"
+  model: "${LLM_MODEL:gpt-4o-mini}"  # 使用 gpt-4o-mini 进行答案生成
+  api_key: "${LLM_API_KEY}"
+  base_url: "${LLM_BASE_URL:https://api.openai.com/v1}"
+  max_tokens: ${LLM_MAX_TOKENS:16384}  # gpt-4o-mini max completion tokens limit
+
+search:
+  mode: "agentic"  # agentic | lightweight
+

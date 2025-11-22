@@ -1,0 +1,78 @@
+{
+  "total_questions": 3,
+  "correct": 3,
+  "accuracy": 1.0,
+  "detailed_results": {
+    "locomo-mini_exp_user_0": [
+      {
+        "question_id": "locomo-mini_0_qa0",
+        "question": "When did Caroline go to the LGBTQ support group?",
+        "golden_answer": "7 May 2023",
+        "generated_answer": "Caroline went to the LGBTQ support group on May 7, 2023.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "2"
+      },
+      {
+        "question_id": "locomo-mini_0_qa1",
+        "question": "When did Melanie paint a sunrise?",
+        "golden_answer": 2022,
+        "generated_answer": "Melanie painted a lake sunrise in 2022, as she confirmed during her conversation with Caroline on May 8, 2023.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "2"
+      },
+      {
+        "question_id": "locomo-mini_0_qa2",
+        "question": "What fields would Caroline be likely to pursue in her educaton?",
+        "golden_answer": "Psychology, counseling certification",
+        "generated_answer": "Caroline is likely to pursue education in fields related to mental health, specifically counseling, as well as social work or child welfare, given her aspirations to support individuals and provide a loving home for children in need.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "3"
+      }
+    ]
+  },
+  "metadata": {
+    "model": "gpt-4o-mini",
+    "num_runs": 3,
+    "mean_accuracy": 1.0,
+    "std_accuracy": 0.0,
+    "run_scores": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "category_accuracies": {
+      "2": {
+        "mean": 1.0,
+        "std": 0.0,
+        "individual_runs": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "total": 2
+      },
+      "3": {
+        "mean": 1.0,
+        "std": 0.0,
+        "individual_runs": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "total": 1
+      }
+    }
+  }
+}
