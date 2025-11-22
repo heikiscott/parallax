@@ -2,8 +2,8 @@ import random
 import time
 import json
 import traceback
-from memory.memory_manager import MemorizeRequest, MemorizeOfflineRequest
-from memory.memory_manager import MemoryManager
+from memory.extraction_orchestrator import MemorizeRequest, MemorizeOfflineRequest
+from memory.extraction_orchestrator import ExtractionOrchestrator
 from memory.types import MemoryType, MemCell, Memory, RawDataType, SemanticMemoryItem
 from memory.memory_extractor.event_log_extractor import EventLog
 from memory.memcell_extractor.base_memcell_extractor import RawData
@@ -693,7 +693,7 @@ async def memorize(request: MemorizeRequest) -> List[Memory]:
         current_time = get_now_with_timezone() + timedelta(seconds=1)
     logger.info(f"[mem_memorize] 当前时间: {current_time}")
 
-    memory_manager = MemoryManager()
+    memory_manager = ExtractionOrchestrator()
 
     # 定义需要提取的记忆类型：先提取个人 episode，再基于 episode 提取语义记忆和事件日志
     memory_types = [

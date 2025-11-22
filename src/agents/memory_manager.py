@@ -13,7 +13,7 @@ from dataclasses import dataclass
 
 from memory.types import Memory
 from services.mem_memorize import memorize
-from memory.memory_manager import MemorizeRequest
+from memory.extraction_orchestrator import MemorizeRequest
 from .fetch_mem_service import get_fetch_memory_service
 from .dtos.memory_query import (
     FetchMemRequest,

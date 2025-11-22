@@ -17,7 +17,7 @@ from infrastructure.adapters.input.format_transfer import (
 from .schemas import DataFields
 from .memory_models import MemoryType
 from .dtos.memory_query import RetrieveMemRequest, FetchMemRequest
-from memory.memory_manager import MemorizeRequest
+from memory.extraction_orchestrator import MemorizeRequest
 from memory.types import RawDataType
 from memory.memcell_extractor.base_memcell_extractor import RawData
 

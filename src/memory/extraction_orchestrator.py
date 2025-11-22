@@ -56,7 +56,9 @@ class MemorizeOfflineRequest:
     memorize_to: datetime
 
 
-class MemoryManager:
+class ExtractionOrchestrator:
+    """记忆提取编排器 - 负责编排各种记忆提取器"""
+
     def __init__(self):
         # Conversation MemCell LLM Provider - 从环境变量读取配置
         self.conv_memcall_llm_provider = LLMProvider(
