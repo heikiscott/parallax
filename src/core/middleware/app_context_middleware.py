@@ -15,7 +15,7 @@ from starlette.types import ASGIApp
 from core.observation.logger import get_logger
 from core.context.context import clear_current_app_info, set_current_app_info
 from core.di.utils import get_bean_by_type
-from providers.app_info_provider import AppInfoProvider
+from providers.core.app_info_provider import AppInfoProvider
 
 logger = get_logger(__name__)
 

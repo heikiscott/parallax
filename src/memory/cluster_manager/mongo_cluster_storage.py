@@ -6,7 +6,7 @@ from datetime import datetime
 from memory.cluster_manager.storage import ClusterStorage
 from core.observation.logger import get_logger
 from core.di.decorators import component
-from providers.mongodb_client_factory import MongoDBClientFactory
+from providers.database.mongodb_client_factory import MongoDBClientFactory
 from infrastructure.adapters.out.persistence.document.memory.cluster_state import ClusterState
 
 logger = get_logger(__name__)

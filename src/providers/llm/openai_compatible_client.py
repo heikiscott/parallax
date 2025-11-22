@@ -4,17 +4,17 @@ from typing import Dict, Any, List, Optional, AsyncGenerator, Union
 
 from core.di.decorators import component
 from core.observation.logger import get_logger
-from providers.config_provider import ConfigProvider
+from providers.core.config_provider import ConfigProvider
 
-from providers.llm_adapter.llm.message import ChatMessage
-from providers.llm_adapter.llm.completion import (
+from providers.llm.message import ChatMessage
+from providers.llm.completion import (
     ChatCompletionRequest,
     ChatCompletionResponse,
 )
-from providers.llm_adapter.llm.llm_backend_adapter import LLMBackendAdapter
-from providers.llm_adapter.llm.openai_adapter import OpenAIAdapter
-from providers.llm_adapter.llm.anthropic_adapter import AnthropicAdapter
-from providers.llm_adapter.llm.gemini_adapter import GeminiAdapter
+from providers.llm.llm_backend_adapter import LLMBackendAdapter
+from providers.llm.openai_adapter import OpenAIAdapter
+from providers.llm.anthropic_adapter import AnthropicAdapter
+from providers.llm.gemini_adapter import GeminiAdapter
 
 logger = get_logger(__name__)
 

@@ -2,8 +2,8 @@ from typing import Dict, Any, List, Union, AsyncGenerator
 import os
 import openai
 from core.di.decorators import service
-from providers.llm_adapter.llm.llm_backend_adapter import LLMBackendAdapter
-from providers.llm_adapter.llm.completion import (
+from providers.llm.llm_backend_adapter import LLMBackendAdapter
+from providers.llm.completion import (
     ChatCompletionRequest,
     ChatCompletionResponse,
 )

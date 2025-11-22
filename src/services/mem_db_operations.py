@@ -959,7 +959,7 @@ async def _get_raw_data_by_time_range(
         List[RawData]: RawData 列表，按时间升序排列
     """
     try:
-        from providers.redis_provider import RedisProvider
+        from providers.database.redis_provider import RedisProvider
         from core.di import get_bean_by_type
         from memory.memcell_extractor.base_memcell_extractor import RawData
         from memory.types import RawDataType

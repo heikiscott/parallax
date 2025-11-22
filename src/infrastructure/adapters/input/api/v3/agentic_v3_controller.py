@@ -31,7 +31,7 @@ from infrastructure.adapters.out.persistence.document.memory.conversation_meta i
 from infrastructure.adapters.out.persistence.repository.conversation_meta_raw_repository import (
     ConversationMetaRawRepository,
 )
-from providers.redis_provider import RedisProvider
+from providers.database.redis_provider import RedisProvider
 import json
 
 logger = logging.getLogger(__name__)

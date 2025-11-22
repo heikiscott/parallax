@@ -21,7 +21,7 @@ from memory.memory_extractor.group_profile_memory_extractor import (
     GroupProfileMemory,
 )
 from core.di import get_bean_by_type, enable_mock_mode, scan_packages
-from providers.redis_provider import RedisProvider
+from providers.database.redis_provider import RedisProvider
 from infrastructure.adapters.out.persistence.repository.episodic_memory_raw_repository import (
     EpisodicMemoryRawRepository,
 )

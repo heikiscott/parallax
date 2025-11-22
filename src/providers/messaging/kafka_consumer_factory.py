@@ -15,7 +15,7 @@ from hashlib import md5
 import bson
 from aiokafka import AIOKafkaConsumer
 
-from providers.config_provider import ConfigProvider
+from providers.core.config_provider import ConfigProvider
 from core.di.decorators import component
 from core.observation.logger import get_logger
 from utils.project_path import CURRENT_DIR

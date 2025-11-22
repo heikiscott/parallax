@@ -10,7 +10,7 @@ from core.di.utils import get_bean, get_all_subclasses, get_bean_by_type
 from core.di.decorators import component
 from core.lifespan.lifespan_interface import LifespanProvider
 from core.oxm.es.doc_base import DocBase
-from providers.elasticsearch_client_factory import ElasticsearchClientFactory
+from providers.database.elasticsearch_client_factory import ElasticsearchClientFactory
 
 logger = get_logger(__name__)
 
