@@ -7,7 +7,7 @@ from typing import Any, Dict, Iterable, List, Optional
 
 from core.observation.logger import get_logger
 
-from ...llm.llm_provider import LLMProvider
+from providers.llm.llm_provider import LLMProvider
 from .data_normalize import merge_single_profile, project_to_dict
 from .project_helpers import merge_projects_participated
 from .skill_helpers import merge_skill_lists_keep_highest_level

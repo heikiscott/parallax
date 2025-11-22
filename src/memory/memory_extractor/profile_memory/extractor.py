@@ -11,7 +11,7 @@ from typing import AbstractSet, Any, Dict, List, Optional, Set
 
 from core.observation.logger import get_logger
 
-from ...llm.llm_provider import LLMProvider
+from providers.llm.llm_provider import LLMProvider
 # 使用动态语言提示词导入（根据 MEMORY_LANGUAGE 环境变量自动选择）
 from ...prompts import (
     CONVERSATION_PROFILE_PART1_EXTRACTION_PROMPT,
