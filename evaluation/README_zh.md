@@ -122,30 +122,43 @@ MEMOS_KEY=your_memos_api_key
 MEMU_API_KEY=your_memu_api_key
 ```
 
-### 快速测试（冒烟测试）
+### 快速测试（Mini 数据集）
 
-使用有限数据运行快速测试以验证一切正常：
+使用 mini 数据集运行快速测试以验证一切正常：
 
 ```bash
 # 导航到项目根目录
 cd /path/to/memsys-opensource
 
-# 默认：第一个对话，前 10 条消息，前 3 个问题
-uv run python -m evaluation.cli --dataset locomo --system evermemos --smoke
+# 运行 mini 数据集（单个对话，有限问题）
+uv run python -m evaluation.cli --dataset locomo-mini --system evermemos
 
-# 自定义：第一个对话，20 条消息，5 个问题
-uv run python -m evaluation.cli --dataset locomo --system evermemos \
-    --smoke --smoke-messages 20 --smoke-questions 5
+# 或使用简化脚本
+python evaluation/run_locomo.py --mini
 ```
 
+### 测试单个对话
+
+通过索引测试特定对话：
+
+```bash
+# 测试索引为 3 的对话
+uv run python -m evaluation.cli --dataset locomo --system evermemos --conv 3
+
+# 或使用简化脚本
+python evaluation/run_locomo.py --conv 3
+```
 
 ### 完整评估
 
-运行完整基准测试：
+在所有对话上运行完整基准测试：
 
 ```bash
-# 在 LoCoMo 上评估 EvermemOS
+# 在 LoCoMo 上评估 EvermemOS（全部 10 个对话）
 uv run python -m evaluation.cli --dataset locomo --system evermemos
+
+# 或使用简化脚本
+python evaluation/run_locomo.py --all
 
 # 评估其他系统
 uv run python -m evaluation.cli --dataset locomo --system memos

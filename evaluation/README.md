@@ -122,30 +122,43 @@ MEMOS_KEY=your_memos_api_key
 MEMU_API_KEY=your_memu_api_key
 ```
 
-### Quick Test (Smoke Test)
+### Quick Test (Mini Dataset)
 
-Run a quick test with limited data to verify everything works:
+Run a quick test with the mini dataset to verify everything works:
 
 ```bash
 # Navigate to project root
 cd /path/to/memsys-opensource
 
-# Default: first conversation, first 10 messages, first 3 questions 
-uv run python -m evaluation.cli --dataset locomo --system evermemos --smoke
+# Run mini dataset (single conversation with limited questions)
+uv run python -m evaluation.cli --dataset locomo-mini --system evermemos
 
-# Custom: first conversation, 20 messages, 5 questions
-uv run python -m evaluation.cli --dataset locomo --system evermemos \
-    --smoke --smoke-messages 20 --smoke-questions 5
+# Or use the shorthand script
+python evaluation/run_locomo.py --mini
 ```
 
+### Test Single Conversation
+
+Test a specific conversation by index:
+
+```bash
+# Test conversation at index 3
+uv run python -m evaluation.cli --dataset locomo --system evermemos --conv 3
+
+# Or use the shorthand script
+python evaluation/run_locomo.py --conv 3
+```
 
 ### Full Evaluation
 
-Run the complete benchmark:
+Run the complete benchmark on all conversations:
 
 ```bash
-# Evaluate EvermemOS on LoCoMo
+# Evaluate EvermemOS on LoCoMo (all 10 conversations)
 uv run python -m evaluation.cli --dataset locomo --system evermemos
+
+# Or use the shorthand script
+python evaluation/run_locomo.py --all
 
 # Evaluate other systems
 uv run python -m evaluation.cli --dataset locomo --system memos

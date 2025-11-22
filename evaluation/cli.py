@@ -5,8 +5,9 @@ CLI 入口
 
 Usage:
     python -m evaluation.cli --dataset locomo --system evermemos
-    python -m evaluation.cli --dataset locomo --system evermemos --smoke 10
+    python -m evaluation.cli --dataset locomo-mini --system evermemos
     python -m evaluation.cli --dataset locomo --system evermemos --stages search answer evaluate
+    python -m evaluation.cli --dataset locomo --system evermemos --conv 3
 """
 import asyncio
 import argparse
@@ -84,23 +85,6 @@ async def main():
         nargs="+",
         default=None,
         help="Stages to run (add, search, answer, evaluate). Default: all"
-    )
-    parser.add_argument(
-        "--smoke",
-        action="store_true",
-        help="Enable smoke test mode (process small dataset for quick validation)"
-    )
-    parser.add_argument(
-        "--smoke-messages",
-        type=int,
-        default=10,
-        help="Smoke test: number of messages to process (use 0 for all). Default: 10"
-    )
-    parser.add_argument(
-        "--smoke-questions",
-        type=int,
-        default=3,
-        help="Smoke test: number of questions to test (use 0 for all). Default: 3"
     )
     parser.add_argument(
         "--conv",
@@ -231,9 +215,6 @@ async def main():
         results = await pipeline.run(
             dataset=dataset,
             stages=args.stages,
-            smoke_test=args.smoke,
-            smoke_messages=args.smoke_messages,
-            smoke_questions=args.smoke_questions,
             conv_id=args.conv,
         )
         

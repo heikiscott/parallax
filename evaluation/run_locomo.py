@@ -54,7 +54,7 @@ def find_log_file(output_dir: Path) -> Path:
     return output_dir / f"run_{counter}.log"
 
 
-def run_evaluation(dataset: str, output_dir: Path, conv_id: int = None, smoke: bool = False):
+def run_evaluation(dataset: str, output_dir: Path, conv_id: int = None):
     """
     Run the evaluation with specified parameters.
 
@@ -62,7 +62,6 @@ def run_evaluation(dataset: str, output_dir: Path, conv_id: int = None, smoke: b
         dataset: Dataset name (locomo or locomo-mini)
         output_dir: Output directory path
         conv_id: Conversation ID (optional)
-        smoke: Whether to use smoke test mode
     """
     # Create output directory
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -74,10 +73,6 @@ def run_evaluation(dataset: str, output_dir: Path, conv_id: int = None, smoke: b
         "--system", "evermemos",
         "--output-dir", str(output_dir)
     ]
-
-    # Add smoke test parameters
-    if smoke:
-        cmd.extend(["--smoke", "--smoke-messages", "0", "--smoke-questions", "0"])
 
     # Add conversation ID if specified
     if conv_id is not None:
@@ -172,7 +167,7 @@ Examples:
         base_name = "locomo-mini"
         output_dir = find_output_dir(base_name, results_dir)
 
-        return run_evaluation(dataset, output_dir, smoke=False)
+        return run_evaluation(dataset, output_dir)
 
     elif args.all:
         # All mode: locomo-all, locomo-all-1, locomo-all-2, ...
@@ -180,7 +175,7 @@ Examples:
         base_name = "locomo-all"
         output_dir = find_output_dir(base_name, results_dir)
 
-        return run_evaluation(dataset, output_dir, smoke=True)
+        return run_evaluation(dataset, output_dir)
 
     elif args.conv is not None:
         # Conv mode: locomo-conv3, locomo-conv3-1, locomo-conv3-2, ...
@@ -189,7 +184,7 @@ Examples:
         base_name = f"locomo-conv{conv_id}"
         output_dir = find_output_dir(base_name, results_dir)
 
-        return run_evaluation(dataset, output_dir, conv_id=conv_id, smoke=True)
+        return run_evaluation(dataset, output_dir, conv_id=conv_id)
 
 
 if __name__ == "__main__":

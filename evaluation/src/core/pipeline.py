@@ -81,9 +81,6 @@ class Pipeline:
         self,
         dataset: Dataset,
         stages: Optional[List[str]] = None,
-        smoke_test: bool = False,
-        smoke_messages: int = 10,
-        smoke_questions: int = 3,
         conv_id: Optional[int] = None,
     ) -> Dict[str, Any]:
         """
@@ -93,33 +90,20 @@ class Pipeline:
             dataset: 标准格式数据集
             stages: 要执行的阶段列表，None 表示全部
                    可选值: ["add", "search", "answer", "evaluate"]
-            smoke_test: 是否为冒烟测试
-            smoke_messages: 冒烟测试时的消息数量（默认10）
-            smoke_questions: 冒烟测试时的问题数量（默认3）
             conv_id: 指定处理的conversation索引（0-based），None表示处理所有
 
         Returns:
             评测结果字典
         """
         start_time = time.time()
-        
+
         self.console.print(f"\n{'='*60}", style="bold cyan")
         self.console.print("🚀 Evaluation Pipeline", style="bold cyan")
         self.console.print(f"{'='*60}", style="bold cyan")
         self.console.print(f"Dataset: {dataset.dataset_name}")
         self.console.print(f"System: {self.adapter.get_system_info()['name']}")
         self.console.print(f"Stages: {stages or 'all'}")
-        if smoke_test:
-            self.console.print(f"[yellow]🧪 Smoke Test Mode: {smoke_messages} messages, {smoke_questions} questions[/yellow]")
         self.console.print(f"{'='*60}\n", style="bold cyan")
-
-        # 冒烟测试：只处理指定对话的前 K 条消息和前 K 个问题
-        if smoke_test:
-            dataset = self._apply_smoke_test(dataset, smoke_messages, smoke_questions, conv_id)
-            self.console.print(f"[yellow]✂️  Smoke test applied:[/yellow]")
-            self.console.print(f"[yellow]   - Conversation: {dataset.conversations[0].conversation_id}[/yellow]")
-            self.console.print(f"[yellow]   - Messages: {len(dataset.conversations[0].messages)}[/yellow]")
-            self.console.print(f"[yellow]   - Questions: {len(dataset.qa_pairs)}[/yellow]\n")
         
         # 根据配置过滤问题类别（如过滤掉 Category 5 对抗性问题）
         original_qa_count = len(dataset.qa_pairs)
@@ -363,77 +347,6 @@ class Pipeline:
         
         return results
 
-    def _apply_smoke_test(self, dataset: Dataset, num_messages: int, num_questions: int, conv_id: Optional[int] = None) -> Dataset:
-        """
-        应用冒烟测试：只保留指定对话的前 N 条消息和前 M 个问题
-
-        这样可以快速验证完整流程（Add → Search → Answer → Evaluate），
-        但只使用少量数据，节省时间。
-
-        Args:
-            dataset: 原始数据集
-            num_messages: 保留的消息数量（用于 Add 阶段），0 表示所有消息
-            num_questions: 保留的问题数量（用于 Search/Answer/Evaluate 阶段），0 表示所有问题
-            conv_id: 指定的conversation索引（0-based），None表示使用第一个对话
-
-        Returns:
-            裁剪后的数据集
-        """
-        if not dataset.conversations:
-            return dataset
-
-        # 使用指定的对话，如果未指定则使用第一个对话
-        if conv_id is None:
-            conv_index = 0
-        else:
-            conv_index = conv_id
-
-        if conv_index >= len(dataset.conversations):
-            raise ValueError(f"Conversation index {conv_index} out of range (dataset has {len(dataset.conversations)} conversations)")
-
-        first_conv = dataset.conversations[conv_index]
-        actual_conv_id = first_conv.conversation_id
-        
-        # 截取前 N 条消息（用于 Add）
-        # 0 表示保留所有消息
-        if num_messages > 0:
-            total_messages = len(first_conv.messages)
-            first_conv.messages = first_conv.messages[:num_messages]
-            msg_desc = f"{len(first_conv.messages)}/{total_messages}"
-        else:
-            msg_desc = f"{len(first_conv.messages)} (all)"
-        
-        # 0 表示保留所有问题
-        conv_qa_pairs = [
-            qa for qa in dataset.qa_pairs
-            if qa.metadata.get("conversation_id") == actual_conv_id
-        ]
-        if num_questions > 0:
-            total_questions = len(conv_qa_pairs)
-            selected_qa_pairs = conv_qa_pairs[:num_questions]
-            qa_desc = f"{len(selected_qa_pairs)}/{total_questions}"
-        else:
-            selected_qa_pairs = conv_qa_pairs
-            qa_desc = f"{len(selected_qa_pairs)} (all)"
-        
-        self.logger.info(
-            f"Smoke test: Conv {actual_conv_id} (index {conv_index}) - "
-            f"{msg_desc} messages, "
-            f"{qa_desc} questions"
-        )
-        
-        return Dataset(
-            dataset_name=dataset.dataset_name + "_smoke",
-            conversations=[first_conv],
-            qa_pairs=selected_qa_pairs,
-            metadata={
-                **dataset.metadata, 
-                "smoke_test": True, 
-                "smoke_messages": num_messages if num_messages > 0 else len(first_conv.messages),
-                "smoke_questions": num_questions if num_questions > 0 else len(selected_qa_pairs),
-            }
-        )
-    
     def _generate_report(self, results: Dict[str, Any], elapsed_time: float):
         """生成评测报告"""
         report_lines = []
