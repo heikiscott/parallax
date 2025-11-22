@@ -397,7 +397,7 @@ uv run python src/bootstrap.py src/run_memorize.py \
 确保 MemSys 服务正在运行：
 
 ```bash
-uv run python src/run.py
+uv run python scripts/run.py
 ```
 
 服务启动后，访问 http://localhost:1995/docs 验证 API 文档可访问。

@@ -19,15 +19,14 @@ import logging
 logger = logging.getLogger(__name__)
 
 # Add src directory to Python path
-import sys
 from pathlib import Path
 
-current_dir = Path(__file__).resolve().parent
-if str(current_dir) not in sys.path:
-    sys.path.insert(0, str(current_dir))
+current_dir = Path(__file__).resolve().parent  # scripts/
+project_root = current_dir.parent  # project root
+src_dir = project_root / "src"
 
-# Add project root to Python path to allow imports like 'from src...'
-project_root = current_dir.parent
+if str(src_dir) not in sys.path:
+    sys.path.insert(0, str(src_dir))
 if str(project_root) not in sys.path:
     sys.path.insert(0, str(project_root))
 

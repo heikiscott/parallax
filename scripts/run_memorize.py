@@ -6,13 +6,13 @@
 
 使用方法:
     # 使用 V3 接口（推荐）：简单直接的单条消息格式，逐条处理
-    python src/bootstrap.py src/run_memorize.py --input data/group_chat.json --api-url http://localhost:1995/api/v3/agentic/memorize
+    python scripts/bootstrap.py scripts/run_memorize.py --input data/group_chat.json --api-url http://localhost:1995/api/v3/agentic/memorize
 
     # 使用 V2 接口（兼容）：先转换再逐条发送
-    python src/bootstrap.py src/run_memorize.py --input data/group_chat.json --api-url http://localhost:1995/api/v2/agentic/memorize --use-v2
+    python scripts/bootstrap.py scripts/run_memorize.py --input data/group_chat.json --api-url http://localhost:1995/api/v2/agentic/memorize --use-v2
 
     # 仅验证格式
-    python src/bootstrap.py src/run_memorize.py --input data/example.json --validate-only
+    python scripts/bootstrap.py scripts/run_memorize.py --input data/example.json --validate-only
 """
 
 import json
@@ -398,13 +398,13 @@ async def async_main():
         epilog="""
 示例用法:
   # 使用 V3 接口（推荐）：简单直接的单条消息格式，逐条处理
-  python src/bootstrap.py src/run_memorize.py --input data/group_chat.json --api-url http://localhost:1995/api/v3/agentic/memorize
+  python scripts/bootstrap.py scripts/run_memorize.py --input data/group_chat.json --api-url http://localhost:1995/api/v3/agentic/memorize
   
   # 使用 V2 接口（兼容）：先转换再逐条发送
-  python src/bootstrap.py src/run_memorize.py --input data/group_chat.json --api-url http://localhost:1995/api/v2/agentic/memorize --use-v2
+  python scripts/bootstrap.py scripts/run_memorize.py --input data/group_chat.json --api-url http://localhost:1995/api/v2/agentic/memorize --use-v2
   
   # 仅验证格式（不需要 API 地址）
-  python src/bootstrap.py src/run_memorize.py --input data/group_chat.json --validate-only
+  python scripts/bootstrap.py scripts/run_memorize.py --input data/group_chat.json --validate-only
   
 输入文件格式:
   输入文件必须符合 GroupChatFormat 规范，参考 docs/data_format/group_chat/group_chat_format.py
@@ -487,10 +487,10 @@ async def async_main():
         logger.error("✗ 错误: 必须提供 --api-url 参数")
         logger.error("   使用方法:")
         logger.error(
-            "     V3（推荐）: python src/bootstrap.py src/run_memorize.py --input <file> --api-url http://localhost:1995/api/v3/agentic/memorize"
+            "     V3（推荐）: python scripts/bootstrap.py scripts/run_memorize.py --input <file> --api-url http://localhost:1995/api/v3/agentic/memorize"
         )
         logger.error(
-            "     V2 兼容: python src/bootstrap.py src/run_memorize.py --input <file> --api-url http://localhost:1995/api/v2/agentic/memorize --use-v2"
+            "     V2 兼容: python scripts/bootstrap.py scripts/run_memorize.py --input <file> --api-url http://localhost:1995/api/v2/agentic/memorize --use-v2"
         )
         logger.error("   或使用 --validate-only 仅验证格式")
         sys.exit(1)

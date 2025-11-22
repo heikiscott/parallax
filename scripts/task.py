@@ -9,7 +9,7 @@ Task Worker - 异步任务处理器启动脚本
 - 任务状态管理和监控
 
 使用方法:
-    arq task.WorkerSettings
+    arq scripts.task.WorkerSettings
 
 环境变量:
     REDIS_HOST: Redis主机地址 (默认: localhost)
@@ -22,6 +22,8 @@ Task Worker - 异步任务处理器启动脚本
 
 import os
 import logging
+import sys
+from pathlib import Path
 
 from arq.connections import RedisSettings
 
@@ -34,9 +36,14 @@ APP_DESCRIPTION = "异步任务处理服务"
 logger = logging.getLogger(__name__)
 
 # 添加src目录到Python路径
-from import_parent_dir import add_parent_path
+current_dir = Path(__file__).resolve().parent  # scripts/
+project_root = current_dir.parent  # project root
+src_dir = project_root / "src"
 
-add_parent_path(0)
+if str(src_dir) not in sys.path:
+    sys.path.insert(0, str(src_dir))
+if str(project_root) not in sys.path:
+    sys.path.insert(0, str(project_root))
 
 # 使用统一的环境加载工具
 # 设置.env文件
@@ -114,4 +121,4 @@ class WorkerSettings:
     keep_result = 3600
 
 
-#  arq task.WorkerSettings
+#  arq scripts.task.WorkerSettings

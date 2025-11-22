@@ -20,7 +20,7 @@
 
 ```bash
 # 通过 bootstrap 运行（推荐）
-python src/bootstrap.py src/devops_scripts/data_fix/milvus_sync_docs.py \
+python scripts/bootstrap.py scripts/data_fix/milvus_sync_docs.py \
   --collection-name episodic_memory \
   --batch-size 500 \
   --limit 10000 \
@@ -40,16 +40,16 @@ python src/bootstrap.py src/devops_scripts/data_fix/milvus_sync_docs.py \
 
 ```bash
 # 同步所有情景记忆文档
-python src/bootstrap.py src/devops_scripts/data_fix/milvus_sync_docs.py \
+python scripts/bootstrap.py scripts/data_fix/milvus_sync_docs.py \
   --collection-name episodic_memory
 
 # 只同步最近 7 天的文档
-python src/bootstrap.py src/devops_scripts/data_fix/milvus_sync_docs.py \
+python scripts/bootstrap.py scripts/data_fix/milvus_sync_docs.py \
   --collection-name episodic_memory \
   --days 7
 
 # 同步 10000 条文档，批量大小 1000
-python src/bootstrap.py src/devops_scripts/data_fix/milvus_sync_docs.py \
+python scripts/bootstrap.py scripts/data_fix/milvus_sync_docs.py \
   --collection-name episodic_memory \
   --batch-size 1000 \
   --limit 10000
@@ -109,7 +109,7 @@ python src/bootstrap.py src/devops_scripts/data_fix/milvus_sync_docs.py \
 
 ```bash
 # 通过 bootstrap 运行（推荐）
-python src/bootstrap.py src/devops_scripts/data_fix/milvus_rebuild_collection.py \
+python scripts/bootstrap.py scripts/data_fix/milvus_rebuild_collection.py \
   --alias episodic_memory \
   --batch-size 3000 \
   --drop-old
@@ -128,21 +128,21 @@ python src/bootstrap.py src/devops_scripts/data_fix/milvus_rebuild_collection.py
 
 ```bash
 # 重建 Collection 并迁移数据（保留旧 Collection）
-python src/bootstrap.py src/devops_scripts/data_fix/milvus_rebuild_collection.py \
+python scripts/bootstrap.py scripts/data_fix/milvus_rebuild_collection.py \
   --alias episodic_memory
 
 # 重建 Collection 但不迁移数据
-python src/bootstrap.py src/devops_scripts/data_fix/milvus_rebuild_collection.py \
+python scripts/bootstrap.py scripts/data_fix/milvus_rebuild_collection.py \
   --alias episodic_memory \
   --no-migrate-data
 
 # 重建 Collection、迁移数据并指定批大小
-python src/bootstrap.py src/devops_scripts/data_fix/milvus_rebuild_collection.py \
+python scripts/bootstrap.py scripts/data_fix/milvus_rebuild_collection.py \
   --alias episodic_memory \
   --batch-size 5000
 
 # 重建 Collection、迁移数据并删除旧 Collection
-python src/bootstrap.py src/devops_scripts/data_fix/milvus_rebuild_collection.py \
+python scripts/bootstrap.py scripts/data_fix/milvus_rebuild_collection.py \
   --alias episodic_memory \
   --drop-old
 ```
@@ -179,13 +179,13 @@ python src/bootstrap.py src/devops_scripts/data_fix/milvus_rebuild_collection.py
 # 1. 修改代码中的 Collection 定义（如增加字段、修改索引参数）
 
 # 2. 重建 Collection 并迁移数据
-python src/bootstrap.py src/devops_scripts/data_fix/milvus_rebuild_collection.py \
+python scripts/bootstrap.py scripts/data_fix/milvus_rebuild_collection.py \
   --alias episodic_memory
 
 # 3. 验证新 Collection 数据和查询功能
 
 # 4. 确认无误后删除旧 Collection
-python src/bootstrap.py src/devops_scripts/data_fix/milvus_rebuild_collection.py \
+python scripts/bootstrap.py scripts/data_fix/milvus_rebuild_collection.py \
   --alias episodic_memory \
   --no-migrate-data \
   --drop-old
@@ -195,12 +195,12 @@ python src/bootstrap.py src/devops_scripts/data_fix/milvus_rebuild_collection.py
 
 ```bash
 # 1. 重建 Collection（不迁移数据）
-python src/bootstrap.py src/devops_scripts/data_fix/milvus_rebuild_collection.py \
+python scripts/bootstrap.py scripts/data_fix/milvus_rebuild_collection.py \
   --alias episodic_memory \
   --no-migrate-data
 
 # 2. 从 MongoDB 重新同步数据
-python src/bootstrap.py src/devops_scripts/data_fix/milvus_sync_docs.py \
+python scripts/bootstrap.py scripts/data_fix/milvus_sync_docs.py \
   --collection-name episodic_memory
 
 # 3. 验证后删除旧 Collection
@@ -222,7 +222,7 @@ python src/bootstrap.py src/devops_scripts/data_fix/milvus_sync_docs.py \
 
 **A:** 这表示 MongoDB 中的文档没有向量数据。需要先运行向量生成脚本：
 ```bash
-python src/bootstrap.py src/devops_scripts/data_fix/mongo_fix_episodic_memory_missing_vector.py
+python scripts/bootstrap.py scripts/data_fix/mongo_fix_episodic_memory_missing_vector.py
 ```
 
 ### Q3: 数据迁移需要多长时间？

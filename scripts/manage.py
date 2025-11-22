@@ -16,9 +16,17 @@ import typer
 from typer import Typer
 
 # 添加src目录到Python路径
-from import_parent_dir import add_parent_path
+import sys
+from pathlib import Path
 
-add_parent_path(0)
+current_dir = Path(__file__).resolve().parent  # scripts/
+project_root = current_dir.parent  # project root
+src_dir = project_root / "src"
+
+if str(src_dir) not in sys.path:
+    sys.path.insert(0, str(src_dir))
+if str(project_root) not in sys.path:
+    sys.path.insert(0, str(project_root))
 
 # 创建 Typer 应用
 cli = Typer(help="Memsys Backend 管理工具")
@@ -199,7 +207,7 @@ def list_commands(
     typer.echo("可用的命令:")
     for cmd in commands:
         help_text = cmd.help if cmd.help else "无描述"
-        typer.echo(f"  {cmd.name:<20} {help_text}"),
+        typer.echo(f"  {cmd.name:<20} {help_text}")
 
     typer.echo(f"\n使用环境文件: {env_file}")
 

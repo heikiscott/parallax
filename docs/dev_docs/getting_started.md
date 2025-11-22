@@ -176,19 +176,19 @@ PYTHONASYNCIODEBUG=1
 
 ```bash
 # 基本启动（使用默认端口 1995）
-uv run python src/run.py
+uv run python scripts/run.py
 
 # 指定日志级别启动
-LOG_LEVEL=DEBUG uv run python src/run.py
+LOG_LEVEL=DEBUG uv run python scripts/run.py
 
 # 指定端口启动
-uv run python src/run.py --port 8080
+uv run python scripts/run.py --port 8080
 
 # 指定主机和端口
-uv run python src/run.py --host 0.0.0.0 --port 8080
+uv run python scripts/run.py --host 0.0.0.0 --port 8080
 
 # 使用自定义环境文件
-uv run python src/run.py --env-file .env.production
+uv run python scripts/run.py --env-file .env.production
 ```
 
 #### 启动参数说明
@@ -235,7 +235,7 @@ open http://localhost:1995/docs
 
 ```bash
 # 启动 Kafka 消费者
-uv run python src/run.py --longjob kafka_consumer
+uv run python scripts/run.py --longjob kafka_consumer
 
 # 关停任务（在另一个终端）
 pkill -9 -f 'src/run.py'
@@ -325,11 +325,11 @@ uv run python src/bootstrap.py unit_test/my_unit_test.py
 
 ```bash
 # 方式1: 使用命令行参数
-uv run python src/run.py --mock
+uv run python scripts/run.py --mock
 
 # 方式2: 设置环境变量
 export MOCK_MODE=true
-uv run python src/run.py
+uv run python scripts/run.py
 
 # 方式3: 在 .env 文件中配置
 # MOCK_MODE=true
@@ -340,10 +340,10 @@ uv run python src/run.py
 ```bash
 # 设置详细日志级别
 export LOG_LEVEL=DEBUG
-uv run python src/run.py
+uv run python scripts/run.py
 
 # 或直接在命令行指定
-LOG_LEVEL=DEBUG uv run python src/run.py
+LOG_LEVEL=DEBUG uv run python scripts/run.py
 ```
 
 ### 3. 开发环境配置
@@ -375,7 +375,7 @@ MILVUS_HOST=localhost
 
 使用开发配置启动：
 ```bash
-uv run python src/run.py --env-file .env.dev
+uv run python scripts/run.py --env-file .env.dev
 ```
 
 ## ❓ 常见问题
@@ -457,7 +457,7 @@ sudo systemctl start redis
 lsof -i :1995
 
 # 使用其他端口启动
-uv run python src/run.py --port 8080
+uv run python scripts/run.py --port 8080
 ```
 
 #### 问题：模块导入错误

@@ -10,12 +10,12 @@ Memsys Bootstrap Script - 通用的上下文加载器和脚本运行器
 - Mock 模式支持
 
 用法:
-    python src/bootstrap.py [你的脚本路径] [你的脚本的参数...]
+    python scripts/bootstrap.py [你的脚本路径] [你的脚本的参数...]
 
 示例:
-    python src/bootstrap.py tests/algorithms/debug_my_model.py
-    python src/bootstrap.py unit_test/memory_manager_single_test.py --verbose
-    python src/bootstrap.py evaluation/dynamic_memory_evaluation/locomo_eval.py --dataset small
+    python scripts/bootstrap.py tests/algorithms/debug_my_model.py
+    python scripts/bootstrap.py unit_test/memory_manager_single_test.py --verbose
+    python scripts/bootstrap.py evaluation/dynamic_memory_evaluation/locomo_eval.py --dataset small
 """
 
 import sys
@@ -30,6 +30,16 @@ from pathlib import Path
 import logging
 
 logger = logging.getLogger(__name__)
+
+# Add src directory to Python path
+current_dir = Path(__file__).resolve().parent  # scripts/
+project_root = current_dir.parent  # project root
+src_dir = project_root / "src"
+
+if str(src_dir) not in sys.path:
+    sys.path.insert(0, str(src_dir))
+if str(project_root) not in sys.path:
+    sys.path.insert(0, str(project_root))
 
 
 def file_path_to_module_name(target_path: Path, src_path: Path) -> str:
@@ -81,11 +91,6 @@ async def setup_project_context(env_file=".env", mock_mode=False):
     """
     设置项目上下文环境 - 完全照抄 run.py 的加载逻辑
     """
-    # 照抄 run.py 的环境加载逻辑
-    from import_parent_dir import add_parent_path
-
-    add_parent_path(0)
-
     from utils.load_env import setup_environment
 
     # 设置环境（Python路径和.env文件）
@@ -132,9 +137,9 @@ async def async_main():
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 示例用法:
-  python src/bootstrap.py tests/algorithms/debug_my_model.py
-  python src/bootstrap.py unit_test/memory_manager_single_test.py --verbose
-  python src/bootstrap.py evaluation/dynamic_memory_evaluation/locomo_eval.py --dataset small
+  python scripts/bootstrap.py tests/algorithms/debug_my_model.py
+  python scripts/bootstrap.py unit_test/memory_manager_single_test.py --verbose
+  python scripts/bootstrap.py evaluation/dynamic_memory_evaluation/locomo_eval.py --dataset small
   
 环境变量:
   MOCK_MODE=true    启用 Mock 模式（用于测试）
@@ -195,7 +200,7 @@ async def async_main():
             print(f"\n⚠️  检测到相对导入错误，尝试使用模块模式运行...")
             try:
                 # 获取 src 目录路径
-                src_path = Path(__file__).parent  # bootstrap.py 在 src 目录中
+                src_path = project_root / "src"
                 module_name = file_path_to_module_name(script_path, src_path)
                 print(
                     f"📦 将路径 '{script_path}' 解释为模块 '{module_name}'，重试中..."

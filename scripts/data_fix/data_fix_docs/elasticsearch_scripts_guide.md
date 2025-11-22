@@ -20,7 +20,7 @@
 
 ```bash
 # 通过 bootstrap 运行（推荐）
-python src/bootstrap.py src/devops_scripts/data_fix/es_sync_docs.py \
+python scripts/bootstrap.py scripts/data_fix/es_sync_docs.py \
   --index-name episodic-memory \
   --batch-size 500 \
   --limit 10000 \
@@ -40,16 +40,16 @@ python src/bootstrap.py src/devops_scripts/data_fix/es_sync_docs.py \
 
 ```bash
 # 同步所有情景记忆文档
-python src/bootstrap.py src/devops_scripts/data_fix/es_sync_docs.py \
+python scripts/bootstrap.py scripts/data_fix/es_sync_docs.py \
   --index-name episodic-memory
 
 # 只同步最近 7 天的文档
-python src/bootstrap.py src/devops_scripts/data_fix/es_sync_docs.py \
+python scripts/bootstrap.py scripts/data_fix/es_sync_docs.py \
   --index-name episodic-memory \
   --days 7
 
 # 同步 10000 条文档，批量大小 1000
-python src/bootstrap.py src/devops_scripts/data_fix/es_sync_docs.py \
+python scripts/bootstrap.py scripts/data_fix/es_sync_docs.py \
   --index-name episodic-memory \
   --batch-size 1000 \
   --limit 10000
@@ -101,7 +101,7 @@ python src/bootstrap.py src/devops_scripts/data_fix/es_sync_docs.py \
 
 ```bash
 # 通过 bootstrap 运行（推荐）
-python src/bootstrap.py src/devops_scripts/data_fix/es_rebuild_index.py \
+python scripts/bootstrap.py scripts/data_fix/es_rebuild_index.py \
   --index-name episodic-memory \
   --close-old \
   --delete-old
@@ -119,16 +119,16 @@ python src/bootstrap.py src/devops_scripts/data_fix/es_rebuild_index.py \
 
 ```bash
 # 重建索引，保留旧索引（最安全）
-python src/bootstrap.py src/devops_scripts/data_fix/es_rebuild_index.py \
+python scripts/bootstrap.py scripts/data_fix/es_rebuild_index.py \
   --index-name episodic-memory
 
 # 重建索引并关闭旧索引
-python src/bootstrap.py src/devops_scripts/data_fix/es_rebuild_index.py \
+python scripts/bootstrap.py scripts/data_fix/es_rebuild_index.py \
   --index-name episodic-memory \
   --close-old
 
 # 重建索引并删除旧索引（谨慎使用）
-python src/bootstrap.py src/devops_scripts/data_fix/es_rebuild_index.py \
+python scripts/bootstrap.py scripts/data_fix/es_rebuild_index.py \
   --index-name episodic-memory \
   --close-old \
   --delete-old
@@ -153,11 +153,11 @@ python src/bootstrap.py src/devops_scripts/data_fix/es_rebuild_index.py \
 
 ```bash
 # 1. 重建索引结构（不删除旧索引）
-python src/bootstrap.py src/devops_scripts/data_fix/es_rebuild_index.py \
+python scripts/bootstrap.py scripts/data_fix/es_rebuild_index.py \
   --index-name episodic-memory
 
 # 2. 同步数据到新索引
-python src/bootstrap.py src/devops_scripts/data_fix/es_sync_docs.py \
+python scripts/bootstrap.py scripts/data_fix/es_sync_docs.py \
   --index-name episodic-memory
 
 # 3. 验证新索引数据无误后，删除旧索引（可选）

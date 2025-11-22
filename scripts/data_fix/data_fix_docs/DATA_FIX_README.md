@@ -52,7 +52,7 @@
 所有脚本推荐通过 `bootstrap.py` 运行，以确保应用上下文和依赖注入正确加载：
 
 ```bash
-python src/bootstrap.py src/devops_scripts/data_fix/<脚本名称> [参数]
+python scripts/bootstrap.py scripts/data_fix/<脚本名称> [参数]
 ```
 
 ### 常用操作示例
@@ -60,7 +60,7 @@ python src/bootstrap.py src/devops_scripts/data_fix/<脚本名称> [参数]
 #### 1. 同步数据到 ES
 
 ```bash
-python src/bootstrap.py src/devops_scripts/data_fix/es_sync_docs.py \
+python scripts/bootstrap.py scripts/data_fix/es_sync_docs.py \
   --index-name episodic-memory \
   --days 7
 ```
@@ -68,7 +68,7 @@ python src/bootstrap.py src/devops_scripts/data_fix/es_sync_docs.py \
 #### 2. 同步数据到 Milvus
 
 ```bash
-python src/bootstrap.py src/devops_scripts/data_fix/milvus_sync_docs.py \
+python scripts/bootstrap.py scripts/data_fix/milvus_sync_docs.py \
   --collection-name episodic_memory \
   --days 7
 ```
@@ -76,7 +76,7 @@ python src/bootstrap.py src/devops_scripts/data_fix/milvus_sync_docs.py \
 #### 3. 修复缺失向量
 
 ```bash
-python src/bootstrap.py src/devops_scripts/data_fix/mongo_fix_episodic_memory_missing_vector.py \
+python scripts/bootstrap.py scripts/data_fix/mongo_fix_episodic_memory_missing_vector.py \
   --limit 1000 \
   --batch 200 \
   --concurrency 8

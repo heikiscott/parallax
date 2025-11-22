@@ -22,7 +22,7 @@ logger = logging.getLogger(__name__)
 
 """
 - setup_pythonpath不需要。
-  - 对于python run.py 和python src/run.py不需要这个，src会被加进来。
+  - 对于python scripts/run.py不需要这个，src会被加进来。
   - 如果真的没有src，setup_pythonpath需要导入load_env.py，然后又要依赖pythonpath，实际也加载不进来。
   - vscode启动不需要，可以launch.json配置。
   - 线上用的python run.py也不需要。

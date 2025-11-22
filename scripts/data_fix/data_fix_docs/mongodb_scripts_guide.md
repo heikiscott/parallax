@@ -19,7 +19,7 @@
 
 ```bash
 # 通过 bootstrap 运行（推荐）
-python src/bootstrap.py src/devops_scripts/data_fix/mongo_add_timestamp_shard.py
+python scripts/bootstrap.py scripts/data_fix/mongo_add_timestamp_shard.py
 ```
 
 ### 参数说明
@@ -96,7 +96,7 @@ db.memcells.getShardDistribution()
 
 ```bash
 # 通过 bootstrap 运行（推荐）
-python src/bootstrap.py src/devops_scripts/data_fix/mongo_fix_episodic_memory_missing_vector.py \
+python scripts/bootstrap.py scripts/data_fix/mongo_fix_episodic_memory_missing_vector.py \
   --limit 1000 \
   --batch 200 \
   --concurrency 8 \
@@ -118,22 +118,22 @@ python src/bootstrap.py src/devops_scripts/data_fix/mongo_fix_episodic_memory_mi
 
 ```bash
 # 修复最近 1000 条缺失向量的文档
-python src/bootstrap.py src/devops_scripts/data_fix/mongo_fix_episodic_memory_missing_vector.py \
+python scripts/bootstrap.py scripts/data_fix/mongo_fix_episodic_memory_missing_vector.py \
   --limit 1000
 
 # 修复所有缺失向量的文档（不限制数量）
-python src/bootstrap.py src/devops_scripts/data_fix/mongo_fix_episodic_memory_missing_vector.py \
+python scripts/bootstrap.py scripts/data_fix/mongo_fix_episodic_memory_missing_vector.py \
   --limit 999999999
 
 # 修复指定时间范围内的文档
-python src/bootstrap.py src/devops_scripts/data_fix/mongo_fix_episodic_memory_missing_vector.py \
+python scripts/bootstrap.py scripts/data_fix/mongo_fix_episodic_memory_missing_vector.py \
   --start-created-at "2025-09-01T00:00:00+08:00" \
   --end-created-at "2025-09-30T23:59:59+08:00" \
   --batch 500 \
   --concurrency 16
 
 # 高性能模式（大批量、高并发）
-python src/bootstrap.py src/devops_scripts/data_fix/mongo_fix_episodic_memory_missing_vector.py \
+python scripts/bootstrap.py scripts/data_fix/mongo_fix_episodic_memory_missing_vector.py \
   --batch 1000 \
   --concurrency 32 \
   --limit 100000
@@ -281,7 +281,7 @@ db.episodic_memories.countDocuments({
 
 ```bash
 # crontab 配置示例：每天凌晨 2 点修复最近 2 天的数据
-0 2 * * * cd /path/to/memsys && python src/bootstrap.py src/devops_scripts/data_fix/mongo_fix_episodic_memory_missing_vector.py --days 2 --batch 500 --concurrency 16
+0 2 * * * cd /path/to/memsys && python scripts/bootstrap.py scripts/data_fix/mongo_fix_episodic_memory_missing_vector.py --days 2 --batch 500 --concurrency 16
 ```
 
 ---
