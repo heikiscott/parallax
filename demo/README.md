@@ -30,7 +30,7 @@ demo/
 │
 ├── tools/                       # Auxiliary tools
 │   ├── clear_all_data.py       # Clear all memory data
-│   ├── resync_memunits.py      # Resync memory cells
+│   ├── resync_memunits.py      # Resync memory units
 │   └── test_retrieval_comprehensive.py  # Retrieval testing tool
 │
 ├── chat_history/                # 📁 Output: Chat logs (auto-generated)

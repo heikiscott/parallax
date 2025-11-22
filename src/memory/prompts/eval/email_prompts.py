@@ -30,7 +30,7 @@ Please analyze the language of the original email and respond in the same langua
 """
 
 EMAIL_SHOULD_CREATE_MEMUNIT_PROMPT = """
-Please analyze the following email content and determine if it should be stored as a memory cell.
+Please analyze the following email content and determine if it should be stored as a memory unit.
 
 Email Subject: {subject}
 Sender Address: {sender_address}
@@ -43,7 +43,7 @@ Please return the result in the following JSON format:
     "reasoning": "Brief explanation for the decision"
 }}
 
-Criteria for creating a memory cell:
+Criteria for creating a memory unit:
 
 1. ALWAYS CREATE (high priority) if the email contains:
    - Business communications with meaningful content
@@ -82,7 +82,7 @@ Criteria for creating a memory cell:
    - Emails from business domains related to user's work should be preserved
    - Personal emails from known contacts deserve careful content analysis
 
-IMPORTANT: Focus on whether this email contains information that would be useful to remember for future reference, personal history, or business continuity. When in doubt about business-related content, lean towards CREATING the memory cell.
+IMPORTANT: Focus on whether this email contains information that would be useful to remember for future reference, personal history, or business continuity. When in doubt about business-related content, lean towards CREATING the memory unit.
 
 Analyze the content carefully and make a decision:
 """
