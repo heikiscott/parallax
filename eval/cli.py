@@ -39,12 +39,12 @@ else:
     print(f"⚠️  LLM_API_KEY not found in environment!")
 
 # ===== 现在可以安全地导入 Parallax 组件 =====
-from eval.lib.core.loaders import load_dataset
-from eval.lib.core.pipeline import Pipeline
-from eval.lib.adapters.registry import create_adapter
-from eval.lib.evaluators.registry import create_evaluator
-from eval.lib.utils.config import load_yaml
-from eval.lib.utils.logger import get_console
+from eval.core.loaders import load_dataset
+from eval.core.pipeline import Pipeline
+from eval.adapters.registry import create_adapter
+from eval.evaluators.registry import create_evaluator
+from eval.utils.config import load_yaml
+from eval.utils.logger import get_console
 
 from providers.llm.llm_provider import LLMProvider
 

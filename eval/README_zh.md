@@ -27,12 +27,11 @@
 
 ```
 eval/
-├── src/
-│   ├── core/           # 流程编排和数据模型
-│   ├── adapters/       # 系统特定实现
-│   ├── evaluators/     # 答案评估（LLM 评判、精确匹配）
-│   ├── converters/     # 数据集格式转换器
-│   └── utils/          # 配置、日志、I/O
+├── core/               # 流程编排和数据模型
+├── adapters/           # 系统特定实现
+├── evaluators/         # 答案评估（LLM 评判、精确匹配）
+├── converters/         # 数据集格式转换器
+├── utils/              # 配置、日志、I/O
 ├── config/
 │   ├── datasets/       # 数据集配置（locomo.yaml 等）
 │   ├── systems/        # 系统配置（parallax.yaml 等）

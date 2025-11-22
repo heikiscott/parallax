@@ -27,12 +27,11 @@ The framework automatically detects and adapts to:
 
 ```
 eval/
-├── src/
-│   ├── core/           # Pipeline orchestration and data models
-│   ├── adapters/       # System-specific implementations
-│   ├── evaluators/     # Answer evaluation (LLM Judge, Exact Match)
-│   ├── converters/     # Dataset format converters
-│   └── utils/          # Configuration, logging, I/O
+├── core/               # Pipeline orchestration and data models
+├── adapters/           # System-specific implementations
+├── evaluators/         # Answer evaluation (LLM Judge, Exact Match)
+├── converters/         # Dataset format converters
+├── utils/              # Configuration, logging, I/O
 ├── config/
 │   ├── datasets/       # Dataset configurations (locomo.yaml, etc.)
 │   ├── systems/        # System configurations (parallax.yaml, etc.)
