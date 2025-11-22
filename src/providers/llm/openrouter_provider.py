@@ -1,7 +1,8 @@
 """
-OpenAI official API provider implementation.
+OpenRouter LLM provider implementation.
 
-This provider uses official OpenAI API (api.openai.com).
+This provider uses OpenRouter API to access multiple LLM models
+with optional provider selection feature.
 """
 
 from math import log
@@ -22,30 +23,31 @@ from core.observation.logger import get_logger
 logger = get_logger(__name__)
 
 
-class OpenAIProvider(LLMProvider):
+class OpenRouterProvider(LLMProvider):
     """
-    Official OpenAI API provider.
+    OpenRouter LLM provider.
 
-    This provider uses official OpenAI API endpoint (api.openai.com).
+    This provider uses OpenRouter API to access multiple LLM models
+    with optional provider selection for routing control.
     """
 
     def __init__(
         self,
-        model: str = "gpt-4o-mini",
+        model: str = "gpt-4.1-mini",
         api_key: str | None = None,
         base_url: str | None = None,
         temperature: float = 0.3,
         max_tokens: int | None = 100 * 1024,
-        enable_stats: bool = False,
+        enable_stats: bool = False,  # 新增：可选的统计功能，默认关闭
         **kwargs,
     ):
         """
-        Initialize OpenAI provider.
+        Initialize OpenRouter provider.
 
         Args:
-            model: Model name (e.g., "gpt-4o-mini", "gpt-4o", "gpt-4-turbo")
-            api_key: OpenAI API key (defaults to OPENAI_API_KEY env var)
-            base_url: OpenAI base URL (defaults to official OpenAI endpoint)
+            model: Model name (e.g., "openai/gpt-4o-mini", "x-ai/grok-4-fast")
+            api_key: OpenRouter API key (defaults to OPENROUTER_API_KEY env var)
+            base_url: OpenRouter base URL (defaults to OpenRouter endpoint)
             temperature: Sampling temperature
             max_tokens: Maximum tokens to generate
             enable_stats: Enable usage statistics accumulation (default: False)
@@ -54,11 +56,11 @@ class OpenAIProvider(LLMProvider):
         self.model = model
         self.temperature = temperature
         self.max_tokens = max_tokens
-        self.enable_stats = enable_stats
+        self.enable_stats = enable_stats  # 新增
 
-        # Use OpenAI official API key and base URL
-        self.api_key = api_key or os.getenv("OPENAI_API_KEY")
-        self.base_url = base_url or "https://api.openai.com/v1"
+        # Use OpenRouter API key and base URL
+        self.api_key = api_key or os.getenv("OPENROUTER_API_KEY")
+        self.base_url = base_url or "https://openrouter.ai/api/v1"
 
         # 新增：可选的单次调用统计（默认不开启，不影响现有使用）
         if self.enable_stats:
@@ -88,7 +90,13 @@ class OpenAIProvider(LLMProvider):
         """
         # 使用 time.perf_counter() 获得更精确的时间测量
         start_time = time.perf_counter()
-
+        # Prepare request data
+        if os.getenv("LLM_OPENROUTER_PROVIDER", "default") != "default":
+            provider_str = os.getenv('LLM_OPENROUTER_PROVIDER')
+            provider_list = [p.strip() for p in provider_str.split(',')]
+            openrouter_provider = {"order": provider_list, "allow_fallbacks": False}
+        else:
+            openrouter_provider = None
         # Prepare request data
         data = {
             "model": self.model,
@@ -96,6 +104,9 @@ class OpenAIProvider(LLMProvider):
             "temperature": temperature if temperature is not None else self.temperature,
             "response_format": response_format,
         }
+        # Only add provider parameter for OpenRouter
+        if openrouter_provider is not None:
+            data["provider"] = openrouter_provider
         # print(data)
         # print(data["extra_body"])
         # Add max_tokens if specified
@@ -217,7 +228,7 @@ class OpenAIProvider(LLMProvider):
 
     async def test_connection(self) -> bool:
         """
-        Test the connection to the OpenAI API.
+        Test the connection to the OpenRouter API.
 
         Returns:
             True if connection successful, False otherwise
@@ -243,4 +254,4 @@ class OpenAIProvider(LLMProvider):
 
     def __repr__(self) -> str:
         """String representation of the provider."""
-        return f"OpenAIProvider(model={self.model}, base_url={self.base_url})"
+        return f"OpenRouterProvider(model={self.model}, base_url={self.base_url})"
