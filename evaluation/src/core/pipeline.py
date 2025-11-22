@@ -65,7 +65,7 @@ class Pipeline:
         self.output_dir = Path(output_dir)
         self.output_dir.mkdir(parents=True, exist_ok=True)
 
-        self.logger = setup_logger(self.output_dir / "pipeline.log")
+        self.logger = setup_logger(log_dir=self.output_dir)
         self.saver = ResultSaver(self.output_dir)
         self.console = get_console()
         

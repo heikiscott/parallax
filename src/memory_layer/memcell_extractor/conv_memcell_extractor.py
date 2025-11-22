@@ -246,7 +246,7 @@ class ConvMemCellExtractor(MemCellExtractor):
         )
         time_gap_info = self._calculate_time_gap(conversation_history, new_messages)
 
-        print(
+        logger.debug(
             f"[ConversationEpisodeBuilder] Detect boundary – history tokens: {len(history_text)} new tokens: {len(new_text)} time gap: {time_gap_info}"
         )
 
@@ -258,7 +258,7 @@ class ConvMemCellExtractor(MemCellExtractor):
         for i in range(5):
             try:
                 resp = await self.llm_provider.generate(prompt)
-                print(
+                logger.debug(
                     f"[ConversationEpisodeBuilder] Boundary response length: {len(resp)} chars"
                 )
 

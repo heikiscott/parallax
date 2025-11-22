@@ -1,7 +1,7 @@
 """
 日志工具
 
-提供统一的日志记录功能。
+提供统一的日志记录功能，支持分级日志输出到不同文件。
 """
 import logging
 from pathlib import Path
@@ -11,47 +11,83 @@ from rich.logging import RichHandler
 
 
 def setup_logger(
-    log_file: Optional[Path] = None,
+    log_dir: Optional[Path] = None,
     level: int = logging.INFO,
     name: str = "evaluation"
 ) -> logging.Logger:
     """
-    设置日志器
-    
+    设置日志器，支持分级日志输出
+
     Args:
-        log_file: 日志文件路径（可选）
-        level: 日志级别
+        log_dir: 日志目录路径（可选）。如果指定，将创建以下日志文件：
+            - pipeline.log: 所有级别的日志（DEBUG及以上）
+            - pipeline.debug.log: DEBUG级别日志
+            - pipeline.info.log: INFO级别日志
+            - pipeline.warning.log: WARNING级别日志
+            - pipeline.error.log: ERROR级别及以上日志
+        level: 控制台输出的日志级别
         name: 日志器名称
-        
+
     Returns:
         配置好的 Logger 实例
     """
     logger = logging.getLogger(name)
-    logger.setLevel(level)
-    
+    logger.setLevel(logging.DEBUG)  # Logger本身设置为最低级别，由handler控制过滤
+
     # 清除已有的 handlers
     logger.handlers.clear()
-    
+
     # 添加 Rich Console Handler（彩色输出）
     console_handler = RichHandler(
         rich_tracebacks=True,
         show_time=False,
         show_path=False
     )
-    console_handler.setLevel(level)
+    console_handler.setLevel(level)  # 控制台只显示指定级别及以上
     logger.addHandler(console_handler)
-    
-    # 添加文件 Handler（如果指定了日志文件）
-    if log_file:
-        log_file.parent.mkdir(parents=True, exist_ok=True)
-        file_handler = logging.FileHandler(log_file, encoding='utf-8')
-        file_handler.setLevel(level)
+
+    # 添加文件 Handlers（如果指定了日志目录）
+    if log_dir:
+        log_dir = Path(log_dir)
+        log_dir.mkdir(parents=True, exist_ok=True)
+
         formatter = logging.Formatter(
-            '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+            '%(asctime)s - %(name)s - %(levelname)s - %(filename)s:%(lineno)d - %(message)s'
         )
-        file_handler.setFormatter(formatter)
-        logger.addHandler(file_handler)
-    
+
+        # 1. pipeline.log - 所有日志（DEBUG及以上）
+        all_handler = logging.FileHandler(log_dir / "pipeline.log", encoding='utf-8')
+        all_handler.setLevel(logging.DEBUG)
+        all_handler.setFormatter(formatter)
+        logger.addHandler(all_handler)
+
+        # 2. pipeline.debug.log - 只有DEBUG级别
+        debug_handler = logging.FileHandler(log_dir / "pipeline.debug.log", encoding='utf-8')
+        debug_handler.setLevel(logging.DEBUG)
+        debug_handler.addFilter(lambda record: record.levelno == logging.DEBUG)
+        debug_handler.setFormatter(formatter)
+        logger.addHandler(debug_handler)
+
+        # 3. pipeline.info.log - 只有INFO级别
+        info_handler = logging.FileHandler(log_dir / "pipeline.info.log", encoding='utf-8')
+        info_handler.setLevel(logging.INFO)
+        info_handler.addFilter(lambda record: record.levelno == logging.INFO)
+        info_handler.setFormatter(formatter)
+        logger.addHandler(info_handler)
+
+        # 4. pipeline.warning.log - 只有WARNING级别
+        warning_handler = logging.FileHandler(log_dir / "pipeline.warning.log", encoding='utf-8')
+        warning_handler.setLevel(logging.WARNING)
+        warning_handler.addFilter(lambda record: record.levelno == logging.WARNING)
+        warning_handler.setFormatter(formatter)
+        logger.addHandler(warning_handler)
+
+        # 5. pipeline.error.log - ERROR及以上级别
+        error_handler = logging.FileHandler(log_dir / "pipeline.error.log", encoding='utf-8')
+        error_handler.setLevel(logging.ERROR)
+        error_handler.setFormatter(formatter)
+        logger.addHandler(error_handler)
+
     return logger
 
 
