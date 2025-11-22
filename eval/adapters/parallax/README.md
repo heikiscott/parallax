@@ -1,4 +1,4 @@
-# LoCoMo Evaluation Pipeline
+﻿# LoCoMo Evaluation Pipeline
 
 <p align="center">
   <a href="README.md">English</a> | <a href="README_zh.md">简体中文</a>
@@ -11,7 +11,7 @@ LoCoMo (Long-Context Modeling) evaluation system for testing memory system perfo
 ## 📋 Directory Structure
 
 ```
-locomo_evaluation/
+locomo_eval/
 ├── config.py                          # Configuration file
 ├── data/
 │   └── locomo10.json                  # Test dataset
@@ -68,29 +68,29 @@ class ExperimentConfig:
 
 ```bash
 # Stage 1: Extract MemCells
-python evaluation/locomo_evaluation/stage1_memcells_extraction.py
+python eval/locomo_eval/stage1_memcells_extraction.py
 
 # Stage 2: Build indexes
-python evaluation/locomo_evaluation/stage2_index_building.py
+python eval/locomo_eval/stage2_index_building.py
 
 # Stage 3: Retrieve memories
-python evaluation/locomo_evaluation/stage3_memory_retrivel.py
+python eval/locomo_eval/stage3_memory_retrivel.py
 
 # Stage 4: Generate responses
-python evaluation/locomo_evaluation/stage4_response.py
+python eval/locomo_eval/stage4_response.py
 
 # Stage 5: Evaluate results
-python evaluation/locomo_evaluation/stage5_eval.py
+python eval/locomo_eval/stage5_eval.py
 ```
 
 ### 4. View Results
 
 ```bash
 # View final evaluation results
-cat results/locomo_evaluation/judged.json
+cat results/locomo_eval/judged.json
 
 # View accuracy statistics
-python evaluation/locomo_evaluation/tools/compute_acc.py
+python eval/locomo_eval/tools/compute_acc.py
 ```
 
 ---
@@ -100,7 +100,7 @@ python evaluation/locomo_evaluation/tools/compute_acc.py
 ### Output Directory Structure
 
 ```
-results/locomo_evaluation/
+results/locomo_eval/
 ├── memcells/                  # MemCell extraction results
 │   ├── memcell_list_conv_0.json
 │   └── ...

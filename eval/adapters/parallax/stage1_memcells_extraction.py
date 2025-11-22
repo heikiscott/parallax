@@ -1,4 +1,4 @@
-from typing import Dict, List
+﻿from typing import Dict, List
 import json
 import os
 import sys
@@ -510,7 +510,7 @@ async def main():
     raw_data_dict = raw_data_load(dataset_path)
 
     CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
-    # 🔥 修正：实际文件在 locomo_evaluation/ 目录下，而不是 results/ 目录
+    # 🔥 修正：实际文件在 locomo_eval/ 目录下，而不是 results/ 目录
     os.makedirs(os.path.join(CURRENT_DIR, config.experiment_name), exist_ok=True)
     os.makedirs(
         os.path.join(CURRENT_DIR, config.experiment_name, "memcells"),

@@ -1,4 +1,4 @@
-"""
+﻿"""
 Converter 注册机制
 
 提供转换器的注册和创建功能。
@@ -13,8 +13,8 @@ _CONVERTER_REGISTRY: Dict[str, Type[BaseConverter]] = {}
 
 # 转换器模块映射（用于延迟加载）
 _CONVERTER_MODULES = {
-    "longmemeval": "evaluation.lib.converters.longmemeval_converter",
-    "personamem": "evaluation.lib.converters.personamem_converter",
+    "longmemeval": "eval.converters.longmemeval_converter",
+    "personamem": "eval.converters.personamem_converter",
     # 未来添加其他转换器
 }
 

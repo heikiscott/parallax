@@ -1,4 +1,4 @@
-"""
+﻿"""
 在线 API Adapter 基类
 
 为所有在线记忆系统 API（Mem0, Memos, Memu 等）提供通用功能。

@@ -1,4 +1,4 @@
-"""
+﻿"""
 Parallax Adapter
 
 适配层，负责将评测框架与 Parallax 实现连接起来。

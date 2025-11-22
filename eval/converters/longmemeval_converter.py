@@ -1,4 +1,4 @@
-"""
+﻿"""
 LongMemEval Converter
 
 将 LongMemEval 数据集转换为 Locomo 格式。

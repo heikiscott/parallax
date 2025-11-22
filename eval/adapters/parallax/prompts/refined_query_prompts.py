@@ -1,4 +1,4 @@
-"""Refined Query Generation Prompt for Agentic Retrieval"""
+﻿"""Refined Query Generation Prompt for Agentic Retrieval"""
 
 REFINED_QUERY_PROMPT = """You are an expert at query reformulation for information retrieval.
 

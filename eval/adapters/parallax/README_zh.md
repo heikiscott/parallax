@@ -1,4 +1,4 @@
-# LoCoMo 评估 Pipeline
+﻿# LoCoMo 评估 Pipeline
 
 <p align="center">
   <a href="README.md">English</a> | <a href="README_zh.md">简体中文</a>
@@ -11,7 +11,7 @@ LoCoMo (Long-Context Modeling) 评估系统，用于测试记忆系统在长对�
 ## 📋 目录结构
 
 ```
-locomo_evaluation/
+locomo_eval/
 ├── config.py                          # 配置文件
 ├── data/
 │   └── locomo10.json                  # 测试数据集
@@ -68,29 +68,29 @@ class ExperimentConfig:
 
 ```bash
 # 阶段 1：提取 MemCells
-python evaluation/locomo_evaluation/stage1_memcells_extraction.py
+python eval/locomo_eval/stage1_memcells_extraction.py
 
 # 阶段 2：构建索引
-python evaluation/locomo_evaluation/stage2_index_building.py
+python eval/locomo_eval/stage2_index_building.py
 
 # 阶段 3：检索记忆
-python evaluation/locomo_evaluation/stage3_memory_retrivel.py
+python eval/locomo_eval/stage3_memory_retrivel.py
 
 # 阶段 4：生成回答
-python evaluation/locomo_evaluation/stage4_response.py
+python eval/locomo_eval/stage4_response.py
 
 # 阶段 5：评估结果
-python evaluation/locomo_evaluation/stage5_eval.py
+python eval/locomo_eval/stage5_eval.py
 ```
 
 ### 4. 查看结果
 
 ```bash
 # 查看最终评估结果
-cat results/locomo_evaluation/judged.json
+cat results/locomo_eval/judged.json
 
 # 查看准确率统计
-python evaluation/locomo_evaluation/tools/compute_acc.py
+python eval/locomo_eval/tools/compute_acc.py
 ```
 
 ---
@@ -100,7 +100,7 @@ python evaluation/locomo_evaluation/tools/compute_acc.py
 ### 输出目录结构
 
 ```
-results/locomo_evaluation/
+results/locomo_eval/
 ├── memcells/                  # MemCell 提取结果
 │   ├── memcell_list_conv_0.json
 │   └── ...

@@ -1,4 +1,4 @@
-import json
+﻿import json
 import os
 import sys
 import pickle
@@ -1088,7 +1088,7 @@ async def main():
     """Main function to perform batch search and save results in nemori format."""
     # --- Configuration ---
     config = ExperimentConfig()
-    # 🔥 修正：实际文件在 locomo_evaluation/ 目录下，而不是 results/ 目录
+    # 🔥 修正：实际文件在 locomo_eval/ 目录下，而不是 results/ 目录
     bm25_index_dir = (
         Path(__file__).parent / config.experiment_name / "bm25_index"
     )

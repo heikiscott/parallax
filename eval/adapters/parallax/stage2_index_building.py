@@ -1,4 +1,4 @@
-import json
+﻿import json
 import os
 import sys
 import pickle
@@ -374,7 +374,7 @@ async def main():
     # --- Configuration ---
     # The directory containing the JSON files
     config = ExperimentConfig()
-    # 🔥 修正：实际文件在 locomo_evaluation/ 目录下，而不是 results/ 目录
+    # 🔥 修正：实际文件在 locomo_eval/ 目录下，而不是 results/ 目录
     data_dir = Path(__file__).parent / config.experiment_name / "memcells"
     bm25_save_dir = (
         Path(__file__).parent / config.experiment_name / "bm25_index"
@@ -387,7 +387,7 @@ async def main():
     build_bm25_index(config, data_dir, bm25_save_dir)
     if config.use_emb:
         await build_emb_index(config, data_dir, emb_save_dir)
-    # data_dir = Path("/Users/admin/Documents/Projects/b001-memsys/evaluation/locomo_evaluation/results/locomo_evaluation_0/")
+    # data_dir = Path("/Users/admin/Documents/Projects/b001-memsys/eval/locomo_eval/results/locomo_evaluation_0/")
 
     # Where to save the final index file
     # output_path = data_dir / "bm25_index.pkl" # This line is removed as per the new_code

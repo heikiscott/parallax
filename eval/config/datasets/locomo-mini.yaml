@@ -1,4 +1,4 @@
-# LoCoMo Mini Dataset Configuration
+﻿# LoCoMo Mini Dataset Configuration
 # Minimal subset for quick validation
 
 name: "locomo-mini"
@@ -7,7 +7,7 @@ description: "Minimal subset of LoCoMo for quick validation"
 
 # Data configuration
 data:
-  path: "locomo/locomo-mini.json"  # Relative to evaluation/data/ or project root data/
+  path: "locomo/locomo-mini.json"  # Relative to eval/data/ or project root data/
   format: "locomo"  # Native format, no conversion needed
 
 # Evaluation configuration

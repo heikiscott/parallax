@@ -1,4 +1,4 @@
-"""
+﻿"""
 Pipeline 核心
 
 评测流程的编排器，负责协调 Add → Search → Answer → Evaluate 四个阶段。

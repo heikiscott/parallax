@@ -1,4 +1,4 @@
-import json
+﻿import json
 import argparse
 from collections import defaultdict
 import numpy as np
@@ -77,7 +77,7 @@ def compute_accuracy_from_judgments(file_path):
 if __name__ == "__main__":
     # The path to the results file is hardcoded here.
     # You can change this path if you need to point to a different file.
-    results_file_path = "/Users/admin/Documents/Projects/b001-memsys_/evaluation/locomo_evaluation/results/locomo_evaluation_nemori/nemori_locomo_judged.json"
+    results_file_path = "/Users/admin/Documents/Projects/b001-memsys_/eval/locomo_eval/results/locomo_evaluation_nemori/nemori_locomo_judged.json"
 
     try:
         (

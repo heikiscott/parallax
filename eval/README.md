@@ -1,4 +1,4 @@
-# Parallax Evaluation Framework
+﻿# Parallax Evaluation Framework
 
 A unified, modular evaluation framework for benchmarking memory systems on standard datasets.
 
@@ -60,19 +60,19 @@ Each stage saves its output and can be resumed independently.
 
 ### Data Preparation
 
-Place your dataset files in the `evaluation/data/` directory:
+Place your dataset files in the `eval/data/` directory:
 
 **LoCoMo** (native format, no conversion needed):
 
 ```
-evaluation/data/locomo/
+eval/data/locomo/
 └── locomo10.json
 ```
 
 **LongMemEval** (auto-converts to LoCoMo format):
 
 ```
-evaluation/data/longmemeval/
+eval/data/longmemeval/
 └── longmemeval_s_cleaned.json  # Original file
 # → Will auto-generate: longmemeval_s_locomo_style.json
 ```
@@ -80,7 +80,7 @@ evaluation/data/longmemeval/
 **PersonaMem** (auto-converts to LoCoMo format):
 
 ```
-evaluation/data/personamem/
+eval/data/personamem/
 ├── questions_32k.csv           # Original file
 └── shared_contexts_32k.jsonl   # Original file
 # → Will auto-generate: personamem_32k_locomo_style.json
@@ -130,10 +130,10 @@ Run a quick test with the mini dataset to verify everything works:
 cd /path/to/memsys-opensource
 
 # Run mini dataset (single conversation with limited questions)
-uv run python -m evaluation.cli --dataset locomo-mini --system parallax
+uv run python -m eval.cli --dataset locomo-mini --system parallax
 
 # Or use the shorthand script
-python evaluation/run_locomo.py --mini
+python eval/run_locomo.py --mini
 ```
 
 ### Test Single Conversation
@@ -142,10 +142,10 @@ Test a specific conversation by index:
 
 ```bash
 # Test conversation at index 3
-uv run python -m evaluation.cli --dataset locomo --system parallax --conv 3
+uv run python -m eval.cli --dataset locomo --system parallax --conv 3
 
 # Or use the shorthand script
-python evaluation/run_locomo.py --conv 3
+python eval/run_locomo.py --conv 3
 ```
 
 ### Full Evaluation
@@ -154,47 +154,47 @@ Run the complete benchmark on all conversations:
 
 ```bash
 # Evaluate Parallax on LoCoMo (all 10 conversations)
-uv run python -m evaluation.cli --dataset locomo --system parallax
+uv run python -m eval.cli --dataset locomo --system parallax
 
 # Or use the shorthand script
-python evaluation/run_locomo.py --all
+python eval/run_locomo.py --all
 
 # Evaluate other systems
-uv run python -m evaluation.cli --dataset locomo --system memos
-uv run python -m evaluation.cli --dataset locomo --system memu
+uv run python -m eval.cli --dataset locomo --system memos
+uv run python -m eval.cli --dataset locomo --system memu
 # For mem0, it's recommended to run add first, check the memory status on the web console to make sure it's finished and then following stages.
-uv run python -m evaluation.cli --dataset locomo --system mem0 --stages add
-uv run python -m evaluation.cli --dataset locomo --system mem0 --stages search answer evaluate
+uv run python -m eval.cli --dataset locomo --system mem0 --stages add
+uv run python -m eval.cli --dataset locomo --system mem0 --stages search answer evaluate
 
 # Evaluate on other datasets
-uv run python -m evaluation.cli --dataset longmemeval --system parallax
-uv run python -m evaluation.cli --dataset personamem --system parallax
+uv run python -m eval.cli --dataset longmemeval --system parallax
+uv run python -m eval.cli --dataset personamem --system parallax
 
 # Use --run-name to distinguish multiple runs (useful for A/B testing)
 # Results will be saved to: results/{dataset}-{system}-{run-name}/
-uv run python -m evaluation.cli --dataset locomo --system parallax --run-name baseline
-uv run python -m evaluation.cli --dataset locomo --system parallax --run-name experiment1
-uv run python -m evaluation.cli --dataset locomo --system parallax --run-name 20241107
+uv run python -m eval.cli --dataset locomo --system parallax --run-name baseline
+uv run python -m eval.cli --dataset locomo --system parallax --run-name experiment1
+uv run python -m eval.cli --dataset locomo --system parallax --run-name 20241107
 
 # Resume from checkpoint if interrupted (automatic)
 # Just re-run the same command - it will detect and resume from checkpoint
-uv run python -m evaluation.cli --dataset locomo --system parallax
+uv run python -m eval.cli --dataset locomo --system parallax
 
 ```
 
 ### View Results
 
-Results are saved to `evaluation/results/{dataset}-{system}[-{run-name}]/`:
+Results are saved to `eval/results/{dataset}-{system}[-{run-name}]/`:
 
 ```bash
 # View summary report
-cat evaluation/results/locomo-parallax/report.txt
+cat eval/results/locomo-parallax/report.txt
 
 # View detailed evaluation results
-cat evaluation/results/locomo-parallax/eval_results.json
+cat eval/results/locomo-parallax/eval_results.json
 
 # View pipeline execution log
-cat evaluation/results/locomo-parallax/pipeline.log
+cat eval/results/locomo-parallax/pipeline.log
 ```
 
 **Result files:**
@@ -272,10 +272,10 @@ Skip completed stages to iterate faster:
 
 ```bash
 # Only run search stage (if add is already done)
-uv run python -m evaluation.cli --dataset locomo --system parallax --stages search
+uv run python -m eval.cli --dataset locomo --system parallax --stages search
 
 # Run search, answer, and evaluate (skip add)
-uv run python -m evaluation.cli --dataset locomo --system parallax \
+uv run python -m eval.cli --dataset locomo --system parallax \
     --stages search answer evaluate
 ```
 If you have already done search, and you want to do it again, please remove the "search" (and following stages from the completed_stages in the checkpoint_default.json file):
@@ -295,11 +295,11 @@ Modify system or dataset configurations:
 
 ```bash
 # Copy and edit configuration
-cp evaluation/config/systems/parallax.yaml evaluation/config/systems/parallax_custom.yaml
+cp eval/config/systems/parallax.yaml eval/config/systems/parallax_custom.yaml
 # Edit parallax_custom.yaml with your changes
 
 # Run with custom config
-uv run python -m evaluation.cli --dataset locomo --system parallax_custom
+uv run python -m eval.cli --dataset locomo --system parallax_custom
 ```
 
 

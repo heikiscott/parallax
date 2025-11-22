@@ -1,13 +1,13 @@
-"""
+﻿"""
 CLI 入口
 
 评测框架的命令行接口。
 
 Usage:
-    python -m evaluation.cli --dataset locomo --system parallax
-    python -m evaluation.cli --dataset locomo-mini --system parallax
-    python -m evaluation.cli --dataset locomo --system parallax --stages search answer evaluate
-    python -m evaluation.cli --dataset locomo --system parallax --conv 3
+    python -m eval.cli --dataset locomo --system parallax
+    python -m eval.cli --dataset locomo-mini --system parallax
+    python -m eval.cli --dataset locomo --system parallax --stages search answer evaluate
+    python -m eval.cli --dataset locomo --system parallax --conv 3
 """
 import asyncio
 import argparse
@@ -145,18 +145,18 @@ async def main():
     
     data_path = dataset_config["data"]["path"]
     if not Path(data_path).is_absolute():
-        # 优先从 evaluation/data/ 加载，如果不存在则从项目根目录加载
+        # 优先从 eval/data/ 加载，如果不存在则从项目根目录加载
         eval_data_path = evaluation_root / "data" / data_path
         root_data_path = evaluation_root.parent / data_path
 
         if eval_data_path.exists():
-            console.print(f"  📂 Using evaluation/data/{data_path}")
+            console.print(f"  📂 Using eval/data/{data_path}")
             data_path = eval_data_path
         elif root_data_path.exists():
             console.print(f"  📂 Using project root data/{data_path}")
             data_path = root_data_path
         else:
-            console.print(f"[red]❌ Data not found in evaluation/data/ or project root data/[/red]")
+            console.print(f"[red]❌ Data not found in eval/data/ or project root data/[/red]")
             return
     
     # 智能加载（自动转换）

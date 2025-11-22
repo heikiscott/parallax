@@ -1,4 +1,4 @@
-import asyncio
+﻿import asyncio
 import json
 import logging
 
@@ -164,7 +164,7 @@ async def main():
 
     # --- Path Setup ---
     current_dir = Path(__file__).parent
-    # 🔥 修正：实际文件在 locomo_evaluation/ 目录下，而不是 results/ 目录
+    # 🔥 修正：实际文件在 locomo_eval/ 目录下，而不是 results/ 目录
     results_dir = current_dir / version  # 直接使用 version（即 "locomo_evaluation"）
     response_path = results_dir / "responses.json"
     judged_path = results_dir / "judged.json"

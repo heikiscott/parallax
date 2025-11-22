@@ -1,4 +1,4 @@
-"""Multi-Query Generation Prompt for Agentic Retrieval"""
+﻿"""Multi-Query Generation Prompt for Agentic Retrieval"""
 
 MULTI_QUERY_GENERATION_PROMPT = """You are an expert at query reformulation for information retrieval.
 

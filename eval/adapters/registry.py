@@ -1,4 +1,4 @@
-"""
+﻿"""
 Adapter 注册机制
 
 提供适配器的注册和创建功能。
@@ -14,18 +14,18 @@ _ADAPTER_REGISTRY: Dict[str, Type[BaseAdapter]] = {}
 # 适配器模块映射（用于延迟加载）
 _ADAPTER_MODULES = {
     # 本地系统
-    "parallax": "evaluation.lib.adapters.parallax_adapter",
+    "parallax": "eval.adapters.parallax_adapter",
     
     # 在线 API 系统
-    "mem0": "evaluation.lib.adapters.mem0_adapter",
-    "memos": "evaluation.lib.adapters.memos_adapter",
-    "memu": "evaluation.lib.adapters.memu_adapter",
-    "zep": "evaluation.lib.adapters.zep_adapter",
-    "memobase": "evaluation.lib.adapters.memobase_adapter",
-    "supermemory": "evaluation.lib.adapters.supermemory_adapter",
+    "mem0": "eval.adapters.mem0_adapter",
+    "memos": "eval.adapters.memos_adapter",
+    "memu": "eval.adapters.memu_adapter",
+    "zep": "eval.adapters.zep_adapter",
+    "memobase": "eval.adapters.memobase_adapter",
+    "supermemory": "eval.adapters.supermemory_adapter",
     
     # 未来添加其他系统：
-    # "nemori": "evaluation.lib.adapters.nemori_adapter",
+    # "nemori": "eval.adapters.nemori_adapter",
 }
 
 

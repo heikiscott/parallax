@@ -1,4 +1,4 @@
-"""
+﻿"""
 Evaluator 注册机制
 
 提供评估器的注册和创建功能。
@@ -13,10 +13,10 @@ _EVALUATOR_REGISTRY: Dict[str, Type[BaseEvaluator]] = {}
 
 # 评估器模块映射（用于延迟加载）
 _EVALUATOR_MODULES = {
-    "llm_judge": "evaluation.lib.evaluators.llm_judge",
-    "exact_match": "evaluation.lib.evaluators.exact_match",
+    "llm_judge": "eval.evaluators.llm_judge",
+    "exact_match": "eval.evaluators.exact_match",
     # 未来添加其他评估器：
-    # "bert_score": "evaluation.lib.evaluators.bert_score",
+    # "bert_score": "eval.evaluators.bert_score",
 }
 
 

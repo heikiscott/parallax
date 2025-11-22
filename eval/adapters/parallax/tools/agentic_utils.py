@@ -1,4 +1,4 @@
-"""
+﻿"""
 Agentic Retrieval 工具函数
 
 提供 LLM 引导的多轮检索所需的工具：

@@ -1,4 +1,4 @@
-"""
+﻿"""
 PersonaMem Converter
 
 将 PersonaMem 数据集转换为 Locomo 格式。

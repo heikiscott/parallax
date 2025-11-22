@@ -1,4 +1,4 @@
-# Parallax 评估框架
+﻿# Parallax 评估框架
 
 一个统一的模块化评估框架，用于在标准数据集上对记忆系统进行基准测试。
 
@@ -60,19 +60,19 @@ eval/
 
 ### 数据准备
 
-将数据集文件放置在 `evaluation/data/` 目录中：
+将数据集文件放置在 `eval/data/` 目录中：
 
 **LoCoMo**（原生格式，无需转换）：
 
 ```
-evaluation/data/locomo/
+eval/data/locomo/
 └── locomo10.json
 ```
 
 **LongMemEval**（自动转换为 LoCoMo 格式）：
 
 ```
-evaluation/data/longmemeval/
+eval/data/longmemeval/
 └── longmemeval_s_cleaned.json  # 原始文件
 # → 将自动生成：longmemeval_s_locomo_style.json
 ```
@@ -80,7 +80,7 @@ evaluation/data/longmemeval/
 **PersonaMem**（自动转换为 LoCoMo 格式）：
 
 ```
-evaluation/data/personamem/
+eval/data/personamem/
 ├── questions_32k.csv           # 原始文件
 └── shared_contexts_32k.jsonl   # 原始文件
 # → 将自动生成：personamem_32k_locomo_style.json
@@ -130,10 +130,10 @@ MEMU_API_KEY=your_memu_api_key
 cd /path/to/memsys-opensource
 
 # 运行 mini 数据集（单个对话，有限问题）
-uv run python -m evaluation.cli --dataset locomo-mini --system parallax
+uv run python -m eval.cli --dataset locomo-mini --system parallax
 
 # 或使用简化脚本
-python evaluation/run_locomo.py --mini
+python eval/run_locomo.py --mini
 ```
 
 ### 测试单个对话
@@ -142,10 +142,10 @@ python evaluation/run_locomo.py --mini
 
 ```bash
 # 测试索引为 3 的对话
-uv run python -m evaluation.cli --dataset locomo --system parallax --conv 3
+uv run python -m eval.cli --dataset locomo --system parallax --conv 3
 
 # 或使用简化脚本
-python evaluation/run_locomo.py --conv 3
+python eval/run_locomo.py --conv 3
 ```
 
 ### 完整评估
@@ -154,47 +154,47 @@ python evaluation/run_locomo.py --conv 3
 
 ```bash
 # 在 LoCoMo 上评估 Parallax（全部 10 个对话）
-uv run python -m evaluation.cli --dataset locomo --system parallax
+uv run python -m eval.cli --dataset locomo --system parallax
 
 # 或使用简化脚本
-python evaluation/run_locomo.py --all
+python eval/run_locomo.py --all
 
 # 评估其他系统
-uv run python -m evaluation.cli --dataset locomo --system memos
-uv run python -m evaluation.cli --dataset locomo --system memu
+uv run python -m eval.cli --dataset locomo --system memos
+uv run python -m eval.cli --dataset locomo --system memu
 # 对于 mem0，建议先运行 add，在 Web 控制台检查记忆状态以确保完成，然后运行后续阶段。
-uv run python -m evaluation.cli --dataset locomo --system mem0 --stages add
-uv run python -m evaluation.cli --dataset locomo --system mem0 --stages search answer evaluate
+uv run python -m eval.cli --dataset locomo --system mem0 --stages add
+uv run python -m eval.cli --dataset locomo --system mem0 --stages search answer evaluate
 
 # 在其他数据集上评估
-uv run python -m evaluation.cli --dataset longmemeval --system parallax
-uv run python -m evaluation.cli --dataset personamem --system parallax
+uv run python -m eval.cli --dataset longmemeval --system parallax
+uv run python -m eval.cli --dataset personamem --system parallax
 
 # 使用 --run-name 区分多次运行（用于 A/B 测试）
 # 结果将保存到：results/{dataset}-{system}-{run-name}/
-uv run python -m evaluation.cli --dataset locomo --system parallax --run-name baseline
-uv run python -m evaluation.cli --dataset locomo --system parallax --run-name experiment1
-uv run python -m evaluation.cli --dataset locomo --system parallax --run-name 20241107
+uv run python -m eval.cli --dataset locomo --system parallax --run-name baseline
+uv run python -m eval.cli --dataset locomo --system parallax --run-name experiment1
+uv run python -m eval.cli --dataset locomo --system parallax --run-name 20241107
 
 # 如果中断则从检查点恢复（自动）
 # 只需重新运行相同命令 - 它会检测并从检查点恢复
-uv run python -m evaluation.cli --dataset locomo --system parallax
+uv run python -m eval.cli --dataset locomo --system parallax
 
 ```
 
 ### 查看结果
 
-结果保存到 `evaluation/results/{dataset}-{system}[-{run-name}]/`：
+结果保存到 `eval/results/{dataset}-{system}[-{run-name}]/`：
 
 ```bash
 # 查看摘要报告
-cat evaluation/results/locomo-parallax/report.txt
+cat eval/results/locomo-parallax/report.txt
 
 # 查看详细评估结果
-cat evaluation/results/locomo-parallax/eval_results.json
+cat eval/results/locomo-parallax/eval_results.json
 
 # 查看流程执行日志
-cat evaluation/results/locomo-parallax/pipeline.log
+cat eval/results/locomo-parallax/pipeline.log
 ```
 
 **结果文件：**
@@ -272,10 +272,10 @@ cat evaluation/results/locomo-parallax/pipeline.log
 
 ```bash
 # 仅运行搜索阶段（如果添加已完成）
-uv run python -m evaluation.cli --dataset locomo --system parallax --stages search
+uv run python -m eval.cli --dataset locomo --system parallax --stages search
 
 # 运行搜索、回答和评估（跳过添加）
-uv run python -m evaluation.cli --dataset locomo --system parallax \
+uv run python -m eval.cli --dataset locomo --system parallax \
     --stages search answer evaluate
 ```
 如果您已经完成了搜索，并希望重新运行，请从 checkpoint_default.json 文件中的 completed_stages 中删除 "search"（以及后续阶段）：
@@ -295,11 +295,11 @@ uv run python -m evaluation.cli --dataset locomo --system parallax \
 
 ```bash
 # 复制并编辑配置
-cp evaluation/config/systems/parallax.yaml evaluation/config/systems/parallax_custom.yaml
+cp eval/config/systems/parallax.yaml eval/config/systems/parallax_custom.yaml
 # 编辑 parallax_custom.yaml 进行修改
 
 # 使用自定义配置运行
-uv run python -m evaluation.cli --dataset locomo --system parallax_custom
+uv run python -m eval.cli --dataset locomo --system parallax_custom
 ```
 
 

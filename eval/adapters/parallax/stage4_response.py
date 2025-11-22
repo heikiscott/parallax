@@ -1,4 +1,4 @@
-import argparse
+﻿import argparse
 import asyncio
 import json
 import os
@@ -406,7 +406,7 @@ async def main(search_path, save_path):
 
 if __name__ == "__main__":
     config = ExperimentConfig()
-    # 🔥 修正：实际文件在 locomo_evaluation/ 目录下，而不是 results/ 目录
+    # 🔥 修正：实际文件在 locomo_eval/ 目录下，而不是 results/ 目录
     search_result_path = str(
         Path(__file__).parent
         / config.experiment_name  # 直接使用 experiment_name（即 "locomo_evaluation"）
@@ -415,6 +415,6 @@ if __name__ == "__main__":
     save_path = (
         Path(__file__).parent / config.experiment_name / "responses.json"
     )
-    # search_result_path = f"/Users/admin/Documents/Projects/b001-memsys/evaluation/locomo_evaluation/results/locomo_evaluation_0/nemori_locomo_search_results.json"
+    # search_result_path = f"/Users/admin/Documents/Projects/b001-memsys/eval/locomo_eval/results/locomo_evaluation_0/nemori_locomo_search_results.json"
 
     asyncio.run(main(search_result_path, save_path))
