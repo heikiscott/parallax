@@ -53,7 +53,8 @@ def load_env_file(
         return False
 
     try:
-        load_dotenv(env_file_path)
+        # Use override=True to force reload environment variables from .env file
+        load_dotenv(env_file_path, override=True)
         logger.debug("成功加载.env文件: %s", env_file_path)
     except (IOError, OSError) as e:
         logger.error("加载.env文件失败: %s", e)

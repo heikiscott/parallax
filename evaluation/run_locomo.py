@@ -14,24 +14,50 @@ import sys
 from pathlib import Path
 
 
-def find_output_dir(base_name: str, results_dir: Path) -> Path:
+def find_output_dir(base_name: str, results_dir: Path, resume: bool = False) -> Path:
     """
-    Find the next available output directory.
+    Find the output directory.
+
+    If resume=True: Use the most recent existing directory
+    If resume=False (default): Create a new directory
 
     First run: base_name (e.g., locomo-mini)
     Second run: base_name-1 (e.g., locomo-mini-1)
     Third run: base_name-2 (e.g., locomo-mini-2)
     """
     base_dir = results_dir / base_name
-    if not base_dir.exists():
-        return base_dir
 
-    # Find next available number
-    counter = 1
-    while (results_dir / f"{base_name}-{counter}").exists():
-        counter += 1
+    if resume:
+        # Resume mode: find the most recent directory
+        if base_dir.exists():
+            # Find all numbered directories
+            numbered_dirs = []
+            counter = 1
+            while (results_dir / f"{base_name}-{counter}").exists():
+                numbered_dirs.append((counter, results_dir / f"{base_name}-{counter}"))
+                counter += 1
 
-    return results_dir / f"{base_name}-{counter}"
+            # Return the highest numbered directory, or base_dir if no numbered ones
+            if numbered_dirs:
+                return numbered_dirs[-1][1]
+            else:
+                return base_dir
+        else:
+            # No existing directory to resume from
+            print(f"⚠️  Warning: No existing directory found for {base_name}")
+            print(f"   Creating new directory instead")
+            return base_dir
+    else:
+        # Normal mode: create new directory
+        if not base_dir.exists():
+            return base_dir
+
+        # Find next available number
+        counter = 1
+        while (results_dir / f"{base_name}-{counter}").exists():
+            counter += 1
+
+        return results_dir / f"{base_name}-{counter}"
 
 
 def find_log_file(output_dir: Path) -> Path:
@@ -131,6 +157,8 @@ Examples:
   %(prog)s -a               Same as --all (short form)
   %(prog)s --conv 4         Run single conversation (index 4)
   %(prog)s -c 4             Same as --conv (short form)
+  %(prog)s -c 1 --resume    Resume conversation 1 from last checkpoint
+  %(prog)s -c 1 -r          Same as above (short form)
         """
     )
 
@@ -153,6 +181,13 @@ Examples:
         help="Run specific conversation by index (0-based)"
     )
 
+    # Add resume option
+    parser.add_argument(
+        "-r", "--resume",
+        action="store_true",
+        help="Resume from the most recent checkpoint instead of creating a new run"
+    )
+
     args = parser.parse_args()
 
     # Get evaluation root directory
@@ -165,16 +200,20 @@ Examples:
         # Mini mode: locomo-mini, locomo-mini-1, locomo-mini-2, ...
         dataset = "locomo-mini"
         base_name = "locomo-mini"
-        output_dir = find_output_dir(base_name, results_dir)
+        output_dir = find_output_dir(base_name, results_dir, resume=args.resume)
 
+        if args.resume:
+            print(f"🔄 Resuming from: {output_dir}")
         return run_evaluation(dataset, output_dir)
 
     elif args.all:
         # All mode: locomo-all, locomo-all-1, locomo-all-2, ...
         dataset = "locomo"
         base_name = "locomo-all"
-        output_dir = find_output_dir(base_name, results_dir)
+        output_dir = find_output_dir(base_name, results_dir, resume=args.resume)
 
+        if args.resume:
+            print(f"🔄 Resuming from: {output_dir}")
         return run_evaluation(dataset, output_dir)
 
     elif args.conv is not None:
@@ -182,8 +221,10 @@ Examples:
         conv_id = args.conv
         dataset = "locomo"
         base_name = f"locomo-conv{conv_id}"
-        output_dir = find_output_dir(base_name, results_dir)
+        output_dir = find_output_dir(base_name, results_dir, resume=args.resume)
 
+        if args.resume:
+            print(f"🔄 Resuming from: {output_dir}")
         return run_evaluation(dataset, output_dir, conv_id=conv_id)
 
 
