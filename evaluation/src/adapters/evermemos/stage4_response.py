@@ -134,7 +134,7 @@ async def locomo_response(
             result = await llm_provider.generate(
                 prompt=prompt,
                 temperature=0,
-                max_tokens=32768,
+                max_tokens=int(os.getenv("LLM_MAX_TOKENS", "32768")),
             )
             
             # 🔥 安全解析 FINAL ANSWER（避免 index out of range）
@@ -247,7 +247,7 @@ async def main(search_path, save_path):
         api_key=llm_config["api_key"],
         base_url=llm_config["base_url"],
         temperature=llm_config.get("temperature", 0.0),
-        max_tokens=llm_config.get("max_tokens", 32768),
+        max_tokens=int(llm_config.get("max_tokens", int(os.getenv("LLM_MAX_TOKENS", "32768")))),
     )
     
     locomo_df = pd.read_json(experiment_config.datase_path)

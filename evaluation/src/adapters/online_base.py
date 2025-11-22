@@ -48,7 +48,7 @@ class OnlineAPIAdapter(BaseAdapter):
             api_key=llm_config.get("api_key", ""),
             base_url=llm_config.get("base_url", "https://api.openai.com/v1"),
             temperature=llm_config.get("temperature", 0.3),
-            max_tokens=llm_config.get("max_tokens", 32768),
+            max_tokens=int(llm_config.get("max_tokens", 32768)),
         )
         
         # 加载 prompts（从 YAML 文件）

@@ -100,16 +100,18 @@ class OpenAIProvider(LLMProvider):
             "model": self.model,
             "messages": [{"role": "user", "content": prompt}],
             "temperature": temperature if temperature is not None else self.temperature,
-            "provider": openrouter_provider,
             "response_format": response_format,
         }
+        # Only add provider parameter for OpenRouter
+        if openrouter_provider is not None:
+            data["provider"] = openrouter_provider
         # print(data)
         # print(data["extra_body"])
         # Add max_tokens if specified
         if max_tokens is not None:
-            data["max_tokens"] = max_tokens
+            data["max_tokens"] = int(max_tokens) if isinstance(max_tokens, str) else max_tokens
         elif self.max_tokens is not None:
-            data["max_tokens"] = self.max_tokens
+            data["max_tokens"] = int(self.max_tokens) if isinstance(self.max_tokens, str) else self.max_tokens
 
         # 使用异步的 aiohttp 替代同步的 urllib
         headers = {

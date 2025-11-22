@@ -103,16 +103,16 @@ async def main():
         help="Smoke test: number of questions to test (use 0 for all). Default: 3"
     )
     parser.add_argument(
-        "--run-name",
-        type=str,
+        "--conv",
+        type=int,
         default=None,
-        help="Run name/version for distinguishing multiple runs (e.g., 'v1', 'baseline', '20241104')"
+        help="Conversation index to process (0-based). If not specified, all conversations will be processed."
     )
     parser.add_argument(
         "--output-dir",
         type=str,
         default=None,
-        help="Output directory. Default: results/{dataset}-{system}[-{run_name}]"
+        help="Output directory. Default: results/{dataset}-{system}"
     )
     
     args = parser.parse_args()
@@ -157,13 +157,13 @@ async def main():
         # 优先从 evaluation/data/ 加载，如果不存在则从项目根目录加载
         eval_data_path = evaluation_root / "data" / data_path
         root_data_path = evaluation_root.parent / data_path
-        
+
         if eval_data_path.exists():
-            data_path = eval_data_path
             console.print(f"  📂 Using evaluation/data/{data_path}")
+            data_path = eval_data_path
         elif root_data_path.exists():
-            data_path = root_data_path
             console.print(f"  📂 Using project root data/{data_path}")
+            data_path = root_data_path
         else:
             console.print(f"[red]❌ Data not found in evaluation/data/ or project root data/[/red]")
             return
@@ -177,11 +177,8 @@ async def main():
     if args.output_dir:
         output_dir = Path(args.output_dir)
     else:
-        # 根据是否有 run_name 生成输出目录名
-        if args.run_name:
-            output_dir = evaluation_root / "results" / f"{args.dataset}-{args.system}-{args.run_name}"
-        else:
-            output_dir = evaluation_root / "results" / f"{args.dataset}-{args.system}"
+        # 使用简单的默认命名: {dataset}-{system}
+        output_dir = evaluation_root / "results" / f"{args.dataset}-{args.system}"
     
     # ===== 创建组件 =====
     console.print(f"\n[bold cyan]Initializing components...[/bold cyan]")
@@ -209,7 +206,7 @@ async def main():
         api_key=llm_config.get("api_key"),
         base_url=llm_config.get("base_url"),
         temperature=llm_config.get("temperature", 0.0),
-        max_tokens=llm_config.get("max_tokens", 32768),
+        max_tokens=int(llm_config.get("max_tokens", 32768)),
     )
     console.print(f"  ✅ Created LLM provider: {llm_config.get('model')}")
     
@@ -237,6 +234,7 @@ async def main():
             smoke_test=args.smoke,
             smoke_messages=args.smoke_messages,
             smoke_questions=args.smoke_questions,
+            conv_id=args.conv,
         )
         
         console.print(f"\n[bold green]✨ Evaluation completed![/bold green]")

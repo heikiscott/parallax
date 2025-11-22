@@ -127,11 +127,18 @@ def build_bm25_index(
 
     print(f"Reading data from: {data_dir}")
 
-    for i in range(config.num_conv):
-        file_path = data_dir / f"memcell_list_conv_{i}.json"
-        if not file_path.exists():
-            print(f"Warning: File not found, skipping: {file_path}")
-            continue
+    # Auto-detect actual memcell files instead of relying on config.num_conv
+    import glob
+    memcell_files = sorted(glob.glob(str(data_dir / "memcell_list_conv_*.json")))
+
+    if not memcell_files:
+        print(f"Warning: No memcell files found in {data_dir}")
+        return
+
+    for file_path in memcell_files:
+        file_path = Path(file_path)
+        # 从文件名提取 conversation index (例如: memcell_list_conv_4.json -> 4)
+        conv_index = file_path.stem.split('_')[-1]
 
         print(f"\nProcessing {file_path.name}...")
 
@@ -162,7 +169,7 @@ def build_bm25_index(
         # --- Saving the Index ---
         index_data = {"bm25": bm25, "docs": original_docs}
 
-        output_path = bm25_save_dir / f"bm25_index_conv_{i}.pkl"
+        output_path = bm25_save_dir / f"bm25_index_conv_{conv_index}.pkl"
         print(f"Saving index to: {output_path}")
         with open(output_path, "wb") as f:
             pickle.dump(index_data, f)
@@ -188,12 +195,19 @@ async def build_emb_index(config: ExperimentConfig, data_dir: Path, emb_save_dir
     MAX_CONCURRENT_BATCHES = 5  # 🔥 严格控制并发数（与 Semaphore(5) 匹配）
     
     import time  # 用于性能统计
-    
-    for i in range(config.num_conv):
-        file_path = data_dir / f"memcell_list_conv_{i}.json"
-        if not file_path.exists():
-            print(f"Warning: File not found, skipping: {file_path}")
-            continue
+
+    # Auto-detect actual memcell files instead of relying on config.num_conv
+    import glob
+    memcell_files = sorted(glob.glob(str(data_dir / "memcell_list_conv_*.json")))
+
+    if not memcell_files:
+        print(f"Warning: No memcell files found in {data_dir}")
+        return
+
+    for file_path in memcell_files:
+        file_path = Path(file_path)
+        # 从文件名提取 conversation index (例如: memcell_list_conv_4.json -> 4)
+        conv_index = file_path.stem.split('_')[-1]
 
         print(f"\n{'='*60}")
         print(f"Processing {file_path.name} for embedding...")
@@ -348,7 +362,7 @@ async def build_emb_index(config: ExperimentConfig, data_dir: Path, emb_save_dir
         #     },
         #     ...
         # ]
-        output_path = emb_save_dir / f"embedding_index_conv_{i}.pkl"
+        output_path = emb_save_dir / f"embedding_index_conv_{conv_index}.pkl"
         emb_save_dir.mkdir(parents=True, exist_ok=True)
         print(f"Saving embeddings to: {output_path}")
         with open(output_path, "wb") as f:

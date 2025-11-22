@@ -64,7 +64,7 @@ class Pipeline:
         self.llm_provider = llm_provider
         self.output_dir = Path(output_dir)
         self.output_dir.mkdir(parents=True, exist_ok=True)
-        
+
         self.logger = setup_logger(self.output_dir / "pipeline.log")
         self.saver = ResultSaver(self.output_dir)
         self.console = get_console()
@@ -84,10 +84,11 @@ class Pipeline:
         smoke_test: bool = False,
         smoke_messages: int = 10,
         smoke_questions: int = 3,
+        conv_id: Optional[int] = None,
     ) -> Dict[str, Any]:
         """
         运行完整 Pipeline
-        
+
         Args:
             dataset: 标准格式数据集
             stages: 要执行的阶段列表，None 表示全部
@@ -95,7 +96,8 @@ class Pipeline:
             smoke_test: 是否为冒烟测试
             smoke_messages: 冒烟测试时的消息数量（默认10）
             smoke_questions: 冒烟测试时的问题数量（默认3）
-            
+            conv_id: 指定处理的conversation索引（0-based），None表示处理所有
+
         Returns:
             评测结果字典
         """
@@ -110,10 +112,10 @@ class Pipeline:
         if smoke_test:
             self.console.print(f"[yellow]🧪 Smoke Test Mode: {smoke_messages} messages, {smoke_questions} questions[/yellow]")
         self.console.print(f"{'='*60}\n", style="bold cyan")
-        
-        # 冒烟测试：只处理第一个对话的前 K 条消息和前 K 个问题
+
+        # 冒烟测试：只处理指定对话的前 K 条消息和前 K 个问题
         if smoke_test:
-            dataset = self._apply_smoke_test(dataset, smoke_messages, smoke_questions)
+            dataset = self._apply_smoke_test(dataset, smoke_messages, smoke_questions, conv_id)
             self.console.print(f"[yellow]✂️  Smoke test applied:[/yellow]")
             self.console.print(f"[yellow]   - Conversation: {dataset.conversations[0].conversation_id}[/yellow]")
             self.console.print(f"[yellow]   - Messages: {len(dataset.conversations[0].messages)}[/yellow]")
@@ -360,33 +362,37 @@ class Pipeline:
         self._generate_report(results, elapsed_time)
         
         return results
-    
-    def _apply_smoke_test(
-        self, 
-        dataset: Dataset, 
-        num_messages: int, 
-        num_questions: int
-    ) -> Dataset:
+
+    def _apply_smoke_test(self, dataset: Dataset, num_messages: int, num_questions: int, conv_id: Optional[int] = None) -> Dataset:
         """
-        应用冒烟测试：只保留第一个对话的前 N 条消息和前 M 个问题
-        
+        应用冒烟测试：只保留指定对话的前 N 条消息和前 M 个问题
+
         这样可以快速验证完整流程（Add → Search → Answer → Evaluate），
         但只使用少量数据，节省时间。
-        
+
         Args:
             dataset: 原始数据集
             num_messages: 保留的消息数量（用于 Add 阶段），0 表示所有消息
             num_questions: 保留的问题数量（用于 Search/Answer/Evaluate 阶段），0 表示所有问题
-            
+            conv_id: 指定的conversation索引（0-based），None表示使用第一个对话
+
         Returns:
             裁剪后的数据集
         """
         if not dataset.conversations:
             return dataset
-        
-        # 只保留第一个对话
-        first_conv = dataset.conversations[0]
-        conv_id = first_conv.conversation_id
+
+        # 使用指定的对话，如果未指定则使用第一个对话
+        if conv_id is None:
+            conv_index = 0
+        else:
+            conv_index = conv_id
+
+        if conv_index >= len(dataset.conversations):
+            raise ValueError(f"Conversation index {conv_index} out of range (dataset has {len(dataset.conversations)} conversations)")
+
+        first_conv = dataset.conversations[conv_index]
+        actual_conv_id = first_conv.conversation_id
         
         # 截取前 N 条消息（用于 Add）
         # 0 表示保留所有消息
@@ -399,8 +405,8 @@ class Pipeline:
         
         # 0 表示保留所有问题
         conv_qa_pairs = [
-            qa for qa in dataset.qa_pairs 
-            if qa.metadata.get("conversation_id") == conv_id
+            qa for qa in dataset.qa_pairs
+            if qa.metadata.get("conversation_id") == actual_conv_id
         ]
         if num_questions > 0:
             total_questions = len(conv_qa_pairs)
@@ -411,7 +417,7 @@ class Pipeline:
             qa_desc = f"{len(selected_qa_pairs)} (all)"
         
         self.logger.info(
-            f"Smoke test: Conv {conv_id} - "
+            f"Smoke test: Conv {actual_conv_id} (index {conv_index}) - "
             f"{msg_desc} messages, "
             f"{qa_desc} questions"
         )
@@ -456,7 +462,7 @@ class Pipeline:
         
         # 保存报告
         report_path = self.output_dir / "report.txt"
-        with open(report_path, "w") as f:
+        with open(report_path, "w", encoding="utf-8") as f:
             f.write(report_text)
         
         # 打印到控制台

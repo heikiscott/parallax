@@ -70,11 +70,11 @@ class ExperimentConfig:
     llm_config: dict = {
         "openai": {
             "llm_provider": "openai",
-            "model": "openai/gpt-4.1-mini",
-            "base_url": "https://openrouter.ai/api/v1",
+            "model": os.getenv("LLM_MODEL", "openai/gpt-4.1-mini"),
+            "base_url": os.getenv("LLM_BASE_URL", "https://openrouter.ai/api/v1"),
             "api_key": os.getenv("LLM_API_KEY"),
-            "temperature": 0.3,
-            "max_tokens": 16384,
+            "temperature": float(os.getenv("LLM_TEMPERATURE", "0.3")),
+            "max_tokens": int(os.getenv("LLM_MAX_TOKENS", "16384")),
         },
         "vllm": {
             "llm_provider": "openai",

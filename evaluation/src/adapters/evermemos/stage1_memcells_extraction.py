@@ -437,7 +437,7 @@ async def process_single_conversation(
         memcell_dicts = [memcell_dict for memcell_dict in memcell_dicts]
         # print(memcell_dicts)  # 注释掉大量输出
         output_file = os.path.join(save_dir, f"memcell_list_conv_{conv_id}.json")
-        with open(output_file, "w") as f:
+        with open(output_file, "w", encoding="utf-8") as f:
             json.dump(memcell_dicts, f, ensure_ascii=False, indent=2)
 
         # ===== 条件导出：聚类和 Profile 结果 =====
@@ -553,7 +553,7 @@ async def main():
         if os.path.exists(output_file):
             # 验证文件有效性（非空且可解析）
             try:
-                with open(output_file, "r") as f:
+                with open(output_file, "r", encoding="utf-8") as f:
                     data = json.load(f)
                     if data and len(data) > 0:  # 确保有数据
                         completed_convs.add(conv_id)
@@ -593,7 +593,7 @@ async def main():
         api_key=config.llm_config[llm_service]["api_key"],
         base_url=config.llm_config[llm_service]["base_url"],
         temperature=config.llm_config[llm_service]["temperature"],
-        max_tokens=config.llm_config[llm_service]["max_tokens"],
+        max_tokens=int(config.llm_config[llm_service]["max_tokens"]),
     )
 
     # 创建共享的 Event Log Extractor（使用评估专用提示词）
