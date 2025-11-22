@@ -261,7 +261,7 @@ cp env.template .env
 **Docker Services**:
 | Service | Host Port | Container Port | Purpose |
 |---------|-----------|----------------|---------|
-| **MongoDB** | 27017 | 27017 | Primary database for storing memory cells and profiles |
+| **MongoDB** | 27017 | 27017 | Primary database for storing memory units and profiles |
 | **Elasticsearch** | 19200 | 9200 | Keyword search engine (BM25) |
 | **Milvus** | 19530 | 19530 | Vector database for semantic retrieval |
 | **Redis** | 6379 | 6379 | Cache service |
