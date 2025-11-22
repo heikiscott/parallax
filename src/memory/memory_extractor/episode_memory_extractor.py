@@ -26,7 +26,7 @@ from ..prompts.eval.episode_mem_prompts import (
 )
 
 
-from ..llm.llm_provider import LLMProvider
+from providers.llm.llm_provider import LLMProvider
 
 from .base_memory_extractor import MemoryExtractor, MemoryExtractRequest
 from .semantic_memory_extractor import SemanticMemoryExtractor

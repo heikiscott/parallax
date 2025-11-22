@@ -7,7 +7,7 @@ from enum import Enum
 import hashlib
 import os
 
-from ..llm.llm_provider import LLMProvider
+from providers.llm.llm_provider import LLMProvider
 from .base_memory_extractor import MemoryExtractor, MemoryExtractRequest
 from ..types import Memory, MemoryType
 from utils.datetime_utils import (

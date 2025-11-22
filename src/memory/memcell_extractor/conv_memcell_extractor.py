@@ -18,7 +18,7 @@ from utils.datetime_utils import (
     from_timestamp as dt_from_timestamp,
     get_now_with_timezone,
 )
-from ..llm.llm_provider import LLMProvider
+from providers.llm.llm_provider import LLMProvider
 from ..types import RawDataType
 from ..prompts.zh.conv_prompts import CONV_BOUNDARY_DETECTION_PROMPT
 

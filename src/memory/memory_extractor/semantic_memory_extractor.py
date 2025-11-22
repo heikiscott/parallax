@@ -12,7 +12,7 @@ from ..prompts import (
     get_group_semantic_generation_prompt,
     get_semantic_generation_prompt,
 )
-from ..llm.llm_provider import LLMProvider
+from providers.llm.llm_provider import LLMProvider
 from .base_memory_extractor import MemoryExtractor, MemoryExtractRequest
 from ..types import MemoryType, MemCell, Memory, SemanticMemoryItem
 from agents.vectorize_service import get_vectorize_service
