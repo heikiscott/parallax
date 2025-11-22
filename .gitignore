@@ -14,7 +14,7 @@ dist/
 downloads/
 eggs/
 .eggs/
-# lib/ - commented out to allow evaluation/lib
+# lib/ - commented out to allow eval/lib
 lib64/
 parts/
 sdist/
@@ -132,10 +132,10 @@ dmypy.json
 outputs/
 .pytest_cache/
 
-evaluation/static_memory_evaluation/logs/
-evaluation/static_memory_evaluation/retrieval/
-evaluation/static_memory_evaluation/retrieval_bk/
-evaluation/static_memory_evaluation/analysis/
+eval/static_memory_evaluation/logs/
+eval/static_memory_evaluation/retrieval/
+eval/static_memory_evaluation/retrieval_bk/
+eval/static_memory_evaluation/analysis/
 memory_base/static_memory_base/bm25_index/
 memory_base/static_memory_base/hipporag/
 memory_base/static_memory_base/vector_search/
@@ -145,37 +145,6 @@ demo/.chat_history
 demo/chat_history/
 demo/memcell_outputs/
 
-# macOS
-.DS_Store
-*.duckdb
-
-
-# Evaluation and memory data files
-evaluation_memory_offline/data/
-evaluation_memory_offline/temporary/
-
-# Dynamic memory files (runtime generated)
-memory_base/dynamic_memory_base/memory/
-# Evaluation results and large files
-evaluation/dynamic_memory_evaluation/locomo_results/*.json
-evaluation/dynamic_memory_evaluation/locomo_results/hipporag_index*/
-evaluation/dynamic_memory_evaluation/locomo_results/vector_index*/
-evaluation/dynamic_memory_evaluation/locomo_results/storages*
-# Large data files
-memory_base/static_memory_base/raw_data/*.json
-*.tar
-*.zip
-
-# Large evaluation files
-evaluation/memory_evaluation/converted_messages_all_from_1_1.jsonl
-evaluation/memory_evaluation/*.jsonl
-evaluation/memory_evaluation/*.json
-
-# Large log files
-*.log
-su_ser.log
-service.log
-service_*.log
 nohup.out
 mongodb_backup/
 
@@ -188,9 +157,9 @@ apollo_config/
 
 # Exclude specific files from git tracking
 simple_query_memcell.py
-evaluation/memory_evaluation/extract_room_data.py
-evaluation/memory_evaluation/test.py
-evaluation/results/
+eval/memory_evaluation/extract_room_data.py
+eval/memory_evaluation/test.py
+eval/results/
 
 # Large test files
 unit_test/memcell_outputs/
@@ -211,5 +180,32 @@ docs/api_docs/profile_extraction_fields.md
 
 #tmp_data
 demo/memcell_outputs/
-evaluation/locomo_evaluation/results/
-evaluation/locomo_evaluation/results_ref/
+eval/locomo_evaluation/results/
+eval/locomo_evaluation/results_ref/
+
+# Evaluation and memory data files
+evaluation_memory_offline/data/
+evaluation_memory_offline/temporary/
+
+# Dynamic memory files (runtime generated)
+memory_base/dynamic_memory_base/memory/
+# Evaluation results and large files
+eval/dynamic_memory_evaluation/locomo_results/*.json
+eval/dynamic_memory_evaluation/locomo_results/hipporag_index*/
+eval/dynamic_memory_evaluation/locomo_results/vector_index*/
+eval/dynamic_memory_evaluation/locomo_results/storages*
+# Large data files
+memory_base/static_memory_base/raw_data/*.json
+*.tar
+*.zip
+
+# Large evaluation files
+eval/memory_evaluation/converted_messages_all_from_1_1.jsonl
+eval/memory_evaluation/*.jsonl
+eval/memory_evaluation/*.json
+
+# Large log files
+*.log
+su_ser.log
+service.log
+service_*.log
