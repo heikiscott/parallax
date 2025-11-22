@@ -1,4 +1,4 @@
 {
-    "extraPaths": ["src", "demo", "evaluation", "data_format"],
+    "extraPaths": ["src", "demo", "evaluation", "docs/data_format"],
     "typeCheckingMode": "off"
 }

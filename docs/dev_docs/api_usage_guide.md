@@ -194,7 +194,7 @@ MemSys 定义了标准化的群聊数据格式 `GroupChatFormat`，用于存储�
 
 ### 详细文档
 
-完整的格式说明请参考：[群聊格式规范](../../data_format/group_chat/group_chat_format.md)
+完整的格式说明请参考：[群聊格式规范](../data_format/group_chat/group_chat_format.md)
 
 ## 🔧 使用脚本存储记忆
 
@@ -425,7 +425,7 @@ uv run python src/bootstrap.py src/run_memorize.py \
 
 **解决方案**：
 - 检查 JSON 格式是否正确
-- 参考 [群聊格式规范](../../data_format/group_chat/group_chat_format.md)
+- 参考 [群聊格式规范](../data_format/group_chat/group_chat_format.md)
 - 确保必需字段都已填写
 
 #### API 调用失败
@@ -453,7 +453,7 @@ uv run python src/bootstrap.py src/run_memorize.py \
 
 ## 🔗 相关文档
 
-- [群聊格式规范](../../data_format/group_chat/group_chat_format.md) - GroupChatFormat 详细说明
+- [群聊格式规范](../data_format/group_chat/group_chat_format.md) - GroupChatFormat 详细说明
 - [Agentic V3 API](../api_docs/agentic_v3_api.md) - V3 API 完整文档
 - [Agentic V2 API](../api_docs/agentic_v2_api.md) - V2 API 完整文档
 - [快速开始指南](getting_started.md) - 环境搭建和服务启动

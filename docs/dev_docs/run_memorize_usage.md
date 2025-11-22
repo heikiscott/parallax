@@ -53,7 +53,7 @@ python src/bootstrap.py src/run_memorize.py \
 
 ## 输入文件格式
 
-输入文件必须符合 `GroupChatFormat` 规范，详见 `data_format/group_chat/group_chat_format.py`。
+输入文件必须符合 `GroupChatFormat` 规范，详见 `docs/data_format/group_chat/group_chat_format.py`。
 
 ### 格式示例
 
@@ -252,7 +252,7 @@ A: 目前默认使用 80% 作为历史消息。如需调整，可以在调用 `_
 
 ## 参考资料
 
-- [GroupChatFormat 格式定义](../../data_format/group_chat/group_chat_format.py)
+- [GroupChatFormat 格式定义](../data_format/group_chat/group_chat_format.py)
 - [Agentic V2 API 文档](../api_docs/agentic_v2_api.md)
 - [Bootstrap 使用文档](./bootstrap_usage.md)
 

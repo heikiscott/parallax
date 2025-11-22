@@ -219,7 +219,7 @@ The system uses sample conversation files from the `data/` directory:
 | Group Chat | Chinese | `data/group_chat_zh.json` |
 | Group Chat | English | `data/group_chat_en.json` |
 
-All data files follow the [GroupChatFormat](../data_format/group_chat/group_chat_format.md) specification. See [data documentation](../data/README.md) for details.
+All data files follow the [GroupChatFormat](../../docs/data_format/group_chat/group_chat_format.md) specification. See [data documentation](../data/README.md) for details.
 
 **Using Custom Data**:
 Edit `extract_memory.py` and modify the `data_file` and `profile_scene` variables to point to your data file.
@@ -255,7 +255,7 @@ MONGODB_URI=mongodb://admin:memsys123@localhost:27017
 
 ## 🔗 Related Documentation
 
-- [Group Chat Format Specification](../data_format/group_chat/group_chat_format.md)
+- [Group Chat Format Specification](../../docs/data_format/group_chat/group_chat_format.md)
 - [API Documentation](../docs/api_docs/agentic_v3_api.md)
 - [Data Documentation](../data/README.md)
 - [Internationalization Guide](../docs/dev_docs/chat_i18n_usage.md)
@@ -304,7 +304,7 @@ MONGODB_URI=mongodb://admin:memsys123@localhost:27017
 
 ## 🔗 Related Documentation
 
-- 📋 [Group Chat Format Specification](../data_format/group_chat/group_chat_format.md) - Data file format
+- 📋 [Group Chat Format Specification](../../docs/data_format/group_chat/group_chat_format.md) - Data file format
 - 🔌 [API Documentation](../docs/api_docs/agentic_v3_api.md) - API reference
 - 📦 [Data Documentation](../data/README.md) - Sample data details
 - 🏠 [Project Home](../README.md) - Project overview and architecture
@@ -334,7 +334,7 @@ MONGODB_URI=mongodb://admin:memsys123@localhost:27017
 - **Group chat mode (group_chat)**: Multi-participant conversations, extract group memories and member profiles
 
 ### Q: What is the data file format?
-**A**: JSON format following the [GroupChatFormat](../data_format/group_chat/group_chat_format.md) specification. The project provides 4 sample files for reference.
+**A**: JSON format following the [GroupChatFormat](../../docs/data_format/group_chat/group_chat_format.md) specification. The project provides 4 sample files for reference.
 
 ### Q: How to view data in databases?
 **A**: 

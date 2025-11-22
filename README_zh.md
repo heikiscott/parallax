@@ -1,7 +1,7 @@
 <div align="center">
 
 <h1>
-  <img src="figs/logo.png" alt="Parallax Logo" height="40" style="vertical-align: middle; margin-right: 12px;"/>
+  <img src="docs/assets/figs/logo.png" alt="Parallax Logo" height="40" style="vertical-align: middle; margin-right: 12px;"/>
   Parallax
 </h1>
 
@@ -147,7 +147,7 @@
 Parallax 围绕两条主线运行：**记忆构筑**与**记忆感知**。它们组成认知闭环，使系统持续吸收、沉淀并运用过往信息，让每次回应立足真实上下文与长期记忆。
 
 <p align="center">
-  <img src="figs/overview.png" alt="Overview" />
+  <img src="docs/assets/figs/overview.png" alt="Overview" />
 </p>
 
 ### 🧩 记忆构筑
@@ -222,7 +222,7 @@ memsys-opensource/
 ├── data/                             # 示例对话数据
 ├── evaluation/                       # 评估脚本
 │   └── src/                          # 评估框架源代码
-├── data_format/                      # 数据格式定义
+├── docs/data_format/                      # 数据格式定义
 ├── docs/                             # 文档
 ├── config.json                       # 配置文件
 ├── env.template                      # 环境变量模板
@@ -572,7 +572,7 @@ curl -X POST http://localhost:8001/api/v3/agentic/retrieve_agentic \
 
 #### 📦 批量存储群聊记忆
 
-Parallax 支持标准化的群聊数据格式（[GroupChatFormat](data_format/group_chat/group_chat_format.md)），可以使用脚本批量存储：
+Parallax 支持标准化的群聊数据格式（[GroupChatFormat](docs/data_format/group_chat/group_chat_format.md)），可以使用脚本批量存储：
 
 ```bash
 # 使用脚本批量存储（中文数据）
@@ -626,7 +626,7 @@ uv run python src/bootstrap.py src/run_memorize.py \
 }
 ```
 
-完整的格式说明请参考 [群聊格式规范](data_format/group_chat/group_chat_format.md)。
+完整的格式说明请参考 [群聊格式规范](docs/data_format/group_chat/group_chat_format.md)。
 
 ### 更多详细信息
 
@@ -635,7 +635,7 @@ uv run python src/bootstrap.py src/run_memorize.py \
 - 📖 [API 使用指南](docs/dev_docs/api_usage_guide.md) - API 接口和数据格式详解
 - 🔧 [开发指南](docs/dev_docs/development_guide.md) - 架构设计和开发最佳实践
 - 🚀 [Bootstrap 使用](docs/dev_docs/bootstrap_usage.md) - 脚本运行器使用说明
-- 📝 [群聊格式规范](data_format/group_chat/group_chat_format.md) - 标准化数据格式
+- 📝 [群聊格式规范](docs/data_format/group_chat/group_chat_format.md) - 标准化数据格式
 
 
 ## 📚 文档

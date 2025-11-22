@@ -18,7 +18,7 @@
 
 - **`group_chat_en.json`** / **`group_chat_zh.json`** - 群组对话示例数据
   - 多用户群聊格式
-  - 遵循 [GroupChatFormat](../data_format/group_chat/group_chat_format.md) 规范
+  - 遵循 [GroupChatFormat](../docs/data_format/group_chat/group_chat_format.md) 规范
   - 用于测试群组讨论的记忆提取
   - 提供英文和中文版本
 
@@ -28,7 +28,7 @@
 
 ### GroupChatFormat 规范
 
-所有对话数据文件都遵循标准化的 [GroupChatFormat](../data_format/group_chat/group_chat_format.md) 格式：
+所有对话数据文件都遵循标准化的 [GroupChatFormat](../docs/data_format/group_chat/group_chat_format.md) 格式：
 
 ```json
 {
@@ -105,7 +105,7 @@ Parallax 支持两种核心对话场景：
 
 ## 🔗 相关文档
 
-- [GroupChatFormat 规范](../data_format/group_chat/group_chat_format.md)
+- [GroupChatFormat 规范](../docs/data_format/group_chat/group_chat_format.md)
 - [批量记忆化使用说明](../docs/dev_docs/run_memorize_usage.md)
 - [演示脚本指南](../demo/README_zh.md)
 - [API 文档](../docs/api_docs/agentic_v3_api.md)
@@ -121,7 +121,7 @@ Parallax 支持两种核心对话场景：
 
 ## 💡 需要帮助？
 
-- 查看 [GroupChatFormat 文档](../data_format/group_chat/group_chat_format.md)
+- 查看 [GroupChatFormat 文档](../docs/data_format/group_chat/group_chat_format.md)
 - 查阅 [批量记忆化使用指南](../docs/dev_docs/run_memorize_usage.md)
 - 在 GitHub 上提交问题
 

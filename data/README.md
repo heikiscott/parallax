@@ -18,7 +18,7 @@ All sample data files are now available in both **English** and **Chinese** vers
 
 - **`group_chat_en.json`** / **`group_chat_zh.json`** - Sample group conversation data
   - Multi-user group chat format
-  - Follows [GroupChatFormat](../data_format/group_chat/group_chat_format.md) specification
+  - Follows [GroupChatFormat](../docs/data_format/group_chat/group_chat_format.md) specification
   - Used for testing memory extraction from group discussions
   - Available in English and Chinese
 
@@ -28,7 +28,7 @@ All sample data files are now available in both **English** and **Chinese** vers
 
 ### GroupChatFormat Specification
 
-All conversation data files follow the standardized [GroupChatFormat](../data_format/group_chat/group_chat_format.md) format:
+All conversation data files follow the standardized [GroupChatFormat](../docs/data_format/group_chat/group_chat_format.md) format:
 
 ```json
 {
@@ -167,7 +167,7 @@ To add your own conversation data:
 
 ## 🔗 Related Documentation
 
-- [GroupChatFormat Specification](../data_format/group_chat/group_chat_format.md)
+- [GroupChatFormat Specification](../docs/data_format/group_chat/group_chat_format.md)
 - [Batch Memorization Usage](../docs/dev_docs/run_memorize_usage.md)
 - [Demo Scripts Guide](../demo/README.md)
 - [API Documentation](../docs/api_docs/agentic_v3_api.md)
@@ -183,7 +183,7 @@ To add your own conversation data:
 
 ## 💡 Need Help?
 
-- Check the [GroupChatFormat documentation](../data_format/group_chat/group_chat_format.md)
+- Check the [GroupChatFormat documentation](../docs/data_format/group_chat/group_chat_format.md)
 - Review the [Batch Memorization Usage Guide](../docs/dev_docs/run_memorize_usage.md)
 - Open an issue on GitHub
 

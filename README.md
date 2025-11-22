@@ -1,7 +1,7 @@
 <div align="center">
 
 <h1>
-  <img src="figs/logo.png" alt="Parallax Logo" height="40" style="vertical-align: middle; margin-right: 12px;"/>
+  <img src="docs/assets/figs/logo.png" alt="Parallax Logo" height="40" style="vertical-align: middle; margin-right: 12px;"/>
   Parallax
 </h1>
 
@@ -147,7 +147,7 @@ Build AI memory that never forgets, making every conversation built on previous 
 Parallax operates along two main tracks: **memory construction** and **memory perception**. Together they form a cognitive loop that continuously absorbs, consolidates, and applies past information, so every response is grounded in real context and long-term memory.
 
 <p align="center">
-  <img src="figs/overview.png" alt="Overview" />
+  <img src="docs/assets/figs/overview.png" alt="Overview" />
 </p>
 
 ### 🧩 Memory Construction
@@ -221,7 +221,7 @@ memsys-opensource/
 ├── data/                             # Sample conversation data
 ├── evaluation/                       # Evaluation scripts
 │   └── src/                          # Evaluation framework source code
-├── data_format/                      # Data format definitions
+├── docs/data_format/                      # Data format definitions
 ├── docs/                             # Documentation
 ├── config.json                       # Configuration file
 ├── env.template                      # Environment variable template
@@ -577,7 +577,7 @@ curl -X POST http://localhost:8001/api/v3/agentic/retrieve_agentic \
 
 #### 📦 Batch Store Group Chat Memory
 
-Parallax supports a standardized group chat data format ([GroupChatFormat](data_format/group_chat/group_chat_format.md)). You can use scripts for batch storage:
+Parallax supports a standardized group chat data format ([GroupChatFormat](docs/data_format/group_chat/group_chat_format.md)). You can use scripts for batch storage:
 
 ```bash
 # Use script for batch storage (Chinese data)
@@ -631,7 +631,7 @@ uv run python src/bootstrap.py src/run_memorize.py \
 }
 ```
 
-For complete format specifications, please refer to [Group Chat Format Specification](data_format/group_chat/group_chat_format.md).
+For complete format specifications, please refer to [Group Chat Format Specification](docs/data_format/group_chat/group_chat_format.md).
 
 ### More Details
 
@@ -640,7 +640,7 @@ For detailed installation, configuration, and usage instructions, please refer t
 - 📖 [API Usage Guide](docs/dev_docs/api_usage_guide.md) - API endpoints and data format details
 - 🔧 [Development Guide](docs/dev_docs/development_guide.md) - Architecture design and development best practices
 - 🚀 [Bootstrap Usage](docs/dev_docs/bootstrap_usage.md) - Script runner usage instructions
-- 📝 [Group Chat Format Specification](data_format/group_chat/group_chat_format.md) - Standardized data format
+- 📝 [Group Chat Format Specification](docs/data_format/group_chat/group_chat_format.md) - Standardized data format
 
 ## 📚 Documentation
 

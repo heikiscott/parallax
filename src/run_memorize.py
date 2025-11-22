@@ -407,7 +407,7 @@ async def async_main():
   python src/bootstrap.py src/run_memorize.py --input data/group_chat.json --validate-only
   
 输入文件格式:
-  输入文件必须符合 GroupChatFormat 规范，参考 data_format/group_chat/group_chat_format.py
+  输入文件必须符合 GroupChatFormat 规范，参考 docs/data_format/group_chat/group_chat_format.py
   
 接口说明:
   - V3 接口（推荐）：/api/v3/agentic/memorize - 简单直接的单条消息格式，逐条处理

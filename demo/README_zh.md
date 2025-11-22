@@ -222,7 +222,7 @@ python chat_with_memory.py
 | 群组对话 | 中文 | `data/group_chat_zh.json` |
 | 群组对话 | 英文 | `data/group_chat_en.json` |
 
-所有数据文件遵循 [GroupChatFormat](../data_format/group_chat/group_chat_format.md) 规范。详见[数据说明文档](../data/README_zh.md)。
+所有数据文件遵循 [GroupChatFormat](../../docs/data_format/group_chat/group_chat_format.md) 规范。详见[数据说明文档](../data/README_zh.md)。
 
 **使用自定义数据**：
 编辑 `extract_memory.py`，修改 `data_file` 和 `profile_scene` 变量指向您的数据文件。
@@ -258,7 +258,7 @@ MONGODB_URI=mongodb://admin:memsys123@localhost:27017
 
 ## 🔗 相关文档
 
-- [群聊格式规范](../data_format/group_chat/group_chat_format.md)
+- [群聊格式规范](../../docs/data_format/group_chat/group_chat_format.md)
 - [API 文档](../docs/api_docs/agentic_v3_api_zh.md)
 - [数据说明文档](../data/README_zh.md)
 - [国际化使用指南](../docs/dev_docs/chat_i18n_usage.md)
@@ -306,7 +306,7 @@ MONGODB_URI=mongodb://admin:memsys123@localhost:27017
 
 ## 🔗 相关文档
 
-- 📋 [群聊格式规范](../data_format/group_chat/group_chat_format.md) - 数据文件格式说明
+- 📋 [群聊格式规范](../../docs/data_format/group_chat/group_chat_format.md) - 数据文件格式说明
 - 🔌 [API 文档](../docs/api_docs/agentic_v3_api_zh.md) - API 接口文档
 - 📦 [数据说明](../data/README_zh.md) - 示例数据详细说明
 - 🏠 [项目主页](../README_zh.md) - 项目概述和架构
@@ -336,7 +336,7 @@ MONGODB_URI=mongodb://admin:memsys123@localhost:27017
 - **群聊模式（group_chat）**：多人对话，提取群组记忆和成员画像
 
 ### Q: 数据文件格式是什么？
-**A**: JSON 格式，遵循 [GroupChatFormat](../data_format/group_chat/group_chat_format.md) 规范。项目提供 4 个示例文件供参考。
+**A**: JSON 格式，遵循 [GroupChatFormat](../../docs/data_format/group_chat/group_chat_format.md) 规范。项目提供 4 个示例文件供参考。
 
 ### Q: 如何查看数据库中的数据？
 **A**: 
