@@ -207,17 +207,17 @@ Parallax 围绕两条主线运行：**记忆构筑**与**记忆感知**。它们
 ```
 memsys-opensource/
 ├── src/                              # 源代码目录
-│   ├── agentic_layer/                # 代理层 - 统一记忆接口
-│   ├── memory_layer/                 # 记忆层 - 记忆提取
+│   ├── agents/                # 代理层 - 统一记忆接口
+│   ├── memory/                 # 记忆层 - 记忆提取
 │   │   ├── memcell_extractor/        # MemCell提取器
 │   │   ├── memory_extractor/         # Memory提取器
 │   │   └── prompts/                  # LLM提示词模板
 │   ├── retrieval_layer/              # 检索层 - 记忆检索
-│   ├── biz_layer/                    # 业务层 - 业务逻辑
-│   ├── infra_layer/                  # 基础设施层
+│   ├── services/                    # 业务层 - 业务逻辑
+│   ├── infrastructure/                  # 基础设施层
 │   ├── core/                         # 核心功能(DI/生命周期/中间件)
 │   ├── component/                    # 组件(LLM适配器等)
-│   └── common_utils/                 # 通用工具
+│   └── utils/                 # 通用工具
 ├── demo/                             # 演示代码
 ├── data/                             # 示例对话数据
 ├── evaluation/                       # 评估脚本

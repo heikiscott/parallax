@@ -86,7 +86,7 @@ async def setup_project_context(env_file=".env", mock_mode=False):
 
     add_parent_path(0)
 
-    from common_utils.load_env import setup_environment
+    from utils.load_env import setup_environment
 
     # 设置环境（Python路径和.env文件）
     setup_environment(load_env_file_name=env_file, check_env_var="MONGODB_HOST")

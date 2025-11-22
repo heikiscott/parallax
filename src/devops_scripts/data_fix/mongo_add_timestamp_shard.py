@@ -12,7 +12,7 @@ from typing import Optional
 
 from pymongo.errors import OperationFailure
 
-from infra_layer.adapters.out.persistence.document.memory.memcell import MemCell
+from infrastructure.adapters.out.persistence.document.memory.memcell import MemCell
 
 logger = logging.getLogger(__name__)
 

@@ -16,7 +16,7 @@ from datetime import datetime
 
 from core.di.decorators import component
 from core.observation.logger import get_logger
-from component.redis_provider import RedisProvider
+from providers.redis_provider import RedisProvider
 from .redis_data_processor import RedisDataProcessor
 
 # 配置常量

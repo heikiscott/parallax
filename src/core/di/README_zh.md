@@ -17,7 +17,7 @@
 ### 基本使用
 
 ```python
-from di import component, service, repository, get_bean_by_type
+from di import providers, service, repository, get_bean_by_type
 from abc import ABC, abstractmethod
 
 # 定义接口

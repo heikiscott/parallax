@@ -206,17 +206,17 @@ Memory perception layer: quickly recalls relevant memories through multi-round r
 ```
 memsys-opensource/
 ├── src/                              # Source code directory
-│   ├── agentic_layer/                # Agentic layer - unified memory interface
-│   ├── memory_layer/                 # Memory layer - memory extraction
+│   ├── agents/                # Agentic layer - unified memory interface
+│   ├── memory/                 # Memory layer - memory extraction
 │   │   ├── memcell_extractor/        # MemCell extractor
 │   │   ├── memory_extractor/         # Memory extractor
 │   │   └── prompts/                  # LLM prompt templates
 │   ├── retrieval_layer/              # Retrieval layer - memory retrieval
-│   ├── biz_layer/                    # Business layer - business logic
-│   ├── infra_layer/                  # Infrastructure layer
+│   ├── services/                    # Business layer - business logic
+│   ├── infrastructure/                  # Infrastructure layer
 │   ├── core/                         # Core functionality (DI/lifecycle/middleware)
 │   ├── component/                    # Components (LLM adapters, etc.)
-│   └── common_utils/                 # Common utilities
+│   └── utils/                 # Common utilities
 ├── demo/                             # Demo code
 ├── data/                             # Sample conversation data
 ├── evaluation/                       # Evaluation scripts

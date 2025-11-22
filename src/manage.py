@@ -39,7 +39,7 @@ def setup_environment_and_app(env_file: str = ".env"):
     if _initialized:
         return
 
-    from common_utils.load_env import setup_environment
+    from utils.load_env import setup_environment
     from application_startup import setup_all
 
     # 加载环境变量

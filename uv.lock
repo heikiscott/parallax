@@ -1,5 +1,5 @@
 version = 1
-revision = 2
+revision = 3
 requires-python = "==3.12.*"
 
 [[package]]
@@ -1023,15 +1023,6 @@ wheels = [
 ]
 
 [[package]]
-name = "import-parent-dir"
-version = "0.1.1"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/14/f6/66118a395f66ade0c3506d565cb7c8e40612eaf01b33e2fc3421afb9700e/import_parent_dir-0.1.1.tar.gz", hash = "sha256:43bfef0fe0990146130e537beb275ac1e4db4d9ebab7e3ac04ebdbe514d92110", size = 1623, upload-time = "2019-01-09T06:12:06.054Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/a5/1f/bad7557e10f53b432f313b36007609961ffef95ac0cc93b67bd0956f7a90/import_parent_dir-0.1.1-py3-none-any.whl", hash = "sha256:0a519422a74670d6f0d1858338f0b648faa34f0839713d763ca0c102d8ce4b65", size = 2951, upload-time = "2019-01-09T06:12:04.823Z" },
-]
-
-[[package]]
 name = "iniconfig"
 version = "2.1.0"
 source = { registry = "https://pypi.org/simple" }
@@ -1546,7 +1537,6 @@ dependencies = [
     { name = "greenlet" },
     { name = "html2text" },
     { name = "igraph" },
-    { name = "import-parent-dir" },
     { name = "jieba" },
     { name = "langchain" },
     { name = "langchain-anthropic" },
@@ -1652,7 +1642,6 @@ requires-dist = [
     { name = "greenlet", specifier = ">=3.2.0" },
     { name = "html2text", specifier = ">=2025.4.15" },
     { name = "igraph", specifier = ">=0.10.0" },
-    { name = "import-parent-dir", specifier = ">=0.1.1" },
     { name = "jieba", specifier = "==0.42.1" },
     { name = "langchain", specifier = ">=0.3.26" },
     { name = "langchain-anthropic", specifier = ">=0.3.17" },

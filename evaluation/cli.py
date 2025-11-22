@@ -28,18 +28,18 @@ if str(src_path) not in sys.path:
     sys.path.insert(0, str(src_path))
 
 # 2. 加载环境变量
-from common_utils.load_env import setup_environment
+from utils.load_env import setup_environment
 setup_environment(load_env_file_name=".env", check_env_var="MONGODB_HOST")
 
 # ===== 现在可以安全地导入 Parallax 组件 =====
-from evaluation.src.core.loaders import load_dataset
-from evaluation.src.core.pipeline import Pipeline
-from evaluation.src.adapters.registry import create_adapter
-from evaluation.src.evaluators.registry import create_evaluator
-from evaluation.src.utils.config import load_yaml
-from evaluation.src.utils.logger import get_console
+from evaluation.lib.core.loaders import load_dataset
+from evaluation.lib.core.pipeline import Pipeline
+from evaluation.lib.adapters.registry import create_adapter
+from evaluation.lib.evaluators.registry import create_evaluator
+from evaluation.lib.utils.config import load_yaml
+from evaluation.lib.utils.logger import get_console
 
-from memory_layer.llm.llm_provider import LLMProvider
+from memory.llm.llm_provider import LLMProvider
 
 
 def deep_merge_config(base: dict, override: dict) -> dict:
@@ -227,7 +227,7 @@ async def main():
         systems_need_rerank = ["parallax"]
         if args.system in systems_need_rerank:
             try:
-                from agentic_layer import rerank_service
+                from agents import rerank_service
                 reranker = rerank_service.get_rerank_service()
                 if hasattr(reranker, 'close') and callable(getattr(reranker, 'close')):
                     await reranker.close()

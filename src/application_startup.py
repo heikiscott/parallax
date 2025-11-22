@@ -7,7 +7,7 @@
 import os
 
 # 添加当前目录到Python路径
-from common_utils.project_path import CURRENT_DIR
+from utils.project_path import CURRENT_DIR
 
 # 导入依赖注入相关模块
 from core.di.scanner import ComponentScanner
@@ -34,10 +34,10 @@ def get_default_scan_paths():
         os.path.join(base_path, "core/lifespan"),
         os.path.join(base_path, "core/lock"),
         os.path.join(base_path, "core/cache"),
-        os.path.join(base_path, "component"),
-        os.path.join(base_path, "infra_layer"),
-        os.path.join(base_path, "agentic_layer"),
-        os.path.join(base_path, "biz_layer"),
+        os.path.join(base_path, "providers"),
+        os.path.join(base_path, "infrastructure"),
+        os.path.join(base_path, "agents"),
+        os.path.join(base_path, "services"),
     ]
 
 
@@ -46,7 +46,7 @@ def get_default_task_directories():
     base_path = get_base_scan_path()
     return [
         os.path.join(base_path, "core/asynctasks/examples"),
-        os.path.join(base_path, "infra_layer/adapters/input/jobs"),
+        os.path.join(base_path, "infrastructure/adapters/input/jobs"),
     ]
 
 

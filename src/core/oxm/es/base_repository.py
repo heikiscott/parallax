@@ -344,7 +344,7 @@ class BaseRepository(ABC, Generic[T]):
             if hasattr(self.model, 'dest'):
                 index_name = self.model.dest()
             else:
-                from common_utils.datetime_utils import get_now_with_timezone
+                from utils.datetime_utils import get_now_with_timezone
 
                 now = get_now_with_timezone()
                 alias = self.get_index_name()

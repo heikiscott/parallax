@@ -47,7 +47,7 @@ docker-compose up -d
 
 - **No relative imports**: Use absolute imports from project root
 - **No wildcard imports**: Avoid `from module import *`
-- **DateTime handling**: Use `common_utils.datetime_utils` instead of direct `datetime` module
+- **DateTime handling**: Use `utils.datetime_utils` instead of direct `datetime` module
 - **No code in `__init__.py`**: Use only as package markers
 
 ## 🔀 Git Workflow

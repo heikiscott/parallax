@@ -185,7 +185,7 @@ class TaskManager:
         """
         try:
             # 转换为绝对路径
-            from common_utils.project_path import src_dir
+            from utils.project_path import src_dir
 
             relative_path = Path(directory).resolve().relative_to(src_dir)
             package_name = ".".join(relative_path.parts)
@@ -327,7 +327,7 @@ class TaskManager:
         # 计算延迟时间
         defer_until = None
         if delay is not None:
-            from common_utils.datetime_utils import get_now_with_timezone
+            from utils.datetime_utils import get_now_with_timezone
 
             defer_until = get_now_with_timezone() + timedelta(seconds=delay)
 

@@ -7,7 +7,7 @@
 import os
 import logging
 from typing import Set, Optional
-from common_utils.project_path import CURRENT_DIR
+from utils.project_path import CURRENT_DIR
 
 logger = logging.getLogger(__name__)
 

@@ -13,7 +13,7 @@ from datetime import datetime
 from pathlib import Path
 from typing import Optional
 
-from common_utils.project_path import CURRENT_DIR
+from utils.project_path import CURRENT_DIR
 from pymongo import MongoClient
 
 # Module-level logger for this file

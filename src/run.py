@@ -18,10 +18,18 @@ import logging
 # 这里环境变量还没加载，所以不能使用get_logger
 logger = logging.getLogger(__name__)
 
-# 添加src目录到Python路径
-from import_parent_dir import add_parent_path
+# Add src directory to Python path
+import sys
+from pathlib import Path
 
-add_parent_path(0)
+current_dir = Path(__file__).resolve().parent
+if str(current_dir) not in sys.path:
+    sys.path.insert(0, str(current_dir))
+
+# Add project root to Python path to allow imports like 'from src...'
+project_root = current_dir.parent
+if str(project_root) not in sys.path:
+    sys.path.insert(0, str(project_root))
 
 # 应用信息
 APP_NAME = "Memory System"
@@ -63,7 +71,7 @@ def main():
         service_name = "web"
 
     # 使用统一的环境加载工具
-    from common_utils.load_env import setup_environment
+    from utils.load_env import setup_environment
 
     # 设置环境（Python路径和.env文件）
     setup_environment(

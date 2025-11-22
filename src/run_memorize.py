@@ -25,7 +25,7 @@ from typing import Dict, Any, Optional
 
 ALLOWED_SCENES: tuple[str, str] = ("assistant", "group_chat")
 
-from infra_layer.adapters.input.api.mapper.group_chat_converter import (
+from infrastructure.adapters.input.api.mapper.group_chat_converter import (
     convert_group_chat_format_to_memorize_input,
     validate_group_chat_format_input,
 )

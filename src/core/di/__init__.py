@@ -46,7 +46,7 @@ __all__ = [
     'DIContainer',
     'get_container',
     # 装饰器
-    'component',
+    "providers",
     'service',
     'repository',
     'factory',

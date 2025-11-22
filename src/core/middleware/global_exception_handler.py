@@ -9,7 +9,7 @@ from fastapi import Request, HTTPException
 from fastapi.responses import JSONResponse
 from starlette.status import HTTP_500_INTERNAL_SERVER_ERROR
 from core.observation.logger import get_logger
-from common_utils.datetime_utils import to_iso_format, get_now_with_timezone
+from utils.datetime_utils import to_iso_format, get_now_with_timezone
 from core.constants.errors import ErrorCode, ErrorStatus
 
 logger = get_logger(__name__)

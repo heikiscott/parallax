@@ -17,7 +17,7 @@ This is a fully-featured Python dependency injection framework that supports all
 ### Basic Usage
 
 ```python
-from di import component, service, repository, get_bean_by_type
+from di import providers, service, repository, get_bean_by_type
 from abc import ABC, abstractmethod
 
 # Define interface

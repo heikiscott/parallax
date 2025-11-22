@@ -40,7 +40,7 @@ add_parent_path(0)
 
 # 使用统一的环境加载工具
 # 设置.env文件
-from common_utils.load_env import setup_environment
+from utils.load_env import setup_environment
 
 setup_environment(check_env_var="REDIS_HOST")
 

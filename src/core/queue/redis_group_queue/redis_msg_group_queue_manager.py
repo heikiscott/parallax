@@ -22,7 +22,7 @@ from enum import Enum
 import redis.asyncio as redis
 
 from core.observation.logger import get_logger
-from common_utils.datetime_utils import get_now_with_timezone, to_iso_format
+from utils.datetime_utils import get_now_with_timezone, to_iso_format
 from core.queue.redis_group_queue.redis_group_queue_item import SimpleQueueItem
 from core.queue.redis_group_queue.redis_group_queue_item import (
     RedisGroupQueueItem,

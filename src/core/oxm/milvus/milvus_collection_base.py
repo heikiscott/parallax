@@ -7,7 +7,7 @@ from pymilvus.client.types import ConsistencyLevel, LoadState
 
 from pymilvus import connections
 from core.oxm.milvus.async_collection import AsyncCollection
-from common_utils.datetime_utils import get_now_with_timezone
+from utils.datetime_utils import get_now_with_timezone
 
 logger = logging.getLogger(__name__)
 

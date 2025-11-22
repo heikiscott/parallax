@@ -14,7 +14,7 @@ from enum import Enum
 from collections import deque
 
 from core.observation.logger import get_logger
-from common_utils.datetime_utils import get_now_with_timezone, to_iso_format
+from utils.datetime_utils import get_now_with_timezone, to_iso_format
 
 logger = get_logger(__name__)
 

@@ -5,7 +5,7 @@ import os
 from fnmatch import fnmatch
 from datetime import datetime
 from elasticsearch.dsl import MetaField, AsyncDocument, field as e_field
-from common_utils.datetime_utils import get_now_with_timezone, to_timezone
+from utils.datetime_utils import get_now_with_timezone, to_timezone
 
 
 def get_index_ns() -> str:

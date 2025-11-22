@@ -16,11 +16,11 @@ import asyncio
 from typing import Any, Dict, List, Optional, Tuple
 
 from core.observation.logger import get_logger
-from infra_layer.adapters.out.persistence.document.memory.episodic_memory import (
+from infrastructure.adapters.out.persistence.document.memory.episodic_memory import (
     EpisodicMemory,
 )
-from agentic_layer.vectorize_service import get_vectorize_service
-from common_utils.datetime_utils import from_iso_format, to_iso_format
+from agents.vectorize_service import get_vectorize_service
+from utils.datetime_utils import from_iso_format, to_iso_format
 
 
 logger = get_logger(__name__)

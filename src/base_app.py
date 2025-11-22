@@ -12,7 +12,7 @@ from core.observation.logger import get_logger
 
 from core.middleware.global_exception_handler import global_exception_handler
 from core.di.utils import get_bean_by_type
-from component.database_connection_provider import DatabaseConnectionProvider
+from providers.database_connection_provider import DatabaseConnectionProvider
 
 from core.lifespan.lifespan_factory import LifespanFactory
 

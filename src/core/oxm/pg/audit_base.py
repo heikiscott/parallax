@@ -3,7 +3,7 @@ from typing import Optional
 
 from sqlmodel import Field, SQLModel
 from sqlalchemy import Column, TIMESTAMP, event
-from common_utils.datetime_utils import get_now_with_timezone
+from utils.datetime_utils import get_now_with_timezone
 from core.context.context import get_current_user_info
 from core.observation.logger import get_logger
 

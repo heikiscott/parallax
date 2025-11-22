@@ -5,7 +5,7 @@ MongoDB 文档基类
 """
 
 from datetime import datetime
-from common_utils.datetime_utils import to_timezone
+from utils.datetime_utils import to_timezone
 
 try:
     from beanie import Document
