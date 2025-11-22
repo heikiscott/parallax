@@ -27,7 +27,7 @@ class PromptManager:
         """加载 prompts 配置文件"""
         # 找到 config/prompts.yaml
         current_file = Path(__file__)
-        config_path = current_file.parent.parent.parent / "config" / "prompts.yaml"
+        config_path = current_file.parent.parent / "config" / "prompts.yaml"
         
         if not config_path.exists():
             raise FileNotFoundError(f"Prompts config not found: {config_path}")
