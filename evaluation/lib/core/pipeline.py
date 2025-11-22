@@ -17,7 +17,7 @@ from evaluation.lib.utils.saver import ResultSaver
 from evaluation.lib.utils.checkpoint import CheckpointManager
 
 # 导入答案生成所需的组件
-from memory.llm.llm_provider import LLMProvider
+from providers.llm.llm_provider import LLMProvider
 
 # 导入各个阶段的执行函数
 from evaluation.lib.core.stages.add_stage import run_add_stage

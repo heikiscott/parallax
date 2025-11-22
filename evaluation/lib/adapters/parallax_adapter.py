@@ -39,7 +39,7 @@ from evaluation.lib.adapters.parallax import (
 )
 
 # 导入 Memory Layer 组件
-from memory.llm.llm_provider import LLMProvider
+from providers.llm.llm_provider import LLMProvider
 from memory.memory_extractor.event_log_extractor import EventLogExtractor
 
 

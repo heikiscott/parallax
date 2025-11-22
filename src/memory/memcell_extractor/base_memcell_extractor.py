@@ -10,7 +10,7 @@ from dataclasses import dataclass
 from typing import List, Dict, Any, Optional
 from datetime import datetime
 import json
-from memory.llm.llm_provider import LLMProvider
+from providers.llm.llm_provider import LLMProvider
 from memory.types import RawDataType, Memory, MemCell
 import re
 

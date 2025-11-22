@@ -6,7 +6,7 @@ from typing import List, Optional
 
 from core.observation.logger import get_logger
 
-from .llm.llm_provider import LLMProvider
+from providers.llm.llm_provider import LLMProvider
 from .memcell_extractor.conv_memcell_extractor import ConvMemCellExtractor
 from .memcell_extractor.base_memcell_extractor import RawData
 from .memcell_extractor.conv_memcell_extractor import ConversationMemCellExtractRequest

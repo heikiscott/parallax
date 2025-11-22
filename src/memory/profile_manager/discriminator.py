@@ -6,7 +6,7 @@ import re
 from dataclasses import dataclass
 from typing import Any, Dict, List, Optional, Tuple
 
-from memory.llm.llm_provider import LLMProvider
+from providers.llm.llm_provider import LLMProvider
 from core.observation.logger import get_logger
 
 logger = get_logger(__name__)

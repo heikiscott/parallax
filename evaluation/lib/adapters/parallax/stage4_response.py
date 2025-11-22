@@ -16,7 +16,7 @@ from evaluation.lib.adapters.parallax.config import ExperimentConfig
 from evaluation.lib.adapters.parallax.prompts.answer_prompts import ANSWER_PROMPT
 
 # 使用 Memory Layer 的 LLMProvider
-from memory.llm.llm_provider import LLMProvider
+from providers.llm.llm_provider import LLMProvider
 
 
 # 🔥 Context 构建模板（从 stage3 迁移过来）

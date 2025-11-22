@@ -39,7 +39,7 @@ from evaluation.lib.evaluators.registry import create_evaluator
 from evaluation.lib.utils.config import load_yaml
 from evaluation.lib.utils.logger import get_console
 
-from memory.llm.llm_provider import LLMProvider
+from providers.llm.llm_provider import LLMProvider
 
 
 def deep_merge_config(base: dict, override: dict) -> dict:

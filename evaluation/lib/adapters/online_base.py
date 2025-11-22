@@ -19,7 +19,7 @@ from evaluation.lib.core.data_models import Conversation, SearchResult
 from evaluation.lib.utils.config import load_yaml
 
 # 导入 Memory Layer 组件
-from memory.llm.llm_provider import LLMProvider
+from providers.llm.llm_provider import LLMProvider
 
 logger = logging.getLogger(__name__)
 

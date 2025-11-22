@@ -506,7 +506,7 @@ class AgenticV3Controller(BaseController):
             )
             
             # 2. 创建 LLM Provider
-            from memory.llm.llm_provider import LLMProvider
+            from providers.llm.llm_provider import LLMProvider
             import os
             
             # 从请求或环境变量获取配置

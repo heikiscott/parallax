@@ -110,7 +110,7 @@ async def _trigger_clustering(group_id: str, memcell: MemCell, scene: Optional[s
     try:
         from memory.cluster_manager import ClusterManager, ClusterManagerConfig, MongoClusterStorage
         from memory.profile_manager import ProfileManager, ProfileManagerConfig, MongoProfileStorage
-        from memory.llm.llm_provider import LLMProvider
+        from providers.llm.llm_provider import LLMProvider
         from core.di import get_bean_by_type
         import os
         

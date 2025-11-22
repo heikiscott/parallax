@@ -4,7 +4,7 @@ import asyncio
 from typing import Any, Dict, List, Optional, Set
 from pathlib import Path
 
-from memory.llm.llm_provider import LLMProvider
+from providers.llm.llm_provider import LLMProvider
 from memory.memory_extractor.profile_memory_extractor import (
     ProfileMemoryExtractor,
     ProfileMemoryExtractRequest,

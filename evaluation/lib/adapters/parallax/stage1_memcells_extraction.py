@@ -24,7 +24,7 @@ from utils.datetime_utils import (
     from_timestamp,
     get_now_with_timezone,
 )
-from memory.llm.llm_provider import LLMProvider
+from providers.llm.llm_provider import LLMProvider
 from memory.memcell_extractor.base_memcell_extractor import RawData, MemCell
 from memory.memcell_extractor.conv_memcell_extractor import (
     ConvMemCellExtractor,

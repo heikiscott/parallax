@@ -26,7 +26,7 @@ from agents import rerank_service
 from evaluation.lib.adapters.parallax.tools import agentic_utils
 
 # 新增：使用 Memory Layer 的 LLMProvider
-from memory.llm.llm_provider import LLMProvider
+from providers.llm.llm_provider import LLMProvider
 
 
 # This file depends on the rank_bm25 library.
