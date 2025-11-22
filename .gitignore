@@ -14,7 +14,7 @@ dist/
 downloads/
 eggs/
 .eggs/
-# lib/ - commented out to allow eval/lib
+lib/
 lib64/
 parts/
 sdist/
@@ -26,12 +26,6 @@ share/python-wheels/
 .installed.cfg
 *.egg
 MANIFEST
-
-# PyInstaller
-#  Usually these files are written by a python script from a template
-#  before PyInstaller builds the exe, so as to inject date/other infos into it.
-*.manifest
-*.spec
 
 # Installer logs
 pip-log.txt
@@ -55,51 +49,9 @@ coverage.xml
 *.mo
 *.pot
 
-# Django stuff:
-*.log
-local_settings.py
-db.sqlite3
-db.sqlite3-journal
-
-# Flask stuff:
-instance/
-.webassets-cache
-
-# Scrapy stuff:
-.scrapy
-
-# Sphinx documentation
+# Documentation
 docs/_build/
-
-# PyBuilder
-target/
-
-# Jupyter Notebook
-.ipynb_checkpoints
-
-# IPython
-profile_default/
-ipython_config.py
-
-# pyenv
-.python-version
-
-# pipenv
-#   According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.
-#   However, in case of collaboration, if having platform-specific dependencies or dependencies
-#   having no cross-platform support, pipenv may install dependencies that don't work, or not
-#   install all needed dependencies.
-#Pipfile.lock
-
-# PEP 582; used by e.g. github.com/David-OConnor/pyflow
-__pypackages__/
-
-# Celery stuff
-celerybeat-schedule
-celerybeat.pid
-
-# SageMath parsed files
-*.sage.py
+/site
 
 # Environments
 .env
@@ -110,102 +62,48 @@ ENV/
 env.bak/
 venv.bak/
 
-# Spyder project settings
+# IDE Settings
+.vscode/
+.idea/
+.cursor/
 .spyderproject
 .spyderworkspace
-
-# Rope project settings
 .ropeproject
 
-# mkdocs documentation
-/site
-
-# mypy
+# Type Checking
 .mypy_cache/
 .dmypy.json
 dmypy.json
-
-# Pyre type checker
 .pyre/
 
-# Project specific
+# macOS
+.DS_Store
+
+# Project Specific
+## Outputs
 outputs/
-.pytest_cache/
-
-eval/static_memory_evaluation/logs/
-eval/static_memory_evaluation/retrieval/
-eval/static_memory_evaluation/retrieval_bk/
-eval/static_memory_evaluation/analysis/
-memory_base/static_memory_base/bm25_index/
-memory_base/static_memory_base/hipporag/
-memory_base/static_memory_base/vector_search/
-
-# Demo related files
-demo/.chat_history
-demo/chat_history/
-demo/memcell_outputs/
-
 nohup.out
-mongodb_backup/
 
-# Log directories
+## Logs
 logs/
 log/
-
-# Apollo config
-apollo_config/
-
-# Exclude specific files from git tracking
-simple_query_memcell.py
-eval/memory_evaluation/extract_room_data.py
-eval/memory_evaluation/test.py
-eval/results/
-
-# Large test files
-unit_test/memcell_outputs/
-unit_test/profile_outputs/
-unit_test/memcell_outputs.zip
-
-#temp test files
-export_mongodb_data.py
-
-#backup files
-src/memory_layer/memory_extractor/profile_memory_extractor keep llm merge.py
-
-#LLM related
-AGENTS.mk
-docs/api_docs/profile_extraction_fields.md
-.claude/
-.cursor/
-
-#tmp_data
-demo/memcell_outputs/
-eval/locomo_evaluation/results/
-eval/locomo_evaluation/results_ref/
-
-# Evaluation and memory data files
-evaluation_memory_offline/data/
-evaluation_memory_offline/temporary/
-
-# Dynamic memory files (runtime generated)
-memory_base/dynamic_memory_base/memory/
-# Evaluation results and large files
-eval/dynamic_memory_evaluation/locomo_results/*.json
-eval/dynamic_memory_evaluation/locomo_results/hipporag_index*/
-eval/dynamic_memory_evaluation/locomo_results/vector_index*/
-eval/dynamic_memory_evaluation/locomo_results/storages*
-# Large data files
-memory_base/static_memory_base/raw_data/*.json
-*.tar
-*.zip
-
-# Large evaluation files
-eval/memory_evaluation/converted_messages_all_from_1_1.jsonl
-eval/memory_evaluation/*.jsonl
-eval/memory_evaluation/*.json
-
-# Large log files
 *.log
 su_ser.log
 service.log
 service_*.log
+
+## Data & Backups
+mongodb_backup/
+demo/.chat_history
+demo/chat_history/
+demo/memcell_outputs/
+
+## Evaluation Results
+eval/results/
+
+## Temp Files
+export_mongodb_data.py
+simple_query_memcell.py
+
+## LLM Related
+.claude/
