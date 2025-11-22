@@ -5,7 +5,7 @@
 支持命令行参数配置批量大小、处理限制和时间范围。
 
 运行方式（推荐通过 bootstrap 运行，自动加载应用上下文与依赖注入）：
-  python src/bootstrap.py src/devops_scripts/data_fix/milvus_sync_docs.py --collection-name episodic_memory --batch-size 500
+  python scripts/bootstrap.py scripts/data_fix/milvus_sync_docs.py --collection-name episodic_memory --batch-size 500
 
 参数：
   --collection-name, -c  Milvus Collection 名称（必需），如: episodic_memory
@@ -47,7 +47,7 @@ async def run(
 
         # 根据 Collection 名称路由到具体实现
         if collection_name == "episodic_memory":
-            from devops_scripts.data_fix.milvus_sync_episodic_memory_docs import (
+            from milvus_sync_episodic_memory_docs import (
                 sync_episodic_memory_docs,
             )
 

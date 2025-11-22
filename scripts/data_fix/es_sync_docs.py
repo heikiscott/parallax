@@ -26,7 +26,7 @@ async def run(
         logger.info("索引别名: %s", doc_alias)
 
         if "episodic-memory" in str(doc_alias):
-            from devops_scripts.data_fix.es_sync_episodic_memory_docs import (
+            from es_sync_episodic_memory_docs import (
                 sync_episodic_memory_docs,
             )
 
