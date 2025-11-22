@@ -94,10 +94,10 @@ MOCK_MODE=true python src/bootstrap.py your_script.py
 ```python
 # 获取 MongoDB 仓库
 from core.di.utils import get_bean_by_type
-repo = get_bean_by_type(MemCellRawRepository)
+repo = get_bean_by_type(MemUnitRawRepository)
 
 # 查询数据
-memcells = await repo.find_all(limit=5)
+memunits = await repo.find_all(limit=5)
 total_count = await repo.count_all()
 ```
 

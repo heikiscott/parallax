@@ -209,7 +209,7 @@ memsys-opensource/
 ├── src/                              # 源代码目录
 │   ├── agents/                # 代理层 - 统一记忆接口
 │   ├── memory/                 # 记忆层 - 记忆提取
-│   │   ├── memcell_extractor/        # MemCell提取器
+│   │   ├── memunit_extractor/        # MemUnit提取器
 │   │   ├── memory_extractor/         # Memory提取器
 │   │   └── prompts/                  # LLM提示词模板
 │   ├── retrieval_layer/              # 检索层 - 记忆检索
@@ -345,7 +345,7 @@ uv run python src/bootstrap.py demo/extract_memory.py
 该脚本将：
 - 调用 `demo.tools.clear_all_data.clear_all_memories()`，确保演示从空的 MongoDB/Elasticsearch/Milvus/Redis 状态开始。在执行脚本前请确保 `docker-compose` 启动的依赖服务正在运行，否则清理步骤会失败。
 - 加载 `data/assistant_chat_zh.json`，为每条消息添加 `scene="assistant"`，并将每条记录流式发送到 `http://localhost:8001/api/v3/agentic/memorize`。如果您在其他端点托管 API 或想要导入不同的场景，可以更新 `demo/extract_memory.py` 中的 `base_url`、`data_file` 或 `scene` 常量。
-- 仅通过 HTTP API 写入：MemCell、情节和画像都在数据库中创建，而不是保存在 `demo/memcell_outputs/` 目录下。可以检查 MongoDB（以及 Milvus/Elasticsearch）验证数据摄入，或直接进入聊天演示。
+- 仅通过 HTTP API 写入：MemUnit、情节和画像都在数据库中创建，而不是保存在 `demo/memunit_outputs/` 目录下。可以检查 MongoDB（以及 Milvus/Elasticsearch）验证数据摄入，或直接进入聊天演示。
 
 > **💡 提示**: 详细的配置说明和使用指南请参阅 [Demo 文档](demo/README_zh.md)。
 
@@ -358,7 +358,7 @@ uv run python src/bootstrap.py demo/extract_memory.py
 uv run python src/bootstrap.py demo/chat_with_memory.py
 ```
 
-该程序通过 `python-dotenv` 加载 `.env` 文件，验证至少一个 LLM 密钥（`LLM_API_KEY`、`OPENROUTER_API_KEY` 或 `OPENAI_API_KEY`）可用，并通过 `demo.utils.ensure_mongo_beanie_ready` 连接到 MongoDB 以枚举已包含 MemCell 的群组。每个用户查询都会调用 `api/v3/agentic/retrieve_lightweight`，除非您明确选择 Agentic 模式，在这种情况下，编排器会切换到 `api/v3/agentic/retrieve_agentic` 并警告额外的 LLM 延迟。
+该程序通过 `python-dotenv` 加载 `.env` 文件，验证至少一个 LLM 密钥（`LLM_API_KEY`、`OPENROUTER_API_KEY` 或 `OPENAI_API_KEY`）可用，并通过 `demo.utils.ensure_mongo_beanie_ready` 连接到 MongoDB 以枚举已包含 MemUnit 的群组。每个用户查询都会调用 `api/v3/agentic/retrieve_lightweight`，除非您明确选择 Agentic 模式，在这种情况下，编排器会切换到 `api/v3/agentic/retrieve_agentic` 并警告额外的 LLM 延迟。
 
 **交互流程：**
 1. **选择语言**：选择中文或英文终端界面。

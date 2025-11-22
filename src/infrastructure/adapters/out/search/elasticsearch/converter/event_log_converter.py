@@ -70,7 +70,7 @@ class EventLogConverter(BaseEsConverter[EpisodicMemoryDoc]):
                 linked_entities=None,
                 # MongoDB 特有字段
                 subject=source_doc.atomic_fact[:50] if source_doc.atomic_fact else "",
-                memcell_event_id_list=[source_doc.parent_episode_id] if source_doc.parent_episode_id else None,
+                memunit_event_id_list=[source_doc.parent_episode_id] if source_doc.parent_episode_id else None,
                 # 扩展字段
                 extend={
                     "parent_episode_id": source_doc.parent_episode_id,

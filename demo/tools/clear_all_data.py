@@ -3,7 +3,7 @@
 可以被其他测试脚本导入使用，也可以独立运行
 """
 import asyncio
-from infra_layer.adapters.out.persistence.document.memory.memcell import MemCell
+from infra_layer.adapters.out.persistence.document.memory.memunit import MemUnit
 from infra_layer.adapters.out.persistence.document.memory.episodic_memory import EpisodicMemory
 from infra_layer.adapters.out.persistence.document.memory.personal_semantic_memory import PersonalSemanticMemory
 from infra_layer.adapters.out.persistence.document.memory.personal_event_log import PersonalEventLog
@@ -31,7 +31,7 @@ async def clear_all_memories(verbose: bool = True):
         if verbose:
             print("   📦 清空 MongoDB...")
         
-        memcell_count = await MemCell.find_all().count()
+        memunit_count = await MemUnit.find_all().count()
         episode_count = await EpisodicMemory.find_all().count()
         semantic_count = await PersonalSemanticMemory.find_all().count()
         eventlog_count = await PersonalEventLog.find_all().count()
@@ -39,7 +39,7 @@ async def clear_all_memories(verbose: bool = True):
         cluster_count = await ClusterState.find_all().count()
         profile_count = await UserProfile.find_all().count()
         
-        await MemCell.find_all().delete()
+        await MemUnit.find_all().delete()
         await EpisodicMemory.find_all().delete()
         await PersonalSemanticMemory.find_all().delete()
         await PersonalEventLog.find_all().delete()
@@ -48,7 +48,7 @@ async def clear_all_memories(verbose: bool = True):
         await UserProfile.find_all().delete()
         
         if verbose:
-            print(f"      ✅ MemCell: {memcell_count} 条")
+            print(f"      ✅ MemUnit: {memunit_count} 条")
             print(f"      ✅ EpisodicMemory: {episode_count} 条")
             print(f"      ✅ PersonalSemanticMemory: {semantic_count} 条")
             print(f"      ✅ PersonalEventLog: {eventlog_count} 条")
@@ -174,7 +174,7 @@ async def clear_all_memories(verbose: bool = True):
             print("🔍 验证清空结果...")
             
             # 1. 验证 MongoDB
-            remaining_memcell = await MemCell.find_all().count()
+            remaining_memunit = await MemUnit.find_all().count()
             remaining_episode = await EpisodicMemory.find_all().count()
             remaining_semantic = await PersonalSemanticMemory.find_all().count()
             remaining_eventlog = await PersonalEventLog.find_all().count()
@@ -182,15 +182,15 @@ async def clear_all_memories(verbose: bool = True):
             remaining_cluster = await ClusterState.find_all().count()
             remaining_profile = await UserProfile.find_all().count()
             
-            mongodb_total = (remaining_memcell + remaining_episode + remaining_semantic + 
+            mongodb_total = (remaining_memunit + remaining_episode + remaining_semantic + 
                            remaining_eventlog + remaining_status + remaining_cluster + remaining_profile)
             
             if mongodb_total == 0:
                 print(f"   ✅ MongoDB: 0 条记录")
             else:
                 print(f"   ⚠️  MongoDB 仍有 {mongodb_total} 条记录:")
-                if remaining_memcell > 0:
-                    print(f"      - MemCell: {remaining_memcell} 条")
+                if remaining_memunit > 0:
+                    print(f"      - MemUnit: {remaining_memunit} 条")
                 if remaining_episode > 0:
                     print(f"      - EpisodicMemory: {remaining_episode} 条")
                 if remaining_semantic > 0:
@@ -277,7 +277,7 @@ async def clear_all_memories(verbose: bool = True):
         
         return {
             "mongodb": {
-                "memcell": memcell_count,
+                "memunit": memunit_count,
                 "episode": episode_count,
                 "semantic": semantic_count,
                 "eventlog": eventlog_count,

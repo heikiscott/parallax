@@ -5,7 +5,7 @@
 """
 
 from typing import Dict, Any, Optional
-from memory.memcell_extractor.base_memcell_extractor import RawData
+from memory.memunit_extractor.base_memunit_extractor import RawData
 from utils.datetime_utils import from_iso_format
 from zoneinfo import ZoneInfo
 from core.observation.logger import get_logger

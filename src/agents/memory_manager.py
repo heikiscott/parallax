@@ -29,8 +29,8 @@ from infrastructure.adapters.out.search.repository.episodic_memory_es_repository
 from core.observation.tracing.decorators import trace_logger
 from core.nlp.stopwords_utils import filter_stopwords
 from utils.datetime_utils import from_iso_format, get_now_with_timezone
-from infrastructure.adapters.out.persistence.repository.memcell_raw_repository import (
-    MemCellRawRepository,
+from infrastructure.adapters.out.persistence.repository.memunit_raw_repository import (
+    MemUnitRawRepository,
 )
 from infrastructure.adapters.out.persistence.document.memory.user_profile import (
     UserProfile,
@@ -839,7 +839,7 @@ class MemoryManager:
                 group_id = source.get('group_id', '')
                 timestamp_raw = source.get('timestamp', '')
                 episode = source.get('episode', '')
-                memcell_event_id_list = source.get('memcell_event_id_list', [])
+                memunit_event_id_list = source.get('memunit_event_id_list', [])
                 subject = source.get('subject', '')
                 summary = source.get('summary', '')
                 participants = source.get('participants', [])
@@ -856,7 +856,7 @@ class MemoryManager:
                     group_id = source.get('group_id', '')
                     timestamp_raw = source.get('timestamp', '')
                     episode = source.get('episode', '')
-                    memcell_event_id_list = source.get('memcell_event_id_list', [])
+                    memunit_event_id_list = source.get('memunit_event_id_list', [])
                     subject = source.get('subject', '')
                     summary = source.get('summary', '')
                     participants = source.get('participants', [])
@@ -870,7 +870,7 @@ class MemoryManager:
                     timestamp_raw = hit.get('timestamp')
                     episode = hit.get('episode', '')
                     metadata = hit.get('metadata', {})
-                    memcell_event_id_list = metadata.get('memcell_event_id_list', [])
+                    memunit_event_id_list = metadata.get('memunit_event_id_list', [])
                     subject = metadata.get('subject', '')
                     summary = metadata.get('summary', '')
                     participants = metadata.get('participants', [])
@@ -883,7 +883,7 @@ class MemoryManager:
                 timestamp_raw = hit.get('timestamp')
                 episode = hit.get('episode', '')
                 metadata = hit.get('metadata', {})
-                memcell_event_id_list = metadata.get('memcell_event_id_list', [])
+                memunit_event_id_list = metadata.get('memunit_event_id_list', [])
                 subject = metadata.get('subject', '')
                 summary = metadata.get('summary', '')
                 participants = metadata.get('participants', [])
@@ -917,23 +917,23 @@ class MemoryManager:
             else:
                 timestamp = datetime.now().replace(tzinfo=None)
 
-            # 获取 memcell 数据
-            memcells = []
-            if memcell_event_id_list:
-                memcell_repo = get_bean_by_type(MemCellRawRepository)
-                for event_id in memcell_event_id_list:
-                    memcell = await memcell_repo.get_by_event_id(event_id)
-                    if memcell:
-                        memcells.append(memcell)
+            # 获取 memunit 数据
+            memunits = []
+            if memunit_event_id_list:
+                memunit_repo = get_bean_by_type(MemUnitRawRepository)
+                for event_id in memunit_event_id_list:
+                    memunit = await memunit_repo.get_by_event_id(event_id)
+                    if memunit:
+                        memunits.append(memunit)
                     else:
-                        logger.warning(f"未找到 memcell: event_id={event_id}")
+                        logger.warning(f"未找到 memunit: event_id={event_id}")
                         continue
 
-            # 为每个 memcell 添加原始数据
-            for memcell in memcells:
+            # 为每个 memunit 添加原始数据
+            for memunit in memunits:
                 if group_id not in original_data_by_group:
                     original_data_by_group[group_id] = []
-                original_data_by_group[group_id].append(memcell.original_data)
+                original_data_by_group[group_id].append(memunit.original_data)
 
             # 创建 Memory 对象
             memory = Memory(
@@ -946,7 +946,7 @@ class MemoryManager:
                 episode=episode,
                 group_id=group_id,
                 participants=participants,
-                memcell_event_id_list=memcell_event_id_list,
+                memunit_event_id_list=memunit_event_id_list,
             )
 
             # 添加搜索来源信息到 extend 字段
@@ -1113,7 +1113,7 @@ class MemoryManager:
         start_time = time.time()
 
         # 兼容旧参数名称
-        if data_source == "memcell":
+        if data_source == "memunit":
             data_source = "episode"
 
         if data_source == "profile":
@@ -1176,7 +1176,7 @@ class MemoryManager:
         group_id: str = None,
         top_k: int = 20,
         retrieval_mode: str = "rrf",
-        data_source: str = "memcell",
+        data_source: str = "memunit",
         start_time: float = None,
         memory_scope: str = "all",
         current_time: Optional[datetime] = None,
@@ -1192,7 +1192,7 @@ class MemoryManager:
             group_id: 群组ID过滤
             top_k: 返回结果数量
             retrieval_mode: 检索模式（embedding/bm25/rrf）
-            data_source: 数据源（memcell/event_log/semantic_memory）
+            data_source: 数据源（memunit/event_log/semantic_memory）
             start_time: 开始时间（用于计算耗时）
             memory_scope: 记忆范围（all/personal/group）
             current_time: 当前时间，用于过滤有效期内的语义记忆（仅 data_source=semantic_memory 时有效）
@@ -1501,7 +1501,7 @@ class MemoryManager:
                     "confidence": doc.confidence,
                     "version": doc.version,
                     "cluster_ids": doc.cluster_ids,
-                    "memcell_count": doc.memcell_count,
+                    "memunit_count": doc.memunit_count,
                     "last_updated_cluster": doc.last_updated_cluster,
                     "updated_at": doc.updated_at.isoformat()
                     if doc.updated_at

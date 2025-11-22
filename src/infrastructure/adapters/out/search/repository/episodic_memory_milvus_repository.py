@@ -57,7 +57,7 @@ class EpisodicMemoryMilvusRepository(BaseMilvusRepository[EpisodicMemoryCollecti
         keywords: Optional[List[str]] = None,
         linked_entities: Optional[List[str]] = None,
         subject: Optional[str] = None,
-        memcell_event_id_list: Optional[List[str]] = None,
+        memunit_event_id_list: Optional[List[str]] = None,
         extend: Optional[Dict[str, Any]] = None,
         created_at: Optional[datetime] = None,
         updated_at: Optional[datetime] = None,
@@ -83,7 +83,7 @@ class EpisodicMemoryMilvusRepository(BaseMilvusRepository[EpisodicMemoryCollecti
             keywords: 关键词列表
             linked_entities: 关联实体ID列表
             subject: 事件标题
-            memcell_event_id_list: 记忆单元事件ID列表
+            memunit_event_id_list: 记忆单元事件ID列表
             extend: 扩展字段
             created_at: 创建时间
             updated_at: 更新时间
@@ -111,7 +111,7 @@ class EpisodicMemoryMilvusRepository(BaseMilvusRepository[EpisodicMemoryCollecti
                     "keywords": keywords or [],
                     "linked_entities": linked_entities or [],
                     "subject": subject or "",
-                    "memcell_event_id_list": memcell_event_id_list or [],
+                    "memunit_event_id_list": memunit_event_id_list or [],
                     "extend": extend or {},
                     "created_at": created_at.isoformat(),
                     "updated_at": updated_at.isoformat(),

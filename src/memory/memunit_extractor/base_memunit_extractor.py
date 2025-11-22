@@ -11,7 +11,7 @@ from typing import List, Dict, Any, Optional
 from datetime import datetime
 import json
 from providers.llm.llm_provider import LLMProvider
-from memory.types import RawDataType, Memory, MemCell
+from memory.types import RawDataType, Memory, MemUnit
 import re
 
 try:
@@ -26,7 +26,7 @@ iso_pattern = r'^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}'
 
 
 @dataclass
-class RawData:  # Memcell
+class RawData:  # MemUnit
     """Raw data structure for storing original content."""
 
     content: dict[str, Any]
@@ -250,7 +250,7 @@ class RawData:  # Memcell
 
 
 @dataclass
-class MemCellExtractRequest:
+class MemUnitExtractRequest:
     history_raw_data_list: List[RawData]
     new_raw_data_list: List[RawData]
     # 整个群的user id
@@ -270,7 +270,7 @@ class StatusResult:
     should_wait: bool
 
 
-class MemCellExtractor(ABC):
+class MemUnitExtractor(ABC):
     def __init__(
         self, raw_data_type: RawDataType, llm_provider=LLMProvider
     ):
@@ -278,7 +278,7 @@ class MemCellExtractor(ABC):
         self._llm_provider = llm_provider
 
     @abstractmethod
-    async def extract_memcell(
-        self, request: MemCellExtractRequest
-    ) -> tuple[Optional[MemCell], Optional[StatusResult]]:
+    async def extract_memunit(
+        self, request: MemUnitExtractRequest
+    ) -> tuple[Optional[MemUnit], Optional[StatusResult]]:
         pass

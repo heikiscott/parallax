@@ -27,7 +27,7 @@ class TopicInfo(BaseModel):
         default=None, description="更新时指向老topic (仅用于增量更新时)"
     )
     evidences: Optional[List[str]] = Field(
-        default_factory=list, description="memcell_ids 作为证据"
+        default_factory=list, description="memunit_ids 作为证据"
     )
     confidence: Optional[str] = Field(
         default=None, description="'strong' | 'weak' - 置信度"
@@ -58,7 +58,7 @@ class RoleAssignment(BaseModel):
         default=None, description="置信度: 'strong' | 'weak'"
     )
     evidences: Optional[List[str]] = Field(
-        default_factory=list, description="支持该角色分配的 memcell_ids"
+        default_factory=list, description="支持该角色分配的 memunit_ids"
     )
 
     model_config = ConfigDict(json_encoders={datetime: to_iso_format})
@@ -124,7 +124,7 @@ class GroupProfile(DocumentBase, AuditBase):
                         "update_type": "new",
                         "old_topic_id": None,
                         "confidence": "strong",
-                        "evidences": ["memcell_001", "memcell_002"],
+                        "evidences": ["memunit_001", "memunit_002"],
                     }
                 ],
                 "roles": {
@@ -133,7 +133,7 @@ class GroupProfile(DocumentBase, AuditBase):
                             "user_id": "user_123",
                             "user_name": "张三",
                             "confidence": "strong",
-                            "evidences": ["memcell_001", "memcell_002"],
+                            "evidences": ["memunit_001", "memunit_002"],
                         }
                     ]
                 },

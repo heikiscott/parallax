@@ -85,8 +85,8 @@ class EpisodicMemoryConverter(BaseEsConverter[EpisodicMemoryDoc]):
                 linked_entities=getattr(source_doc, 'linked_entities', None),
                 # MongoDB特有字段
                 subject=getattr(source_doc, 'subject', None),
-                memcell_event_id_list=getattr(
-                    source_doc, 'memcell_event_id_list', None
+                memunit_event_id_list=getattr(
+                    source_doc, 'memunit_event_id_list', None
                 ),
                 # 扩展字段
                 extend=getattr(source_doc, 'extend', None),
@@ -201,8 +201,8 @@ class EpisodicMemoryConverter(BaseEsConverter[EpisodicMemoryDoc]):
                 linked_entities=getattr(episode_memory, "linked_entities", None),
                 # Memory特有字段
                 subject=getattr(episode_memory, "subject", None),
-                memcell_event_id_list=getattr(
-                    episode_memory, "memcell_event_id_list", None
+                memunit_event_id_list=getattr(
+                    episode_memory, "memunit_event_id_list", None
                 ),
                 # 扩展字段
                 extend=getattr(episode_memory, "extend", None),

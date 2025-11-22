@@ -10,7 +10,7 @@ from datetime import datetime, timedelta
 from pathlib import Path
 
 from demo.config import ChatModeConfig, LLMConfig, ScenarioType
-from demo.utils import query_memcells_by_group_and_time
+from demo.utils import query_memunits_by_group_and_time
 from demo.ui import I18nTexts
 from memory_layer.llm.llm_provider import LLMProvider
 from common_utils.datetime_utils import get_now_with_timezone
@@ -50,7 +50,7 @@ class ChatSession:
         
         # 会话状态
         self.conversation_history: List[Tuple[str, str]] = []
-        self.memcell_count: int = 0
+        self.memunit_count: int = 0
         
         # 服务
         self.llm_provider: Optional[LLMProvider] = None
@@ -79,12 +79,12 @@ class ChatSession:
             # 检查 API 服务器健康状态
             await self._check_api_server()
             
-            # 统计 MemCell 数量
+            # 统计 MemUnit 数量
             now = get_now_with_timezone()
             start_date = now - timedelta(days=self.config.time_range_days)
-            memcells = await query_memcells_by_group_and_time(self.group_id, start_date, now)
-            self.memcell_count = len(memcells)
-            print(f"[{self.texts.get('loading_label')}] {self.texts.get('loading_memories_success', count=self.memcell_count)} ✅")
+            memunits = await query_memunits_by_group_and_time(self.group_id, start_date, now)
+            self.memunit_count = len(memunits)
+            print(f"[{self.texts.get('loading_label')}] {self.texts.get('loading_memories_success', count=self.memunit_count)} ✅")
             
             # 根据用户选择加载对话历史
             if load_history:
@@ -484,13 +484,13 @@ class ChatSession:
         print()
         ui.note(self.texts.get("cmd_reload_refreshing", name=display_name), icon="🔄")
         
-        # 重新统计 MemCell 数量
+        # 重新统计 MemUnit 数量
         now = get_now_with_timezone()
         start_date = now - timedelta(days=self.config.time_range_days)
-        memcells = await query_memcells_by_group_and_time(self.group_id, start_date, now)
-        self.memcell_count = len(memcells)
+        memunits = await query_memunits_by_group_and_time(self.group_id, start_date, now)
+        self.memunit_count = len(memunits)
         
         print()
-        ui.success(f"✓ {self.texts.get('cmd_reload_complete', users=0, memories=self.memcell_count)}")
+        ui.success(f"✓ {self.texts.get('cmd_reload_complete', users=0, memories=self.memunit_count)}")
         print()
 

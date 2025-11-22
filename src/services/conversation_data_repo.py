@@ -6,7 +6,7 @@ Mock Repository实现
 
 from abc import ABC, abstractmethod
 from typing import List, Dict, Any, Optional
-from memory.memcell_extractor.base_memcell_extractor import RawData
+from memory.memunit_extractor.base_memunit_extractor import RawData
 
 
 # ==================== 接口定义 ====================

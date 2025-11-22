@@ -12,20 +12,20 @@ from core.observation.logger import get_logger
 
 # 使用动态语言提示词导入（根据 MEMORY_LANGUAGE 环境变量自动选择）
 from ...prompts import CONVERSATION_PROFILE_EVIDENCE_COMPLETION_PROMPT
-from ...types import MemCell
+from ...types import MemUnit
 from .types import GroupImportanceEvidence, ImportanceEvidence, ProfileMemoryExtractRequest
 
 logger = get_logger(__name__)
 
 
-def extract_user_mapping_from_memcells(
-    memcells: Iterable[MemCell],
+def extract_user_mapping_from_memunits(
+    memunits: Iterable[MemUnit],
     old_memory_list: Optional[Iterable[Any]] = None,
 ) -> Dict[str, str]:
-    """Extract user_id to user_name mapping from memcells and old memories.
+    """Extract user_id to user_name mapping from memunits and old memories.
 
     Args:
-        memcells: Iterable of MemCell objects
+        memunits: Iterable of MemUnit objects
         old_memory_list: Optional iterable of Memory objects (ProfileMemory, etc.)
 
     Returns:
@@ -33,9 +33,9 @@ def extract_user_mapping_from_memcells(
     """
     user_id_to_name: Dict[str, str] = {}
 
-    # Extract from memcells (speaker info only, referList has no name)
-    for memcell in memcells:
-        data_list: List[Any] = getattr(memcell, "original_data", []) or []
+    # Extract from memunits (speaker info only, referList has no name)
+    for memunit in memunits:
+        data_list: List[Any] = getattr(memunit, "original_data", []) or []
 
         for data in data_list:
             # Extract speaker info
@@ -52,7 +52,7 @@ def extract_user_mapping_from_memcells(
             user_id = getattr(memory, "user_id", None)
             user_name = getattr(memory, "user_name", None)
             if user_id and user_name:
-                # Only add if not already present (memcells data takes priority)
+                # Only add if not already present (memunits data takes priority)
                 if str(user_id) not in user_id_to_name:
                     user_id_to_name[str(user_id)] = user_name
 
@@ -132,21 +132,21 @@ def append_user_ids_to_names(content: Any, refer_list: Any) -> Any:
 
 
 def build_conversation_text(
-    memcell: MemCell,
+    memunit: MemUnit,
     user_id_to_name: Dict[str, str],
 ) -> Tuple[str, Optional[str]]:
-    """Convert raw data from a memcell into formatted conversation text.
+    """Convert raw data from a memunit into formatted conversation text.
 
     Args:
-        memcell: The memcell containing conversation data
+        memunit: The memunit containing conversation data
         user_id_to_name: Pre-extracted user_id to user_name mapping
 
     Returns:
         Tuple of (formatted conversation text, conversation_id)
     """
-    conversation_id = getattr(memcell, "event_id", None)
+    conversation_id = getattr(memunit, "event_id", None)
     conversation_id_str = str(conversation_id) if conversation_id is not None else ""
-    data_list: List[Any] = getattr(memcell, "original_data", []) or []
+    data_list: List[Any] = getattr(memunit, "original_data", []) or []
 
     lines: List[str] = []
     for data in data_list:
@@ -177,27 +177,27 @@ def build_conversation_text(
 
 
 def build_episode_text(
-    memcell: MemCell,
+    memunit: MemUnit,
     user_id_to_name: Dict[str, str],
 ) -> Tuple[str, Optional[str]]:
-    """Convert episode from a memcell into formatted text with user_id annotations.
+    """Convert episode from a memunit into formatted text with user_id annotations.
 
     Args:
-        memcell: The memcell containing episode data
+        memunit: The memunit containing episode data
         user_id_to_name: Pre-extracted user_id to user_name mapping
 
     Returns:
         Tuple of (formatted episode text, event_id)
     """
-    event_id = getattr(memcell, "event_id", None)
+    event_id = getattr(memunit, "event_id", None)
     event_id_str = str(event_id) if event_id is not None else ""
-    episode_content = getattr(memcell, "episode", None) or ""
+    episode_content = getattr(memunit, "episode", None) or ""
 
     if not episode_content:
         return "", event_id_str or None
 
     # Get participants (list of user_ids)
-    participants = getattr(memcell, "participants", None) or []
+    participants = getattr(memunit, "participants", None) or []
 
     # Build referList for append_user_ids_to_names using participants
     aggregated_refer_list: List[Dict[str, Any]] = []
@@ -211,7 +211,7 @@ def build_episode_text(
     annotated_content = append_user_ids_to_names(episode_content, aggregated_refer_list)
 
     # Format with timestamp and event_id
-    timestamp = getattr(memcell, "timestamp", None)
+    timestamp = getattr(memunit, "timestamp", None)
     return f"[{timestamp}][episode_id:{event_id_str}] {annotated_content}", event_id_str or None
 
 
@@ -311,7 +311,7 @@ def annotate_relative_dates(text: str, base_date: Optional[str] = None) -> str:
     return updated_text
 
 
-def extract_group_important_info(memcells: Iterable[MemCell], group_id: str) -> Dict[str, Any]:
+def extract_group_important_info(memunits: Iterable[MemUnit], group_id: str) -> Dict[str, Any]:
     """Aggregate statistics used to determine user importance within a group."""
     group_data = {
         "group_id": group_id,
@@ -319,8 +319,8 @@ def extract_group_important_info(memcells: Iterable[MemCell], group_id: str) -> 
         "group_data": {"total_messages": 0},
     }
 
-    for memcell in memcells:
-        for msg in getattr(memcell, "original_data", []) or []:
+    for memunit in memunits:
+        for msg in getattr(memunit, "original_data", []) or []:
             group_data["group_data"]["total_messages"] += 1
             user_id = msg.get("speaker_id")
             name = msg.get("speaker_name")

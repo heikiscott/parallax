@@ -2,7 +2,7 @@
 """
 Add Timestamp Shard
 
-为MemCell集合添加基于timestamp的时间戳分片配置
+为MemUnit集合添加基于timestamp的时间戳分片配置
 创建时间: 2025-09-11T23:37:54.703305
 """
 
@@ -12,18 +12,18 @@ from typing import Optional
 
 from pymongo.errors import OperationFailure
 
-from infrastructure.adapters.out.persistence.document.memory.memcell import MemCell
+from infrastructure.adapters.out.persistence.document.memory.memunit import MemUnit
 
 logger = logging.getLogger(__name__)
 
 
 async def enable_timestamp_sharding(session=None):
     """
-    启用MemCell集合的timestamp分片
+    启用MemUnit集合的timestamp分片
     """
     try:
         # 获取MongoDB集合和客户端
-        collection = MemCell.get_pymongo_collection()
+        collection = MemUnit.get_pymongo_collection()
         db = collection.database
         client = db.client
         admin_db = client.admin
@@ -53,15 +53,15 @@ async def enable_timestamp_sharding(session=None):
                 raise
 
         # 3. 设置集合分片键 - timestamp
-        collection_name = f"{db.name}.memcells"
+        collection_name = f"{db.name}.memunits"
         try:
             await admin_db.command(
                 'shardCollection', collection_name, key={"timestamp": 1}
             )
-            logger.info("✅ MemCell集合timestamp分片键设置完成")
+            logger.info("✅ MemUnit集合timestamp分片键设置完成")
         except OperationFailure as e:
             if "already sharded" in str(e).lower():
-                logger.info("📝 MemCell集合分片已存在")
+                logger.info("📝 MemUnit集合分片已存在")
             else:
                 logger.error(f"❌ 设置集合分片失败: {e}")
                 raise
@@ -96,10 +96,10 @@ async def enable_timestamp_sharding(session=None):
 
         # 5. 验证分片配置
         try:
-            shard_info = await db.command('collStats', 'memcells')
+            shard_info = await db.command('collStats', 'memunits')
 
             if shard_info.get('sharded'):
-                logger.info("✅ MemCell集合分片配置验证成功")
+                logger.info("✅ MemUnit集合分片配置验证成功")
                 logger.info(f"📊 分片键: {shard_info.get('shardKey', {})}")
             else:
                 logger.warning("⚠️  分片配置验证失败")

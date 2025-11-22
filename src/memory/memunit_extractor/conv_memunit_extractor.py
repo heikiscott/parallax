@@ -23,12 +23,12 @@ from ..types import RawDataType
 from ..prompts.zh.conv_prompts import CONV_BOUNDARY_DETECTION_PROMPT
 
 from ..prompts.eval.conv_prompts import CONV_BOUNDARY_DETECTION_PROMPT as EVAL_CONV_BOUNDARY_DETECTION_PROMPT
-from .base_memcell_extractor import (
-    MemCellExtractor,
+from .base_memunit_extractor import (
+    MemUnitExtractor,
     RawData,
-    MemCell,
+    MemUnit,
     StatusResult,
-    MemCellExtractRequest,
+    MemUnitExtractRequest,
 )
 from ..memory_extractor.episode_memory_extractor import (
     EpisodeMemoryExtractor,
@@ -52,11 +52,11 @@ class BoundaryDetectionResult:
 
 
 @dataclass
-class ConversationMemCellExtractRequest(MemCellExtractRequest):
+class ConversationMemUnitExtractRequest(MemUnitExtractRequest):
     pass
 
 
-class ConvMemCellExtractor(MemCellExtractor):
+class ConvMemUnitExtractor(MemUnitExtractor):
     def __init__(
         self,
         llm_provider=LLMProvider,
@@ -288,11 +288,11 @@ class ConvMemCellExtractor(MemCellExtractor):
                     raise Exception("Boundary detection failed")
                 continue
 
-    async def extract_memcell(
+    async def extract_memunit(
         self,
-        request: ConversationMemCellExtractRequest,
+        request: ConversationMemUnitExtractRequest,
         use_semantic_extraction: bool = False,
-    ) -> tuple[Optional[MemCell], Optional[StatusResult]]:
+    ) -> tuple[Optional[MemUnit], Optional[StatusResult]]:
         history_message_dict_list = []
         for raw_data in request.history_raw_data_list:
             processed_data = self._data_process(raw_data)
@@ -305,7 +305,7 @@ class ConvMemCellExtractor(MemCellExtractor):
             and self._data_process(request.new_raw_data_list[-1]) is None
         ):
             logger.warning(
-                f"[ConvMemCellExtractor] 最后一条new_raw_data为None，跳过处理"
+                f"[ConvMemUnitExtractor] 最后一条new_raw_data为None，跳过处理"
             )
             status_control_result = StatusResult(should_wait=True)
             return (None, status_control_result)
@@ -319,7 +319,7 @@ class ConvMemCellExtractor(MemCellExtractor):
         # 检查是否有有效的消息可处理
         if not new_message_dict_list:
             logger.warning(
-                f"[ConvMemCellExtractor] 没有有效的新消息可处理（可能都被过滤了）"
+                f"[ConvMemUnitExtractor] 没有有效的新消息可处理（可能都被过滤了）"
             )
             status_control_result = StatusResult(should_wait=True)
             return (None, status_control_result)
@@ -354,7 +354,7 @@ class ConvMemCellExtractor(MemCellExtractor):
         
 
             participants = self._extract_participant_ids(history_message_dict_list)
-            # 创建 MemCell
+            # 创建 MemUnit
             # 优先使用边界检测的主题摘要；若为空，回退到最后一条新消息的文本；再不行用占位摘要
             fallback_text = ""
             if new_message_dict_list:
@@ -365,7 +365,7 @@ class ConvMemCellExtractor(MemCellExtractor):
                     fallback_text = last_msg
             summary_text = boundary_detection_result.topic_summary or (fallback_text.strip()[:200] if fallback_text else "会话片段")
 
-            memcell = MemCell(
+            memunit = MemUnit(
                 event_id=str(uuid.uuid4()),
                 user_id_list=request.user_id_list,
                 original_data=history_message_dict_list,
@@ -381,13 +381,13 @@ class ConvMemCellExtractor(MemCellExtractor):
             for attempt in range(max_retries):
                 try:
                     episode_request = EpisodeMemoryExtractRequest(
-                        memcell_list=[memcell],
+                        memunit_list=[memunit],
                         user_id_list=request.user_id_list,
                         participants=participants,
                         group_id=request.group_id,
                     )
                     logger.debug(
-                        f"📚 自动触发情景记忆提取开始: memcell_list={memcell}, user_id_list={request.user_id_list}, participants={participants}, group_id={request.group_id}"
+                        f"📚 自动触发情景记忆提取开始: memunit_list={memunit}, user_id_list={request.user_id_list}, participants={participants}, group_id={request.group_id}"
                     )
                     now = time.time()
                     episode_result = await self.episode_extractor.extract_memory(
@@ -398,10 +398,10 @@ class ConvMemCellExtractor(MemCellExtractor):
                     logger.debug(
                         f"📚 自动触发情景记忆提取, 耗时: {time.time() - now}秒"
                     )
-                    if episode_result and isinstance(episode_result, MemCell):
-                        # GROUP_EPISODE_GENERATION_PROMPT 模式：返回包含情景记忆的 MemCell
-                        logger.info(f"✅ 成功生成情景记忆并存储到 MemCell 中")
-                        # Attach embedding info to MemCell (episode preferred)
+                    if episode_result and isinstance(episode_result, MemUnit):
+                        # GROUP_EPISODE_GENERATION_PROMPT 模式：返回包含情景记忆的 MemUnit
+                        logger.info(f"✅ 成功生成情景记忆并存储到 MemUnit 中")
+                        # Attach embedding info to MemUnit (episode preferred)
                         
                         text_for_embed = (
                             episode_result.episode or episode_result.summary or ""
@@ -446,28 +446,28 @@ class ConvMemCellExtractor(MemCellExtractor):
                 else:
                     logger.error(f"❌ 所有重试次数均失败，未能提取情景记忆")
 
-            # Attach embedding info to MemCell if available
+            # Attach embedding info to MemUnit if available
             try:
-                text_for_embed = memcell.episode
+                text_for_embed = memunit.episode
                 if text_for_embed:
                     vs = get_vectorize_service()
                     vec = await vs.get_embedding(text_for_embed)
-                    memcell.extend = memcell.extend or {}
-                    memcell.extend["embedding"] = (
+                    memunit.extend = memunit.extend or {}
+                    memunit.extend["embedding"] = (
                         vec.tolist() if hasattr(vec, "tolist") else list(vec)
                     )
-                    memcell.extend["vector_model"] = vs.get_model_name()
+                    memunit.extend["vector_model"] = vs.get_model_name()
             except Exception:
                 logger.debug("Embedding attach failed; continue without it")
             
             # 提交到聚类器（如果存在）
             if hasattr(self, '_cluster_worker') and self._cluster_worker:
                 try:
-                    self._cluster_worker.submit(request.group_id, memcell.to_dict())
+                    self._cluster_worker.submit(request.group_id, memunit.to_dict())
                 except Exception as e:
                     logger.debug(f"Failed to submit to cluster worker: {e}")
             
-            return (memcell, status_control_result)
+            return (memunit, status_control_result)
         elif should_wait:
             logger.debug(f"⏳ Waiting for more messages: {reason}")
         return (None, status_control_result)
@@ -498,7 +498,7 @@ class ConvMemCellExtractor(MemCellExtractor):
             if msg_type not in SUPPORTED_MSG_TYPES:
                 # 不支持的消息类型，直接跳过（返回None会在上层处理）
                 logger.warning(
-                    f"[ConvMemCellExtractor] 跳过不支持的消息类型: {msg_type}"
+                    f"[ConvMemUnitExtractor] 跳过不支持的消息类型: {msg_type}"
                 )
                 return None
 
@@ -509,7 +509,7 @@ class ConvMemCellExtractor(MemCellExtractor):
                 content = content.copy()
                 content['content'] = placeholder
                 logger.debug(
-                    f"[ConvMemCellExtractor] 消息类型 {msg_type} 转换为占位符: {placeholder}"
+                    f"[ConvMemUnitExtractor] 消息类型 {msg_type} 转换为占位符: {placeholder}"
                 )
 
         return content

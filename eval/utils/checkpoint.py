@@ -175,20 +175,20 @@ class CheckpointManager:
     
     # ==================== 细粒度 Checkpoint 方法 ====================
     
-    def save_add_progress(self, completed_convs: set, memcells_dir: Path):
+    def save_add_progress(self, completed_convs: set, memunits_dir: Path):
         """
         保存 Add 阶段的细粒度进度（记录已完成的会话 ID）
         
         Args:
             completed_convs: 已完成的会话 ID 集合
-            memcells_dir: MemCells 保存目录（用于检查文件是否存在）
+            memunits_dir: MemUnits 保存目录（用于检查文件是否存在）
         """
         # Add 阶段的 checkpoint 策略：
-        # 每处理完一个会话，将 MemCells 保存到 {output_dir}/memcells/{conv_id}.json
-        # 不需要额外的 checkpoint 文件，直接检查 memcells 目录即可
+        # 每处理完一个会话，将 MemUnits 保存到 {output_dir}/memunits/{conv_id}.json
+        # 不需要额外的 checkpoint 文件，直接检查 memunits 目录即可
         pass  # 文件本身就是 checkpoint
     
-    def load_add_progress(self, memcells_dir: Path, all_conv_ids: list) -> set:
+    def load_add_progress(self, memunits_dir: Path, all_conv_ids: list) -> set:
         """
         加载Add阶段的细粒度进度（检查哪些会话已完成）
         
@@ -199,15 +199,15 @@ class CheckpointManager:
         
         completed_convs = set()
 
-        if not memcells_dir.exists():
-            logger.info("🆕 No previous memcells found, starting from scratch")
+        if not memunits_dir.exists():
+            logger.info("🆕 No previous memunits found, starting from scratch")
             return completed_convs
 
-        logger.info(f"🔍 Checking for completed conversations in: {memcells_dir}")
+        logger.info(f"🔍 Checking for completed conversations in: {memunits_dir}")
 
         for conv_id in all_conv_ids:
             # 匹配 stage1 实际保存的文件名格式
-            output_file = memcells_dir / f"memcell_list_conv_{conv_id}.json"
+            output_file = memunits_dir / f"memunit_list_conv_{conv_id}.json"
             if output_file.exists():
                 # 验证文件有效性（非空且可解析）
                 try:
@@ -215,7 +215,7 @@ class CheckpointManager:
                         data = json.load(f)
                         if data and len(data) > 0:  # 确保有数据
                             completed_convs.add(conv_id)
-                            logger.info(f"✅ 跳过已完成的会话: {conv_id} ({len(data)} memcells)")
+                            logger.info(f"✅ 跳过已完成的会话: {conv_id} ({len(data)} memunits)")
                 except Exception as e:
                     logger.warning(f"⚠️ 会话 {conv_id} 文件损坏，将重新处理: {e}")
 

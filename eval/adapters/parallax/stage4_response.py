@@ -26,54 +26,54 @@ TEMPLATE = """Episodes memories for conversation between {speaker_1} and {speake
 """
 
 
-def load_memcells_by_conversation(conv_idx: int, memcells_dir: Path) -> Dict[str, dict]:
+def load_memunits_by_conversation(conv_idx: int, memunits_dir: Path) -> Dict[str, dict]:
     """
-    加载指定对话的所有 memcells，返回 event_id -> memcell 的映射
+    加载指定对话的所有 memunits，返回 event_id -> memunit 的映射
     
     Args:
         conv_idx: 对话索引
-        memcells_dir: memcells 目录路径
+        memunits_dir: memunits 目录路径
     
     Returns:
-        {event_id: memcell_dict} 的映射
+        {event_id: memunit_dict} 的映射
     """
-    memcell_file = memcells_dir / f"memcell_list_conv_{conv_idx}.json"
+    memunit_file = memunits_dir / f"memunit_list_conv_{conv_idx}.json"
     
-    if not memcell_file.exists():
-        print(f"Warning: Memcell file not found: {memcell_file}")
+    if not memunit_file.exists():
+        print(f"Warning: MemUnit file not found: {memunit_file}")
         return {}
     
     try:
-        with open(memcell_file, "r", encoding="utf-8") as f:
-            memcells = json.load(f)
+        with open(memunit_file, "r", encoding="utf-8") as f:
+            memunits = json.load(f)
         
-        # 构建 event_id -> memcell 的映射
-        memcell_map = {}
-        for memcell in memcells:
-            event_id = memcell.get("event_id")
+        # 构建 event_id -> memunit 的映射
+        memunit_map = {}
+        for memunit in memunits:
+            event_id = memunit.get("event_id")
             if event_id:
-                memcell_map[event_id] = memcell
+                memunit_map[event_id] = memunit
         
-        return memcell_map
+        return memunit_map
     
     except Exception as e:
-        print(f"Error loading memcells from {memcell_file}: {e}")
+        print(f"Error loading memunits from {memunit_file}: {e}")
         return {}
 
 
 def build_context_from_event_ids(
     event_ids: List[str],
-    memcell_map: Dict[str, dict],
+    memunit_map: Dict[str, dict],
     speaker_a: str,
     speaker_b: str,
     top_k: int = 10
 ) -> str:
     """
-    根据 event_ids 从 memcell_map 中提取对应的 episode memory，构建 context
+    根据 event_ids 从 memunit_map 中提取对应的 episode memory，构建 context
     
     Args:
         event_ids: 检索到的 event_ids 列表（已按相关性排序）
-        memcell_map: event_id -> memcell 的映射
+        memunit_map: event_id -> memunit 的映射
         speaker_a: 说话者 A
         speaker_b: 说话者 B
         top_k: 选择前 k 个 event_ids（默认 10）
@@ -84,16 +84,16 @@ def build_context_from_event_ids(
     # 🔥 选择 top-k event_ids
     selected_event_ids = event_ids[:top_k]
     
-    # 从 memcell_map 中提取对应的 episode memory
+    # 从 memunit_map 中提取对应的 episode memory
     retrieved_docs_text = []
     for event_id in selected_event_ids:
-        memcell = memcell_map.get(event_id)
-        if not memcell:
-            # 找不到对应的 memcell，跳过
+        memunit = memunit_map.get(event_id)
+        if not memunit:
+            # 找不到对应的 memunit，跳过
             continue
         
-        subject = memcell.get('subject', 'N/A')
-        episode = memcell.get('episode', 'N/A')
+        subject = memunit.get('subject', 'N/A')
+        episode = memunit.get('episode', 'N/A')
         doc_text = f"{subject}: {episode}\n---"
         retrieved_docs_text.append(doc_text)
     
@@ -164,7 +164,7 @@ async def process_qa(
     search_result, 
     llm_provider, 
     experiment_config,
-    memcell_map: Dict[str, dict],
+    memunit_map: Dict[str, dict],
     speaker_a: str,
     speaker_b: str
 ):
@@ -176,7 +176,7 @@ async def process_qa(
         search_result: 检索结果（包含 event_ids）
         llm_provider: LLM Provider
         experiment_config: 实验配置
-        memcell_map: event_id -> memcell 的映射
+        memunit_map: event_id -> memunit 的映射
         speaker_a: 说话者 A
         speaker_b: 说话者 B
     
@@ -194,7 +194,7 @@ async def process_qa(
     
     context = build_context_from_event_ids(
         event_ids=event_ids,
-        memcell_map=memcell_map,
+        memunit_map=memunit_map,
         speaker_a=speaker_a,
         speaker_b=speaker_b,
         top_k=top_k
@@ -256,10 +256,10 @@ async def main(search_path, save_path):
 
     num_users = len(locomo_df)
     
-    # 🔥 加载 memcells 目录
-    memcells_dir = Path(search_path).parent / "memcells"
-    if not memcells_dir.exists():
-        print(f"Error: Memcells directory not found: {memcells_dir}")
+    # 🔥 加载 memunits 目录
+    memunits_dir = Path(search_path).parent / "memunits"
+    if not memunits_dir.exists():
+        print(f"Error: MemUnits directory not found: {memunits_dir}")
         return
     
     print(f"\n{'='*60}")
@@ -267,7 +267,7 @@ async def main(search_path, save_path):
     print(f"{'='*60}")
     print(f"Total conversations: {num_users}")
     print(f"Response top-k: {experiment_config.response_top_k}")
-    print(f"Memcells directory: {memcells_dir}")
+    print(f"MemUnits directory: {memunits_dir}")
     
     # 🔥 优化1：全局并发控制（关键优化）
     # 控制同时处理的 QA 对数量，避免 API 限流
@@ -279,12 +279,12 @@ async def main(search_path, save_path):
     task_to_group = {}  # 用于追踪每个任务属于哪个 group
     
     # 🔥 优化3：定义带并发控制的处理函数
-    async def process_qa_with_semaphore(qa, search_result, group_id, memcell_map, speaker_a, speaker_b):
+    async def process_qa_with_semaphore(qa, search_result, group_id, memunit_map, speaker_a, speaker_b):
         """带并发控制的 QA 处理"""
         async with semaphore:
             result = await process_qa(
                 qa, search_result, llm_provider, experiment_config,
-                memcell_map, speaker_a, speaker_b
+                memunit_map, speaker_a, speaker_b
             )
             return (group_id, result)
     
@@ -296,9 +296,9 @@ async def main(search_path, save_path):
         group_id = f"locomo_exp_user_{group_idx}"
         search_results = locomo_search_results.get(group_id)
         
-        # 🔥 加载当前对话的 memcells
-        memcell_map = load_memcells_by_conversation(group_idx, memcells_dir)
-        print(f"Loaded {len(memcell_map)} memcells for conversation {group_idx}")
+        # 🔥 加载当前对话的 memunits
+        memunit_map = load_memunits_by_conversation(group_idx, memunits_dir)
+        print(f"Loaded {len(memunit_map)} memunits for conversation {group_idx}")
         
         # 🔥 获取 speaker 信息
         conversation_data = locomo_df["conversation"].iloc[group_idx]
@@ -327,7 +327,7 @@ async def main(search_path, save_path):
         
         # 创建任务（全局并发）
         for qa, search_result in matched_pairs:
-            task = process_qa_with_semaphore(qa, search_result, group_id, memcell_map, speaker_a, speaker_b)
+            task = process_qa_with_semaphore(qa, search_result, group_id, memunit_map, speaker_a, speaker_b)
             all_tasks.append(task)
     
     print(f"Total questions to process: {total_qa_count}")

@@ -29,7 +29,7 @@ class GroupProfileLLMHandler:
         conversation_text: str,
         group_id: str,
         group_name: str,
-        memcell_list: List,
+        memunit_list: List,
         existing_profile: Optional[Dict],
         user_organization: Optional[List],
         timespan: str,
@@ -47,7 +47,7 @@ class GroupProfileLLMHandler:
             conversation_text: 对话文本
             group_id: 群组ID
             group_name: 群组名称
-            memcell_list: memcell列表
+            memunit_list: memunit列表
             existing_profile: 历史画像数据
             user_organization: 用户组织信息
             timespan: 时间跨度
@@ -79,7 +79,7 @@ class GroupProfileLLMHandler:
             conversation_text,
             group_id,
             group_name,
-            memcell_list,
+            memunit_list,
             existing_roles,
             user_organization,
         )
@@ -113,7 +113,7 @@ class GroupProfileLLMHandler:
             behavior_response,
             group_id,
             group_name,
-            memcell_list,
+            memunit_list,
             existing_profile,
         )
 
@@ -178,7 +178,7 @@ class GroupProfileLLMHandler:
         conversation_text: str,
         group_id: str,
         group_name: str,
-        memcell_list: List,
+        memunit_list: List,
         existing_roles: Dict,
         user_organizations: Optional[List] = None,
     ) -> str:
@@ -251,11 +251,11 @@ class GroupProfileLLMHandler:
         )
         speaker_info = f"\n{speaker_info_title}\n"
 
-        # 尝试从 memcell 中提取 speaker 名称
+        # 尝试从 memunit 中提取 speaker 名称
         speaker_names = {}
-        for memcell in memcell_list:
-            if hasattr(memcell, 'original_data') and memcell.original_data:
-                for data in memcell.original_data:
+        for memunit in memunit_list:
+            if hasattr(memunit, 'original_data') and memunit.original_data:
+                for data in memunit.original_data:
                     speaker_id = data.get('speaker_id', '')
                     speaker_name = data.get('speaker_name', '')
                     if speaker_id and speaker_name:
@@ -311,7 +311,7 @@ class GroupProfileLLMHandler:
         return None
 
     def _parse_content_response(
-        self, response: str, existing_profile: Optional[Dict], memcell_list: List
+        self, response: str, existing_profile: Optional[Dict], memunit_list: List
     ) -> Dict:
         """Parse content analysis response to extract topics, summary, and subject.
 
@@ -341,7 +341,7 @@ class GroupProfileLLMHandler:
             return self._get_content_fallback(existing_profile)
 
     def _parse_behavior_response(
-        self, response: str, memcell_list: List, existing_profile: Optional[Dict]
+        self, response: str, memunit_list: List, existing_profile: Optional[Dict]
     ) -> Dict:
         """Parse behavior analysis response to extract roles.
 
@@ -392,7 +392,7 @@ class GroupProfileLLMHandler:
         behavior_response: Optional[str],
         group_id: str,
         group_name: str,
-        memcell_list: List,
+        memunit_list: List,
         existing_profile: Optional[Dict],
     ) -> Optional[Dict]:
         """Merge content and behavior analysis results into a single result."""
@@ -401,7 +401,7 @@ class GroupProfileLLMHandler:
             content_data = {}
             if content_response:
                 content_data = self._parse_content_response(
-                    content_response, existing_profile, memcell_list
+                    content_response, existing_profile, memunit_list
                 )
             else:
                 logger.debug(
@@ -413,7 +413,7 @@ class GroupProfileLLMHandler:
             behavior_data = {}
             if behavior_response:
                 behavior_data = self._parse_behavior_response(
-                    behavior_response, memcell_list, existing_profile
+                    behavior_response, memunit_list, existing_profile
                 )
             else:
                 logger.debug(

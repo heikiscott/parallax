@@ -544,7 +544,7 @@ async def agentic_retrieval(
         >>> config = AgenticConfig(use_reranker=True)
         >>> results, metadata = await agentic_retrieval(
         ...     query="用户喜欢吃什么？",
-        ...     candidates=memcells,
+        ...     candidates=memunits,
         ...     llm_provider=llm,
         ...     config=config
         ... )

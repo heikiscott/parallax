@@ -18,7 +18,7 @@ class TopicProcessor:
         初始化话题处理器
 
         Args:
-            data_processor: GroupProfileDataProcessor 实例，用于验证和合并 memcell_ids
+            data_processor: GroupProfileDataProcessor 实例，用于验证和合并 memunit_ids
         """
         self.data_processor = data_processor
 
@@ -35,7 +35,7 @@ class TopicProcessor:
 
         Args:
             topics: TopicInfo 对象列表
-            reference_time: 参考时间点（通常是 memcell 列表中的最晚时间）。
+            reference_time: 参考时间点（通常是 memunit 列表中的最晚时间）。
                            如果不提供，使用当前系统时间。
 
         Returns:
@@ -59,46 +59,46 @@ class TopicProcessor:
             ),
         )[0]
 
-    def get_latest_memcell_timestamp(
-        self, memcell_list: List, memcell_ids: Optional[List[str]] = None
+    def get_latest_memunit_timestamp(
+        self, memunit_list: List, memunit_ids: Optional[List[str]] = None
     ) -> datetime:
         """
-        Get the latest timestamp from memcell list.
+        Get the latest timestamp from memunit list.
 
         Args:
-            memcell_list: List of all memcells
-            memcell_ids: Optional list of memcell IDs to filter by.
-                        If provided and not empty, only consider memcells with these IDs.
-                        If not provided or empty, consider all memcells.
+            memunit_list: List of all memunits
+            memunit_ids: Optional list of memunit IDs to filter by.
+                        If provided and not empty, only consider memunits with these IDs.
+                        If not provided or empty, consider all memunits.
 
         Returns:
-            Latest timestamp from (filtered) memcells, or current time if no valid timestamp found.
+            Latest timestamp from (filtered) memunits, or current time if no valid timestamp found.
         """
         from ..group_profile_memory_extractor import convert_to_datetime
 
-        # If memcell_ids provided and not empty, create a set for fast lookup
-        filter_ids = set(memcell_ids) if memcell_ids else None
+        # If memunit_ids provided and not empty, create a set for fast lookup
+        filter_ids = set(memunit_ids) if memunit_ids else None
 
         latest_time = None
         matched_count = 0
 
-        for memcell in memcell_list:
-            # If filter_ids provided, only consider memcells in the filter
+        for memunit in memunit_list:
+            # If filter_ids provided, only consider memunits in the filter
             # 转换为字符串以匹配 filter_ids 中的格式
-            if filter_ids and hasattr(memcell, 'event_id'):
-                memcell_id_str = str(memcell.event_id)
-                if memcell_id_str not in filter_ids:
+            if filter_ids and hasattr(memunit, 'event_id'):
+                memunit_id_str = str(memunit.event_id)
+                if memunit_id_str not in filter_ids:
                     continue
 
-            if hasattr(memcell, 'timestamp') and memcell.timestamp:
+            if hasattr(memunit, 'timestamp') and memunit.timestamp:
                 matched_count += 1
-                memcell_time = convert_to_datetime(memcell.timestamp)
-                if latest_time is None or memcell_time > latest_time:
-                    latest_time = memcell_time
+                memunit_time = convert_to_datetime(memunit.timestamp)
+                if latest_time is None or memunit_time > latest_time:
+                    latest_time = memunit_time
 
         if filter_ids and matched_count > 0:
             logger.debug(
-                f"[get_latest_memcell_timestamp] Found {matched_count} memcells matching {len(filter_ids)} IDs"
+                f"[get_latest_memunit_timestamp] Found {matched_count} memunits matching {len(filter_ids)} IDs"
             )
 
         return latest_time if latest_time else get_now_with_timezone()
@@ -107,8 +107,8 @@ class TopicProcessor:
         self,
         llm_topics: List[Dict],
         existing_topics_with_evidences: List,  # 包含 evidences 的历史 topics
-        memcell_list: List,
-        valid_memcell_ids: Set[str],  # 有效的 memcell_ids
+        memunit_list: List,
+        valid_memunit_ids: Set[str],  # 有效的 memunit_ids
         max_topics: int = 5,
     ) -> List:
         """
@@ -119,8 +119,8 @@ class TopicProcessor:
         Args:
             llm_topics: LLM 输出的话题列表（包含 evidences 和 confidence）
             existing_topics_with_evidences: 历史话题列表（包含 evidences）
-            memcell_list: 当前的 memcell 列表
-            valid_memcell_ids: 有效的 memcell_ids 集合
+            memunit_list: 当前的 memunit 列表
+            valid_memunit_ids: 有效的 memunit_ids 集合
             max_topics: 最大话题数量
 
         Returns:
@@ -128,9 +128,9 @@ class TopicProcessor:
         """
         from ..group_profile_memory_extractor import TopicInfo
 
-        # 计算 memcell 列表中的最晚时间作为参考时间点
+        # 计算 memunit 列表中的最晚时间作为参考时间点
         # 用于 topic 替换策略的时间判断（离线批处理场景）
-        reference_time = self.get_latest_memcell_timestamp(memcell_list)
+        reference_time = self.get_latest_memunit_timestamp(memunit_list)
 
         # Parse existing topics (preserving evidences)
         existing_topics = []
@@ -185,17 +185,17 @@ class TopicProcessor:
                 historical_evidences = old_topic.evidences or []
 
                 # 合并 evidences（内部会验证）
-                merged_evidences = self.data_processor.merge_memcell_ids(
+                merged_evidences = self.data_processor.merge_memunit_ids(
                     historical=historical_evidences,
                     new=llm_evidences,
-                    valid_ids=valid_memcell_ids,
-                    memcell_list=memcell_list,
+                    valid_ids=valid_memunit_ids,
+                    memunit_list=memunit_list,
                     max_count=10,
                 )
 
                 # Calculate last_active_at based on merged evidences
-                last_active_at = self.get_latest_memcell_timestamp(
-                    memcell_list, merged_evidences
+                last_active_at = self.get_latest_memunit_timestamp(
+                    memunit_list, merged_evidences
                 )
                 logger.debug(
                     f"[TopicIncremental] Topic '{topic_name}' has {len(merged_evidences)} valid evidences, "
@@ -221,14 +221,14 @@ class TopicProcessor:
             elif update_type == "new":
                 # Add new topic - 验证 evidences
                 valid_llm_evidences = (
-                    self.data_processor.validate_and_filter_memcell_ids(
-                        llm_evidences, valid_memcell_ids
+                    self.data_processor.validate_and_filter_memunit_ids(
+                        llm_evidences, valid_memunit_ids
                     )
                 )
 
                 # Calculate last_active_at based on evidences
-                last_active_at = self.get_latest_memcell_timestamp(
-                    memcell_list, valid_llm_evidences
+                last_active_at = self.get_latest_memunit_timestamp(
+                    memunit_list, valid_llm_evidences
                 )
                 logger.debug(
                     f"[TopicIncremental] New topic '{topic_name}' has {len(valid_llm_evidences)} valid evidences, "

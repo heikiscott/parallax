@@ -16,7 +16,7 @@ class RoleProcessor:
         初始化角色处理器
 
         Args:
-            data_processor: GroupProfileDataProcessor 实例，用于验证和合并 memcell_ids
+            data_processor: GroupProfileDataProcessor 实例，用于验证和合并 memunit_ids
         """
         self.data_processor = data_processor
 
@@ -25,8 +25,8 @@ class RoleProcessor:
         role_data: Dict,
         speaker_mapping: Dict[str, Dict[str, str]],
         existing_roles: Dict,
-        valid_memcell_ids: Set[str],
-        memcell_list: List,
+        valid_memunit_ids: Set[str],
+        memunit_list: List,
     ) -> Dict[str, List[Dict[str, str]]]:
         """
         处理所有 roles（包括 weak 的），合并历史 evidences，并按 confidence 排序（strong 在前）
@@ -35,8 +35,8 @@ class RoleProcessor:
             role_data: LLM 输出的 role 数据（包含 evidences 和 confidence）
             speaker_mapping: speaker_id 到 user_name 的映射
             existing_roles: 历史 roles 数据（包含 evidences 和 confidence）
-            valid_memcell_ids: 有效的 memcell_ids 集合
-            memcell_list: 当前的 memcell 列表（用于获取时间戳进行排序）
+            valid_memunit_ids: 有效的 memunit_ids 集合
+            memunit_list: 当前的 memunit 列表（用于获取时间戳进行排序）
 
         Returns:
             处理后的 roles，格式为 role -> [{"user_id": "xxx", "user_name": "xxx", "confidence": "strong|weak", "evidences": [...]}]
@@ -120,11 +120,11 @@ class RoleProcessor:
                     historical_confidence = historical_role_map[key]["confidence"]
 
                     # 合并 evidences（会验证 user 是否在 participants 中）
-                    merged_evidences = self.data_processor.merge_memcell_ids(
+                    merged_evidences = self.data_processor.merge_memunit_ids(
                         historical=historical_evidences,
                         new=llm_evidences,
-                        valid_ids=valid_memcell_ids,
-                        memcell_list=memcell_list,
+                        valid_ids=valid_memunit_ids,
+                        memunit_list=memunit_list,
                         user_id=speaker_id,
                         max_count=50,
                     )
@@ -137,11 +137,11 @@ class RoleProcessor:
                 else:
                     # 新 role，验证 evidences（包括 participants 检查）
                     merged_evidences = (
-                        self.data_processor.validate_and_filter_memcell_ids(
+                        self.data_processor.validate_and_filter_memunit_ids(
                             llm_evidences,
-                            valid_memcell_ids,
+                            valid_memunit_ids,
                             user_id=speaker_id,
-                            memcell_list=memcell_list,
+                            memunit_list=memunit_list,
                         )
                     )
                     final_confidence = confidence

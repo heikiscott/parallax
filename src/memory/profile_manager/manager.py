@@ -20,7 +20,7 @@ logger = get_logger(__name__)
 class ProfileManager:
     """Automatic profile extraction and management integrated with clustering.
     
-    ProfileManager monitors memcell clustering and automatically extracts/updates
+    ProfileManager monitors memunit clustering and automatically extracts/updates
     user profiles when high-value information is detected.
     
     Key Features:
@@ -28,7 +28,7 @@ class ProfileManager:
     - Value discrimination to filter high-quality updates
     - Incremental profile merging with version history
     - Flexible storage backends (in-memory, file-based, or custom)
-    - Seamless integration with ConvMemCellExtractor
+    - Seamless integration with ConvMemUnitExtractor
     
     Example:
         ```python
@@ -42,14 +42,14 @@ class ProfileManager:
         profile_mgr = ProfileManager(llm_provider, config)
         
         # Option 1: Attach to extractor for automatic updates
-        memcell_extractor = ConvMemCellExtractor(llm_provider)
-        profile_mgr.attach_to_extractor(memcell_extractor)
+        memunit_extractor = ConvMemUnitExtractor(llm_provider)
+        profile_mgr.attach_to_extractor(memunit_extractor)
         
         # Option 2: Manual updates
-        await profile_mgr.on_memcell_clustered(
-            memcell=memcell,
+        await profile_mgr.on_memunit_clustered(
+            memunit=memunit,
             cluster_id="cluster_001",
-            recent_memcells=[...]
+            recent_memunits=[...]
         )
         
         # Access profiles
@@ -83,8 +83,8 @@ class ProfileManager:
         # Initialize components
         self._profile_extractor = ProfileMemoryExtractor(llm_provider=llm_provider)
         
-        # 💡 设置 MemCell 阈值：降低到 2 个，让 Profile 更容易提取
-        self._min_memcells_threshold = 1  # 从默认的 3 降低到 2
+        # 💡 设置 MemUnit 阈值：降低到 2 个，让 Profile 更容易提取
+        self._min_memunits_threshold = 1  # 从默认的 3 降低到 2
         
         discriminator_config = DiscriminatorConfig(
             min_confidence=self.config.min_confidence,
@@ -107,41 +107,41 @@ class ProfileManager:
         self._storage = storage
         
         # Internal state for cluster tracking
-        self._cluster_memcells: Dict[str, List[Any]] = {}  # cluster_id -> memcells
+        self._cluster_memunits: Dict[str, List[Any]] = {}  # cluster_id -> memunits
         self._watched_clusters: Set[str] = set()  # clusters flagged for profile extraction
-        self._recent_memcells: List[Any] = []  # rolling window for context
+        self._recent_memunits: List[Any] = []  # rolling window for context
         
         # Statistics
         self._stats = {
-            "total_memcells": 0,
-            "high_value_memcells": 0,
+            "total_memunits": 0,
+            "high_value_memunits": 0,
             "profile_extractions": 0,
             "failed_extractions": 0,
         }
         
-        # 可配置的最小 MemCells 阈值（默认 1）
-        self._min_memcells_threshold = 1
+        # 可配置的最小 MemUnits 阈值（默认 1）
+        self._min_memunits_threshold = 1
     
-    async def on_memcell_clustered(
+    async def on_memunit_clustered(
         self,
-        memcell: Any,
+        memunit: Any,
         cluster_id: str,
-        recent_memcells: Optional[List[Any]] = None,
+        recent_memunits: Optional[List[Any]] = None,
         user_id_list: Optional[List[str]] = None,
     ) -> Dict[str, Any]:
-        """Handle a newly clustered memcell and conditionally extract/update profiles.
+        """Handle a newly clustered memunit and conditionally extract/update profiles.
         
-        This method should be called when a memcell has been assigned to a cluster.
+        This method should be called when a memunit has been assigned to a cluster.
         It will:
-        1. Add the memcell to the cluster's collection
-        2. Evaluate if the memcell contains high-value profile information
+        1. Add the memunit to the cluster's collection
+        2. Evaluate if the memunit contains high-value profile information
         3. If high-value, mark the cluster as "watched" and extract profiles
         4. If cluster is already watched, update profiles incrementally
         
         Args:
-            memcell: The memcell that was just clustered
+            memunit: The memunit that was just clustered
             cluster_id: The cluster it was assigned to
-            recent_memcells: Recent memcells for context (optional, uses internal if None)
+            recent_memunits: Recent memunits for context (optional, uses internal if None)
             user_id_list: List of user IDs to extract profiles for (optional)
         
         Returns:
@@ -156,25 +156,25 @@ class ProfileManager:
                 "updated_user_ids": List[str]
             }
         """
-        self._stats["total_memcells"] += 1
+        self._stats["total_memunits"] += 1
         
         # Add to cluster collection
-        if cluster_id not in self._cluster_memcells:
-            self._cluster_memcells[cluster_id] = []
-        self._cluster_memcells[cluster_id].append(memcell)
-        print(f"[ProfileManager] 已添加 MemCell 到 _cluster_memcells[{cluster_id}]，当前数量: {len(self._cluster_memcells[cluster_id])}")
+        if cluster_id not in self._cluster_memunits:
+            self._cluster_memunits[cluster_id] = []
+        self._cluster_memunits[cluster_id].append(memunit)
+        print(f"[ProfileManager] 已添加 MemUnit 到 _cluster_memunits[{cluster_id}]，当前数量: {len(self._cluster_memunits[cluster_id])}")
         
-        # Update recent memcells window
-        self._recent_memcells.append(memcell)
-        if len(self._recent_memcells) > 10:
-            self._recent_memcells = self._recent_memcells[-10:]
+        # Update recent memunits window
+        self._recent_memunits.append(memunit)
+        if len(self._recent_memunits) > 10:
+            self._recent_memunits = self._recent_memunits[-10:]
         
         # Use provided context or internal window
-        context = recent_memcells if recent_memcells is not None else self._recent_memcells[-2:]
+        context = recent_memunits if recent_memunits is not None else self._recent_memunits[-2:]
         
         # Value discrimination
         is_high_value, confidence, reason = await self._discriminator.is_high_value(
-            memcell,
+            memunit,
             context
         )
         logger.info(f"is_high_value: {is_high_value}, confidence: {confidence}, reason: {reason}")
@@ -185,10 +185,10 @@ class ProfileManager:
         reason = f"[FORCED] {reason}"
         
         if is_high_value:
-            self._stats["high_value_memcells"] += 1
+            self._stats["high_value_memunits"] += 1
             self._watched_clusters.add(cluster_id)
             log_msg = (
-                f"High-value memcell detected in cluster {cluster_id}: "
+                f"High-value memunit detected in cluster {cluster_id}: "
                 f"confidence={confidence:.2f}, reason='{reason}'"
             )
             logger.info(log_msg)
@@ -199,19 +199,19 @@ class ProfileManager:
         profiles_updated = 0
         
         if cluster_id in self._watched_clusters and self.config.auto_extract:
-            # ✅ 参考原代码：只有当簇内 MemCells 达到一定数量才提取
-            # 避免单个 MemCell 提取导致 Profile 为空
-            cluster_memcell_count = len(self._cluster_memcells.get(cluster_id, []))
+            # ✅ 参考原代码：只有当簇内 MemUnits 达到一定数量才提取
+            # 避免单个 MemUnit 提取导致 Profile 为空
+            cluster_memunit_count = len(self._cluster_memunits.get(cluster_id, []))
             
             # 使用实例属性或默认值
-            min_memcells_for_extraction = getattr(self, '_min_memcells_threshold', 3)
+            min_memunits_for_extraction = getattr(self, '_min_memunits_threshold', 3)
             
-            print(f"[ProfileManager] Cluster {cluster_id}: {cluster_memcell_count} MemCells, 阈值: {min_memcells_for_extraction}")
+            print(f"[ProfileManager] Cluster {cluster_id}: {cluster_memunit_count} MemUnits, 阈值: {min_memunits_for_extraction}")
             
-            if cluster_memcell_count < min_memcells_for_extraction:
+            if cluster_memunit_count < min_memunits_for_extraction:
                 log_msg = (
-                    f"Cluster {cluster_id} only has {cluster_memcell_count} memcells, "
-                    f"waiting for {min_memcells_for_extraction} before extraction"
+                    f"Cluster {cluster_id} only has {cluster_memunit_count} memunits, "
+                    f"waiting for {min_memunits_for_extraction} before extraction"
                 )
                 logger.debug(log_msg)
                 print(f"[ProfileManager] {log_msg}")
@@ -260,7 +260,7 @@ class ProfileManager:
         cluster_id: str,
         user_id_list: Optional[List[str]] = None
     ) -> List[Any]:
-        """Extract profiles for a specific cluster using all its memcells.
+        """Extract profiles for a specific cluster using all its memunits.
         
         Args:
             cluster_id: Cluster identifier
@@ -271,31 +271,31 @@ class ProfileManager:
         """
         print(f"[ProfileManager] _extract_profiles_for_cluster 被调用")
         print(f"[ProfileManager]   cluster_id: {cluster_id}")
-        print(f"[ProfileManager]   _cluster_memcells keys: {list(self._cluster_memcells.keys())}")
-        print(f"[ProfileManager]   _cluster_memcells[{cluster_id}]: {len(self._cluster_memcells.get(cluster_id, []))} 个")
+        print(f"[ProfileManager]   _cluster_memunits keys: {list(self._cluster_memunits.keys())}")
+        print(f"[ProfileManager]   _cluster_memunits[{cluster_id}]: {len(self._cluster_memunits.get(cluster_id, []))} 个")
         
-        memcells = self._cluster_memcells.get(cluster_id, [])
-        if not memcells:
-            print(f"[ProfileManager] ❌ _cluster_memcells[{cluster_id}] 为空！返回空列表")
+        memunits = self._cluster_memunits.get(cluster_id, [])
+        if not memunits:
+            print(f"[ProfileManager] ❌ _cluster_memunits[{cluster_id}] 为空！返回空列表")
             return []
         
-        print(f"[ProfileManager] ✅ 找到 {len(memcells)} 个 MemCell")
+        print(f"[ProfileManager] ✅ 找到 {len(memunits)} 个 MemUnit")
         
-        # 🔧 关键修复：将字典格式的 memcell 转换为完整的 MemCell 对象
-        # 从 MongoDB 重新加载完整的 MemCell 数据
-        from infrastructure.adapters.out.persistence.document.memory.memcell import MemCell as MemCellDoc
+        # 🔧 关键修复：将字典格式的 memunit 转换为完整的 MemUnit 对象
+        # 从 MongoDB 重新加载完整的 MemUnit 数据
+        from infrastructure.adapters.out.persistence.document.memory.memunit import MemUnit as MemUnitDoc
         
-        full_memcells = []
-        for mc in memcells:
+        full_memunits = []
+        for mc in memunits:
             event_id = getattr(mc, 'event_id', None) or getattr(mc, '_id', None) or getattr(mc, 'id', None)
             if event_id:
-                print(f"[ProfileManager] 正在从 MongoDB 加载 MemCell: {event_id} (类型: {type(event_id).__name__})")
-                # 从 MongoDB 加载完整的 MemCell
+                print(f"[ProfileManager] 正在从 MongoDB 加载 MemUnit: {event_id} (类型: {type(event_id).__name__})")
+                # 从 MongoDB 加载完整的 MemUnit
                 # 尝试多种方式查询
                 full_mc = None
                 
                 # 方式1: 用 event_id 字段查询
-                full_mc = await MemCellDoc.find_one({"event_id": str(event_id)})
+                full_mc = await MemUnitDoc.find_one({"event_id": str(event_id)})
                 
                 # 方式2: 如果没找到，尝试用 _id 查询
                 if not full_mc:
@@ -303,34 +303,34 @@ class ProfileManager:
                         from bson import ObjectId
                         if isinstance(event_id, (str, ObjectId)):
                             oid = ObjectId(str(event_id)) if isinstance(event_id, str) else event_id
-                            full_mc = await MemCellDoc.get(oid)
+                            full_mc = await MemUnitDoc.get(oid)
                             if full_mc:
                                 print(f"[ProfileManager] ✅ 用 _id 找到了")
                     except Exception as e:
                         print(f"[ProfileManager] ⚠️  用 _id 查询失败: {e}")
                 
                 if full_mc:
-                    full_memcells.append(full_mc)
+                    full_memunits.append(full_mc)
                     print(f"[ProfileManager] ✅ 加载成功，包含 episode: {len(full_mc.episode) if full_mc.episode else 0} 字符")
                 else:
-                    print(f"[ProfileManager] ⚠️  未找到 MemCell: {event_id}，使用原始字典")
+                    print(f"[ProfileManager] ⚠️  未找到 MemUnit: {event_id}，使用原始字典")
                     # 如果找不到，使用原始的字典对象
-                    full_memcells.append(mc)
+                    full_memunits.append(mc)
         
-        if not full_memcells:
-            print(f"[ProfileManager] ❌ 没有加载到任何完整的 MemCell")
+        if not full_memunits:
+            print(f"[ProfileManager] ❌ 没有加载到任何完整的 MemUnit")
             return []
         
-        print(f"[ProfileManager] ✅ 加载了 {len(full_memcells)} 个完整的 MemCell，开始提取...")
-        memcells = full_memcells  # 使用完整的 MemCell 对象
+        print(f"[ProfileManager] ✅ 加载了 {len(full_memunits)} 个完整的 MemUnit，开始提取...")
+        memunits = full_memunits  # 使用完整的 MemUnit 对象
         
         # Limit batch size
-        if len(memcells) > self.config.batch_size:
+        if len(memunits) > self.config.batch_size:
             logger.warning(
-                f"Cluster {cluster_id} has {len(memcells)} memcells, "
+                f"Cluster {cluster_id} has {len(memunits)} memunits, "
                 f"limiting to {self.config.batch_size} most recent"
             )
-            memcells = memcells[-self.config.batch_size:]
+            memunits = memunits[-self.config.batch_size:]
         
         # Get old profiles for incremental merging
         old_profiles = []
@@ -340,7 +340,7 @@ class ProfileManager:
         
         # Build extraction request
         request = ProfileMemoryExtractRequest(
-            memcell_list=memcells,
+            memunit_list=memunits,
             user_id_list=user_id_list or [],
             group_id=self.group_id,
             group_name=self.group_name,
@@ -379,7 +379,7 @@ class ProfileManager:
                         metadata = {
                             "group_id": self.group_id,  # 🔧 添加 group_id
                             "cluster_id": cluster_id,
-                            "memcell_count": len(memcells),
+                            "memunit_count": len(memunits),
                             "scenario": self.config.scenario.value,
                         }
                         
@@ -477,8 +477,8 @@ class ProfileManager:
         Returns:
             Dictionary with statistics:
             {
-                "total_memcells": int,
-                "high_value_memcells": int,
+                "total_memunits": int,
+                "high_value_memunits": int,
                 "profile_extractions": int,
                 "failed_extractions": int,
                 "watched_clusters": int,
@@ -488,7 +488,7 @@ class ProfileManager:
         return {
             **self._stats,
             "watched_clusters": len(self._watched_clusters),
-            "total_clusters": len(self._cluster_memcells),
+            "total_clusters": len(self._cluster_memunits),
         }
     
     def attach_to_cluster_manager(self, cluster_manager: Any) -> None:
@@ -499,26 +499,26 @@ class ProfileManager:
         Args:
             cluster_manager: ClusterManager instance
         """
-        async def on_cluster_callback(group_id: str, memcell: Dict[str, Any], cluster_id: str):
+        async def on_cluster_callback(group_id: str, memunit: Dict[str, Any], cluster_id: str):
             """Callback for cluster assignment events."""
             print(f"[ProfileManager] 🔔 收到聚类回调: cluster_id={cluster_id}, group_id={group_id}")
             
             # Create wrapper object
-            class MemCellWrapper:
+            class MemUnitWrapper:
                 def __init__(self, data: Dict[str, Any]):
                     for k, v in data.items():
                         setattr(self, k, v)
             
-            mc_obj = MemCellWrapper(memcell)
+            mc_obj = MemUnitWrapper(memunit)
             
-            print(f"[ProfileManager] 调用 on_memcell_clustered...")
+            print(f"[ProfileManager] 调用 on_memunit_clustered...")
             # Trigger profile update
-            result = await self.on_memcell_clustered(
-                memcell=mc_obj,
+            result = await self.on_memunit_clustered(
+                memunit=mc_obj,
                 cluster_id=cluster_id,
-                user_id_list=memcell.get("user_id_list", [])
+                user_id_list=memunit.get("user_id_list", [])
             )
-            print(f"[ProfileManager] on_memcell_clustered 返回: {result}")
+            print(f"[ProfileManager] on_memunit_clustered 返回: {result}")
         
         # Register callback with ClusterManager
         print(f"[ProfileManager] 注册回调到 ClusterManager")
@@ -527,29 +527,29 @@ class ProfileManager:
         
         logger.info("ProfileManager successfully attached to ClusterManager")
     
-    def attach_to_extractor(self, memcell_extractor: Any) -> None:
-        """Attach this ProfileManager to a MemCellExtractor for automatic profile updates.
+    def attach_to_extractor(self, memunit_extractor: Any) -> None:
+        """Attach this ProfileManager to a MemUnitExtractor for automatic profile updates.
         
         This method integrates the ProfileManager with the clustering worker of a
-        ConvMemCellExtractor, so profiles are automatically extracted as conversations
+        ConvMemUnitExtractor, so profiles are automatically extracted as conversations
         are processed.
         
         NOTE: This method uses monkey-patching. For cleaner integration, use
         ClusterManager and attach_to_cluster_manager() instead.
         
         Args:
-            memcell_extractor: ConvMemCellExtractor instance
+            memunit_extractor: ConvMemUnitExtractor instance
         
         Raises:
             AttributeError: If extractor doesn't have a cluster_worker attribute
         """
-        if not hasattr(memcell_extractor, "_cluster_worker"):
+        if not hasattr(memunit_extractor, "_cluster_worker"):
             raise AttributeError(
-                "MemCellExtractor does not have a _cluster_worker attribute. "
-                "Only ConvMemCellExtractor with clustering is supported."
+                "MemUnitExtractor does not have a _cluster_worker attribute. "
+                "Only ConvMemUnitExtractor with clustering is supported."
             )
         
-        cluster_worker = memcell_extractor._cluster_worker
+        cluster_worker = memunit_extractor._cluster_worker
         
         # Check if this is a ClusterManager wrapper
         if hasattr(cluster_worker, "_cluster_mgr"):
@@ -557,42 +557,42 @@ class ProfileManager:
             self.attach_to_cluster_manager(cluster_worker._cluster_mgr)
             return
         
-        # Monkey-patch the clustering worker to notify us after each memcell is processed
+        # Monkey-patch the clustering worker to notify us after each memunit is processed
         original_submit = cluster_worker.submit
         
-        def patched_submit(group_id: Optional[str], memcell: Dict[str, Any]) -> None:
+        def patched_submit(group_id: Optional[str], memunit: Dict[str, Any]) -> None:
             # Call original submit first
-            original_submit(group_id, memcell)
+            original_submit(group_id, memunit)
             
             # Get cluster assignment
             gid = group_id or "__default__"
             state = cluster_worker._states.get(gid)
             if state:
-                event_id = str(memcell.get("event_id"))
+                event_id = str(memunit.get("event_id"))
                 cluster_id = state.eventid_to_cluster.get(event_id)
                 
                 if cluster_id:
-                    # Create a simple wrapper object for the memcell dict
-                    class MemCellWrapper:
+                    # Create a simple wrapper object for the memunit dict
+                    class MemUnitWrapper:
                         def __init__(self, data: Dict[str, Any]):
                             for k, v in data.items():
                                 setattr(self, k, v)
                     
-                    mc_obj = MemCellWrapper(memcell)
+                    mc_obj = MemUnitWrapper(memunit)
                     
                     # Schedule profile update (run in background)
                     asyncio.create_task(
-                        self.on_memcell_clustered(
-                            memcell=mc_obj,
+                        self.on_memunit_clustered(
+                            memunit=mc_obj,
                             cluster_id=cluster_id,
-                            user_id_list=memcell.get("user_id_list", [])
+                            user_id_list=memunit.get("user_id_list", [])
                         )
                     )
         
         # Replace the submit method
         cluster_worker.submit = patched_submit
         
-        logger.info("ProfileManager successfully attached to MemCellExtractor (legacy mode)")
+        logger.info("ProfileManager successfully attached to MemUnitExtractor (legacy mode)")
     
     async def export_profiles(
         self,

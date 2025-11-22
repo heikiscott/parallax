@@ -1,6 +1,6 @@
 """
 语义记忆提取器 - 基于联想预测方法
-从MemCell中生成对用户未来生活、决策可能产生的影响预测
+从MemUnit中生成对用户未来生活、决策可能产生的影响预测
 """
 
 import json
@@ -14,7 +14,7 @@ from ..prompts import (
 )
 from providers.llm.llm_provider import LLMProvider
 from .base_memory_extractor import MemoryExtractor, MemoryExtractRequest
-from ..types import MemoryType, MemCell, Memory, SemanticMemoryItem
+from ..types import MemoryType, MemUnit, Memory, SemanticMemoryItem
 from agents.vectorize_service import get_vectorize_service
 from core.observation.logger import get_logger
 
@@ -27,7 +27,7 @@ class SemanticMemoryExtractor(MemoryExtractor):
 
     支持两种模式：
     1. use_group_prompt=False: 基于EpisodeMemory对象生成联想，返回的EpisodeMemory对象中添加semantic_memories字段
-    2. use_group_prompt=True: 基于MemCell对象生成联想，返回的MemCell对象中添加semantic_memories字段
+    2. use_group_prompt=True: 基于MemUnit对象生成联想，返回的MemUnit对象中添加semantic_memories字段
 
     新的策略实现：
     1. 基于内容，大模型联想出10条对用户后续的生活、决策可能产生的影响
@@ -35,7 +35,7 @@ class SemanticMemoryExtractor(MemoryExtractor):
     3. 重点关注用户个人层面的影响
 
     主要方法：
-    - generate_semantic_memories_for_memcell(): 为MemCell生成语义记忆联想
+    - generate_semantic_memories_for_memunit(): 为MemUnit生成语义记忆联想
     - generate_semantic_memories_for_episode(): 为EpisodeMemory生成语义记忆联想
     """
 
@@ -56,7 +56,7 @@ class SemanticMemoryExtractor(MemoryExtractor):
         实现抽象基类要求的 extract_memory 方法
 
         注意：SemanticMemoryExtractor 不应该直接使用 extract_memory 方法
-        应该使用 generate_semantic_memories_for_memcell 或 generate_semantic_memories_for_episode
+        应该使用 generate_semantic_memories_for_memunit 或 generate_semantic_memories_for_episode
 
         Args:
             request: 记忆提取请求
@@ -66,31 +66,31 @@ class SemanticMemoryExtractor(MemoryExtractor):
         """
         raise NotImplementedError(
             "SemanticMemoryExtractor 不应该直接使用 extract_memory 方法。"
-            "请使用 generate_semantic_memories_for_memcell 或 generate_semantic_memories_for_episode 方法。"
+            "请使用 generate_semantic_memories_for_memunit 或 generate_semantic_memories_for_episode 方法。"
         )
 
-    async def generate_semantic_memories_for_memcell(
-        self, memcell: MemCell
+    async def generate_semantic_memories_for_memunit(
+        self, memunit: MemUnit
     ) -> List[SemanticMemoryItem]:
         """
-        为MemCell生成语义记忆联想预测
+        为MemUnit生成语义记忆联想预测
 
-        这是新的策略：基于MemCell内容，大模型联想出10条对用户后续的生活、决策可能产生的影响
+        这是新的策略：基于MemUnit内容，大模型联想出10条对用户后续的生活、决策可能产生的影响
 
         Args:
-            memcell: MemCell对象
+            memunit: MemUnit对象
 
         Returns:
             语义记忆联想项目列表（10条），包含时间信息
         """
         try:
-            logger.info(f"🎯 为MemCell生成语义记忆联想: {memcell.subject}")
+            logger.info(f"🎯 为MemUnit生成语义记忆联想: {memunit.subject}")
 
             # 构建提示词
             prompt = get_group_semantic_generation_prompt(
-                memcell_summary=memcell.summary,
-                memcell_episode=memcell.episode or "",
-                user_ids=memcell.user_id_list,
+                memunit_summary=memunit.summary,
+                memunit_episode=memunit.episode or "",
+                user_ids=memunit.user_id_list,
             )
 
             # 调用LLM生成联想
@@ -101,9 +101,9 @@ class SemanticMemoryExtractor(MemoryExtractor):
             )
 
             # 解析JSON响应
-            start_time = self._extract_start_time_from_timestamp(memcell.timestamp)
+            start_time = self._extract_start_time_from_timestamp(memunit.timestamp)
             semantic_memories = await self._parse_semantic_memories_response(
-                response, memcell.event_id, start_time
+                response, memunit.event_id, start_time
             )
 
             # 确保返回恰好10条
@@ -305,10 +305,10 @@ class SemanticMemoryExtractor(MemoryExtractor):
 
     def _extract_start_time_from_timestamp(self, timestamp: datetime) -> str:
         """
-        从MemCell的timestamp字段提取开始时间
+        从MemUnit的timestamp字段提取开始时间
 
         Args:
-            timestamp: MemCell的时间戳
+            timestamp: MemUnit的时间戳
 
         Returns:
             开始时间字符串，格式为YYYY-MM-DD

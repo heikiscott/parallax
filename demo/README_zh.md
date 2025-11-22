@@ -30,7 +30,7 @@ demo/
 │
 ├── tools/                       # 辅助工具
 │   ├── clear_all_data.py       # 清理所有记忆数据
-│   ├── resync_memcells.py      # 重新同步记忆单元
+│   ├── resync_memunits.py      # 重新同步记忆单元
 │   └── test_retrieval_comprehensive.py  # 检索测试工具
 │
 ├── chat_history/                # 📁 输出：对话记录（自动生成）
@@ -40,7 +40,7 @@ demo/
 ```
 
 **说明**：
-- 所有记忆数据存储到数据库（MongoDB、Elasticsearch、Milvus），不生成本地 `memcell_outputs/` 目录
+- 所有记忆数据存储到数据库（MongoDB、Elasticsearch、Milvus），不生成本地 `memunit_outputs/` 目录
 - `extract_memory.py` 直接调用 HTTP API，无需复杂配置类
 - 对话历史保存在 `chat_history/` 目录中
 
@@ -103,7 +103,7 @@ uv run python src/bootstrap.py demo/simple_demo.py
 - 清空所有已存在的记忆（确保干净的初始状态）
 - 从 `data/` 目录加载对话文件（如 `data/assistant_chat_zh.json`）
 - 逐条发送消息到 API 服务器 (`/api/v3/agentic/memorize`)
-- 服务器端自动提取 MemCell、生成情节和画像
+- 服务器端自动提取 MemUnit、生成情节和画像
 - 所有数据存储到数据库（MongoDB、Elasticsearch、Milvus）
 
 **运行前提**：必须先启动 API 服务器 (`uv run python src/bootstrap.py src/run.py --port 8001`)
@@ -325,7 +325,7 @@ MONGODB_URI=mongodb://admin:memsys123@localhost:27017
 
 ### Q: 数据存储在哪里？
 **A**: 所有记忆数据通过 HTTP API 存储到数据库：
-- **MongoDB**: 存储 MemCell、情节、画像
+- **MongoDB**: 存储 MemUnit、情节、画像
 - **Elasticsearch**: 关键词索引（BM25）
 - **Milvus**: 向量索引（语义检索）
 - **本地文件**: 仅 `chat_history/` 目录保存对话历史

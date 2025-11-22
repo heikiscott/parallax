@@ -21,7 +21,7 @@ class ProfileManagerConfig:
         min_confidence: Minimum confidence threshold for value discrimination (0.0-1.0)
         enable_versioning: Whether to keep profile version history
         auto_extract: Whether to automatically extract profiles on cluster updates
-        batch_size: Maximum memcells per batch for profile extraction
+        batch_size: Maximum memunits per batch for profile extraction
         max_retries: Maximum retry attempts for failed profile extractions
     """
     

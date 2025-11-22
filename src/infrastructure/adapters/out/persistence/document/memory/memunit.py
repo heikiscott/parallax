@@ -1,7 +1,7 @@
 """
-MemCell Beanie ODM 模型
+MemUnit Beanie ODM 模型
 
-基于 Beanie ODM 的 MemCell 数据模型定义，支持 MongoDB 分片集群。
+基于 Beanie ODM 的 MemUnit 数据模型定义，支持 MongoDB 分片集群。
 """
 
 from datetime import datetime
@@ -64,9 +64,9 @@ class RawData(BaseModel):
     )
 
 
-class MemCell(DocumentBase, AuditBase):
+class MemUnit(DocumentBase, AuditBase):
     """
-    MemCell 文档模型
+    MemUnit 文档模型
 
     情景切分之后的结果存储模型，支持灵活扩展和高性能查询。
     """
@@ -100,7 +100,7 @@ class MemCell(DocumentBase, AuditBase):
 
     model_config = ConfigDict(
         # 集合名称
-        collection="memcells",
+        collection="memunits",
         # 验证配置
         validate_assignment=True,
         # JSON 序列化配置
@@ -141,7 +141,7 @@ class MemCell(DocumentBase, AuditBase):
         """Beanie 设置"""
 
         # 集合名称
-        name = "memcells"
+        name = "memunits"
 
         # 索引定义
         indexes = [
@@ -188,4 +188,4 @@ class MemCell(DocumentBase, AuditBase):
 
 
 # 导出模型
-__all__ = ["MemCell", "RawData", "Message", "DataTypeEnum"]
+__all__ = ["MemUnit", "RawData", "Message", "DataTypeEnum"]

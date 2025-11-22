@@ -10,12 +10,12 @@ from dataclasses import dataclass
 from typing import List, Optional
 import uuid
 
-from ..types import MemoryType, Memory, MemCell
+from ..types import MemoryType, Memory, MemUnit
 
 
 @dataclass
 class MemoryExtractRequest:
-    memcell_list: List[MemCell]
+    memunit_list: List[MemUnit]
     user_id_list: List[str]
     group_id: Optional[str] = None
     group_name: Optional[str] = None

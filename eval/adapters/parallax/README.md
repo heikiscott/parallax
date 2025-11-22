@@ -20,7 +20,7 @@ locomo_eval/
 │   ├── refined_query.txt              # Query refinement
 │   ├── multi_query_generation.txt     # Multi-query generation
 │   └── answer_prompts.py              # Answer generation
-├── stage1_memcells_extraction.py      # Stage 1: Extract MemCells
+├── stage1_memunits_extraction.py      # Stage 1: Extract MemUnits
 ├── stage2_index_building.py           # Stage 2: Build indexes
 ├── stage3_memory_retrivel.py          # Stage 3: Retrieve memories
 ├── stage4_response.py                 # Stage 4: Generate responses
@@ -67,8 +67,8 @@ class ExperimentConfig:
 ### 3. Run Complete Pipeline
 
 ```bash
-# Stage 1: Extract MemCells
-python eval/locomo_eval/stage1_memcells_extraction.py
+# Stage 1: Extract MemUnits
+python eval/locomo_eval/stage1_memunits_extraction.py
 
 # Stage 2: Build indexes
 python eval/locomo_eval/stage2_index_building.py
@@ -101,8 +101,8 @@ python eval/locomo_eval/tools/compute_acc.py
 
 ```
 results/locomo_eval/
-├── memcells/                  # MemCell extraction results
-│   ├── memcell_list_conv_0.json
+├── memunits/                  # MemUnit extraction results
+│   ├── memunit_list_conv_0.json
 │   └── ...
 ├── bm25_index/                # BM25 indexes
 │   └── *.pkl

@@ -1,6 +1,6 @@
 # ProfileManager - Automatic Profile Extraction
 
-`ProfileManager` is a core component that automatically extracts and maintains user profiles from clustered conversations. It integrates seamlessly with `ConvMemCellExtractor` to provide hands-free profile management.
+`ProfileManager` is a core component that automatically extracts and maintains user profiles from clustered conversations. It integrates seamlessly with `ConvMemUnitExtractor` to provide hands-free profile management.
 
 ## Features
 
@@ -17,7 +17,7 @@
 
 ```python
 from memory.llm.llm_provider import LLMProvider
-from memory.memcell_extractor.conv_memcell_extractor import ConvMemCellExtractor
+from memory.memunit_extractor.conv_memunit_extractor import ConvMemUnitExtractor
 from memory.profile_manager import ProfileManager, ProfileManagerConfig
 
 # Initialize LLM provider
@@ -43,9 +43,9 @@ profile_mgr = ProfileManager(
     group_name="My Team Chat"
 )
 
-# Attach to MemCellExtractor for automatic updates
-memcell_extractor = ConvMemCellExtractor(llm_provider=llm_provider)
-profile_mgr.attach_to_extractor(memcell_extractor)
+# Attach to MemUnitExtractor for automatic updates
+memunit_extractor = ConvMemUnitExtractor(llm_provider=llm_provider)
+profile_mgr.attach_to_extractor(memunit_extractor)
 
 # That's it! Profiles will now be automatically extracted and updated
 # as conversations are processed through the extractor
@@ -65,8 +65,8 @@ history = await profile_mgr.get_profile_history(user_id="user_123", limit=5)
 
 # Get statistics
 stats = profile_mgr.get_stats()
-print(f"Processed {stats['total_memcells']} memcells")
-print(f"Found {stats['high_value_memcells']} high-value memcells")
+print(f"Processed {stats['total_memunits']} memunits")
+print(f"Found {stats['high_value_memunits']} high-value memunits")
 print(f"Updated profiles {stats['profile_extractions']} times")
 ```
 
@@ -79,11 +79,11 @@ If you want more control, you can manually trigger profile extraction:
 config = ProfileManagerConfig(auto_extract=False)
 profile_mgr = ProfileManager(llm_provider, config)
 
-# Manually trigger profile extraction when a memcell is clustered
-result = await profile_mgr.on_memcell_clustered(
-    memcell=memcell,
+# Manually trigger profile extraction when a memunit is clustered
+result = await profile_mgr.on_memunit_clustered(
+    memunit=memunit,
     cluster_id="cluster_001",
-    recent_memcells=[previous_mc1, previous_mc2],
+    recent_memunits=[previous_mc1, previous_mc2],
     user_id_list=["user_123", "user_456"]
 )
 
@@ -137,7 +137,7 @@ print(f"Exported {count} profiles to {output_dir}")
 | `min_confidence` | `float` | `0.6` | Minimum confidence threshold for value discrimination (0.0-1.0) |
 | `enable_versioning` | `bool` | `True` | Whether to keep profile version history |
 | `auto_extract` | `bool` | `True` | Whether to automatically extract profiles on cluster updates |
-| `batch_size` | `int` | `50` | Maximum memcells per batch for profile extraction |
+| `batch_size` | `int` | `50` | Maximum memunits per batch for profile extraction |
 | `max_retries` | `int` | `3` | Maximum retry attempts for failed extractions |
 
 ### DiscriminatorConfig
@@ -145,8 +145,8 @@ print(f"Exported {count} profiles to {output_dir}")
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
 | `min_confidence` | `float` | `0.6` | Minimum confidence for high-value judgment |
-| `use_context` | `bool` | `True` | Whether to use previous memcells as context |
-| `context_window` | `int` | `2` | Number of previous memcells to include |
+| `use_context` | `bool` | `True` | Whether to use previous memunits as context |
+| `context_window` | `int` | `2` | Number of previous memunits to include |
 
 ## Scenarios
 
@@ -241,7 +241,7 @@ profile_mgr = ProfileManager(llm_provider, storage=storage)
                      │
                      ▼
          ┌──────────────────────┐
-         │  MemCellExtractor    │
+         │  MemUnitExtractor    │
          └──────────────────────┘
 ```
 
@@ -252,7 +252,7 @@ profile_mgr = ProfileManager(llm_provider, storage=storage)
 **Before:**
 ```python
 # Old approach: separate scripts, manual coordination
-python extract_memory.py  # Extract memcells
+python extract_memory.py  # Extract memunits
 # Then manually run profile extraction
 # Then manually manage profile updates
 ```
@@ -261,7 +261,7 @@ python extract_memory.py  # Extract memcells
 ```python
 # New approach: integrated, automatic
 profile_mgr = ProfileManager(llm_provider, config)
-profile_mgr.attach_to_extractor(memcell_extractor)
+profile_mgr.attach_to_extractor(memunit_extractor)
 # Done! Profiles auto-update as conversations are processed
 ```
 
@@ -271,15 +271,15 @@ profile_mgr.attach_to_extractor(memcell_extractor)
 ```python
 # Manual coordinator usage
 coordinator, discriminator = build_coordinator(provider, group_id)
-for mc in memcells:
-    result = await coordinator.on_new_memcell(mc, cluster_id, discriminator, recent)
+for mc in memunits:
+    result = await coordinator.on_new_memunit(mc, cluster_id, discriminator, recent)
 ```
 
 **After:**
 ```python
 # Automatic with ProfileManager
 profile_mgr = ProfileManager(llm_provider, config)
-profile_mgr.attach_to_extractor(memcell_extractor)
+profile_mgr.attach_to_extractor(memunit_extractor)
 # Profiles update automatically
 ```
 
@@ -294,9 +294,9 @@ profile_mgr.attach_to_extractor(memcell_extractor)
 
 ## Performance
 
-- **Memory**: ~10-50MB per 1000 memcells (depending on versioning and storage backend)
+- **Memory**: ~10-50MB per 1000 memunits (depending on versioning and storage backend)
 - **Latency**: Profile extraction adds ~2-5s per high-value cluster (depends on LLM)
-- **Throughput**: Processes 100-500 memcells/minute (with clustering and profile extraction)
+- **Throughput**: Processes 100-500 memunits/minute (with clustering and profile extraction)
 
 ## Troubleshooting
 
@@ -305,7 +305,7 @@ profile_mgr.attach_to_extractor(memcell_extractor)
 1. Check if `auto_extract=True` in config
 2. Verify ProfileManager is attached to extractor via `attach_to_extractor()`
 3. Check logs for discrimination failures
-4. Verify memcells are being clustered (check cluster_worker)
+4. Verify memunits are being clustered (check cluster_worker)
 
 ### Too many/few profile updates
 

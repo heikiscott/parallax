@@ -30,7 +30,7 @@ demo/
 │
 ├── tools/                       # Auxiliary tools
 │   ├── clear_all_data.py       # Clear all memory data
-│   ├── resync_memcells.py      # Resync memory cells
+│   ├── resync_memunits.py      # Resync memory cells
 │   └── test_retrieval_comprehensive.py  # Retrieval testing tool
 │
 ├── chat_history/                # 📁 Output: Chat logs (auto-generated)
@@ -40,7 +40,7 @@ demo/
 ```
 
 **Notes**:
-- All memory data is stored in databases (MongoDB, Elasticsearch, Milvus), no local `memcell_outputs/` directory
+- All memory data is stored in databases (MongoDB, Elasticsearch, Milvus), no local `memunit_outputs/` directory
 - `extract_memory.py` directly calls HTTP API without complex configuration classes
 - Chat conversation history is saved in `chat_history/` directory
 
@@ -103,7 +103,7 @@ Batch process conversation data and extract memories via HTTP API.
 - Clears all existing memories (ensures clean starting state)
 - Loads conversation files from `data/` directory (e.g., `data/assistant_chat_zh.json`)
 - Sends each message to the API server (`/api/v3/agentic/memorize`)
-- Server-side automatically extracts MemCells, generates episodes and profiles
+- Server-side automatically extracts MemUnits, generates episodes and profiles
 - All data is stored in databases (MongoDB, Elasticsearch, Milvus)
 
 **Prerequisites**: API server must be running (`uv run python src/bootstrap.py src/run.py --port 8001`)
@@ -323,7 +323,7 @@ MONGODB_URI=mongodb://admin:memsys123@localhost:27017
 
 ### Q: Where is data stored?
 **A**: All memory data is stored via HTTP API to databases:
-- **MongoDB**: Stores MemCells, episodes, profiles
+- **MongoDB**: Stores MemUnits, episodes, profiles
 - **Elasticsearch**: Keyword indexing (BM25)
 - **Milvus**: Vector indexing (semantic retrieval)
 - **Local files**: Only `chat_history/` directory saves conversation logs

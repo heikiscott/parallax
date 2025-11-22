@@ -30,7 +30,7 @@ from providers.llm.llm_provider import LLMProvider
 
 from .base_memory_extractor import MemoryExtractor, MemoryExtractRequest
 from .semantic_memory_extractor import SemanticMemoryExtractor
-from ..types import MemoryType, Memory, RawDataType, MemCell
+from ..types import MemoryType, Memory, RawDataType, MemUnit
 
 from utils.datetime_utils import get_now_with_timezone
 
@@ -252,11 +252,11 @@ class EpisodeMemoryExtractor(MemoryExtractor):
             f"语义记忆提取完成: {success_count}/{len(episode_memories)} 个episode成功"
         )
 
-    async def _trigger_semantic_extraction_for_memcell_async(
-        self, memcell: MemCell, request: EpisodeMemoryExtractRequest
+    async def _trigger_semantic_extraction_for_memunit_async(
+        self, memunit: MemUnit, request: EpisodeMemoryExtractRequest
     ):
         """
-        异步为MemCell触发语义记忆提取，不影响主流程
+        异步为MemUnit触发语义记忆提取，不影响主流程
         """
         if not self.semantic_extractor:
             logger.debug("语义记忆提取器未初始化，跳过语义记忆提取")
@@ -266,26 +266,26 @@ class EpisodeMemoryExtractor(MemoryExtractor):
         for attempt in range(max_retries):
             try:
                 logger.debug(
-                    f"🧠 自动触发语义记忆提取开始: memcell='{memcell.subject}' (尝试 {attempt + 1}/{max_retries})"
+                    f"🧠 自动触发语义记忆提取开始: memunit='{memunit.subject}' (尝试 {attempt + 1}/{max_retries})"
                 )
-                semantic_memories = await self.semantic_extractor.generate_semantic_memories_for_memcell(
-                    memcell
+                semantic_memories = await self.semantic_extractor.generate_semantic_memories_for_memunit(
+                    memunit
                 )
-                memcell.semantic_memories = semantic_memories
+                memunit.semantic_memories = semantic_memories
                 logger.info(
-                    f"✅ 为MemCell '{memcell.subject}' 生成了 {len(semantic_memories)} 条语义记忆"
+                    f"✅ 为MemUnit '{memunit.subject}' 生成了 {len(semantic_memories)} 条语义记忆"
                 )
                 break  # 成功则跳出重试循环
             except Exception as e:
                 logger.error(
-                    f"❌ 为MemCell '{memcell.subject}' 生成语义记忆时出错: {e} (尝试 {attempt + 1}/{max_retries})"
+                    f"❌ 为MemUnit '{memunit.subject}' 生成语义记忆时出错: {e} (尝试 {attempt + 1}/{max_retries})"
                 )
 
                 if attempt < max_retries - 1:
                     await asyncio.sleep(0.5)
                 else:
                     logger.error(
-                        f"❌ 所有重试次数均失败，未能为MemCell '{memcell.subject}' 提取语义记忆"
+                        f"❌ 所有重试次数均失败，未能为MemUnit '{memunit.subject}' 提取语义记忆"
                     )
 
     async def extract_memory(
@@ -293,30 +293,30 @@ class EpisodeMemoryExtractor(MemoryExtractor):
         request: EpisodeMemoryExtractRequest,
         use_group_prompt: bool = False,
         use_semantic_extraction: bool = False,
-    ) -> Optional[List[EpisodeMemory]] | Optional[MemCell]:
+    ) -> Optional[List[EpisodeMemory]] | Optional[MemUnit]:
         logger.debug(f"📚 自动触发情景记忆提取...")
 
-        if not request.memcell_list:
+        if not request.memunit_list:
             return None
 
-        # 获取第一个 memcell 来判断类型
-        first_memcell = request.memcell_list[0]
+        # 获取第一个 memunit 来判断类型
+        first_memunit = request.memunit_list[0]
 
         # 根据类型选择不同的处理方式
-        if first_memcell.type == RawDataType.CONVERSATION:
+        if first_memunit.type == RawDataType.CONVERSATION:
             all_content_text = []
             prompt_template = ""
             # 对话类型处理
-            for memcell in request.memcell_list:
-                # conversation_text = self.get_conversation_text(memcell.original_data)
+            for memunit in request.memunit_list:
+                # conversation_text = self.get_conversation_text(memunit.original_data)
                 conversation_text = self.get_conversation_json_text(
-                    memcell.original_data
+                    memunit.original_data
                 )
                 all_content_text.append(conversation_text)
 
             # 根据使用场景选择提示词
             if use_group_prompt:
-                # 与 extract_memcell 配套使用
+                # 与 extract_memunit 配套使用
                 prompt_template = self.group_episode_generation_prompt
                 content_key = "conversation"
                 time_key = "conversation_start_time"
@@ -330,7 +330,7 @@ class EpisodeMemoryExtractor(MemoryExtractor):
             pass
 
         # Extract earliest timestamp for context
-        start_time = self._parse_timestamp(first_memcell.timestamp)
+        start_time = self._parse_timestamp(first_memunit.timestamp)
         start_time_str = self._format_timestamp(start_time)
 
         # Combine all content texts
@@ -387,19 +387,19 @@ class EpisodeMemoryExtractor(MemoryExtractor):
             content = data["content"]
             summary = data["summary"]
 
-            # GROUP_EPISODE_GENERATION_PROMPT 模式：将情景记忆存储到 MemCell 中，返回 MemCell
-            # 更新 MemCell 的 episode 字段
-            for memcell in request.memcell_list:
-                memcell.subject = title
-                memcell.episode = content
+            # GROUP_EPISODE_GENERATION_PROMPT 模式：将情景记忆存储到 MemUnit 中，返回 MemUnit
+            # 更新 MemUnit 的 episode 字段
+            for memunit in request.memunit_list:
+                memunit.subject = title
+                memunit.episode = content
 
             if use_semantic_extraction:
-                await self._trigger_semantic_extraction_for_memcell_async(
-                    first_memcell, request
+                await self._trigger_semantic_extraction_for_memunit_async(
+                    first_memunit, request
                 )
 
-            # 返回第一个 MemCell（已经包含了情景记忆内容）
-            return first_memcell
+            # 返回第一个 MemUnit（已经包含了情景记忆内容）
+            return first_memunit
         else:
             format_params = {
                 time_key: start_time_str,
@@ -409,8 +409,8 @@ class EpisodeMemoryExtractor(MemoryExtractor):
 
             participants = []
             [
-                participants.extend(memcell.participants)
-                for memcell in request.memcell_list
+                participants.extend(memunit.participants)
+                for memunit in request.memunit_list
             ]
             if not participants:
                 participants = request.participants
@@ -421,15 +421,15 @@ class EpisodeMemoryExtractor(MemoryExtractor):
             if participants:
                 all_original_data = []
                 [
-                    all_original_data.extend(memcell.original_data)
-                    for memcell in request.memcell_list
+                    all_original_data.extend(memunit.original_data)
+                    for memunit in request.memunit_list
                 ]
                 participants_name_map = self.get_speaker_name_map(all_original_data)
                 [
                     participants_name_map.update(
-                        self._extract_participant_name_map(memcell.original_data)
+                        self._extract_participant_name_map(memunit.original_data)
                     )
-                    for memcell in request.memcell_list
+                    for memunit in request.memunit_list
                 ]
 
                 # 并发生成每个参与者的episode memory
@@ -473,7 +473,7 @@ class EpisodeMemoryExtractor(MemoryExtractor):
                     if "summary" not in data:
                         # Generate a basic summary from content if not provided
                         data["summary"] = "\n".join(
-                            [memcell.summary for memcell in request.memcell_list]
+                            [memunit.summary for memunit in request.memunit_list]
                         )
 
                     title = data["title"]
@@ -484,7 +484,7 @@ class EpisodeMemoryExtractor(MemoryExtractor):
                         memory_type=MemoryType.EPISODE_SUMMARY,
                         user_id=user_id,
                         ori_event_id_list=[
-                            memcell.event_id for memcell in request.memcell_list
+                            memunit.event_id for memunit in request.memunit_list
                         ],
                         timestamp=start_time,
                         subject=title,
@@ -492,9 +492,9 @@ class EpisodeMemoryExtractor(MemoryExtractor):
                         episode=content,
                         group_id=request.group_id,
                         participants=participants,
-                        type=getattr(first_memcell, 'type', None),
-                        memcell_event_id_list=[
-                            memcell.event_id for memcell in request.memcell_list
+                        type=getattr(first_memunit, 'type', None),
+                        memunit_event_id_list=[
+                            memunit.event_id for memunit in request.memunit_list
                         ],
                     )
 
@@ -524,21 +524,21 @@ class EpisodeMemoryExtractor(MemoryExtractor):
                         memory_type=MemoryType.EPISODE_SUMMARY,
                         user_id=user_id,
                         ori_event_id_list=[
-                            memcell.event_id for memcell in request.memcell_list
+                            memunit.event_id for memunit in request.memunit_list
                         ],
                         timestamp=start_time,
                         subject=title,
                         summary="\n".join(
-                            [memcell.summary for memcell in request.memcell_list]
+                            [memunit.summary for memunit in request.memunit_list]
                         ),
                         episode="\n".join(
-                            [memcell.episode for memcell in request.memcell_list]
+                            [memunit.episode for memunit in request.memunit_list]
                         ),
                         group_id=request.group_id,
                         participants=participants,
-                        type=getattr(first_memcell, 'type', None),
-                        memcell_event_id_list=[
-                            memcell.event_id for memcell in request.memcell_list
+                        type=getattr(first_memunit, 'type', None),
+                        memunit_event_id_list=[
+                            memunit.event_id for memunit in request.memunit_list
                         ],
                     )
                     all_memories.append(memory)

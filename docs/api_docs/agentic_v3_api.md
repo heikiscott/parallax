@@ -18,7 +18,7 @@ Agentic Layer V3 exposes FastAPI routes under `/api/v3/agentic` for ingesting ch
 
 | Endpoint | Description |
 |----------|-------------|
-| `POST /api/v3/agentic/memorize` | Persist a single chat event as memcells |
+| `POST /api/v3/agentic/memorize` | Persist a single chat event as memunits |
 | `POST /api/v3/agentic/retrieve_lightweight` | Low-latency hybrid retrieval (Embedding + BM25 + RRF) |
 | `POST /api/v3/agentic/retrieve_agentic` | LLM-guided multi-round retrieval with rerank |
 
@@ -86,7 +86,7 @@ Runs embedding retrieval and BM25 in parallel, fuses them with Reciprocal Rank F
 | `time_range_days` | integer | No | `365` | Sliding window over timestamps |
 | `top_k` | integer | No | `20` | Maximum number of rows returned |
 | `retrieval_mode` | string | No | `rrf` | `rrf`, `embedding`, or `bm25` |
-| `data_source` | string | No | `episode` | `episode`, `event_log`, `semantic_memory`, or `profile`; `memcell` aliases to `episode` |
+| `data_source` | string | No | `episode` | `episode`, `event_log`, `semantic_memory`, or `profile`; `memunit` aliases to `episode` |
 | `memory_scope` | string | No | `all` | `all`, `personal`, or `group` |
 | `current_time` | string | No | `null` | `YYYY-MM-DD`, used for semantic-memory freshness |
 | `radius` | float | No | `null` | Cosine similarity threshold in `[-1, 1]` |

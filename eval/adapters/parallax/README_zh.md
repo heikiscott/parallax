@@ -20,7 +20,7 @@ locomo_eval/
 │   ├── refined_query.txt              # 查询改进
 │   ├── multi_query_generation.txt     # 多查询生成
 │   └── answer_prompts.py              # 回答生成
-├── stage1_memcells_extraction.py      # 阶段 1：提取 MemCells
+├── stage1_memunits_extraction.py      # 阶段 1：提取 MemUnits
 ├── stage2_index_building.py           # 阶段 2：构建索引
 ├── stage3_memory_retrivel.py          # 阶段 3：检索记忆
 ├── stage4_response.py                 # 阶段 4：生成回答
@@ -67,8 +67,8 @@ class ExperimentConfig:
 ### 3. 运行完整 Pipeline
 
 ```bash
-# 阶段 1：提取 MemCells
-python eval/locomo_eval/stage1_memcells_extraction.py
+# 阶段 1：提取 MemUnits
+python eval/locomo_eval/stage1_memunits_extraction.py
 
 # 阶段 2：构建索引
 python eval/locomo_eval/stage2_index_building.py
@@ -101,8 +101,8 @@ python eval/locomo_eval/tools/compute_acc.py
 
 ```
 results/locomo_eval/
-├── memcells/                  # MemCell 提取结果
-│   ├── memcell_list_conv_0.json
+├── memunits/                  # MemUnit 提取结果
+│   ├── memunit_list_conv_0.json
 │   └── ...
 ├── bm25_index/                # BM25 索引
 │   └── *.pkl

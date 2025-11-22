@@ -4,7 +4,7 @@
 
 ## 脚本列表
 
-- `mongo_add_timestamp_shard.py` - 为 MemCell 集合添加基于 timestamp 的分片配置
+- `mongo_add_timestamp_shard.py` - 为 MemUnit 集合添加基于 timestamp 的分片配置
 - `mongo_fix_episodic_memory_missing_vector.py` - 修复情景记忆文档中缺失的向量字段
 
 ---
@@ -13,7 +13,7 @@
 
 ### 功能说明
 
-为 MemCell 集合添加基于 `timestamp` 字段的时间戳分片配置，优化大规模数据的查询和存储性能。
+为 MemUnit 集合添加基于 `timestamp` 字段的时间戳分片配置，优化大规模数据的查询和存储性能。
 
 ### 使用方式
 
@@ -30,7 +30,7 @@ python scripts/bootstrap.py scripts/data_fix/mongo_add_timestamp_shard.py
 
 1. **检查分片集群**：验证当前是否为分片集群环境
 2. **启用数据库分片**：为目标数据库启用分片功能
-3. **设置分片键**：将 `timestamp` 字段设置为 MemCell 集合的分片键
+3. **设置分片键**：将 `timestamp` 字段设置为 MemUnit 集合的分片键
 4. **创建预分片**：自动创建未来 12 个月的预分片点
 5. **验证配置**：验证分片配置是否成功
 
@@ -54,7 +54,7 @@ python scripts/bootstrap.py scripts/data_fix/mongo_add_timestamp_shard.py
 ### 使用场景
 
 适用于以下场景：
-- MemCell 数据量预计超过 10GB
+- MemUnit 数据量预计超过 10GB
 - 需要优化基于时间范围的查询性能
 - 部署了 MongoDB 分片集群环境
 
@@ -64,12 +64,12 @@ python scripts/bootstrap.py scripts/data_fix/mongo_add_timestamp_shard.py
 🔧 开始配置timestamp分片...
 ✅ 检测到分片集群，共 3 个分片
 ✅ 数据库 'memsys' 分片已启用
-✅ MemCell集合timestamp分片键设置完成
+✅ MemUnit集合timestamp分片键设置完成
 📅 创建分片点: 2025-02-01 00:00:00
 📅 创建分片点: 2025-03-01 00:00:00
 ...
 ✅ 创建了 12 个预分片点
-✅ MemCell集合分片配置验证成功
+✅ MemUnit集合分片配置验证成功
 📊 分片键: {'timestamp': 1}
 🎉 timestamp分片配置完成
 ```
@@ -79,7 +79,7 @@ python scripts/bootstrap.py scripts/data_fix/mongo_add_timestamp_shard.py
 ```javascript
 // 在 MongoDB Shell 中执行
 use memsys
-db.memcells.getShardDistribution()
+db.memunits.getShardDistribution()
 ```
 
 ---

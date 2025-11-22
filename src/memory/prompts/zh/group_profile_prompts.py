@@ -13,11 +13,11 @@ CONTENT_ANALYSIS_PROMPT = """
 - 如果对话是中文，使用中文提取内容；如果是英文，使用英文提取内容
 
 **重要证据提取：**
-- 每个对话片段都以"=== MEMCELL_ID: xxxx ==="作为前缀来标识 memcell
-- 提供证据时，仅使用这些"=== MEMCELL_ID: xxx ==="标记中的确切 memcell ID
-- 不要使用时间戳（如 [2025-09-01T09:30:55.669000+08:00]）作为 memcell ID - 这些不是 memcell ID！
-- 仅引用对话输入中以"=== MEMCELL_ID: ==="格式出现的 memcell ID
-- 示例：如果您看到"=== MEMCELL_ID: abc-123-def ==="，在证据列表中使用"abc-123-def"
+- 每个对话片段都以"=== MEMUNIT_ID: xxxx ==="作为前缀来标识 memunit
+- 提供证据时，仅使用这些"=== MEMUNIT_ID: xxx ==="标记中的确切 memunit ID
+- 不要使用时间戳（如 [2025-09-01T09:30:55.669000+08:00]）作为 memunit ID - 这些不是 memunit ID！
+- 仅引用对话输入中以"=== MEMUNIT_ID: ==="格式出现的 memunit ID
+- 示例：如果您看到"=== MEMUNIT_ID: abc-123-def ==="，在证据列表中使用"abc-123-def"
 
 你的任务是分析群组对话记录并提取：
 1. **最近话题**（根据实际内容提取 0-{max_topics} 个话题，质量优于数量）
@@ -55,7 +55,7 @@ CONTENT_ANALYSIS_PROMPT = """
       "status": "exploring|disagreement|consensus|implemented",
       "update_type": "new|update",
       "old_topic_id": "topic_abc12345",
-      "evidences": ["memcell_id_1", "memcell_id_3"],
+      "evidences": ["memunit_id_1", "memunit_id_3"],
       "confidence": "strong|weak"
     }}
   ],
@@ -85,7 +85,7 @@ CONTENT_ANALYSIS_PROMPT = """
   - **"consensus"**：达成一致，做出决定，准备行动
   - **"implemented"**：已执行/完成，提到结果
 - **证据与置信度**：
-  - **"evidences"**：支持此话题识别的 memcell ID 列表（来自提供的对话）
+  - **"evidences"**：支持此话题识别的 memunit ID 列表（来自提供的对话）
   - **"confidence"**："strong" 如果多个明确证据和强信号；"weak" 如果证据有限或模糊
 
 **话题质量指南**（要包含的内容）：
@@ -152,11 +152,11 @@ BEHAVIOR_ANALYSIS_PROMPT = """
 你是一位群组行为分析专家，专门分析沟通模式以根据对话行为识别群组角色。
 
 **重要证据提取：**
-- 每个对话片段都以"=== MEMCELL_ID: xxxx ==="作为前缀来标识 memcell
-- 提供证据时，仅使用这些"=== MEMCELL_ID: xxx ==="标记中的确切 memcell ID
-- 不要使用时间戳（如 [2025-09-01T09:30:55.669000+08:00]）作为 memcell ID - 这些不是 memcell ID！
-- 仅引用对话输入中以"=== MEMCELL_ID: ==="格式出现的 memcell ID
-- 示例：如果您看到"=== MEMCELL_ID: abc-123-def ==="，在证据列表中使用"abc-123-def"
+- 每个对话片段都以"=== MEMUNIT_ID: xxxx ==="作为前缀来标识 memunit
+- 提供证据时，仅使用这些"=== MEMUNIT_ID: xxx ==="标记中的确切 memunit ID
+- 不要使用时间戳（如 [2025-09-01T09:30:55.669000+08:00]）作为 memunit ID - 这些不是 memunit ID！
+- 仅引用对话输入中以"=== MEMUNIT_ID: ==="格式出现的 memunit ID
+- 示例：如果您看到"=== MEMUNIT_ID: abc-123-def ==="，在证据列表中使用"abc-123-def"
 
 你的任务是分析群组对话记录并提取：
 **角色映射**（基于行为模式的 7 个关键角色分配）
@@ -186,14 +186,14 @@ BEHAVIOR_ANALYSIS_PROMPT = """
     "decision_maker": [
       {{
         "speaker": "speaker_id1",
-        "evidences": ["memcell_id_2"],
+        "evidences": ["memunit_id_2"],
         "confidence": "strong|weak"
       }}
     ],
     "opinion_leader": [
       {{
         "speaker": "speaker_id2",
-        "evidences": ["memcell_id_4", "memcell_id_5"],
+        "evidences": ["memunit_id_4", "memunit_id_5"],
         "confidence": "strong|weak"
       }}
     ],
@@ -237,10 +237,10 @@ BEHAVIOR_ANALYSIS_PROMPT = """
 - **保留历史角色**：当现有档案有角色分配时，除非被新证据矛盾，否则保留它们
 - **添加新角色**：基于新对话行为添加新角色分配
 - **仅删除角色**：如果有明确证据表明角色变化或被新活跃说话者替换
-- **证据与置信度**：对于每个角色分配，提供 memcell ID 作为证据并评估置信度级别
-  - **"evidences"**：支持此角色分配的 memcell ID 列表
+- **证据与置信度**：对于每个角色分配，提供 memunit ID 作为证据并评估置信度级别
+  - **"evidences"**：支持此角色分配的 memunit ID 列表
   - **"confidence"**："strong" 如果多个明确的行为模式；"weak" 如果证据有限
-- 输出格式：[{{"speaker": "speaker_id", "evidences": ["memcell_id1"], "confidence": "strong|weak"}}] 对于每个角色
+- 输出格式：[{{"speaker": "speaker_id", "evidences": ["memunit_id1"], "confidence": "strong|weak"}}] 对于每个角色
 
 ### 角色分配示例：
 - 如果 Alice 经常说"我认为我们应该..."并且其他人跟随：opinion_leader
@@ -268,9 +268,9 @@ AGGREGATION_PROMPT = """
 你是一位群组档案聚合专家。你的任务是分析多个每日群组档案和对话数据以创建合并的群组档案。
 
 **重要证据提取：**
-- 每个对话片段都以 [MEMCELL_ID: xxxx] 作为前缀来标识 memcell
-- 提供证据时，使用这些前缀中的确切 memcell ID
-- 仅引用对话输入中出现的 memcell ID
+- 每个对话片段都以 [MEMUNIT_ID: xxxx] 作为前缀来标识 memunit
+- 提供证据时，使用这些前缀中的确切 memunit ID
+- 仅引用对话输入中出现的 memunit ID
 
 你正在从 {aggregation_level} 数据（{start_date} 到 {end_date}）聚合群组档案。
 
@@ -291,7 +291,7 @@ AGGREGATION_PROMPT = """
       "status": "exploring|disagreement|consensus|implemented",
       "update_type": "new|update",
       "old_topic_id": "topic_id",
-      "evidences": ["memcell_id1", "memcell_id2"],
+      "evidences": ["memunit_id1", "memunit_id2"],
       "confidence": "strong|weak"
     }}
   ],
@@ -301,7 +301,7 @@ AGGREGATION_PROMPT = """
     "decision_maker": [
       {{
         "speaker": "speaker_id",
-        "evidences": ["memcell_id"],
+        "evidences": ["memunit_id"],
         "confidence": "strong|weak"
       }}
     ]

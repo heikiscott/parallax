@@ -18,7 +18,7 @@ Agentic Layer V3 在 `/api/v3/agentic` 下提供三个 FastAPI 端点，用于�
 
 | 端点 | 作用 |
 |------|------|
-| `POST /api/v3/agentic/memorize` | 写入单条聊天消息，提取 memcells |
+| `POST /api/v3/agentic/memorize` | 写入单条聊天消息，提取 memunits |
 | `POST /api/v3/agentic/retrieve_lightweight` | 低延迟混合检索（Embedding + BM25 + RRF） |
 | `POST /api/v3/agentic/retrieve_agentic` | LLM 驱动的多轮智能检索（含 Rerank） |
 
@@ -86,7 +86,7 @@ Agentic Layer V3 在 `/api/v3/agentic` 下提供三个 FastAPI 端点，用于�
 | `time_range_days` | integer | 否 | `365` | 滑动时间窗口 |
 | `top_k` | integer | 否 | `20` | 返回条数上限 |
 | `retrieval_mode` | string | 否 | `rrf` | `rrf` / `embedding` / `bm25` |
-| `data_source` | string | 否 | `episode` | `episode` / `event_log` / `semantic_memory` / `profile`，`memcell` 会映射为 `episode` |
+| `data_source` | string | 否 | `episode` | `episode` / `event_log` / `semantic_memory` / `profile`，`memunit` 会映射为 `episode` |
 | `memory_scope` | string | 否 | `all` | `all` / `personal` / `group` |
 | `current_time` | string | 否 | `null` | `YYYY-MM-DD`，语义记忆过滤时间 |
 | `radius` | float | 否 | `null` | 余弦相似度阈值 `[-1, 1]` |

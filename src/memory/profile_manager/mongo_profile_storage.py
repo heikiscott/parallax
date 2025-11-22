@@ -74,8 +74,8 @@ class MongoProfileStorage(ProfileStorage):
                         existing.cluster_ids.append(cluster_id)
                     existing.last_updated_cluster = cluster_id
                 
-                if "memcell_count" in metadata:
-                    existing.memcell_count = metadata["memcell_count"]
+                if "memunit_count" in metadata:
+                    existing.memunit_count = metadata["memunit_count"]
                 
                 await existing.save()
                 logger.info(f"Updated profile for user {user_id} in group {group_id} (version {existing.version})")
@@ -89,7 +89,7 @@ class MongoProfileStorage(ProfileStorage):
                     confidence=metadata.get("confidence", 0.0),
                     version=1,
                     cluster_ids=[metadata["cluster_id"]] if "cluster_id" in metadata else [],
-                    memcell_count=metadata.get("memcell_count", 0),
+                    memunit_count=metadata.get("memunit_count", 0),
                     last_updated_cluster=metadata.get("cluster_id")
                 )
                 
@@ -185,7 +185,7 @@ class MongoProfileStorage(ProfileStorage):
                 "confidence": user_profile.confidence,
                 "updated_at": user_profile.updated_at,
                 "cluster_id": user_profile.last_updated_cluster,
-                "memcell_count": user_profile.memcell_count
+                "memunit_count": user_profile.memunit_count
             }]
             
             return history[:limit] if limit else history

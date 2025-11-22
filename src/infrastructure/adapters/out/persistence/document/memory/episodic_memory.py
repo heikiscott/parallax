@@ -13,7 +13,7 @@ class EpisodicMemory(DocumentBase, AuditBase):
     情景记忆文档模型
 
     存储用户的情景记忆，包含事件摘要、参与者、主题等信息。
-    从 MemCell 摘要直接转存而来。
+    从 MemUnit 摘要直接转存而来。
     """
 
     user_id: str = Field(..., description="当事人")
@@ -31,7 +31,7 @@ class EpisodicMemory(DocumentBase, AuditBase):
         default=None, description="关联的实体ID"
     )
 
-    memcell_event_id_list: Optional[List[str]] = Field(
+    memunit_event_id_list: Optional[List[str]] = Field(
         default=None, description="记忆单元事件ID"
     )
 

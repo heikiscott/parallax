@@ -1,4 +1,4 @@
-"""Value discriminator for profile extraction - determines if memcell contains profile-worthy content."""
+"""Value discriminator for profile extraction - determines if memunit contains profile-worthy content."""
 
 import ast
 import json
@@ -18,8 +18,8 @@ class DiscriminatorConfig:
     
     Attributes:
         min_confidence: Minimum confidence threshold (0.0-1.0)
-        use_context: Whether to use previous memcells as context
-        context_window: Number of previous memcells to include as context
+        use_context: Whether to use previous memunits as context
+        context_window: Number of previous memunits to include as context
     """
     
     min_confidence: float = 0.6
@@ -28,9 +28,9 @@ class DiscriminatorConfig:
 
 
 class ValueDiscriminator:
-    """LLM-based discriminator to judge if a memcell contains high-value profile information.
+    """LLM-based discriminator to judge if a memunit contains high-value profile information.
     
-    This component uses an LLM to analyze memcells and determine whether they contain
+    This component uses an LLM to analyze memunits and determine whether they contain
     concrete, attributable information worth extracting into user profiles.
     
     For group_chat scenario, it looks for:
@@ -68,25 +68,25 @@ class ValueDiscriminator:
     
     async def is_high_value(
         self,
-        latest_memcell: Any,
-        recent_memcells: Optional[List[Any]] = None
+        latest_memunit: Any,
+        recent_memunits: Optional[List[Any]] = None
     ) -> Tuple[bool, float, str]:
-        """Determine if the latest memcell contains high-value profile information.
+        """Determine if the latest memunit contains high-value profile information.
         
         Args:
-            latest_memcell: The memcell to evaluate
-            recent_memcells: Previous memcells for context (optional)
+            latest_memunit: The memunit to evaluate
+            recent_memunits: Previous memunits for context (optional)
         
         Returns:
             Tuple of (is_high_value, confidence, reason)
         """
-        recent_memcells = recent_memcells or []
+        recent_memunits = recent_memunits or []
         
         # Build prompt based on scenario
         if self.scenario == "assistant":
-            prompt = self._build_assistant_prompt(latest_memcell, recent_memcells)
+            prompt = self._build_assistant_prompt(latest_memunit, recent_memunits)
         else:
-            prompt = self._build_group_chat_prompt(latest_memcell, recent_memcells)
+            prompt = self._build_group_chat_prompt(latest_memunit, recent_memunits)
         
         try:
             response = await self.llm_provider.generate(prompt, temperature=0.0)
@@ -121,7 +121,7 @@ class ValueDiscriminator:
         
         prompt = f"""You are a precise profile value discriminator for work/group chat scenario.
 
-Given the latest conversation MemCell and recent context, determine if the latest MemCell contains 
+Given the latest conversation MemUnit and recent context, determine if the latest MemUnit contains 
 new, concrete, and attributable information about user profile fields such as:
 
 Profile Fields to Consider:
@@ -142,10 +142,10 @@ Rules for Judgment:
 4. Consider if the information is stable/lasting vs transient
 5. Ensure the information is clearly attributable to a specific user
 
-Context (Previous MemCells):
+Context (Previous MemUnits):
 {context_block}
 
-Latest MemCell to Evaluate:
+Latest MemUnit to Evaluate:
 {latest_text}
 
 Respond with strict JSON only (no extra text):
@@ -176,7 +176,7 @@ Respond with strict JSON only (no extra text):
         
         prompt = f"""You are a precise value discriminator for companion/assistant scenario.
 
-Determine if the latest MemCell reveals stable personal traits or preferences worth capturing:
+Determine if the latest MemUnit reveals stable personal traits or preferences worth capturing:
 
 Profile Fields to Consider:
 - personality: Enduring personality dimensions (Big Five, MBTI indicators)
@@ -194,10 +194,10 @@ Rules for Judgment:
 4. Prefer concrete examples over abstract claims
 5. Ensure information is clearly attributable
 
-Context (Previous MemCells):
+Context (Previous MemUnits):
 {context_block}
 
-Latest MemCell to Evaluate:
+Latest MemUnit to Evaluate:
 {latest_text}
 
 Respond with strict JSON only (no extra text):
@@ -209,27 +209,27 @@ Respond with strict JSON only (no extra text):
         
         return prompt
     
-    def _extract_text(self, memcell: Any) -> str:
-        """Extract representative text from a memcell.
+    def _extract_text(self, memunit: Any) -> str:
+        """Extract representative text from a memunit.
         
         Priority: episode > summary > original_data
         """
-        if memcell is None:
+        if memunit is None:
             return ""
         
         # Try episode first
-        episode = getattr(memcell, "episode", None)
+        episode = getattr(memunit, "episode", None)
         if isinstance(episode, str) and episode.strip():
             return episode.strip()
         
         # Try summary
-        summary = getattr(memcell, "summary", None)
+        summary = getattr(memunit, "summary", None)
         if isinstance(summary, str) and summary.strip():
             return summary.strip()
         
         # Fallback to compact original_data
         lines = []
-        original_data = getattr(memcell, "original_data", None)
+        original_data = getattr(memunit, "original_data", None)
         if isinstance(original_data, list):
             for item in original_data[:5]:  # Limit to first 5 messages
                 if isinstance(item, dict):
@@ -239,7 +239,7 @@ Respond with strict JSON only (no extra text):
                         if text:
                             lines.append(text)
         
-        return "\n".join(lines) if lines else "Empty memcell"
+        return "\n".join(lines) if lines else "Empty memunit"
     
     def _parse_response(self, response: str) -> Tuple[bool, float, str]:
         """Parse LLM response to extract judgment.

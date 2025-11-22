@@ -81,13 +81,13 @@ vim .env  # 或使用你喜欢的编辑器
 
 #### LLM 配置
 ```bash
-# Conversation MemCell Extractor / 对话记忆单元提取器
-CONV_MEMCELL_LLM_PROVIDER=openai
-CONV_MEMCELL_LLM_MODEL=google/gemini-2.5-flash
-CONV_MEMCELL_LLM_BASE_URL=https://openrouter.ai/api/v1
-CONV_MEMCELL_LLM_API_KEY=sk-or-v1-你的API密钥
-CONV_MEMCELL_LLM_TEMPERATURE=0.3
-CONV_MEMCELL_LLM_MAX_TOKENS=16384
+# Conversation MemUnit Extractor / 对话记忆单元提取器
+CONV_MEMUNIT_LLM_PROVIDER=openai
+CONV_MEMUNIT_LLM_MODEL=google/gemini-2.5-flash
+CONV_MEMUNIT_LLM_BASE_URL=https://openrouter.ai/api/v1
+CONV_MEMUNIT_LLM_API_KEY=sk-or-v1-你的API密钥
+CONV_MEMUNIT_LLM_TEMPERATURE=0.3
+CONV_MEMUNIT_LLM_MAX_TOKENS=16384
 
 # Episode Memory Extractor / 情景记忆提取器
 EPISODE_MEMORY_LLM_PROVIDER=openai
@@ -161,7 +161,7 @@ PYTHONASYNCIODEBUG=1
 #### OpenRouter API 密钥
 1. 访问 [OpenRouter](https://openrouter.ai/)
 2. 注册账号并创建 API 密钥
-3. 将密钥填入 `.env` 文件的 `CONV_MEMCELL_LLM_API_KEY` 和 `EPISODE_MEMORY_LLM_API_KEY`
+3. 将密钥填入 `.env` 文件的 `CONV_MEMUNIT_LLM_API_KEY` 和 `EPISODE_MEMORY_LLM_API_KEY`
 
 #### DeepInfra API 密钥
 1. 访问 [DeepInfra](https://deepinfra.com/)
@@ -277,7 +277,7 @@ uv run python src/bootstrap.py tests/my_test.py --env-file .env.test
 #### 1. 运行评估脚本
 ```bash
 # 运行 LoCoMo 评估第一阶段
-uv run python src/bootstrap.py evaluation/locomo_evaluation/stage1_memcells_extraction.py
+uv run python src/bootstrap.py evaluation/locomo_evaluation/stage1_memunits_extraction.py
 
 # 运行其他评估阶段
 uv run python src/bootstrap.py evaluation/locomo_evaluation/stage2_index_building.py
@@ -474,7 +474,7 @@ uv sync --reinstall
 #### 问题：脚本路径找不到
 ```bash
 # 确保使用正确的相对路径
-ls -la evaluation/locomo_evaluation/stage1_memcells_extraction.py
+ls -la evaluation/locomo_evaluation/stage1_memunits_extraction.py
 
 # 或使用绝对路径
 uv run python src/bootstrap.py /path/to/your/script.py

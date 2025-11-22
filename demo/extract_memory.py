@@ -136,7 +136,7 @@ async def test_v3_memorize_api():
     elif total_extracted > 0:
         print("\n✓ Memory extraction successful")
         print("   View in database:")
-        print("   • MemCells: db.memcells.find()")
+        print("   • MemUnits: db.memunits.find()")
         print("   • Episodes: db.episodememory.find()")
     
     print("\n📝 Next steps:")

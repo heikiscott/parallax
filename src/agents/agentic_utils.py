@@ -139,7 +139,7 @@ def format_documents_for_llm(
         else:
             timestamp_str = str(timestamp)
         
-        # 优先使用 episode（MemCell 的核心内容）
+        # 优先使用 episode（MemUnit 的核心内容）
         content = getattr(candidate, 'episode', None)
         if not content:
             content = getattr(candidate, 'summary', None)

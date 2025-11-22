@@ -13,7 +13,7 @@ class ExperimentConfig:
     use_multi_query: bool = True  #  启用多查询生成
     num_conv: int = 10 #最终使用记忆条数
     
-    # 🔥 新增：MemCell 提取功能开关
+    # 🔥 新增：MemUnit 提取功能开关
     enable_semantic_extraction: bool = False  # 是否启用语义记忆提取
     enable_clustering: bool = False            # 是否启用聚类
     enable_profile_extraction: bool = False    # 是否启用 Profile 提取
@@ -25,7 +25,7 @@ class ExperimentConfig:
     # 🔥 Profile 配置
     profile_scenario: str = "assistant"       # Profile 场景：group_chat 或 assistant
     profile_min_confidence: float = 0.6        # Profile 价值判别阈值
-    profile_min_memcells: int = 1              # Profile 提取最小 MemCells 数量
+    profile_min_memunits: int = 1              # Profile 提取最小 MemUnits 数量
     
     # 🔥 检索模式选择：'agentic' 或 'lightweight'
     # - agentic: 复杂的多轮检索，LLM引导，质量高但速度慢

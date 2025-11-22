@@ -30,7 +30,7 @@ class BaseAdapter(ABC):
         摄入对话数据并构建索引（Add 阶段）
         
         这个方法封装了系统特定的数据摄入和索引构建逻辑：
-        - 对于 Parallax: MemCell 提取 + BM25/Embedding 索引构建
+        - 对于 Parallax: MemUnit 提取 + BM25/Embedding 索引构建
         - 对于 Mem0: 直接存储到向量数据库
         - 对于其他系统: 各自的实现方式
         

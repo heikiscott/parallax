@@ -306,7 +306,7 @@ uv run python -m eval.cli --dataset locomo --system parallax_custom
 ## 🔌 Supported Systems
 
 ### Local Systems
-- **parallax** - Parallax with MemCell extraction and dual-mode retrieval
+- **parallax** - Parallax with MemUnit extraction and dual-mode retrieval
 
 ### Online API Systems
 - **mem0** - Mem0 API

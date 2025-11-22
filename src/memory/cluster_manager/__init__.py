@@ -1,6 +1,6 @@
-"""Cluster Manager - Automatic clustering of memcells with event notifications.
+"""Cluster Manager - Automatic clustering of memunits with event notifications.
 
-This module provides ClusterManager, a core component that clusters memcells
+This module provides ClusterManager, a core component that clusters memunits
 based on semantic similarity and temporal proximity, with event hooks for
 downstream processing.
 
@@ -8,7 +8,7 @@ Key Features:
 - Incremental clustering using embeddings and timestamps
 - Event notifications on cluster assignments
 - Flexible storage backends for cluster state
-- Seamless integration with MemCellExtractor
+- Seamless integration with MemUnitExtractor
 
 Usage:
     from memory.cluster_manager import ClusterManager, ClusterManagerConfig
@@ -21,8 +21,8 @@ Usage:
     )
     cluster_mgr = ClusterManager(config)
     
-    # Attach to memcell extractor
-    cluster_mgr.attach_to_extractor(memcell_extractor)
+    # Attach to memunit extractor
+    cluster_mgr.attach_to_extractor(memunit_extractor)
     
     # Register callbacks for cluster events
     cluster_mgr.on_cluster_assigned(my_callback)

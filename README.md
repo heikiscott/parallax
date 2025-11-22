@@ -143,12 +143,12 @@ Parallax operates along two main tracks: **memory construction** and **memory pe
 Memory construction layer: builds structured, retrievable long-term memory from raw conversation data.
 
 - **Core elements**
-  - ⚛️ **Atomic memory unit MemCell**: the core structured unit distilled from conversations for downstream organization and reference
+  - ⚛️ **Atomic memory unit MemUnit**: the core structured unit distilled from conversations for downstream organization and reference
   - 🗂️ **Multi-level memory**: integrate related fragments by theme and storyline to form reusable, hierarchical memories
   - 🏷️ **Multiple memory types**: covering episodes, profiles, preferences, relationships, semantic knowledge, basic facts, and core memories
 
 - **Workflow**
-  1. **MemCell extraction**: identify key information in conversations to generate atomic memories
+  1. **MemUnit extraction**: identify key information in conversations to generate atomic memories
   2. **Memory construction**: integrate by theme and participants to form episodes and profiles
   3. **Storage and indexing**: persist data and build keyword and semantic indexes to support fast recall
 
@@ -196,7 +196,7 @@ memsys-opensource/
 ├── src/                              # Source code directory
 │   ├── agents/                # Agentic layer - unified memory interface
 │   ├── memory/                 # Memory layer - memory extraction
-│   │   ├── memcell_extractor/        # MemCell extractor
+│   │   ├── memunit_extractor/        # MemUnit extractor
 │   │   ├── memory_extractor/         # Memory extractor
 │   │   └── prompts/                  # LLM prompt templates
 │   ├── retrieval_layer/              # Retrieval layer - memory retrieval
@@ -336,7 +336,7 @@ uv run python src/bootstrap.py demo/extract_memory.py
 This script performs the following actions:
 - Calls `demo.tools.clear_all_data.clear_all_memories()` so the demo starts from an empty MongoDB/Elasticsearch/Milvus/Redis state. Ensure the dependency stack launched by `docker-compose` is running before executing the script, otherwise the wipe step will fail.
 - Loads `data/assistant_chat_zh.json`, appends `scene="assistant"` to each message, and streams every entry to `http://localhost:8001/api/v3/agentic/memorize`. Update the `base_url`, `data_file`, or `profile_scene` constants in `demo/extract_memory.py` if you host the API on another endpoint or want to ingest a different scenario.
-- Writes through the HTTP API only: MemCells, episodes, and profiles are created inside your databases, not under `demo/memcell_outputs/`. Inspect MongoDB (and Milvus/Elasticsearch) to verify ingestion or proceed directly to the chat demo.
+- Writes through the HTTP API only: MemUnits, episodes, and profiles are created inside your databases, not under `demo/memunit_outputs/`. Inspect MongoDB (and Milvus/Elasticsearch) to verify ingestion or proceed directly to the chat demo.
 
 > **💡 Tip**: For detailed configuration instructions and usage guide, please refer to the [Demo Documentation](demo/README.md).
 
@@ -349,7 +349,7 @@ After extracting memories, start the interactive chat demo:
 uv run python src/bootstrap.py demo/chat_with_memory.py
 ```
 
-This program loads `.env` via `python-dotenv`, verifies that at least one LLM key (`LLM_API_KEY`, `OPENROUTER_API_KEY`, or `OPENAI_API_KEY`) is available, and connects to MongoDB through `demo.utils.ensure_mongo_beanie_ready` to enumerate groups that already contain MemCells. Each user query invokes `api/v3/agentic/retrieve_lightweight` unless you explicitly select the Agentic mode, in which case the orchestrator switches to `api/v3/agentic/retrieve_agentic` and warns about the additional LLM latency.
+This program loads `.env` via `python-dotenv`, verifies that at least one LLM key (`LLM_API_KEY`, `OPENROUTER_API_KEY`, or `OPENAI_API_KEY`) is available, and connects to MongoDB through `demo.utils.ensure_mongo_beanie_ready` to enumerate groups that already contain MemUnits. Each user query invokes `api/v3/agentic/retrieve_lightweight` unless you explicitly select the Agentic mode, in which case the orchestrator switches to `api/v3/agentic/retrieve_agentic` and warns about the additional LLM latency.
 
 **Interactive Workflow:**
 1. **Select Language**: Choose a zh or en terminal UI.
@@ -631,7 +631,7 @@ For detailed installation, configuration, and usage instructions, please refer t
 Parallax adopts a layered architecture design, mainly including:
 
 - **Agentic Layer**: Memory extraction, vectorization, retrieval, and reranking
-- **Memory Layer**: MemCell extraction, episodic memory management
+- **Memory Layer**: MemUnit extraction, episodic memory management
 - **Retrieval Layer**: Multi-modal retrieval and result ranking
 - **Business Layer**: Business logic and data operations
 - **Infrastructure Layer**: Database, cache, message queue adapters, etc.

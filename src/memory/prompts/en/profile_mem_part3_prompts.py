@@ -72,7 +72,7 @@ Practicality: Preference for practical advice vs. theoretical discussion.
 Output Requirements:
 - Return ONLY one fenced JSON code block (```json ... ```), no extra text outside the code block.
 - Use ASCII quotes only (no smart quotes).
-- Evidence format: prefer "[conversation_id:EVENT_ID]" or raw "EVENT_ID" that appears in the conversation memcells.
+- Evidence format: prefer "[conversation_id:EVENT_ID]" or raw "EVENT_ID" that appears in the conversation memunits.
 - Include only observed dimensions; omit unknown or unsupported ones.
 - The fields must align with the existing schema used by the system.
 

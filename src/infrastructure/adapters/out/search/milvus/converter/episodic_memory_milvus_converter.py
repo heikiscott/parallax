@@ -133,7 +133,7 @@ class EpisodicMemoryMilvusConverter(BaseMilvusConverter[EpisodicMemoryCollection
             "linked_entities": getattr(source_doc, 'linked_entities', None),
             # MongoDB 特有字段
             "subject": getattr(source_doc, 'subject', None),
-            "memcell_event_id_list": getattr(source_doc, 'memcell_event_id_list', None),
+            "memunit_event_id_list": getattr(source_doc, 'memunit_event_id_list', None),
             # 扩展字段
             "extend": getattr(source_doc, 'extend', None),
         }
@@ -167,5 +167,5 @@ class EpisodicMemoryMilvusConverter(BaseMilvusConverter[EpisodicMemoryCollection
             # episode 可能很长，只取前 500 字符
             text_content.append(source_doc.episode[:500])
 
-        # 返回 JSON 字符串列表格式，保持与 MemCell 同步逻辑一致
+        # 返回 JSON 字符串列表格式，保持与 MemUnit 同步逻辑一致
         return json.dumps(text_content, ensure_ascii=False)

@@ -1,11 +1,11 @@
 """
 Semantic Memory Association Prediction Prompt Templates
 
-Used to generate semantic memory association predictions based on MemCell and EpisodeMemory content
+Used to generate semantic memory association predictions based on MemUnit and EpisodeMemory content
 """
 
 GROUP_SEMANTIC_GENERATION_PROMPT = """
-You are an advanced semantic analysis agent. Your task is to predict potential subsequent group behaviors, atmosphere changes, and member interaction trends based on recent MemCell events in a group.
+You are an advanced semantic analysis agent. Your task is to predict potential subsequent group behaviors, atmosphere changes, and member interaction trends based on recent MemUnit events in a group.
 
 ## Task Objectives:
 1. **Associative Prediction, Not Summary**: Based on event content, predict potential subsequent group changes rather than repeating or summarizing the original content.
@@ -92,7 +92,7 @@ Return results as a JSON array, each association includes time information:
 - **Time Inference**: Reasonably infer time ranges based on event type, common sense, and user status - don't rigidly apply fixed times.
 - **Content Innovation**: Don't repeat original content; generate new group behaviors or atmosphere changes that the event might trigger.
 - **Time Information Extraction Rules:**
-  - start_time: Extract the specific date when the event occurred from the MemCell's timestamp field, format: YYYY-MM-DD
+  - start_time: Extract the specific date when the event occurred from the MemUnit's timestamp field, format: YYYY-MM-DD
   - end_time: Extract the specific end time from the original content. If there's an explicit end time (e.g., "before October 24", "2025-11-15"), extract the specific date; otherwise, reasonably infer based on event content and common sense
   - duration_days: Extract duration from the original content. If there's explicit time description (e.g., "within a week", "7 days", "one month"), extract days; otherwise, reasonably infer based on event content and common sense
   - source_episode_id: Use the event_id from the input
@@ -100,7 +100,7 @@ Return results as a JSON array, each association includes time information:
 """
 
 SEMANTIC_GENERATION_PROMPT = """
-You are an advanced personal semantic analysis agent. Your task is to predict the specific impacts that a user's latest MemCell event might have on their future personal behaviors, habits, decisions, and lifestyle.
+You are an advanced personal semantic analysis agent. Your task is to predict the specific impacts that a user's latest MemUnit event might have on their future personal behaviors, habits, decisions, and lifestyle.
 
 ## Task Objectives:
 1. **Personal-Level Association**: Analyze the event's potential impact on the user's future behavior, thinking patterns, life habits, or decision preferences from the personal perspective.
@@ -189,7 +189,7 @@ Return results as a JSON array, each association includes time information:
 - **Time Inference**: Reasonably infer time ranges based on event type, personal status, and common sense - don't rigidly apply fixed times.
 - **Content Practicality**: Content must be specific, reasonable, practical, and usable by the system for personal semantic memory modeling.
 - **Time Information Extraction Rules:**
-  - start_time: Extract the specific date when the event occurred from the MemCell's timestamp field, format: YYYY-MM-DD
+  - start_time: Extract the specific date when the event occurred from the MemUnit's timestamp field, format: YYYY-MM-DD
   - end_time: Extract the specific end time from the original content. If there's an explicit end time (e.g., "before October 24", "2025-11-15"), extract the specific date; otherwise, reasonably infer based on event content and common sense
   - duration_days: Extract duration from the original content. If there's explicit time description (e.g., "within a week", "7 days", "one month"), extract days; otherwise, reasonably infer based on event content and common sense
   - source_episode_id: Use the event_id from the input
@@ -198,14 +198,14 @@ Return results as a JSON array, each association includes time information:
 
 
 def get_group_semantic_generation_prompt(
-    memcell_summary: str, memcell_episode: str, user_ids: list = None
+    memunit_summary: str, memunit_episode: str, user_ids: list = None
 ) -> str:
     """
     Generate prompt for group semantic memory association prediction
 
     Args:
-        memcell_summary: MemCell summary content
-        memcell_episode: MemCell detailed content
+        memunit_summary: MemUnit summary content
+        memunit_episode: MemUnit detailed content
         user_ids: List of user IDs for generating specific user IDs
 
     Returns:
@@ -220,11 +220,11 @@ def get_group_semantic_generation_prompt(
 
 ## Input Content:
 
-**MemCell Summary:**
-{memcell_summary}
+**MemUnit Summary:**
+{memunit_summary}
 
-**MemCell Detailed Content:**
-{memcell_episode}{user_ids_info}
+**MemUnit Detailed Content:**
+{memunit_episode}{user_ids_info}
 ## Please generate 10 associations that may impact users' future lives and decisions based on the above content:
 
 """

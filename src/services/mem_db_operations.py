@@ -11,8 +11,8 @@
 
 import time
 from memory.extraction_orchestrator import MemorizeRequest
-from memory.types import MemoryType, MemCell, Memory, RawDataType
-from memory.memcell_extractor.base_memcell_extractor import RawData
+from memory.types import MemoryType, MemUnit, Memory, RawDataType
+from memory.memunit_extractor.base_memunit_extractor import RawData
 from memory.memory_extractor.profile_memory_extractor import ProfileMemory
 from memory.memory_extractor.group_profile_memory_extractor import (
     GroupProfileMemory,
@@ -34,15 +34,15 @@ from infrastructure.adapters.out.persistence.repository.group_profile_raw_reposi
 from infrastructure.adapters.out.persistence.repository.core_memory_raw_repository import (
     CoreMemoryRawRepository,
 )
-from infrastructure.adapters.out.persistence.repository.memcell_raw_repository import (
-    MemCellRawRepository,
+from infrastructure.adapters.out.persistence.repository.memunit_raw_repository import (
+    MemUnitRawRepository,
 )
 from infrastructure.adapters.out.persistence.document.memory.core_memory import CoreMemory
 from infrastructure.adapters.out.persistence.document.memory.episodic_memory import (
     EpisodicMemory,
 )
-from infrastructure.adapters.out.persistence.document.memory.memcell import (
-    MemCell as DocMemCell,
+from infrastructure.adapters.out.persistence.document.memory.memunit import (
+    MemUnit as DocMemUnit,
     RawData as DocRawData,
     DataTypeEnum,
 )
@@ -284,7 +284,7 @@ def _convert_episode_memory_to_doc(
         type=str(episode_memory.type.value) if episode_memory.type else "",
         keywords=getattr(episode_memory, 'keywords', None),
         linked_entities=getattr(episode_memory, 'linked_entities', None),
-        memcell_event_id_list=getattr(episode_memory, 'memcell_event_id_list', None),
+        memunit_event_id_list=getattr(episode_memory, 'memunit_event_id_list', None),
         vector_model=getattr(episode_memory, 'vector_model', None),
         extend={
             "memory_type": episode_memory.memory_type.value,
@@ -740,23 +740,23 @@ def _convert_profile_data_to_core_format(profile_memory: ProfileMemory) -> CoreM
     }
 
 
-def _convert_memcell_to_document(
-    memcell: MemCell, current_time: Optional[datetime] = None
-) -> DocMemCell:
+def _convert_memunit_to_document(
+    memunit: MemUnit, current_time: Optional[datetime] = None
+) -> DocMemUnit:
     """
-    将业务层MemCell转换为文档模型MemCell
+    将业务层MemUnit转换为文档模型MemUnit
 
     使用场景：
-    - 保存MemCell到MemCellRawRepository之前的格式转换
+    - 保存MemUnit到MemUnitRawRepository之前的格式转换
     - 处理原始数据的嵌套结构转换，避免无限递归问题
     - 统一时间戳格式和数据类型枚举的转换
 
     Args:
-        memcell: 业务层的MemCell对象
+        memunit: 业务层的MemUnit对象
         current_time: 当前时间，用于时间戳转换失败时的备用值
 
     Returns:
-        DocMemCell: 数据库文档格式的MemCell对象
+        DocMemUnit: 数据库文档格式的MemUnit对象
 
     Raises:
         Exception: 当转换过程中发生错误时抛出异常
@@ -766,8 +766,8 @@ def _convert_memcell_to_document(
         # 问题：BaseModel对象的嵌套验证导致无限递归，即使最简单的结构也有问题
         # TODO: 需要找到更好的解决方案来正确转换original_data
         doc_original_data = []
-        if memcell.type == RawDataType.CONVERSATION:
-            for raw_data_dict in memcell.original_data:
+        if memunit.type == RawDataType.CONVERSATION:
+            for raw_data_dict in memunit.original_data:
                 # 实际的数据结构是: {'speaker_id': 'user_1', 'speaker_name': 'Alice', 'content': '消息内容', 'timestamp': '...'}
                 # 这里的 content 是直接的消息字符串，不是嵌套字典
                 # 辅助函数：将各种类型转换为字符串
@@ -828,86 +828,86 @@ def _convert_memcell_to_document(
         if current_time is None:
             current_time = get_now_with_timezone()
         timestamp_dt = current_time
-        if memcell.timestamp:
+        if memunit.timestamp:
             try:
                 # 检查 timestamp 类型并处理
                 # TODO: 重构专项：timestamp 应保持为datetime 不该做判断
-                if isinstance(memcell.timestamp, datetime):
+                if isinstance(memunit.timestamp, datetime):
                     # 如果已经是 datetime 对象，直接使用
-                    timestamp_dt = _normalize_datetime_for_storage(memcell.timestamp)
+                    timestamp_dt = _normalize_datetime_for_storage(memunit.timestamp)
                 else:
                     # 如果是数值时间戳，需要转换（假设是秒级时间戳）
                     timestamp_dt = _normalize_datetime_for_storage(
-                        memcell.timestamp * 1000
+                        memunit.timestamp * 1000
                     )
             except (ValueError, TypeError) as e:
                 logger.debug(f"时间戳转换失败，使用当前时间: {e}")
 
-        logger.debug(f"MemCell保存时间戳: {timestamp_dt}")
+        logger.debug(f"MemUnit保存时间戳: {timestamp_dt}")
 
         # 转换数据类型枚举
         doc_type = None
-        if memcell.type:
+        if memunit.type:
             try:
                 # 将RawDataType转换为DataTypeEnum
-                if memcell.type == RawDataType.CONVERSATION:
+                if memunit.type == RawDataType.CONVERSATION:
                     doc_type = DataTypeEnum.CONVERSATION
             except Exception as e:
                 logger.warning(f"数据类型转换失败: {e}")
 
-        # MemCell 本身就是群组记忆，user_id 始终为 None
+        # MemUnit 本身就是群组记忆，user_id 始终为 None
         primary_user_id = None
 
-        # 准备扩展字段 - 根据MemCell的具体类型提取扩展属性
+        # 准备扩展字段 - 根据MemUnit的具体类型提取扩展属性
         email_fields = {}
         linkdoc_fields = {}
 
 
         # 准备 semantic_memories（转为字典列表）
         semantic_memories_list = None
-        if hasattr(memcell, 'semantic_memories') and memcell.semantic_memories:
+        if hasattr(memunit, 'semantic_memories') and memunit.semantic_memories:
             semantic_memories_list = [
                 sm.to_dict() if hasattr(sm, 'to_dict') else (sm if isinstance(sm, dict) else None)
-                for sm in memcell.semantic_memories
+                for sm in memunit.semantic_memories
             ]
             semantic_memories_list = [sm for sm in semantic_memories_list if sm is not None]
         
         # 准备 event_log（转为字典）
         event_log_dict = None
-        if hasattr(memcell, 'event_log') and memcell.event_log:
-            if hasattr(memcell.event_log, 'to_dict'):
-                event_log_dict = memcell.event_log.to_dict()
-            elif isinstance(memcell.event_log, dict):
-                event_log_dict = memcell.event_log
+        if hasattr(memunit, 'event_log') and memunit.event_log:
+            if hasattr(memunit.event_log, 'to_dict'):
+                event_log_dict = memunit.event_log.to_dict()
+            elif isinstance(memunit.event_log, dict):
+                event_log_dict = memunit.event_log
         
         # 准备 extend 字段（包含 embedding 等扩展信息）
         extend_dict = {}
-        if hasattr(memcell, 'extend') and memcell.extend:
-            extend_dict = memcell.extend if isinstance(memcell.extend, dict) else {}
+        if hasattr(memunit, 'extend') and memunit.extend:
+            extend_dict = memunit.extend if isinstance(memunit.extend, dict) else {}
         
         # 添加 embedding 到 extend（如果有）
-        if hasattr(memcell, 'embedding') and memcell.embedding:
-            extend_dict['embedding'] = memcell.embedding
+        if hasattr(memunit, 'embedding') and memunit.embedding:
+            extend_dict['embedding'] = memunit.embedding
 
         # 创建文档模型 - 直接传入timezone-aware的datetime对象而不是字符串
         # 这样可以避免基类的datetime验证器触发无限递归
-        doc_memcell = DocMemCell(
-            event_id=memcell.event_id,
+        doc_memunit = DocMemUnit(
+            event_id=memunit.event_id,
             user_id=primary_user_id,
             timestamp=timestamp_dt,  # 直接传入timezone-aware的datetime
-            summary=memcell.summary,
-            group_id=memcell.group_id,
+            summary=memunit.summary,
+            group_id=memunit.group_id,
             original_data=doc_original_data,
-            participants=memcell.participants,
+            participants=memunit.participants,
             type=doc_type,
-            subject=memcell.subject,
-            keywords=memcell.keywords,
-            linked_entities=memcell.linked_entities,
-            episode=memcell.episode,
+            subject=memunit.subject,
+            keywords=memunit.keywords,
+            linked_entities=memunit.linked_entities,
+            episode=memunit.episode,
             semantic_memories=semantic_memories_list,  # ✅ 添加语义记忆
             event_log=event_log_dict,  # ✅ 添加事件日志
             extend=extend_dict if extend_dict else None,  # ✅ 添加 extend（包含 embedding）
-            # EmailMemCell 扩展字段
+            # EmailMemUnit 扩展字段
             clips=email_fields.get("clips") or linkdoc_fields.get("clips"),
             email_address=email_fields.get("email_address"),
             thread_id=email_fields.get("thread_id"),
@@ -915,7 +915,7 @@ def _convert_memcell_to_document(
             importance=email_fields.get("importance"),
             body_type=email_fields.get("body_type"),
             email_type=email_fields.get("email_type"),
-            # LinkDocMemCell 扩展字段
+            # LinkDocMemUnit 扩展字段
             file_name=linkdoc_fields.get("file_name"),
             file_type=linkdoc_fields.get("file_type"),
             source_type=linkdoc_fields.get("source_type"),
@@ -926,10 +926,10 @@ def _convert_memcell_to_document(
             parent_ids=linkdoc_fields.get("parent_ids"),
         )
 
-        return doc_memcell
+        return doc_memunit
 
     except Exception as e:
-        logger.error(f"MemCell转换失败: {e}")
+        logger.error(f"MemUnit转换失败: {e}")
         import traceback
 
         traceback.print_exc()
@@ -961,7 +961,7 @@ async def _get_raw_data_by_time_range(
     try:
         from providers.database.redis_provider import RedisProvider
         from core.di import get_bean_by_type
-        from memory.memcell_extractor.base_memcell_extractor import RawData
+        from memory.memunit_extractor.base_memunit_extractor import RawData
         from memory.types import RawDataType
         from utils.datetime_utils import from_iso_format
         import json
@@ -1029,19 +1029,19 @@ async def _get_user_organization(user_ids: List[str]) -> List:
     return []
 
 
-async def _save_memcell_to_database(
-    memcell: MemCell, current_time: datetime
-) -> MemCell:
+async def _save_memunit_to_database(
+    memunit: MemUnit, current_time: datetime
+) -> MemUnit:
     """
-    将MemCell保存到数据库
+    将MemUnit保存到数据库
 
     使用场景：
-    - memorize流程中成功提取MemCell后的持久化操作
+    - memorize流程中成功提取MemUnit后的持久化操作
     - 确保对话片段的记忆单元得到保存
     - 为后续的记忆提取提供数据基础
 
     Args:
-        memcell: 业务层的MemCell对象
+        memunit: 业务层的MemUnit对象
 
     Note:
         - 函数内部会自动进行格式转换
@@ -1049,30 +1049,30 @@ async def _save_memcell_to_database(
         - 保存失败时会打印错误信息但不中断流程
     """
     try:
-        # 初始化MemCell Repository
-        memcell_repo = get_bean_by_type(MemCellRawRepository)
-        # 将业务层MemCell转换为文档模型
-        doc_memcell = _convert_memcell_to_document(memcell, current_time)
+        # 初始化MemUnit Repository
+        memunit_repo = get_bean_by_type(MemUnitRawRepository)
+        # 将业务层MemUnit转换为文档模型
+        doc_memunit = _convert_memunit_to_document(memunit, current_time)
 
         # 检查转换是否成功
-        if doc_memcell is None:
-            logger.warning(f"MemCell转换跳过，无法保存: {memcell.event_id}")
+        if doc_memunit is None:
+            logger.warning(f"MemUnit转换跳过，无法保存: {memunit.event_id}")
             return
 
         # 保存到数据库
-        result = await memcell_repo.append_memcell(doc_memcell)
+        result = await memunit_repo.append_memunit(doc_memunit)
         if result:
-            memcell.event_id = str(result.event_id)
-            logger.info(f"[mem_db_operations] MemCell保存成功: {memcell.event_id}")
+            memunit.event_id = str(result.event_id)
+            logger.info(f"[mem_db_operations] MemUnit保存成功: {memunit.event_id}")
         else:
-            logger.info(f"[mem_db_operations] MemCell保存失败: {memcell.event_id}")
+            logger.info(f"[mem_db_operations] MemUnit保存失败: {memunit.event_id}")
 
     except Exception as e:
-        logger.error(f"MemCell保存失败: {e}")
+        logger.error(f"MemUnit保存失败: {e}")
         import traceback
 
         traceback.print_exc()
-    return memcell
+    return memunit
 
 
 async def _save_group_profile_memory(
@@ -1241,7 +1241,7 @@ class ConversationStatus:
     group_id: str  # 群组ID
     old_msg_start_time: Optional[str]  # 已处理消息的开始时间
     new_msg_start_time: Optional[str]  # 新消息的开始时间
-    last_memcell_time: Optional[str]  # 最后提取MemCell的时间
+    last_memunit_time: Optional[str]  # 最后提取MemUnit的时间
     created_at: str  # 创建时间
     updated_at: str  # 更新时间
 
@@ -1275,7 +1275,7 @@ async def _update_status_for_new_conversation(
         update_data = {
             "old_msg_start_time": None,
             "new_msg_start_time": _normalize_datetime_for_storage(earliest_time),
-            "last_memcell_time": None,
+            "last_memunit_time": None,
             "created_at": current_time,
             "updated_at": current_time,
         }
@@ -1305,7 +1305,7 @@ async def _update_status_for_continuing_conversation(
     为继续的对话更新状态记录（更新new_msg_start_time）
 
     使用场景：
-    - 当MemCell提取判断为非边界时调用
+    - 当MemUnit提取判断为非边界时调用
     - 对话仍在继续，需要累积更多消息
     - 更新new_msg_start_time为最新消息时间，为下次处理做准备
 
@@ -1328,7 +1328,7 @@ async def _update_status_for_continuing_conversation(
             update_data = {
                 "old_msg_start_time": None,
                 "new_msg_start_time": latest_dt + timedelta(milliseconds=1),
-                "last_memcell_time": None,
+                "last_memunit_time": None,
                 "created_at": _normalize_datetime_for_storage(current_time),
                 "updated_at": _normalize_datetime_for_storage(current_time),
             }
@@ -1351,9 +1351,9 @@ async def _update_status_for_continuing_conversation(
                 else None
             ),
             "new_msg_start_time": new_msg_start_time + timedelta(milliseconds=1),
-            "last_memcell_time": (
-                _normalize_datetime_for_storage(existing_status.last_memcell_time)
-                if existing_status.last_memcell_time
+            "last_memunit_time": (
+                _normalize_datetime_for_storage(existing_status.last_memunit_time)
+                if existing_status.last_memunit_time
                 else None
             ),
             "created_at": _normalize_datetime_for_storage(existing_status.created_at),
@@ -1375,24 +1375,24 @@ async def _update_status_for_continuing_conversation(
         return False
 
 
-async def _update_status_after_memcell_extraction(
+async def _update_status_after_memunit_extraction(
     status_repo: ConversationStatusRawRepository,
     request: MemorizeRequest,
-    memcell_time: str,
+    memunit_time: str,
     current_time: datetime,
 ) -> bool:
     """
-    MemCell提取后更新状态表（更新old_msg_start_time和new_msg_start_time）
+    MemUnit提取后更新状态表（更新old_msg_start_time和new_msg_start_time）
 
     使用场景：
-    - 当成功提取MemCell并完成记忆提取后调用
+    - 当成功提取MemUnit并完成记忆提取后调用
     - 更新已处理消息的时间边界，避免重复处理
     - 重置new_msg_start_time为当前时间，准备接收新消息
 
     Args:
         status_repo: ConversationStatusRawRepository实例
         request: memorize请求对象
-        memcell_time: MemCell的时间戳
+        memunit_time: MemUnit的时间戳
         current_time: 当前时间
 
     Returns:
@@ -1401,7 +1401,7 @@ async def _update_status_after_memcell_extraction(
     Note:
         - old_msg_start_time更新为最后一个历史消息时间+1ms
         - new_msg_start_time重置为当前时间
-        - last_memcell_time记录最新的MemCell提取时间
+        - last_memunit_time记录最新的MemUnit提取时间
     """
     try:
         # 获取最后一个历史数据的时间戳
@@ -1455,40 +1455,40 @@ async def _update_status_after_memcell_extraction(
         update_data = {
             "old_msg_start_time": old_msg_start_time,
             "new_msg_start_time": new_msg_start_time,  # 当前时间
-            "last_memcell_time": _normalize_datetime_for_storage(memcell_time),
+            "last_memunit_time": _normalize_datetime_for_storage(memunit_time),
             "updated_at": current_time,
         }
 
         # TODO : clear queue
 
-        logger.debug(f"MemCell提取后更新状态表")
+        logger.debug(f"MemUnit提取后更新状态表")
         result = await status_repo.upsert_by_group_id(request.group_id, update_data)
 
         if result:
-            logger.info(f"MemCell提取后状态更新成功")
+            logger.info(f"MemUnit提取后状态更新成功")
             return True
         else:
-            logger.warning(f"MemCell提取后状态更新失败")
+            logger.warning(f"MemUnit提取后状态更新失败")
             return False
 
     except Exception as e:
-        logger.error(f"MemCell提取后状态更新失败: {e}")
+        logger.error(f"MemUnit提取后状态更新失败: {e}")
         return False
 
 
 # ==================== 数据格式转换函数 ====================
 
 
-def _convert_original_data_for_profile_extractor(doc_memcell) -> List[Dict[str, Any]]:
+def _convert_original_data_for_profile_extractor(doc_memunit) -> List[Dict[str, Any]]:
     """
-    将文档层MemCell的original_data转换为ProfileMemoryExtractor期望的格式
+    将文档层MemUnit的original_data转换为ProfileMemoryExtractor期望的格式
 
     使用场景：
-    - 在memorize_offline流程中，将文档层MemCell转换为业务层MemCell时使用
+    - 在memorize_offline流程中，将文档层MemUnit转换为业务层MemUnit时使用
     - 确保ProfileMemoryExtractor能正确解析对话数据
 
     Args:
-        doc_memcell: 文档层的MemCell对象
+        doc_memunit: 文档层的MemUnit对象
 
     Returns:
         List[Dict[str, Any]]: ProfileMemoryExtractor期望的数据格式，包含：
@@ -1499,8 +1499,8 @@ def _convert_original_data_for_profile_extractor(doc_memcell) -> List[Dict[str, 
         - timestamp: 时间戳
     """
     original_data_list = []
-    if hasattr(doc_memcell, 'original_data') and doc_memcell.original_data:
-        for raw_data in doc_memcell.original_data:
+    if hasattr(doc_memunit, 'original_data') and doc_memunit.original_data:
+        for raw_data in doc_memunit.original_data:
             if hasattr(raw_data, 'messages') and raw_data.messages:
                 for message in raw_data.messages:
                     if hasattr(message, 'content') and message.content:

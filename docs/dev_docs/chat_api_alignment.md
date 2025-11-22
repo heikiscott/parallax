@@ -39,7 +39,7 @@ payload = {
     "query": query,
     "user_id": "user_001",
     "top_k": self.config.top_k_memories,
-    "data_source": self.data_source,  # memcell / event_log
+    "data_source": self.data_source,  # memunit / event_log
     "retrieval_mode": self.retrieval_mode,  # rrf / embedding / bm25
     "memory_scope": "all",  # 检索所有记忆（个人 + 群组）
 }

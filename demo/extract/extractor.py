@@ -9,7 +9,7 @@ from pathlib import Path
 from agentic_layer.memory_manager import MemoryManager
 from memory_layer.memory_manager import MemorizeRequest
 from memory_layer.types import RawDataType
-from memory_layer.memcell_extractor.base_memcell_extractor import RawData
+from memory_layer.memunit_extractor.base_memunit_extractor import RawData
 from common_utils.datetime_utils import from_iso_format
 
 from demo.config import ExtractModeConfig, MongoDBConfig
@@ -95,7 +95,7 @@ class MemoryExtractor:
             events: 对话事件列表
             
         Returns:
-            提取的 MemCell 数量
+            提取的 MemUnit 数量
         """
         if not self.manager:
             raise RuntimeError("请先调用 initialize() 初始化提取器")
@@ -171,6 +171,6 @@ class MemoryExtractor:
                     history = history[-self.config.history_window_size:]
                 continue
         
-        print(f"\n✅ 处理完成，共提取 {saved_count} 个 MemCell")
+        print(f"\n✅ 处理完成，共提取 {saved_count} 个 MemUnit")
         return saved_count
 

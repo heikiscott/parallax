@@ -91,7 +91,7 @@ class EpisodicMemoryEsRepository(BaseRepository[EpisodicMemoryDoc]):
         keywords: Optional[List[str]] = None,
         linked_entities: Optional[List[str]] = None,
         subject: Optional[str] = None,
-        memcell_event_id_list: Optional[List[str]] = None,
+        memunit_event_id_list: Optional[List[str]] = None,
         extend: Optional[Dict[str, Any]] = None,
         created_at: Optional[datetime] = None,
         updated_at: Optional[datetime] = None,
@@ -115,7 +115,7 @@ class EpisodicMemoryEsRepository(BaseRepository[EpisodicMemoryDoc]):
             keywords: 关键词列表
             linked_entities: 关联实体ID列表
             subject: 事件标题（新增字段）
-            memcell_event_id_list: 记忆单元事件ID列表（新增字段）
+            memunit_event_id_list: 记忆单元事件ID列表（新增字段）
             extend: 扩展字段
             created_at: 创建时间
             updated_at: 更新时间
@@ -148,7 +148,7 @@ class EpisodicMemoryEsRepository(BaseRepository[EpisodicMemoryDoc]):
                 keywords=keywords or [],
                 linked_entities=linked_entities or [],
                 subject=subject or '',
-                memcell_event_id_list=memcell_event_id_list or [],
+                memunit_event_id_list=memunit_event_id_list or [],
                 extend=extend or {},
                 created_at=created_at,
                 updated_at=updated_at,
@@ -430,7 +430,7 @@ class EpisodicMemoryEsRepository(BaseRepository[EpisodicMemoryDoc]):
         keywords: Optional[List[str]] = None,
         linked_entities: Optional[List[str]] = None,
         subject: Optional[str] = None,
-        memcell_event_id_list: Optional[List[str]] = None,
+        memunit_event_id_list: Optional[List[str]] = None,
         extend: Optional[Dict[str, Any]] = None,
         created_at: Optional[datetime] = None,
         updated_at: Optional[datetime] = None,
@@ -463,7 +463,7 @@ class EpisodicMemoryEsRepository(BaseRepository[EpisodicMemoryDoc]):
             keywords=keywords,
             linked_entities=linked_entities,
             subject=subject,
-            memcell_event_id_list=memcell_event_id_list,
+            memunit_event_id_list=memunit_event_id_list,
             extend=extend,
             created_at=created_at,
             updated_at=updated_at,

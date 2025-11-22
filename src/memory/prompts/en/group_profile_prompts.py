@@ -13,11 +13,11 @@ You are a group content analysis expert specializing in analyzing group conversa
 - If conversation is in Chinese, use Chinese for content; if English, use English for content
 
 **IMPORTANT EVIDENCE EXTRACTION:**
-- Each conversation segment is prefixed with "=== MEMCELL_ID: xxxx ===" to identify the memcell
-- When providing evidences, use ONLY the exact memcell IDs from these "=== MEMCELL_ID: xxx ===" markers
-- DO NOT use timestamps (like [2025-09-01T09:30:55.669000+08:00]) as memcell IDs - these are NOT memcell IDs!
-- Only reference memcell IDs that appear in the conversation input with the "=== MEMCELL_ID: ===" format
-- Example: If you see "=== MEMCELL_ID: abc-123-def ===", use "abc-123-def" in your evidences list
+- Each conversation segment is prefixed with "=== MEMUNIT_ID: xxxx ===" to identify the memunit
+- When providing evidences, use ONLY the exact memunit IDs from these "=== MEMUNIT_ID: xxx ===" markers
+- DO NOT use timestamps (like [2025-09-01T09:30:55.669000+08:00]) as memunit IDs - these are NOT memunit IDs!
+- Only reference memunit IDs that appear in the conversation input with the "=== MEMUNIT_ID: ===" format
+- Example: If you see "=== MEMUNIT_ID: abc-123-def ===", use "abc-123-def" in your evidences list
 
 Your task is to analyze group conversation transcripts and extract:
 1. **Recent Topics** (0-{max_topics} topics based on actual content, quality over quantity)
@@ -55,7 +55,7 @@ You MUST output a single JSON object with the following structure:
       "status": "exploring|disagreement|consensus|implemented",
       "update_type": "new|update",
       "old_topic_id": "topic_abc12345",
-      "evidences": ["memcell_id_1", "memcell_id_3"],
+      "evidences": ["memunit_id_1", "memunit_id_3"],
       "confidence": "strong|weak"
     }}
   ],
@@ -85,7 +85,7 @@ You MUST output a single JSON object with the following structure:
   - **"consensus"**: Agreement reached, decision made, ready for action
   - **"implemented"**: Already executed/completed, results mentioned
 - **Evidence & Confidence**:
-  - **"evidences"**: List of memcell IDs that support this topic identification (from conversation provided)
+  - **"evidences"**: List of memunit IDs that support this topic identification (from conversation provided)
   - **"confidence"**: "strong" if multiple clear evidences and strong signals; "weak" if limited or ambiguous evidence
 
 **Topic Quality Guidelines** (What to INCLUDE):
@@ -152,11 +152,11 @@ BEHAVIOR_ANALYSIS_PROMPT = """
 You are a group behavior analysis expert specializing in analyzing communication patterns to identify group roles based on conversation behaviors.
 
 **IMPORTANT EVIDENCE EXTRACTION:**
-- Each conversation segment is prefixed with "=== MEMCELL_ID: xxxx ===" to identify the memcell
-- When providing evidences, use ONLY the exact memcell IDs from these "=== MEMCELL_ID: xxx ===" markers
-- DO NOT use timestamps (like [2025-09-01T09:30:55.669000+08:00]) as memcell IDs - these are NOT memcell IDs!
-- Only reference memcell IDs that appear in the conversation input with the "=== MEMCELL_ID: ===" format
-- Example: If you see "=== MEMCELL_ID: abc-123-def ===", use "abc-123-def" in your evidences list
+- Each conversation segment is prefixed with "=== MEMUNIT_ID: xxxx ===" to identify the memunit
+- When providing evidences, use ONLY the exact memunit IDs from these "=== MEMUNIT_ID: xxx ===" markers
+- DO NOT use timestamps (like [2025-09-01T09:30:55.669000+08:00]) as memunit IDs - these are NOT memunit IDs!
+- Only reference memunit IDs that appear in the conversation input with the "=== MEMUNIT_ID: ===" format
+- Example: If you see "=== MEMUNIT_ID: abc-123-def ===", use "abc-123-def" in your evidences list
 
 Your task is to analyze group conversation transcripts and extract:
 **Role Mapping** (7 key roles assignment based on behavioral patterns)
@@ -186,14 +186,14 @@ You MUST output a single JSON object with the following structure:
     "decision_maker": [
       {{
         "speaker": "speaker_id1",
-        "evidences": ["memcell_id_2"],
+        "evidences": ["memunit_id_2"],
         "confidence": "strong|weak"
       }}
     ],
     "opinion_leader": [
       {{
         "speaker": "speaker_id2",
-        "evidences": ["memcell_id_4", "memcell_id_5"],
+        "evidences": ["memunit_id_4", "memunit_id_5"],
         "confidence": "strong|weak"
       }}
     ],
@@ -237,10 +237,10 @@ For each role, identify users based on conversation behaviors with **minimum 2 c
 - **Preserve Historical Roles**: When existing profile has role assignments, maintain them unless contradicted by new evidence
 - **Add New Roles**: Add new role assignments based on new conversation behaviors
 - **Only Remove Roles**: If there's clear evidence of role change or replaced by new active speaker
-- **Evidence & Confidence**: For each role assignment, provide memcell IDs as evidence and assess confidence level
-  - **"evidences"**: List of memcell IDs that support this role assignment
+- **Evidence & Confidence**: For each role assignment, provide memunit IDs as evidence and assess confidence level
+  - **"evidences"**: List of memunit IDs that support this role assignment
   - **"confidence"**: "strong" if multiple clear behavioral patterns; "weak" if limited evidence
-- Output format: [{{"speaker": "speaker_id", "evidences": ["memcell_id1"], "confidence": "strong|weak"}}] for each role
+- Output format: [{{"speaker": "speaker_id", "evidences": ["memunit_id1"], "confidence": "strong|weak"}}] for each role
 
 ### Role Assignment Examples:
 - If Alice frequently says "I think we should..." and others follow: opinion_leader
@@ -268,9 +268,9 @@ AGGREGATION_PROMPT = """
 You are a group profile aggregation expert. Your task is to analyze multiple daily group profiles and conversation data to create a consolidated group profile.
 
 **IMPORTANT EVIDENCE EXTRACTION:**
-- Each conversation segment is prefixed with [MEMCELL_ID: xxxx] to identify the memcell
-- When providing evidences, use the exact memcell IDs from these prefixes
-- Only reference memcell IDs that appear in the conversation input
+- Each conversation segment is prefixed with [MEMUNIT_ID: xxxx] to identify the memunit
+- When providing evidences, use the exact memunit IDs from these prefixes
+- Only reference memunit IDs that appear in the conversation input
 
 You are aggregating group profiles from {aggregation_level} data ({start_date} to {end_date}).
 
@@ -291,7 +291,7 @@ Output a single JSON object with the following structure:
       "status": "exploring|disagreement|consensus|implemented",
       "update_type": "new|update",
       "old_topic_id": "topic_id",
-      "evidences": ["memcell_id1", "memcell_id2"],
+      "evidences": ["memunit_id1", "memunit_id2"],
       "confidence": "strong|weak"
     }}
   ],
@@ -301,7 +301,7 @@ Output a single JSON object with the following structure:
     "decision_maker": [
       {{
         "speaker": "speaker_id",
-        "evidences": ["memcell_id"],
+        "evidences": ["memunit_id"],
         "confidence": "strong|weak"
       }}
     ]

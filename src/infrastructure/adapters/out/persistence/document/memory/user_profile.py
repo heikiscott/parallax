@@ -33,7 +33,7 @@ class UserProfile(DocumentBase, AuditBase):
         default_factory=list,
         description="关联的聚类ID列表"
     )
-    memcell_count: int = Field(default=0, description="参与提取的 MemCell 数量")
+    memunit_count: int = Field(default=0, description="参与提取的 MemUnit 数量")
     
     # 历史记录
     last_updated_cluster: Optional[str] = Field(

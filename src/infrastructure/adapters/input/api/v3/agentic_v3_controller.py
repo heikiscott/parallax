@@ -69,7 +69,7 @@ class AgenticV3Controller(BaseController):
         
         ## 功能说明：
         - 接收简单直接的单条消息数据（无需预转换）
-        - 将单条消息提取为记忆单元（memcells）
+        - 将单条消息提取为记忆单元（memunits）
         - 适用于实时消息处理场景
         - 返回已保存的记忆列表
         
@@ -278,7 +278,7 @@ class AgenticV3Controller(BaseController):
           * "embedding": 纯向量检索
           * "bm25": 纯关键词检索
         - **data_source** (可选): 数据源
-          * "episode": 从 MemCell.episode 检索（默认）
+          * "episode": 从 MemUnit.episode 检索（默认）
           * "event_log": 从 event_log.atomic_fact 检索
           * "semantic_memory": 从语义记忆检索
           * "profile": 仅需 user_id + group_id 的档案检索（query 可空）
@@ -340,7 +340,7 @@ class AgenticV3Controller(BaseController):
             
             if not query and data_source != "profile":
                 raise ValueError("缺少必需参数：query")
-            if data_source == "memcell":
+            if data_source == "memunit":
                 data_source = "episode"
             if data_source == "profile":
                 if not user_id or not group_id:

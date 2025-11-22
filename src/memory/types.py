@@ -61,7 +61,7 @@ class RawDataType(Enum):
 
 
 @dataclass
-class MemCell:
+class MemUnit:
     """
     Boundary detection result following the specified schema.
 
@@ -102,7 +102,7 @@ class MemCell:
             raise ValueError("summary is required")
 
     def __repr__(self) -> str:
-        return f"MemCell(event_id={self.event_id}, original_data={self.original_data}, timestamp={self.timestamp}, summary={self.summary})"
+        return f"MemUnit(event_id={self.event_id}, original_data={self.original_data}, timestamp={self.timestamp}, summary={self.summary})"
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -154,7 +154,7 @@ class Memory:
     keywords: Optional[List[str]] = None
     linked_entities: Optional[List[str]] = None
 
-    memcell_event_id_list: Optional[List[str]] = None
+    memunit_event_id_list: Optional[List[str]] = None
     # 语义记忆联想预测字段
     semantic_memories: Optional[List['SemanticMemoryItem']] = None  # 语义记忆联想列表
     extend: Optional[Dict[str, Any]] = None

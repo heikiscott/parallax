@@ -138,7 +138,7 @@ class EpisodicMemoryModel:
     updated_at: datetime = field(default_factory=datetime.now)
     metadata: Metadata = field(default_factory=Metadata)
     extend: Optional[Dict[str, Any]] = None
-    memcell_event_id_list: Optional[List[str]] = None
+    memunit_event_id_list: Optional[List[str]] = None
     subject: Optional[str] = None
 
 

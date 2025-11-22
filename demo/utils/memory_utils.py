@@ -4,7 +4,7 @@
 
 主要功能：
 - MongoDB 连接和初始化
-- MemCell 查询
+- MemUnit 查询
 - 时间序列化工具
 - Prompt 语言设置
 
@@ -24,8 +24,8 @@ from motor.motor_asyncio import AsyncIOMotorClient
 from beanie import init_beanie
 
 # 导入项目中的文档模型
-from infra_layer.adapters.out.persistence.document.memory.memcell import (
-    MemCell as DocMemCell,
+from infra_layer.adapters.out.persistence.document.memory.memunit import (
+    MemUnit as DocMemUnit,
 )
 from demo.config import MongoDBConfig
 
@@ -39,7 +39,7 @@ def set_prompt_language(language: str) -> None:
     """设置记忆提取的 Prompt 语言
     
     通过设置环境变量 MEMORY_LANGUAGE 来控制 src/memory_layer/prompts 使用的语言。
-    这会影响所有记忆提取器（MemCell、Profile、Episode、Semantic）使用的 Prompt。
+    这会影响所有记忆提取器（MemUnit、Profile、Episode、Semantic）使用的 Prompt。
     
     Args:
         language: 语言代码，"zh" 或 "en"
@@ -93,17 +93,17 @@ async def ensure_mongo_beanie_ready(mongo_config: MongoDBConfig) -> None:
 
     # 初始化 Beanie 文档模型
     await init_beanie(
-        database=client[mongo_config.database], document_models=[DocMemCell]
+        database=client[mongo_config.database], document_models=[DocMemUnit]
     )
 
 
 async def query_all_groups_from_mongodb() -> List[Dict[str, Any]]:
     """查询所有群组 ID 及其记忆数量
 
-    使用聚合管道统计每个群组的 MemCell 数量。
+    使用聚合管道统计每个群组的 MemUnit 数量。
 
     Returns:
-        群组列表，格式：[{"group_id": "xxx", "memcell_count": 76}, ...]
+        群组列表，格式：[{"group_id": "xxx", "memunit_count": 76}, ...]
     """
     # 使用聚合管道统计每个群组的记忆数量
     pipeline = [
@@ -114,21 +114,21 @@ async def query_all_groups_from_mongodb() -> List[Dict[str, Any]]:
 
     # 获取 PyMongo/Motor 集合进行聚合查询
     # get_pymongo_collection() 在 Beanie 中返回 Motor 集合（异步）
-    collection = DocMemCell.get_pymongo_collection()
+    collection = DocMemUnit.get_pymongo_collection()
     cursor = collection.aggregate(pipeline)
     results = await cursor.to_list(length=None)
 
     groups = []
     for result in results:
-        groups.append({"group_id": result["_id"], "memcell_count": result["count"]})
+        groups.append({"group_id": result["_id"], "memunit_count": result["count"]})
 
     return groups
 
 
-async def query_memcells_by_group_and_time(
+async def query_memunits_by_group_and_time(
     group_id: str, start_date: datetime, end_date: datetime
-) -> List[DocMemCell]:
-    """按群组和时间范围查询 MemCell
+) -> List[DocMemUnit]:
+    """按群组和时间范围查询 MemUnit
 
     Args:
         group_id: 群组 ID
@@ -136,17 +136,17 @@ async def query_memcells_by_group_and_time(
         end_date: 结束日期
 
     Returns:
-        MemCell 文档对象列表
+        MemUnit 文档对象列表
     """
-    memcells = (
-        await DocMemCell.find(
+    memunits = (
+        await DocMemUnit.find(
             {"group_id": group_id, "timestamp": {"$gte": start_date, "$lt": end_date}}
         )
         .sort("timestamp")
         .to_list()
     )
 
-    return memcells
+    return memunits
 
 
 # ============================================================================

@@ -100,7 +100,7 @@ class TopicInfo:
     id: Optional[str] = None  # 话题唯一ID (系统生成，LLM不需要提供)
     update_type: Optional[str] = None  # "new" | "update" (仅用于增量更新时)
     old_topic_id: Optional[str] = None  # 更新时指向老topic (仅用于增量更新时)
-    evidences: Optional[List[str]] = field(default_factory=list)  # memcell_ids 作为证据
+    evidences: Optional[List[str]] = field(default_factory=list)  # memunit_ids 作为证据
     confidence: Optional[str] = None  # "strong" | "weak" - 置信度
 
     @classmethod
@@ -275,23 +275,23 @@ class GroupProfileMemoryExtractor(MemoryExtractor):
         self, request: GroupProfileMemoryExtractRequest
     ) -> Optional[List[GroupProfileMemory]]:
         """
-        Extract group profile memory from conversation memcells.
+        Extract group profile memory from conversation memunits.
 
         【核心业务流程】通过组合各个processor完成提取任务
 
         Args:
-            request: Extract request containing memcells and related info
+            request: Extract request containing memunits and related info
 
         Returns:
             List containing a single GroupProfileMemory object, or None
         """
         # ===== 1. 前置检查 =====
-        if not request.memcell_list:
+        if not request.memunit_list:
             return None
 
         group_id = request.group_id or ""
         group_name = request.group_name or ""
-        memcell_list = request.memcell_list
+        memunit_list = request.memunit_list
 
         # 业务过滤逻辑
         if self._filter_group(group_name, request.user_id_list):
@@ -305,12 +305,12 @@ class GroupProfileMemoryExtractor(MemoryExtractor):
             request.old_memory_list
         )
         conversation_text = self.data_processor.combine_conversation_text_with_ids(
-            memcell_list
+            memunit_list
         )
 
         # ===== 3. 计算时间跨度 =====
-        start_time = convert_to_datetime(min(mc.timestamp for mc in memcell_list))
-        end_time = convert_to_datetime(max(mc.timestamp for mc in memcell_list))
+        start_time = convert_to_datetime(min(mc.timestamp for mc in memunit_list))
+        end_time = convert_to_datetime(max(mc.timestamp for mc in memunit_list))
         timespan = f"{start_time.date()} to {end_time.date()}"
 
         try:
@@ -323,7 +323,7 @@ class GroupProfileMemoryExtractor(MemoryExtractor):
                 conversation_text=conversation_text,
                 group_id=group_id,
                 group_name=group_name,
-                memcell_list=memcell_list,
+                memunit_list=memunit_list,
                 existing_profile=existing_profile,
                 user_organization=None,
                 timespan=timespan,
@@ -332,14 +332,14 @@ class GroupProfileMemoryExtractor(MemoryExtractor):
             if not parsed_data:
                 return None
 
-            # ===== 5. 收集有效memcell IDs =====
-            valid_memcell_ids = set(
+            # ===== 5. 收集有效memunit IDs =====
+            valid_memunit_ids = set(
                 str(mc.event_id)
-                for mc in memcell_list
+                for mc in memunit_list
                 if hasattr(mc, 'event_id') and mc.event_id
             )
             logger.debug(
-                f"[extract_memory] Valid memcell IDs count: {len(valid_memcell_ids)}"
+                f"[extract_memory] Valid memunit IDs count: {len(valid_memunit_ids)}"
             )
 
             # ===== 6. 处理话题 =====
@@ -351,8 +351,8 @@ class GroupProfileMemoryExtractor(MemoryExtractor):
             all_topics = self.topic_processor.apply_topic_incremental_updates(
                 llm_topics=raw_topics,
                 existing_topics_with_evidences=existing_topics,
-                memcell_list=memcell_list,
-                valid_memcell_ids=valid_memcell_ids,
+                memunit_list=memunit_list,
+                valid_memunit_ids=valid_memunit_ids,
                 max_topics=self.max_topics,
             )
             logger.info(
@@ -368,7 +368,7 @@ class GroupProfileMemoryExtractor(MemoryExtractor):
             # 构建综合speaker映射
             comprehensive_mapping = (
                 self.data_processor.get_comprehensive_speaker_mapping(
-                    memcell_list, existing_roles
+                    memunit_list, existing_roles
                 )
             )
 
@@ -376,8 +376,8 @@ class GroupProfileMemoryExtractor(MemoryExtractor):
                 role_data=raw_roles,
                 speaker_mapping=comprehensive_mapping,
                 existing_roles=existing_roles,
-                valid_memcell_ids=valid_memcell_ids,
-                memcell_list=memcell_list,
+                valid_memunit_ids=valid_memunit_ids,
+                memunit_list=memunit_list,
             )
             logger.info(
                 f"[extract_memory] Processed roles with {sum(len(v) for v in all_roles.values())} total assignments"
@@ -389,7 +389,7 @@ class GroupProfileMemoryExtractor(MemoryExtractor):
                 user_id="",
                 timestamp=get_now_with_timezone(),
                 ori_event_id_list=[
-                    str(mc.event_id) for mc in memcell_list if hasattr(mc, 'event_id')
+                    str(mc.event_id) for mc in memunit_list if hasattr(mc, 'event_id')
                 ],
                 group_id=group_id,
                 group_name=group_name,

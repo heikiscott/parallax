@@ -77,7 +77,7 @@ class ExtractModeConfig:
     def __post_init__(self):
         # 自动设置输出目录
         if self.output_dir is None:
-            self.output_dir = Path(__file__).parent.parent / "memcell_outputs" / f"{self.scenario_type.value}_{self.language}"
+            self.output_dir = Path(__file__).parent.parent / "memunit_outputs" / f"{self.scenario_type.value}_{self.language}"
         
         # 根据场景设置默认值
         if self.scenario_type == ScenarioType.GROUP_CHAT:
@@ -106,7 +106,7 @@ class ChatModeConfig:
     
     # 路径（自动设置）
     chat_history_dir: Path = field(default_factory=lambda: Path(__file__).parent.parent / "chat_history")
-    memcell_output_dir: Path = field(default_factory=lambda: Path(__file__).parent.parent / "memcell_outputs")
+    memunit_output_dir: Path = field(default_factory=lambda: Path(__file__).parent.parent / "memunit_outputs")
 
     def __post_init__(self):
         self.chat_history_dir.mkdir(parents=True, exist_ok=True)

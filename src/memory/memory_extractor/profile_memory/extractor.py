@@ -18,14 +18,14 @@ from ...prompts import (
     CONVERSATION_PROFILE_PART2_EXTRACTION_PROMPT,
     CONVERSATION_PROFILE_PART3_EXTRACTION_PROMPT,
 )
-from ...types import MemoryType, MemCell
+from ...types import MemoryType, MemUnit
 from .conversation import (
     annotate_relative_dates,
     build_conversation_text,
     build_episode_text,
     build_profile_prompt,
     extract_group_important_info,
-    extract_user_mapping_from_memcells,
+    extract_user_mapping_from_memunits,
     is_important_to_user,
     merge_group_importance_evidence,
 )
@@ -60,15 +60,15 @@ class ProfileMemoryExtractor(MemoryExtractor):
         self,
         request: ProfileMemoryExtractRequest,
     ) -> Optional[List[ProfileMemory]]:
-        """Extract profile memories from conversation memcells."""
-        if not request.memcell_list:
+        """Extract profile memories from conversation memunits."""
+        if not request.memunit_list:
             return None
 
         self.__class__._conversation_date_map = {}
 
-        # Extract complete user_id to user_name mapping from all memcells and old memories
-        user_id_to_name = extract_user_mapping_from_memcells(
-            request.memcell_list,
+        # Extract complete user_id to user_name mapping from all memunits and old memories
+        user_id_to_name = extract_user_mapping_from_memunits(
+            request.memunit_list,
             old_memory_list=request.old_memory_list
         )
 
@@ -77,26 +77,26 @@ class ProfileMemoryExtractor(MemoryExtractor):
         all_episode_text: List[str] = []
         valid_conversation_ids: Set[str] = set()
         conversation_participants_map: Dict[str, Optional[AbstractSet[str]]] = {}
-        for memcell in request.memcell_list:
-            conversation_text, conversation_id = build_conversation_text(memcell, user_id_to_name)
+        for memunit in request.memunit_list:
+            conversation_text, conversation_id = build_conversation_text(memunit, user_id_to_name)
             all_conversation_text.append(conversation_text)
 
-            #episode_text, episode_id = build_episode_text(memcell, user_id_to_name)
+            #episode_text, episode_id = build_episode_text(memunit, user_id_to_name)
             #all_episode_text.append(episode_text)
 
-            timestamp_value = getattr(memcell, "timestamp", None)
+            timestamp_value = getattr(memunit, "timestamp", None)
             dt_value = self._parse_timestamp(timestamp_value)
             if dt_value is None:
-                msg_timestamp = self._extract_first_message_timestamp(memcell)
+                msg_timestamp = self._extract_first_message_timestamp(memunit)
                 if msg_timestamp is not None:
                     dt_value = self._parse_timestamp(msg_timestamp)
             date_str: Optional[str] = None
             if dt_value:
                 date_str = dt_value.date().isoformat()
 
-            event_id_raw = getattr(memcell, "event_id", None)
+            event_id_raw = getattr(memunit, "event_id", None)
             event_id_str = str(event_id_raw) if event_id_raw is not None else None
-            participants_raw = getattr(memcell, "participants", None)
+            participants_raw = getattr(memunit, "participants", None)
             participants_set: Optional[AbstractSet[str]] = None
             if participants_raw:
                 normalized_participants = {
@@ -121,8 +121,8 @@ class ProfileMemoryExtractor(MemoryExtractor):
 
         resolved_group_id = request.group_id
         if not resolved_group_id:
-            for memcell in request.memcell_list:
-                candidate_group_id = getattr(memcell, "group_id", None)
+            for memunit in request.memunit_list:
+                candidate_group_id = getattr(memunit, "group_id", None)
                 if candidate_group_id:
                     resolved_group_id = candidate_group_id
                     break
@@ -437,7 +437,7 @@ class ProfileMemoryExtractor(MemoryExtractor):
         )
 
 
-        important_info = extract_group_important_info(request.memcell_list, request.group_id)
+        important_info = extract_group_important_info(request.memunit_list, request.group_id)
         new_evidence_list = convert_important_info_to_evidence(important_info)
         for profile in merged_profiles:
             old_evidence: Optional[GroupImportanceEvidence] = profile.group_importance_evidence
@@ -493,9 +493,9 @@ class ProfileMemoryExtractor(MemoryExtractor):
         return None
 
     @staticmethod
-    def _extract_first_message_timestamp(memcell: MemCell) -> Optional[Any]:
-        """Return the first available timestamp from a memcell's original data."""
-        for message in getattr(memcell, "original_data", []) or []:
+    def _extract_first_message_timestamp(memunit: MemUnit) -> Optional[Any]:
+        """Return the first available timestamp from a memunit's original data."""
+        for message in getattr(memunit, "original_data", []) or []:
             if hasattr(message, "content"):
                 ts_value = message.content.get("timestamp")
             else:
@@ -528,37 +528,37 @@ class ProfileMemoryExtractor(MemoryExtractor):
     ) -> Optional[List[ProfileMemory]]:
         """Extract companion profile memories using Part3 prompts (90 personality dimensions).
 
-        This function analyzes conversation memcells to extract comprehensive personality profiles
+        This function analyzes conversation memunits to extract comprehensive personality profiles
         based on 90 dimensions including psychological traits, AI alignment preferences,
         and content platform interests.
 
         Args:
-            request: ProfileMemoryExtractRequest containing memcells and optional old memories
+            request: ProfileMemoryExtractRequest containing memunits and optional old memories
 
         Returns:
             Optional[List[ProfileMemory]]: List of extracted profile memories with 90-dimension analysis,
                                            or None if extraction failed
         """
-        if not request.memcell_list:
+        if not request.memunit_list:
             logger.warning(
-                "[ProfileMemoryExtractor] No memcells provided for companion extraction"
+                "[ProfileMemoryExtractor] No memunits provided for companion extraction"
             )
-            print(f"[ProfileExtractor] ❌ memcell_list 为空")
+            print(f"[ProfileExtractor] ❌ memunit_list 为空")
             return None
 
-        print(f"[ProfileExtractor] 收到 {len(request.memcell_list)} 个 MemCell")
+        print(f"[ProfileExtractor] 收到 {len(request.memunit_list)} 个 MemUnit")
         print(f"[ProfileExtractor] request.user_id_list: {request.user_id_list}")
         print(f"[ProfileExtractor] request.group_id: {request.group_id}")
         
-        # Extract user mapping from memcells and build conversation text
-        user_id_to_name = extract_user_mapping_from_memcells(request.memcell_list)
+        # Extract user mapping from memunits and build conversation text
+        user_id_to_name = extract_user_mapping_from_memunits(request.memunit_list)
         print(f"[ProfileExtractor] user_id_to_name (从 original_data 提取): {user_id_to_name}")
         
         # 🔧 如果 user_id_to_name 为空，从 participants 字段提取
         if not user_id_to_name:
             print(f"[ProfileExtractor] user_id_to_name 为空，尝试从 participants 提取")
-            for memcell in request.memcell_list:
-                participants = getattr(memcell, "participants", None)
+            for memunit in request.memunit_list:
+                participants = getattr(memunit, "participants", None)
                 if participants and isinstance(participants, list):
                     for user_id in participants:
                         if user_id and user_id not in user_id_to_name:
@@ -573,7 +573,7 @@ class ProfileMemoryExtractor(MemoryExtractor):
         
         print(f"[ProfileExtractor] 最终 user_id_to_name: {user_id_to_name}")
         # print(f"[ProfileMemoryExtractor] user_id_to_name: {user_id_to_name}")
-        # Build conversation text from all memcells
+        # Build conversation text from all memunits
         conversation_lines: List[str] = []
         user_profiles: Dict[str, Dict[str, Any]] = (
             {}
@@ -584,9 +584,9 @@ class ProfileMemoryExtractor(MemoryExtractor):
         valid_conversation_ids: Set[str] = set()
         default_date: Optional[str] = None
 
-        for memcell in request.memcell_list:
+        for memunit in request.memunit_list:
             # 🔧 直接使用 episode，因为 original_data 经常为空
-            episode_text, event_id = build_episode_text(memcell, user_id_to_name)
+            episode_text, event_id = build_episode_text(memunit, user_id_to_name)
             
             if episode_text:
                 conversation_lines.append(episode_text)
@@ -596,7 +596,7 @@ class ProfileMemoryExtractor(MemoryExtractor):
                 print(f"[ProfileExtractor] ⚠️  episode 为空，尝试 conversation_text fallback")
                 # Fallback: 尝试 conversation_text
                 conversation_text, conversation_id = build_conversation_text(
-                    memcell, user_id_to_name
+                    memunit, user_id_to_name
                 )
                 if conversation_text and conversation_text.strip():
                     conversation_lines.append(conversation_text)
@@ -605,7 +605,7 @@ class ProfileMemoryExtractor(MemoryExtractor):
                     print(f"[ProfileExtractor] ❌ episode 和 conversation_text 都为空！")
 
             # Collect user statistics
-            # for user_id in getattr(memcell, "user_id_list", []) or []:
+            # for user_id in getattr(memunit, "user_id_list", []) or []:
             for user_id in user_id_to_name.keys():
                 if user_id not in user_profiles:
                     user_profiles[user_id] = {
@@ -616,10 +616,10 @@ class ProfileMemoryExtractor(MemoryExtractor):
                 user_profiles[user_id]["message_count"] += 1
 
             # Evidence date mapping
-            timestamp_value = getattr(memcell, "timestamp", None)
+            timestamp_value = getattr(memunit, "timestamp", None)
             dt_value = self._parse_timestamp(timestamp_value)
             if dt_value is None:
-                msg_timestamp = self._extract_first_message_timestamp(memcell)
+                msg_timestamp = self._extract_first_message_timestamp(memunit)
                 if msg_timestamp is not None:
                     dt_value = self._parse_timestamp(msg_timestamp)
             date_str: Optional[str] = None
@@ -631,7 +631,7 @@ class ProfileMemoryExtractor(MemoryExtractor):
                 valid_conversation_ids.add(conversation_id)
                 if date_str:
                     conversation_date_map.setdefault(conversation_id, date_str)
-            event_id = getattr(memcell, "event_id", None)
+            event_id = getattr(memunit, "event_id", None)
             if event_id:
                 event_id_str = str(event_id)
                 valid_conversation_ids.add(event_id_str)
@@ -757,7 +757,7 @@ class ProfileMemoryExtractor(MemoryExtractor):
                     # Prefer event_ids for fallback evidences
                     batch_event_ids: List[str] = [
                         str(mc.event_id)
-                        for mc in request.memcell_list
+                        for mc in request.memunit_list
                         if hasattr(mc, 'event_id') and mc.event_id
                     ]
                     for ev in batch_event_ids:
@@ -841,7 +841,7 @@ class ProfileMemoryExtractor(MemoryExtractor):
                     fallback_evidences: List[str] = []
                     batch_event_ids: List[str] = [
                         str(mc.event_id)
-                        for mc in request.memcell_list
+                        for mc in request.memunit_list
                         if hasattr(mc, 'event_id') and mc.event_id
                     ]
                     for ev in batch_event_ids:
@@ -854,7 +854,7 @@ class ProfileMemoryExtractor(MemoryExtractor):
                         timestamp=_dt.now(),
                         ori_event_id_list=[
                             mc.event_id
-                            for mc in request.memcell_list
+                            for mc in request.memunit_list
                             if hasattr(mc, 'event_id')
                         ],
                         group_id=request.group_id or "",

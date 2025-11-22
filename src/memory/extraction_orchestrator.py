@@ -7,10 +7,10 @@ from typing import List, Optional
 from core.observation.logger import get_logger
 
 from providers.llm.llm_provider import LLMProvider
-from .memcell_extractor.conv_memcell_extractor import ConvMemCellExtractor
-from .memcell_extractor.base_memcell_extractor import RawData
-from .memcell_extractor.conv_memcell_extractor import ConversationMemCellExtractRequest
-from .types import MemCell, RawDataType, MemoryType
+from .memunit_extractor.conv_memunit_extractor import ConvMemUnitExtractor
+from .memunit_extractor.base_memunit_extractor import RawData
+from .memunit_extractor.conv_memunit_extractor import ConversationMemUnitExtractRequest
+from .types import MemUnit, RawDataType, MemoryType
 from .memory_extractor.episode_memory_extractor import (
     EpisodeMemoryExtractor,
     EpisodeMemoryExtractRequest,
@@ -26,7 +26,7 @@ from .memory_extractor.group_profile_memory_extractor import (
 )
 from .memory_extractor.event_log_extractor import EventLogExtractor
 from .memory_extractor.semantic_memory_extractor import SemanticMemoryExtractor
-from .memcell_extractor.base_memcell_extractor import StatusResult
+from .memunit_extractor.base_memunit_extractor import StatusResult
 
 
 logger = get_logger(__name__)
@@ -60,7 +60,7 @@ class ExtractionOrchestrator:
     """记忆提取编排器 - 负责编排各种记忆提取器"""
 
     def __init__(self):
-        # Conversation MemCell LLM Provider - 从环境变量读取配置
+        # Conversation MemUnit LLM Provider - 从环境变量读取配置
         self.conv_memcall_llm_provider = LLMProvider(
             provider_type=os.getenv("LLM_PROVIDER", "openai"),
             model=os.getenv("LLM_MODEL", "Qwen3-235B"),
@@ -111,7 +111,7 @@ class ExtractionOrchestrator:
 
         
 
-    async def extract_memcell(
+    async def extract_memunit(
         self,
         history_raw_data_list: list[RawData],
         new_raw_data_list: list[RawData],
@@ -122,9 +122,9 @@ class ExtractionOrchestrator:
         old_memory_list: Optional[List[Memory]] = None,
         enable_semantic_extraction: bool = True,
         enable_event_log_extraction: bool = True,
-    ) -> tuple[Optional[MemCell], Optional[StatusResult]]:
+    ) -> tuple[Optional[MemUnit], Optional[StatusResult]]:
         """
-        提取 MemCell（包含可选的语义记忆和事件日志提取）
+        提取 MemUnit（包含可选的语义记忆和事件日志提取）
         
         Args:
             history_raw_data_list: 历史消息列表
@@ -138,13 +138,13 @@ class ExtractionOrchestrator:
             enable_event_log_extraction: 是否提取事件日志（默认True）
             
         Returns:
-            (MemCell, StatusResult) 或 (None, StatusResult)
+            (MemUnit, StatusResult) 或 (None, StatusResult)
         """
         logger = get_logger(__name__)
         now = time.time()
         
-        # 1. 提取基础 MemCell（包括可选的语义记忆）
-        request = ConversationMemCellExtractRequest(
+        # 1. 提取基础 MemUnit（包括可选的语义记忆）
+        request = ConversationMemUnitExtractRequest(
             history_raw_data_list,
             new_raw_data_list,
             user_id_list=user_id_list,
@@ -152,39 +152,39 @@ class ExtractionOrchestrator:
             group_name=group_name,
             old_memory_list=old_memory_list,
         )
-        extractor = ConvMemCellExtractor(self.conv_memcall_llm_provider)
-        memcell, status_result = await extractor.extract_memcell(
+        extractor = ConvMemUnitExtractor(self.conv_memcall_llm_provider)
+        memunit, status_result = await extractor.extract_memunit(
             request, 
             use_semantic_extraction=enable_semantic_extraction
         )
         
-        # 2. 如果成功提取 MemCell，且启用了 Event Log 提取
-        if memcell and enable_event_log_extraction and hasattr(memcell, 'episode') and memcell.episode:
+        # 2. 如果成功提取 MemUnit，且启用了 Event Log 提取
+        if memunit and enable_event_log_extraction and hasattr(memunit, 'episode') and memunit.episode:
             if self._event_log_extractor is None:
                 self._event_log_extractor = EventLogExtractor(llm_provider=self.event_log_llm_provider)
             
-            logger.debug(f"开始提取 Event Log: {memcell.event_id}")
+            logger.debug(f"开始提取 Event Log: {memunit.event_id}")
             event_log = await self._event_log_extractor.extract_event_log(
-                episode_text=memcell.episode,
-                timestamp=memcell.timestamp
+                episode_text=memunit.episode,
+                timestamp=memunit.timestamp
             )
             
             if event_log:
-                memcell.event_log = event_log
-                logger.debug(f"Event Log 提取成功: {memcell.event_id}")
+                memunit.event_log = event_log
+                logger.debug(f"Event Log 提取成功: {memunit.event_id}")
         
         logger.debug(
-            f"提取MemCell完成, raw_data_type: {raw_data_type}, "
+            f"提取MemUnit完成, raw_data_type: {raw_data_type}, "
             f"semantic_extraction={enable_semantic_extraction}, "
             f"event_log_extraction={enable_event_log_extraction}, "
             f"耗时: {time.time() - now}秒"
         )
         
-        return memcell, status_result
+        return memunit, status_result
 
     async def extract_memory(
         self,
-        memcell_list: list[MemCell],
+        memunit_list: list[MemUnit],
         memory_type: MemoryType,
         user_ids: List[str],
         group_id: Optional[str] = None,
@@ -209,18 +209,18 @@ class ExtractionOrchestrator:
                 self.episode_memory_extractor_llm_provider
             )
             request = EpisodeMemoryExtractRequest(
-                memcell_list=memcell_list,
+                memunit_list=memunit_list,
                 user_id_list=user_ids,
                 group_id=group_id,
                 old_memory_list=old_memory_list,
             )
         elif memory_type == MemoryType.PROFILE:
-            if memcell_list[0].type == RawDataType.CONVERSATION:
+            if memunit_list[0].type == RawDataType.CONVERSATION:
                 extractor = ProfileMemoryExtractor(
                     self.profile_memory_extractor_llm_provider
                 )
                 request = ProfileMemoryExtractRequest(
-                    memcell_list=memcell_list,
+                    memunit_list=memunit_list,
                     user_id_list=user_ids,
                     group_id=group_id,
                     old_memory_list=old_memory_list,
@@ -230,7 +230,7 @@ class ExtractionOrchestrator:
                 self.profile_memory_extractor_llm_provider
             )
             request = GroupProfileMemoryExtractRequest(
-                memcell_list=memcell_list,
+                memunit_list=memunit_list,
                 user_id_list=user_ids,
                 group_id=group_id,
                 group_name=group_name,

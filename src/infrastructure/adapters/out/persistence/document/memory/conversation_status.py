@@ -22,8 +22,8 @@ class ConversationStatus(DocumentBase, AuditBase):
     new_msg_start_time: Optional[datetime] = Field(
         default=None, description="累积新对话读取起始时间"
     )
-    last_memcell_time: Optional[datetime] = Field(
-        default=None, description="累积memCell读取起始时间"
+    last_memunit_time: Optional[datetime] = Field(
+        default=None, description="累积memUnit读取起始时间"
     )
 
     model_config = ConfigDict(
@@ -35,7 +35,7 @@ class ConversationStatus(DocumentBase, AuditBase):
                 "group_id": "group_001",
                 "old_msg_start_time": datetime(2021, 1, 1, 0, 0, 0),
                 "new_msg_start_time": datetime(2021, 1, 1, 0, 0, 0),
-                "last_memcell_time": datetime(2021, 1, 1, 0, 0, 0),
+                "last_memunit_time": datetime(2021, 1, 1, 0, 0, 0),
             }
         },
     )

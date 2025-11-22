@@ -1,11 +1,11 @@
 """
 语义记忆联想预测提示词模板
 
-用于生成基于MemCell和EpisodeMemory内容的语义记忆联想预测
+用于生成基于MemUnit和EpisodeMemory内容的语义记忆联想预测
 """
 
 GROUP_SEMANTIC_GENERATION_PROMPT = """
-你是一个高级语义分析智能体，你的任务是基于群组最近的MemCell事件，联想预测该事件可能引发的后续群体行为、氛围变化和成员互动趋势。
+你是一个高级语义分析智能体，你的任务是基于群组最近的MemUnit事件，联想预测该事件可能引发的后续群体行为、氛围变化和成员互动趋势。
 
 ## 任务目标：
 1. **联想预测而非总结**：基于事件内容，联想可能发生的后续群体变化，而不是重复或总结原文内容。
@@ -140,7 +140,7 @@ GROUP_SEMANTIC_GENERATION_PROMPT = """
 """
 
 SEMANTIC_GENERATION_PROMPT = """
-你是一个高级个人语义分析智能体。你的任务是基于用户的最新MemCell事件，联想预测该事件可能对该用户个人未来行为、习惯、决策和生活方式产生的具体影响。
+你是一个高级个人语义分析智能体。你的任务是基于用户的最新MemUnit事件，联想预测该事件可能对该用户个人未来行为、习惯、决策和生活方式产生的具体影响。
 
 ## 任务目标：
 1. **个人层面联想**：从用户个人角度分析事件对其未来行为、思维模式、生活习惯或决策偏好的潜在影响。
@@ -302,14 +302,14 @@ SEMANTIC_GENERATION_PROMPT = """
 
 
 def get_group_semantic_generation_prompt(
-    memcell_summary: str, memcell_episode: str, user_ids: list = None
+    memunit_summary: str, memunit_episode: str, user_ids: list = None
 ) -> str:
     """
     生成群组语义记忆联想预测的提示词
 
     Args:
-        memcell_summary: MemCell的摘要内容
-        memcell_episode: MemCell的详细内容
+        memunit_summary: MemUnit的摘要内容
+        memunit_episode: MemUnit的详细内容
         user_ids: 用户ID列表，用于生成具体的用户ID
 
     Returns:
@@ -324,11 +324,11 @@ def get_group_semantic_generation_prompt(
 
 ## 输入内容：
 
-**MemCell摘要：**
-{memcell_summary}
+**MemUnit摘要：**
+{memunit_summary}
 
-**MemCell详细内容：**
-{memcell_episode}{user_ids_info}
+**MemUnit详细内容：**
+{memunit_episode}{user_ids_info}
 ## 请基于以上内容，生成10条对用户未来生活、决策可能产生影响的联想：
 
 """

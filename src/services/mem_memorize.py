@@ -4,10 +4,10 @@ import json
 import traceback
 from memory.extraction_orchestrator import MemorizeRequest, MemorizeOfflineRequest
 from memory.extraction_orchestrator import ExtractionOrchestrator
-from memory.types import MemoryType, MemCell, Memory, RawDataType, SemanticMemoryItem
+from memory.types import MemoryType, MemUnit, Memory, RawDataType, SemanticMemoryItem
 from memory.memory_extractor.event_log_extractor import EventLog
-from memory.memcell_extractor.base_memcell_extractor import RawData
-from infrastructure.adapters.out.persistence.document.memory.memcell import DataTypeEnum
+from memory.memunit_extractor.base_memunit_extractor import RawData
+from infrastructure.adapters.out.persistence.document.memory.memunit import DataTypeEnum
 from memory.memory_extractor.profile_memory_extractor import (
     ProfileMemory,
     ProfileMemoryExtractor,
@@ -37,8 +37,8 @@ from infrastructure.adapters.out.persistence.repository.conversation_status_raw_
 from infrastructure.adapters.out.persistence.repository.core_memory_raw_repository import (
     CoreMemoryRawRepository,
 )
-from infrastructure.adapters.out.persistence.repository.memcell_raw_repository import (
-    MemCellRawRepository,
+from infrastructure.adapters.out.persistence.repository.memunit_raw_repository import (
+    MemUnitRawRepository,
 )
 from infrastructure.adapters.out.persistence.repository.group_user_profile_memory_raw_repository import (
     GroupUserProfileMemoryRawRepository,
@@ -55,7 +55,7 @@ import os
 import asyncio
 from collections import defaultdict
 from utils.datetime_utils import get_now_with_timezone, to_iso_format, from_iso_format
-from memory.memcell_extractor.base_memcell_extractor import StatusResult
+from memory.memunit_extractor.base_memunit_extractor import StatusResult
 import traceback
 
 from core.lock.redis_distributed_lock import distributed_lock
@@ -90,22 +90,22 @@ from infrastructure.adapters.out.search.repository.semantic_memory_milvus_reposi
 from infrastructure.adapters.out.search.repository.event_log_milvus_repository import (
     EventLogMilvusRepository,
 )
-from services.memcell_sync import MemCellSyncService
+from services.memunit_sync import MemUnitSyncService
 
 logger = get_logger(__name__)
 
 
-async def _trigger_clustering(group_id: str, memcell: MemCell, scene: Optional[str] = None) -> None:
-    """异步触发 MemCell 聚类（后台任务，不阻塞主流程）
+async def _trigger_clustering(group_id: str, memunit: MemUnit, scene: Optional[str] = None) -> None:
+    """异步触发 MemUnit 聚类（后台任务，不阻塞主流程）
     
     Args:
         group_id: 群组ID
-        memcell: 刚保存的 MemCell
+        memunit: 刚保存的 MemUnit
         scene: 对话场景（用于决定 Profile 提取策略）
             - None/"work"/"company" 等：使用 group_chat 场景
             - "assistant"/"companion" 等：使用 assistant 场景
     """
-    logger.info(f"[聚类] 开始触发聚类: group_id={group_id}, event_id={memcell.event_id}, scene={scene}")
+    logger.info(f"[聚类] 开始触发聚类: group_id={group_id}, event_id={memunit.event_id}, scene={scene}")
     
     try:
         from memory.cluster_manager import ClusterManager, ClusterManagerConfig, MongoClusterStorage
@@ -159,39 +159,39 @@ async def _trigger_clustering(group_id: str, memcell: MemCell, scene: Optional[s
             config=profile_config,
             storage=profile_storage,  # 使用 MongoDB 存储
             group_id=group_id,
-            group_name=None  # 可以从 memcell 中获取
+            group_name=None  # 可以从 memunit 中获取
         )
         
         # 连接 ProfileManager 到 ClusterManager
         profile_manager.attach_to_cluster_manager(cluster_manager)
         logger.info(f"[聚类] ProfileManager 已连接到 ClusterManager (场景: {profile_scenario}, 使用 MongoDB 存储)")
-        print(f"[聚类] ProfileManager 已连接，阈值: {profile_manager._min_memcells_threshold}")
+        print(f"[聚类] ProfileManager 已连接，阈值: {profile_manager._min_memunits_threshold}")
         
-        # 将 MemCell 转换为聚类所需的字典格式
-        memcell_dict = {
-            "event_id": str(memcell.event_id),
-            "episode": memcell.episode,
-            "timestamp": memcell.timestamp.timestamp() if memcell.timestamp else None,
-            "participants": memcell.participants or [],
+        # 将 MemUnit 转换为聚类所需的字典格式
+        memunit_dict = {
+            "event_id": str(memunit.event_id),
+            "episode": memunit.episode,
+            "timestamp": memunit.timestamp.timestamp() if memunit.timestamp else None,
+            "participants": memunit.participants or [],
             "group_id": group_id,
         }
         
-        logger.info(f"[聚类] 开始执行聚类: {memcell_dict['event_id']}")
-        print(f"[聚类] 开始执行聚类: event_id={memcell_dict['event_id']}")
+        logger.info(f"[聚类] 开始执行聚类: {memunit_dict['event_id']}")
+        print(f"[聚类] 开始执行聚类: event_id={memunit_dict['event_id']}")
         
         # 执行聚类（会自动触发 ProfileManager 的回调）
-        cluster_id = await cluster_manager.cluster_memcell(
+        cluster_id = await cluster_manager.cluster_memunit(
             group_id=group_id,
-            memcell=memcell_dict
+            memunit=memunit_dict
         )
         
         print(f"[聚类] 聚类完成: cluster_id={cluster_id}")
         
         if cluster_id:
-            logger.info(f"[聚类] ✅ MemCell {memcell.event_id} -> Cluster {cluster_id} (group: {group_id})")
-            print(f"[聚类] ✅ MemCell {memcell.event_id} -> Cluster {cluster_id}")
+            logger.info(f"[聚类] ✅ MemUnit {memunit.event_id} -> Cluster {cluster_id} (group: {group_id})")
+            print(f"[聚类] ✅ MemUnit {memunit.event_id} -> Cluster {cluster_id}")
         else:
-            logger.warning(f"[聚类] ⚠️ MemCell {memcell.event_id} 聚类返回 None (group: {group_id})")
+            logger.warning(f"[聚类] ⚠️ MemUnit {memunit.event_id} 聚类返回 None (group: {group_id})")
             print(f"[聚类] ⚠️ 聚类返回 None")
     
     except Exception as e:
@@ -238,12 +238,12 @@ from services.mem_db_operations import (
     _convert_episode_memory_to_doc,
     _convert_semantic_memory_to_doc,
     _convert_event_log_to_docs,
-    _save_memcell_to_database,
+    _save_memunit_to_database,
     _save_profile_memory_to_core,
     ConversationStatus,
     _update_status_for_new_conversation,
     _update_status_for_continuing_conversation,
-    _update_status_after_memcell_extraction,
+    _update_status_after_memunit_extraction,
     _convert_original_data_for_profile_extractor,
     _save_group_profile_memory,
     _get_user_organization,
@@ -256,7 +256,7 @@ from services.mem_db_operations import (
 )
 
 
-def if_memorize(memcells: List[MemCell]) -> bool:
+def if_memorize(memunits: List[MemUnit]) -> bool:
     return True
 
 
@@ -366,7 +366,7 @@ async def preprocess_conv_request(
         return request
 
 
-async def update_status_when_no_memcell(
+async def update_status_when_no_memunit(
     request: MemorizeRequest,
     status_result: StatusResult,
     current_time: datetime,
@@ -407,27 +407,27 @@ async def update_status_when_no_memcell(
         pass
 
 
-async def update_status_after_memcell(
+async def update_status_after_memunit(
     request: MemorizeRequest,
-    memcells: List[MemCell],
+    memunits: List[MemUnit],
     current_time: datetime,
     data_type: RawDataType,
 ):
     if data_type == RawDataType.CONVERSATION:
-        # 更新状态表中的last_memcell_time至memcells最后一个时间戳
+        # 更新状态表中的last_memunit_time至memunits最后一个时间戳
         try:
             status_repo = get_bean_by_type(ConversationStatusRawRepository)
 
-            # 获取MemCell的时间戳
-            memcell_time = None
-            if memcells and hasattr(memcells[-1], 'timestamp'):
-                memcell_time = memcells[-1].timestamp
+            # 获取MemUnit的时间戳
+            memunit_time = None
+            if memunits and hasattr(memunits[-1], 'timestamp'):
+                memunit_time = memunits[-1].timestamp
             else:
-                memcell_time = current_time
+                memunit_time = current_time
 
-            # 使用封装函数更新MemCell提取后的状态
-            await _update_status_after_memcell_extraction(
-                status_repo, request, memcell_time, current_time
+            # 使用封装函数更新MemUnit提取后的状态
+            await _update_status_after_memunit_extraction(
+                status_repo, request, memunit_time, current_time
             )
 
             logger.info(f"[mem_memorize] 记忆提取完成，状态表已更新")
@@ -504,7 +504,7 @@ async def save_memories(
             )
         else:
             # 所有通过 save_memories 保存的 episode 都是从 EpisodeMemoryExtractor 提取的个人视角 episode
-            # 群组 episode 是存储在 MemCell.episode 中，由 memcell_sync.py 同步到 Milvus
+            # 群组 episode 是存储在 MemUnit.episode 中，由 memunit_sync.py 同步到 Milvus
             milvus_entity["memory_sub_type"] = "personal_episode"
             milvus_entity["start_time"] = 0
             milvus_entity["end_time"] = 0
@@ -707,7 +707,7 @@ async def memorize(request: MemorizeRequest) -> List[Memory]:
             return None
 
     if request.raw_data_type == RawDataType.CONVERSATION:
-        # async with distributed_lock(f"memcell_extract_{request.group_id}") as acquired:
+        # async with distributed_lock(f"memunit_extract_{request.group_id}") as acquired:
         #     # 120s等待，获取不到
         #     if not acquired:
         #         logger.warning(f"[mem_memorize] 获取分布式锁失败: {request.group_id}")
@@ -726,10 +726,10 @@ async def memorize(request: MemorizeRequest) -> List[Memory]:
         logger.info(f"=" * 80)
         
         logger.debug(
-            f"[memorize memorize] 提取MemCell开始: group_id={request.group_id}, group_name={request.group_name}, "
+            f"[memorize memorize] 提取MemUnit开始: group_id={request.group_id}, group_name={request.group_name}, "
             f"semantic_extraction={request.enable_semantic_extraction}"
         )
-        memcell_result = await memory_manager.extract_memcell(
+        memunit_result = await memory_manager.extract_memunit(
             request.history_raw_data_list,
             request.new_raw_data_list,
             request.raw_data_type,
@@ -739,15 +739,15 @@ async def memorize(request: MemorizeRequest) -> List[Memory]:
             enable_semantic_extraction=request.enable_semantic_extraction,
             enable_event_log_extraction=request.enable_event_log_extraction,
         )
-        logger.debug(f"[memorize memorize] 提取MemCell耗时: {time.time() - now}秒")
+        logger.debug(f"[memorize memorize] 提取MemUnit耗时: {time.time() - now}秒")
     else:
         now = time.time()
         logger.debug(
-            f"[memorize memorize] 提取MemCell开始: group_id={request.group_id}, group_name={request.group_name}, "
+            f"[memorize memorize] 提取MemUnit开始: group_id={request.group_id}, group_name={request.group_name}, "
             f"semantic_extraction={request.enable_semantic_extraction}, "
             f"event_log_extraction={request.enable_event_log_extraction}"
         )
-        memcell_result = await memory_manager.extract_memcell(
+        memunit_result = await memory_manager.extract_memunit(
             request.history_raw_data_list,
             request.new_raw_data_list,
             request.raw_data_type,
@@ -757,35 +757,35 @@ async def memorize(request: MemorizeRequest) -> List[Memory]:
             enable_semantic_extraction=request.enable_semantic_extraction,
             enable_event_log_extraction=request.enable_event_log_extraction,
         )
-        logger.debug(f"[memorize memorize] 提取MemCell耗时: {time.time() - now}秒")
+        logger.debug(f"[memorize memorize] 提取MemUnit耗时: {time.time() - now}秒")
 
-    if memcell_result == None:
-        logger.warning(f"[mem_memorize] 跳过提取MemCell")
+    if memunit_result == None:
+        logger.warning(f"[mem_memorize] 跳过提取MemUnit")
         return None
 
-    logger.debug(f"[mem_memorize] memcell_result: {memcell_result}")
-    memcell, status_result = memcell_result
+    logger.debug(f"[mem_memorize] memunit_result: {memunit_result}")
+    memunit, status_result = memunit_result
 
     # 添加边界检测结果日志
     logger.info(f"=" * 80)
-    logger.info(f"[边界检测结果] memcell is None: {memcell is None}")
+    logger.info(f"[边界检测结果] memunit is None: {memunit is None}")
     logger.info(f"[边界检测结果] should_wait: {status_result.should_wait if status_result else 'N/A'}")
-    if memcell is None:
+    if memunit is None:
         logger.info(f"[边界检测结果] 判断: {'需要等待更多消息' if status_result.should_wait else '非边界，继续累积'}")
     else:
-        logger.info(f"[边界检测结果] 判断: 是边界！成功提取MemCell")
-        logger.info(f"[边界检测结果] MemCell event_id: {memcell.event_id}")
-        logger.info(f"[边界检测结果] Episode: {memcell.episode[:100] if memcell.episode else 'None'}...")
+        logger.info(f"[边界检测结果] 判断: 是边界！成功提取MemUnit")
+        logger.info(f"[边界检测结果] MemUnit event_id: {memunit.event_id}")
+        logger.info(f"[边界检测结果] Episode: {memunit.episode[:100] if memunit.episode else 'None'}...")
     logger.info(f"=" * 80)
 
-    if memcell == None:
-        await update_status_when_no_memcell(
+    if memunit == None:
+        await update_status_when_no_memunit(
             request, status_result, current_time, request.raw_data_type
         )
-        logger.warning(f"[mem_memorize] 跳过提取MemCell")
+        logger.warning(f"[mem_memorize] 跳过提取MemUnit")
         return None
     else:
-        logger.info(f"[mem_memorize] 成功提取MemCell")
+        logger.info(f"[mem_memorize] 成功提取MemUnit")
         
         # 判断为边界，清空 Redis 历史消息（重新开始累积）
         redis_key = f"chat_history:{request.group_id}"
@@ -797,49 +797,49 @@ async def memorize(request: MemorizeRequest) -> List[Memory]:
             logger.error(f"[mem_memorize] 清空 Redis 失败: {e}")
             traceback.print_exc()
 
-    # TODO: 读状态表，读取累积的MemCell数据表，判断是否要做memorize计算
+    # TODO: 读状态表，读取累积的MemUnit数据表，判断是否要做memorize计算
 
-    # MemCell存表
-    memcell = await _save_memcell_to_database(memcell, current_time)
+    # MemUnit存表
+    memunit = await _save_memunit_to_database(memunit, current_time)
 
-    # 同步 MemCell 到 Milvus 和 ES（包括 episode/semantic_memories/event_log）
-    memcell_repo = get_bean_by_type(MemCellRawRepository)
-    doc_memcell = await memcell_repo.get_by_event_id(str(memcell.event_id))
+    # 同步 MemUnit 到 Milvus 和 ES（包括 episode/semantic_memories/event_log）
+    memunit_repo = get_bean_by_type(MemUnitRawRepository)
+    doc_memunit = await memunit_repo.get_by_event_id(str(memunit.event_id))
     
-    if doc_memcell:
-        sync_service = get_bean_by_type(MemCellSyncService)
-        sync_stats = await sync_service.sync_memcell(
-            doc_memcell, 
+    if doc_memunit:
+        sync_service = get_bean_by_type(MemUnitSyncService)
+        sync_stats = await sync_service.sync_memunit(
+            doc_memunit, 
             sync_to_es=True, 
             sync_to_milvus=True
         )
         logger.info(
-            f"[mem_memorize] MemCell 同步到 Milvus/ES 完成: {memcell.event_id}, "
+            f"[mem_memorize] MemUnit 同步到 Milvus/ES 完成: {memunit.event_id}, "
             f"stats={sync_stats}"
         )
     else:
-        logger.warning(f"[mem_memorize] 无法加载 MemCell 进行同步: {memcell.event_id}")
+        logger.warning(f"[mem_memorize] 无法加载 MemUnit 进行同步: {memunit.event_id}")
 
     # print_memory = random.random() < 0.1
 
-    logger.info(f"[mem_memorize] 成功保存MemCell: {memcell.event_id}")
+    logger.info(f"[mem_memorize] 成功保存MemUnit: {memunit.event_id}")
 
     # if print_memory:
-    #     logger.info(f"[mem_memorize] 打印MemCell: {memcell}")
+    #     logger.info(f"[mem_memorize] 打印MemUnit: {memunit}")
 
-    memcells = [memcell]
+    memunits = [memunit]
     
     # 同步触发聚类（等待完成，确保 Profile 提取成功）
     if request.group_id:
-        await _trigger_clustering(request.group_id, memcell, request.scene)
+        await _trigger_clustering(request.group_id, memunit, request.scene)
 
     # 读取记忆的流程
     participants = []
-    for memcell in memcells:
-        if memcell.participants:
-            participants.extend(memcell.participants)
+    for memunit in memunits:
+        if memunit.participants:
+            participants.extend(memunit.participants)
 
-    if if_memorize(memcells):
+    if if_memorize(memunits):
         # 加锁
         # 使用真实Repository读取用户数据
         old_memory_list = await load_core_memories(request, participants, current_time)
@@ -852,7 +852,7 @@ async def memorize(request: MemorizeRequest) -> List[Memory]:
         for memory_type in memory_types:
             if memory_type == MemoryType.EPISODE_SUMMARY:
                 extracted_memories = await memory_manager.extract_memory(
-                    memcell_list=memcells,
+                    memunit_list=memunits,
                     memory_type=memory_type,
                     user_ids=participants,
                     group_id=request.group_id,
@@ -872,7 +872,7 @@ async def memorize(request: MemorizeRequest) -> List[Memory]:
             if memory_type in [MemoryType.SEMANTIC_SUMMARY, MemoryType.EVENT_LOG]:
                 for episode_mem in episode_memories:
                     extracted_memories = await memory_manager.extract_memory(
-                        memcell_list=[],
+                        memunit_list=[],
                         memory_type=memory_type,
                         user_ids=[episode_mem.user_id],
                         episode_memory=episode_mem,
@@ -897,8 +897,8 @@ async def memorize(request: MemorizeRequest) -> List[Memory]:
         if semantic_and_eventlog:
             await save_memories(semantic_and_eventlog, current_time)
 
-        await update_status_after_memcell(
-            request, memcells, current_time, request.raw_data_type
+        await update_status_after_memunit(
+            request, memunits, current_time, request.raw_data_type
         )
 
         # TODO: 实际项目中应该加锁避免并发问题

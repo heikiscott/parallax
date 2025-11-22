@@ -152,7 +152,7 @@ class SemanticMemoryEsRepository(BaseRepository[EpisodicMemoryDoc]):
                 keywords=[],
                 linked_entities=[],
                 subject='',
-                memcell_event_id_list=[],
+                memunit_event_id_list=[],
                 extend=semantic_extend,
                 created_at=created_at,
                 updated_at=updated_at,

@@ -20,141 +20,141 @@ class GroupProfileDataProcessor:
         """
         self.conversation_source = conversation_source
 
-    def validate_and_filter_memcell_ids(
+    def validate_and_filter_memunit_ids(
         self,
-        memcell_ids: List[str],
+        memunit_ids: List[str],
         valid_ids: Set[str],
         user_id: Optional[str] = None,
-        memcell_list: Optional[List] = None,
+        memunit_list: Optional[List] = None,
     ) -> List[str]:
         """
-        验证并过滤 memcell_ids（用于验证 LLM 新输出的 evidences）
+        验证并过滤 memunit_ids（用于验证 LLM 新输出的 evidences）
 
         验证规则：
-        1. memcell_id 必须在 valid_ids 中（存在性检查）
-        2. 如果指定了 user_id，还要检查 user 是否在 memcell.participants 中
+        1. memunit_id 必须在 valid_ids 中（存在性检查）
+        2. 如果指定了 user_id，还要检查 user 是否在 memunit.participants 中
 
         Args:
-            memcell_ids: 需要验证的 memcell_ids（LLM 新输出的）
-            valid_ids: 有效的 memcell_ids 集合（从当前 memcell_list 构建）
+            memunit_ids: 需要验证的 memunit_ids（LLM 新输出的）
+            valid_ids: 有效的 memunit_ids 集合（从当前 memunit_list 构建）
             user_id: 可选，如果提供则验证用户是否在 participants 中（用于 roles）
-            memcell_list: 可选，user_id 提供时必须传入
+            memunit_list: 可选，user_id 提供时必须传入
 
         Returns:
-            过滤后的有效 memcell_ids
+            过滤后的有效 memunit_ids
         """
-        if not memcell_ids:
+        if not memunit_ids:
             return []
 
         # 第一步：验证存在性
-        valid_memcell_ids = [mid for mid in memcell_ids if mid in valid_ids]
-        invalid_memcell_ids = [mid for mid in memcell_ids if mid not in valid_ids]
+        valid_memunit_ids = [mid for mid in memunit_ids if mid in valid_ids]
+        invalid_memunit_ids = [mid for mid in memunit_ids if mid not in valid_ids]
 
-        if invalid_memcell_ids:
+        if invalid_memunit_ids:
             # 显示前5个无效ID作为示例
-            sample_size = min(5, len(invalid_memcell_ids))
-            sample_ids = invalid_memcell_ids[:sample_size]
-            if len(invalid_memcell_ids) > sample_size:
+            sample_size = min(5, len(invalid_memunit_ids))
+            sample_ids = invalid_memunit_ids[:sample_size]
+            if len(invalid_memunit_ids) > sample_size:
                 logger.warning(
-                    f"[validate_and_filter_memcell_ids] Filtered {len(invalid_memcell_ids)} non-existent memcell_ids. "
-                    f"Examples: {sample_ids} (and {len(invalid_memcell_ids) - sample_size} more...)"
+                    f"[validate_and_filter_memunit_ids] Filtered {len(invalid_memunit_ids)} non-existent memunit_ids. "
+                    f"Examples: {sample_ids} (and {len(invalid_memunit_ids) - sample_size} more...)"
                 )
             else:
                 logger.warning(
-                    f"[validate_and_filter_memcell_ids] Filtered {len(invalid_memcell_ids)} non-existent memcell_ids: {invalid_memcell_ids}"
+                    f"[validate_and_filter_memunit_ids] Filtered {len(invalid_memunit_ids)} non-existent memunit_ids: {invalid_memunit_ids}"
                 )
 
         # 第二步：如果需要，验证 participants
         if user_id is not None:
-            if memcell_list is None:
+            if memunit_list is None:
                 logger.error(
-                    "[validate_and_filter_memcell_ids] user_id provided but memcell_list is None"
+                    "[validate_and_filter_memunit_ids] user_id provided but memunit_list is None"
                 )
-                return valid_memcell_ids
+                return valid_memunit_ids
 
-            # 构建 memcell 参与者映射
-            memcell_participants = {}
-            for memcell in memcell_list:
-                if hasattr(memcell, 'event_id'):
-                    memcell_id = str(memcell.event_id)
+            # 构建 memunit 参与者映射
+            memunit_participants = {}
+            for memunit in memunit_list:
+                if hasattr(memunit, 'event_id'):
+                    memunit_id = str(memunit.event_id)
                     participants = (
-                        set(memcell.participants)
-                        if hasattr(memcell, 'participants') and memcell.participants
+                        set(memunit.participants)
+                        if hasattr(memunit, 'participants') and memunit.participants
                         else set()
                     )
-                    memcell_participants[memcell_id] = participants
+                    memunit_participants[memunit_id] = participants
 
-            # 过滤：只保留用户参与的 memcell
+            # 过滤：只保留用户参与的 memunit
             participant_valid = []
             participant_invalid = []
 
-            for memcell_id in valid_memcell_ids:
-                # 理论上 memcell_id 一定在 memcell_participants 中，使用 get 兜底
-                participants = memcell_participants.get(memcell_id, set())
+            for memunit_id in valid_memunit_ids:
+                # 理论上 memunit_id 一定在 memunit_participants 中，使用 get 兜底
+                participants = memunit_participants.get(memunit_id, set())
                 if user_id in participants:
-                    participant_valid.append(memcell_id)
+                    participant_valid.append(memunit_id)
                 else:
-                    participant_invalid.append(memcell_id)
+                    participant_invalid.append(memunit_id)
 
             if participant_invalid:
                 sample_size = min(3, len(participant_invalid))
                 sample_ids = participant_invalid[:sample_size]
                 logger.warning(
-                    f"[validate_and_filter_memcell_ids] User {user_id} not in participants of {len(participant_invalid)} memcells. "
+                    f"[validate_and_filter_memunit_ids] User {user_id} not in participants of {len(participant_invalid)} memunits. "
                     f"Examples: {sample_ids}{'...' if len(participant_invalid) > sample_size else ''}"
                 )
 
             return participant_valid
 
-        return valid_memcell_ids
+        return valid_memunit_ids
 
-    def merge_memcell_ids(
+    def merge_memunit_ids(
         self,
         historical: Optional[List[str]],
         new: List[str],
         valid_ids: Set[str],
-        memcell_list: List,
+        memunit_list: List,
         user_id: Optional[str] = None,
         max_count: int = 50,
     ) -> List[str]:
         """
-        合并历史和新的 memcell_ids。保持历史顺序不变，只对新的 memcell_ids 按时间戳排序。
+        合并历史和新的 memunit_ids。保持历史顺序不变，只对新的 memunit_ids 按时间戳排序。
 
         Args:
-            historical: 历史 memcell_ids（不做验证，保持原有顺序）
-            new: 新的 memcell_ids（需要验证，会按时间戳排序）
-            valid_ids: 当前有效的 memcell_ids 集合（只用于验证新的 memcell_ids）
-            memcell_list: 当前的 memcell 列表（用于获取时间戳进行排序）
+            historical: 历史 memunit_ids（不做验证，保持原有顺序）
+            new: 新的 memunit_ids（需要验证，会按时间戳排序）
+            valid_ids: 当前有效的 memunit_ids 集合（只用于验证新的 memunit_ids）
+            memunit_list: 当前的 memunit 列表（用于获取时间戳进行排序）
             user_id: 可选，如果提供则验证用户是否在 participants 中（用于 roles）
             max_count: 最大保留数量
 
         Returns:
-            合并、去重后的 memcell_ids（历史顺序不变，新的按时间排序追加，最多 max_count 个）
+            合并、去重后的 memunit_ids（历史顺序不变，新的按时间排序追加，最多 max_count 个）
         """
         from utils.datetime_utils import get_now_with_timezone
         from ..group_profile_memory_extractor import convert_to_datetime
 
         historical = historical or []
 
-        # 历史的 memcell_ids 直接保留，不做验证（因为对应的 memcell 不在当前输入中）
-        # 只验证新的 memcell_ids（包括存在性和可选的 participants 检查）
-        valid_new = self.validate_and_filter_memcell_ids(
-            new, valid_ids, user_id=user_id, memcell_list=memcell_list
+        # 历史的 memunit_ids 直接保留，不做验证（因为对应的 memunit 不在当前输入中）
+        # 只验证新的 memunit_ids（包括存在性和可选的 participants 检查）
+        valid_new = self.validate_and_filter_memunit_ids(
+            new, valid_ids, user_id=user_id, memunit_list=memunit_list
         )
 
-        # 构建 memcell_id 到 timestamp 的映射（用于对新的 memcell_ids 排序）
-        memcell_id_to_timestamp = {}
-        for memcell in memcell_list:
-            if hasattr(memcell, 'event_id') and hasattr(memcell, 'timestamp'):
+        # 构建 memunit_id 到 timestamp 的映射（用于对新的 memunit_ids 排序）
+        memunit_id_to_timestamp = {}
+        for memunit in memunit_list:
+            if hasattr(memunit, 'event_id') and hasattr(memunit, 'timestamp'):
                 # 转换为字符串以匹配 LLM 输出的格式
-                memcell_id = str(memcell.event_id)
-                timestamp = convert_to_datetime(memcell.timestamp)
-                memcell_id_to_timestamp[memcell_id] = timestamp
+                memunit_id = str(memunit.event_id)
+                timestamp = convert_to_datetime(memunit.timestamp)
+                memunit_id_to_timestamp[memunit_id] = timestamp
 
-        # 对新的 memcell_ids 按时间戳排序（旧的在前，新的在后）
+        # 对新的 memunit_ids 按时间戳排序（旧的在前，新的在后）
         valid_new_sorted = sorted(
             valid_new,
-            key=lambda mid: memcell_id_to_timestamp.get(
+            key=lambda mid: memunit_id_to_timestamp.get(
                 mid, get_now_with_timezone().replace(year=1900)
             ),
         )
@@ -171,7 +171,7 @@ class GroupProfileDataProcessor:
         # 限制数量（保留最新的，即列表后面的）
         if len(merged) > max_count:
             logger.debug(
-                f"[merge_memcell_ids] Limiting from {len(merged)} to {max_count} memcell_ids "
+                f"[merge_memunit_ids] Limiting from {len(merged)} to {max_count} memunit_ids "
                 f"(historical: {len(historical)}, new: {len(valid_new)})"
             )
             merged = merged[-max_count:]
@@ -180,24 +180,24 @@ class GroupProfileDataProcessor:
 
     def get_comprehensive_speaker_mapping(
         self,
-        memcell_list: List,
+        memunit_list: List,
         existing_roles: Optional[Dict[str, List[Dict[str, str]]]] = None,
     ) -> Dict[str, Dict[str, str]]:
         """
-        获取综合的speaker映射，结合当前memcell和历史roles信息
+        获取综合的speaker映射，结合当前memunit和历史roles信息
 
         Args:
-            memcell_list: 当前的memcell列表
+            memunit_list: 当前的memunit列表
             existing_roles: 历史roles信息，格式为 role -> [{"user_id": "xxx", "user_name": "xxx"}]
 
         Returns:
             speaker_id -> {"user_id": speaker_id, "user_name": speaker_name} 的映射
         """
-        # 1. 从当前memcell构建映射
+        # 1. 从当前memunit构建映射
         current_mapping = {}
-        for memcell in memcell_list:
-            if hasattr(memcell, 'original_data') and memcell.original_data:
-                for data in memcell.original_data:
+        for memunit in memunit_list:
+            if hasattr(memunit, 'original_data') and memunit.original_data:
+                for data in memunit.original_data:
                     speaker_id = data.get('speaker_id', '')
                     speaker_name = data.get('speaker_name', '')
                     if speaker_id and speaker_name:
@@ -260,45 +260,45 @@ class GroupProfileDataProcessor:
             lines.append(f"{speaker}: {content}")
         return "\n".join(lines)
 
-    def get_episode_text(self, memcell) -> str:
-        """Extract episode text from memcell."""
-        if hasattr(memcell, 'episode') and memcell.episode:
-            return memcell.episode
+    def get_episode_text(self, memunit) -> str:
+        """Extract episode text from memunit."""
+        if hasattr(memunit, 'episode') and memunit.episode:
+            return memunit.episode
         return ""
 
-    def combine_conversation_text_with_ids(self, memcell_list: List) -> str:
-        """Combine conversation text with memcell IDs for evidence extraction."""
+    def combine_conversation_text_with_ids(self, memunit_list: List) -> str:
+        """Combine conversation text with memunit IDs for evidence extraction."""
         all_conversation_text = []
 
-        for memcell in memcell_list:
-            # 确保 memcell_id 是字符串（处理 MongoDB ObjectId）
-            raw_id = getattr(memcell, 'event_id', f'unknown_{id(memcell)}')
-            memcell_id = str(raw_id)
+        for memunit in memunit_list:
+            # 确保 memunit_id 是字符串（处理 MongoDB ObjectId）
+            raw_id = getattr(memunit, 'event_id', f'unknown_{id(memunit)}')
+            memunit_id = str(raw_id)
 
             if self.conversation_source == "original":
                 # 方式1：只用original_data（当前方式）
-                conversation_text = self.get_conversation_text(memcell.original_data)
+                conversation_text = self.get_conversation_text(memunit.original_data)
                 # 使用更明显的分隔符，避免与时间戳的方括号混淆
                 annotated_text = (
-                    f"=== MEMCELL_ID: {memcell_id} ===\n{conversation_text}"
+                    f"=== MEMUNIT_ID: {memunit_id} ===\n{conversation_text}"
                 )
                 all_conversation_text.append(annotated_text)
 
             elif self.conversation_source == "episode":
                 # 方式2：只用episode字段
-                episode_text = self.get_episode_text(memcell)
+                episode_text = self.get_episode_text(memunit)
                 if episode_text:
-                    annotated_text = f"=== MEMCELL_ID: {memcell_id} ===\n{episode_text}"
+                    annotated_text = f"=== MEMUNIT_ID: {memunit_id} ===\n{episode_text}"
                     all_conversation_text.append(annotated_text)
                 else:
                     # 如果没有episode，回退到original_data
                     logger.warning(
-                        f"No episode found for memcell {memcell_id}, using original_data as fallback"
+                        f"No episode found for memunit {memunit_id}, using original_data as fallback"
                     )
                     conversation_text = self.get_conversation_text(
-                        memcell.original_data
+                        memunit.original_data
                     )
-                    annotated_text = f"=== MEMCELL_ID: {memcell_id} ===\n[FALLBACK] {conversation_text}"
+                    annotated_text = f"=== MEMUNIT_ID: {memunit_id} ===\n[FALLBACK] {conversation_text}"
                     all_conversation_text.append(annotated_text)
 
             else:

@@ -111,7 +111,7 @@ class ChatUI:
             index = group["index"]
             group_id = group["group_id"]
             name = group.get("name", group_id)
-            count = group["memcell_count"]
+            count = group["memunit_count"]
             count_text = f"💾 {count} " + ("memories" if texts.language == "en" else "条记忆")
             rows.append([f"[{index}]", group_id, f'📝 "{name}"', count_text])
         

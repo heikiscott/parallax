@@ -306,7 +306,7 @@ uv run python -m eval.cli --dataset locomo --system parallax_custom
 ## 🔌 支持的系统
 
 ### 本地系统
-- **parallax** - Parallax，具有 MemCell 提取和双模式检索
+- **parallax** - Parallax，具有 MemUnit 提取和双模式检索
 
 ### 在线 API 系统
 - **mem0** - Mem0 API

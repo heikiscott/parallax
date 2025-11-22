@@ -1,4 +1,4 @@
-"""ClusterManager - Core component for automatic memcell clustering."""
+"""ClusterManager - Core component for automatic memunit clustering."""
 
 import asyncio
 import numpy as np
@@ -156,7 +156,7 @@ class ClusterState:
 class ClusterManager:
     """Automatic clustering manager with event notifications.
     
-    ClusterManager handles incremental clustering of memcells based on semantic
+    ClusterManager handles incremental clustering of memunits based on semantic
     similarity (embeddings) and temporal proximity. It provides event hooks for
     downstream processing (e.g., ProfileManager).
     
@@ -177,13 +177,13 @@ class ClusterManager:
         cluster_mgr = ClusterManager(config)
         
         # Register callback
-        def on_cluster(group_id, memcell, cluster_id):
-            print(f"Memcell {memcell['event_id']} -> {cluster_id}")
+        def on_cluster(group_id, memunit, cluster_id):
+            print(f"MemUnit {memunit['event_id']} -> {cluster_id}")
         
         cluster_mgr.on_cluster_assigned(on_cluster)
         
         # Attach to extractor
-        cluster_mgr.attach_to_extractor(memcell_extractor)
+        cluster_mgr.attach_to_extractor(memunit_extractor)
         ```
     """
     
@@ -222,8 +222,8 @@ class ClusterManager:
         
         # Statistics
         self._stats = {
-            "total_memcells": 0,
-            "clustered_memcells": 0,
+            "total_memunits": 0,
+            "clustered_memunits": 0,
             "new_clusters": 0,
             "failed_embeddings": 0,
         }
@@ -232,28 +232,28 @@ class ClusterManager:
         """Register a callback for cluster assignment events.
         
         Callback signature:
-            callback(group_id: str, memcell: Dict[str, Any], cluster_id: str) -> None
+            callback(group_id: str, memunit: Dict[str, Any], cluster_id: str) -> None
         
         Args:
-            callback: Function to call when a memcell is assigned to a cluster
+            callback: Function to call when a memunit is assigned to a cluster
         """
         self._callbacks.append(callback)
     
-    async def cluster_memcell(
+    async def cluster_memunit(
         self,
         group_id: str,
-        memcell: Dict[str, Any]
+        memunit: Dict[str, Any]
     ) -> Optional[str]:
-        """Cluster a memcell and return its cluster ID.
+        """Cluster a memunit and return its cluster ID.
         
         Args:
             group_id: Group/conversation identifier
-            memcell: Memcell dictionary with event_id, timestamp, episode/summary
+            memunit: MemUnit dictionary with event_id, timestamp, episode/summary
         
         Returns:
             Cluster ID if successful, None otherwise
         """
-        self._stats["total_memcells"] += 1
+        self._stats["total_memunits"] += 1
         
         # Get or load state for this group
         if group_id not in self._states:
@@ -271,13 +271,13 @@ class ClusterManager:
         state = self._states[group_id]
         
         # Extract key fields
-        event_id = str(memcell.get("event_id", ""))
+        event_id = str(memunit.get("event_id", ""))
         if not event_id:
-            logger.warning("Memcell missing event_id, skipping clustering")
+            logger.warning("MemUnit missing event_id, skipping clustering")
             return None
         
-        timestamp = self._parse_timestamp(memcell.get("timestamp"))
-        text = self._extract_text(memcell)
+        timestamp = self._parse_timestamp(memunit.get("timestamp"))
+        text = self._extract_text(memunit)
         
         # Get embedding
         vector = await self._get_embedding(text)
@@ -289,7 +289,7 @@ class ClusterManager:
             state.vectors.append(np.zeros((1,), dtype=np.float32))
             self._stats["new_clusters"] += 1
             self._stats["failed_embeddings"] += 1
-            await self._notify_callbacks(group_id, memcell, cluster_id)
+            await self._notify_callbacks(group_id, memunit, cluster_id)
             return cluster_id
         
         # Find best matching cluster
@@ -310,13 +310,13 @@ class ClusterManager:
         state.timestamps.append(timestamp or 0.0)
         state.vectors.append(vector)
         
-        self._stats["clustered_memcells"] += 1
+        self._stats["clustered_memunits"] += 1
         
         # Save state to storage
         await self._storage.save_cluster_state(group_id, state.to_dict())
         
         # Notify callbacks
-        await self._notify_callbacks(group_id, memcell, cluster_id)
+        await self._notify_callbacks(group_id, memunit, cluster_id)
         
         return cluster_id
     
@@ -392,30 +392,30 @@ class ClusterManager:
         
         return None
     
-    def _extract_text(self, memcell: Dict[str, Any]) -> str:
-        """Extract representative text from memcell.
+    def _extract_text(self, memunit: Dict[str, Any]) -> str:
+        """Extract representative text from memunit.
         
         Priority: episode > summary > original_data
         
         Args:
-            memcell: Memcell dictionary
+            memunit: MemUnit dictionary
         
         Returns:
             Extracted text
         """
         # Try episode first
-        episode = memcell.get("episode")
+        episode = memunit.get("episode")
         if isinstance(episode, str) and episode.strip():
             return episode.strip()
         
         # Try summary
-        summary = memcell.get("summary")
+        summary = memunit.get("summary")
         if isinstance(summary, str) and summary.strip():
             return summary.strip()
         
         # Fallback to compact original_data
         lines = []
-        original_data = memcell.get("original_data")
+        original_data = memunit.get("original_data")
         if isinstance(original_data, list):
             for item in original_data[:6]:  # Limit to first 6 messages
                 if isinstance(item, dict):
@@ -425,7 +425,7 @@ class ClusterManager:
                         if text:
                             lines.append(text)
         
-        return "\n".join(lines) if lines else str(memcell.get("event_id", ""))
+        return "\n".join(lines) if lines else str(memunit.get("event_id", ""))
     
     def _parse_timestamp(self, timestamp: Any) -> Optional[float]:
         """Parse timestamp to float seconds.
@@ -458,23 +458,23 @@ class ClusterManager:
     async def _notify_callbacks(
         self,
         group_id: str,
-        memcell: Dict[str, Any],
+        memunit: Dict[str, Any],
         cluster_id: str
     ) -> None:
         """Notify all registered callbacks of cluster assignment.
         
         Args:
             group_id: Group identifier
-            memcell: Memcell that was clustered
+            memunit: MemUnit that was clustered
             cluster_id: Assigned cluster ID
         """
         for callback in self._callbacks:
             try:
                 # Support both sync and async callbacks
                 if asyncio.iscoroutinefunction(callback):
-                    await callback(group_id, memcell, cluster_id)
+                    await callback(group_id, memunit, cluster_id)
                 else:
-                    callback(group_id, memcell, cluster_id)
+                    callback(group_id, memunit, cluster_id)
             except Exception as e:
                 logger.error(f"Callback error: {e}")
     
@@ -541,13 +541,13 @@ class ClusterManager:
             ),
         }
     
-    def attach_to_extractor(self, memcell_extractor: Any) -> None:
-        """Attach ClusterManager to a MemCellExtractor.
+    def attach_to_extractor(self, memunit_extractor: Any) -> None:
+        """Attach ClusterManager to a MemUnitExtractor.
         
         Creates a _cluster_worker attribute on the extractor for compatibility.
         
         Args:
-            memcell_extractor: ConvMemCellExtractor instance
+            memunit_extractor: ConvMemUnitExtractor instance
         """
         # Create a wrapper that uses ClusterManager
         class ClusterManagerWrapper:
@@ -555,13 +555,13 @@ class ClusterManager:
                 self._cluster_mgr = cluster_mgr
                 self._states = {}  # For compatibility
             
-            def submit(self, group_id: Optional[str], memcell: Dict[str, Any]) -> None:
-                """Submit memcell for clustering."""
+            def submit(self, group_id: Optional[str], memunit: Dict[str, Any]) -> None:
+                """Submit memunit for clustering."""
                 gid = group_id or "__default__"
                 
                 # Run clustering asynchronously
                 asyncio.create_task(
-                    self._cluster_mgr.cluster_memcell(gid, memcell)
+                    self._cluster_mgr.cluster_memunit(gid, memunit)
                 )
             
             def stop(self) -> None:
@@ -580,7 +580,7 @@ class ClusterManager:
                 }
         
         # Attach the cluster worker (create if not exists)
-        memcell_extractor._cluster_worker = ClusterManagerWrapper(self)
+        memunit_extractor._cluster_worker = ClusterManagerWrapper(self)
         
-        logger.info("ClusterManager successfully attached to MemCellExtractor")
+        logger.info("ClusterManager successfully attached to MemUnitExtractor")
 

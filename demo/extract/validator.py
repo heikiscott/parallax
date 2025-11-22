@@ -6,8 +6,8 @@
 from collections import Counter
 
 from core.di import get_bean_by_type
-from infra_layer.adapters.out.persistence.repository.memcell_raw_repository import (
-    MemCellRawRepository,
+from infra_layer.adapters.out.persistence.repository.memunit_raw_repository import (
+    MemUnitRawRepository,
 )
 from infra_layer.adapters.out.search.repository.episodic_memory_milvus_repository import (
     EpisodicMemoryMilvusRepository,
@@ -36,24 +36,24 @@ class ResultValidator:
         print("=" * 80)
         
         # 验证 MongoDB
-        print("\n[MongoDB] 检查 MemCell")
-        memcell_repo = get_bean_by_type(MemCellRawRepository)
-        memcells = await memcell_repo.find_by_group_id(self.group_id, limit=1000)
-        print(f"  - 找到 {len(memcells)} 个 MemCell")
+        print("\n[MongoDB] 检查 MemUnit")
+        memunit_repo = get_bean_by_type(MemUnitRawRepository)
+        memunits = await memunit_repo.find_by_group_id(self.group_id, limit=1000)
+        print(f"  - 找到 {len(memunits)} 个 MemUnit")
         
-        if memcells:
+        if memunits:
             total_semantic = sum(
                 len(m.semantic_memories)
-                for m in memcells
+                for m in memunits
                 if hasattr(m, 'semantic_memories') and m.semantic_memories
             )
             total_eventlog = sum(
                 len(m.event_log.get('atomic_fact', []) if isinstance(m.event_log, dict) else [])
-                for m in memcells
+                for m in memunits
                 if hasattr(m, 'event_log') and m.event_log
             )
             
-            print(f"  - episode: {len(memcells)} 个")
+            print(f"  - episode: {len(memunits)} 个")
             print(f"  - semantic_memories: {total_semantic} 个")
             print(f"  - event_log atomic_facts: {total_eventlog} 个")
         
@@ -94,11 +94,11 @@ class ResultValidator:
         print("\n" + "=" * 80)
         print("验证结果汇总")
         print("=" * 80)
-        print(f"\n✅ MongoDB: {len(memcells)} 个")
+        print(f"\n✅ MongoDB: {len(memunits)} 个")
         print(f"✅ Milvus: {len(milvus_results)} 条")
         print(f"✅ ES: {len(es_results)} 条")
         
-        if len(memcells) > 0:
+        if len(memunits) > 0:
             print("\n🎉 提取和存储成功！")
         else:
             print("\n⚠️ 未找到记忆数据，请检查日志")

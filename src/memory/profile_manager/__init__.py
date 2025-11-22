@@ -7,7 +7,7 @@ Key Features:
 - Automatic profile extraction triggered by cluster updates
 - Incremental profile merging with version history
 - Value discrimination to filter high-quality updates
-- Seamless integration with ConvMemCellExtractor
+- Seamless integration with ConvMemUnitExtractor
 
 Usage:
     from memory.profile_manager import ProfileManager, ProfileManagerConfig
@@ -20,9 +20,9 @@ Usage:
     )
     profile_mgr = ProfileManager(llm_provider, config)
     
-    # Attach to memcell extractor
-    memcell_extractor = ConvMemCellExtractor(llm_provider)
-    profile_mgr.attach_to_extractor(memcell_extractor)
+    # Attach to memunit extractor
+    memunit_extractor = ConvMemUnitExtractor(llm_provider)
+    profile_mgr.attach_to_extractor(memunit_extractor)
     
     # Profiles are now automatically extracted and updated!
     # Access latest profiles:

@@ -1,7 +1,7 @@
 """性能测试脚本 - 测试记忆提取各单元的耗时
 
 测试各个记忆提取单元的耗时，包括：
-- MemCell 提取
+- MemUnit 提取
 - Episode Memory 提取
 - Profile Memory 提取
 - Semantic Memory 提取
@@ -18,8 +18,8 @@ from typing import Dict, List
 from dataclasses import dataclass
 
 from memory_layer.memory_manager import MemoryManager
-from memory_layer.memcell_extractor.base_memcell_extractor import RawData
-from memory_layer.types import RawDataType, MemoryType, MemCell
+from memory_layer.memunit_extractor.base_memunit_extractor import RawData
+from memory_layer.types import RawDataType, MemoryType, MemUnit
 from common_utils.datetime_utils import get_now_with_timezone
 import uuid
 
@@ -187,10 +187,10 @@ class PerformanceTester:
             ))
             raise
     
-    async def test_memcell_extraction(self):
-        """测试 MemCell 提取耗时 - 只提取 MemCell，不提取下游记忆"""
+    async def test_memunit_extraction(self):
+        """测试 MemUnit 提取耗时 - 只提取 MemUnit，不提取下游记忆"""
         print("\n" + "="*80)
-        print("📊 测试 1: MemCell 提取（仅 MemCell，不提取下游记忆）")
+        print("📊 测试 1: MemUnit 提取（仅 MemUnit，不提取下游记忆）")
         print("="*80)
         
         # 将消息分为历史消息和新消息
@@ -201,10 +201,10 @@ class PerformanceTester:
         print(f"  历史消息数: {len(history_messages)}")
         print(f"  新消息数: {len(new_messages)}")
         print(f"  💡 模拟真实场景: 新消息将逐条处理（每次只传入1条）")
-        print(f"  ⚙️  配置: 禁用语义记忆和事件日志提取，只提取基础 MemCell")
+        print(f"  ⚙️  配置: 禁用语义记忆和事件日志提取，只提取基础 MemUnit")
         
         # 逐条处理新消息，模拟真实使用场景
-        memcell = None
+        memunit = None
         cumulative_history = history_messages.copy()
         message_timings = []  # 记录每条消息的耗时
         
@@ -228,8 +228,8 @@ class PerformanceTester:
             
             print(f"     消息内容: {msg_content_preview}...")
             
-            # 只提取 MemCell，禁用下游记忆提取
-            memcell, status_result = await self.memory_manager.extract_memcell(
+            # 只提取 MemUnit，禁用下游记忆提取
+            memunit, status_result = await self.memory_manager.extract_memunit(
                 history_raw_data_list=cumulative_history,
                 new_raw_data_list=single_new_message,  # 只传入一条新消息
                 raw_data_type=RawDataType.CONVERSATION,
@@ -244,37 +244,37 @@ class PerformanceTester:
             message_timings.append({
                 "index": idx,
                 "duration": msg_duration,
-                "memcell_extracted": memcell is not None,
+                "memunit_extracted": memunit is not None,
                 "should_wait": status_result.should_wait if status_result else None,
                 "content_preview": msg_content_preview,
-                "memcell": memcell  # 保存 MemCell 以便后续提取记忆
+                "memunit": memunit  # 保存 MemUnit 以便后续提取记忆
             })
             
             print(f"     ⏱️  耗时: {msg_duration:.2f} ms ({msg_duration/1000:.2f} 秒)")
-            print(f"     📊 状态: {'✅ MemCell已提取' if memcell else '⏳ 继续等待'}")
+            print(f"     📊 状态: {'✅ MemUnit已提取' if memunit else '⏳ 继续等待'}")
             
-            # 如果 MemCell 被提取，打印基本信息
-            if memcell:
-                print(f"     🎯 边界检测成功，MemCell已提取！")
-                print(f"     Event ID: {memcell.event_id}")
+            # 如果 MemUnit 被提取，打印基本信息
+            if memunit:
+                print(f"     🎯 边界检测成功，MemUnit已提取！")
+                print(f"     Event ID: {memunit.event_id}")
                 
-                # 打印 MemCell 基本信息（注意：已禁用下游记忆提取）
-                print(f"\n     📋 MemCell 基本信息:")
-                print(f"        - Event ID: {memcell.event_id}")
-                print(f"        - Summary: {memcell.summary[:100] if memcell.summary else 'N/A'}...")
-                print(f"        - Subject: {memcell.subject[:100] if memcell.subject else 'N/A'}...")
-                print(f"        - Episode: {'有' if memcell.episode else '无'} ({len(memcell.episode) if memcell.episode else 0} 字符)")
-                print(f"        - 参与者: {', '.join(memcell.participants) if memcell.participants else 'N/A'}")
-                print(f"        - 时间戳: {memcell.timestamp}")
+                # 打印 MemUnit 基本信息（注意：已禁用下游记忆提取）
+                print(f"\n     📋 MemUnit 基本信息:")
+                print(f"        - Event ID: {memunit.event_id}")
+                print(f"        - Summary: {memunit.summary[:100] if memunit.summary else 'N/A'}...")
+                print(f"        - Subject: {memunit.subject[:100] if memunit.subject else 'N/A'}...")
+                print(f"        - Episode: {'有' if memunit.episode else '无'} ({len(memunit.episode) if memunit.episode else 0} 字符)")
+                print(f"        - 参与者: {', '.join(memunit.participants) if memunit.participants else 'N/A'}")
+                print(f"        - 时间戳: {memunit.timestamp}")
                 
                 # 确认下游记忆未提取
                 print(f"\n     ✅ 确认: 下游记忆未提取（将在后续测试中单独提取）")
-                print(f"        - Semantic Memory: {'有' if hasattr(memcell, 'semantic_memories') and memcell.semantic_memories else '无'}")
-                print(f"        - Event Log: {'有' if hasattr(memcell, 'event_log') and memcell.event_log else '无'}")
+                print(f"        - Semantic Memory: {'有' if hasattr(memunit, 'semantic_memories') and memunit.semantic_memories else '无'}")
+                print(f"        - Event Log: {'有' if hasattr(memunit, 'event_log') and memunit.event_log else '无'}")
                 
                 break
             
-            # 如果 MemCell 未提取，将当前消息加入历史，继续处理下一条
+            # 如果 MemUnit 未提取，将当前消息加入历史，继续处理下一条
             cumulative_history.append(new_msg)
         
         # 计算总耗时
@@ -282,10 +282,10 @@ class PerformanceTester:
         
         # 记录总耗时
         self.results.append(PerformanceResult(
-            step_name="MemCell 提取 (逐条处理总计)",
+            step_name="MemUnit 提取 (逐条处理总计)",
             duration_ms=total_duration,
-            success=memcell is not None,
-            details=f"处理了 {len(message_timings)} 条消息，{'成功提取' if memcell else '未提取'}"
+            success=memunit is not None,
+            details=f"处理了 {len(message_timings)} 条消息，{'成功提取' if memunit else '未提取'}"
         ))
         
         # 打印每条消息的耗时统计
@@ -294,7 +294,7 @@ class PerformanceTester:
         print(f"     {'-'*10} {'-'*15} {'-'*12} {'-'*15} {'-'*30}")
         
         for timing in message_timings:
-            status = "✅ 已提取" if timing["memcell_extracted"] else "⏳ 等待中"
+            status = "✅ 已提取" if timing["memunit_extracted"] else "⏳ 等待中"
             content = timing["content_preview"] + "..." if len(timing["content_preview"]) > 27 else timing["content_preview"]
             print(f"     第{timing['index']:2d}条    {timing['duration']:>12.2f} ms  {timing['duration']/1000:>10.2f} 秒  {status:<15} {content:<30}")
         
@@ -310,22 +310,22 @@ class PerformanceTester:
             print(f"     - 最快: {min_duration:.2f} ms ({min_duration/1000:.2f} 秒)")
             print(f"     - 最慢: {max_duration:.2f} ms ({max_duration/1000:.2f} 秒)")
         
-        if memcell:
-            print(f"\n  ✅ MemCell 提取成功（仅 MemCell，不含下游记忆）")
-            print(f"  Event ID: {memcell.event_id}")
-            print(f"  Episode 长度: {len(memcell.episode) if memcell.episode else 0} 字符")
-            print(f"  语义记忆: {'有' if hasattr(memcell, 'semantic_memories') and memcell.semantic_memories else '无'}")
-            print(f"  事件日志: {'有' if hasattr(memcell, 'event_log') and memcell.event_log else '无'}")
+        if memunit:
+            print(f"\n  ✅ MemUnit 提取成功（仅 MemUnit，不含下游记忆）")
+            print(f"  Event ID: {memunit.event_id}")
+            print(f"  Episode 长度: {len(memunit.episode) if memunit.episode else 0} 字符")
+            print(f"  语义记忆: {'有' if hasattr(memunit, 'semantic_memories') and memunit.semantic_memories else '无'}")
+            print(f"  事件日志: {'有' if hasattr(memunit, 'event_log') and memunit.event_log else '无'}")
             
-            # 分析触发 MemCell 提取的那条消息
-            extracted_msg_timing = next((t for t in message_timings if t["memcell_extracted"]), None)
+            # 分析触发 MemUnit 提取的那条消息
+            extracted_msg_timing = next((t for t in message_timings if t["memunit_extracted"]), None)
             if extracted_msg_timing:
                 print(f"\n  🎯 触发提取的消息分析:")
                 print(f"     - 触发消息序号: 第 {extracted_msg_timing['index']} 条")
                 print(f"     - 触发消息耗时: {extracted_msg_timing['duration']:.2f} ms ({extracted_msg_timing['duration']/1000:.2f} 秒)")
                 print(f"     - 该消息包含: 边界检测 + Episode提取（语义记忆和事件日志已禁用）")
                 
-                # 估算该消息各子步骤耗时（仅 MemCell 提取）
+                # 估算该消息各子步骤耗时（仅 MemUnit 提取）
                 trigger_steps = {
                     "边界检测 (LLM调用)": extracted_msg_timing['duration'] * 0.20,
                     "Episode提取 (LLM调用)": extracted_msg_timing['duration'] * 0.70,
@@ -337,33 +337,33 @@ class PerformanceTester:
                     percentage = (step_time / extracted_msg_timing['duration']) * 100
                     print(f"     - {step_name:<35} {step_time:>10.2f} ms ({percentage:>5.2f}%)")
             
-            return memcell
+            return memunit
         else:
-            print(f"  ❌ MemCell 未提取 (should_wait: {status_result.should_wait if status_result else 'N/A'})")
+            print(f"  ❌ MemUnit 未提取 (should_wait: {status_result.should_wait if status_result else 'N/A'})")
             print(f"  💡 说明:")
             print(f"     - 边界检测已完成，耗时已记录")
             print(f"     - 系统判断当前对话未达到边界，继续累积消息")
-            print(f"     - 端到端测试需要真实的 MemCell，无法继续后续测试")
+            print(f"     - 端到端测试需要真实的 MemUnit，无法继续后续测试")
             print(f"  🔄 建议: 增加更多消息或调整时间间隔以触发边界检测")
             return None
     
-    async def test_episode_memory_extraction(self, memcell):
+    async def test_episode_memory_extraction(self, memunit):
         """测试 Episode Memory 提取耗时"""
-        if not memcell:
+        if not memunit:
             print("\n" + "="*80)
-            print("⏭️  跳过: Episode Memory 提取 (需要 MemCell)")
+            print("⏭️  跳过: Episode Memory 提取 (需要 MemUnit)")
             print("="*80)
             return None
         
         print("\n" + "="*80)
         print("📊 测试 2: Episode Memory 提取")
         print("="*80)
-        print(f"  基于 MemCell: {memcell.event_id}")
+        print(f"  基于 MemUnit: {memunit.event_id}")
         
         episode_memories = await self._measure_time(
             "Episode Memory 提取",
             self.memory_manager.extract_memory(
-                memcell_list=[memcell],
+                memunit_list=[memunit],
                 memory_type=MemoryType.EPISODE_SUMMARY,
                 user_ids=["user_001"],
                 group_id="test_group_001",
@@ -386,23 +386,23 @@ class PerformanceTester:
         
         return episode_memories[0] if episode_memories else None
     
-    async def test_profile_memory_extraction(self, memcell):
+    async def test_profile_memory_extraction(self, memunit):
         """测试 Profile Memory 提取耗时"""
-        if not memcell:
+        if not memunit:
             print("\n" + "="*80)
-            print("⏭️  跳过: Profile Memory 提取 (需要 MemCell)")
+            print("⏭️  跳过: Profile Memory 提取 (需要 MemUnit)")
             print("="*80)
             return None
         
         print("\n" + "="*80)
         print("📊 测试 3: Profile Memory 提取")
         print("="*80)
-        print(f"  基于 MemCell: {memcell.event_id}")
+        print(f"  基于 MemUnit: {memunit.event_id}")
         
         profile_memories = await self._measure_time(
             "Profile Memory 提取",
             self.memory_manager.extract_memory(
-                memcell_list=[memcell],
+                memunit_list=[memunit],
                 memory_type=MemoryType.PROFILE,
                 user_ids=["user_001"],
                 group_id="test_group_001",
@@ -440,7 +440,7 @@ class PerformanceTester:
         semantic_memories = await self._measure_time(
             "Semantic Memory 提取",
             self.memory_manager.extract_memory(
-                memcell_list=[],
+                memunit_list=[],
                 memory_type=MemoryType.SEMANTIC_SUMMARY,
                 user_ids=[episode_memory.user_id],
                 episode_memory=episode_memory,
@@ -484,7 +484,7 @@ class PerformanceTester:
         event_log = await self._measure_time(
             "Event Log 提取",
             self.memory_manager.extract_memory(
-                memcell_list=[],
+                memunit_list=[],
                 memory_type=MemoryType.EVENT_LOG,
                 user_ids=[episode_memory.user_id],
                 episode_memory=episode_memory,
@@ -561,24 +561,24 @@ async def main():
     print("🚀 记忆提取性能测试")
     print("="*80)
     print("\n本测试将测量各个记忆提取单元的耗时（分阶段测试）")
-    print("包括: MemCell、Episode、Profile、Semantic、EventLog")
+    print("包括: MemUnit、Episode、Profile、Semantic、EventLog")
     print("\n💡 测试流程:")
-    print("   1. 先单独测试 MemCell 提取（禁用下游记忆）")
-    print("   2. 基于提取的 MemCell，单独测试各种下游记忆提取")
+    print("   1. 先单独测试 MemUnit 提取（禁用下游记忆）")
+    print("   2. 基于提取的 MemUnit，单独测试各种下游记忆提取")
     print("   3. 这样可以准确测量每个阶段的耗时")
     print("\n开始测试...")
     
     tester = PerformanceTester()
     
     try:
-        # 测试 MemCell 提取
-        memcell = await tester.test_memcell_extraction()
+        # 测试 MemUnit 提取
+        memunit = await tester.test_memunit_extraction()
         
         # 测试 Episode Memory 提取
-        episode_memory = await tester.test_episode_memory_extraction(memcell)
+        episode_memory = await tester.test_episode_memory_extraction(memunit)
         
         # 测试 Profile Memory 提取
-        await tester.test_profile_memory_extraction(memcell)
+        await tester.test_profile_memory_extraction(memunit)
         
         # 测试 Semantic Memory 提取
         await tester.test_semantic_memory_extraction(episode_memory)

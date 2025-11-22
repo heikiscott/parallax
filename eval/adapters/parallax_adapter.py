@@ -32,7 +32,7 @@ logger = logging.getLogger(__name__)
 
 # 导入 Parallax 实现
 from eval.adapters.parallax import (
-    stage1_memcells_extraction,
+    stage1_memunits_extraction,
     stage2_index_building,
     stage3_memory_retrivel,
     stage4_response,
@@ -55,7 +55,7 @@ class ParallaxAdapter(BaseAdapter):
     4. 返回评测框架需要的结果格式
 
     实现细节：
-    - MemCell 提取（stage1）
+    - MemUnit 提取（stage1）
     - 索引构建（stage2）
     - 检索逻辑（stage3）
     - 答案生成（stage4）
@@ -146,10 +146,10 @@ class ParallaxAdapter(BaseAdapter):
         **kwargs
     ) -> Dict[str, Any]:
         """
-        Add 阶段：提取 MemCells 并构建索引
+        Add 阶段：提取 MemUnits 并构建索引
         
         调用流程：
-        1. Stage 1: 提取 MemCells (stage1_memcells_extraction.py) - 并发处理
+        1. Stage 1: 提取 MemUnits (stage1_memunits_extraction.py) - 并发处理
         2. Stage 2: 构建 BM25 和 Embedding 索引 (stage2_index_building.py)
         
         返回：索引元数据（方案 A：延迟加载）
@@ -157,8 +157,8 @@ class ParallaxAdapter(BaseAdapter):
         output_dir = Path(output_dir) if output_dir else self.output_dir
         output_dir.mkdir(parents=True, exist_ok=True)
         
-        memcells_dir = output_dir / "memcells"
-        memcells_dir.mkdir(parents=True, exist_ok=True)
+        memunits_dir = output_dir / "memunits"
+        memunits_dir.mkdir(parents=True, exist_ok=True)
         bm25_index_dir = output_dir / "bm25_index"
         emb_index_dir = output_dir / "vectors"
         bm25_index_dir.mkdir(parents=True, exist_ok=True)
@@ -166,9 +166,9 @@ class ParallaxAdapter(BaseAdapter):
         
         console = Console()
         
-        # ========== Stage 1: MemCell Extraction (并发处理) ==========
+        # ========== Stage 1: MemUnit Extraction (并发处理) ==========
         console.print(f"\n{'='*60}", style="bold cyan")
-        console.print(f"Stage 1: MemCell Extraction", style="bold cyan")
+        console.print(f"Stage 1: MemUnit Extraction", style="bold cyan")
         console.print(f"{'='*60}", style="bold cyan")
 
         # 转换数据格式：评测框架 → Parallax
@@ -211,7 +211,7 @@ class ParallaxAdapter(BaseAdapter):
         completed_convs = set()
         if checkpoint_manager:
             all_conv_indices = [self._extract_conv_index(conv.conversation_id) for conv in conversations]
-            completed_indices = checkpoint_manager.load_add_progress(memcells_dir, all_conv_indices)
+            completed_indices = checkpoint_manager.load_add_progress(memunits_dir, all_conv_indices)
             # 将完成的索引映射回原始 conversation_id
             for conv in conversations:
                 if self._extract_conv_index(conv.conversation_id) in completed_indices:
@@ -228,7 +228,7 @@ class ParallaxAdapter(BaseAdapter):
         console.print(f"⏳ 待处理: {len(pending_conversations)}", style="bold yellow")
         
         if len(pending_conversations) == 0:
-            console.print(f"\n🎉 所有会话已完成，跳过 MemCell 提取！", style="bold green")
+            console.print(f"\n🎉 所有会话已完成，跳过 MemUnit 提取！", style="bold green")
         else:
             total_messages = sum(len(raw_data_dict[c.conversation_id]) for c in pending_conversations)
             console.print(f"📝 待处理消息数: {total_messages}", style="bold blue")
@@ -288,10 +288,10 @@ class ParallaxAdapter(BaseAdapter):
                     conversation_tasks[conv_id] = conv_task_id
                     
                     # 🔥 创建处理任务，传入提取后的索引
-                    task = stage1_memcells_extraction.process_single_conversation(
+                    task = stage1_memunits_extraction.process_single_conversation(
                         conv_id=conv_index,  # 使用提取后的索引
                         conversation=raw_data_dict[conv_id],  # 数据用原始 ID
-                        save_dir=str(memcells_dir),
+                        save_dir=str(memunits_dir),
                         llm_provider=self.llm_provider,
                         event_log_extractor=self.event_log_extractor,
                         progress_counter=None,
@@ -326,13 +326,13 @@ class ParallaxAdapter(BaseAdapter):
             elapsed = end_time - start_time
             
             # 统计结果
-            successful_convs = sum(1 for _, memcell_list in results if memcell_list)
-            total_memcells = sum(len(memcell_list) for _, memcell_list in results)
+            successful_convs = sum(1 for _, memunit_list in results if memunit_list)
+            total_memunits = sum(len(memunit_list) for _, memunit_list in results)
             
             console.print("\n" + "=" * 60, style="dim")
-            console.print("📊 MemCell 提取完成统计:", style="bold")
+            console.print("📊 MemUnit 提取完成统计:", style="bold")
             console.print(f"   ✅ 成功处理: {successful_convs}/{len(pending_conversations)}", style="green")
-            console.print(f"   📝 总 memcells: {total_memcells}", style="blue")
+            console.print(f"   📝 总 memunits: {total_memunits}", style="blue")
             console.print(f"   ⏱️  总耗时: {elapsed:.2f} 秒", style="yellow")
             if len(pending_conversations) > 0:
                 console.print(f"   🚀 平均每会话: {elapsed/len(pending_conversations):.2f} 秒", style="cyan")
@@ -379,7 +379,7 @@ class ParallaxAdapter(BaseAdapter):
             console.print(f"\n🔨 构建 BM25 索引 ({bm25_to_build} 个会话)...", style="yellow")
             stage2_index_building.build_bm25_index(
                 config=exp_config,
-                data_dir=memcells_dir,
+                data_dir=memunits_dir,
                 bm25_save_dir=bm25_index_dir,
             )
             console.print("✅ BM25 索引构建完成", style="green")
@@ -392,7 +392,7 @@ class ParallaxAdapter(BaseAdapter):
                 console.print(f"\n🔨 构建 Embedding 索引 ({emb_to_build} 个会话)...", style="yellow")
                 await stage2_index_building.build_emb_index(
                     config=exp_config,
-                    data_dir=memcells_dir,
+                    data_dir=memunits_dir,
                     emb_save_dir=emb_index_dir,
                 )
                 console.print("✅ Embedding 索引构建完成", style="green")
@@ -403,7 +403,7 @@ class ParallaxAdapter(BaseAdapter):
         # 不加载索引到内存，只返回路径和元数据
         index_metadata = {
             "type": "lazy_load",  # 标记为延迟加载
-            "memcells_dir": str(memcells_dir),
+            "memunits_dir": str(memunits_dir),
             "bm25_index_dir": str(bm25_index_dir),
             "emb_index_dir": str(emb_index_dir),
             "conversation_ids": [conv.conversation_id for conv in conversations],
@@ -413,7 +413,7 @@ class ParallaxAdapter(BaseAdapter):
         
         console.print(f"\n{'='*60}", style="dim")
         console.print(f"✅ Add 阶段完成", style="bold green")
-        console.print(f"   📁 MemCells: {memcells_dir}", style="dim")
+        console.print(f"   📁 MemUnits: {memunits_dir}", style="dim")
         console.print(f"   📁 BM25 索引: {bm25_index_dir}", style="dim")
         if use_hybrid:
             console.print(f"   📁 Embedding 索引: {emb_index_dir}", style="dim")
@@ -424,7 +424,7 @@ class ParallaxAdapter(BaseAdapter):
     
     async def search(self, query: str, conversation_id: str, index: Any, **kwargs) -> SearchResult:
         """
-        Search 阶段：检索相关 MemCells
+        Search 阶段：检索相关 MemUnits
         
         延迟加载：按需从文件加载索引（内存友好）
         """
@@ -629,7 +629,7 @@ class ParallaxAdapter(BaseAdapter):
         构建 Parallax 的延迟加载索引元数据
 
         🔥 Parallax 特点：
-        - 本地索引（memcells, bm25, embeddings）
+        - 本地索引（memunits, bm25, embeddings）
         - 延迟加载（只保存元数据，不加载实际索引文件）
         
         Args:
@@ -641,7 +641,7 @@ class ParallaxAdapter(BaseAdapter):
         """
         return {
             "type": "lazy_load",
-            "memcells_dir": str(output_dir / "memcells"),
+            "memunits_dir": str(output_dir / "memunits"),
             "bm25_index_dir": str(output_dir / "bm25_index"),
             "emb_index_dir": str(output_dir / "vectors"),
             "conversation_ids": [conv.conversation_id for conv in conversations],

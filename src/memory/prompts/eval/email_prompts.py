@@ -29,7 +29,7 @@ Requirements:
 Please analyze the language of the original email and respond in the same language.
 """
 
-EMAIL_SHOULD_CREATE_MEMCELL_PROMPT = """
+EMAIL_SHOULD_CREATE_MEMUNIT_PROMPT = """
 Please analyze the following email content and determine if it should be stored as a memory cell.
 
 Email Subject: {subject}

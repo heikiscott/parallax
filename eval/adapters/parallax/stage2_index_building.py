@@ -127,17 +127,17 @@ def build_bm25_index(
 
     print(f"Reading data from: {data_dir}")
 
-    # Auto-detect actual memcell files instead of relying on config.num_conv
+    # Auto-detect actual memunit files instead of relying on config.num_conv
     import glob
-    memcell_files = sorted(glob.glob(str(data_dir / "memcell_list_conv_*.json")))
+    memunit_files = sorted(glob.glob(str(data_dir / "memunit_list_conv_*.json")))
 
-    if not memcell_files:
-        print(f"Warning: No memcell files found in {data_dir}")
+    if not memunit_files:
+        print(f"Warning: No memunit files found in {data_dir}")
         return
 
-    for file_path in memcell_files:
+    for file_path in memunit_files:
         file_path = Path(file_path)
-        # 从文件名提取 conversation index (例如: memcell_list_conv_4.json -> 4)
+        # 从文件名提取 conversation index (例如: memunit_list_conv_4.json -> 4)
         conv_index = file_path.stem.split('_')[-1]
 
         print(f"\nProcessing {file_path.name}...")
@@ -196,17 +196,17 @@ async def build_emb_index(config: ExperimentConfig, data_dir: Path, emb_save_dir
     
     import time  # 用于性能统计
 
-    # Auto-detect actual memcell files instead of relying on config.num_conv
+    # Auto-detect actual memunit files instead of relying on config.num_conv
     import glob
-    memcell_files = sorted(glob.glob(str(data_dir / "memcell_list_conv_*.json")))
+    memunit_files = sorted(glob.glob(str(data_dir / "memunit_list_conv_*.json")))
 
-    if not memcell_files:
-        print(f"Warning: No memcell files found in {data_dir}")
+    if not memunit_files:
+        print(f"Warning: No memunit files found in {data_dir}")
         return
 
-    for file_path in memcell_files:
+    for file_path in memunit_files:
         file_path = Path(file_path)
-        # 从文件名提取 conversation index (例如: memcell_list_conv_4.json -> 4)
+        # 从文件名提取 conversation index (例如: memunit_list_conv_4.json -> 4)
         conv_index = file_path.stem.split('_')[-1]
 
         print(f"\n{'='*60}")
@@ -375,7 +375,7 @@ async def main():
     # The directory containing the JSON files
     config = ExperimentConfig()
     # 🔥 修正：实际文件在 locomo_eval/ 目录下，而不是 results/ 目录
-    data_dir = Path(__file__).parent / config.experiment_name / "memcells"
+    data_dir = Path(__file__).parent / config.experiment_name / "memunits"
     bm25_save_dir = (
         Path(__file__).parent / config.experiment_name / "bm25_index"
     )
