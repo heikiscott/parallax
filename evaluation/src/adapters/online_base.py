@@ -12,6 +12,7 @@
 from abc import abstractmethod
 from pathlib import Path
 from typing import Any, List, Dict, Optional
+import logging
 
 from evaluation.src.adapters.base import BaseAdapter
 from evaluation.src.core.data_models import Conversation, SearchResult
@@ -19,6 +20,8 @@ from evaluation.src.utils.config import load_yaml
 
 # 导入 Memory Layer 组件
 from memory_layer.llm.llm_provider import LLMProvider
+
+logger = logging.getLogger(__name__)
 
 
 class OnlineAPIAdapter(BaseAdapter):
@@ -55,10 +58,10 @@ class OnlineAPIAdapter(BaseAdapter):
         evaluation_root = Path(__file__).parent.parent.parent
         prompts_path = evaluation_root / "config" / "prompts.yaml"
         self._prompts = load_yaml(str(prompts_path))
-        
-        print(f"✅ {self.__class__.__name__} initialized")
-        print(f"   LLM Model: {llm_config.get('model')}")
-        print(f"   Output Dir: {self.output_dir}")
+
+        logger.info(f"{self.__class__.__name__} initialized")
+        logger.info(f"LLM Model: {llm_config.get('model')}")
+        logger.info(f"Output Dir: {self.output_dir}")
     
     @abstractmethod
     async def add(
@@ -125,7 +128,7 @@ class OnlineAPIAdapter(BaseAdapter):
                 
                 return result
             except Exception as e:
-                print(f"⚠️  Answer generation error (attempt {i+1}/{max_retries}): {e}")
+                logger.warning(f"Answer generation error (attempt {i+1}/{max_retries}): {e}")
                 if i == max_retries - 1:
                     raise
                 continue

@@ -5,6 +5,7 @@ PersonaMem Converter
 """
 import json
 import csv
+import logging
 import re
 import ast
 from collections import defaultdict
@@ -13,6 +14,8 @@ from typing import Dict
 
 from evaluation.src.converters.base import BaseConverter
 from evaluation.src.converters.registry import register_converter
+
+logger = logging.getLogger(__name__)
 
 
 def extract_persona_name(system_content: str) -> str:
@@ -53,7 +56,7 @@ def parse_options(options_str: str) -> Dict[str, str]:
                 options_dict[key] = value
         return options_dict
     except Exception as e:
-        print(f"Warning: Failed to parse options: {e}")
+        logger.warning(f"Failed to parse options: {e}")
         return {}
 
 
@@ -117,7 +120,7 @@ class PersonaMemConverter(BaseConverter):
         for (context_id, end_index), question_list in grouped_questions.items():
             # 获取对应的 context
             if context_id not in contexts:
-                print(f"   Warning: context_id {context_id} not found")
+                logger.warning(f"Context ID {context_id} not found")
                 continue
             
             full_context = contexts[context_id]

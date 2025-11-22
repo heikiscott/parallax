@@ -5,6 +5,7 @@ EverMemOS Adapter
 """
 import asyncio
 import json
+import logging
 import pickle
 import time
 from pathlib import Path
@@ -26,6 +27,8 @@ from evaluation.src.adapters.base import BaseAdapter
 from evaluation.src.adapters.registry import register_adapter
 from evaluation.src.core.data_models import Conversation, SearchResult
 from common_utils.datetime_utils import to_iso_format
+
+logger = logging.getLogger(__name__)
 
 # 导入 EverMemOS 实现
 from evaluation.src.adapters.evermemos import (
@@ -83,10 +86,10 @@ class EverMemOSAdapter(BaseAdapter):
         
         # 确保 NLTK 数据可用
         stage2_index_building.ensure_nltk_data()
-        
-        print(f"✅ EverMemOS Adapter initialized")
-        print(f"   LLM Model: {llm_config.get('model')}")
-        print(f"   Output Dir: {self.output_dir}")
+
+        logger.info(f"EverMemOS Adapter initialized")
+        logger.info(f"LLM Model: {llm_config.get('model')}")
+        logger.info(f"Output Dir: {self.output_dir}")
     
     @staticmethod
     def _extract_conv_index(conversation_id: str) -> str:

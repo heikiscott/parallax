@@ -2,9 +2,12 @@
 Checkpoint 管理模块 - 支持断点续传
 """
 import json
+import logging
 from pathlib import Path
 from typing import Dict, Any, Optional, Set
 from datetime import datetime
+
+logger = logging.getLogger("evaluation")
 
 
 class CheckpointManager:
@@ -51,19 +54,19 @@ class CheckpointManager:
             with open(self.checkpoint_file, 'r', encoding='utf-8') as f:
                 checkpoint = json.load(f)
             
-            print(f"\n🔄 发现 checkpoint 文件: {self.checkpoint_file.name}")
-            print(f"   上次运行时间: {checkpoint.get('last_updated', 'Unknown')}")
-            print(f"   已完成阶段: {', '.join(checkpoint.get('completed_stages', []))}")
-            
+            logger.info(f"🔄 发现 checkpoint 文件: {self.checkpoint_file.name}")
+            logger.info(f"   上次运行时间: {checkpoint.get('last_updated', 'Unknown')}")
+            logger.info(f"   已完成阶段: {', '.join(checkpoint.get('completed_stages', []))}")
+
             if 'search_results' in checkpoint:
                 completed_convs = len(checkpoint['search_results'])
-                print(f"   已处理对话数: {completed_convs}")
-            
+                logger.info(f"   已处理对话数: {completed_convs}")
+
             return checkpoint
-            
+
         except Exception as e:
-            print(f"⚠️ 加载 checkpoint 失败: {e}")
-            print(f"   将从头开始运行")
+            logger.warning(f"⚠️ 加载 checkpoint 失败: {e}")
+            logger.warning(f"   将从头开始运行")
             return None
     
     def save_checkpoint(
@@ -105,11 +108,11 @@ class CheckpointManager:
         try:
             with open(self.checkpoint_file, 'w', encoding='utf-8') as f:
                 json.dump(checkpoint, f, indent=2, ensure_ascii=False)
-            
-            print(f"💾 Checkpoint 已保存: {self.checkpoint_file.name}")
-            
+
+            logger.info(f"💾 Checkpoint 已保存: {self.checkpoint_file.name}")
+
         except Exception as e:
-            print(f"⚠️ 保存 checkpoint 失败: {e}")
+            logger.error(f"⚠️ 保存 checkpoint 失败: {e}")
     
     def get_completed_conversations(self) -> Set[str]:
         """
@@ -152,9 +155,9 @@ class CheckpointManager:
         if self.checkpoint_file.exists():
             try:
                 self.checkpoint_file.unlink()
-                print(f"🗑️  Checkpoint 已删除: {self.checkpoint_file.name}")
+                logger.info(f"🗑️ Checkpoint 已删除: {self.checkpoint_file.name}")
             except Exception as e:
-                print(f"⚠️ 删除 checkpoint 失败: {e}")
+                logger.error(f"⚠️ 删除 checkpoint 失败: {e}")
     
     def get_search_results(self) -> Optional[Dict]:
         """获取已保存的搜索结果"""
@@ -195,13 +198,13 @@ class CheckpointManager:
         import json
         
         completed_convs = set()
-        
+
         if not memcells_dir.exists():
-            print(f"\n🆕 No previous memcells found, starting from scratch")
+            logger.info("🆕 No previous memcells found, starting from scratch")
             return completed_convs
-        
-        print(f"\n🔍 Checking for completed conversations in: {memcells_dir}")
-        
+
+        logger.info(f"🔍 Checking for completed conversations in: {memcells_dir}")
+
         for conv_id in all_conv_ids:
             # 匹配 stage1 实际保存的文件名格式
             output_file = memcells_dir / f"memcell_list_conv_{conv_id}.json"
@@ -212,13 +215,13 @@ class CheckpointManager:
                         data = json.load(f)
                         if data and len(data) > 0:  # 确保有数据
                             completed_convs.add(conv_id)
-                            print(f"✅ 跳过已完成的会话: {conv_id} ({len(data)} memcells)")
+                            logger.info(f"✅ 跳过已完成的会话: {conv_id} ({len(data)} memcells)")
                 except Exception as e:
-                    print(f"⚠️  会话 {conv_id} 文件损坏，将重新处理: {e}")
-        
+                    logger.warning(f"⚠️ 会话 {conv_id} 文件损坏，将重新处理: {e}")
+
         if completed_convs:
-            print(f"\n📊 发现 {len(completed_convs)}/{len(all_conv_ids)} 个已完成的会话")
-        
+            logger.info(f"📊 发现 {len(completed_convs)}/{len(all_conv_ids)} 个已完成的会话")
+
         return completed_convs
     
     def save_search_progress(self, search_results: Dict[str, Any]):
@@ -232,11 +235,11 @@ class CheckpointManager:
         try:
             with open(self.search_checkpoint, 'w', encoding='utf-8') as f:
                 json.dump(search_results, f, indent=2, ensure_ascii=False)
-            
-            print(f"💾 Checkpoint saved: {len(search_results)} conversations")
-            
+
+            logger.info(f"💾 Search checkpoint saved: {len(search_results)} conversations")
+
         except Exception as e:
-            print(f"⚠️  Failed to save search checkpoint: {e}")
+            logger.error(f"⚠️ Failed to save search checkpoint: {e}")
     
     def load_search_progress(self) -> Dict[str, Any]:
         """
@@ -246,22 +249,22 @@ class CheckpointManager:
             已保存的搜索结果，如果不存在则返回空字典
         """
         if not self.search_checkpoint.exists():
-            print(f"\n🆕 No checkpoint found, starting from scratch")
+            logger.info("🆕 No search checkpoint found, starting from scratch")
             return {}
-        
+
         try:
-            print(f"\n🔄 Found checkpoint file: {self.search_checkpoint}")
+            logger.info(f"🔄 Found search checkpoint file: {self.search_checkpoint}")
             with open(self.search_checkpoint, 'r', encoding='utf-8') as f:
                 search_results = json.load(f)
-            
-            print(f"✅ Loaded {len(search_results)} conversations from checkpoint")
-            print(f"   Already processed: {sorted(search_results.keys())}")
-            
+
+            logger.info(f"✅ Loaded {len(search_results)} conversations from checkpoint")
+            logger.info(f"   Already processed: {sorted(search_results.keys())}")
+
             return search_results
-            
+
         except Exception as e:
-            print(f"⚠️  Failed to load checkpoint: {e}")
-            print(f"   Starting from scratch...")
+            logger.warning(f"⚠️ Failed to load search checkpoint: {e}")
+            logger.warning(f"   Starting from scratch...")
             return {}
     
     def delete_search_checkpoint(self):
@@ -269,9 +272,9 @@ class CheckpointManager:
         if self.search_checkpoint.exists():
             try:
                 self.search_checkpoint.unlink()
-                print(f"🗑️  Checkpoint file removed (task completed)")
+                logger.info("🗑️ Search checkpoint file removed (task completed)")
             except Exception as e:
-                print(f"⚠️  Failed to remove checkpoint: {e}")
+                logger.error(f"⚠️ Failed to remove search checkpoint: {e}")
     
     def save_answer_progress(self, answer_results: Dict[str, Any], completed: int, total: int):
         """
@@ -286,11 +289,11 @@ class CheckpointManager:
             checkpoint_path = self.output_dir / f"responses_checkpoint_{completed}.json"
             with open(checkpoint_path, 'w', encoding='utf-8') as f:
                 json.dump(answer_results, f, indent=2, ensure_ascii=False)
-            
-            print(f"  💾 Checkpoint saved: {checkpoint_path.name}")
-            
+
+            logger.info(f"💾 Answer checkpoint saved: {checkpoint_path.name}")
+
         except Exception as e:
-            print(f"⚠️  Failed to save answer checkpoint: {e}")
+            logger.error(f"⚠️ Failed to save answer checkpoint: {e}")
     
     def load_answer_progress(self) -> Dict[str, Any]:
         """
@@ -301,36 +304,36 @@ class CheckpointManager:
         """
         # 查找所有 responses_checkpoint_*.json 文件
         checkpoint_files = list(self.output_dir.glob("responses_checkpoint_*.json"))
-        
+
         if not checkpoint_files:
-            print(f"\n🆕 No answer checkpoint found, starting from scratch")
+            logger.info("🆕 No answer checkpoint found, starting from scratch")
             return {}
-        
+
         # 找到最新的检查点文件（按文件名中的数字排序）
         try:
             latest_checkpoint = max(checkpoint_files, key=lambda p: int(p.stem.split('_')[-1]))
-            
-            print(f"\n🔄 Found checkpoint file: {latest_checkpoint.name}")
+
+            logger.info(f"🔄 Found answer checkpoint file: {latest_checkpoint.name}")
             with open(latest_checkpoint, 'r', encoding='utf-8') as f:
                 answer_results = json.load(f)
-            
-            print(f"✅ Loaded {len(answer_results)} answers from checkpoint")
-            
+
+            logger.info(f"✅ Loaded {len(answer_results)} answers from checkpoint")
+
             return answer_results
-            
+
         except Exception as e:
-            print(f"⚠️  Failed to load answer checkpoint: {e}")
-            print(f"   Starting from scratch...")
+            logger.warning(f"⚠️ Failed to load answer checkpoint: {e}")
+            logger.warning(f"   Starting from scratch...")
             return {}
     
     def delete_answer_checkpoints(self):
         """删除 Answer 阶段的所有细粒度检查点"""
         checkpoint_files = list(self.output_dir.glob("responses_checkpoint_*.json"))
-        
+
         for checkpoint_file in checkpoint_files:
             try:
                 checkpoint_file.unlink()
-                print(f"  🗑️  Removed checkpoint: {checkpoint_file.name}")
+                logger.info(f"🗑️ Removed answer checkpoint: {checkpoint_file.name}")
             except Exception as e:
-                print(f"⚠️  Failed to remove checkpoint {checkpoint_file.name}: {e}")
+                logger.error(f"⚠️ Failed to remove checkpoint {checkpoint_file.name}: {e}")
 

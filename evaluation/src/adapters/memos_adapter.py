@@ -4,6 +4,7 @@ Memos Adapter
 适配 Memos 在线 API 的评测框架。
 """
 import json
+import logging
 import time
 from pathlib import Path
 from typing import Any, Dict, List
@@ -14,6 +15,8 @@ from rich.console import Console
 from evaluation.src.adapters.online_base import OnlineAPIAdapter
 from evaluation.src.adapters.registry import register_adapter
 from evaluation.src.core.data_models import Conversation, SearchResult
+
+logger = logging.getLogger(__name__)
 
 
 @register_adapter("memos")
@@ -60,10 +63,10 @@ class MemosAdapter(OnlineAPIAdapter):
         # 检索配置（只保留 batch_size 和 max_retries，其他参数不被官方 API 支持）
         self.batch_size = config.get("batch_size", 9999)  # Memos 支持大批量
         self.max_retries = config.get("max_retries", 5)
-        
+
         self.console = Console()
-        
-        print(f"   API URL: {self.api_url}")
+
+        logger.info(f"API URL: {self.api_url}")
     
     async def add(
         self, 

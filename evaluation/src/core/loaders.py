@@ -5,12 +5,15 @@
 支持自动转换非 Locomo 格式的数据集。
 """
 import json
+import logging
 from datetime import datetime, timedelta
 from pathlib import Path
 from typing import List, Optional
 
 from evaluation.src.core.data_models import Dataset, Conversation, Message, QAPair
 from evaluation.src.converters.registry import get_converter
+
+logger = logging.getLogger(__name__)
 
 
 def load_dataset(dataset_name: str, data_path: str) -> Dataset:
@@ -39,7 +42,7 @@ def load_dataset(dataset_name: str, data_path: str) -> Dataset:
         
         # 检查是否需要转换
         if converter.needs_conversion(data_dir):
-            print(f"📝 Converted file not found, converting {dataset_name}...")
+            logger.info(f"Converting dataset: {dataset_name}")
             
             # 构建输入文件路径
             input_files = converter.get_input_files()
@@ -277,6 +280,6 @@ def _parse_locomo_timestamp(timestamp_str: str) -> Optional[datetime]:
         return datetime.strptime(timestamp_str, "%I:%M %p on %d %B, %Y")
     except ValueError:
         # 如果解析失败，返回 None 并输出警告
-        print(f"⚠️  Warning: Failed to parse timestamp '{timestamp_str}', no timestamp will be set")
+        logger.warning(f"Failed to parse timestamp '{timestamp_str}', no timestamp will be set")
         return None
 

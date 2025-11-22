@@ -9,6 +9,7 @@ Mem0 Adapter
 - 支持自定义指令（custom_instructions）
 """
 import json
+import logging
 import time
 from pathlib import Path
 from typing import Any, Dict, List
@@ -18,6 +19,8 @@ from rich.console import Console
 from evaluation.src.adapters.online_base import OnlineAPIAdapter
 from evaluation.src.adapters.registry import register_adapter
 from evaluation.src.core.data_models import Conversation, SearchResult
+
+logger = logging.getLogger(__name__)
 
 
 @register_adapter("mem0")
@@ -65,17 +68,17 @@ class Mem0Adapter(OnlineAPIAdapter):
         if not custom_instructions:
             # 从 prompts.yaml 加载
             custom_instructions = self._prompts.get("add_stage", {}).get("mem0", {}).get("custom_instructions", None)
-            print(f"   ✅ Custom instructions set (from prompts.yaml)")
-        
+            logger.info("Custom instructions loaded from prompts.yaml")
+
         if custom_instructions:
             try:
                 self.client.update_project(custom_instructions=custom_instructions)
-                print(f"   ✅ Custom instructions set (from prompts.yaml)")
+                logger.info("Custom instructions set successfully")
             except Exception as e:
-                print(f"   ⚠️  Failed to set custom instructions: {e}")
-        
-        print(f"   Batch Size: {self.batch_size}")
-        print(f"   Max Content Length: {self.max_content_length}")
+                logger.warning(f"Failed to set custom instructions: {e}")
+
+        logger.info(f"Batch Size: {self.batch_size}")
+        logger.info(f"Max Content Length: {self.max_content_length}")
     
     async def prepare(self, conversations: List[Conversation], **kwargs) -> None:
         """

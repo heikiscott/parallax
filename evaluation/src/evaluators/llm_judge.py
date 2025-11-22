@@ -10,6 +10,7 @@ LLM Judge 评估器
 """
 import asyncio
 import json
+import logging
 import numpy as np
 from typing import List, Dict, Any
 from collections import defaultdict
@@ -20,6 +21,8 @@ from evaluation.src.evaluators.base import BaseEvaluator
 from evaluation.src.evaluators.registry import register_evaluator
 from evaluation.src.core.data_models import AnswerResult, EvaluationResult
 from evaluation.src.utils.prompts import get_prompt, format_prompt
+
+logger = logging.getLogger(__name__)
 
 
 @register_evaluator("llm_judge")
@@ -255,8 +258,8 @@ class LLMJudge(BaseEvaluator):
             label = result.get("label", "WRONG")
             
             return label.strip().upper() == "CORRECT"
-        
+
         except Exception as e:
-            print(f"  ⚠️ LLM Judge 失败: {e}")
+            logger.warning(f"LLM Judge failed: {e}")
             return False
 
