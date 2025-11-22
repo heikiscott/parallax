@@ -1,6 +1,6 @@
-# Contributing to EverMemOS
+# Contributing to Parallax
 
-Thank you for your interest in contributing to EverMemOS! We welcome contributions from the community.
+Thank you for your interest in contributing to Parallax! We welcome contributions from the community.
 
 ## 🚀 Getting Started
 
@@ -14,8 +14,8 @@ Thank you for your interest in contributing to EverMemOS! We welcome contributio
 
 1. Fork and clone the repository:
 ```bash
-git clone https://github.com/YOUR_USERNAME/EverMemOS.git
-cd EverMemOS
+git clone https://github.com/YOUR_USERNAME/Parallax.git
+cd Parallax
 ```
 
 2. Install dependencies:
@@ -128,7 +128,7 @@ git push origin feature/your-feature-name
 
 ## 🐛 Reporting Bugs
 
-Please report bugs by [opening an issue](https://github.com/EverMind-AI/EverMemOS/issues) with:
+Please report bugs by [opening an issue](https://github.com/heikiscott/parallax/issues) with:
 
 - Clear, descriptive title
 - Steps to reproduce
@@ -147,7 +147,7 @@ Feature requests are welcome! Please:
 
 ## 📄 License
 
-By contributing to EverMemOS, you agree that your contributions will be licensed under the [Apache License 2.0](LICENSE).
+By contributing to Parallax, you agree that your contributions will be licensed under the [Apache License 2.0](LICENSE).
 
 ## 🤝 Code of Conduct
 
@@ -158,11 +158,12 @@ By contributing to EverMemOS, you agree that your contributions will be licensed
 
 ## 📞 Questions?
 
-- Open a [Discussion](https://github.com/EverMind-AI/EverMemOS/discussions)
+- Open a [Discussion](https://github.com/heikiscott/parallax/discussions)
 - Join our community channels
-- Email: evermind@shanda.com
+- Email: heikiscott@gmail.com
 
 ---
 
-Thank you for contributing to EverMemOS! 🎉
+Thank you for contributing to Parallax! 🎉
+
 

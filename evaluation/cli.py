@@ -4,10 +4,10 @@ CLI 入口
 评测框架的命令行接口。
 
 Usage:
-    python -m evaluation.cli --dataset locomo --system evermemos
-    python -m evaluation.cli --dataset locomo-mini --system evermemos
-    python -m evaluation.cli --dataset locomo --system evermemos --stages search answer evaluate
-    python -m evaluation.cli --dataset locomo --system evermemos --conv 3
+    python -m evaluation.cli --dataset locomo --system parallax
+    python -m evaluation.cli --dataset locomo-mini --system parallax
+    python -m evaluation.cli --dataset locomo --system parallax --stages search answer evaluate
+    python -m evaluation.cli --dataset locomo --system parallax --conv 3
 """
 import asyncio
 import argparse
@@ -16,7 +16,7 @@ import sys
 from pathlib import Path
 
 # ===== 环境初始化 =====
-# 必须在导入任何 EverMemOS 组件之前完成
+# 必须在导入任何 Parallax 组件之前完成
 # 参考 src/bootstrap.py 的初始化逻辑
 
 # 1. 添加项目路径
@@ -31,7 +31,7 @@ if str(src_path) not in sys.path:
 from common_utils.load_env import setup_environment
 setup_environment(load_env_file_name=".env", check_env_var="MONGODB_HOST")
 
-# ===== 现在可以安全地导入 EverMemOS 组件 =====
+# ===== 现在可以安全地导入 Parallax 组件 =====
 from evaluation.src.core.loaders import load_dataset
 from evaluation.src.core.pipeline import Pipeline
 from evaluation.src.adapters.registry import create_adapter
@@ -78,7 +78,7 @@ async def main():
         "--system",
         type=str,
         required=True,
-        help="System name (e.g., evermemos)"
+        help="System name (e.g., parallax)"
     )
     parser.add_argument(
         "--stages",
@@ -224,7 +224,7 @@ async def main():
     finally:
         # ===== 清理资源 =====
         # 只有使用了 rerank 的系统才需要清理
-        systems_need_rerank = ["evermemos"]
+        systems_need_rerank = ["parallax"]
         if args.system in systems_need_rerank:
             try:
                 from agentic_layer import rerank_service

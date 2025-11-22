@@ -1,8 +1,8 @@
-# Demo - EverMemOS 交互式示例
+# Demo - Parallax 交互式示例
 
 [English](README.md) | [简体中文](README_zh.md)
 
-本目录包含展示 EverMemOS 核心功能的交互式演示。
+本目录包含展示 Parallax 核心功能的交互式演示。
 
 ## 📂 目录结构
 
@@ -48,7 +48,7 @@ demo/
 
 ### 1. `simple_demo.py` - 快速入门示例 ⭐
 
-**体验 EverMemOS 最简单的方式！** 只需 67 行代码就能演示完整的记忆工作流程。
+**体验 Parallax 最简单的方式！** 只需 67 行代码就能演示完整的记忆工作流程。
 
 **演示内容：**
 - 💾 **存储**：通过 HTTP API 保存对话消息
@@ -142,7 +142,7 @@ uv run python src/bootstrap.py demo/simple_demo.py
 
 ### 方式 A：超级简单模式（推荐新手）⭐
 
-体验 EverMemOS 最快的方式！只需 2 个终端：
+体验 Parallax 最快的方式！只需 2 个终端：
 
 ```bash
 # 终端 1：启动 API 服务器（必需）

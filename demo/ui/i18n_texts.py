@@ -111,8 +111,8 @@ class I18nTexts:
         },
         # ==================== 横幅和欢迎 ====================
         "banner_title": {
-            "zh": "🧠  EverMem 记忆对话助手",
-            "en": "🧠  EverMem Memory-Enhanced Chat Assistant",
+            "zh": "🧠  Parallax 记忆对话助手",
+            "en": "🧠  Parallax Memory-Enhanced Chat Assistant",
         },
         "banner_subtitle": {
             "zh": "🤖 v1.0.0  ·  Memory-Enhanced Chat",

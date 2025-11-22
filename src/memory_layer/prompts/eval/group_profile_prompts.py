@@ -1,4 +1,4 @@
-"""Group Profile Extraction prompts for EverMemOS."""
+"""Group Profile Extraction prompts for Parallax."""
 
 GROUP_PROFILE_EXTRACTION_PROMPT = """
 You are a group profile extraction expert specializing in analyzing group conversations to extract group characteristics, topics, subject, and role assignments.

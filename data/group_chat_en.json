@@ -4304,7 +4304,7 @@
       "sender": "user_102",
       "sender_name": "Betty",
       "type": "text",
-      "content": "I've drafted the report document with the theme \"EverMemOS Beta Wrap-up & Next Steps Planning.\" I've marked each section with TODO. @Alex @Dylan Please remember to help me fill in the data and system diagrams.",
+      "content": "I've drafted the report document with the theme \"Parallax Beta Wrap-up & Next Steps Planning.\" I've marked each section with TODO. @Alex @Dylan Please remember to help me fill in the data and system diagrams.",
       "refer_list": []
     },
     {
@@ -4664,7 +4664,7 @@
       "sender": "user_103",
       "sender_name": "Chen",
       "type": "text",
-      "content": "Okay. I'll write the last sentence: \"EverMemOS, allowing AI to truly have controllable memory.\"",
+      "content": "Okay. I'll write the last sentence: \"Parallax, allowing AI to truly have controllable memory.\"",
       "refer_list": []
     }
   ]

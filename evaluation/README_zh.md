@@ -1,4 +1,4 @@
-# EvermemOS 评估框架
+# Parallax 评估框架
 
 一个统一的模块化评估框架，用于在标准数据集上对记忆系统进行基准测试。
 
@@ -6,7 +6,7 @@
 
 ### 统一且模块化的框架
 - **一个代码库适用于所有场景**：无需为每个数据集或系统编写单独的代码
-- **即插即用的系统支持**：支持多种记忆系统（EvermemOS、mem0、memOS、memU 等）
+- **即插即用的系统支持**：支持多种记忆系统（Parallax、mem0、memOS、memU 等）
 - **多种基准测试**：开箱即用支持 LoCoMo、LongMemEval、PersonaMem
 - **一致的评估**：所有系统使用相同的流程和指标进行评估
 
@@ -35,7 +35,7 @@ evaluation/
 │   └── utils/          # 配置、日志、I/O
 ├── config/
 │   ├── datasets/       # 数据集配置（locomo.yaml 等）
-│   ├── systems/        # 系统配置（evermemos.yaml 等）
+│   ├── systems/        # 系统配置（parallax.yaml 等）
 │   └── prompts.yaml    # 提示词模板
 ├── data/               # 基准数据集
 └── results/            # 评估结果和日志
@@ -57,7 +57,7 @@ evaluation/
 ### 前置要求
 
 - Python 3.10+
-- EvermemOS 环境已配置（参见主项目的 `env.template`）
+- Parallax 环境已配置（参见主项目的 `env.template`）
 
 ### 数据准备
 
@@ -94,7 +94,7 @@ evaluation/data/personamem/
 安装评估专用依赖：
 
 ```bash
-# 用于评估本地系统（EvermemOS）
+# 用于评估本地系统（Parallax）
 uv sync --group evaluation
 
 # 用于评估在线 API 系统（mem0、memOS、memU 等）
@@ -103,11 +103,11 @@ uv sync --group evaluation-full
 
 ### 环境配置
 
-评估框架重用主 EvermemOS `.env` 文件中的大部分环境变量：
+评估框架重用主 Parallax `.env` 文件中的大部分环境变量：
 - `LLM_API_KEY`、`LLM_BASE_URL`（用于答案生成）
 - `DEEPINFRA_API_KEY`（用于嵌入向量/重排序）
 
-要测试 EvermemOS，请先配置完整的 .env 文件。
+要测试 Parallax，请先配置完整的 .env 文件。
 
 **在线 API 系统的额外变量**（如测试这些系统，请添加到 `.env`）：
 
@@ -131,7 +131,7 @@ MEMU_API_KEY=your_memu_api_key
 cd /path/to/memsys-opensource
 
 # 运行 mini 数据集（单个对话，有限问题）
-uv run python -m evaluation.cli --dataset locomo-mini --system evermemos
+uv run python -m evaluation.cli --dataset locomo-mini --system parallax
 
 # 或使用简化脚本
 python evaluation/run_locomo.py --mini
@@ -143,7 +143,7 @@ python evaluation/run_locomo.py --mini
 
 ```bash
 # 测试索引为 3 的对话
-uv run python -m evaluation.cli --dataset locomo --system evermemos --conv 3
+uv run python -m evaluation.cli --dataset locomo --system parallax --conv 3
 
 # 或使用简化脚本
 python evaluation/run_locomo.py --conv 3
@@ -154,8 +154,8 @@ python evaluation/run_locomo.py --conv 3
 在所有对话上运行完整基准测试：
 
 ```bash
-# 在 LoCoMo 上评估 EvermemOS（全部 10 个对话）
-uv run python -m evaluation.cli --dataset locomo --system evermemos
+# 在 LoCoMo 上评估 Parallax（全部 10 个对话）
+uv run python -m evaluation.cli --dataset locomo --system parallax
 
 # 或使用简化脚本
 python evaluation/run_locomo.py --all
@@ -168,18 +168,18 @@ uv run python -m evaluation.cli --dataset locomo --system mem0 --stages add
 uv run python -m evaluation.cli --dataset locomo --system mem0 --stages search answer evaluate
 
 # 在其他数据集上评估
-uv run python -m evaluation.cli --dataset longmemeval --system evermemos
-uv run python -m evaluation.cli --dataset personamem --system evermemos
+uv run python -m evaluation.cli --dataset longmemeval --system parallax
+uv run python -m evaluation.cli --dataset personamem --system parallax
 
 # 使用 --run-name 区分多次运行（用于 A/B 测试）
 # 结果将保存到：results/{dataset}-{system}-{run-name}/
-uv run python -m evaluation.cli --dataset locomo --system evermemos --run-name baseline
-uv run python -m evaluation.cli --dataset locomo --system evermemos --run-name experiment1
-uv run python -m evaluation.cli --dataset locomo --system evermemos --run-name 20241107
+uv run python -m evaluation.cli --dataset locomo --system parallax --run-name baseline
+uv run python -m evaluation.cli --dataset locomo --system parallax --run-name experiment1
+uv run python -m evaluation.cli --dataset locomo --system parallax --run-name 20241107
 
 # 如果中断则从检查点恢复（自动）
 # 只需重新运行相同命令 - 它会检测并从检查点恢复
-uv run python -m evaluation.cli --dataset locomo --system evermemos
+uv run python -m evaluation.cli --dataset locomo --system parallax
 
 ```
 
@@ -189,13 +189,13 @@ uv run python -m evaluation.cli --dataset locomo --system evermemos
 
 ```bash
 # 查看摘要报告
-cat evaluation/results/locomo-evermemos/report.txt
+cat evaluation/results/locomo-parallax/report.txt
 
 # 查看详细评估结果
-cat evaluation/results/locomo-evermemos/eval_results.json
+cat evaluation/results/locomo-parallax/eval_results.json
 
 # 查看流程执行日志
-cat evaluation/results/locomo-evermemos/pipeline.log
+cat evaluation/results/locomo-parallax/pipeline.log
 ```
 
 **结果文件：**
@@ -273,10 +273,10 @@ cat evaluation/results/locomo-evermemos/pipeline.log
 
 ```bash
 # 仅运行搜索阶段（如果添加已完成）
-uv run python -m evaluation.cli --dataset locomo --system evermemos --stages search
+uv run python -m evaluation.cli --dataset locomo --system parallax --stages search
 
 # 运行搜索、回答和评估（跳过添加）
-uv run python -m evaluation.cli --dataset locomo --system evermemos \
+uv run python -m evaluation.cli --dataset locomo --system parallax \
     --stages search answer evaluate
 ```
 如果您已经完成了搜索，并希望重新运行，请从 checkpoint_default.json 文件中的 completed_stages 中删除 "search"（以及后续阶段）：
@@ -296,18 +296,18 @@ uv run python -m evaluation.cli --dataset locomo --system evermemos \
 
 ```bash
 # 复制并编辑配置
-cp evaluation/config/systems/evermemos.yaml evaluation/config/systems/evermemos_custom.yaml
-# 编辑 evermemos_custom.yaml 进行修改
+cp evaluation/config/systems/parallax.yaml evaluation/config/systems/parallax_custom.yaml
+# 编辑 parallax_custom.yaml 进行修改
 
 # 使用自定义配置运行
-uv run python -m evaluation.cli --dataset locomo --system evermemos_custom
+uv run python -m evaluation.cli --dataset locomo --system parallax_custom
 ```
 
 
 ## 🔌 支持的系统
 
 ### 本地系统
-- **evermemos** - EvermemOS，具有 MemCell 提取和双模式检索
+- **parallax** - Parallax，具有 MemCell 提取和双模式检索
 
 ### 在线 API 系统
 - **mem0** - Mem0 API
@@ -323,4 +323,5 @@ uv run python -m evaluation.cli --dataset locomo --system evermemos_custom
 ## 📄 许可证
 
 与父项目相同。
+
 

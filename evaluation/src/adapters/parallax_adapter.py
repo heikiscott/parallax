@@ -1,7 +1,7 @@
 """
-EverMemOS Adapter
+Parallax Adapter
 
-适配层，负责将评测框架与 EverMemOS 实现连接起来。
+适配层，负责将评测框架与 Parallax 实现连接起来。
 """
 import asyncio
 import json
@@ -30,8 +30,8 @@ from common_utils.datetime_utils import to_iso_format
 
 logger = logging.getLogger(__name__)
 
-# 导入 EverMemOS 实现
-from evaluation.src.adapters.evermemos import (
+# 导入 Parallax 实现
+from evaluation.src.adapters.parallax import (
     stage1_memcells_extraction,
     stage2_index_building,
     stage3_memory_retrivel,
@@ -43,17 +43,17 @@ from memory_layer.llm.llm_provider import LLMProvider
 from memory_layer.memory_extractor.event_log_extractor import EventLogExtractor
 
 
-@register_adapter("evermemos")
-class EverMemOSAdapter(BaseAdapter):
+@register_adapter("parallax")
+class ParallaxAdapter(BaseAdapter):
     """
-    EverMemOS 适配器
-    
+    Parallax 适配器
+
     职责：
     1. 接收评测框架的调用
-    2. 转换数据格式（评测框架 ↔ EverMemOS）
+    2. 转换数据格式（评测框架 ↔ Parallax）
     3. 调用 stage*.py 实现
     4. 返回评测框架需要的结果格式
-    
+
     实现细节：
     - MemCell 提取（stage1）
     - 索引构建（stage2）
@@ -87,7 +87,7 @@ class EverMemOSAdapter(BaseAdapter):
         # 确保 NLTK 数据可用
         stage2_index_building.ensure_nltk_data()
 
-        logger.info(f"EverMemOS Adapter initialized")
+        logger.info(f"Parallax Adapter initialized")
         logger.info(f"LLM Model: {llm_config.get('model')}")
         logger.info(f"Output Dir: {self.output_dir}")
     
@@ -170,8 +170,8 @@ class EverMemOSAdapter(BaseAdapter):
         console.print(f"\n{'='*60}", style="bold cyan")
         console.print(f"Stage 1: MemCell Extraction", style="bold cyan")
         console.print(f"{'='*60}", style="bold cyan")
-        
-        # 转换数据格式：评测框架 → EverMemOS
+
+        # 转换数据格式：评测框架 → Parallax
         raw_data_dict = {}
         for conv in conversations:
             conv_id = conv.conversation_id
@@ -576,17 +576,17 @@ class EverMemOSAdapter(BaseAdapter):
     def get_system_info(self) -> Dict[str, Any]:
         """返回系统信息"""
         return {
-            "name": "EverMemOS",
+            "name": "Parallax",
             "version": "1.0",
-            "description": "EverMemOS memory system with agentic retrieval",
-            "adapter": "Adapter connecting framework to EverMemOS implementation",
+            "description": "Parallax memory system with agentic retrieval",
+            "adapter": "Adapter connecting framework to Parallax implementation",
         }
     
     def _convert_config_to_experiment_config(self):
         """
         将评测框架的 config 转换为 ExperimentConfig 格式
         """
-        from evaluation.src.adapters.evermemos.config import ExperimentConfig
+        from evaluation.src.adapters.parallax.config import ExperimentConfig
         import os
         
         exp_config = ExperimentConfig()
@@ -626,9 +626,9 @@ class EverMemOSAdapter(BaseAdapter):
     
     def build_lazy_index(self, conversations: List[Conversation], output_dir: Any) -> Dict[str, Any]:
         """
-        构建 EverMemOS 的延迟加载索引元数据
-        
-        🔥 EverMemOS 特点：
+        构建 Parallax 的延迟加载索引元数据
+
+        🔥 Parallax 特点：
         - 本地索引（memcells, bm25, embeddings）
         - 延迟加载（只保存元数据，不加载实际索引文件）
         

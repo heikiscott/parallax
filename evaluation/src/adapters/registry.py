@@ -14,7 +14,7 @@ _ADAPTER_REGISTRY: Dict[str, Type[BaseAdapter]] = {}
 # 适配器模块映射（用于延迟加载）
 _ADAPTER_MODULES = {
     # 本地系统
-    "evermemos": "evaluation.src.adapters.evermemos_adapter",
+    "parallax": "evaluation.src.adapters.parallax_adapter",
     
     # 在线 API 系统
     "mem0": "evaluation.src.adapters.mem0_adapter",
@@ -32,10 +32,10 @@ _ADAPTER_MODULES = {
 def register_adapter(name: str):
     """
     注册适配器的装饰器
-    
+
     Usage:
-        @register_adapter("evermemos")
-        class EverMemOSAdapter(BaseAdapter):
+        @register_adapter("parallax")
+        class ParallaxAdapter(BaseAdapter):
             ...
     """
     def decorator(cls: Type[BaseAdapter]):

@@ -1,10 +1,10 @@
-# EverMemOS System Configuration
+# Parallax System Configuration
 
-name: "evermemos"
+name: "parallax"
 version: "1.0"
-description: "EverMemOS"
+description: "Parallax"
 
-adapter: "evermemos"
+adapter: "parallax"
 
 # LLM configuration
 llm:

@@ -1,4 +1,4 @@
-# EvermemOS Evaluation Framework
+# Parallax Evaluation Framework
 
 A unified, modular evaluation framework for benchmarking memory systems on standard datasets.
 
@@ -6,7 +6,7 @@ A unified, modular evaluation framework for benchmarking memory systems on stand
 
 ### Unified & Modular Framework
 - **One codebase for all**: No need to write separate code for each dataset or system
-- **Plug-and-play systems**: Support multiple memory systems (EvermemOS, mem0, memOS, memU, etc.)
+- **Plug-and-play systems**: Support multiple memory systems (Parallax, mem0, memOS, memU, etc.)
 - **Multiple benchmarks**: LoCoMo, LongMemEval, PersonaMem out of the box
 - **Consistent evaluation**: All systems evaluated with the same pipeline and metrics
 
@@ -35,7 +35,7 @@ evaluation/
 │   └── utils/          # Configuration, logging, I/O
 ├── config/
 │   ├── datasets/       # Dataset configurations (locomo.yaml, etc.)
-│   ├── systems/        # System configurations (evermemos.yaml, etc.)
+│   ├── systems/        # System configurations (parallax.yaml, etc.)
 │   └── prompts.yaml    # Prompt templates
 ├── data/               # Benchmark datasets
 └── results/            # Evaluation results and logs
@@ -57,7 +57,7 @@ Each stage saves its output and can be resumed independently.
 ### Prerequisites
 
 - Python 3.10+
-- EvermemOS environment configured (see main project's `env.template`)
+- Parallax environment configured (see main project's `env.template`)
 
 ### Data Preparation
 
@@ -94,7 +94,7 @@ The framework will automatically detect and convert non-LoCoMo formats on first 
 Install evaluation-specific dependencies:
 
 ```bash
-# For evaluating local systems (EvermemOS)
+# For evaluating local systems (Parallax)
 uv sync --group evaluation
 
 # For evaluating online API systems (mem0, memOS, memU, etc.)
@@ -103,11 +103,11 @@ uv sync --group evaluation-full
 
 ### Environment Configuration
 
-The evaluation framework reuses most environment variables from the main EvermemOS `.env` file:
+The evaluation framework reuses most environment variables from the main Parallax `.env` file:
 - `LLM_API_KEY`, `LLM_BASE_URL` (for answer generation)
 - `DEEPINFRA_API_KEY` (for embeddings/reranker)
 
-For testing EvermemOS, please first configure the whole .env file.
+For testing Parallax, please first configure the whole .env file.
 
 **Additional variables for online API systems** (add to `.env` if testing these systems):
 
@@ -131,7 +131,7 @@ Run a quick test with the mini dataset to verify everything works:
 cd /path/to/memsys-opensource
 
 # Run mini dataset (single conversation with limited questions)
-uv run python -m evaluation.cli --dataset locomo-mini --system evermemos
+uv run python -m evaluation.cli --dataset locomo-mini --system parallax
 
 # Or use the shorthand script
 python evaluation/run_locomo.py --mini
@@ -143,7 +143,7 @@ Test a specific conversation by index:
 
 ```bash
 # Test conversation at index 3
-uv run python -m evaluation.cli --dataset locomo --system evermemos --conv 3
+uv run python -m evaluation.cli --dataset locomo --system parallax --conv 3
 
 # Or use the shorthand script
 python evaluation/run_locomo.py --conv 3
@@ -154,8 +154,8 @@ python evaluation/run_locomo.py --conv 3
 Run the complete benchmark on all conversations:
 
 ```bash
-# Evaluate EvermemOS on LoCoMo (all 10 conversations)
-uv run python -m evaluation.cli --dataset locomo --system evermemos
+# Evaluate Parallax on LoCoMo (all 10 conversations)
+uv run python -m evaluation.cli --dataset locomo --system parallax
 
 # Or use the shorthand script
 python evaluation/run_locomo.py --all
@@ -168,18 +168,18 @@ uv run python -m evaluation.cli --dataset locomo --system mem0 --stages add
 uv run python -m evaluation.cli --dataset locomo --system mem0 --stages search answer evaluate
 
 # Evaluate on other datasets
-uv run python -m evaluation.cli --dataset longmemeval --system evermemos
-uv run python -m evaluation.cli --dataset personamem --system evermemos
+uv run python -m evaluation.cli --dataset longmemeval --system parallax
+uv run python -m evaluation.cli --dataset personamem --system parallax
 
 # Use --run-name to distinguish multiple runs (useful for A/B testing)
 # Results will be saved to: results/{dataset}-{system}-{run-name}/
-uv run python -m evaluation.cli --dataset locomo --system evermemos --run-name baseline
-uv run python -m evaluation.cli --dataset locomo --system evermemos --run-name experiment1
-uv run python -m evaluation.cli --dataset locomo --system evermemos --run-name 20241107
+uv run python -m evaluation.cli --dataset locomo --system parallax --run-name baseline
+uv run python -m evaluation.cli --dataset locomo --system parallax --run-name experiment1
+uv run python -m evaluation.cli --dataset locomo --system parallax --run-name 20241107
 
 # Resume from checkpoint if interrupted (automatic)
 # Just re-run the same command - it will detect and resume from checkpoint
-uv run python -m evaluation.cli --dataset locomo --system evermemos
+uv run python -m evaluation.cli --dataset locomo --system parallax
 
 ```
 
@@ -189,13 +189,13 @@ Results are saved to `evaluation/results/{dataset}-{system}[-{run-name}]/`:
 
 ```bash
 # View summary report
-cat evaluation/results/locomo-evermemos/report.txt
+cat evaluation/results/locomo-parallax/report.txt
 
 # View detailed evaluation results
-cat evaluation/results/locomo-evermemos/eval_results.json
+cat evaluation/results/locomo-parallax/eval_results.json
 
 # View pipeline execution log
-cat evaluation/results/locomo-evermemos/pipeline.log
+cat evaluation/results/locomo-parallax/pipeline.log
 ```
 
 **Result files:**
@@ -273,10 +273,10 @@ Skip completed stages to iterate faster:
 
 ```bash
 # Only run search stage (if add is already done)
-uv run python -m evaluation.cli --dataset locomo --system evermemos --stages search
+uv run python -m evaluation.cli --dataset locomo --system parallax --stages search
 
 # Run search, answer, and evaluate (skip add)
-uv run python -m evaluation.cli --dataset locomo --system evermemos \
+uv run python -m evaluation.cli --dataset locomo --system parallax \
     --stages search answer evaluate
 ```
 If you have already done search, and you want to do it again, please remove the "search" (and following stages from the completed_stages in the checkpoint_default.json file):
@@ -296,18 +296,18 @@ Modify system or dataset configurations:
 
 ```bash
 # Copy and edit configuration
-cp evaluation/config/systems/evermemos.yaml evaluation/config/systems/evermemos_custom.yaml
-# Edit evermemos_custom.yaml with your changes
+cp evaluation/config/systems/parallax.yaml evaluation/config/systems/parallax_custom.yaml
+# Edit parallax_custom.yaml with your changes
 
 # Run with custom config
-uv run python -m evaluation.cli --dataset locomo --system evermemos_custom
+uv run python -m evaluation.cli --dataset locomo --system parallax_custom
 ```
 
 
 ## 🔌 Supported Systems
 
 ### Local Systems
-- **evermemos** - EvermemOS with MemCell extraction and dual-mode retrieval
+- **parallax** - Parallax with MemCell extraction and dual-mode retrieval
 
 ### Online API Systems
 - **mem0** - Mem0 API
@@ -323,3 +323,4 @@ uv run python -m evaluation.cli --dataset locomo --system evermemos_custom
 ## 📄 License
 
 Same as the parent project.
+

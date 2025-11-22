@@ -58,7 +58,7 @@
 
 ### 场景类型
 
-EverMemOS 支持两种核心对话场景：
+Parallax 支持两种核心对话场景：
 
 - **🤖 Company 场景** (`scene: "company"`)
   - 人机助手对话
@@ -89,7 +89,7 @@ EverMemOS 支持两种核心对话场景：
 - **Dylan** - 后端工程师
 - **Emily** - 前端工程师
 
-💡 更多详情推荐使用 EverMemOS 探索！
+💡 更多详情推荐使用 Parallax 探索！
 
 ### 助手场景 (assistant_chat.json)
 
@@ -101,7 +101,7 @@ EverMemOS 支持两种核心对话场景：
 - 饮食偏好记录
 - 个人画像构建
 
-💡 推荐使用 EverMemOS 探索我们构建的个人对话数据，深入了解记忆系统的工作原理！
+💡 推荐使用 Parallax 探索我们构建的个人对话数据，深入了解记忆系统的工作原理！
 
 ## 🔗 相关文档
 

@@ -21,7 +21,7 @@ Design goals:
 Usage example:
 
     ui = CLIUI()  # auto width, color enabled unless NO_COLOR set
-    ui.banner("🧠 EverMem 记忆对话助手", subtitle="Memory-Enhanced Chat")
+    ui.banner("🧠 Parallax 记忆对话助手", subtitle="Memory-Enhanced Chat")
     ui.section_heading("📊 可用的群组对话")
     ui.table(headers=["#", "Group", "Name", "Count"], rows=[["1", "g001", "Team", "12"]])
 

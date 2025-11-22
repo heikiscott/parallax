@@ -18,7 +18,7 @@
 Add the following header to the top of each significant source file (`.py`, `.js`, etc.):
 
 ```python
-# Copyright 2025 EverMem AI
+# Copyright 2025 Parallax AI
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -38,7 +38,7 @@ Add the following header to the top of each significant source file (`.py`, `.js
 ```bash
 # For Python files
 find src -name "*.py" -type f -exec sed -i '1i\
-# Copyright 2025 EverMem AI\n\
+# Copyright 2025 Parallax AI\n\
 #\n\
 # Licensed under the Apache License, Version 2.0 (the "License");\n\
 # you may not use this file except in compliance with the License.\n\

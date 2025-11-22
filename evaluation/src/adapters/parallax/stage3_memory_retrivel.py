@@ -16,14 +16,14 @@ from tqdm import tqdm
 
 
 
-from evaluation.src.adapters.evermemos.config import ExperimentConfig
+from evaluation.src.adapters.parallax.config import ExperimentConfig
 
-# from evaluation.src.adapters.evermemos.tools.embedding_provider import EmbeddingProvider
-# from evaluation.src.adapters.evermemos.tools.reranker_provider import RerankerProvider
+# from evaluation.src.adapters.parallax.tools.embedding_provider import EmbeddingProvider
+# from evaluation.src.adapters.parallax.tools.reranker_provider import RerankerProvider
 from agentic_layer import vectorize_service
 from agentic_layer import rerank_service
 
-from evaluation.src.adapters.evermemos.tools import agentic_utils
+from evaluation.src.adapters.parallax.tools import agentic_utils
 
 # 新增：使用 Memory Layer 的 LLMProvider
 from memory_layer.llm.llm_provider import LLMProvider

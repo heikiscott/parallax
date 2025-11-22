@@ -14,7 +14,7 @@ import asyncio
 
 
 
-from evaluation.src.adapters.evermemos.config import ExperimentConfig
+from evaluation.src.adapters.parallax.config import ExperimentConfig
 from agentic_layer import vectorize_service
 
 

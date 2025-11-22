@@ -1,6 +1,6 @@
 import os
 
-PROJECT_NAME = "EverMem"
+PROJECT_NAME = "Parallax"
 PROJECT_VERSION = "1.0.0"
 
 

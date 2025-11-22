@@ -1,8 +1,8 @@
 <div align="center">
 
 <h1>
-  <img src="figs/logo.png" alt="EverMemOS Logo" height="40" style="vertical-align: middle; margin-right: 12px;"/>
-  EverMemOS
+  <img src="figs/logo.png" alt="Parallax Logo" height="40" style="vertical-align: middle; margin-right: 12px;"/>
+  Parallax
 </h1>
 
 <p>
@@ -22,7 +22,7 @@
   <img alt="Elasticsearch" src="https://img.shields.io/badge/Elasticsearch-8.x-0084FF?style=flat-square&logo=elasticsearch&logoColor=white" />
   <img alt="Milvus" src="https://img.shields.io/badge/Milvus-2.4+-00A3E0?style=flat-square" />
   <img alt="Redis" src="https://img.shields.io/badge/Redis-7.x-26A69A?style=flat-square&logo=redis&logoColor=white" />
-   <a href="https://github.com/EverMind-AI/EverMemOS/releases">
+   <a href="https://github.com/heikiscott/parallax/releases">
     <img alt="Release" src="https://img.shields.io/badge/release-v1.0.0-4A90E2?style=flat-square" />
   </a>
 </p>
@@ -37,9 +37,9 @@
 
 > 💬 **不止记忆，更是远见。**
 
-**EverMemOS** 是一个着眼未来的**智能系统**。  
-传统的 AI 记忆仅是“回顾过去”的数据库，而 EverMemOS 让 AI 不仅能“记住”发生了什么，更能“理解”这些记忆的意义，并据此指导当下的行动与决策。在EverMemOS的演示工具中，你可以看到EverMemOS如何从你的历史信息中提取重要信息，然后在对话时记住你的**喜好、习惯和历史**，就像一个真正认识你的**朋友**。
-在 **LoCoMo** 基准测试中，我们基于 EverMemOS 的方法在 **LLM-Judge** 评测下达到了  **92.3% 的推理准确率**，优于我们测试的同类方法。
+**Parallax** 是一个着眼未来的**智能系统**。  
+传统的 AI 记忆仅是“回顾过去”的数据库，而 Parallax 让 AI 不仅能“记住”发生了什么，更能“理解”这些记忆的意义，并据此指导当下的行动与决策。在Parallax的演示工具中，你可以看到Parallax如何从你的历史信息中提取重要信息，然后在对话时记住你的**喜好、习惯和历史**，就像一个真正认识你的**朋友**。
+在 **LoCoMo** 基准测试中，我们基于 Parallax 的方法在 **LLM-Judge** 评测下达到了  **92.3% 的推理准确率**，优于我们测试的同类方法。
 
 ---
 
@@ -49,7 +49,7 @@
 <tr>
 <td width="100%" style="border: none;">
 
-**[2025-11-02] 🎉 🎉 🎉 EverMemOS v1.0.0 版本发布！**
+**[2025-11-02] 🎉 🎉 🎉 Parallax v1.0.0 版本发布！**
 
 - ✨  **稳定版本**：AI 记忆系统正式开源  
 - 📚  **文档完善**：提供快速开始指南与完整 API 说明 
@@ -138,13 +138,13 @@
 
 ## 📖 项目介绍
 
-**EverMemOS** 是一个开源项目，旨在为对话式 AI 智能体提供长期记忆能力。它从对话中提取、构建和检索信息，使智能体能够维持上下文、回忆过去的互动，并逐步建立用户画像。这使得对话变得更具个性化、连贯性和智能。
+**Parallax** 是一个开源项目，旨在为对话式 AI 智能体提供长期记忆能力。它从对话中提取、构建和检索信息，使智能体能够维持上下文、回忆过去的互动，并逐步建立用户画像。这使得对话变得更具个性化、连贯性和智能。
 
 > 📄 **论文即将发布** - 我们的技术论文正在准备中，敬请期待！
 
 ## 🎯 系统框架
 
-EverMemOS 围绕两条主线运行：**记忆构筑**与**记忆感知**。它们组成认知闭环，使系统持续吸收、沉淀并运用过往信息，让每次回应立足真实上下文与长期记忆。
+Parallax 围绕两条主线运行：**记忆构筑**与**记忆感知**。它们组成认知闭环，使系统持续吸收、沉淀并运用过往信息，让每次回应立足真实上下文与长期记忆。
 
 <p align="center">
   <img src="figs/overview.png" alt="Overview" />
@@ -249,8 +249,8 @@ memsys-opensource/
 
 ```bash
 # 1. 克隆项目
-git clone https://github.com/EverMind-AI/EverMemOS.git
-cd EverMemOS
+git clone https://github.com/heikiscott/parallax.git
+cd Parallax
 
 # 2. 启动 Docker 服务
 docker-compose up -d
@@ -292,13 +292,13 @@ cp env.template .env
 
 #### 🎯 运行演示：记忆提取和交互式聊天
 
-演示部分展示了 EverMemOS 的端到端功能。
+演示部分展示了 Parallax 的端到端功能。
 
 ---
 
 **🚀 快速开始：简单演示（推荐）** ⭐
 
-体验 EverMemOS 最快的方式！只需 2 步就能看到记忆存储和检索的完整流程：
+体验 Parallax 最快的方式！只需 2 步就能看到记忆存储和检索的完整流程：
 
 ```bash
 # 步骤 1：启动 API 服务器（终端 1）
@@ -378,50 +378,50 @@ uv run python src/bootstrap.py demo/chat_with_memory.py
 ```bash
 # 使用有限数据测试以验证一切正常
 # 默认：第一个对话，前 10 条消息，前 3 个问题
-uv run python -m evaluation.cli --dataset locomo --system evermemos --smoke
+uv run python -m evaluation.cli --dataset locomo --system parallax --smoke
 
 # 自定义冒烟测试：20 条消息，5 个问题
-uv run python -m evaluation.cli --dataset locomo --system evermemos \
+uv run python -m evaluation.cli --dataset locomo --system parallax \
     --smoke --smoke-messages 20 --smoke-questions 5
 
 # 测试不同数据集
-uv run python -m evaluation.cli --dataset longmemeval --system evermemos --smoke
-uv run python -m evaluation.cli --dataset personamem --system evermemos --smoke
+uv run python -m evaluation.cli --dataset longmemeval --system parallax --smoke
+uv run python -m evaluation.cli --dataset personamem --system parallax --smoke
 
 # 测试特定阶段（例如只测试搜索和回答阶段）
-uv run python -m evaluation.cli --dataset locomo --system evermemos \
+uv run python -m evaluation.cli --dataset locomo --system parallax \
     --smoke --stages search answer
 
 # 快速查看冒烟测试结果
-cat evaluation/results/locomo-evermemos-smoke/report.txt
+cat evaluation/results/locomo-parallax-smoke/report.txt
 ```
 
 **完整评估**：
 
 ```bash
-# 在 LoCoMo 基准上评估 EvermemOS
-uv run python -m evaluation.cli --dataset locomo --system evermemos
+# 在 LoCoMo 基准上评估 parallax
+uv run python -m evaluation.cli --dataset locomo --system parallax
 
 # 在其他数据集上评估
-uv run python -m evaluation.cli --dataset longmemeval --system evermemos
-uv run python -m evaluation.cli --dataset personamem --system evermemos
+uv run python -m evaluation.cli --dataset longmemeval --system parallax
+uv run python -m evaluation.cli --dataset personamem --system parallax
 
 # 使用 --run-name 区分多次运行（用于 A/B 测试）
-uv run python -m evaluation.cli --dataset locomo --system evermemos --run-name baseline
-uv run python -m evaluation.cli --dataset locomo --system evermemos --run-name experiment1
+uv run python -m evaluation.cli --dataset locomo --system parallax --run-name baseline
+uv run python -m evaluation.cli --dataset locomo --system parallax --run-name experiment1
 
 # 如果中断则从检查点恢复（自动）
 # 只需重新运行相同命令 - 它会检测并从检查点恢复
-uv run python -m evaluation.cli --dataset locomo --system evermemos
+uv run python -m evaluation.cli --dataset locomo --system parallax
 ```
 
 **查看结果**：
 
 ```bash
 # 结果保存到 evaluation/results/{dataset}-{system}[-{run-name}]/
-cat evaluation/results/locomo-evermemos/report.txt          # 摘要指标
-cat evaluation/results/locomo-evermemos/eval_results.json   # 每个问题的详细结果
-cat evaluation/results/locomo-evermemos/pipeline.log        # 执行日志
+cat evaluation/results/locomo-parallax/report.txt          # 摘要指标
+cat evaluation/results/locomo-parallax/eval_results.json   # 每个问题的详细结果
+cat evaluation/results/locomo-parallax/pipeline.log        # 执行日志
 ```
 
 评估流程包含 4 个阶段（添加 → 搜索 → 回答 → 评估），支持自动检查点和恢复。
@@ -485,7 +485,7 @@ curl -X POST http://localhost:8001/api/v3/agentic/memorize \
 
 **🔍 检索记忆**
 
-EverMemOS 提供两种检索模式：**轻量级检索**（快速）和 **Agentic 检索**（智能）。
+Parallax 提供两种检索模式：**轻量级检索**（快速）和 **Agentic 检索**（智能）。
 
 **轻量级检索**
 
@@ -572,7 +572,7 @@ curl -X POST http://localhost:8001/api/v3/agentic/retrieve_agentic \
 
 #### 📦 批量存储群聊记忆
 
-EverMemOS 支持标准化的群聊数据格式（[GroupChatFormat](data_format/group_chat/group_chat_format.md)），可以使用脚本批量存储：
+Parallax 支持标准化的群聊数据格式（[GroupChatFormat](data_format/group_chat/group_chat_format.md)），可以使用脚本批量存储：
 
 ```bash
 # 使用脚本批量存储（中文数据）
@@ -654,11 +654,11 @@ uv run python src/bootstrap.py src/run_memorize.py \
 ### 演示与评估
 - [📖 演示指南](demo/README_zh.md) - 交互式示例和记忆提取演示
 - [📊 数据指南](data/README_zh.md) - 示例对话数据和格式规范
-- [📊 评估指南](evaluation/README_zh.md) - 在标准基准测试上测试基于EverMemOS的方法
+- [📊 评估指南](evaluation/README_zh.md) - 在标准基准测试上测试基于Parallax的方法
 
 ## 🏗️ 架构设计
 
-EverMemOS 采用分层架构设计，主要包括：
+Parallax 采用分层架构设计，主要包括：
 
 - **智能体层（Agentic Layer）**: 记忆提取、向量化、检索和重排序
 - **记忆层（Memory Layer）**: 记忆单元提取、情景记忆管理
@@ -690,11 +690,11 @@ EverMemOS 采用分层架构设计，主要包括：
 ### 联系方式
 
 <p>
-  <a href="https://github.com/EverMind-AI/EverMemOS/issues"><img alt="GitHub Issues" src="https://img.shields.io/badge/GitHub-Issues-blue?style=flat-square&logo=github"></a>
-  <a href="https://github.com/EverMind-AI/EverMemOS/discussions"><img alt="GitHub Discussions" src="https://img.shields.io/badge/GitHub-Discussions-blue?style=flat-square&logo=github"></a>
-  <a href="mailto:evermind@shanda.com"><img alt="Email" src="https://img.shields.io/badge/Email-联系我们-blue?style=flat-square&logo=gmail"></a>
-  <a href="https://www.reddit.com/r/EverMindAI/"><img alt="Reddit" src="https://img.shields.io/badge/Reddit-r/EverMindAI-orange?style=flat-square&logo=reddit"></a>
-  <a href="https://x.com/EverMindAI"><img alt="X" src="https://img.shields.io/badge/X-@EverMindAI-black?style=flat-square&logo=x"></a>
+  <a href="https://github.com/heikiscott/parallax/issues"><img alt="GitHub Issues" src="https://img.shields.io/badge/GitHub-Issues-blue?style=flat-square&logo=github"></a>
+  <a href="https://github.com/heikiscott/parallax/discussions"><img alt="GitHub Discussions" src="https://img.shields.io/badge/GitHub-Discussions-blue?style=flat-square&logo=github"></a>
+  <a href="mailto:heikiscott@gmail.com"><img alt="Email" src="https://img.shields.io/badge/Email-联系我们-blue?style=flat-square&logo=gmail"></a>
+  <a href="https://www.reddit.com/r/parallax/"><img alt="Reddit" src="https://img.shields.io/badge/Reddit-r/parallax-orange?style=flat-square&logo=reddit"></a>
+  <a href="https://x.com/parallax"><img alt="X" src="https://img.shields.io/badge/X-@parallax-black?style=flat-square&logo=x"></a>
 </p>
 
 ### 贡献者
@@ -708,7 +708,7 @@ EverMemOS 采用分层架构设计，主要包括：
 
 ## 📖 引用
 
-如果您在研究中使用了 EverMemOS，请引用我们的论文（即将发布）：
+如果您在研究中使用了 Parallax，请引用我们的论文（即将发布）：
 
 ```
 Coming soon
@@ -743,6 +743,8 @@ Coming soon
 
 **如果这个项目对你有帮助，请给我们一个 ⭐️**
 
-Made with ❤️ by the EverMemOS Team
+Made with ❤️ by the Parallax Team
 
 </div>
+
+

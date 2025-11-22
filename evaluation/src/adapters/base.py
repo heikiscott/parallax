@@ -30,7 +30,7 @@ class BaseAdapter(ABC):
         摄入对话数据并构建索引（Add 阶段）
         
         这个方法封装了系统特定的数据摄入和索引构建逻辑：
-        - 对于 EverMemOS: MemCell 提取 + BM25/Embedding 索引构建
+        - 对于 Parallax: MemCell 提取 + BM25/Embedding 索引构建
         - 对于 Mem0: 直接存储到向量数据库
         - 对于其他系统: 各自的实现方式
         
@@ -100,7 +100,7 @@ class BaseAdapter(ABC):
         构建延迟加载的索引元数据
         
         🔥 默认实现：返回 None（在线 API 系统不需要索引）
-        🔥 本地系统（如 EverMemOS）应该重写此方法
+        🔥 本地系统（如 Parallax）应该重写此方法
         
         Args:
             conversations: 对话列表

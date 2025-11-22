@@ -1,8 +1,8 @@
 <div align="center">
 
 <h1>
-  <img src="figs/logo.png" alt="EverMemOS Logo" height="40" style="vertical-align: middle; margin-right: 12px;"/>
-  EverMemOS
+  <img src="figs/logo.png" alt="Parallax Logo" height="40" style="vertical-align: middle; margin-right: 12px;"/>
+  Parallax
 </h1>
 
 <p>
@@ -22,7 +22,7 @@
   <img alt="Elasticsearch" src="https://img.shields.io/badge/Elasticsearch-8.x-0084FF?style=flat-square&logo=elasticsearch&logoColor=white" />
   <img alt="Milvus" src="https://img.shields.io/badge/Milvus-2.4+-00A3E0?style=flat-square" />
   <img alt="Redis" src="https://img.shields.io/badge/Redis-7.x-26A69A?style=flat-square&logo=redis&logoColor=white" />
-   <a href="https://github.com/EverMind-AI/EverMemOS/releases">
+   <a href="https://github.com/heikiscott/parallax/releases">
     <img alt="Release" src="https://img.shields.io/badge/release-v1.0.0-4A90E2?style=flat-square" />
   </a>
 </p>
@@ -37,9 +37,9 @@
 
 > 💬 **More than memory — it's foresight.**
 
-**EverMemOS** is a forward-thinking **intelligent system**.  
-While traditional AI memory serves merely as a "look-back" database, EverMemOS enables AI not only to "remember" what happened, but also to "understand" the meaning behind these memories and use them to guide current actions and decisions. In the EverMemOS demo tools, you can see how EverMemOS extracts important information from your history, and then remembers your preferences, habits, and history during conversations, just like a **friend** who truly knows you.
-On the **LoCoMo** benchmark, our approach built upon EverMemOS achieved a reasoning accuracy of **92.3%** (evaluated by LLM-Judge), outperforming comparable methods in our evaluation.
+**Parallax** is a forward-thinking **intelligent system**.  
+While traditional AI memory serves merely as a "look-back" database, Parallax enables AI not only to "remember" what happened, but also to "understand" the meaning behind these memories and use them to guide current actions and decisions. In the Parallax demo tools, you can see how Parallax extracts important information from your history, and then remembers your preferences, habits, and history during conversations, just like a **friend** who truly knows you.
+On the **LoCoMo** benchmark, our approach built upon Parallax achieved a reasoning accuracy of **92.3%** (evaluated by LLM-Judge), outperforming comparable methods in our evaluation.
 
 ---
 
@@ -49,7 +49,7 @@ On the **LoCoMo** benchmark, our approach built upon EverMemOS achieved a reason
 <tr>
 <td width="100%" style="border: none;">
 
-**[2025-11-02] 🎉 🎉 🎉 EverMemOS v1.0.0 Released!**
+**[2025-11-02] 🎉 🎉 🎉 Parallax v1.0.0 Released!**
 
 - ✨ **Stable Version**: AI Memory System officially open sourced  
 - 📚 **Complete Documentation**: Quick start guide and comprehensive API documentation  
@@ -138,13 +138,13 @@ Build AI memory that never forgets, making every conversation built on previous 
 
 ## 📖 Project Introduction
 
-**EverMemOS** is an open-source project designed to provide long-term memory capabilities to conversational AI agents. It extracts, structures, and retrieves information from conversations, enabling agents to maintain context, recall past interactions, and progressively build user profiles. This results in more personalized, coherent, and intelligent conversations.
+**Parallax** is an open-source project designed to provide long-term memory capabilities to conversational AI agents. It extracts, structures, and retrieves information from conversations, enabling agents to maintain context, recall past interactions, and progressively build user profiles. This results in more personalized, coherent, and intelligent conversations.
 
 > 📄 **Paper Coming Soon** - Our technical paper is in preparation. Stay tuned!
 
 ## 🎯 System Framework
 
-EverMemOS operates along two main tracks: **memory construction** and **memory perception**. Together they form a cognitive loop that continuously absorbs, consolidates, and applies past information, so every response is grounded in real context and long-term memory.
+Parallax operates along two main tracks: **memory construction** and **memory perception**. Together they form a cognitive loop that continuously absorbs, consolidates, and applies past information, so every response is grounded in real context and long-term memory.
 
 <p align="center">
   <img src="figs/overview.png" alt="Overview" />
@@ -248,8 +248,8 @@ Use Docker Compose to start all dependency services (MongoDB, Elasticsearch, Mil
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/EverMind-AI/EverMemOS.git
-cd EverMemOS
+git clone https://github.com/heikiscott/parallax.git
+cd Parallax
 
 # 2. Start Docker services
 docker-compose up -d
@@ -289,19 +289,19 @@ cp env.template .env
 
 ### How to Use
 
-EverMemOS offers multiple usage methods. Choose the one that best suits your needs:
+Parallax offers multiple usage methods. Choose the one that best suits your needs:
 
 ---
 
 #### 🎯 Run Demo: Memory Extraction and Interactive Chat
 
-The demo showcases the end-to-end functionality of EverMemOS.
+The demo showcases the end-to-end functionality of Parallax.
 
 ---
 
 **🚀 Quick Start: Simple Demo (Recommended)** ⭐
 
-The fastest way to experience EverMemOS! Just 2 steps to see memory storage and retrieval in action:
+The fastest way to experience Parallax! Just 2 steps to see memory storage and retrieval in action:
 
 ```bash
 # Step 1: Start the API server (in terminal 1)
@@ -381,50 +381,50 @@ The evaluation framework provides a unified, modular way to benchmark memory sys
 ```bash
 # Test with limited data to verify everything works
 # Default: first conversation, first 10 messages, first 3 questions
-uv run python -m evaluation.cli --dataset locomo --system evermemos --smoke
+uv run python -m evaluation.cli --dataset locomo --system parallax --smoke
 
 # Custom smoke test: 20 messages, 5 questions
-uv run python -m evaluation.cli --dataset locomo --system evermemos \
+uv run python -m evaluation.cli --dataset locomo --system parallax \
     --smoke --smoke-messages 20 --smoke-questions 5
 
 # Test different datasets
-uv run python -m evaluation.cli --dataset longmemeval --system evermemos --smoke
-uv run python -m evaluation.cli --dataset personamem --system evermemos --smoke
+uv run python -m evaluation.cli --dataset longmemeval --system parallax --smoke
+uv run python -m evaluation.cli --dataset personamem --system parallax --smoke
 
 # Test specific stages (e.g., only search and answer)
-uv run python -m evaluation.cli --dataset locomo --system evermemos \
+uv run python -m evaluation.cli --dataset locomo --system parallax \
     --smoke --stages search answer
 
 # View smoke test results quickly
-cat evaluation/results/locomo-evermemos-smoke/report.txt
+cat evaluation/results/locomo-parallax-smoke/report.txt
 ```
 
 **Full Evaluation**:
 
 ```bash
-# Evaluate EvermemOS on LoCoMo benchmark
-uv run python -m evaluation.cli --dataset locomo --system evermemos
+# Evaluate parallax on LoCoMo benchmark
+uv run python -m evaluation.cli --dataset locomo --system parallax
 
 # Evaluate on other datasets
-uv run python -m evaluation.cli --dataset longmemeval --system evermemos
-uv run python -m evaluation.cli --dataset personamem --system evermemos
+uv run python -m evaluation.cli --dataset longmemeval --system parallax
+uv run python -m evaluation.cli --dataset personamem --system parallax
 
 # Use --run-name to distinguish multiple runs (useful for A/B testing)
-uv run python -m evaluation.cli --dataset locomo --system evermemos --run-name baseline
-uv run python -m evaluation.cli --dataset locomo --system evermemos --run-name experiment1
+uv run python -m evaluation.cli --dataset locomo --system parallax --run-name baseline
+uv run python -m evaluation.cli --dataset locomo --system parallax --run-name experiment1
 
 # Resume from checkpoint if interrupted (automatic)
 # Just re-run the same command - it will detect and resume from checkpoint
-uv run python -m evaluation.cli --dataset locomo --system evermemos
+uv run python -m evaluation.cli --dataset locomo --system parallax
 ```
 
 **View Results**:
 
 ```bash
 # Results are saved to evaluation/results/{dataset}-{system}[-{run-name}]/
-cat evaluation/results/locomo-evermemos/report.txt          # Summary metrics
-cat evaluation/results/locomo-evermemos/eval_results.json   # Detailed per-question results
-cat evaluation/results/locomo-evermemos/pipeline.log        # Execution logs
+cat evaluation/results/locomo-parallax/report.txt          # Summary metrics
+cat evaluation/results/locomo-parallax/eval_results.json   # Detailed per-question results
+cat evaluation/results/locomo-parallax/pipeline.log        # Execution logs
 ```
 
 The evaluation pipeline consists of 4 stages (add → search → answer → evaluate) with automatic checkpointing and resume support.
@@ -490,7 +490,7 @@ For more API details, please refer to [Agentic V3 API Documentation](docs/api_do
 
 **🔍 Retrieve Memories**
 
-EverMemOS provides two retrieval modes: **Lightweight** (fast) and **Agentic** (intelligent).
+Parallax provides two retrieval modes: **Lightweight** (fast) and **Agentic** (intelligent).
 
 **Lightweight Retrieval**
 
@@ -577,7 +577,7 @@ curl -X POST http://localhost:8001/api/v3/agentic/retrieve_agentic \
 
 #### 📦 Batch Store Group Chat Memory
 
-EverMemOS supports a standardized group chat data format ([GroupChatFormat](data_format/group_chat/group_chat_format.md)). You can use scripts for batch storage:
+Parallax supports a standardized group chat data format ([GroupChatFormat](data_format/group_chat/group_chat_format.md)). You can use scripts for batch storage:
 
 ```bash
 # Use script for batch storage (Chinese data)
@@ -658,11 +658,11 @@ For detailed installation, configuration, and usage instructions, please refer t
 ### Demos & Evaluation
 - [📖 Demo Guide](demo/README.md) - Interactive examples and memory extraction demos
 - [📊 Data Guide](data/README.md) - Sample conversation data and format specifications
-- [📊 Evaluation Guide](evaluation/README.md) - Testing EverMemOS-based methods on standard benchmarks
+- [📊 Evaluation Guide](evaluation/README.md) - Testing Parallax-based methods on standard benchmarks
 
 ## 🏗️ Architecture Design
 
-EverMemOS adopts a layered architecture design, mainly including:
+Parallax adopts a layered architecture design, mainly including:
 
 - **Agentic Layer**: Memory extraction, vectorization, retrieval, and reranking
 - **Memory Layer**: MemCell extraction, episodic memory management
@@ -698,11 +698,11 @@ We are building a vibrant open-source community!
 ### Contact
 
 <p>
-  <a href="https://github.com/EverMind-AI/EverMemOS/issues"><img alt="GitHub Issues" src="https://img.shields.io/badge/GitHub-Issues-blue?style=flat-square&logo=github"></a>
-  <a href="https://github.com/EverMind-AI/EverMemOS/discussions"><img alt="GitHub Discussions" src="https://img.shields.io/badge/GitHub-Discussions-blue?style=flat-square&logo=github"></a>
-  <a href="mailto:evermind@shanda.com"><img alt="Email" src="https://img.shields.io/badge/Email-Contact_Us-blue?style=flat-square&logo=gmail"></a>
-  <a href="https://www.reddit.com/r/EverMindAI/"><img alt="Reddit" src="https://img.shields.io/badge/Reddit-r/EverMindAI-orange?style=flat-square&logo=reddit"></a>
-  <a href="https://x.com/EverMindAI"><img alt="X" src="https://img.shields.io/badge/X-@EverMindAI-black?style=flat-square&logo=x"></a>
+  <a href="https://github.com/heikiscott/parallax/issues"><img alt="GitHub Issues" src="https://img.shields.io/badge/GitHub-Issues-blue?style=flat-square&logo=github"></a>
+  <a href="https://github.com/heikiscott/parallax/discussions"><img alt="GitHub Discussions" src="https://img.shields.io/badge/GitHub-Discussions-blue?style=flat-square&logo=github"></a>
+  <a href="mailto:heikiscott@gmail.com"><img alt="Email" src="https://img.shields.io/badge/Email-Contact_Us-blue?style=flat-square&logo=gmail"></a>
+  <a href="https://www.reddit.com/r/parallax/"><img alt="Reddit" src="https://img.shields.io/badge/Reddit-r/parallax-orange?style=flat-square&logo=reddit"></a>
+  <a href="https://x.com/parallax"><img alt="X" src="https://img.shields.io/badge/X-@parallax-black?style=flat-square&logo=x"></a>
 </p>
 
 ### Contributors
@@ -716,7 +716,7 @@ Thanks to all the developers who have contributed to this project!
 
 ## 📖 Citation
 
-If you use EverMemOS in your research, please cite our paper (coming soon):
+If you use Parallax in your research, please cite our paper (coming soon):
 
 ```
 Coming soon
@@ -751,6 +751,9 @@ Thanks to the following projects and communities for their inspiration and suppo
 
 **If this project helps you, please give us a ⭐️**
 
-Made with ❤️ by the EverMemOS Team
+Made with ❤️ by the Parallax Team
 
 </div>
+
+
+

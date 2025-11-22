@@ -2,7 +2,7 @@
 
 ## 📋 Overview
 
-This document summarizes the changes made to migrate EverMemOS from MIT License to Apache License 2.0.
+This document summarizes the changes made to migrate Parallax from MIT License to Apache License 2.0.
 
 **Date**: October 28, 2025  
 **Previous License**: MIT License  
@@ -26,7 +26,7 @@ This document summarizes the changes made to migrate EverMemOS from MIT License 
 
 #### LICENSE
 - ✅ Replaced MIT License text with full Apache License 2.0 text
-- ✅ Copyright holder: EverMem AI
+- ✅ Copyright holder: Parallax AI
 - ✅ Copyright year: 2025
 
 #### NOTICE (New)
@@ -114,5 +114,5 @@ If you have questions about this license change, please:
 
 **Thank you for your understanding and support!**
 
-*This change helps ensure the long-term sustainability and legal clarity of the EverMemOS project.*
+*This change helps ensure the long-term sustainability and legal clarity of the Parallax project.*
 

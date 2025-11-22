@@ -50,7 +50,7 @@ from memory_layer.profile_manager import (
     InMemoryProfileStorage,
 )
 
-from evaluation.src.adapters.evermemos.config import ExperimentConfig
+from evaluation.src.adapters.parallax.config import ExperimentConfig
 from datetime import datetime, timedelta
 from pathlib import Path
 

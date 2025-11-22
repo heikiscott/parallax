@@ -70,7 +70,7 @@ def run_evaluation(dataset: str, output_dir: Path, conv_id: int = None):
     cmd = [
         "uv", "run", "python", "-m", "evaluation.cli",
         "--dataset", dataset,
-        "--system", "evermemos",
+        "--system", "parallax",
         "--output-dir", str(output_dir)
     ]
 

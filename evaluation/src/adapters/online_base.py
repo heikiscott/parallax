@@ -30,7 +30,7 @@ class OnlineAPIAdapter(BaseAdapter):
     
     提供通用功能：
     1. LLM Provider 初始化
-    2. Answer 生成（复用 EverMemOS 的实现）
+    2. Answer 生成（复用 Parallax 的实现）
     3. 标准格式转换辅助方法
     
     子类只需实现：
