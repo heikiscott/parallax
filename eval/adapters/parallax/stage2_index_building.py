@@ -192,7 +192,7 @@ async def build_emb_index(config: ExperimentConfig, data_dir: Path, emb_save_dir
     """
     # 🔥 优化1：保守的批次大小（避免超时）
     BATCH_SIZE = 256  # 使用较大批次（单次 API 调用处理更多，减少请求数）
-    MAX_CONCURRENT_BATCHES = 5  # 🔥 严格控制并发数（与 Semaphore(5) 匹配）
+    MAX_CONCURRENT_BATCHES = int(os.getenv('EVAL_INDEXING_MAX_CONCURRENT', '5'))  # 🔥 严格控制并发数
     
     import time  # 用于性能统计
 

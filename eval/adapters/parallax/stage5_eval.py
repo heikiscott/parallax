@@ -1,7 +1,7 @@
 ﻿import asyncio
 import json
 import logging
-
+import os
 import time
 from pathlib import Path
 
@@ -155,7 +155,7 @@ async def main():
     config = ExperimentConfig()
     version = config.experiment_name
     num_runs = 3
-    max_workers = 10
+    max_workers = int(os.getenv('EVAL_JUDGMENT_MAX_CONCURRENT', '5'))
 
     # 🔥 简化输出
     print(f"\n{'='*60}")

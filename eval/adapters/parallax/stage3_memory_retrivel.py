@@ -1223,8 +1223,8 @@ async def main():
             docs = index_data["docs"]
 
         # Parallelize per-question retrieval with bounded concurrency
-        # 🔥 增加并发数：Agentic 检索时也使用更高并发（10 → 20）
-        max_concurrent = 20 if config.use_agentic_retrieval else 128
+        # 🔥 并发数从环境变量读取，避免 API 限流
+        max_concurrent = int(os.getenv('EVAL_RETRIEVAL_MAX_CONCURRENT', '5'))
         sem = asyncio.Semaphore(max_concurrent)
         
         if config.use_agentic_retrieval:

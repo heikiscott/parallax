@@ -31,13 +31,6 @@ if str(src_path) not in sys.path:
 from utils.load_env import setup_environment
 setup_environment(load_env_file_name=".env", check_env_var="MONGODB_HOST")
 
-# Debug: Print LLM_API_KEY to verify .env loading
-llm_api_key = os.getenv("LLM_API_KEY", "")
-if llm_api_key:
-    print(f"🔑 LLM_API_KEY loaded: {llm_api_key[:20]}... (len={len(llm_api_key)})")
-else:
-    print(f"⚠️  LLM_API_KEY not found in environment!")
-
 # ===== 现在可以安全地导入 Parallax 组件 =====
 from eval.core.loaders import load_dataset
 from eval.core.pipeline import Pipeline

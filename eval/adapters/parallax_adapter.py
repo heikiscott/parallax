@@ -6,6 +6,7 @@ Parallax Adapter
 import asyncio
 import json
 import logging
+import os
 import pickle
 import time
 from pathlib import Path
@@ -90,6 +91,19 @@ class ParallaxAdapter(BaseAdapter):
         logger.info(f"Parallax Adapter initialized")
         logger.info(f"LLM Model: {llm_config.get('model')}")
         logger.info(f"Output Dir: {self.output_dir}")
+
+        # Debug: Print environment configuration
+        llm_api_key = os.getenv("LLM_API_KEY", "")
+        if llm_api_key:
+            logger.debug(f"🔑 LLM_API_KEY loaded: {llm_api_key[:20]}... (len={len(llm_api_key)})")
+        else:
+            logger.debug(f"⚠️  LLM_API_KEY not found in environment!")
+
+        logger.debug(f"Concurrency Config - Extraction: {os.getenv('EVAL_EXTRACTION_MAX_CONCURRENT', '5')}")
+        logger.debug(f"Concurrency Config - Indexing: {os.getenv('EVAL_INDEXING_MAX_CONCURRENT', '5')}")
+        logger.debug(f"Concurrency Config - Retrieval: {os.getenv('EVAL_RETRIEVAL_MAX_CONCURRENT', '5')}")
+        logger.debug(f"Concurrency Config - Response: {os.getenv('EVAL_RESPONSE_MAX_CONCURRENT', '5')}")
+        logger.debug(f"Concurrency Config - Judgment: {os.getenv('EVAL_JUDGMENT_MAX_CONCURRENT', '5')}")
     
     @staticmethod
     def _extract_conv_index(conversation_id: str) -> str:

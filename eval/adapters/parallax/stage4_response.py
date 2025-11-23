@@ -271,7 +271,7 @@ async def main(search_path, save_path):
     
     # 🔥 优化1：全局并发控制（关键优化）
     # 控制同时处理的 QA 对数量，避免 API 限流
-    MAX_CONCURRENT = 50  # 可根据 API 限制调整（10-100）
+    MAX_CONCURRENT = int(os.getenv('EVAL_RESPONSE_MAX_CONCURRENT', '5'))  # 可根据 API 限制调整（10-100）
     semaphore = asyncio.Semaphore(MAX_CONCURRENT)
     
     # 🔥 优化2：收集所有 QA 对（跨 conversation）

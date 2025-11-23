@@ -405,7 +405,8 @@ async def process_single_conversation(
                     return idx, None
             
             # 🔥 并发提取所有 event logs（使用 Semaphore 控制并发数）
-            sem = asyncio.Semaphore(20)  # 限制并发数为 20（避免 API 限流）
+            max_concurrent = int(os.getenv('EVAL_EXTRACTION_MAX_CONCURRENT', '5'))
+            sem = asyncio.Semaphore(max_concurrent)  # 限制并发数（避免 API 限流）
             
             async def extract_with_semaphore(idx, memunit):
                 async with sem:
