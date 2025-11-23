@@ -54,9 +54,9 @@ class LLMJudge(BaseEvaluator):
         Returns:
             EvaluationResult: 包含mean和std的评估结果
         """
-        print(f"\n{'='*60}")
-        print(f"Evaluation: LLM Judge (model={self.model}, runs={self.num_runs})")
-        print(f"{'='*60}")
+        logger.info(f"\n{'='*60}")
+        logger.info(f"Evaluation: LLM Judge (model={self.model}, runs={self.num_runs})")
+        logger.info(f"{'='*60}")
         
         detailed_results = []
         
@@ -131,16 +131,16 @@ class LLMJudge(BaseEvaluator):
                     "total": stats["total"]
                 }
         
-        print(f"\n✅ 评估完成:")
-        print(f"   - 总问题数: {len(answer_results)}")
-        print(f"   - 平均准确率: {mean_accuracy:.4f} ({mean_accuracy*100:.2f}%)")
-        print(f"   - 标准差: {std_accuracy:.4f}")
-        print(f"   - 各次 run 准确率: {[f'{s:.4f}' for s in run_scores]}")
+        logger.info(f"\n✅ 评估完成:")
+        logger.info(f"   - 总问题数: {len(answer_results)}")
+        logger.info(f"   - 平均准确率: {mean_accuracy:.4f} ({mean_accuracy*100:.2f}%)")
+        logger.info(f"   - 标准差: {std_accuracy:.4f}")
+        logger.info(f"   - 各次 run 准确率: {[f'{s:.4f}' for s in run_scores]}")
         
         if category_accuracies:
-            print(f"\n📊 按 Category 统计:")
+            logger.info(f"\n📊 按 Category 统计:")
             for cat, stats in sorted(category_accuracies.items()):
-                print(f"   Category {cat}: {stats['mean']:.4f} ± {stats['std']:.4f} (n={stats['total']})")
+                logger.info(f"   Category {cat}: {stats['mean']:.4f} ± {stats['std']:.4f} (n={stats['total']})")
         
         # 按 conversation 分组
         grouped_results = self._group_by_conversation(detailed_results)

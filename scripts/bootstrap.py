@@ -29,6 +29,8 @@ import asyncio
 from pathlib import Path
 import logging
 
+# Configure logging for bootstrap script
+logging.basicConfig(level=logging.INFO, format='%(message)s')
 logger = logging.getLogger(__name__)
 
 # Add src directory to Python path
@@ -162,13 +164,13 @@ async def async_main():
 
     args = parser.parse_args()
 
-    print("🚀 Memsys Bootstrap Script")
-    print("=" * 50)
-    print(f"📄 目标脚本: {args.script_path}")
-    print(f"📝 脚本参数: {args.script_args}")
-    print(f"📄 Env File: {args.env_file}")
-    print(f"🎭 Mock 模式: {'启用' if args.mock else '禁用'}")
-    print("=" * 50)
+    logger.info("🚀 Memsys Bootstrap Script")
+    logger.info("=" * 50)
+    logger.info(f"📄 目标脚本: {args.script_path}")
+    logger.info(f"📝 脚本参数: {args.script_args}")
+    logger.info(f"📄 Env File: {args.env_file}")
+    logger.info(f"🎭 Mock 模式: {'启用' if args.mock else '禁用'}")
+    logger.info("=" * 50)
 
     # 设置项目上下文（完全照抄 run.py 的逻辑）
     await setup_project_context(env_file=args.env_file, mock_mode=args.mock)
@@ -176,7 +178,7 @@ async def async_main():
     # 验证目标脚本是否存在
     script_path = Path(args.script_path)
     if not script_path.exists():
-        print(f"❌ 错误: 脚本文件不存在: {args.script_path}", file=sys.stderr)
+        logger.error(f"❌ 错误: 脚本文件不存在: {args.script_path}")
         sys.exit(1)
 
     # 准备执行目标脚本
@@ -185,8 +187,8 @@ async def async_main():
     original_argv = sys.argv.copy()  # 备份原始参数
     sys.argv = [str(script_path)] + args.script_args
 
-    print(f"\n🎬 开始执行脚本: {args.script_path}")
-    print("-" * 50)
+    logger.info(f"\n🎬 开始执行脚本: {args.script_path}")
+    logger.info("-" * 50)
 
     try:
         # 使用 runpy 执行目标脚本
@@ -197,12 +199,12 @@ async def async_main():
     except ImportError as e:
         # 如果遇到相对导入错误，尝试使用模块模式运行
         if "attempted relative import with no known parent package" in str(e):
-            print(f"\n⚠️  检测到相对导入错误，尝试使用模块模式运行...")
+            logger.warning(f"\n⚠️  检测到相对导入错误，尝试使用模块模式运行...")
             try:
                 # 获取 src 目录路径
                 src_path = project_root / "src"
                 module_name = file_path_to_module_name(script_path, src_path)
-                print(
+                logger.info(
                     f"📦 将路径 '{script_path}' 解释为模块 '{module_name}'，重试中..."
                 )
 
@@ -211,11 +213,9 @@ async def async_main():
                 runpy.run_module(module_name, run_name="__main__")
 
             except Exception as module_error:
-                print(f"\n❌ 模块模式运行也失败: {module_error}", file=sys.stderr)
-                print(f"原始错误: {e}", file=sys.stderr)
-                import traceback
-
-                traceback.print_exc()
+                logger.error(f"\n❌ 模块模式运行也失败: {module_error}")
+                logger.error(f"原始错误: {e}")
+                logger.error("Traceback:", exc_info=True)
                 sys.exit(1)
         else:
             # 其他导入错误，直接抛出
@@ -223,17 +223,14 @@ async def async_main():
 
     except SystemExit as e:
         # 目标脚本可能会调用 sys.exit()，这是正常的
-        print(f"\n📋 脚本执行完成，退出码: {e.code}")
+        logger.info(f"\n📋 脚本执行完成，退出码: {e.code}")
         sys.exit(e.code)
     except Exception as e:
-        print(f"\n❌ 脚本执行出错: {e}", file=sys.stderr)
-        import traceback
-
-        traceback.print_exc()
+        logger.error(f"\n❌ 脚本执行出错: {e}", exc_info=True)
     finally:
         # 恢复原始的 sys.argv
         sys.argv = original_argv
-        print(f"\n🏁 脚本执行结束: {args.script_path}")
+        logger.info(f"\n🏁 脚本执行结束: {args.script_path}")
 
 
 def main():
@@ -241,13 +238,10 @@ def main():
     try:
         asyncio.run(async_main())
     except KeyboardInterrupt:
-        print("\n⚠️ 用户中断执行")
+        logger.warning("\n⚠️ 用户中断执行")
         sys.exit(1)
     except Exception as e:
-        print(f"\n❌ 执行失败: {e}", file=sys.stderr)
-        import traceback
-
-        traceback.print_exc()
+        logger.error(f"\n❌ 执行失败: {e}", exc_info=True)
 
 
 if __name__ == "__main__":

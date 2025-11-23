@@ -17,6 +17,9 @@
 """
 
 import os
+import logging
+
+logger = logging.getLogger(__name__)
 
 # 获取语言设置，默认为英文
 MEMORY_LANGUAGE = os.getenv('MEMORY_LANGUAGE', 'en').lower()
@@ -25,7 +28,7 @@ MEMORY_LANGUAGE = os.getenv('MEMORY_LANGUAGE', 'en').lower()
 SUPPORTED_LANGUAGES = ['en', 'zh']
 
 if MEMORY_LANGUAGE not in SUPPORTED_LANGUAGES:
-    print(f"Warning: Unsupported language '{MEMORY_LANGUAGE}', falling back to 'en'")
+    logger.warning(f"Warning: Unsupported language '{MEMORY_LANGUAGE}', falling back to 'en'")
     MEMORY_LANGUAGE = 'en'
 
 # 根据语言设置动态导入提示词
@@ -116,6 +119,6 @@ def set_language(language: str):
     if language.lower() in SUPPORTED_LANGUAGES:
         MEMORY_LANGUAGE = language.lower()
         CURRENT_LANGUAGE = MEMORY_LANGUAGE
-        print(f"Language set to: {MEMORY_LANGUAGE}")
+        logger.info(f"Language set to: {MEMORY_LANGUAGE}")
     else:
-        print(f"Unsupported language: {language}. Supported: {SUPPORTED_LANGUAGES}")
+        logger.warning(f"Unsupported language: {language}. Supported: {SUPPORTED_LANGUAGES}")

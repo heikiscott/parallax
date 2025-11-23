@@ -162,7 +162,7 @@ class ProfileManager:
         if cluster_id not in self._cluster_memunits:
             self._cluster_memunits[cluster_id] = []
         self._cluster_memunits[cluster_id].append(memunit)
-        print(f"[ProfileManager] 已添加 MemUnit 到 _cluster_memunits[{cluster_id}]，当前数量: {len(self._cluster_memunits[cluster_id])}")
+        logger.info(f"[ProfileManager] 已添加 MemUnit 到 _cluster_memunits[{cluster_id}]，当前数量: {len(self._cluster_memunits[cluster_id])}")
         
         # Update recent memunits window
         self._recent_memunits.append(memunit)
@@ -192,7 +192,6 @@ class ProfileManager:
                 f"confidence={confidence:.2f}, reason='{reason}'"
             )
             logger.info(log_msg)
-            print(f"[ProfileManager] {log_msg}")  # 确保控制台能看到
         
         # Extract/update profiles if cluster is watched and auto_extract is enabled
         updated_user_ids = []
@@ -206,7 +205,7 @@ class ProfileManager:
             # 使用实例属性或默认值
             min_memunits_for_extraction = getattr(self, '_min_memunits_threshold', 3)
             
-            print(f"[ProfileManager] Cluster {cluster_id}: {cluster_memunit_count} MemUnits, 阈值: {min_memunits_for_extraction}")
+            logger.info(f"[ProfileManager] Cluster {cluster_id}: {cluster_memunit_count} MemUnits, 阈值: {min_memunits_for_extraction}")
             
             if cluster_memunit_count < min_memunits_for_extraction:
                 log_msg = (
@@ -214,10 +213,9 @@ class ProfileManager:
                     f"waiting for {min_memunits_for_extraction} before extraction"
                 )
                 logger.debug(log_msg)
-                print(f"[ProfileManager] {log_msg}")
             else:
                 try:
-                    print(f"[ProfileManager] 🚀 开始提取 Cluster {cluster_id} 的 Profile...")
+                    logger.info(f"[ProfileManager] 🚀 开始提取 Cluster {cluster_id} 的 Profile...")
                     updated_profiles = await self._extract_profiles_for_cluster(
                         cluster_id=cluster_id,
                         user_id_list=user_id_list
@@ -235,14 +233,10 @@ class ProfileManager:
                     if profiles_updated > 0:
                         log_msg = f"Updated {profiles_updated} profiles for cluster {cluster_id}"
                         logger.info(log_msg)
-                        print(f"[ProfileManager] ✅ {log_msg}")
                 
                 except Exception as e:
                     error_msg = f"Failed to extract profiles for cluster {cluster_id}: {e}"
-                    logger.error(error_msg)
-                    print(f"[ProfileManager] ❌ {error_msg}")
-                    import traceback
-                    print(traceback.format_exc())
+                    logger.error(error_msg, exc_info=True)
                     self._stats["failed_extractions"] += 1
         
         return {
@@ -269,17 +263,17 @@ class ProfileManager:
         Returns:
             List of extracted/updated ProfileMemory objects
         """
-        print(f"[ProfileManager] _extract_profiles_for_cluster 被调用")
-        print(f"[ProfileManager]   cluster_id: {cluster_id}")
-        print(f"[ProfileManager]   _cluster_memunits keys: {list(self._cluster_memunits.keys())}")
-        print(f"[ProfileManager]   _cluster_memunits[{cluster_id}]: {len(self._cluster_memunits.get(cluster_id, []))} 个")
+        logger.debug(f"[ProfileManager] _extract_profiles_for_cluster 被调用")
+        logger.debug(f"[ProfileManager]   cluster_id: {cluster_id}")
+        logger.debug(f"[ProfileManager]   _cluster_memunits keys: {list(self._cluster_memunits.keys())}")
+        logger.debug(f"[ProfileManager]   _cluster_memunits[{cluster_id}]: {len(self._cluster_memunits.get(cluster_id, []))} 个")
         
         memunits = self._cluster_memunits.get(cluster_id, [])
         if not memunits:
-            print(f"[ProfileManager] ❌ _cluster_memunits[{cluster_id}] 为空！返回空列表")
+            logger.warning(f"[ProfileManager] ❌ _cluster_memunits[{cluster_id}] 为空！返回空列表")
             return []
         
-        print(f"[ProfileManager] ✅ 找到 {len(memunits)} 个 MemUnit")
+        logger.info(f"[ProfileManager] ✅ 找到 {len(memunits)} 个 MemUnit")
         
         # 🔧 关键修复：将字典格式的 memunit 转换为完整的 MemUnit 对象
         # 从 MongoDB 重新加载完整的 MemUnit 数据
@@ -289,7 +283,7 @@ class ProfileManager:
         for mc in memunits:
             event_id = getattr(mc, 'event_id', None) or getattr(mc, '_id', None) or getattr(mc, 'id', None)
             if event_id:
-                print(f"[ProfileManager] 正在从 MongoDB 加载 MemUnit: {event_id} (类型: {type(event_id).__name__})")
+                logger.debug(f"[ProfileManager] 正在从 MongoDB 加载 MemUnit: {event_id} (类型: {type(event_id).__name__})")
                 # 从 MongoDB 加载完整的 MemUnit
                 # 尝试多种方式查询
                 full_mc = None
@@ -305,23 +299,23 @@ class ProfileManager:
                             oid = ObjectId(str(event_id)) if isinstance(event_id, str) else event_id
                             full_mc = await MemUnitDoc.get(oid)
                             if full_mc:
-                                print(f"[ProfileManager] ✅ 用 _id 找到了")
+                                logger.debug(f"[ProfileManager] ✅ 用 _id 找到了")
                     except Exception as e:
-                        print(f"[ProfileManager] ⚠️  用 _id 查询失败: {e}")
+                        logger.warning(f"[ProfileManager] ⚠️  用 _id 查询失败: {e}")
                 
                 if full_mc:
                     full_memunits.append(full_mc)
-                    print(f"[ProfileManager] ✅ 加载成功，包含 episode: {len(full_mc.episode) if full_mc.episode else 0} 字符")
+                    logger.debug(f"[ProfileManager] ✅ 加载成功，包含 episode: {len(full_mc.episode) if full_mc.episode else 0} 字符")
                 else:
-                    print(f"[ProfileManager] ⚠️  未找到 MemUnit: {event_id}，使用原始字典")
+                    logger.warning(f"[ProfileManager] ⚠️  未找到 MemUnit: {event_id}，使用原始字典")
                     # 如果找不到，使用原始的字典对象
                     full_memunits.append(mc)
         
         if not full_memunits:
-            print(f"[ProfileManager] ❌ 没有加载到任何完整的 MemUnit")
+            logger.warning(f"[ProfileManager] ❌ 没有加载到任何完整的 MemUnit")
             return []
         
-        print(f"[ProfileManager] ✅ 加载了 {len(full_memunits)} 个完整的 MemUnit，开始提取...")
+        logger.info(f"[ProfileManager] ✅ 加载了 {len(full_memunits)} 个完整的 MemUnit，开始提取...")
         memunits = full_memunits  # 使用完整的 MemUnit 对象
         
         # Limit batch size
@@ -350,22 +344,21 @@ class ProfileManager:
         # Extract profiles with retry logic
         for attempt in range(self.config.max_retries):
             try:
-                print(f"[ProfileManager] 开始调用 LLM 提取 Profile (场景: {self.config.scenario.value})...")
+                logger.info(f"[ProfileManager] 开始调用 LLM 提取 Profile (场景: {self.config.scenario.value})...")
                 
                 if self.config.scenario == ScenarioType.ASSISTANT:
                     result = await self._profile_extractor.extract_profile_companion(request)
                 else:
                     result = await self._profile_extractor.extract_memory(request)
                 
-                print(f"[ProfileManager] LLM 调用完成，返回结果: {result}")
-                print(f"[ProfileManager] 结果类型: {type(result)}, 长度: {len(result) if result else 0}")
+                logger.debug(f"[ProfileManager] LLM 调用完成，返回结果: {result}")
+                logger.debug(f"[ProfileManager] 结果类型: {type(result)}, 长度: {len(result) if result else 0}")
                 
                 if not result:
                     logger.warning(f"Profile extraction returned empty result for cluster {cluster_id}")
-                    print(f"[ProfileManager] ❌ LLM 返回空结果")
                     return []
                 
-                print(f"[ProfileManager] ✅ LLM 返回了 {len(result)} 个 Profile")
+                logger.info(f"[ProfileManager] ✅ LLM 返回了 {len(result)} 个 Profile")
                 
                 # 🚀 并行保存所有 profiles 到 storage
                 updated_profiles = []
@@ -373,7 +366,7 @@ class ProfileManager:
                 
                 for i, profile in enumerate(result):
                     user_id = getattr(profile, "user_id", None)
-                    print(f"[ProfileManager] Profile {i+1}/{len(result)}: user_id={user_id}, 类型={type(profile).__name__}")
+                    logger.debug(f"[ProfileManager] Profile {i+1}/{len(result)}: user_id={user_id}, 类型={type(profile).__name__}")
                     
                     if user_id:
                         metadata = {
@@ -393,9 +386,9 @@ class ProfileManager:
                             )
                         ))
                     else:
-                        print(f"[ProfileManager] ⚠️  Profile {i+1} 没有 user_id，跳过保存")
+                        logger.warning(f"[ProfileManager] ⚠️  Profile {i+1} 没有 user_id，跳过保存")
                 
-                print(f"[ProfileManager] 准备保存 {len(save_tasks)} 个 Profile...")
+                logger.info(f"[ProfileManager] 准备保存 {len(save_tasks)} 个 Profile...")
                 
                 # 并行执行所有保存任务
                 if save_tasks:
@@ -410,18 +403,14 @@ class ProfileManager:
                     for (user_id, profile, _), success in zip(save_tasks, save_results):
                         if isinstance(success, Exception):
                             error_msg = f"Failed to save profile for user {user_id}: {success}"
-                            logger.warning(error_msg)
-                            print(f"[ProfileManager] ❌ {error_msg}")
-                            import traceback
-                            print(traceback.format_exc())
+                            logger.error(error_msg, exc_info=True)
                         elif success:
                             updated_profiles.append(profile)
-                            print(f"[ProfileManager] ✅ 成功保存 Profile: user_id={user_id}")
+                            logger.info(f"[ProfileManager] ✅ 成功保存 Profile: user_id={user_id}")
                         else:
                             logger.warning(f"Failed to save profile for user {user_id}")
-                            print(f"[ProfileManager] ❌ 保存失败（返回 False）: user_id={user_id}")
                 
-                print(f"[ProfileManager] 最终成功保存了 {len(updated_profiles)} 个 Profile")
+                logger.info(f"[ProfileManager] 最终成功保存了 {len(updated_profiles)} 个 Profile")
                 return updated_profiles
             
             except Exception as e:
@@ -501,7 +490,7 @@ class ProfileManager:
         """
         async def on_cluster_callback(group_id: str, memunit: Dict[str, Any], cluster_id: str):
             """Callback for cluster assignment events."""
-            print(f"[ProfileManager] 🔔 收到聚类回调: cluster_id={cluster_id}, group_id={group_id}")
+            logger.info(f"[ProfileManager] 🔔 收到聚类回调: cluster_id={cluster_id}, group_id={group_id}")
             
             # Create wrapper object
             class MemUnitWrapper:
@@ -511,19 +500,19 @@ class ProfileManager:
             
             mc_obj = MemUnitWrapper(memunit)
             
-            print(f"[ProfileManager] 调用 on_memunit_clustered...")
+            logger.debug(f"[ProfileManager] 调用 on_memunit_clustered...")
             # Trigger profile update
             result = await self.on_memunit_clustered(
                 memunit=mc_obj,
                 cluster_id=cluster_id,
                 user_id_list=memunit.get("user_id_list", [])
             )
-            print(f"[ProfileManager] on_memunit_clustered 返回: {result}")
+            logger.debug(f"[ProfileManager] on_memunit_clustered 返回: {result}")
         
         # Register callback with ClusterManager
-        print(f"[ProfileManager] 注册回调到 ClusterManager")
+        logger.info(f"[ProfileManager] 注册回调到 ClusterManager")
         cluster_manager.on_cluster_assigned(on_cluster_callback)
-        print(f"[ProfileManager] 回调注册成功")
+        logger.info(f"[ProfileManager] 回调注册成功")
         
         logger.info("ProfileManager successfully attached to ClusterManager")
     

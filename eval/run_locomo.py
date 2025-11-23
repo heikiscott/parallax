@@ -12,6 +12,9 @@ import argparse
 import subprocess
 import sys
 from pathlib import Path
+from eval.utils.logger import setup_logger
+
+logger = setup_logger(name="runner")
 
 
 def find_output_dir(base_name: str, results_dir: Path, resume: bool = False) -> Path:
@@ -44,8 +47,8 @@ def find_output_dir(base_name: str, results_dir: Path, resume: bool = False) -> 
                 return base_dir
         else:
             # No existing directory to resume from
-            print(f"⚠️  Warning: No existing directory found for {base_name}")
-            print(f"   Creating new directory instead")
+            logger.warning(f"⚠️  Warning: No existing directory found for {base_name}")
+            logger.info(f"   Creating new directory instead")
             return base_dir
     else:
         # Normal mode: create new directory
@@ -109,15 +112,15 @@ def run_evaluation(dataset: str, output_dir: Path, conv_id: int = None):
 
     # Print info
     if conv_id is not None:
-        print(f"Running evaluation for conversation {conv_id}...")
+        logger.info(f"Running evaluation for conversation {conv_id}...")
     elif dataset == "locomo-mini":
-        print(f"Running mini dataset validation...")
+        logger.info(f"Running mini dataset validation...")
     else:
-        print(f"Running full evaluation on all conversations...")
+        logger.info(f"Running full evaluation on all conversations...")
 
-    print(f"Output directory: {output_dir}")
-    print(f"Logging to: {log_file}")
-    print()
+    logger.info(f"Output directory: {output_dir}")
+    logger.info(f"Logging to: {log_file}")
+    logger.info("")
 
     # Run command and tee output to both console and log file
     with open(log_file, 'w', encoding='utf-8') as f:
@@ -137,10 +140,10 @@ def run_evaluation(dataset: str, output_dir: Path, conv_id: int = None):
 
         process.wait()
 
-    print()
-    print("Evaluation completed!")
-    print(f"Results saved to: {output_dir}")
-    print(f"Log saved to: {log_file}")
+    logger.info("")
+    logger.info("Evaluation completed!")
+    logger.info(f"Results saved to: {output_dir}")
+    logger.info(f"Log saved to: {log_file}")
 
     return process.returncode
 
@@ -203,7 +206,7 @@ Examples:
         output_dir = find_output_dir(base_name, results_dir, resume=args.resume)
 
         if args.resume:
-            print(f"🔄 Resuming from: {output_dir}")
+            logger.info(f"🔄 Resuming from: {output_dir}")
         return run_evaluation(dataset, output_dir)
 
     elif args.all:
@@ -213,7 +216,7 @@ Examples:
         output_dir = find_output_dir(base_name, results_dir, resume=args.resume)
 
         if args.resume:
-            print(f"🔄 Resuming from: {output_dir}")
+            logger.info(f"🔄 Resuming from: {output_dir}")
         return run_evaluation(dataset, output_dir)
 
     elif args.conv is not None:
@@ -224,7 +227,7 @@ Examples:
         output_dir = find_output_dir(base_name, results_dir, resume=args.resume)
 
         if args.resume:
-            print(f"🔄 Resuming from: {output_dir}")
+            logger.info(f"🔄 Resuming from: {output_dir}")
         return run_evaluation(dataset, output_dir, conv_id=conv_id)
 
 

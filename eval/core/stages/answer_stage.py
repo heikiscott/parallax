@@ -73,9 +73,9 @@ async def run_answer_stage(
     Returns:
         答案结果列表
     """
-    print(f"\n{'='*60}")
-    print(f"Stage 3/4: Answer")
-    print(f"{'='*60}")
+    logger.info(f"\n{'='*60}")
+    logger.info(f"Stage 3/4: Answer")
+    logger.info(f"{'='*60}")
     
     SAVE_INTERVAL = 400  # 每 400 个任务保存一次
     MAX_CONCURRENT = 50  # 最大并发数
@@ -91,10 +91,10 @@ async def run_answer_stage(
     total_qa_count = len(qa_pairs)
     processed_count = len(all_answer_results)
     
-    print(f"Total questions: {total_qa_count}")
+    logger.info(f"Total questions: {total_qa_count}")
     if processed_count > 0:
-        print(f"Already processed: {processed_count} questions (from checkpoint)")
-        print(f"Remaining: {total_qa_count - processed_count} questions")
+        logger.info(f"Already processed: {processed_count} questions (from checkpoint)")
+        logger.info(f"Remaining: {total_qa_count - processed_count} questions")
     
     # 准备待处理的任务
     pending_tasks = []
@@ -103,7 +103,7 @@ async def run_answer_stage(
             pending_tasks.append((qa, sr))
     
     if not pending_tasks:
-        print(f"✅ All questions already processed!")
+        logger.info(f"✅ All questions already processed!")
         # 转换为 AnswerResult 对象列表（按原始顺序）
         results = []
         for qa in qa_pairs:
@@ -166,7 +166,7 @@ IMPORTANT: This is a multiple-choice question. You MUST analyze the context and 
                 answer = answer.strip()
             
             except Exception as e:
-                tqdm.write(f"  ⚠️ Answer generation failed for {qa.question_id}: {e}")
+                logger.error(f"  ⚠️ Answer generation failed for {qa.question_id}: {e}")
                 answer = "Error: Failed to generate answer"
                 failed += 1
             
@@ -202,7 +202,7 @@ IMPORTANT: This is a multiple-choice question. You MUST analyze the context and 
                 speed = completed / elapsed if elapsed > 0 else 0
                 eta = (total_qa_count - completed) / speed if speed > 0 else 0
                 
-                tqdm.write(f"Progress: {completed}/{total_qa_count} ({completed/total_qa_count*100:.1f}%) | "
+                logger.info(f"Progress: {completed}/{total_qa_count} ({completed/total_qa_count*100:.1f}%) | "
                           f"Speed: {speed:.1f} qa/s | Failed: {failed} | ETA: {eta/60:.1f} min")
                 
                 checkpoint_manager.save_answer_progress(all_answer_results, completed, total_qa_count)
@@ -225,15 +225,15 @@ IMPORTANT: This is a multiple-choice question. You MUST analyze the context and 
     elapsed_time = time.time() - start_time
     success_rate = (completed - failed) / completed * 100 if completed > 0 else 0
     
-    print(f"\n{'='*60}")
-    print(f"✅ All responses generated!")
-    print(f"   - Total questions: {total_qa_count}")
-    print(f"   - Successful: {completed - failed}")
-    print(f"   - Failed: {failed}")
-    print(f"   - Success rate: {success_rate:.1f}%")
-    print(f"   - Time elapsed: {elapsed_time/60:.1f} minutes ({elapsed_time:.0f}s)")
-    print(f"   - Average speed: {total_qa_count/elapsed_time:.1f} qa/s")
-    print(f"{'='*60}\n")
+    logger.info(f"\n{'='*60}")
+    logger.info(f"✅ All responses generated!")
+    logger.info(f"   - Total questions: {total_qa_count}")
+    logger.info(f"   - Successful: {completed - failed}")
+    logger.info(f"   - Failed: {failed}")
+    logger.info(f"   - Success rate: {success_rate:.1f}%")
+    logger.info(f"   - Time elapsed: {elapsed_time/60:.1f} minutes ({elapsed_time:.0f}s)")
+    logger.info(f"   - Average speed: {total_qa_count/elapsed_time:.1f} qa/s")
+    logger.info(f"{'='*60}\n")
     
     # 完成后删除细粒度检查点
     if checkpoint_manager:

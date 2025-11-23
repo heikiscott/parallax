@@ -4,7 +4,10 @@ Exact Match 评估器
 用于直接对比答案是否完全匹配，适用于选择题等场景。
 """
 import re
+import logging
 from typing import List
+
+logger = logging.getLogger(__name__)
 
 from eval.evaluators.base import BaseEvaluator
 from eval.evaluators.registry import register_evaluator
@@ -42,12 +45,12 @@ class ExactMatch(BaseEvaluator):
         Returns:
             EvaluationResult: 评估结果
         """
-        print(f"\n{'='*60}")
-        print(f"Evaluation: Exact Match")
-        print(f"  - Case sensitive: {self.case_sensitive}")
-        print(f"  - Normalize whitespace: {self.normalize_whitespace}")
-        print(f"  - Extract choice: {self.extract_choice}")
-        print(f"{'='*60}")
+        logger.info(f"\n{'='*60}")
+        logger.info(f"Evaluation: Exact Match")
+        logger.info(f"  - Case sensitive: {self.case_sensitive}")
+        logger.info(f"  - Normalize whitespace: {self.normalize_whitespace}")
+        logger.info(f"  - Extract choice: {self.extract_choice}")
+        logger.info(f"{'='*60}")
         
         detailed_results = []
         total_correct = 0
@@ -73,10 +76,10 @@ class ExactMatch(BaseEvaluator):
         
         accuracy = total_correct / len(answer_results) if answer_results else 0.0
         
-        print(f"\n✅ 评估完成:")
-        print(f"   - 总问题数: {len(answer_results)}")
-        print(f"   - 正确: {total_correct}")
-        print(f"   - 准确率: {accuracy:.2%}")
+        logger.info(f"\n✅ 评估完成:")
+        logger.info(f"   - 总问题数: {len(answer_results)}")
+        logger.info(f"   - 正确: {total_correct}")
+        logger.info(f"   - 准确率: {accuracy:.2%}")
         
         return EvaluationResult(
             total_questions=len(answer_results),

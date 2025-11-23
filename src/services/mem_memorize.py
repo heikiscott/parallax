@@ -165,7 +165,7 @@ async def _trigger_clustering(group_id: str, memunit: MemUnit, scene: Optional[s
         # 连接 ProfileManager 到 ClusterManager
         profile_manager.attach_to_cluster_manager(cluster_manager)
         logger.info(f"[聚类] ProfileManager 已连接到 ClusterManager (场景: {profile_scenario}, 使用 MongoDB 存储)")
-        print(f"[聚类] ProfileManager 已连接，阈值: {profile_manager._min_memunits_threshold}")
+        logger.info(f"[聚类] ProfileManager 已连接，阈值: {profile_manager._min_memunits_threshold}")
         
         # 将 MemUnit 转换为聚类所需的字典格式
         memunit_dict = {
@@ -177,7 +177,7 @@ async def _trigger_clustering(group_id: str, memunit: MemUnit, scene: Optional[s
         }
         
         logger.info(f"[聚类] 开始执行聚类: {memunit_dict['event_id']}")
-        print(f"[聚类] 开始执行聚类: event_id={memunit_dict['event_id']}")
+        logger.info(f"[聚类] 开始执行聚类: event_id={memunit_dict['event_id']}")
         
         # 执行聚类（会自动触发 ProfileManager 的回调）
         cluster_id = await cluster_manager.cluster_memunit(
@@ -185,22 +185,22 @@ async def _trigger_clustering(group_id: str, memunit: MemUnit, scene: Optional[s
             memunit=memunit_dict
         )
         
-        print(f"[聚类] 聚类完成: cluster_id={cluster_id}")
+        logger.info(f"[聚类] 聚类完成: cluster_id={cluster_id}")
         
         if cluster_id:
             logger.info(f"[聚类] ✅ MemUnit {memunit.event_id} -> Cluster {cluster_id} (group: {group_id})")
-            print(f"[聚类] ✅ MemUnit {memunit.event_id} -> Cluster {cluster_id}")
+            logger.info(f"[聚类] ✅ MemUnit {memunit.event_id} -> Cluster {cluster_id}")
         else:
             logger.warning(f"[聚类] ⚠️ MemUnit {memunit.event_id} 聚类返回 None (group: {group_id})")
-            print(f"[聚类] ⚠️ 聚类返回 None")
+            logger.warning(f"[聚类] ⚠️ 聚类返回 None")
     
     except Exception as e:
         # 聚类失败，打印详细错误信息并重新抛出
         import traceback
         error_msg = f"[聚类] ❌ 触发聚类失败: {e}"
         logger.error(error_msg, exc_info=True)
-        print(error_msg)  # 确保在控制台能看到
-        print(traceback.format_exc())
+        # print(error_msg)  # 确保在控制台能看到
+        # print(traceback.format_exc())
         raise  # 重新抛出异常，让调用者知道失败了
 
 

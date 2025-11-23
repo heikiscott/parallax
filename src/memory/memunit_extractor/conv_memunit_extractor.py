@@ -157,8 +157,8 @@ class ConvMemUnitExtractor(MemUnitExtractor):
                 else:
                     lines.append(f"{speaker_name}: {content}")
             else:
-                print(msg)
-                print(
+                logger.warning(f"Message content: {msg}")
+                logger.warning(
                     f"[ConversationEpisodeBuilder] Warning: message {i} has no content"
                 )
         return "\n".join(lines)
@@ -283,7 +283,7 @@ class ConvMemUnitExtractor(MemUnitExtractor):
                     )
                 break
             except Exception as e:
-                print('retry: ', i)
+                logger.debug(f'retry: {i}')
                 if i == 4:
                     raise Exception("Boundary detection failed")
                 continue

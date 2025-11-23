@@ -9,6 +9,9 @@ from dataclasses import dataclass, field
 from typing import Optional, List, Dict, Any
 from datetime import datetime
 import re, json, asyncio, uuid
+from core.observation.logger import get_logger
+
+logger = get_logger(__name__)
 
 
 # 使用动态语言提示词导入（根据 MEMORY_LANGUAGE 环境变量自动选择）
@@ -370,7 +373,7 @@ class EpisodeMemoryExtractor(MemoryExtractor):
                             data = json.loads(response)
                     break
                 except Exception as e:
-                    print('retry: ', i)
+                    logger.warning(f'retry: {i}')
                     if i == 4:
                         raise Exception("Episode memory extraction failed")
                     continue
@@ -514,7 +517,7 @@ class EpisodeMemoryExtractor(MemoryExtractor):
                     if isinstance(memory, EpisodeMemory):
                         all_memories.append(memory)
                     else:
-                        print(
+                        logger.error(
                             f"[EpisodicMemoryExtractor] Error generating memory: {memory}"
                         )
 

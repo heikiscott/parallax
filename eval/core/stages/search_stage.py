@@ -37,9 +37,9 @@ async def run_search_stage(
     Returns:
         检索结果列表
     """
-    print(f"\n{'='*60}")
-    print(f"Stage 2/4: Search")
-    print(f"{'='*60}")
+    logger.info(f"\n{'='*60}")
+    logger.info(f"Stage 2/4: Search")
+    logger.info(f"{'='*60}")
     
     # 🔥 加载细粒度 checkpoint
     all_search_results_dict = {}
@@ -58,11 +58,11 @@ async def run_search_stage(
     processed_convs = set(all_search_results_dict.keys())
     remaining_convs = set(conv_to_qa.keys()) - processed_convs
     
-    print(f"Total conversations: {total_convs}")
-    print(f"Total questions: {len(qa_pairs)}")
+    logger.info(f"Total conversations: {total_convs}")
+    logger.info(f"Total questions: {len(qa_pairs)}")
     if processed_convs:
-        print(f"Already processed: {len(processed_convs)} conversations (from checkpoint)")
-        print(f"Remaining: {len(remaining_convs)} conversations")
+        logger.info(f"Already processed: {len(processed_convs)} conversations (from checkpoint)")
+        logger.info(f"Remaining: {len(remaining_convs)} conversations")
     
     # 构建 conversation_id 到 conversation 的映射（用于在线 API 重建缓存）
     conv_id_to_conv = {conv.conversation_id: conv for conv in conversations}
@@ -92,10 +92,10 @@ async def run_search_stage(
     for idx, (conv_id, qa_list) in enumerate(sorted(conv_to_qa.items())):
         # 🔥 跳过已处理的会话
         if conv_id in processed_convs:
-            tqdm.write(f"⏭️  Skipping Conversation ID: {conv_id} (already processed)")
+            logger.info(f"⏭️  Skipping Conversation ID: {conv_id} (already processed)")
             continue
         
-        tqdm.write(f"Processing Conversation ID: {conv_id} ({idx+1}/{total_convs}) - {len(qa_list)} questions")
+        logger.info(f"Processing Conversation ID: {conv_id} ({idx+1}/{total_convs}) - {len(qa_list)} questions")
         
         # 并发处理这个会话的所有问题
         tasks = [search_single_with_tracking(qa) for qa in qa_list]
@@ -138,9 +138,9 @@ async def run_search_stage(
                     retrieval_metadata=result_dict.get("retrieval_metadata", {})
                 ))
     
-    print(f"\n{'='*60}")
-    print(f"🎉 All conversations processed!")
-    print(f"{'='*60}")
-    print(f"✅ Search completed: {len(all_results)} results\n")
+    logger.info(f"\n{'='*60}")
+    logger.info(f"🎉 All conversations processed!")
+    logger.info(f"{'='*60}")
+    logger.info(f"✅ Search completed: {len(all_results)} results\n")
     return all_results
 

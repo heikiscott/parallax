@@ -103,10 +103,7 @@ class GroupChatMemorizer:
             logger.error(f"✗ JSON 解析失败: {e}")
             return False
         except Exception as e:
-            logger.error(f"✗ 验证失败: {e}")
-            import traceback
-
-            traceback.print_exc()
+            logger.error(f"✗ 验证失败: {e}", exc_info=True)
             return False
 
     async def process_with_v3_api_single(self, group_chat_data: Dict[str, Any]) -> bool:
@@ -205,10 +202,7 @@ class GroupChatMemorizer:
             logger.error("✗ 需要安装 httpx 库: pip install httpx")
             return False
         except Exception as e:
-            logger.error(f"✗ 处理失败: {e}")
-            import traceback
-
-            traceback.print_exc()
+            logger.error(f"✗ 处理失败: {e}", exc_info=True)
             return False
 
     async def process_with_http_call(
@@ -315,10 +309,7 @@ class GroupChatMemorizer:
             logger.error("✗ 需要安装 httpx 库: pip install httpx")
             return False
         except Exception as e:
-            logger.error(f"✗ 处理失败: {e}")
-            import traceback
-
-            traceback.print_exc()
+            logger.error(f"✗ 处理失败: {e}", exc_info=True)
             return False
 
     async def process_file(self, file_path: str) -> bool:
@@ -383,10 +374,7 @@ class GroupChatMemorizer:
                 return await self.process_with_v3_api_single(group_chat_data)
 
         except Exception as e:
-            logger.error(f"✗ 读取或处理失败: {e}")
-            import traceback
-
-            traceback.print_exc()
+            logger.error(f"✗ 读取或处理失败: {e}", exc_info=True)
             return False
 
 
@@ -519,10 +507,7 @@ def main():
         logger.warning("\n⚠️ 用户中断执行")
         sys.exit(1)
     except Exception as e:
-        logger.error(f"\n❌ 执行失败: {e}")
-        import traceback
-
-        traceback.print_exc()
+        logger.error(f"\n❌ 执行失败: {e}", exc_info=True)
         sys.exit(1)
 
 
