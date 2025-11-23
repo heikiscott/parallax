@@ -10,7 +10,7 @@ from typing import Any, Dict, List, Union, Optional
 from datetime import datetime
 from zoneinfo import ZoneInfo
 
-from infrastructure.adapters.input.format_transfer import (
+from infra.adapters.input.format_transfer import (
     convert_conversation_to_raw_data_list,
 )
 

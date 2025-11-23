@@ -8,11 +8,11 @@ from typing import Optional, List, Dict, Any
 import logging
 from datetime import datetime
 
-from infrastructure.adapters.out.persistence.document.memory.memunit import MemUnit
-from infrastructure.adapters.out.search.repository.episodic_memory_milvus_repository import (
+from infra.adapters.out.persistence.document.memory.memunit import MemUnit
+from infra.adapters.out.search.repository.episodic_memory_milvus_repository import (
     EpisodicMemoryMilvusRepository,
 )
-from infrastructure.adapters.out.search.repository.episodic_memory_es_repository import (
+from infra.adapters.out.search.repository.episodic_memory_es_repository import (
     EpisodicMemoryEsRepository,
 )
 from agents.vectorize_service import DeepInfraVectorizeServiceInterface

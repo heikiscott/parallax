@@ -277,7 +277,7 @@ class ProfileManager:
         
         # 🔧 关键修复：将字典格式的 memunit 转换为完整的 MemUnit 对象
         # 从 MongoDB 重新加载完整的 MemUnit 数据
-        from infrastructure.adapters.out.persistence.document.memory.memunit import MemUnit as MemUnitDoc
+        from infra.adapters.out.persistence.document.memory.memunit import MemUnit as MemUnitDoc
         
         full_memunits = []
         for mc in memunits:

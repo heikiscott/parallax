@@ -15,22 +15,22 @@ import uuid
 
 
 from core.di import get_bean_by_type, get_bean, service
-from infrastructure.adapters.out.persistence.repository.semantic_memory_raw_repository import (
+from infra.adapters.out.persistence.repository.semantic_memory_raw_repository import (
     SemanticMemoryRawRepository,
 )
-from infrastructure.adapters.out.persistence.repository.episodic_memory_raw_repository import (
+from infra.adapters.out.persistence.repository.episodic_memory_raw_repository import (
     EpisodicMemoryRawRepository,
 )
-from infrastructure.adapters.out.persistence.repository.core_memory_raw_repository import (
+from infra.adapters.out.persistence.repository.core_memory_raw_repository import (
     CoreMemoryRawRepository,
 )
-from infrastructure.adapters.out.persistence.repository.entity_raw_repository import (
+from infra.adapters.out.persistence.repository.entity_raw_repository import (
     EntityRawRepository,
 )
-from infrastructure.adapters.out.persistence.repository.relationship_raw_repository import (
+from infra.adapters.out.persistence.repository.relationship_raw_repository import (
     RelationshipRawRepository,
 )
-from infrastructure.adapters.out.persistence.repository.behavior_history_raw_repository import (
+from infra.adapters.out.persistence.repository.behavior_history_raw_repository import (
     BehaviorHistoryRawRepository,
 )
 from .dtos.memory_query import FetchMemResponse, FetchMemRequest

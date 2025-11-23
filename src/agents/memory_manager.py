@@ -23,19 +23,19 @@ from .dtos.memory_query import (
     Metadata,
 )
 from core.di import get_bean_by_type
-from infrastructure.adapters.out.search.repository.episodic_memory_es_repository import (
+from infra.adapters.out.search.repository.episodic_memory_es_repository import (
     EpisodicMemoryEsRepository,
 )
 from core.observation.tracing.decorators import trace_logger
 from core.nlp.stopwords_utils import filter_stopwords
 from utils.datetime_utils import from_iso_format, get_now_with_timezone
-from infrastructure.adapters.out.persistence.repository.memunit_raw_repository import (
+from infra.adapters.out.persistence.repository.memunit_raw_repository import (
     MemUnitRawRepository,
 )
-from infrastructure.adapters.out.persistence.document.memory.user_profile import (
+from infra.adapters.out.persistence.document.memory.user_profile import (
     UserProfile,
 )
-from infrastructure.adapters.out.search.repository.episodic_memory_milvus_repository import (
+from infra.adapters.out.search.repository.episodic_memory_milvus_repository import (
     EpisodicMemoryMilvusRepository,
 )
 from .vectorize_service import get_vectorize_service
@@ -383,12 +383,12 @@ class MemoryManager:
             # - "event_log": 使用 EventLogMilvusRepository
             # - 其他（episode/None）: 使用 EpisodicMemoryMilvusRepository（默认）
             if retrieve_mem_request.memory_sub_type == "semantic_memory":
-                from infrastructure.adapters.out.search.repository.semantic_memory_milvus_repository import (
+                from infra.adapters.out.search.repository.semantic_memory_milvus_repository import (
                     SemanticMemoryMilvusRepository,
                 )
                 milvus_repo = get_bean_by_type(SemanticMemoryMilvusRepository)
             elif retrieve_mem_request.memory_sub_type == "event_log":
-                from infrastructure.adapters.out.search.repository.event_log_milvus_repository import (
+                from infra.adapters.out.search.repository.event_log_milvus_repository import (
                     EventLogMilvusRepository,
                 )
                 milvus_repo = get_bean_by_type(EventLogMilvusRepository)
@@ -541,12 +541,12 @@ class MemoryManager:
 
             # 根据 memory_sub_type 选择对应的 Milvus Repository
             if retrieve_mem_request.memory_sub_type == "semantic_memory":
-                from infrastructure.adapters.out.search.repository.semantic_memory_milvus_repository import (
+                from infra.adapters.out.search.repository.semantic_memory_milvus_repository import (
                     SemanticMemoryMilvusRepository,
                 )
                 milvus_repo = get_bean_by_type(SemanticMemoryMilvusRepository)
             elif retrieve_mem_request.memory_sub_type == "event_log":
-                from infrastructure.adapters.out.search.repository.event_log_milvus_repository import (
+                from infra.adapters.out.search.repository.event_log_milvus_repository import (
                     EventLogMilvusRepository,
                 )
                 milvus_repo = get_bean_by_type(EventLogMilvusRepository)
@@ -1213,12 +1213,12 @@ class MemoryManager:
             if retrieval_mode in ["embedding", "rrf"]:
                 # 根据 data_source 选择对应的 Milvus Repository
                 if data_source == "semantic_memory":
-                    from infrastructure.adapters.out.search.repository.semantic_memory_milvus_repository import (
+                    from infra.adapters.out.search.repository.semantic_memory_milvus_repository import (
                         SemanticMemoryMilvusRepository,
                     )
                     milvus_repo = get_bean_by_type(SemanticMemoryMilvusRepository)
                 elif data_source == "event_log":
-                    from infrastructure.adapters.out.search.repository.event_log_milvus_repository import (
+                    from infra.adapters.out.search.repository.event_log_milvus_repository import (
                         EventLogMilvusRepository,
                     )
                     milvus_repo = get_bean_by_type(EventLogMilvusRepository)
@@ -1275,12 +1275,12 @@ class MemoryManager:
             if retrieval_mode in ["bm25", "rrf"]:
                 # 根据 data_source 选择对应的 ES Repository
                 if data_source == "semantic_memory":
-                    from infrastructure.adapters.out.search.repository.semantic_memory_es_repository import (
+                    from infra.adapters.out.search.repository.semantic_memory_es_repository import (
                         SemanticMemoryEsRepository,
                     )
                     es_repo = get_bean_by_type(SemanticMemoryEsRepository)
                 elif data_source == "event_log":
-                    from infrastructure.adapters.out.search.repository.event_log_es_repository import (
+                    from infra.adapters.out.search.repository.event_log_es_repository import (
                         EventLogEsRepository,
                     )
                     es_repo = get_bean_by_type(EventLogEsRepository)

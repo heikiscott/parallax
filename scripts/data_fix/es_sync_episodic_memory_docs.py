@@ -21,13 +21,13 @@ async def sync_episodic_memory_docs(
         limit: 最多处理的文档数量
         days: 仅处理最近 N 天创建的文档；为 None 处理全部
     """
-    from infrastructure.adapters.out.persistence.repository.episodic_memory_raw_repository import (
+    from infra.adapters.out.persistence.repository.episodic_memory_raw_repository import (
         EpisodicMemoryRawRepository,
     )
-    from infrastructure.adapters.out.search.elasticsearch.converter.episodic_memory_converter import (
+    from infra.adapters.out.search.elasticsearch.converter.episodic_memory_converter import (
         EpisodicMemoryConverter,
     )
-    from infrastructure.adapters.out.search.elasticsearch.memory.episodic_memory import (
+    from infra.adapters.out.search.elasticsearch.memory.episodic_memory import (
         EpisodicMemoryDoc,
     )
 

@@ -7,7 +7,7 @@ from memory.extraction_orchestrator import ExtractionOrchestrator
 from memory.types import MemoryType, MemUnit, Memory, RawDataType, SemanticMemoryItem
 from memory.memory_extractor.event_log_extractor import EventLog
 from memory.memunit_extractor.base_memunit_extractor import RawData
-from infrastructure.adapters.out.persistence.document.memory.memunit import DataTypeEnum
+from infra.adapters.out.persistence.document.memory.memunit import DataTypeEnum
 from memory.memory_extractor.profile_memory_extractor import (
     ProfileMemory,
     ProfileMemoryExtractor,
@@ -22,28 +22,28 @@ from memory.memory_extractor.group_profile_memory_extractor import (
 )
 from core.di import get_bean_by_type, enable_mock_mode, scan_packages
 from providers.database.redis_provider import RedisProvider
-from infrastructure.adapters.out.persistence.repository.episodic_memory_raw_repository import (
+from infra.adapters.out.persistence.repository.episodic_memory_raw_repository import (
     EpisodicMemoryRawRepository,
 )
-from infrastructure.adapters.out.persistence.repository.personal_semantic_memory_raw_repository import (
+from infra.adapters.out.persistence.repository.personal_semantic_memory_raw_repository import (
     PersonalSemanticMemoryRawRepository,
 )
-from infrastructure.adapters.out.persistence.repository.personal_event_log_raw_repository import (
+from infra.adapters.out.persistence.repository.personal_event_log_raw_repository import (
     PersonalEventLogRawRepository,
 )
-from infrastructure.adapters.out.persistence.repository.conversation_status_raw_repository import (
+from infra.adapters.out.persistence.repository.conversation_status_raw_repository import (
     ConversationStatusRawRepository,
 )
-from infrastructure.adapters.out.persistence.repository.core_memory_raw_repository import (
+from infra.adapters.out.persistence.repository.core_memory_raw_repository import (
     CoreMemoryRawRepository,
 )
-from infrastructure.adapters.out.persistence.repository.memunit_raw_repository import (
+from infra.adapters.out.persistence.repository.memunit_raw_repository import (
     MemUnitRawRepository,
 )
-from infrastructure.adapters.out.persistence.repository.group_user_profile_memory_raw_repository import (
+from infra.adapters.out.persistence.repository.group_user_profile_memory_raw_repository import (
     GroupUserProfileMemoryRawRepository,
 )
-from infrastructure.adapters.out.persistence.repository.group_profile_raw_repository import (
+from infra.adapters.out.persistence.repository.group_profile_raw_repository import (
     GroupProfileRawRepository,
 )
 from services.conversation_data_repo import ConversationDataRepository
@@ -60,34 +60,34 @@ import traceback
 
 from core.lock.redis_distributed_lock import distributed_lock
 from core.observation.logger import get_logger
-from infrastructure.adapters.out.search.elasticsearch.converter.episodic_memory_converter import (
+from infra.adapters.out.search.elasticsearch.converter.episodic_memory_converter import (
     EpisodicMemoryConverter,
 )
-from infrastructure.adapters.out.search.milvus.converter.episodic_memory_milvus_converter import (
+from infra.adapters.out.search.milvus.converter.episodic_memory_milvus_converter import (
     EpisodicMemoryMilvusConverter,
 )
-from infrastructure.adapters.out.search.elasticsearch.converter.semantic_memory_converter import (
+from infra.adapters.out.search.elasticsearch.converter.semantic_memory_converter import (
     SemanticMemoryConverter,
 )
-from infrastructure.adapters.out.search.milvus.converter.semantic_memory_milvus_converter import (
+from infra.adapters.out.search.milvus.converter.semantic_memory_milvus_converter import (
     SemanticMemoryMilvusConverter,
 )
-from infrastructure.adapters.out.search.elasticsearch.converter.event_log_converter import (
+from infra.adapters.out.search.elasticsearch.converter.event_log_converter import (
     EventLogConverter,
 )
-from infrastructure.adapters.out.search.milvus.converter.event_log_milvus_converter import (
+from infra.adapters.out.search.milvus.converter.event_log_milvus_converter import (
     EventLogMilvusConverter,
 )
-from infrastructure.adapters.out.search.repository.episodic_memory_milvus_repository import (
+from infra.adapters.out.search.repository.episodic_memory_milvus_repository import (
     EpisodicMemoryMilvusRepository,
 )
-from infrastructure.adapters.out.search.repository.episodic_memory_es_repository import (
+from infra.adapters.out.search.repository.episodic_memory_es_repository import (
     EpisodicMemoryEsRepository,
 )
-from infrastructure.adapters.out.search.repository.semantic_memory_milvus_repository import (
+from infra.adapters.out.search.repository.semantic_memory_milvus_repository import (
     SemanticMemoryMilvusRepository,
 )
-from infrastructure.adapters.out.search.repository.event_log_milvus_repository import (
+from infra.adapters.out.search.repository.event_log_milvus_repository import (
     EventLogMilvusRepository,
 )
 from services.memunit_sync import MemUnitSyncService

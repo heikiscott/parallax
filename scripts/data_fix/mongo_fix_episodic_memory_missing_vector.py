@@ -16,7 +16,7 @@ import asyncio
 from typing import Any, Dict, List, Optional, Tuple
 
 from core.observation.logger import get_logger
-from infrastructure.adapters.out.persistence.document.memory.episodic_memory import (
+from infra.adapters.out.persistence.document.memory.episodic_memory import (
     EpisodicMemory,
 )
 from agents.vectorize_service import get_vectorize_service

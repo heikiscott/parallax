@@ -22,26 +22,26 @@ from memory.memory_extractor.profile_memory_extractor import (
     ImportanceEvidence,
 )
 from core.di import get_bean_by_type
-from infrastructure.adapters.out.persistence.repository.conversation_status_raw_repository import (
+from infra.adapters.out.persistence.repository.conversation_status_raw_repository import (
     ConversationStatusRawRepository,
 )
-from infrastructure.adapters.out.persistence.repository.group_user_profile_memory_raw_repository import (
+from infra.adapters.out.persistence.repository.group_user_profile_memory_raw_repository import (
     GroupUserProfileMemoryRawRepository,
 )
-from infrastructure.adapters.out.persistence.repository.group_profile_raw_repository import (
+from infra.adapters.out.persistence.repository.group_profile_raw_repository import (
     GroupProfileRawRepository,
 )
-from infrastructure.adapters.out.persistence.repository.core_memory_raw_repository import (
+from infra.adapters.out.persistence.repository.core_memory_raw_repository import (
     CoreMemoryRawRepository,
 )
-from infrastructure.adapters.out.persistence.repository.memunit_raw_repository import (
+from infra.adapters.out.persistence.repository.memunit_raw_repository import (
     MemUnitRawRepository,
 )
-from infrastructure.adapters.out.persistence.document.memory.core_memory import CoreMemory
-from infrastructure.adapters.out.persistence.document.memory.episodic_memory import (
+from infra.adapters.out.persistence.document.memory.core_memory import CoreMemory
+from infra.adapters.out.persistence.document.memory.episodic_memory import (
     EpisodicMemory,
 )
-from infrastructure.adapters.out.persistence.document.memory.memunit import (
+from infra.adapters.out.persistence.document.memory.memunit import (
     MemUnit as DocMemUnit,
     RawData as DocRawData,
     DataTypeEnum,
@@ -244,7 +244,7 @@ def _convert_episode_memory_to_doc(
     Returns:
         EpisodicMemory: 数据库文档格式的情景记忆对象
     """
-    from infrastructure.adapters.out.persistence.document.memory.episodic_memory import (
+    from infra.adapters.out.persistence.document.memory.episodic_memory import (
         EpisodicMemory,
     )
     from agents.vectorize_service import get_vectorize_service
@@ -310,7 +310,7 @@ def _convert_semantic_memory_to_doc(
     Returns:
         PersonalSemanticMemory: 数据库文档格式的个人语义记忆对象
     """
-    from infrastructure.adapters.out.persistence.document.memory.personal_semantic_memory import (
+    from infra.adapters.out.persistence.document.memory.personal_semantic_memory import (
         PersonalSemanticMemory,
     )
     
@@ -349,7 +349,7 @@ def _convert_event_log_to_docs(
     Returns:
         List[PersonalEventLog]: 数据库文档格式的个人事件日志对象列表
     """
-    from infrastructure.adapters.out.persistence.document.memory.personal_event_log import (
+    from infra.adapters.out.persistence.document.memory.personal_event_log import (
         PersonalEventLog,
     )
     
@@ -402,7 +402,7 @@ def _convert_group_profile_data_to_profile_format(
     Returns:
         dict: 包含转换后数据的字典，键为GroupProfile字段名
     """
-    from infrastructure.adapters.out.persistence.document.memory.group_profile import (
+    from infra.adapters.out.persistence.document.memory.group_profile import (
         TopicInfo as DocTopicInfo,
     )
 
@@ -448,7 +448,7 @@ def _convert_group_profile_data_to_profile_format(
                 topics.append(DocTopicInfo(**topic))
 
     # 处理 roles 转换：从 Dict 转换为 RoleAssignment 对象
-    from infrastructure.adapters.out.persistence.document.memory.group_profile import (
+    from infra.adapters.out.persistence.document.memory.group_profile import (
         RoleAssignment,
     )
 

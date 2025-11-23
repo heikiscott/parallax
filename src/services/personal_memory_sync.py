@@ -7,22 +7,22 @@ from typing import Optional, List, Dict, Any
 import logging
 from datetime import datetime
 
-from infrastructure.adapters.out.persistence.document.memory.personal_semantic_memory import (
+from infra.adapters.out.persistence.document.memory.personal_semantic_memory import (
     PersonalSemanticMemory,
 )
-from infrastructure.adapters.out.persistence.document.memory.personal_event_log import (
+from infra.adapters.out.persistence.document.memory.personal_event_log import (
     PersonalEventLog,
 )
-from infrastructure.adapters.out.search.repository.semantic_memory_milvus_repository import (
+from infra.adapters.out.search.repository.semantic_memory_milvus_repository import (
     SemanticMemoryMilvusRepository,
 )
-from infrastructure.adapters.out.search.repository.event_log_milvus_repository import (
+from infra.adapters.out.search.repository.event_log_milvus_repository import (
     EventLogMilvusRepository,
 )
-from infrastructure.adapters.out.search.repository.semantic_memory_es_repository import (
+from infra.adapters.out.search.repository.semantic_memory_es_repository import (
     SemanticMemoryEsRepository,
 )
-from infrastructure.adapters.out.search.repository.event_log_es_repository import (
+from infra.adapters.out.search.repository.event_log_es_repository import (
     EventLogEsRepository,
 )
 from agents.vectorize_service import DeepInfraVectorizeServiceInterface

@@ -40,13 +40,13 @@ async def sync_episodic_memory_docs(
         limit: 最多处理的文档数量，None 表示处理全部
         days: 仅处理最近 N 天创建的文档，None 表示处理全部
     """
-    from infrastructure.adapters.out.persistence.repository.episodic_memory_raw_repository import (
+    from infra.adapters.out.persistence.repository.episodic_memory_raw_repository import (
         EpisodicMemoryRawRepository,
     )
-    from infrastructure.adapters.out.search.milvus.converter.episodic_memory_milvus_converter import (
+    from infra.adapters.out.search.milvus.converter.episodic_memory_milvus_converter import (
         EpisodicMemoryMilvusConverter,
     )
-    from infrastructure.adapters.out.search.milvus.memory.episodic_memory_collection import (
+    from infra.adapters.out.search.milvus.memory.episodic_memory_collection import (
         EpisodicMemoryCollection,
     )
     from utils.datetime_utils import get_now_with_timezone
