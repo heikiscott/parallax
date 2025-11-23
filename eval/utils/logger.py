@@ -62,9 +62,11 @@ def setup_logger(
         def get_log_filename(base_name: str) -> str:
             if run_number is not None:
                 # pipeline.log -> pipeline_1.log
+                # pipeline.error.log -> pipeline_1.error.log
+                # 在第一个 . 前插入编号
                 if '.' in base_name:
-                    name, ext = base_name.rsplit('.', 1)
-                    return f"{name}_{run_number}.{ext}"
+                    parts = base_name.split('.', 1)  # 只split第一个.
+                    return f"{parts[0]}_{run_number}.{parts[1]}"
                 return f"{base_name}_{run_number}"
             return base_name
 

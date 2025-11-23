@@ -84,21 +84,39 @@ class Pipeline:
 
     def _get_next_run_number(self) -> Optional[int]:
         """
-        Determine the next run number based on existing run*.log files.
+        Determine the current run number by finding the most recently created run*.log file.
+
+        This ensures the pipeline log number matches the run.log number, even when
+        run.log is created before pipeline initialization.
 
         Returns:
-            Run number (1, 2, 3, ...) if run.log exists, None for first run
+            Run number (1, 2, 3, ...) for numbered runs, None for first run (run.log)
         """
-        base_log = self.output_dir / "run.log"
-        if not base_log.exists():
+        import glob
+        import os
+
+        # Find all run*.log files
+        run_logs = list(self.output_dir.glob("run*.log"))
+
+        if not run_logs:
             return None  # First run, no numbering needed
 
-        # Find the highest existing run_N.log number
-        counter = 1
-        while (self.output_dir / f"run_{counter}.log").exists():
-            counter += 1
+        # Find the most recently created run log
+        latest_run_log = max(run_logs, key=lambda p: os.path.getctime(p))
 
-        return counter
+        # Extract number from filename
+        filename = latest_run_log.name
+        if filename == "run.log":
+            return None  # First run
+        elif filename.startswith("run_") and filename.endswith(".log"):
+            # Extract number from "run_N.log"
+            number_str = filename[4:-4]  # Remove "run_" and ".log"
+            try:
+                return int(number_str)
+            except ValueError:
+                return None
+
+        return None
 
     async def run(
         self,
