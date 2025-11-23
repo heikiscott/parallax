@@ -53,13 +53,9 @@ class OpenAIProvider(LLMProvider):
         Environment Variables:
             OPENAI_TIMEOUT: API timeout in seconds (default: 30)
             OPENAI_SDK_MAX_RETRIES: SDK internal retries (default: 0)
-            OPENAI_MAX_RETRIES: Application-level max retries (default: 5)
-            OPENAI_BACKOFF_FACTOR: Backoff multiplier based on last request duration (default: 0.5)
-            OPENAI_MIN_BACKOFF: Minimum backoff time in seconds (default: 5)
-            OPENAI_MAX_BACKOFF: Maximum backoff time in seconds (default: 60)
-            OPENAI_SLOW_THRESHOLD: Threshold to consider request as slow in seconds (default: 20)
-            OPENAI_TIMEOUT_BACKOFF_MULTIPLIER: Multiplier for timeout-based extra backoff (default: 0.5)
-            OPENAI_MAX_CONCURRENT_REQUESTS: Max concurrent requests (default: 50)
+            OPENAI_MAX_RETRIES: Application-level max retries (default: 10)
+            OPENAI_MAX_BACKOFF: Maximum backoff time in seconds (default: 300)
+            OPENAI_CONCURRENT_REQUESTS: Fixed concurrent requests (default: 10)
         """
         self.model = model
         self.temperature = temperature
@@ -73,16 +69,11 @@ class OpenAIProvider(LLMProvider):
         # Read retry and concurrency config from environment
         self.timeout = float(os.getenv("OPENAI_TIMEOUT", "30"))
         self.sdk_max_retries = int(os.getenv("OPENAI_SDK_MAX_RETRIES", "0"))
-        self.max_retries = int(os.getenv("OPENAI_MAX_RETRIES", "5"))
+        self.max_retries = int(os.getenv("OPENAI_MAX_RETRIES", "10"))
+        self.max_backoff = float(os.getenv("OPENAI_MAX_BACKOFF", "300"))
 
-        # Adaptive backoff config: backoff based on last request duration
-        self.backoff_factor = float(os.getenv("OPENAI_BACKOFF_FACTOR", "0.5"))
-        self.min_backoff = float(os.getenv("OPENAI_MIN_BACKOFF", "5"))
-        self.max_backoff = float(os.getenv("OPENAI_MAX_BACKOFF", "60"))
-        self.slow_threshold = float(os.getenv("OPENAI_SLOW_THRESHOLD", "20"))
-        self.timeout_backoff_multiplier = float(os.getenv("OPENAI_TIMEOUT_BACKOFF_MULTIPLIER", "0.5"))
-
-        self.max_concurrent_requests = int(os.getenv("OPENAI_MAX_CONCURRENT_REQUESTS", "50"))
+        # Fixed concurrency (no dynamic adjustment)
+        self.concurrent_requests = int(os.getenv("OPENAI_CONCURRENT_REQUESTS", "10"))
 
         # Initialize official OpenAI async client
         # We disable SDK's internal retry to have full control
@@ -93,8 +84,12 @@ class OpenAIProvider(LLMProvider):
             max_retries=self.sdk_max_retries,
         )
 
-        # Concurrency control: limit simultaneous API calls to avoid overload
-        self.semaphore = asyncio.Semaphore(self.max_concurrent_requests)
+        # Fixed concurrency control with semaphore
+        self.semaphore = asyncio.Semaphore(self.concurrent_requests)
+
+        # Track recent request results (success/failure) in a sliding window
+        self._recent_requests = deque(maxlen=20)
+        self._request_lock = asyncio.Lock()
 
         # Optional statistics tracking
         if self.enable_stats:
@@ -124,7 +119,7 @@ class OpenAIProvider(LLMProvider):
         Raises:
             LLMError: If generation fails after all retries
         """
-        # Call retry logic directly - semaphore is now inside the retry loop
+        # Call retry logic directly - semaphore is inside the retry loop
         return await self._generate_with_retry(
             prompt=prompt,
             temperature=temperature,
@@ -140,21 +135,29 @@ class OpenAIProvider(LLMProvider):
         response_format: dict | None = None,
     ) -> str:
         """
-        Internal method with exponential backoff logic.
+        Internal method with intelligent retry and backoff.
 
-        Exponential backoff strategy:
-        - Each retry waits exponentially longer: base * (2 ^ attempt)
-        - Prevents semaphore deadlock by releasing it during sleep
-        - Adds jitter to prevent thundering herd
+        Backoff strategy:
+        - Priority 1: Use Retry-After header from OpenAI response
+        - Priority 2: Use x-ratelimit-reset-* headers to calculate wait time
+        - Priority 3: Simple exponential backoff based on own_failures only
+        - Backoff = 1 * (2 ^ min(own_failures, 9))
+        - Add small random jitter 0~2 seconds to avoid synchronization
+        - Sliding window tracks last 20 request outcomes (for monitoring only)
+
+        Note: Semaphore is acquired ONCE for the entire request lifecycle (all retries).
+        Backoff is performed INSIDE the semaphore to maintain strict concurrency control.
+        This ensures at most concurrent_requests can be active (executing or waiting) at any time.
         """
 
         last_error = None
         last_duration = 0
+        own_failures = 0  # Track this request's own failure count
 
-        for attempt in range(self.max_retries):
-            # Acquire semaphore only for the actual API call, not for sleep
-            # This prevents deadlock where all semaphore slots are held by sleeping tasks
-            async with self.semaphore:
+        # Acquire semaphore ONCE for the entire request lifecycle (all retries)
+        # This ensures we don't exceed concurrent_requests and prevents request pile-up
+        async with self.semaphore:
+            for attempt in range(self.max_retries):
                 start_time = time.perf_counter()
 
                 try:
@@ -217,74 +220,132 @@ class OpenAIProvider(LLMProvider):
                             'timestamp': time.time(),
                         }
 
-                    # Success - return immediately
+                    # Success - record in sliding window and return
+                    async with self._request_lock:
+                        self._recent_requests.append('success')
+
                     return content
 
-                except (openai.APIError, openai.APIConnectionError, openai.RateLimitError) as e:
-                    # Retriable errors
+                except openai.RateLimitError as e:
+                    # Rate limit error - try to get server-suggested wait time
                     error_time = time.perf_counter()
                     duration = error_time - start_time
                     last_error = e
                     last_duration = duration
+                    own_failures += 1
+
+                    # Record failure to sliding window
+                    async with self._request_lock:
+                        self._recent_requests.append('failure')
+                        failure_count = sum(1 for r in self._recent_requests if r == 'failure')
+                        total_count = len(self._recent_requests)
+
+                    logger.warning(f"[OpenAI-{self.model}] RateLimitError (attempt {attempt + 1}/{self.max_retries})")
+                    logger.warning(f"   ⏱️  耗时: {duration:.2f}s")
+                    logger.warning(f"   💬 错误: {str(e)}")
+                    logger.warning(f"   📊 失败率: {failure_count}/{total_count} ({failure_count/total_count*100:.1f}%)")
+
+                except (openai.APIError, openai.APIConnectionError) as e:
+                    # Other retriable errors
+                    error_time = time.perf_counter()
+                    duration = error_time - start_time
+                    last_error = e
+                    last_duration = duration
+                    own_failures += 1
+
+                    # Record failure to sliding window
+                    async with self._request_lock:
+                        self._recent_requests.append('failure')
+                        failure_count = sum(1 for r in self._recent_requests if r == 'failure')
+                        total_count = len(self._recent_requests)
 
                     error_type = type(e).__name__
+
                     logger.warning(f"[OpenAI-{self.model}] {error_type} (attempt {attempt + 1}/{self.max_retries})")
                     logger.warning(f"   ⏱️  耗时: {duration:.2f}s")
                     logger.warning(f"   💬 错误: {str(e)}")
+                    logger.warning(f"   📊 失败率: {failure_count}/{total_count} ({failure_count/total_count*100:.1f}%)")
 
                 except Exception as e:
                     # Non-retriable errors - fail immediately
                     error_time = time.perf_counter()
                     duration = error_time - start_time
-                    logger.error(f"[OpenAI-{self.model}] Unexpected error: {e}")
                     logger.error(f"   ⏱️  耗时: {duration:.2f}s")
                     logger.error(f"   💬 错误信息: {str(e)}")
                     raise LLMError(f"Request failed: {str(e)}")
 
-            # Backoff logic outside semaphore - this prevents deadlock
-            # If not the last attempt, apply comprehensive backoff strategy
-            if last_error and attempt < self.max_retries - 1:
-                # 综合退避策略：
-                # 1. 基于重试次数的指数退避: min_backoff * (2 ^ attempt)
-                # 2. 基于请求耗时的额外退避: 超时越长，额外等待越多
-                # 3. 随机抖动避免雪崩: 在范围内随机，防止所有请求同时重试
+                # Backoff logic INSIDE semaphore
+                # Use intelligent backoff strategy based on server response
+                if last_error and attempt < self.max_retries - 1:
+                    backoff_time = None
+                    backoff_source = "exponential"
 
-                # 1. 基于重试次数的指数退避
-                retry_backoff = self.min_backoff * (2 ** attempt)
+                    # Priority 1: Try to get Retry-After header (for RateLimitError)
+                    if isinstance(last_error, openai.RateLimitError) and hasattr(last_error, 'response'):
+                        retry_after = last_error.response.headers.get('retry-after')
+                        if retry_after:
+                            try:
+                                backoff_time = float(retry_after)
+                                backoff_source = "retry-after"
+                                logger.info(f"   📨 服务器建议等待: {retry_after}s (Retry-After header)")
+                            except (ValueError, TypeError):
+                                pass
 
-                # 2. 基于超时的额外退避: 如果请求耗时超过阈值，额外等待
-                timeout_backoff = 0
-                if last_duration > self.slow_threshold:
-                    # 超时越长，额外等待越多 (可配置倍数，默认50%)
-                    timeout_backoff = (last_duration - self.slow_threshold) * self.timeout_backoff_multiplier
-                    logger.warning(f"[OpenAI-{self.model}] 检测到慢请求/超时 ({last_duration:.1f}s)，增加退避 {timeout_backoff:.1f}s")
+                        # Priority 2: Try to get x-ratelimit-reset-requests header
+                        if backoff_time is None:
+                            reset_requests = last_error.response.headers.get('x-ratelimit-reset-requests')
+                            if reset_requests:
+                                try:
+                                    wait_until = float(reset_requests)
+                                    backoff_time = max(0, wait_until - time.time())
+                                    backoff_source = "ratelimit-reset"
+                                    logger.info(f"   📨 根据rate limit重置时间计算: {backoff_time:.1f}s")
+                                except (ValueError, TypeError):
+                                    pass
 
-                # 综合退避时间
-                total_backoff = retry_backoff + timeout_backoff
-                total_backoff = min(total_backoff, self.max_backoff)
+                    # Priority 3: Simple exponential backoff based on own_failures only
+                    if backoff_time is None:
+                        base_backoff = 1.0
+                        retry_backoff = base_backoff * (2 ** min(own_failures, 9))
+                        backoff_time = min(retry_backoff, self.max_backoff)
+                        backoff_source = "exponential"
 
-                # 3. 随机抖动 (±30%) 避免雪崩
-                jitter_range = total_backoff * 0.3
-                jitter = random.uniform(-jitter_range, jitter_range)
-                final_backoff = max(0, total_backoff + jitter)
+                    # Add small random jitter to avoid synchronization (0~2 seconds)
+                    jitter = random.uniform(0, 2.0)
+                    final_backoff = backoff_time + jitter
 
-                logger.info(f"[OpenAI-{self.model}] 综合退避 {final_backoff:.1f}s")
-                logger.info(f"   重试退避: {retry_backoff:.1f}s [2^{attempt}]")
-                if timeout_backoff > 0:
-                    logger.info(f"   超时退避: +{timeout_backoff:.1f}s (请求耗时 {last_duration:.1f}s)")
-                logger.info(f"   随机抖动: {jitter:+.1f}s")
-                logger.info(f"   下次尝试: attempt {attempt + 2}/{self.max_retries}")
+                    # Get current failure stats and concurrency info for logging
+                    async with self._request_lock:
+                        failure_count = sum(1 for r in self._recent_requests if r == 'failure')
+                        total_count = len(self._recent_requests)
 
-                await asyncio.sleep(final_backoff)
-            elif last_error:
-                # Last attempt failed
-                logger.error(f"[OpenAI-{self.model}] 所有 {self.max_retries} 次重试均失败")
-                logger.error(f"   ⏱️  最后耗时: {last_duration:.2f}s")
-                logger.error(f"   💬 最后错误: {str(last_error)}")
-                raise LLMError(f"OpenAI API error after {self.max_retries} retries: {str(last_error)}")
+                    # Calculate current active requests: concurrent_requests - available semaphore slots
+                    active_requests = self.concurrent_requests - self.semaphore._value
 
-        # This should never be reached due to the raise in the loop
-        raise LLMError(f"Request failed after {self.max_retries} retries: {str(last_error)}")
+                    logger.info(f"⏳ [OpenAI-{self.model}] 退避 {final_backoff:.1f}s")
+                    logger.info(f"   策略: {backoff_source}")
+                    logger.info(f"   本请求失败数: {own_failures}")
+                    logger.info(f"   全局失败率: {failure_count}/{total_count} ({failure_count/total_count*100:.1f}%)")
+                    logger.info(f"   当前并发数: {active_requests}/{self.concurrent_requests}")
+                    logger.info(f"   基础退避: {backoff_time:.1f}s")
+                    logger.info(f"   随机抖动: +{jitter:.1f}s")
+                    logger.info(f"   下次尝试: attempt {attempt + 2}/{self.max_retries}")
+
+                    await asyncio.sleep(final_backoff)
+                elif last_error:
+                    # Last attempt failed
+                    async with self._request_lock:
+                        failure_count = sum(1 for r in self._recent_requests if r == 'failure')
+                        total_count = len(self._recent_requests)
+
+                    logger.error(f"[OpenAI-{self.model}] 所有 {self.max_retries} 次重试均失败")
+                    logger.error(f"   ⏱️  最后耗时: {last_duration:.2f}s")
+                    logger.error(f"   💬 最后错误: {str(last_error)}")
+                    logger.error(f"   📊 请求失败率: {failure_count}/{total_count} ({failure_count/total_count*100:.1f}%)")
+                    raise LLMError(f"OpenAI API error after {self.max_retries} retries: {str(last_error)}")
+
+            # This should never be reached due to the raise in the loop
+            raise LLMError(f"Request failed after {self.max_retries} retries: {str(last_error)}")
 
     async def test_connection(self) -> bool:
         """
