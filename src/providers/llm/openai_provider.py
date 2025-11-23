@@ -64,7 +64,7 @@ class OpenAIProvider(LLMProvider):
         self.client = openai.AsyncOpenAI(
             api_key=self.api_key,
             base_url=self.base_url,
-            timeout=600.0,  # 10 minutes timeout
+            timeout=60.0,  # 60 seconds timeout (fail fast on connection issues)
             max_retries=5,  # Automatic retries with exponential backoff
         )
 
