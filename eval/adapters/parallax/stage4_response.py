@@ -1,6 +1,7 @@
 ﻿import argparse
 import asyncio
 import json
+import logging
 import os
 import sys
 from pathlib import Path
@@ -9,6 +10,8 @@ from typing import List, Dict, Optional
 
 import pandas as pd
 from tqdm import tqdm
+
+logger = logging.getLogger(__name__)
 
 
 
@@ -128,7 +131,10 @@ async def locomo_response(
         生成的答案
     """
     prompt = ANSWER_PROMPT.format(context=context, question=question)
-    
+
+    # 🔥 修复 UnboundLocalError: 初始化 result 变量
+    result = ""
+
     for i in range(experiment_config.max_retries):
         try:
             result = await llm_provider.generate(
@@ -136,7 +142,7 @@ async def locomo_response(
                 temperature=0,
                 max_tokens=int(os.getenv("LLM_MAX_TOKENS", "32768")),
             )
-            
+
             # 🔥 安全解析 FINAL ANSWER（避免 index out of range）
             if "FINAL ANSWER:" in result:
                 parts = result.split("FINAL ANSWER:")
@@ -148,14 +154,18 @@ async def locomo_response(
             else:
                 # 没有 FINAL ANSWER 标记，使用原始结果
                 result = result.strip()
-            
+
             if result == "":
                 continue
             break
         except Exception as e:
-            print(f"Error: {e}")
+            logger.warning(f"Answer generation error (attempt {i+1}/{experiment_config.max_retries}): {e}")
+            # 如果是最后一次重试，记录错误但返回空字符串而不是抛出异常
+            if i == experiment_config.max_retries - 1:
+                logger.error(f"All {experiment_config.max_retries} retries failed. Returning empty answer.")
+                result = ""
             continue
-    
+
     return result
 
 
