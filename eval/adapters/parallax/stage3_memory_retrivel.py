@@ -5,6 +5,7 @@ import pickle
 from pathlib import Path
 from typing import List, Tuple, Optional
 import time
+import logging
 
 import nltk
 import numpy as np
@@ -13,6 +14,8 @@ from nltk.stem import PorterStemmer
 from nltk.tokenize import word_tokenize
 import asyncio
 from tqdm import tqdm
+
+logger = logging.getLogger(__name__)
 
 
 
@@ -180,7 +183,7 @@ def search_with_bm25_index(query: str, bm25, docs, top_n: int = 5):
     tokenized_query = tokenize(query, stemmer, stop_words)
 
     if not tokenized_query:
-        print("Warning: Query is empty after tokenization.")
+        logger.warning("Query is empty after tokenization.")
         return []
 
     doc_scores = bm25.get_scores(tokenized_query)
@@ -566,18 +569,18 @@ async def hybrid_search_with_rrf(
     if not emb_results and not bm25_results:
         return []
     elif not emb_results:
-        print(f"Warning: Embedding search returned no results for query: {query}")
+        logger.warning(f"Embedding search returned no results for query: {query}")
         return bm25_results[:top_n]
     elif not bm25_results:
-        print(f"Warning: BM25 search returned no results for query: {query}")
+        logger.warning(f"BM25 search returned no results for query: {query}")
         return emb_results[:top_n]
-    
+
     # 使用 RRF 融合两个检索结果
     fused_results = reciprocal_rank_fusion(emb_results, bm25_results, k=rrf_k)
-    
+
     # 打印融合统计信息（用于调试）
-    print(f"Hybrid search: Emb={len(emb_results)}, BM25={len(bm25_results)}, Fused={len(fused_results)}, Returning top-{top_n}")
-    
+    logger.debug(f"Hybrid search: Emb={len(emb_results)}, BM25={len(bm25_results)}, Fused={len(fused_results)}, Returning top-{top_n}")
+
     return fused_results[:top_n]
 
 
@@ -628,14 +631,14 @@ async def agentic_retrieval(
         "total_latency_ms": 0.0,
     }
     
-    print(f"\n{'='*60}")
-    print(f"Agentic Retrieval: {query[:60]}...")
-    print(f"{'='*60}")
-    print(f"  [Start] Time: {time.strftime('%H:%M:%S')}")
-    
+    logger.info(f"{'='*60}")
+    logger.info(f"Agentic Retrieval: {query[:60]}...")
+    logger.info(f"{'='*60}")
+    logger.debug(f"  [Start] Time: {time.strftime('%H:%M:%S')}")
+
     # ========== Round 1: 混合检索 Top 20 ==========
-    print(f"  [Round 1] Hybrid search for Top 20...")
-    
+    logger.info(f"  [Round 1] Hybrid search for Top 20...")
+
     round1_top20 = await hybrid_search_with_rrf(
         query=query,
         emb_index=emb_index,
@@ -648,13 +651,13 @@ async def agentic_retrieval(
     )
     
     metadata["round1_count"] = len(round1_top20)
-    print(f"  [Round 1] Retrieved {len(round1_top20)} documents")
-    
+    logger.info(f"  [Round 1] Retrieved {len(round1_top20)} documents")
+
     if not round1_top20:
-        print(f"  [Warning] No results from Round 1")
+        logger.warning(f"  [Warning] No results from Round 1")
         metadata["total_latency_ms"] = (time.time() - start_time) * 1000
         return [], metadata
-    
+
     # ========== Rerank Top 20 → Top 5 用于 Sufficiency Check ==========
     print(f"  [Rerank] Reranking Top 20 to get Top 5 for sufficiency check...")
     
@@ -672,20 +675,20 @@ async def agentic_retrieval(
             config=config,
         )
         metadata["round1_reranked_count"] = len(reranked_top5)
-        print(f"  [Rerank] Got Top 5 for sufficiency check")
+        logger.debug(f"  [Rerank] Got Top 5 for sufficiency check")
     else:
         # 如果不使用 reranker，直接取前 5 个
         reranked_top5 = round1_top20[:5]
         metadata["round1_reranked_count"] = 5
-        print(f"  [No Rerank] Using original Top 5 for sufficiency check")
-    
+        logger.debug(f"  [No Rerank] Using original Top 5 for sufficiency check")
+
     if not reranked_top5:
-        print(f"  [Warning] Reranking failed, falling back to original Top 20")
+        logger.warning(f"  [Warning] Reranking failed, falling back to original Top 20")
         metadata["total_latency_ms"] = (time.time() - start_time) * 1000
         return round1_top20, metadata
-    
+
     # ========== LLM Sufficiency Check ==========
-    print(f"  [LLM] Checking sufficiency on Top 5...")
+    logger.info(f"  [LLM] Checking sufficiency on Top 5...")
     
     is_sufficient, reasoning, missing_info = await agentic_utils.check_sufficiency(
         query=query,
@@ -697,33 +700,33 @@ async def agentic_retrieval(
     
     metadata["is_sufficient"] = is_sufficient
     metadata["reasoning"] = reasoning
-    
-    print(f"  [LLM] Result: {'✅ Sufficient' if is_sufficient else '❌ Insufficient'}")
-    print(f"  [LLM] Reasoning: {reasoning}")
-    
+
+    logger.info(f"  [LLM] Result: {'✅ Sufficient' if is_sufficient else '❌ Insufficient'}")
+    logger.debug(f"  [LLM] Reasoning: {reasoning}")
+
     # ========== 如果充分：返回原始 Round 1 的 Top 20 ==========
     if is_sufficient:
-        print(f"  [Decision] Sufficient! Using original Round 1 Top 20 results")
-        
+        logger.info(f"  [Decision] Sufficient! Using original Round 1 Top 20 results")
+
         final_results = round1_top20  # 🔥 返回原始的 Top 20（不是 reranked 的）
         metadata["final_count"] = len(final_results)
         metadata["total_latency_ms"] = (time.time() - start_time) * 1000
-        
-        print(f"  [Complete] Latency: {metadata['total_latency_ms']:.0f}ms")
+
+        logger.info(f"  [Complete] Latency: {metadata['total_latency_ms']:.0f}ms")
         return final_results, metadata
-    
+
     # ========== 如果不充分：进入 Round 2 ==========
     metadata["is_multi_round"] = True
     metadata["missing_info"] = missing_info
-    print(f"  [Decision] Insufficient, entering Round 2")
-    print(f"  [Missing] {', '.join(missing_info) if missing_info else 'N/A'}")
+    logger.info(f"  [Decision] Insufficient, entering Round 2")
+    logger.debug(f"  [Missing] {', '.join(missing_info) if missing_info else 'N/A'}")
     
     # ========== LLM 生成多个改进查询（多查询策略）==========
     use_multi_query = getattr(config, 'use_multi_query', True)  # 🔥 默认启用多查询
     
     if use_multi_query:
-        print(f"  [LLM] Generating multiple refined queries...")
-        
+        logger.info(f"  [LLM] Generating multiple refined queries...")
+
         # 🔥 生成 2-3 个互补查询
         refined_queries, query_strategy = await agentic_utils.generate_multi_queries(
             original_query=query,
@@ -738,9 +741,9 @@ async def agentic_retrieval(
         metadata["refined_queries"] = refined_queries
         metadata["query_strategy"] = query_strategy
         metadata["num_queries"] = len(refined_queries)
-        
+
         # ========== Round 2: 并行执行多个查询检索 ==========
-        print(f"  [Round 2] Executing {len(refined_queries)} queries in parallel...")
+        logger.info(f"  [Round 2] Executing {len(refined_queries)} queries in parallel...")
         
         # 🔥 并行执行所有查询的混合检索
         multi_query_tasks = [
@@ -759,13 +762,13 @@ async def agentic_retrieval(
         
         # 等待所有查询完成
         multi_query_results = await asyncio.gather(*multi_query_tasks)
-        
+
         # 打印每个查询的召回数
         for i, results in enumerate(multi_query_results, 1):
-            print(f"    Query {i}: Retrieved {len(results)} documents")
-        
+            logger.debug(f"    Query {i}: Retrieved {len(results)} documents")
+
         # ========== 使用 RRF 融合多个查询的结果 ==========
-        print(f"  [Multi-RRF] Fusing results from {len(refined_queries)} queries...")
+        logger.info(f"  [Multi-RRF] Fusing results from {len(refined_queries)} queries...")
         
         # 🔥 使用多查询 RRF 融合
         round2_results = multi_rrf_fusion(
@@ -778,12 +781,12 @@ async def agentic_retrieval(
         
         metadata["round2_count"] = len(round2_results)
         metadata["multi_query_total_docs"] = sum(len(r) for r in multi_query_results)
-        
-        print(f"  [Multi-RRF] Fused {metadata['multi_query_total_docs']} → {len(round2_results)} unique documents")
-    
+
+        logger.info(f"  [Multi-RRF] Fused {metadata['multi_query_total_docs']} → {len(round2_results)} unique documents")
+
     else:
         # 🔥 回退到单查询模式（保持向后兼容）
-        print(f"  [LLM] Generating single refined query (legacy mode)...")
+        logger.info(f"  [LLM] Generating single refined query (legacy mode)...")
         
         refined_query = await agentic_utils.generate_refined_query(
             original_query=query,
@@ -795,10 +798,10 @@ async def agentic_retrieval(
         )
         
         metadata["refined_query"] = refined_query
-        print(f"  [LLM] Refined query: {refined_query}")
-        
+        logger.debug(f"  [LLM] Refined query: {refined_query}")
+
         # ========== Round 2: 使用单个改进查询检索 ==========
-        print(f"  [Round 2] Hybrid search with refined query...")
+        logger.info(f"  [Round 2] Hybrid search with refined query...")
         
         round2_results = await hybrid_search_with_rrf(
             query=refined_query,
@@ -812,10 +815,10 @@ async def agentic_retrieval(
         )
         
         metadata["round2_count"] = len(round2_results)
-        print(f"  [Round 2] Retrieved {len(round2_results)} documents")
-    
+        logger.info(f"  [Round 2] Retrieved {len(round2_results)} documents")
+
     # ========== 合并：确保总共 40 个文档 ==========
-    print(f"  [Merge] Combining Round 1 and Round 2 to ensure 40 documents...")
+    logger.info(f"  [Merge] Combining Round 1 and Round 2 to ensure 40 documents...")
     
     # 🔥 修复：使用 event_id 去重，而不是 Python 内存地址
     # 原因：BM25 和 Embedding 索引分别加载 JSON，创建了不同的 Python 对象
@@ -831,15 +834,15 @@ async def agentic_retrieval(
     actual_count = len(combined_results)
     duplicates_removed = len(round2_results) - len(round2_unique)
     round2_added = len(round2_unique[:needed_from_round2])
-    
-    print(f"  [Merge] Round1 Top20: 20 documents")
-    print(f"  [Merge] Round2 duplicates removed: {duplicates_removed} documents")
-    print(f"  [Merge] Round2 unique added: {round2_added} documents")
-    print(f"  [Merge] Combined total: {actual_count} documents (target: 40)")
-    
+
+    logger.debug(f"  [Merge] Round1 Top20: 20 documents")
+    logger.debug(f"  [Merge] Round2 duplicates removed: {duplicates_removed} documents")
+    logger.debug(f"  [Merge] Round2 unique added: {round2_added} documents")
+    logger.info(f"  [Merge] Combined total: {actual_count} documents (target: 40)")
+
     # ========== Rerank 合并后的 40 个文档 ==========
     if config.use_reranker and len(combined_results) > 0:
-        print(f"  [Rerank] Reranking {len(combined_results)} documents...")
+        logger.info(f"  [Rerank] Reranking {len(combined_results)} documents...")
         
         final_results = await reranker_search(
             query=query,  # 🔥 使用原始查询进行 rerank
@@ -854,18 +857,18 @@ async def agentic_retrieval(
             config=config,
         )
         
-        print(f"  [Rerank] Final Top 20 selected")
+        logger.debug(f"  [Rerank] Final Top 20 selected")
     else:
         # 不使用 Reranker，直接返回 Top 20
         final_results = combined_results[:20]
-        print(f"  [No Rerank] Returning Top 20 from combined results")
-    
+        logger.debug(f"  [No Rerank] Returning Top 20 from combined results")
+
     metadata["final_count"] = len(final_results)
     metadata["total_latency_ms"] = (time.time() - start_time) * 1000
-    
-    print(f"  [Complete] Final: {len(final_results)} docs | Latency: {metadata['total_latency_ms']:.0f}ms")
-    print(f"{'='*60}\n")
-    
+
+    logger.info(f"  [Complete] Final: {len(final_results)} docs | Latency: {metadata['total_latency_ms']:.0f}ms")
+    logger.info(f"{'='*60}\n")
+
     return final_results, metadata
 
 
@@ -963,18 +966,18 @@ async def reranker_search(
         return []
 
     reranker = rerank_service.get_rerank_service()
-    print(f"Reranking query: {query}")
-    print(f"Reranking {len(doc_texts)} documents in batches of {batch_size}...")
-    print(f"Reranking instruction: {reranker_instruction}")
-    
+    logger.debug(f"Reranking query: {query}")
+    logger.info(f"Reranking {len(doc_texts)} documents in batches of {batch_size}...")
+    logger.debug(f"Reranking instruction: {reranker_instruction}")
+
     # 🔥 第二步：批量处理（串行 + 重试 + 降级）
     # 将文档分批，每批 batch_size 个
     batches = []
     for i in range(0, len(doc_texts), batch_size):
         batch = doc_texts[i : i + batch_size]
         batches.append((i, batch))  # 保存起始索引和批次数据
-    
-    print(f"Split into {len(batches)} batches for serial reranking")
+
+    logger.debug(f"Split into {len(batches)} batches for serial reranking")
     
     # 🔥 处理单个批次（带重试 + 超时 + 指数退避）
     async def process_batch_with_retry(start_idx: int, batch_texts: List[str]):
@@ -994,25 +997,25 @@ async def reranker_search(
                     item["global_index"] = start_idx + item["index"]
                 
                 if attempt > 0:
-                    print(f"  ✓ Batch at {start_idx} succeeded on attempt {attempt + 1}")
+                    logger.debug(f"  ✓ Batch at {start_idx} succeeded on attempt {attempt + 1}")
                 return batch_results["results"]
-                
+
             except asyncio.TimeoutError:
                 if attempt < max_retries - 1:
                     wait_time = retry_delay * (2 ** attempt)  # 指数退避：2s, 4s, 8s
-                    print(f"  ⏱️  Batch at {start_idx} timeout (attempt {attempt + 1}), retrying in {wait_time:.1f}s")
+                    logger.warning(f"  ⏱️  Batch at {start_idx} timeout (attempt {attempt + 1}), retrying in {wait_time:.1f}s")
                     await asyncio.sleep(wait_time)
                 else:
-                    print(f"  ❌ Batch at {start_idx} timeout after {max_retries} attempts")
+                    logger.error(f"  ❌ Batch at {start_idx} timeout after {max_retries} attempts")
                     return []
-                
+
             except Exception as e:
                 if attempt < max_retries - 1:
                     wait_time = retry_delay * (2 ** attempt)
-                    print(f"  ⚠️  Batch at {start_idx} failed (attempt {attempt + 1}), retrying in {wait_time:.1f}s: {e}")
+                    logger.warning(f"  ⚠️  Batch at {start_idx} failed (attempt {attempt + 1}), retrying in {wait_time:.1f}s: {e}")
                     await asyncio.sleep(wait_time)
                 else:
-                    print(f"  ❌ Batch at {start_idx} failed after {max_retries} attempts: {e}")
+                    logger.error(f"  ❌ Batch at {start_idx} failed after {max_retries} attempts: {e}")
                     return []
     
     # 🔥 可控并发处理（稳妥的并发策略）
@@ -1025,8 +1028,8 @@ async def reranker_search(
     # 分组处理，每组最多 max_concurrent 个批次并发
     for group_start in range(0, len(batches), max_concurrent):
         group_batches = batches[group_start : group_start + max_concurrent]
-        
-        print(f"  Processing batch group {group_start//max_concurrent + 1} ({len(group_batches)} batches in parallel)...")
+
+        logger.debug(f"  Processing batch group {group_start//max_concurrent + 1} ({len(group_batches)} batches in parallel)...")
         
         # 🔥 并发处理当前组的所有批次
         tasks = [
@@ -1054,19 +1057,19 @@ async def reranker_search(
     
     # 🔥 计算成功率
     success_rate = successful_batches / len(batches) if batches else 0.0
-    print(f"Reranker success rate: {success_rate:.1%} ({successful_batches}/{len(batches)} batches)")
-    
+    logger.info(f"Reranker success rate: {success_rate:.1%} ({successful_batches}/{len(batches)} batches)")
+
     # 🔥 降级策略 1: 完全失败
     if not all_rerank_results:
-        print("⚠️ Warning: All reranker batches failed, using original ranking as fallback")
+        logger.warning("⚠️ Warning: All reranker batches failed, using original ranking as fallback")
         return results[:top_n]
-    
+
     # 🔥 降级策略 2: 成功率过低
     if success_rate < fallback_threshold:
-        print(f"⚠️ Warning: Reranker success rate too low ({success_rate:.1%} < {fallback_threshold:.1%}), using original ranking")
+        logger.warning(f"⚠️ Warning: Reranker success rate too low ({success_rate:.1%} < {fallback_threshold:.1%}), using original ranking")
         return results[:top_n]
-    
-    print(f"Reranking complete: {len(all_rerank_results)} documents scored")
+
+    logger.info(f"Reranking complete: {len(all_rerank_results)} documents scored")
     
     # 第四步：按 reranker 分数排序并返回 Top-N
     sorted_results = sorted(
@@ -1111,12 +1114,12 @@ async def main():
     llm_config = None
     if config.use_agentic_retrieval:
         if agentic_utils is None:
-            print("Error: agentic_utils not found, cannot use agentic retrieval")
-            print("Please check that tools/agentic_utils.py exists")
+            logger.error("Error: agentic_utils not found, cannot use agentic retrieval")
+            logger.error("Please check that tools/agentic_utils.py exists")
             return
-        
+
         llm_config = config.llm_config.get(config.llm_service, config.llm_config["openai"])
-        
+
         # 使用 Memory Layer 的 LLMProvider 替代 AsyncOpenAI
         llm_provider = LLMProvider(
             provider_type="openai",
@@ -1126,8 +1129,8 @@ async def main():
             temperature=llm_config.get("temperature", 0.3),
             max_tokens=int(llm_config.get("max_tokens", 32768)),
         )
-        print(f"✅ LLM Provider initialized for agentic retrieval")
-        print(f"   Model: {llm_config['model']}")
+        logger.info(f"✅ LLM Provider initialized for agentic retrieval")
+        logger.info(f"   Model: {llm_config['model']}")
 
     # Load the dataset
     print(f"Loading dataset from: {dataset_path}")
@@ -1137,22 +1140,22 @@ async def main():
     # 🔥 断点续传：加载已有的检查点
     all_search_results = {}
     processed_conversations = set()
-    
+
     if checkpoint_path.exists():
-        print(f"\n🔄 Found checkpoint file: {checkpoint_path}")
+        logger.info(f"\n🔄 Found checkpoint file: {checkpoint_path}")
         try:
             with open(checkpoint_path, "r", encoding="utf-8") as f:
                 all_search_results = json.load(f)
             processed_conversations = set(all_search_results.keys())
-            print(f"✅ Loaded {len(processed_conversations)} conversations from checkpoint")
-            print(f"   Already processed: {sorted(processed_conversations)}")
+            logger.info(f"✅ Loaded {len(processed_conversations)} conversations from checkpoint")
+            logger.debug(f"   Already processed: {sorted(processed_conversations)}")
         except Exception as e:
-            print(f"⚠️  Failed to load checkpoint: {e}")
-            print(f"   Starting from scratch...")
+            logger.warning(f"⚠️  Failed to load checkpoint: {e}")
+            logger.info(f"   Starting from scratch...")
             all_search_results = {}
             processed_conversations = set()
     else:
-        print(f"\n🆕 No checkpoint found, starting from scratch")
+        logger.info(f"\n🆕 No checkpoint found, starting from scratch")
 
     # Iterate through the dataset, assuming the index of the dataset list
     # corresponds to the conversation index number.
@@ -1161,7 +1164,7 @@ async def main():
         
         # 🔥 断点续传：跳过已处理的对话
         if conv_id in processed_conversations:
-            print(f"\n⏭️  Skipping Conversation ID: {conv_id} (already processed)")
+            logger.info(f"\n⏭️  Skipping Conversation ID: {conv_id} (already processed)")
             continue
 
         speaker_a = conversation_data["conversation"].get("speaker_a")
@@ -1169,7 +1172,7 @@ async def main():
         print(f"\n--- Processing Conversation ID: {conv_id} ({i+1}/{len(dataset)}) ---")
 
         if "qa" not in conversation_data:
-            print(f"Warning: No 'qa' key found in conversation #{i}. Skipping.")
+            logger.warning(f"Warning: No 'qa' key found in conversation #{i}. Skipping.")
             continue
 
         # --- Load index once per conversation ---
@@ -1178,17 +1181,17 @@ async def main():
             # 加载 Embedding 索引
             emb_index_path = emb_index_dir / f"embedding_index_conv_{i}.pkl"
             if not emb_index_path.exists():
-                print(
+                logger.error(
                     f"Error: Embedding index not found at {emb_index_path}. Skipping conversation."
                 )
                 continue
             with open(emb_index_path, "rb") as f:
                 emb_index = pickle.load(f)
-            
+
             # 加载 BM25 索引
             bm25_index_path = bm25_index_dir / f"bm25_index_conv_{i}.pkl"
             if not bm25_index_path.exists():
-                print(
+                logger.error(
                     f"Error: BM25 index not found at {bm25_index_path}. Skipping conversation."
                 )
                 continue
@@ -1196,14 +1199,14 @@ async def main():
                 index_data = pickle.load(f)
             bm25 = index_data["bm25"]
             docs = index_data["docs"]
-            
-            print(f"Loaded both Embedding and BM25 indexes for conversation {i} (Hybrid Search)")
+
+            logger.debug(f"Loaded both Embedding and BM25 indexes for conversation {i} (Hybrid Search)")
         
         elif config.use_emb:
             # 仅加载 Embedding 索引
             emb_index_path = emb_index_dir / f"embedding_index_conv_{i}.pkl"
             if not emb_index_path.exists():
-                print(
+                logger.error(
                     f"Error: Index file not found at {emb_index_path}. Skipping conversation."
                 )
                 continue
@@ -1213,7 +1216,7 @@ async def main():
             # 仅加载 BM25 索引
             bm25_index_path = bm25_index_dir / f"bm25_index_conv_{i}.pkl"
             if not bm25_index_path.exists():
-                print(
+                logger.error(
                     f"Error: Index file not found at {bm25_index_path}. Skipping conversation."
                 )
                 continue
@@ -1228,7 +1231,7 @@ async def main():
         sem = asyncio.Semaphore(max_concurrent)
         
         if config.use_agentic_retrieval:
-            print(f"  🚀 Agentic retrieval enabled with HIGH CONCURRENCY: {max_concurrent} concurrent requests")
+            logger.info(f"  🚀 Agentic retrieval enabled with HIGH CONCURRENCY: {max_concurrent} concurrent requests")
 
         async def process_single_qa(qa_pair):
             """处理单个 QA 对（支持多种检索模式）"""
@@ -1236,7 +1239,7 @@ async def main():
             if not question:
                 return None
             if qa_pair.get("category") == 5:
-                print(f"Skipping question {question} because it is category 5")
+                logger.debug(f"Skipping question {question} because it is category 5")
                 return None
             
             # 开始计时
@@ -1370,7 +1373,7 @@ async def main():
                     return result
                     
             except Exception as e:
-                print(f"Error processing question '{question}': {e}")
+                logger.error(f"Error processing question '{question}': {e}")
                 import traceback
                 traceback.print_exc()
                 return None
@@ -1384,15 +1387,15 @@ async def main():
         ]
 
         all_search_results[conv_id] = results_for_conv
-        
+
         # 🔥 断点续传：每处理完一个对话就保存检查点
         try:
-            print(f"💾 Saving checkpoint after conversation {conv_id}...")
+            logger.debug(f"💾 Saving checkpoint after conversation {conv_id}...")
             with open(checkpoint_path, "w", encoding="utf-8") as f:
                 json.dump(all_search_results, f, indent=2, ensure_ascii=False)
-            print(f"✅ Checkpoint saved: {len(all_search_results)} conversations")
+            logger.info(f"✅ Checkpoint saved: {len(all_search_results)} conversations")
         except Exception as e:
-            print(f"⚠️  Failed to save checkpoint: {e}")
+            logger.warning(f"⚠️  Failed to save checkpoint: {e}")
 
     # Save all results to a single JSON file in the specified format
     print(f"\n{'='*60}")
@@ -1409,9 +1412,9 @@ async def main():
     if checkpoint_path.exists():
         try:
             checkpoint_path.unlink()
-            print(f"🗑️  Checkpoint file removed (task completed)")
+            logger.info(f"🗑️  Checkpoint file removed (task completed)")
         except Exception as e:
-            print(f"⚠️  Failed to remove checkpoint: {e}")
+            logger.warning(f"⚠️  Failed to remove checkpoint: {e}")
 
     # Clean up resources
     reranker = rerank_service.get_rerank_service()
