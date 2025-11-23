@@ -105,6 +105,31 @@ class Pipeline:
         self.console.print(f"Stages: {stages or 'all'}")
         self.console.print(f"{'='*60}\n", style="bold cyan")
         
+        # 🔥 Filter by conversation index if specified
+        if conv_id is not None:
+            if 0 <= conv_id < len(dataset.conversations):
+                selected_conv = dataset.conversations[conv_id]
+                dataset.conversations = [selected_conv]
+                
+                # Filter QA pairs that belong to this conversation
+                target_conv_id = selected_conv.conversation_id
+                dataset.qa_pairs = [
+                    qa for qa in dataset.qa_pairs 
+                    if qa.metadata.get("conversation_id") == target_conv_id
+                ]
+                
+                self.console.print(
+                    f"[dim]🔍 Selected conversation {conv_id}: {target_conv_id} "
+                    f"({len(dataset.qa_pairs)} QA pairs)[/dim]\n"
+                )
+            else:
+                self.console.print(
+                    f"[red]❌ Conversation index {conv_id} out of range "
+                    f"(0-{len(dataset.conversations)-1})[/red]"
+                )
+                return {}
+        
+        
         # 根据配置过滤问题类别（如过滤掉 Category 5 对抗性问题）
         original_qa_count = len(dataset.qa_pairs)
         
