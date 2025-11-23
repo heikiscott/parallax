@@ -65,7 +65,9 @@ class Pipeline:
         self.output_dir = Path(output_dir)
         self.output_dir.mkdir(parents=True, exist_ok=True)
 
-        self.logger = setup_logger(log_dir=self.output_dir)
+        # Determine run number from existing run*.log files
+        run_number = self._get_next_run_number()
+        self.logger = setup_logger(log_dir=self.output_dir, run_number=run_number)
         self.saver = ResultSaver(self.output_dir)
         self.console = get_console()
         
@@ -76,7 +78,28 @@ class Pipeline:
         
         # 问题类别过滤配置（从数据集配置中读取）
         self.filter_categories = filter_categories or []
-    
+
+        # Store run_number for use in report generation
+        self.run_number = run_number
+
+    def _get_next_run_number(self) -> Optional[int]:
+        """
+        Determine the next run number based on existing run*.log files.
+
+        Returns:
+            Run number (1, 2, 3, ...) if run.log exists, None for first run
+        """
+        base_log = self.output_dir / "run.log"
+        if not base_log.exists():
+            return None  # First run, no numbering needed
+
+        # Find the highest existing run_N.log number
+        counter = 1
+        while (self.output_dir / f"run_{counter}.log").exists():
+            counter += 1
+
+        return counter
+
     async def run(
         self,
         dataset: Dataset,
@@ -397,9 +420,13 @@ class Pipeline:
         report_lines.append("=" * 60)
         
         report_text = "\n".join(report_lines)
-        
-        # 保存报告
-        report_path = self.output_dir / "report.txt"
+
+        # 保存报告 (使用编号以避免覆盖)
+        if self.run_number is not None:
+            report_filename = f"report_{self.run_number}.txt"
+        else:
+            report_filename = "report.txt"
+        report_path = self.output_dir / report_filename
         with open(report_path, "w", encoding="utf-8") as f:
             f.write(report_text)
         
