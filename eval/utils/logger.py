@@ -13,7 +13,7 @@ from rich.logging import RichHandler
 def setup_logger(
     log_dir: Optional[Path] = None,
     level: int = logging.INFO,
-    name: str = "eval"
+    name: Optional[str] = None
 ) -> logging.Logger:
     """
     设置日志器，支持分级日志输出

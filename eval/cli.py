@@ -37,7 +37,7 @@ from eval.core.pipeline import Pipeline
 from eval.adapters.registry import create_adapter
 from eval.evaluators.registry import create_evaluator
 from eval.utils.config import load_yaml
-from eval.utils.logger import get_console
+from eval.utils.logger import get_console, setup_logger
 
 from providers.llm.llm_provider import LLMProvider
 
@@ -163,6 +163,9 @@ async def main():
     else:
         # 使用简单的默认命名: {dataset}-{system}
         output_dir = evaluation_root / "results" / f"{args.dataset}-{args.system}"
+    
+    # 🔥 尽早初始化 Logger，以便捕获 Adapter 初始化时的日志
+    setup_logger(log_dir=output_dir)
     
     # ===== 创建组件 =====
     console.print(f"\n[bold cyan]Initializing components...[/bold cyan]")
