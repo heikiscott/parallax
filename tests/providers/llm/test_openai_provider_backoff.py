@@ -67,38 +67,39 @@ async def test_fast_success_no_delay(provider):
 
 
 @pytest.mark.asyncio
-async def test_slow_success_with_delay(provider):
-    """Test: Slow success (≥ 5s) should trigger backoff delay."""
+async def test_slow_success_no_backoff_on_success(provider):
+    """Test: Successful requests (even if slow) do NOT trigger backoff anymore.
+
+    Note: We removed the slow-success backoff logic because:
+    1. Success means the API is working, no need to delay
+    2. Keeps semaphore usage simple and predictable
+    3. Backoff only applies on errors (where it's actually needed)
+    """
 
     mock_response = MagicMock()
     mock_response.choices = [MagicMock(message=MagicMock(content="Slow response"), finish_reason="stop")]
     mock_response.usage = MagicMock(prompt_tokens=10, completion_tokens=20, total_tokens=30)
 
-    # Simulate slow response (6 seconds)
+    # Simulate slow response
     async def slow_create(*args, **kwargs):
-        await asyncio.sleep(0.2)  # Simulate 200ms but we'll mock the duration
+        await asyncio.sleep(0.2)  # Simulate 200ms
         return mock_response
 
-    with patch('time.perf_counter') as mock_time:
-        # Mock timing to show 6 seconds elapsed
-        mock_time.side_effect = [0, 6, 6]  # start, end, (next check)
+    provider.client.chat.completions.create = AsyncMock(side_effect=slow_create)
 
-        provider.client.chat.completions.create = AsyncMock(side_effect=slow_create)
+    start = time.time()
+    result = await provider.generate("Test prompt")
+    elapsed = time.time() - start
 
-        start = time.time()
-        result = await provider.generate("Test prompt")
-        elapsed = time.time() - start
-
-        assert result == "Slow response"
-        # Should have delay = 6 * 0.5 = 3 seconds
-        # Total time ≈ 0.2s (request) + 3s (backoff) = 3.2s
-        assert elapsed >= 2.5, f"Slow request should have backoff delay, got {elapsed:.2f}s"
-        print(f"✅ Slow success: {elapsed:.2f}s (includes backoff)")
+    assert result == "Slow response"
+    # Should complete quickly without backoff (success = no delay)
+    assert elapsed < 1.0, f"Successful request should not have backoff, got {elapsed:.2f}s"
+    print(f"✅ Slow success: {elapsed:.2f}s (no backoff on success)")
 
 
 @pytest.mark.asyncio
-async def test_retry_with_adaptive_backoff(provider):
-    """Test: Failed requests trigger adaptive backoff based on duration."""
+async def test_retry_with_exponential_backoff(provider):
+    """Test: Failed requests trigger exponential backoff (2^attempt)."""
 
     call_count = 0
 
@@ -142,12 +143,11 @@ async def test_retry_with_adaptive_backoff(provider):
     backoff_sleeps = [t for t in sleep_times if t >= 1.0]
     assert len(backoff_sleeps) == 2, f"Should have 2 backoffs, got {len(backoff_sleeps)}"
 
-    # Verify backoff times are reasonable (with jitter: base * 1.3)
-    # First backoff: based on ~0.1s failure, so 0.1 * 0.5 = 0.05, clamped to min 2s, + jitter
-    # Second backoff: similar
-    for i, sleep_time in enumerate(backoff_sleeps):
-        assert sleep_time >= 2.0, f"Backoff {i+1} should be >= min_backoff (2s), got {sleep_time:.2f}s"
-        assert sleep_time <= 2.6, f"Backoff {i+1} should be <= min+jitter (2*1.3), got {sleep_time:.2f}s"
+    # With exponential backoff (min=2s) and ±30% jitter:
+    # Backoff 1: 2 * 2^0 = 2s (±30% jitter = 1.4-2.6s)
+    # Backoff 2: 2 * 2^1 = 4s (±30% jitter = 2.8-5.2s)
+    assert 1.4 <= backoff_sleeps[0] <= 2.6, f"Backoff 1 should be 2s ± 30%, got {backoff_sleeps[0]:.2f}s"
+    assert 2.8 <= backoff_sleeps[1] <= 5.2, f"Backoff 2 should be 4s ± 30%, got {backoff_sleeps[1]:.2f}s"
 
     print(f"✅ Retry backoff: attempts={call_count}, backoffs={backoff_sleeps}")
 
@@ -211,16 +211,77 @@ async def test_concurrency_limit(provider):
 
 
 @pytest.mark.asyncio
-async def test_backoff_clamping(provider):
-    """Test: Backoff time is clamped to [min, max]."""
+async def test_backoff_clamping_to_max(provider):
+    """Test: Exponential backoff is clamped to max_backoff."""
 
-    # Test min clamping: very fast failure (0.5s)
+    # Override to have a small max for testing
+    with patch.dict('os.environ', {
+        'OPENAI_API_KEY': 'test-key',
+        'OPENAI_MAX_RETRIES': '5',
+        'OPENAI_MIN_BACKOFF': '2',
+        'OPENAI_MAX_BACKOFF': '6',  # Small max to test clamping
+    }):
+        test_provider = OpenAIProvider(model="gpt-4o-mini")
+
     async def fast_fail(*args, **kwargs):
         await asyncio.sleep(0.01)
         request = MagicMock()
         raise openai.APIConnectionError(request=request)
 
-    provider.client.chat.completions.create = AsyncMock(side_effect=fast_fail)
+    test_provider.client.chat.completions.create = AsyncMock(side_effect=fast_fail)
+
+    sleep_times = []
+    async def track_sleep(duration):
+        sleep_times.append(duration)
+        return None
+
+    with patch('providers.llm.openai_provider.asyncio.sleep', side_effect=track_sleep):
+        with pytest.raises(LLMError):
+            await test_provider.generate("Test")
+
+    # Filter provider's backoff sleeps
+    backoff_sleeps = [t for t in sleep_times if t >= 1.0]
+
+    # With min=2, max=6, exponential would be: 2, 4, 8, 16, ...
+    # But 8 and 16 should be clamped to max=6
+    # With ±30% jitter:
+    # Backoff 1: 2 * 2^0 = 2s (±30% = 1.4-2.6s)
+    # Backoff 2: 2 * 2^1 = 4s (±30% = 2.8-5.2s)
+    # Backoff 3: min(8, 6) = 6s (±30% = 4.2-7.8s)
+    # Backoff 4: min(16, 6) = 6s (±30% = 4.2-7.8s)
+
+    assert len(backoff_sleeps) == 4, f"Should have 4 backoffs, got {len(backoff_sleeps)}"
+
+    # First two should be exponential with ±30% jitter
+    assert 1.4 <= backoff_sleeps[0] <= 2.6, f"Backoff 1: {backoff_sleeps[0]:.2f}s"
+    assert 2.8 <= backoff_sleeps[1] <= 5.2, f"Backoff 2: {backoff_sleeps[1]:.2f}s"
+
+    # Last two should be clamped to max (6s ± 30%)
+    assert 4.2 <= backoff_sleeps[2] <= 7.8, f"Backoff 3 should be clamped to 6s: {backoff_sleeps[2]:.2f}s"
+    assert 4.2 <= backoff_sleeps[3] <= 7.8, f"Backoff 4 should be clamped to 6s: {backoff_sleeps[3]:.2f}s"
+
+    print(f"✅ Backoff clamping to max: {backoff_sleeps}")
+
+
+@pytest.mark.asyncio
+async def test_exponential_backoff():
+    """Test: Backoff increases exponentially with each retry (2^attempt)."""
+
+    with patch.dict('os.environ', {
+        'OPENAI_API_KEY': 'test-key',
+        'OPENAI_MAX_RETRIES': '5',
+        'OPENAI_MIN_BACKOFF': '2',
+        'OPENAI_MAX_BACKOFF': '60',
+        'OPENAI_MAX_CONCURRENT_REQUESTS': '10',
+    }):
+        provider = OpenAIProvider(model="gpt-4o-mini")
+
+    async def always_fail(*args, **kwargs):
+        await asyncio.sleep(0.01)
+        request = MagicMock()
+        raise openai.APIConnectionError(request=request)
+
+    provider.client.chat.completions.create = AsyncMock(side_effect=always_fail)
 
     sleep_times = []
     async def track_sleep(duration):
@@ -231,15 +292,115 @@ async def test_backoff_clamping(provider):
         with pytest.raises(LLMError):
             await provider.generate("Test")
 
-    # Filter out test's own sleeps, keep only provider's backoff sleeps
+    # Filter only provider's backoff sleeps (>= 1s)
     backoff_sleeps = [t for t in sleep_times if t >= 1.0]
 
-    # All backoffs should be clamped to min (2s) + jitter (up to 30%)
-    for sleep_time in backoff_sleeps:
-        assert sleep_time >= 2.0, f"Backoff should be >= min (2s), got {sleep_time:.2f}s"
-        assert sleep_time <= 2.6, f"Backoff should be <= min+jitter (2*1.3), got {sleep_time:.2f}s"
+    assert len(backoff_sleeps) == 4, f"Should have 4 backoffs (attempts 1-4), got {len(backoff_sleeps)}"
 
-    print(f"✅ Backoff clamping: {backoff_sleeps}")
+    # Verify exponential growth: each backoff should be roughly double the previous
+    # Expected: 2s, 4s, 8s, 16s (before jitter)
+    # With ±30% jitter, actual values will be in ranges:
+    # [1.4, 2.6], [2.8, 5.2], [5.6, 10.4], [11.2, 20.8]
+
+    expected_bases = [2, 4, 8, 16]
+    for i, sleep_time in enumerate(backoff_sleeps):
+        base = expected_bases[i]
+        min_expected = base * 0.7  # base - 30%
+        max_expected = base * 1.3  # base + 30%
+
+        assert min_expected <= sleep_time <= max_expected, \
+            f"Backoff {i+1} should be {base}s ± 30% jitter, got {sleep_time:.2f}s"
+
+    # Verify exponential growth: each sleep should be roughly double the previous
+    # With ±30% jitter, ratio could range from (2*0.7)/(1*1.3) ≈ 1.08 to (2*1.3)/(1*0.7) ≈ 3.71
+    for i in range(1, len(backoff_sleeps)):
+        ratio = backoff_sleeps[i] / backoff_sleeps[i-1]
+        # Allow wider tolerance due to ±30% jitter on both values
+        assert 1.0 <= ratio <= 4.0, \
+            f"Backoff {i+1} should be ~2x backoff {i}, got ratio {ratio:.2f}"
+
+    print(f"✅ Exponential backoff verified: {[f'{t:.1f}s' for t in backoff_sleeps]}")
+
+
+@pytest.mark.asyncio
+async def test_no_semaphore_deadlock_during_backoff():
+    """
+    Critical test: Semaphore should NOT be held during sleep (backoff).
+
+    This test verifies the fix for the deadlock issue where semaphore was held
+    during sleep, causing all slots to be occupied by sleeping tasks.
+
+    Test strategy:
+    1. Set max_concurrent to a small number (2)
+    2. Launch more requests than the limit (5)
+    3. Make all requests fail and require backoff
+    4. If semaphore is held during sleep, this will deadlock
+    5. If semaphore is released during sleep, all requests complete
+    """
+
+    with patch.dict('os.environ', {
+        'OPENAI_API_KEY': 'test-key',
+        'OPENAI_MAX_RETRIES': '3',
+        'OPENAI_MIN_BACKOFF': '1',  # Short backoff for test speed
+        'OPENAI_MAX_BACKOFF': '5',
+        'OPENAI_MAX_CONCURRENT_REQUESTS': '2',  # Only 2 concurrent allowed
+    }):
+        provider = OpenAIProvider(model="gpt-4o-mini")
+
+    call_count = 0
+    active_requests = 0
+    max_active_requests = 0
+
+    async def track_and_fail(*args, **kwargs):
+        nonlocal call_count, active_requests, max_active_requests
+
+        call_count += 1
+        active_requests += 1
+        max_active_requests = max(max_active_requests, active_requests)
+
+        # Simulate some work
+        await asyncio.sleep(0.05)
+
+        active_requests -= 1
+
+        # Always fail to trigger backoff
+        request = MagicMock()
+        raise openai.APIConnectionError(request=request)
+
+    provider.client.chat.completions.create = AsyncMock(side_effect=track_and_fail)
+
+    # Use actual asyncio.sleep to verify the backoff doesn't cause deadlock
+    # If semaphore is held during sleep, this will hang/timeout
+    # If semaphore is released during sleep, all requests complete
+
+    start = time.time()
+
+    # Launch 5 concurrent requests (more than the semaphore limit of 2)
+    tasks = [provider.generate(f"Prompt {i}") for i in range(5)]
+    results = await asyncio.gather(*tasks, return_exceptions=True)
+
+    elapsed = time.time() - start
+
+    # All should fail with LLMError (expected)
+    assert all(isinstance(r, LLMError) for r in results), "All requests should fail"
+
+    # Verify that requests actually ran concurrently
+    # Each request makes 3 attempts, so 5 requests = 15 total calls
+    assert call_count == 15, f"Expected 15 calls (5 requests × 3 retries), got {call_count}"
+
+    # Critical assertion: max_active should not exceed semaphore limit
+    assert max_active_requests <= 2, \
+        f"Max active requests was {max_active_requests}, should be ≤ 2 (semaphore limit)"
+
+    # The test should complete in reasonable time (not deadlock)
+    # With exponential backoff: 1s, 2s per request, 3 retries = ~6s per request worst case
+    # But with concurrent execution and semaphore properly releasing during sleep,
+    # should complete much faster
+    assert elapsed < 30, f"Test took {elapsed:.1f}s, possible deadlock (should be < 30s)"
+
+    print(f"✅ No deadlock: 5 concurrent requests completed in {elapsed:.1f}s")
+    print(f"   Max active requests: {max_active_requests}/2 (within semaphore limit)")
+    print(f"   Total API calls: {call_count} (5 requests × 3 retries)")
 
 
 if __name__ == "__main__":

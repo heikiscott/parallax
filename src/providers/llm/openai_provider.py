@@ -58,6 +58,7 @@ class OpenAIProvider(LLMProvider):
             OPENAI_MIN_BACKOFF: Minimum backoff time in seconds (default: 5)
             OPENAI_MAX_BACKOFF: Maximum backoff time in seconds (default: 60)
             OPENAI_SLOW_THRESHOLD: Threshold to consider request as slow in seconds (default: 20)
+            OPENAI_TIMEOUT_BACKOFF_MULTIPLIER: Multiplier for timeout-based extra backoff (default: 0.5)
             OPENAI_MAX_CONCURRENT_REQUESTS: Max concurrent requests (default: 50)
         """
         self.model = model
@@ -79,6 +80,7 @@ class OpenAIProvider(LLMProvider):
         self.min_backoff = float(os.getenv("OPENAI_MIN_BACKOFF", "5"))
         self.max_backoff = float(os.getenv("OPENAI_MAX_BACKOFF", "60"))
         self.slow_threshold = float(os.getenv("OPENAI_SLOW_THRESHOLD", "20"))
+        self.timeout_backoff_multiplier = float(os.getenv("OPENAI_TIMEOUT_BACKOFF_MULTIPLIER", "0.5"))
 
         self.max_concurrent_requests = int(os.getenv("OPENAI_MAX_CONCURRENT_REQUESTS", "50"))
 
@@ -122,14 +124,13 @@ class OpenAIProvider(LLMProvider):
         Raises:
             LLMError: If generation fails after all retries
         """
-        # Acquire semaphore to limit concurrent requests
-        async with self.semaphore:
-            return await self._generate_with_retry(
-                prompt=prompt,
-                temperature=temperature,
-                max_tokens=max_tokens,
-                response_format=response_format,
-            )
+        # Call retry logic directly - semaphore is now inside the retry loop
+        return await self._generate_with_retry(
+            prompt=prompt,
+            temperature=temperature,
+            max_tokens=max_tokens,
+            response_format=response_format,
+        )
 
     async def _generate_with_retry(
         self,
@@ -139,140 +140,148 @@ class OpenAIProvider(LLMProvider):
         response_format: dict | None = None,
     ) -> str:
         """
-        Internal method with adaptive backoff logic.
+        Internal method with exponential backoff logic.
 
-        Simple and robust rule:
-        - If last request was slow or failed, wait before next request
-        - Wait time = last_duration * backoff_factor (clamped to min/max)
+        Exponential backoff strategy:
+        - Each retry waits exponentially longer: base * (2 ^ attempt)
+        - Prevents semaphore deadlock by releasing it during sleep
+        - Adds jitter to prevent thundering herd
         """
 
         last_error = None
         last_duration = 0
 
         for attempt in range(self.max_retries):
-            start_time = time.perf_counter()
+            # Acquire semaphore only for the actual API call, not for sleep
+            # This prevents deadlock where all semaphore slots are held by sleeping tasks
+            async with self.semaphore:
+                start_time = time.perf_counter()
 
-            try:
-                # Convert prompt to messages format
-                messages = [{"role": "user", "content": prompt}]
+                try:
+                    # Convert prompt to messages format
+                    messages = [{"role": "user", "content": prompt}]
 
-                # Prepare parameters
-                params = {
-                    "model": self.model,
-                    "messages": messages,
-                    "temperature": temperature if temperature is not None else self.temperature,
-                }
-
-                # Add optional parameters
-                if max_tokens is not None:
-                    params["max_tokens"] = int(max_tokens) if isinstance(max_tokens, str) else max_tokens
-                elif self.max_tokens is not None:
-                    params["max_tokens"] = int(self.max_tokens) if isinstance(self.max_tokens, str) else self.max_tokens
-
-                if response_format is not None:
-                    params["response_format"] = response_format
-
-                # Call OpenAI API
-                response = await self.client.chat.completions.create(**params)
-
-                end_time = time.perf_counter()
-                duration = end_time - start_time
-
-                # Extract result
-                content = response.choices[0].message.content
-                finish_reason = response.choices[0].finish_reason
-
-                # Log completion details
-                if finish_reason == 'stop':
-                    logger.debug(f"[OpenAI-{self.model}] 完成原因: {finish_reason}")
-                else:
-                    logger.warning(f"[OpenAI-{self.model}] 完成原因: {finish_reason}")
-
-                # Extract token usage
-                usage = response.usage
-                prompt_tokens = usage.prompt_tokens if usage else 0
-                completion_tokens = usage.completion_tokens if usage else 0
-                total_tokens = usage.total_tokens if usage else 0
-
-                # Log usage information
-                logger.debug(f"[OpenAI-{self.model}] API调用完成 (attempt {attempt + 1})")
-                logger.debug(f"[OpenAI-{self.model}] 耗时: {duration:.2f}s")
-
-                logger.debug(f"[OpenAI-{self.model}] Prompt Tokens: {prompt_tokens:,}")
-                logger.debug(f"[OpenAI-{self.model}] Completion Tokens: {completion_tokens:,}")
-                logger.debug(f"[OpenAI-{self.model}] 总Token数: {total_tokens:,}")
-
-                # Record statistics if enabled
-                if self.enable_stats:
-                    self.current_call_stats = {
-                        'prompt_tokens': prompt_tokens,
-                        'completion_tokens': completion_tokens,
-                        'total_tokens': total_tokens,
-                        'duration': duration,
-                        'timestamp': time.time(),
+                    # Prepare parameters
+                    params = {
+                        "model": self.model,
+                        "messages": messages,
+                        "temperature": temperature if temperature is not None else self.temperature,
                     }
 
-                # Detect if service is busy (slow response)
-                # Even on success, if the request was slow, backoff before allowing next request
-                is_slow = duration > self.slow_threshold
-                if is_slow:
-                    logger.warning(f"[OpenAI-{self.model}] 耗时太长: {duration:.2f}s - 服务可能繁忙")
+                    # Add optional parameters
+                    if max_tokens is not None:
+                        params["max_tokens"] = int(max_tokens) if isinstance(max_tokens, str) else max_tokens
+                    elif self.max_tokens is not None:
+                        params["max_tokens"] = int(self.max_tokens) if isinstance(self.max_tokens, str) else self.max_tokens
 
-                    # Apply backoff even on success to give server breathing room
-                    wait_time = duration * self.backoff_factor
-                    wait_time = max(self.min_backoff, min(wait_time, self.max_backoff))
+                    if response_format is not None:
+                        params["response_format"] = response_format
 
-                    # Add jitter to prevent thundering herd (all requests waking up simultaneously)
-                    jitter = random.uniform(0, wait_time * 0.3)  # 0-30% jitter
-                    wait_time_with_jitter = wait_time + jitter
+                    # Call OpenAI API
+                    response = await self.client.chat.completions.create(**params)
 
-                    logger.info(f"[OpenAI-{self.model}] 虽然成功但耗时过长，退避 {wait_time_with_jitter:.1f}s (base={wait_time:.1f}s + jitter={jitter:.1f}s)...")
-                    await asyncio.sleep(wait_time_with_jitter)
+                    end_time = time.perf_counter()
+                    duration = end_time - start_time
 
-                # Success - return result
-                return content
+                    # Extract result
+                    content = response.choices[0].message.content
+                    finish_reason = response.choices[0].finish_reason
 
-            except (openai.APIError, openai.APIConnectionError, openai.RateLimitError) as e:
-                # Retriable errors
-                error_time = time.perf_counter()
-                duration = error_time - start_time
-                last_error = e
-                last_duration = duration
+                    # Log completion details
+                    if finish_reason == 'stop':
+                        logger.debug(f"[OpenAI-{self.model}] 完成原因: {finish_reason}")
+                    else:
+                        logger.warning(f"[OpenAI-{self.model}] 完成原因: {finish_reason}")
 
-                error_type = type(e).__name__
-                logger.warning(f"[OpenAI-{self.model}] {error_type} (attempt {attempt + 1}/{self.max_retries})")
-                logger.warning(f"   ⏱️  耗时: {duration:.2f}s")
-                logger.warning(f"   💬 错误: {str(e)}")
+                    # Extract token usage
+                    usage = response.usage
+                    prompt_tokens = usage.prompt_tokens if usage else 0
+                    completion_tokens = usage.completion_tokens if usage else 0
+                    total_tokens = usage.total_tokens if usage else 0
 
-                # If not the last attempt, apply adaptive backoff
-                if attempt < self.max_retries - 1:
-                    # Adaptive backoff based on last request duration
-                    # Formula: wait_time = duration * backoff_factor
-                    # Clamped to [min_backoff, max_backoff]
-                    wait_time = duration * self.backoff_factor
-                    wait_time = max(self.min_backoff, min(wait_time, self.max_backoff))
+                    # Log usage information
+                    logger.debug(f"[OpenAI-{self.model}] API调用完成 (attempt {attempt + 1})")
+                    logger.debug(f"[OpenAI-{self.model}] 耗时: {duration:.2f}s")
 
-                    # Add jitter to prevent thundering herd (all requests retrying simultaneously)
-                    jitter = random.uniform(0, wait_time * 0.3)  # 0-30% jitter
-                    wait_time_with_jitter = wait_time + jitter
+                    logger.debug(f"[OpenAI-{self.model}] Prompt Tokens: {prompt_tokens:,}")
+                    logger.debug(f"[OpenAI-{self.model}] Completion Tokens: {completion_tokens:,}")
+                    logger.debug(f"[OpenAI-{self.model}] 总Token数: {total_tokens:,}")
 
-                    logger.info(f"[OpenAI-{self.model}] 基于耗时 {duration:.1f}s 退避 {wait_time_with_jitter:.1f}s (base={wait_time:.1f}s + jitter={jitter:.1f}s, attempt {attempt + 2}/{self.max_retries})...")
-                    await asyncio.sleep(wait_time_with_jitter)
-                else:
-                    # Last attempt failed
-                    logger.error(f"[OpenAI-{self.model}] 所有 {self.max_retries} 次重试均失败")
-                    logger.error(f"   ⏱️  最后耗时: {duration:.2f}s")
-                    logger.error(f"   💬 最后错误: {str(e)}")
-                    raise LLMError(f"OpenAI API error after {self.max_retries} retries: {str(e)}")
+                    # Record statistics if enabled
+                    if self.enable_stats:
+                        self.current_call_stats = {
+                            'prompt_tokens': prompt_tokens,
+                            'completion_tokens': completion_tokens,
+                            'total_tokens': total_tokens,
+                            'duration': duration,
+                            'timestamp': time.time(),
+                        }
 
-            except Exception as e:
-                # Non-retriable errors - fail immediately
-                error_time = time.perf_counter()
-                duration = error_time - start_time
-                logger.error(f"[OpenAI-{self.model}] Unexpected error: {e}")
-                logger.error(f"   ⏱️  耗时: {duration:.2f}s")
-                logger.error(f"   💬 错误信息: {str(e)}")
-                raise LLMError(f"Request failed: {str(e)}")
+                    # Success - return immediately
+                    return content
+
+                except (openai.APIError, openai.APIConnectionError, openai.RateLimitError) as e:
+                    # Retriable errors
+                    error_time = time.perf_counter()
+                    duration = error_time - start_time
+                    last_error = e
+                    last_duration = duration
+
+                    error_type = type(e).__name__
+                    logger.warning(f"[OpenAI-{self.model}] {error_type} (attempt {attempt + 1}/{self.max_retries})")
+                    logger.warning(f"   ⏱️  耗时: {duration:.2f}s")
+                    logger.warning(f"   💬 错误: {str(e)}")
+
+                except Exception as e:
+                    # Non-retriable errors - fail immediately
+                    error_time = time.perf_counter()
+                    duration = error_time - start_time
+                    logger.error(f"[OpenAI-{self.model}] Unexpected error: {e}")
+                    logger.error(f"   ⏱️  耗时: {duration:.2f}s")
+                    logger.error(f"   💬 错误信息: {str(e)}")
+                    raise LLMError(f"Request failed: {str(e)}")
+
+            # Backoff logic outside semaphore - this prevents deadlock
+            # If not the last attempt, apply comprehensive backoff strategy
+            if last_error and attempt < self.max_retries - 1:
+                # 综合退避策略：
+                # 1. 基于重试次数的指数退避: min_backoff * (2 ^ attempt)
+                # 2. 基于请求耗时的额外退避: 超时越长，额外等待越多
+                # 3. 随机抖动避免雪崩: 在范围内随机，防止所有请求同时重试
+
+                # 1. 基于重试次数的指数退避
+                retry_backoff = self.min_backoff * (2 ** attempt)
+
+                # 2. 基于超时的额外退避: 如果请求耗时超过阈值，额外等待
+                timeout_backoff = 0
+                if last_duration > self.slow_threshold:
+                    # 超时越长，额外等待越多 (可配置倍数，默认50%)
+                    timeout_backoff = (last_duration - self.slow_threshold) * self.timeout_backoff_multiplier
+                    logger.warning(f"[OpenAI-{self.model}] 检测到慢请求/超时 ({last_duration:.1f}s)，增加退避 {timeout_backoff:.1f}s")
+
+                # 综合退避时间
+                total_backoff = retry_backoff + timeout_backoff
+                total_backoff = min(total_backoff, self.max_backoff)
+
+                # 3. 随机抖动 (±30%) 避免雪崩
+                jitter_range = total_backoff * 0.3
+                jitter = random.uniform(-jitter_range, jitter_range)
+                final_backoff = max(0, total_backoff + jitter)
+
+                logger.info(f"[OpenAI-{self.model}] 综合退避 {final_backoff:.1f}s")
+                logger.info(f"   重试退避: {retry_backoff:.1f}s [2^{attempt}]")
+                if timeout_backoff > 0:
+                    logger.info(f"   超时退避: +{timeout_backoff:.1f}s (请求耗时 {last_duration:.1f}s)")
+                logger.info(f"   随机抖动: {jitter:+.1f}s")
+                logger.info(f"   下次尝试: attempt {attempt + 2}/{self.max_retries}")
+
+                await asyncio.sleep(final_backoff)
+            elif last_error:
+                # Last attempt failed
+                logger.error(f"[OpenAI-{self.model}] 所有 {self.max_retries} 次重试均失败")
+                logger.error(f"   ⏱️  最后耗时: {last_duration:.2f}s")
+                logger.error(f"   💬 最后错误: {str(last_error)}")
+                raise LLMError(f"OpenAI API error after {self.max_retries} retries: {str(last_error)}")
 
         # This should never be reached due to the raise in the loop
         raise LLMError(f"Request failed after {self.max_retries} retries: {str(last_error)}")
