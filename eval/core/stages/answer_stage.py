@@ -5,6 +5,7 @@ Answer 阶段
 """
 import asyncio
 import time
+import os
 from typing import List, Optional
 from logging import Logger
 from tqdm import tqdm
@@ -76,9 +77,18 @@ async def run_answer_stage(
     logger.info(f"\n{'='*60}")
     logger.info(f"Stage 3/4: Answer")
     logger.info(f"{'='*60}")
-    
+
     SAVE_INTERVAL = 400  # 每 400 个任务保存一次
-    MAX_CONCURRENT = 50  # 最大并发数
+    MAX_CONCURRENT = 50  # 最大并发数（semaphore 限制，batch 内并发）
+
+    # Batch processing configuration
+    BATCH_SIZE = int(os.getenv("EVAL_ANSWER_BATCH_SIZE", "20"))  # 每批次处理的请求数
+    BATCH_DELAY = int(os.getenv("EVAL_ANSWER_BATCH_DELAY", "3"))  # batch 间延迟（秒）
+
+    logger.info(f"Batch processing enabled:")
+    logger.info(f"  - Batch size: {BATCH_SIZE}")
+    logger.info(f"  - Batch delay: {BATCH_DELAY}s (between batches)")
+    logger.info(f"  - Timeout & concurrency: controlled by Provider layer")
     
     # 加载细粒度 checkpoint
     all_answer_results = {}
@@ -209,13 +219,38 @@ IMPORTANT: This is a multiple-choice question. You MUST analyze the context and 
             
             return result
 
-    # 创建所有待处理的任务并并发执行
-    tasks = [
-        answer_single_with_tracking(qa, sr)
-        for qa, sr in pending_tasks
-    ]
-    await asyncio.gather(*tasks)
-    
+    # Batch processing: 分批执行，确保当前 batch 完全结束后才开始下一个 batch
+    # 并发控制和超时已经在 Provider 层处理，这里只负责批次管理
+    total_batches = (len(pending_tasks) + BATCH_SIZE - 1) // BATCH_SIZE
+
+    for batch_idx in range(0, len(pending_tasks), BATCH_SIZE):
+        batch_tasks_data = pending_tasks[batch_idx:batch_idx + BATCH_SIZE]
+        batch_num = batch_idx // BATCH_SIZE + 1
+
+        logger.info(f"\n{'─'*60}")
+        logger.info(f"🚀 Processing Batch {batch_num}/{total_batches} ({len(batch_tasks_data)} requests)")
+
+        batch_start_time = time.time()
+
+        # 为当前 batch 创建任务
+        batch_tasks = [
+            answer_single_with_tracking(qa, sr)
+            for qa, sr in batch_tasks_data
+        ]
+
+        # 等待当前 batch 的所有任务完成（并发执行，但 batch 间串行）
+        await asyncio.gather(*batch_tasks)
+
+        batch_duration = time.time() - batch_start_time
+
+        # 记录批次统计
+        logger.info(f"✅ Batch {batch_num}/{total_batches} completed in {batch_duration:.1f}s")
+
+        # 批次间延迟（除最后一个 batch 外）
+        if batch_num < total_batches:
+            logger.info(f"⏸️  Waiting {BATCH_DELAY}s before next batch...")
+            await asyncio.sleep(BATCH_DELAY)
+
     # 关闭进度条
     pbar.close()
     
