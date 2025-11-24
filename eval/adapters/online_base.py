@@ -128,9 +128,11 @@ class OnlineAPIAdapter(BaseAdapter):
                 
                 return result
             except Exception as e:
-                logger.warning(f"Answer generation error (attempt {i+1}/{max_retries}): {e}")
                 if i == max_retries - 1:
+                    logger.error(f"Answer generation failed after {max_retries} attempts: {e}")
                     raise
+                else:
+                    logger.warning(f"Answer generation error (attempt {i+1}/{max_retries}): {e}")
                 continue
         
         return ""

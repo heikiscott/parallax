@@ -53,7 +53,7 @@ class ExperimentConfig:
     
     # Reranker 优化参数（高性能配置）
     reranker_batch_size: int = 20      # Reranker 批次大小
-    reranker_max_retries: int = 3      # 每个批次的最大重试次数
+    reranker_max_retries: int = 10     # 每个批次的最大重试次数，增加以确保评测完整性
     reranker_retry_delay: float = 0.8  # 重试间隔，指数退避
     reranker_timeout: float = 60.0     # 单个批次超时时间
     reranker_fallback_threshold: float = 0.3  # 成功率低于此值时降级到原始排序
@@ -86,5 +86,5 @@ class ExperimentConfig:
         },
     }
     
-    max_retries: int = 5
+    max_retries: int = 20  # 增加OpenAI API重试次数以容忍网络波动，确保评测完整性
     max_concurrent_requests: int = 10

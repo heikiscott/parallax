@@ -218,18 +218,18 @@ class OpenAIProvider(LLMProvider):
         except openai.RateLimitError as e:
             error_time = time.perf_counter()
             duration = error_time - start_time
-            logger.error(f"[OpenAI-{self.model}] RateLimitError")
-            logger.error(f"   ⏱️  耗时: {duration:.2f}s")
-            logger.error(f"   💬 错误: {str(e)}")
+            logger.warning(f"[OpenAI-{self.model}] RateLimitError")
+            logger.warning(f"   ⏱️  耗时: {duration:.2f}s")
+            logger.warning(f"   💬 错误: {str(e)}")
             raise LLMError(f"Rate limit error: {str(e)}")
 
         except (openai.APIError, openai.APIConnectionError) as e:
             error_time = time.perf_counter()
             duration = error_time - start_time
             error_type = type(e).__name__
-            logger.error(f"[OpenAI-{self.model}] {error_type}")
-            logger.error(f"   ⏱️  耗时: {duration:.2f}s")
-            logger.error(f"   💬 错误: {str(e)}")
+            logger.warning(f"[OpenAI-{self.model}] {error_type}")
+            logger.warning(f"   ⏱️  耗时: {duration:.2f}s")
+            logger.warning(f"   💬 错误: {str(e)}")
             raise LLMError(f"API error: {str(e)}")
 
         except Exception as e:

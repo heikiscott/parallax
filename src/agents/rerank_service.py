@@ -31,7 +31,7 @@ class DeepInfraRerankConfig:
     base_url: str = ""
     model: str = ""
     timeout: int = 30
-    max_retries: int = 3
+    max_retries: int = 10  # 增加重试次数以确保评测完整性
     batch_size: int = 10
     max_concurrent_requests: int = 5
 
@@ -47,8 +47,8 @@ class DeepInfraRerankConfig:
             self.model = os.getenv("DEEPINFRA_RERANK_MODEL", "Qwen/Qwen3-Reranker-4B")
         if self.timeout == 30:  # 使用默认值时才从环境变量读取
             self.timeout = int(os.getenv("DEEPINFRA_RERANK_TIMEOUT", "30"))
-        if self.max_retries == 3:  # 使用默认值时才从环境变量读取
-            self.max_retries = int(os.getenv("DEEPINFRA_RERANK_MAX_RETRIES", "3"))
+        if self.max_retries == 10:  # 使用默认值时才从环境变量读取
+            self.max_retries = int(os.getenv("DEEPINFRA_RERANK_MAX_RETRIES", "10"))
         if self.batch_size == 10:  # 使用默认值时才从环境变量读取
             self.batch_size = int(os.getenv("DEEPINFRA_RERANK_BATCH_SIZE", "10"))
         if self.max_concurrent_requests == 5:  # 使用默认值时才从环境变量读取
@@ -140,7 +140,7 @@ class DeepInfraRerankService(DeepInfraRerankServiceInterface):
             ),
             model=os.getenv("DEEPINFRA_RERANK_MODEL", "Qwen/Qwen3-Reranker-4B"),
             timeout=int(os.getenv("DEEPINFRA_RERANK_TIMEOUT", "30")),
-            max_retries=int(os.getenv("DEEPINFRA_RERANK_MAX_RETRIES", "3")),
+            max_retries=int(os.getenv("DEEPINFRA_RERANK_MAX_RETRIES", "10")),
             batch_size=int(os.getenv("DEEPINFRA_RERANK_BATCH_SIZE", "10")),
             max_concurrent_requests=int(
                 os.getenv("DEEPINFRA_RERANK_MAX_CONCURRENT", "5")
@@ -215,7 +215,7 @@ class DeepInfraRerankService(DeepInfraRerankServiceInterface):
 
         for i, result in enumerate(batch_results):
             if isinstance(result, Exception):
-                logger.error(f"Rerank batch {i} failed: {result}")
+                logger.error(f"Rerank batch {i}/{len(batches)} failed: {type(result).__name__}: {result}")
                 # For a failed batch, we must insert scores of a corresponding length
                 # to maintain the correct document order. Let's use a very low score.
                 batch_len = len(batches[i])
@@ -282,7 +282,7 @@ class DeepInfraRerankService(DeepInfraRerankServiceInterface):
 
                 except aiohttp.ClientError as e:
                     logger.error(
-                        f"DeepInfra Rerank API client error (attempt {attempt + 1}): {e}"
+                        f"DeepInfra Rerank API client error (attempt {attempt + 1}/{self.config.max_retries}): {e}"
                     )
                     if attempt < self.config.max_retries - 1:
                         await asyncio.sleep(2**attempt)
@@ -292,7 +292,7 @@ class DeepInfraRerankService(DeepInfraRerankServiceInterface):
 
                 except Exception as e:
                     logger.error(
-                        f"Unexpected rerank error (attempt {attempt + 1}): {e}"
+                        f"Unexpected rerank error (attempt {attempt + 1}/{self.config.max_retries}): {e}"
                     )
                     if attempt < self.config.max_retries - 1:
                         await asyncio.sleep(2**attempt)
@@ -569,7 +569,7 @@ class DeepInfraRerankService(DeepInfraRerankServiceInterface):
             )
 
         except Exception as e:
-            logger.error(f"Error during reranking: {e}")
+            logger.error(f"Reranking failed, falling back to original results: {e}")
             # 如果重排序失败，返回原始结果
             return RerankMemResponse(
                 memories=retrieve_response.memories,
@@ -655,7 +655,7 @@ class DeepInfraRerankService(DeepInfraRerankServiceInterface):
             return reranked_hits
 
         except Exception as e:
-            logger.error(f"Error during reranking all_hits: {e}")
+            logger.error(f"Reranking all_hits failed, falling back to original order: {e}")
             # 如果重排序失败，返回原始结果（按原始得分排序）
             sorted_hits = sorted(
                 all_hits, key=self._extract_score_from_hit, reverse=True
