@@ -165,6 +165,12 @@ async def locomo_response(
             if i == experiment_config.max_retries - 1:
                 logger.error(f"All {experiment_config.max_retries} retries failed. Returning empty answer.")
                 result = ""
+            else:
+                # Aggressive exponential backoff: 5 * 2^i seconds, max 500s (~8 min)
+                # i=0: 5s, i=1: 10s, i=2: 20s, i=3: 40s, i=4: 80s, i=5: 160s, i=6: 320s, i>=7: 500s
+                backoff_time = min(5 * (2 ** i), 500)
+                logger.info(f"Waiting {backoff_time}s before retry {i+2}/{experiment_config.max_retries}...")
+                await asyncio.sleep(backoff_time)
             continue
 
     return result

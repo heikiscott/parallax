@@ -57,6 +57,7 @@ class OpenAIProvider(LLMProvider):
             LLM_TEMPERATURE: Sampling temperature (default: 0.0)
             LLM_MAX_TOKENS: Max completion tokens (default: 16384)
             OPENAI_TIMEOUT: API timeout in seconds (default: 30)
+            OPENAI_MAX_RETRIES: SDK-level retry attempts (default: 0, disabled)
             OPENAI_REQUEST_LIMIT: Max requests per minute (default: 500)
             OPENAI_TOKEN_LIMIT: Max tokens per minute (default: 150000)
         """
@@ -75,12 +76,14 @@ class OpenAIProvider(LLMProvider):
         self.timeout = float(os.getenv("OPENAI_TIMEOUT", "30"))
         self.request_limit = int(os.getenv("OPENAI_REQUEST_LIMIT", "500"))
         self.token_limit = int(os.getenv("OPENAI_TOKEN_LIMIT", "150000"))
+        self.max_retries = int(os.getenv("OPENAI_MAX_RETRIES", "0"))  # Disable SDK retries, let eval framework handle it
 
         # Initialize official OpenAI async client
         self.client = openai.AsyncOpenAI(
             api_key=self.api_key,
             base_url=self.base_url,
             timeout=self.timeout,
+            max_retries=self.max_retries,  # Disable SDK-level retries
         )
 
         # Initialize openlimit rate limiter
@@ -116,6 +119,8 @@ class OpenAIProvider(LLMProvider):
             self.current_call_stats = None
 
         logger.info(f"Initialized OpenAIProvider with model={model}")
+        logger.info(f"  Timeout: {self.timeout}s")
+        logger.info(f"  Max retries: {self.max_retries}")
         logger.info(f"  Request limit: {self.request_limit} RPM")
         logger.info(f"  Token limit: {self.token_limit} TPM")
 
