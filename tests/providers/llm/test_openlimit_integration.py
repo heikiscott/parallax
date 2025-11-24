@@ -35,8 +35,10 @@ def test_provider_initialization_with_openlimit():
         assert provider.token_limit == 150000, f"Expected token_limit=150000, got {provider.token_limit}"
 
         # Verify rate limiter configuration
+        # Note: Rate limiter uses very high token_limit (999999999) to avoid deadlock,
+        # even though provider.token_limit is 150000 for logging purposes
         assert provider.rate_limiter.request_limit == 500, f"Rate limiter request_limit should be 500"
-        assert provider.rate_limiter.token_limit == 150000, f"Rate limiter token_limit should be 150000"
+        assert provider.rate_limiter.token_limit == 999999999, f"Rate limiter token_limit should be 999999999 (to prevent deadlock)"
 
         # Verify rate limiter type
         from openlimit import ChatRateLimiter

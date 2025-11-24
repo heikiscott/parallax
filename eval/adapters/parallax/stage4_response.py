@@ -132,18 +132,19 @@ async def locomo_response(
     """
     prompt = ANSWER_PROMPT.format(context=context, question=question)
 
-    # 🔥 修复 UnboundLocalError: 初始化 result 变量
+    # 初始化 result 变量
     result = ""
 
     for i in range(experiment_config.max_retries):
         try:
+            # Use 16384 as default max_tokens (matches gpt-4o-mini's output limit)
             result = await llm_provider.generate(
                 prompt=prompt,
                 temperature=0,
-                max_tokens=int(os.getenv("LLM_MAX_TOKENS", "32768")),
+                max_tokens=int(os.getenv("LLM_MAX_TOKENS", "16384")),
             )
 
-            # 🔥 安全解析 FINAL ANSWER（避免 index out of range）
+            # 安全解析 FINAL ANSWER
             if "FINAL ANSWER:" in result:
                 parts = result.split("FINAL ANSWER:")
                 if len(parts) > 1:

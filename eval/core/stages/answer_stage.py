@@ -95,13 +95,13 @@ async def run_answer_stage(
     if processed_count > 0:
         logger.info(f"Already processed: {processed_count} questions (from checkpoint)")
         logger.info(f"Remaining: {total_qa_count - processed_count} questions")
-    
+
     # 准备待处理的任务
     pending_tasks = []
     for qa, sr in zip(qa_pairs, search_results):
         if qa.question_id not in all_answer_results:
             pending_tasks.append((qa, sr))
-    
+
     if not pending_tasks:
         logger.info(f"✅ All questions already processed!")
         # 转换为 AnswerResult 对象列表（按原始顺序）
@@ -120,12 +120,12 @@ async def run_answer_stage(
                     # search_results 不再加载以节省空间
                 ))
         return results
-    
+
     semaphore = asyncio.Semaphore(MAX_CONCURRENT)
     completed = processed_count
     failed = 0
     start_time = time.time()
-    
+
     # 使用 tqdm 进度条
     pbar = tqdm(
         total=total_qa_count,
@@ -133,10 +133,10 @@ async def run_answer_stage(
         desc="💬 Answer Progress",
         unit="qa"
     )
-    
+
     async def answer_single_with_tracking(qa, search_result):
         nonlocal completed, failed
-        
+
         async with semaphore:
             try:
                 # 构建 context
@@ -208,14 +208,12 @@ IMPORTANT: This is a multiple-choice question. You MUST analyze the context and 
                 checkpoint_manager.save_answer_progress(all_answer_results, completed, total_qa_count)
             
             return result
-    
-    # 创建所有待处理的任务
+
+    # 创建所有待处理的任务并并发执行
     tasks = [
         answer_single_with_tracking(qa, sr)
         for qa, sr in pending_tasks
     ]
-    
-    # 并发执行
     await asyncio.gather(*tasks)
     
     # 关闭进度条

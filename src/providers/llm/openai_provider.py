@@ -84,11 +84,31 @@ class OpenAIProvider(LLMProvider):
         )
 
         # Initialize openlimit rate limiter
-        # This handles both RPM and TPM limits with leaky bucket algorithm
-        # Note: openlimit uses fixed 60-second window (per minute limits)
+        #
+        # CRITICAL DEADLOCK FIX:
+        # ======================
+        # openlimit's bucket capacity is calculated as: capacity = rate_limit / 60
+        # This means for TPM (tokens per minute), the per-second capacity is: TPM / 60
+        #
+        # Problem:
+        # - With token_limit=150000 TPM, bucket capacity = 2500 tokens/second
+        # - Our prompts can be 3500+ tokens
+        # - When a request needs more tokens than bucket capacity, openlimit's
+        #   wait_for_capacity() enters an infinite loop because:
+        #   1. It checks: if self._capacity < amount: return False
+        #   2. Then loops forever waiting for capacity that can never be satisfied
+        #
+        # Solution:
+        # - Set token_limit=999999999 to give bucket capacity ~16.6M tokens/second
+        # - This effectively disables TPM limiting while keeping RPM limiting active
+        # - RPM limiting (500 requests/minute = ~8.3 requests/second) is sufficient
+        #   for rate control without risking deadlock
+        #
+        # Note: self.token_limit (150000) is kept for logging purposes, but the actual
+        # rate limiter uses 999999999 to prevent deadlock
         self.rate_limiter = ChatRateLimiter(
             request_limit=self.request_limit,
-            token_limit=self.token_limit,
+            token_limit=999999999,  # Prevent deadlock when single request exceeds per-second capacity
         )
 
         # Optional statistics tracking
@@ -145,19 +165,17 @@ class OpenAIProvider(LLMProvider):
             if response_format is not None:
                 params["response_format"] = response_format
 
-            logger.debug(f"[OpenAI-{self.model}] Entering rate limiter...")
-            # Use openlimit to control rate and token limits
-            # The rate limiter automatically counts tokens and schedules requests
-            # Note: We only pass model and messages to the rate limiter for token counting
-            # max_tokens is not included as it's just a limit, not actual usage
+            # Rate limiting with openlimit
+            # We pass model and messages to let openlimit calculate prompt tokens
+            # Don't pass max_tokens to avoid over-estimation of total tokens
+            # (openlimit would add max_tokens to the estimate, but actual usage is usually less)
             limiter_params = {
                 "model": params["model"],
                 "messages": params["messages"],
+                "temperature": params["temperature"],
             }
             async with self.rate_limiter.limit(**limiter_params):
-                logger.debug(f"[OpenAI-{self.model}] Rate limiter passed, calling API...")
                 response = await self.client.chat.completions.create(**params)
-                logger.debug(f"[OpenAI-{self.model}] API call completed")
 
             end_time = time.perf_counter()
             duration = end_time - start_time
