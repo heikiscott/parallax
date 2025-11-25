@@ -11,6 +11,7 @@ from tqdm import tqdm
 from eval.core.data_models import QAPair, SearchResult
 from eval.adapters.base import BaseAdapter
 from eval.utils.checkpoint import CheckpointManager
+from eval.utils.logger import set_activity_id
 
 
 async def run_search_stage(
@@ -81,6 +82,9 @@ async def run_search_stage(
     )
     
     async def search_single_with_tracking(qa):
+        # 设置 activity_id: search-{question_id}
+        set_activity_id(f"search-{qa.question_id}")
+
         async with semaphore:
             conv_id = qa.metadata.get("conversation_id", "0")
             conversation = conv_id_to_conv.get(conv_id)

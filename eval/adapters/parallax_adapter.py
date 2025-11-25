@@ -27,6 +27,7 @@ from rich.console import Console
 from eval.adapters.base import BaseAdapter
 from eval.adapters.registry import register_adapter
 from eval.core.data_models import Conversation, SearchResult
+from eval.utils.logger import set_activity_id
 from utils.datetime_utils import to_iso_format
 
 logger = logging.getLogger(__name__)
@@ -390,6 +391,8 @@ class ParallaxAdapter(BaseAdapter):
         
         # 构建 BM25 索引
         if bm25_to_build > 0:
+            # 设置 activity_id: 索引构建阶段
+            set_activity_id("add-idx-bm25")
             console.print(f"\n🔨 构建 BM25 索引 ({bm25_to_build} 个会话)...", style="yellow")
             stage2_index_building.build_bm25_index(
                 config=exp_config,
@@ -399,10 +402,12 @@ class ParallaxAdapter(BaseAdapter):
             console.print("✅ BM25 索引构建完成", style="green")
         else:
             console.print("✅ BM25 索引已全部存在，跳过构建", style="green")
-        
+
         # 构建 Embedding 索引（如果启用）
         if use_hybrid:
             if emb_to_build > 0:
+                # 设置 activity_id: Embedding 索引构建阶段
+                set_activity_id("add-idx-emb")
                 console.print(f"\n🔨 构建 Embedding 索引 ({emb_to_build} 个会话)...", style="yellow")
                 await stage2_index_building.build_emb_index(
                     config=exp_config,

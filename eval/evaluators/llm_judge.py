@@ -21,6 +21,7 @@ from eval.evaluators.base import BaseEvaluator
 from eval.evaluators.registry import register_evaluator
 from eval.core.data_models import AnswerResult, EvaluationResult
 from eval.utils.prompts import get_prompt, format_prompt
+from eval.utils.logger import set_activity_id
 
 logger = logging.getLogger(__name__)
 
@@ -67,6 +68,9 @@ class LLMJudge(BaseEvaluator):
         pbar = tqdm(total=len(answer_results), desc="⚖️  Evaluate Progress", unit="qa")
         
         async def evaluate_single(answer_result: AnswerResult):
+            # 设置 activity_id: eval-{question_id}
+            set_activity_id(f"eval-{answer_result.question_id}")
+
             async with semaphore:
                 result = await self._evaluate_single_answer(answer_result)
                 pbar.update(1)  # 更新进度条

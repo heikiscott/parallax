@@ -12,6 +12,7 @@ logger = logging.getLogger(__name__)
 from eval.evaluators.base import BaseEvaluator
 from eval.evaluators.registry import register_evaluator
 from eval.core.data_models import AnswerResult, EvaluationResult
+from eval.utils.logger import set_activity_id
 
 
 @register_evaluator("exact_match")
@@ -57,6 +58,9 @@ class ExactMatch(BaseEvaluator):
         
         # 评估每个答案
         for answer_result in answer_results:
+            # 设置 activity_id: eval-{question_id}
+            set_activity_id(f"eval-{answer_result.question_id}")
+
             is_correct = self._check_match(
                 answer_result.golden_answer,
                 answer_result.answer

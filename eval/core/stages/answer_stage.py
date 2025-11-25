@@ -150,8 +150,8 @@ async def run_answer_stage(
     async def answer_single_with_tracking(qa, search_result):
         nonlocal completed, failed
 
-        # 为每个请求设置唯一的 activity_id，使用完整的 question_id
-        set_activity_id(qa.question_id)
+        # 设置 activity_id: answer-{question_id}
+        set_activity_id(f"answer-{qa.question_id}")
 
         async with semaphore:
             try:

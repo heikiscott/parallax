@@ -17,6 +17,7 @@ from rich.progress import (
 )
 from rich.console import Console
 
+from eval.utils.logger import set_activity_id
 
 from utils.datetime_utils import (
     to_iso_format,
@@ -174,6 +175,7 @@ async def memunit_extraction_from_conversation(
     # 处理消息
     total_messages = len(raw_data_list)
     smart_mask_flag = False
+    memunit_counter = 0  # MemUnit 计数器，用于 activity_id
 
     for idx, raw_data in enumerate(raw_data_list):
         # 更新进度条（在处理前更新，显示正在处理第几条）
@@ -190,6 +192,10 @@ async def memunit_extraction_from_conversation(
         else:
             # analysis_history = history_raw_data_list
             smart_mask_flag = False
+
+        # 设置 activity_id: 边界检测和 MemUnit 创建
+        set_activity_id(f"add-{conv_id}-mu{memunit_counter}")
+
         request = ConversationMemUnitExtractRequest(
             history_raw_data_list=history_raw_data_list,
             new_raw_data_list=[raw_data],
@@ -220,6 +226,7 @@ async def memunit_extraction_from_conversation(
                 history_raw_data_list = [raw_data]
             memunit_result.summary = memunit_result.episode[:200] + "..."
             memunit_list.append(memunit_result)
+            memunit_counter += 1  # MemUnit 创建成功，计数器加1
         else:
             console = Console()
             console.print("--------------------------------")
@@ -231,12 +238,15 @@ async def memunit_extraction_from_conversation(
         progress.update(task_id, completed=total_messages)
 
     if history_raw_data_list:
+        # 设置 activity_id: 最后一个 MemUnit 的 Episode 抽取
+        set_activity_id(f"add-{conv_id}-ep{memunit_counter}")
+
         memunit = MemUnit(
             type=RawDataType.CONVERSATION,
             event_id=str(uuid.uuid4()),
             user_id_list=list(speakers),
             original_data=history_raw_data_list,
-            timestamp=(memunit_list[-1].timestamp),
+            timestamp=(memunit_list[-1].timestamp if memunit_list else get_now_with_timezone()),
             summary="111",
         )
         episode_request = EpisodeMemoryExtractRequest(
@@ -291,6 +301,9 @@ async def process_single_conversation(
         tuple: (conv_id, memunit_list)
     """
     try:
+        # 设置 activity_id: 整个 conversation 的 add 过程
+        set_activity_id(f"add-{conv_id}")
+
         # 更新状态为处理中
         if progress and task_id is not None:
             progress.update(task_id, status="处理中")
@@ -390,9 +403,11 @@ async def process_single_conversation(
             
             # 定义单个 event log 提取任务
             async def extract_single_event_log(idx: int, memunit):
+                # 设置 activity_id: Event Log 提取
+                set_activity_id(f"add-{conv_id}-el{idx}")
                 try:
                     event_log = await event_log_extractor.extract_event_log(
-                        episode_text=memunit.episode, 
+                        episode_text=memunit.episode,
                         timestamp=memunit.timestamp
                     )
                     return idx, event_log
