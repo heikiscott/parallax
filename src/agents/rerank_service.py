@@ -12,6 +12,7 @@ import os
 import asyncio
 import aiohttp
 import logging
+import traceback
 from abc import ABC, abstractmethod
 from typing import List, Dict, Any, Optional, Union
 from dataclasses import dataclass, field
@@ -282,23 +283,28 @@ class DeepInfraRerankService(DeepInfraRerankServiceInterface):
 
                 except aiohttp.ClientError as e:
                     logger.error(
-                        f"DeepInfra Rerank API client error (attempt {attempt + 1}/{self.config.max_retries}): {e}"
+                        f"DeepInfra Rerank API client error (attempt {attempt + 1}/{self.config.max_retries}): "
+                        f"{type(e).__name__}: {e or 'No error message'}"
                     )
                     if attempt < self.config.max_retries - 1:
                         await asyncio.sleep(2**attempt)
                         continue
                     else:
-                        raise DeepInfraRerankError(f"Rerank client error: {e}")
+                        raise DeepInfraRerankError(f"Rerank client error: {type(e).__name__}: {e}")
 
                 except Exception as e:
+                    import traceback
+                    error_msg = str(e) if str(e) else "No error message"
                     logger.error(
-                        f"Unexpected rerank error (attempt {attempt + 1}/{self.config.max_retries}): {e}"
+                        f"Unexpected rerank error (attempt {attempt + 1}/{self.config.max_retries}): "
+                        f"{type(e).__name__}: {error_msg}\n"
+                        f"Traceback: {traceback.format_exc()}"
                     )
                     if attempt < self.config.max_retries - 1:
                         await asyncio.sleep(2**attempt)
                         continue
                     else:
-                        raise DeepInfraRerankError(f"Unexpected rerank error: {e}")
+                        raise DeepInfraRerankError(f"Unexpected rerank error: {type(e).__name__}: {error_msg}")
 
     def _convert_response_format(
         self, api_response: Dict[str, Any], num_documents: int
