@@ -82,7 +82,8 @@ class OpenAIProvider(LLMProvider):
         self.base_url = base_url or os.getenv("LLM_BASE_URL") or "https://api.openai.com/v1"
 
         # Read rate limiting configuration from environment
-        self.timeout = float(os.getenv("OPENAI_TIMEOUT", "30"))
+        # Increase default timeout to 60s to prevent premature disconnections
+        self.timeout = float(os.getenv("OPENAI_TIMEOUT", "60"))
         self.max_retries = int(os.getenv("OPENAI_MAX_RETRIES", "0"))  # Disable SDK retries, let eval framework handle it
 
         # Provider-level concurrency control (shared across all instances)
@@ -93,16 +94,22 @@ class OpenAIProvider(LLMProvider):
         # Common tiers: Free (~60 RPM), Tier 1 (~500 RPM), Tier 2+ (~5000 RPM)
         rpm_limit = int(os.getenv("OPENAI_RPM_LIMIT", "500"))
 
-        # Configure httpx client with larger connection pool
-        # This prevents TCP connection exhaustion at the HTTP client layer
-        # max_keepalive_connections: Number of connections to keep alive for reuse
-        # max_connections: Total number of connections allowed (should be >= max_concurrent)
+        # Configure httpx client with connection settings optimized for stability
+        #
+        # 🔥 CRITICAL FIX: http2=False prevents "Server disconnected" errors
+        # httpx's HTTP/2 implementation is unstable with OpenAI's servers
         http_client = httpx.AsyncClient(
+            http2=False,  # 🔥 Disable HTTP/2 to prevent protocol errors
             limits=httpx.Limits(
-                max_keepalive_connections=max_concurrent,  # Match semaphore limit
+                max_keepalive_connections=max_concurrent * 2,  # Match semaphore limit
                 max_connections=max_concurrent * 4,  # 4x buffer for safety
+                # 🔥【关键修改】设置连接保活过期时间
+                # 默认是 5秒或更长。
+                # 既然 OpenAI 那边容易断，我们设置得短一点，比如 5秒。
+                # 超过 5秒没用的连接，本地直接扔掉，下次新建，避免去复用那个可能已经断掉的“僵尸连接”。
+                keepalive_expiry=5.0
             ),
-            timeout=httpx.Timeout(self.timeout, connect=10.0),  # Bottom-layer timeout
+            timeout=httpx.Timeout(self.timeout, connect=30.0),
         )
 
         # Initialize official OpenAI async client with custom httpx client
@@ -148,11 +155,11 @@ class OpenAIProvider(LLMProvider):
             self.current_call_stats = None
 
         logger.info(f"Initialized OpenAIProvider with model={self.model}")
-        logger.info(f"  Timeout: {self.timeout}s")
+        logger.info(f"  Timeout: {self.timeout}s, connect=30.0s")
         logger.info(f"  Max retries (SDK): {self.max_retries}")
         logger.info(f"  Max concurrent: {max_concurrent}")
         logger.info(f"  RPM limit: {rpm_limit} (proactive rate limiting)")
-        logger.info(f"  HTTPX pool: keepalive={max_concurrent}, max={max_concurrent * 4}")
+        logger.info(f"  HTTPX: http2=False, keepalive={max_concurrent}, max_conn={max_concurrent * 4}")
 
     async def generate(
         self,
@@ -206,6 +213,7 @@ class OpenAIProvider(LLMProvider):
                             openai.APIConnectionError,
                             openai.APIError,
                             openai.APITimeoutError,
+                            httpx.RemoteProtocolError,
                         )),
                         reraise=True
                     ):
@@ -230,40 +238,71 @@ class OpenAIProvider(LLMProvider):
                                 if response_format is not None:
                                     params["response_format"] = response_format
 
-                                # Make API call
-                                # Dual-layer rate limiting now active:
-                                # Layer 1: Semaphore (physical concurrency)
-                                # Layer 2: AsyncLimiter (proactive RPM throttling)
-                                # Layer 3: tenacity retry (exponential backoff for transient errors)
-                                #
-                                # Explicitly set timeout (double insurance, even though client has default timeout)
-                                # This prevents zombie tasks from occupying semaphore slots indefinitely
-                                response = await self.client.chat.completions.create(
+                                # ---------------------------------------------------
+                                # 🔥 核心修改：开启 stream=True (流式传输)
+                                # ---------------------------------------------------
+                                # 即使你不需要实时显示，也必须用 stream。
+                                # 因为 stream 会每隔几百毫秒传回一个数据包，
+                                # 这能骗过防火墙/代理，告诉它们："别切断！我还活着！"
+                                # ---------------------------------------------------
+
+                                # 流式传输超时设置为 5 分钟，允许处理超长文本
+                                stream_timeout = 300.0
+
+                                response_stream = await self.client.chat.completions.create(
                                     **params,
-                                    timeout=self.timeout  # Use timeout from environment variable
+                                    stream=True,  # 🔥 必须开启流式传输！
+                                    stream_options={"include_usage": True},  # 请求返回 usage 信息
+                                    timeout=stream_timeout,
+                                    extra_headers={"Connection": "close"}
                                 )
+
+                                collected_content = []
+                                finish_reason = None
+                                usage_info = None
+
+                                # 迭代流式数据
+                                # 只要有数据包传回来，连接就会保持活跃，不会被代理切断
+                                async for chunk in response_stream:
+                                    # 收集内容片段
+                                    if chunk.choices and len(chunk.choices) > 0:
+                                        delta = chunk.choices[0].delta
+                                        if delta and delta.content:
+                                            collected_content.append(delta.content)
+                                        # 记录完成原因
+                                        if chunk.choices[0].finish_reason:
+                                            finish_reason = chunk.choices[0].finish_reason
+
+                                    # 流式模式下，usage 信息在最后一个 chunk 中
+                                    if chunk.usage:
+                                        usage_info = chunk.usage
+
+                                # 拼接完整结果
+                                content = "".join(collected_content)
+
+                                # 校验结果
+                                if not content:
+                                    logger.warning(f"[OpenAI-{self.model}] 流式传输返回空内容，视作失败")
+                                    raise ValueError("Empty response received from stream")
 
                                 end_time = time.perf_counter()
                                 duration = end_time - start_time
 
-                                # Extract result
-                                content = response.choices[0].message.content
-                                finish_reason = response.choices[0].finish_reason
-
                                 # Log completion details
                                 if finish_reason == 'stop':
                                     logger.debug(f"[OpenAI-{self.model}] 完成原因: {finish_reason}")
-                                else:
+                                elif finish_reason:
                                     logger.warning(f"[OpenAI-{self.model}] 完成原因: {finish_reason}")
+                                else:
+                                    logger.debug(f"[OpenAI-{self.model}] 流式传输完成 (无 finish_reason)")
 
-                                # Extract token usage
-                                usage = response.usage
-                                prompt_tokens = usage.prompt_tokens if usage else 0
-                                completion_tokens = usage.completion_tokens if usage else 0
-                                total_tokens = usage.total_tokens if usage else 0
+                                # Extract token usage (流式模式下从最后一个 chunk 获取)
+                                prompt_tokens = usage_info.prompt_tokens if usage_info else 0
+                                completion_tokens = usage_info.completion_tokens if usage_info else 0
+                                total_tokens = usage_info.total_tokens if usage_info else 0
 
                                 # Log usage information
-                                logger.debug(f"[OpenAI-{self.model}] API调用完成")
+                                logger.debug(f"[OpenAI-{self.model}] API调用完成 (流式)")
                                 logger.debug(f"[OpenAI-{self.model}] 耗时: {duration:.2f}s")
                                 logger.debug(f"[OpenAI-{self.model}] Prompt Tokens: {prompt_tokens:,}")
                                 logger.debug(f"[OpenAI-{self.model}] Completion Tokens: {completion_tokens:,}")
@@ -281,26 +320,44 @@ class OpenAIProvider(LLMProvider):
 
                                 return content
 
-                            except (openai.RateLimitError, openai.APIConnectionError, openai.APIError, openai.APITimeoutError) as e:
-                                # 🚨 CRITICAL WARNING: If you see this log frequently, your OPENAI_RPM_LIMIT is set too high!
-                                # The proactive rate limiter should prevent most 429 errors.
-                                if isinstance(e, openai.RateLimitError):
-                                    logger.warning(f"⚠️  [OpenAI-{self.model}] 依然触发了 429 RateLimitError!")
-                                    logger.warning(f"   这说明 OPENAI_RPM_LIMIT 设置过高，请降低到你的 tier 限制的 80%")
+                            except httpx.RemoteProtocolError as e:
+                                # 网络中断错误，让 tenacity 重试
+                                error_time = time.perf_counter()
+                                duration = error_time - start_time
+                                attempt_num = attempt.retry_state.attempt_number
+                                logger.warning(f"🔌 [OpenAI-{self.model}] 流式传输网络中断! 重试 {attempt_num}/{retry_attempts}")
+                                logger.warning(f"   ⏱️  已耗时: {duration:.2f}s")
+                                logger.warning(f"   💬 错误: {str(e)[:200]}")
+                                raise
 
+                            except (openai.RateLimitError, openai.APIConnectionError, openai.APIError, openai.APITimeoutError) as e:
                                 # Log retry-able errors and let tenacity handle retry
                                 error_time = time.perf_counter()
                                 duration = error_time - start_time
                                 error_type = type(e).__name__
                                 attempt_num = attempt.retry_state.attempt_number
 
+                                # Determine log level based on error type
+                                # Connection errors are more serious and should be warnings
+                                is_connection_error = isinstance(e, (openai.APIConnectionError, openai.APITimeoutError))
+
+                                # Special warning for rate limit errors
+                                if isinstance(e, openai.RateLimitError):
+                                    logger.warning(f"⚠️  [OpenAI-{self.model}] 触发了 429 RateLimitError!")
+                                    logger.warning(f"   这说明 OPENAI_RPM_LIMIT 设置过高，请降低到你的 tier 限制的 80%")
+
                                 # Calculate next retry wait time
                                 if attempt_num < retry_attempts:
-                                    # Estimate next wait (exponential backoff range)
                                     next_min = min(retry_min_wait * (2 ** (attempt_num - 1)), retry_max_wait)
                                     next_max = retry_max_wait
-                                    logger.info(f"[OpenAI-{self.model}] 重试 {attempt_num}/{retry_attempts}: {error_type}")
-                                    logger.info(f"   ⏱️  已耗时: {duration:.2f}s, 将等待 {next_min:.1f}-{next_max:.1f}s 后重试")
+                                    # Use warning for connection errors, info for rate limits
+                                    if is_connection_error:
+                                        logger.warning(f"🔌 [OpenAI-{self.model}] 连接异常! 重试 {attempt_num}/{retry_attempts}: {error_type}")
+                                        logger.warning(f"   ⏱️  已耗时: {duration:.2f}s, 将等待 {next_min:.1f}-{next_max:.1f}s 后重试")
+                                        logger.warning(f"   💬 错误: {str(e)[:200]}")  # Truncate long error messages
+                                    else:
+                                        logger.info(f"[OpenAI-{self.model}] 重试 {attempt_num}/{retry_attempts}: {error_type}")
+                                        logger.info(f"   ⏱️  已耗时: {duration:.2f}s, 将等待 {next_min:.1f}-{next_max:.1f}s 后重试")
                                 else:
                                     logger.warning(f"[OpenAI-{self.model}] {error_type} (最后一次尝试 {attempt_num}/{retry_attempts})")
                                     logger.warning(f"   ⏱️  耗时: {duration:.2f}s")
@@ -327,7 +384,7 @@ class OpenAIProvider(LLMProvider):
             logger.error(f"   💬 错误: {str(e)}")
             raise LLMError(f"Rate limit error after {retry_attempts} retries: {str(e)}")
 
-        except (openai.APIError, openai.APIConnectionError, openai.APITimeoutError) as e:
+        except (openai.APIError, openai.APIConnectionError, openai.APITimeoutError, httpx.RemoteProtocolError) as e:
             # Retry exhausted for API errors
             error_time = time.perf_counter()
             duration = error_time - start_time

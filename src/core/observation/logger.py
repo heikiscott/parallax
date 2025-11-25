@@ -1,11 +1,48 @@
 import logging
 import traceback
+import contextvars
+import uuid
 from typing import Any, Optional
 from enum import Enum
 from functools import lru_cache
 import sys
 import os
 from datetime import datetime
+
+
+# Context variable for activity tracking (shared with eval/utils/logger.py)
+# 使用 contextvars 确保在异步环境中每个任务有独立的 activity_id
+activity_id_var: contextvars.ContextVar[str] = contextvars.ContextVar('activity_id', default='-')
+
+
+def set_activity_id(activity_id: Optional[str] = None) -> str:
+    """
+    设置当前上下文的 activity_id
+
+    Args:
+        activity_id: 自定义的 activity_id，如果不提供则自动生成
+
+    Returns:
+        设置的 activity_id
+    """
+    if activity_id is None:
+        activity_id = str(uuid.uuid4())[:8]
+    activity_id_var.set(activity_id)
+    return activity_id
+
+
+def get_activity_id() -> str:
+    """获取当前上下文的 activity_id"""
+    return activity_id_var.get()
+
+
+class ActivityIdFilter(logging.Filter):
+    """
+    日志过滤器，自动添加 activity_id 到日志记录
+    """
+    def filter(self, record: logging.LogRecord) -> bool:
+        record.activity_id = activity_id_var.get()
+        return True
 
 
 class LogLevel(Enum):
@@ -41,15 +78,15 @@ class LoggerProvider:
         # 获取环境变量中的日志级别，默认为INFO
         log_level = os.getenv('LOG_LEVEL', 'INFO').upper()
 
+        # 创建 handler 并添加 activity_id filter
+        handler = logging.StreamHandler(sys.stdout)
+        handler.addFilter(ActivityIdFilter())
+
         # 配置根日志器
         logging.basicConfig(
             level=getattr(logging, log_level),
-            format='%(asctime)s - %(name)s - %(levelname)s - %(filename)s:%(lineno)d - %(message)s',
-            handlers=[
-                logging.StreamHandler(sys.stdout),
-                # 可以添加文件处理器
-                # logging.FileHandler('app.log', encoding='utf-8')
-            ],
+            format='%(asctime)s - [%(activity_id)s] - %(name)s - %(levelname)s - %(filename)s:%(lineno)d - %(message)s',
+            handlers=[handler],
         )
 
     def _setup_logging(self):

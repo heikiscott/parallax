@@ -5,5 +5,8 @@
         "demo",
         "tests"
     ],
+    "extraPaths": [
+        "src"
+    ],
     "typeCheckingMode": "off"
 }

@@ -13,6 +13,7 @@ from tqdm import tqdm
 from eval.core.data_models import QAPair, SearchResult, AnswerResult
 from eval.adapters.base import BaseAdapter
 from eval.utils.checkpoint import CheckpointManager
+from eval.utils.logger import set_activity_id
 
 
 def build_context(search_result: SearchResult) -> str:
@@ -84,10 +85,12 @@ async def run_answer_stage(
     # Batch processing configuration
     BATCH_SIZE = int(os.getenv("EVAL_ANSWER_BATCH_SIZE", "20"))  # 每批次处理的请求数
     BATCH_DELAY = int(os.getenv("EVAL_ANSWER_BATCH_DELAY", "3"))  # batch 间延迟（秒）
+    REQUEST_INTERVAL = float(os.getenv("EVAL_ANSWER_REQUEST_INTERVAL", "1.0"))  # batch 内请求间隔（秒）
 
     logger.info(f"Batch processing enabled:")
     logger.info(f"  - Batch size: {BATCH_SIZE}")
     logger.info(f"  - Batch delay: {BATCH_DELAY}s (between batches)")
+    logger.info(f"  - Request interval: {REQUEST_INTERVAL}s (within batch)")
     logger.info(f"  - Timeout & concurrency: controlled by Provider layer")
     
     # 加载细粒度 checkpoint
@@ -146,6 +149,9 @@ async def run_answer_stage(
 
     async def answer_single_with_tracking(qa, search_result):
         nonlocal completed, failed
+
+        # 为每个请求设置唯一的 activity_id，使用完整的 question_id
+        set_activity_id(qa.question_id)
 
         async with semaphore:
             try:
@@ -220,7 +226,7 @@ IMPORTANT: This is a multiple-choice question. You MUST analyze the context and 
             return result
 
     # Batch processing: 分批执行，确保当前 batch 完全结束后才开始下一个 batch
-    # 并发控制和超时已经在 Provider 层处理，这里只负责批次管理
+    # 并发控制和超时已经在 Provider 层处理，这里负责批次管理和请求间隔控制
     total_batches = (len(pending_tasks) + BATCH_SIZE - 1) // BATCH_SIZE
 
     for batch_idx in range(0, len(pending_tasks), BATCH_SIZE):
@@ -232,13 +238,18 @@ IMPORTANT: This is a multiple-choice question. You MUST analyze the context and 
 
         batch_start_time = time.time()
 
-        # 为当前 batch 创建任务
-        batch_tasks = [
-            answer_single_with_tracking(qa, sr)
-            for qa, sr in batch_tasks_data
-        ]
+        # 逐个发送请求，每个请求间隔 REQUEST_INTERVAL 秒
+        batch_tasks = []
+        for i, (qa, sr) in enumerate(batch_tasks_data):
+            # 创建任务
+            task = asyncio.create_task(answer_single_with_tracking(qa, sr))
+            batch_tasks.append(task)
 
-        # 等待当前 batch 的所有任务完成（并发执行，但 batch 间串行）
+            # 如果不是最后一个请求，等待 REQUEST_INTERVAL 秒再发送下一个
+            if i < len(batch_tasks_data) - 1:
+                await asyncio.sleep(REQUEST_INTERVAL)
+
+        # 等待当前 batch 的所有任务完成
         await asyncio.gather(*batch_tasks)
 
         batch_duration = time.time() - batch_start_time
