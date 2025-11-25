@@ -293,7 +293,6 @@ class DeepInfraRerankService(DeepInfraRerankServiceInterface):
                         raise DeepInfraRerankError(f"Rerank client error: {type(e).__name__}: {e}")
 
                 except Exception as e:
-                    import traceback
                     error_msg = str(e) if str(e) else "No error message"
                     logger.error(
                         f"Unexpected rerank error (attempt {attempt + 1}/{self.config.max_retries}): "
