@@ -1,0 +1,27 @@
+# LoCoMo Q50 Dataset Configuration
+# First 50 questions from conv0 with required sessions
+
+name: "locomo-q50"
+version: "1.0"
+description: "First 50 questions from LoCoMo conv0 (12 sessions, 253 messages)"
+
+# Data configuration
+data:
+  path: "locomo/locomo-q50.json"  # Relative to eval/data/ or project root data/
+  format: "locomo"  # Native format, no conversion needed
+
+# Evaluation configuration
+evaluation:
+  type: "llm_judge"  # llm_judge | exact_match
+
+  # LLM Judge settings
+  llm:
+    provider: "openai"
+    model: "gpt-4o-mini"
+    api_key: "${LLM_API_KEY}"
+    base_url: "${LLM_BASE_URL:https://openrouter.ai/api/v1}"
+
+  num_runs: 3  # Number of judging runs per question
+
+  # Filter settings
+  filter_category: [5]  # Filter out category 5 (adversarial questions)

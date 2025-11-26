@@ -115,6 +115,8 @@ def run_evaluation(dataset: str, output_dir: Path, conv_id: int = None):
         logger.info(f"Running evaluation for conversation {conv_id}...")
     elif dataset == "locomo-mini":
         logger.info(f"Running mini dataset validation...")
+    elif dataset.startswith("locomo-q"):
+        logger.info(f"Running {dataset} evaluation...")
     else:
         logger.info(f"Running full evaluation on all conversations...")
 
@@ -156,6 +158,10 @@ def main():
 Examples:
   %(prog)s --mini           Run mini dataset for quick validation
   %(prog)s -m               Same as --mini (short form)
+  %(prog)s --q10            Run first 10 questions from conv0
+  %(prog)s --q20            Run first 20 questions from conv0
+  %(prog)s --q30            Run first 30 questions from conv0
+  %(prog)s --q50            Run first 50 questions from conv0
   %(prog)s --all            Run all conversations
   %(prog)s -a               Same as --all (short form)
   %(prog)s --conv 4         Run single conversation (index 4)
@@ -171,6 +177,26 @@ Examples:
         "-m", "--mini",
         action="store_true",
         help="Run mini dataset validation"
+    )
+    group.add_argument(
+        "--q10",
+        action="store_true",
+        help="Run first 10 questions from conv0 (3 sessions)"
+    )
+    group.add_argument(
+        "--q20",
+        action="store_true",
+        help="Run first 20 questions from conv0 (9 sessions)"
+    )
+    group.add_argument(
+        "--q30",
+        action="store_true",
+        help="Run first 30 questions from conv0 (9 sessions)"
+    )
+    group.add_argument(
+        "--q50",
+        action="store_true",
+        help="Run first 50 questions from conv0 (12 sessions)"
     )
     group.add_argument(
         "-a", "--all",
@@ -203,6 +229,46 @@ Examples:
         # Mini mode: locomo-mini, locomo-mini-1, locomo-mini-2, ...
         dataset = "locomo-mini"
         base_name = "locomo-mini"
+        output_dir = find_output_dir(base_name, results_dir, resume=args.resume)
+
+        if args.resume:
+            logger.info(f"🔄 Resuming from: {output_dir}")
+        return run_evaluation(dataset, output_dir)
+
+    elif args.q10:
+        # Q10 mode: locomo-q10, locomo-q10-1, locomo-q10-2, ...
+        dataset = "locomo-q10"
+        base_name = "locomo-q10"
+        output_dir = find_output_dir(base_name, results_dir, resume=args.resume)
+
+        if args.resume:
+            logger.info(f"🔄 Resuming from: {output_dir}")
+        return run_evaluation(dataset, output_dir)
+
+    elif args.q20:
+        # Q20 mode: locomo-q20, locomo-q20-1, locomo-q20-2, ...
+        dataset = "locomo-q20"
+        base_name = "locomo-q20"
+        output_dir = find_output_dir(base_name, results_dir, resume=args.resume)
+
+        if args.resume:
+            logger.info(f"🔄 Resuming from: {output_dir}")
+        return run_evaluation(dataset, output_dir)
+
+    elif args.q30:
+        # Q30 mode: locomo-q30, locomo-q30-1, locomo-q30-2, ...
+        dataset = "locomo-q30"
+        base_name = "locomo-q30"
+        output_dir = find_output_dir(base_name, results_dir, resume=args.resume)
+
+        if args.resume:
+            logger.info(f"🔄 Resuming from: {output_dir}")
+        return run_evaluation(dataset, output_dir)
+
+    elif args.q50:
+        # Q50 mode: locomo-q50, locomo-q50-1, locomo-q50-2, ...
+        dataset = "locomo-q50"
+        base_name = "locomo-q50"
         output_dir = find_output_dir(base_name, results_dir, resume=args.resume)
 
         if args.resume:
