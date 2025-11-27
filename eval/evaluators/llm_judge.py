@@ -21,7 +21,7 @@ from eval.evaluators.base import BaseEvaluator
 from eval.evaluators.registry import register_evaluator
 from eval.core.data_models import AnswerResult, EvaluationResult
 from eval.utils.prompts import get_prompt, format_prompt
-from eval.utils.logger import set_activity_id
+from core.observation.logger import set_activity_id
 
 logger = logging.getLogger(__name__)
 

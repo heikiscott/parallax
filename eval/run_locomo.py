@@ -12,7 +12,14 @@ import argparse
 import subprocess
 import sys
 from pathlib import Path
-from eval.utils.logger import setup_logger
+
+# 添加 src 目录到 sys.path，以便导入 core 模块
+_project_root = Path(__file__).parent.parent.resolve()
+_src_path = str(_project_root / "src")
+if _src_path not in sys.path:
+    sys.path.insert(0, _src_path)
+
+from core.observation.logger import setup_logger
 
 logger = setup_logger(name="runner")
 

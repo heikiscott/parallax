@@ -13,7 +13,7 @@ from tqdm import tqdm
 from eval.core.data_models import QAPair, SearchResult, AnswerResult
 from eval.adapters.base import BaseAdapter
 from eval.utils.checkpoint import CheckpointManager
-from eval.utils.logger import set_activity_id
+from core.observation.logger import set_activity_id
 
 
 def build_context(search_result: SearchResult) -> str:

@@ -37,7 +37,7 @@ from eval.core.pipeline import Pipeline
 from eval.adapters.registry import create_adapter
 from eval.evaluators.registry import create_evaluator
 from eval.utils.config import load_yaml
-from eval.utils.logger import get_console, setup_logger
+from core.observation.logger import get_console, setup_logger
 
 from providers.llm.llm_provider import LLMProvider
 

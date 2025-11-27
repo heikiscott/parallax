@@ -12,7 +12,7 @@ from eval.core.data_models import (
 )
 from eval.adapters.base import BaseAdapter
 from eval.evaluators.base import BaseEvaluator
-from eval.utils.logger import setup_logger, get_console
+from core.observation.logger import setup_logger, get_console
 from eval.utils.saver import ResultSaver
 from eval.utils.checkpoint import CheckpointManager
 

@@ -27,7 +27,7 @@ from rich.console import Console
 from eval.adapters.base import BaseAdapter
 from eval.adapters.registry import register_adapter
 from eval.core.data_models import Conversation, SearchResult
-from eval.utils.logger import set_activity_id
+from core.observation.logger import set_activity_id
 from utils.datetime_utils import to_iso_format
 
 logger = logging.getLogger(__name__)

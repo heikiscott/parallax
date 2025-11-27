@@ -17,7 +17,7 @@ from rich.progress import (
 )
 from rich.console import Console
 
-from eval.utils.logger import set_activity_id
+from core.observation.logger import set_activity_id
 
 from utils.datetime_utils import (
     to_iso_format,
