@@ -253,28 +253,30 @@ class LoggerProvider:
 
         Args:
             log_dir: 日志目录，将创建多个分级日志文件
-            name: 日志器名称
+            name: 日志器名称，用于返回调用者的 logger
             level: 控制台输出级别
             run_number: 运行编号，用于区分不同运行的日志文件
             use_rich: 是否使用 Rich 彩色输出
 
         Returns:
-            配置好的 Logger 实例
+            调用者的 Logger 实例（文件 handlers 配置在 root logger 上）
         """
         if name is None:
             name = _get_caller_module_name(depth=3)
 
-        logger = logging.getLogger(name)
-        logger.setLevel(logging.DEBUG)
-        logger.handlers.clear()
+        # 配置 root logger，这样所有模块的日志都会被捕获
+        root_logger = logging.getLogger()
+        root_logger.setLevel(logging.DEBUG)
+        root_logger.handlers.clear()
 
         # 配置控制台输出
-        self._add_console_handler(logger, level, use_rich)
+        self._add_console_handler(root_logger, level, use_rich)
 
         # 配置文件输出
-        self._add_file_handlers(logger, log_dir, run_number)
+        self._add_file_handlers(root_logger, log_dir, run_number)
 
-        return logger
+        # 返回调用者的 logger（方便使用）
+        return logging.getLogger(name)
 
     def _add_console_handler(
         self,

@@ -19,9 +19,6 @@ _src_path = str(_project_root / "src")
 if _src_path not in sys.path:
     sys.path.insert(0, _src_path)
 
-from core.observation.logger import setup_logger
-
-logger = setup_logger(name="runner")
 
 
 def find_output_dir(base_name: str, results_dir: Path, resume: bool = False) -> Path:
@@ -54,8 +51,8 @@ def find_output_dir(base_name: str, results_dir: Path, resume: bool = False) -> 
                 return base_dir
         else:
             # No existing directory to resume from
-            logger.warning(f"⚠️  Warning: No existing directory found for {base_name}")
-            logger.info(f"   Creating new directory instead")
+            print(f"⚠️  Warning: No existing directory found for {base_name}")
+            print(f"   Creating new directory instead")
             return base_dir
     else:
         # Normal mode: create new directory
@@ -119,17 +116,17 @@ def run_evaluation(dataset: str, output_dir: Path, conv_id: int = None):
 
     # Print info
     if conv_id is not None:
-        logger.info(f"Running evaluation for conversation {conv_id}...")
+        print(f"Running evaluation for conversation {conv_id}...")
     elif dataset == "locomo-mini":
-        logger.info(f"Running mini dataset validation...")
+        print(f"Running mini dataset validation...")
     elif dataset.startswith("locomo-q"):
-        logger.info(f"Running {dataset} evaluation...")
+        print(f"Running {dataset} evaluation...")
     else:
-        logger.info(f"Running full evaluation on all conversations...")
+        print(f"Running full evaluation on all conversations...")
 
-    logger.info(f"Output directory: {output_dir}")
-    logger.info(f"Logging to: {log_file}")
-    logger.info("")
+    print(f"Output directory: {output_dir}")
+    print(f"Logging to: {log_file}")
+    print()
 
     # Run command and tee output to both console and log file
     with open(log_file, 'w', encoding='utf-8') as f:
@@ -149,10 +146,10 @@ def run_evaluation(dataset: str, output_dir: Path, conv_id: int = None):
 
         process.wait()
 
-    logger.info("")
-    logger.info("Evaluation completed!")
-    logger.info(f"Results saved to: {output_dir}")
-    logger.info(f"Log saved to: {log_file}")
+    print()
+    print("Evaluation completed!")
+    print(f"Results saved to: {output_dir}")
+    print(f"Log saved to: {log_file}")
 
     return process.returncode
 
@@ -239,7 +236,7 @@ Examples:
         output_dir = find_output_dir(base_name, results_dir, resume=args.resume)
 
         if args.resume:
-            logger.info(f"🔄 Resuming from: {output_dir}")
+            print(f"🔄 Resuming from: {output_dir}")
         return run_evaluation(dataset, output_dir)
 
     elif args.q10:
@@ -249,7 +246,7 @@ Examples:
         output_dir = find_output_dir(base_name, results_dir, resume=args.resume)
 
         if args.resume:
-            logger.info(f"🔄 Resuming from: {output_dir}")
+            print(f"🔄 Resuming from: {output_dir}")
         return run_evaluation(dataset, output_dir)
 
     elif args.q20:
@@ -259,7 +256,7 @@ Examples:
         output_dir = find_output_dir(base_name, results_dir, resume=args.resume)
 
         if args.resume:
-            logger.info(f"🔄 Resuming from: {output_dir}")
+            print(f"🔄 Resuming from: {output_dir}")
         return run_evaluation(dataset, output_dir)
 
     elif args.q30:
@@ -269,7 +266,7 @@ Examples:
         output_dir = find_output_dir(base_name, results_dir, resume=args.resume)
 
         if args.resume:
-            logger.info(f"🔄 Resuming from: {output_dir}")
+            print(f"🔄 Resuming from: {output_dir}")
         return run_evaluation(dataset, output_dir)
 
     elif args.q50:
@@ -279,7 +276,7 @@ Examples:
         output_dir = find_output_dir(base_name, results_dir, resume=args.resume)
 
         if args.resume:
-            logger.info(f"🔄 Resuming from: {output_dir}")
+            print(f"🔄 Resuming from: {output_dir}")
         return run_evaluation(dataset, output_dir)
 
     elif args.all:
@@ -289,7 +286,7 @@ Examples:
         output_dir = find_output_dir(base_name, results_dir, resume=args.resume)
 
         if args.resume:
-            logger.info(f"🔄 Resuming from: {output_dir}")
+            print(f"🔄 Resuming from: {output_dir}")
         return run_evaluation(dataset, output_dir)
 
     elif args.conv is not None:
@@ -300,7 +297,7 @@ Examples:
         output_dir = find_output_dir(base_name, results_dir, resume=args.resume)
 
         if args.resume:
-            logger.info(f"🔄 Resuming from: {output_dir}")
+            print(f"🔄 Resuming from: {output_dir}")
         return run_evaluation(dataset, output_dir, conv_id=conv_id)
 
 
