@@ -12,7 +12,7 @@ from typing import Any, Dict, List
 import requests
 from rich.console import Console
 
-from eval.adapters.online_base import OnlineAPIAdapter
+from eval.adapters.online.base import OnlineAPIAdapter
 from eval.adapters.registry import register_adapter
 from eval.core.data_models import Conversation, SearchResult
 

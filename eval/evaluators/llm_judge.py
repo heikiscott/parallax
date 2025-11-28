@@ -20,7 +20,7 @@ from tqdm import tqdm
 from eval.evaluators.base import BaseEvaluator
 from eval.evaluators.registry import register_evaluator
 from eval.core.data_models import AnswerResult, EvaluationResult
-from eval.utils.prompts import get_prompt, format_prompt
+from eval.evaluators.llm_judge_prompts import LLM_JUDGE_SYSTEM_PROMPT, LLM_JUDGE_USER_PROMPT
 from core.observation.logger import set_activity_id
 
 logger = logging.getLogger(__name__)
@@ -237,11 +237,9 @@ class LLMJudge(BaseEvaluator):
         Returns:
             True 如果正确，False 如果错误
         """
-        # 使用配置化的 prompts
-        system_prompt = get_prompt("llm_judge", "system_prompt")
-        user_prompt = format_prompt(
-            "llm_judge",
-            "user_prompt",
+        # 使用 prompt 常量
+        system_prompt = LLM_JUDGE_SYSTEM_PROMPT
+        user_prompt = LLM_JUDGE_USER_PROMPT.format(
             question=question,
             golden_answer=golden_answer,
             generated_answer=generated_answer

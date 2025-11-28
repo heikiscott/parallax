@@ -16,9 +16,14 @@ from typing import Any, Dict, List
 
 from rich.console import Console
 
-from eval.adapters.online_base import OnlineAPIAdapter
+from eval.adapters.online.base import OnlineAPIAdapter
 from eval.adapters.registry import register_adapter
 from eval.core.data_models import Conversation, SearchResult
+from eval.adapters.online.online_api_prompts import (
+    MEM0_CUSTOM_INSTRUCTIONS,
+    ONLINE_API_ANSWER_PROMPT,
+    CONTEXT_TEMPLATE_DEFAULT,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -62,13 +67,9 @@ class Mem0Adapter(OnlineAPIAdapter):
         self.max_content_length = config.get("max_content_length", 8000)
         self.console = Console()
         
-        # 设置 custom instructions（从 prompts.yaml 加载）
-        # 优先使用 config 中的设置（向后兼容），否则从 prompts 加载
-        custom_instructions = config.get("custom_instructions", None)
-        if not custom_instructions:
-            # 从 prompts.yaml 加载
-            custom_instructions = self._prompts.get("add_stage", {}).get("mem0", {}).get("custom_instructions", None)
-            logger.info("Custom instructions loaded from prompts.yaml")
+        # 设置 custom instructions
+        # 优先使用 config 中的设置（向后兼容），否则使用默认常量
+        custom_instructions = config.get("custom_instructions") or MEM0_CUSTOM_INSTRUCTIONS
 
         if custom_instructions:
             try:
@@ -550,8 +551,7 @@ class Mem0Adapter(OnlineAPIAdapter):
         speaker_b_memories_text = "\n".join(speaker_b_memories) if speaker_b_memories else "(No memories found)"
         
         # 使用标准 default template
-        template = self._prompts["online_api"].get("templates", {}).get("default", "")
-        context = template.format(
+        context = CONTEXT_TEMPLATE_DEFAULT.format(
             speaker_1=speaker_a,
             speaker_1_memories=speaker_a_memories_text,
             speaker_2=speaker_b,
@@ -577,10 +577,10 @@ class Mem0Adapter(OnlineAPIAdapter):
     def _get_answer_prompt(self) -> str:
         """
         返回 answer prompt
-        
-        使用通用 default prompt（从 YAML 加载）
+
+        使用通用 default prompt
         """
-        return self._prompts["online_api"]["default"]["answer_prompt"]
+        return ONLINE_API_ANSWER_PROMPT
     
     def get_system_info(self) -> Dict[str, Any]:
         """返回系统信息"""

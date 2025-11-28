@@ -17,9 +17,9 @@ _ADAPTER_MODULES = {
     "parallax": "eval.adapters.parallax_adapter",
     
     # 在线 API 系统
-    "mem0": "eval.adapters.mem0_adapter",
-    "memos": "eval.adapters.memos_adapter",
-    "memu": "eval.adapters.memu_adapter",
+    "mem0": "eval.adapters.online.mem0_adapter",
+    "memos": "eval.adapters.online.memos_adapter",
+    "memu": "eval.adapters.online.memu_adapter",
     "zep": "eval.adapters.zep_adapter",
     "memobase": "eval.adapters.memobase_adapter",
     "supermemory": "eval.adapters.supermemory_adapter",

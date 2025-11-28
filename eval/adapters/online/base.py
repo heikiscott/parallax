@@ -16,7 +16,11 @@ import logging
 
 from eval.adapters.base import BaseAdapter
 from eval.core.data_models import Conversation, SearchResult
-from eval.utils.config import load_yaml
+from eval.adapters.online.online_api_prompts import (
+    ONLINE_API_ANSWER_PROMPT,
+    ZEP_ANSWER_PROMPT,
+    MEM0_CUSTOM_INSTRUCTIONS,
+)
 
 # 导入 Memory Layer 组件
 from providers.llm.llm_provider import LLMProvider
@@ -53,11 +57,6 @@ class OnlineAPIAdapter(BaseAdapter):
             temperature=llm_config.get("temperature", 0.3),
             max_tokens=int(llm_config.get("max_tokens", 32768)),
         )
-        
-        # 加载 prompts（从 YAML 文件）
-        evaluation_root = Path(__file__).parent.parent.parent
-        prompts_path = evaluation_root / "config" / "prompts.yaml"
-        self._prompts = load_yaml(str(prompts_path))
 
         logger.info(f"{self.__class__.__name__} initialized")
         logger.info(f"LLM Model: {llm_config.get('model')}")
@@ -140,11 +139,11 @@ class OnlineAPIAdapter(BaseAdapter):
     def _get_answer_prompt(self) -> str:
         """
         获取 answer prompt
-        
+
         子类可以重写此方法返回自己的 prompt。
         默认返回通用 default prompt
         """
-        return self._prompts["online_api"]["default"]["answer_prompt"]
+        return ONLINE_API_ANSWER_PROMPT
     
     # ===== 辅助方法：格式转换 =====
     
