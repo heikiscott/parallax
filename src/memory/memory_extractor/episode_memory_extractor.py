@@ -22,7 +22,7 @@ from ..prompts import (
 )
 
 # 评估专用提示词
-from ..prompts.eval.episode_mem_prompts import (
+from ..prompts.en.benchmark.episode_mem_prompts import (
     EPISODE_GENERATION_PROMPT as EVAL_EPISODE_GENERATION_PROMPT,
     GROUP_EPISODE_GENERATION_PROMPT as EVAL_GROUP_EPISODE_GENERATION_PROMPT,
     DEFAULT_CUSTOM_INSTRUCTIONS as EVAL_DEFAULT_CUSTOM_INSTRUCTIONS,

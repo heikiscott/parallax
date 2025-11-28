@@ -71,38 +71,38 @@ if MEMORY_LANGUAGE == 'zh':
 else:
     # ===== 英文提示词（默认） =====
     # 对话相关
-    from .en.conv_prompts import CONV_BOUNDARY_DETECTION_PROMPT, CONV_SUMMARY_PROMPT
-    
+    from .en.production.conv_prompts import CONV_BOUNDARY_DETECTION_PROMPT, CONV_SUMMARY_PROMPT
+
     # Episode 相关
-    from .en.episode_mem_prompts import (
+    from .en.production.episode_mem_prompts import (
         EPISODE_GENERATION_PROMPT,
         GROUP_EPISODE_GENERATION_PROMPT,
         DEFAULT_CUSTOM_INSTRUCTIONS,
     )
-    
+
     # Profile 相关
-    from .en.profile_mem_prompts import CONVERSATION_PROFILE_EXTRACTION_PROMPT
-    from .en.profile_mem_part1_prompts import CONVERSATION_PROFILE_PART1_EXTRACTION_PROMPT
-    from .en.profile_mem_part2_prompts import CONVERSATION_PROFILE_PART2_EXTRACTION_PROMPT
-    from .en.profile_mem_part3_prompts import CONVERSATION_PROFILE_PART3_EXTRACTION_PROMPT
-    from .en.profile_mem_evidence_completion_prompt import (
+    from .en.production.profile_mem_prompts import CONVERSATION_PROFILE_EXTRACTION_PROMPT
+    from .en.production.profile_mem_part1_prompts import CONVERSATION_PROFILE_PART1_EXTRACTION_PROMPT
+    from .en.production.profile_mem_part2_prompts import CONVERSATION_PROFILE_PART2_EXTRACTION_PROMPT
+    from .en.production.profile_mem_part3_prompts import CONVERSATION_PROFILE_PART3_EXTRACTION_PROMPT
+    from .en.production.profile_mem_evidence_completion_prompt import (
         CONVERSATION_PROFILE_EVIDENCE_COMPLETION_PROMPT,
     )
-    
+
     # Group Profile 相关
-    from .en.group_profile_prompts import (
+    from .en.production.group_profile_prompts import (
         CONTENT_ANALYSIS_PROMPT,
         BEHAVIOR_ANALYSIS_PROMPT,
     )
-    
+
     # Semantic Memory 相关
-    from .en.semantic_mem_prompts import (
+    from .en.production.semantic_mem_prompts import (
         get_group_semantic_generation_prompt,
         get_semantic_generation_prompt,
     )
-    
+
     # Event Log 相关
-    from .en.event_log_prompts import EVENT_LOG_PROMPT
+    from .en.production.event_log_prompts import EVENT_LOG_PROMPT
 
 # 导出当前语言信息
 CURRENT_LANGUAGE = MEMORY_LANGUAGE
