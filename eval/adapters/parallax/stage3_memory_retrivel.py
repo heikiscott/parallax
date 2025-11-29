@@ -174,9 +174,20 @@ def tokenize(text: str, stemmer, stop_words: set) -> list[str]:
     return processed_tokens
 
 
-def search_with_bm25_index(query: str, bm25, docs, top_n: int = 5):
+def search_with_bm25_index(query: str, bm25, docs, top_n: int = 5, return_all_scored: bool = False):
     """
     Performs BM25 search using a pre-loaded index.
+
+    Args:
+        query: 查询文本
+        bm25: BM25 索引
+        docs: 文档列表
+        top_n: 返回的结果数量
+        return_all_scored: 如果为 True，返回 (top_n_results, all_doc_ids_scored)
+
+    Returns:
+        如果 return_all_scored=False: [(doc, score), ...]
+        如果 return_all_scored=True: ([(doc, score), ...], [所有被评分的 event_id])
     """
     stemmer = PorterStemmer()
     stop_words = set(stopwords.words("english"))
@@ -184,11 +195,17 @@ def search_with_bm25_index(query: str, bm25, docs, top_n: int = 5):
 
     if not tokenized_query:
         logger.warning("Query is empty after tokenization.")
-        return []
+        return ([], []) if return_all_scored else []
 
     doc_scores = bm25.get_scores(tokenized_query)
     results_with_scores = list(zip(docs, doc_scores))
     sorted_results = sorted(results_with_scores, key=lambda x: x[1], reverse=True)
+
+    if return_all_scored:
+        # 返回所有被评分的文档 ID（BM25 会对所有文档打分）
+        all_scored_ids = [doc.get("event_id", f"unknown_{i}") for i, (doc, _) in enumerate(results_with_scores)]
+        return sorted_results[:top_n], all_scored_ids
+
     return sorted_results[:top_n]
 
 
@@ -416,55 +433,58 @@ async def lightweight_retrieval(
 
 
 async def search_with_emb_index(
-    query: str, 
-    emb_index, 
+    query: str,
+    emb_index,
     top_n: int = 5,
-    query_embedding: Optional[np.ndarray] = None  # 🔥 支持预计算的 embedding
+    query_embedding: Optional[np.ndarray] = None,  # 🔥 支持预计算的 embedding
+    return_all_scored: bool = False  # 🔥 是否返回所有被评分的文档 ID
 ):
     """
     使用 MaxSim 策略执行 embedding 检索
-    
+
     对于包含 atomic_facts 的文档：
     - 计算 query 与每个 atomic_fact 的相似度
     - 取最大相似度作为文档分数（MaxSim策略）
-    
+
     对于传统文档：
     - 回退到使用 subject/summary/episode 字段
     - 取这些字段中的最大相似度
-    
+
     优化：支持预计算的 query embedding，避免重复 API 调用
-    
+
     Args:
         query: 查询文本
         emb_index: 预构建的 embedding 索引
         top_n: 返回的结果数量
         query_embedding: 可选的预计算 query embedding（避免重复计算）
-    
+        return_all_scored: 如果为 True，返回 (top_n_results, all_doc_ids_scored)
+
     Returns:
-        排序后的 (文档, 分数) 列表
+        如果 return_all_scored=False: [(doc, score), ...]
+        如果 return_all_scored=True: ([(doc, score), ...], [所有被评分的 event_id])
     """
     # 获取 query 的 embedding（如果未提供则调用 API）
     if query_embedding is not None:
         query_vec = query_embedding
     else:
         query_vec = np.array(await vectorize_service.get_text_embedding(query))
-    
+
     query_norm = np.linalg.norm(query_vec)
-    
+
     # 如果 query 向量为零，返回空结果
     if query_norm == 0:
-        return []
-    
+        return ([], []) if return_all_scored else []
+
     # 存储每个文档的 MaxSim 分数
     doc_scores = []
-    
+
     for item in emb_index:
         doc = item.get("doc")
         embeddings = item.get("embeddings", {})
-        
+
         if not embeddings:
             continue
-        
+
         # 优先使用 atomic_facts（MaxSim策略）
         if "atomic_facts" in embeddings:
             atomic_fact_embs = embeddings["atomic_facts"]
@@ -473,7 +493,7 @@ async def search_with_emb_index(
                 score = compute_maxsim_score(query_vec, atomic_fact_embs)
                 doc_scores.append((doc, score))
                 continue
-        
+
         # 回退到传统字段（保持向后兼容）
         # 对于传统字段，也使用 MaxSim 策略（取最大值）
         field_scores = []
@@ -481,20 +501,26 @@ async def search_with_emb_index(
             if field in embeddings:
                 field_emb = embeddings[field]
                 field_norm = np.linalg.norm(field_emb)
-                
+
                 if field_norm > 0:
                     sim = np.dot(query_vec, field_emb) / (query_norm * field_norm)
                     field_scores.append(sim)
-        
+
         if field_scores:
             score = max(field_scores)
             doc_scores.append((doc, score))
-    
+
     if not doc_scores:
-        return []
-    
+        return ([], []) if return_all_scored else []
+
     # 按分数降序排序并返回 Top-N
     sorted_results = sorted(doc_scores, key=lambda x: x[1], reverse=True)
+
+    if return_all_scored:
+        # 返回所有被评分的文档 ID（Embedding 会对所有有 embedding 的文档打分）
+        all_scored_ids = [doc.get("event_id", f"unknown_{i}") for i, (doc, _) in enumerate(doc_scores)]
+        return sorted_results[:top_n], all_scored_ids
+
     return sorted_results[:top_n]
 
 
@@ -507,22 +533,23 @@ async def hybrid_search_with_rrf(
     emb_candidates: int = 50,
     bm25_candidates: int = 50,
     rrf_k: int = 60,
-    query_embedding: Optional[np.ndarray] = None  # 🔥 支持预计算的 embedding
+    query_embedding: Optional[np.ndarray] = None,  # 🔥 支持预计算的 embedding
+    return_traversal_stats: bool = False  # 🔥 是否返回遍历统计
 ) -> List[Tuple[dict, float]]:
     """
     使用 RRF 融合 Embedding 和 BM25 检索结果（混合检索）
-    
+
     执行流程：
     1. 并行执行 Embedding (MaxSim) 和 BM25 检索
     2. 每种方法分别召回 top-N 候选文档
     3. 使用 RRF 融合两个结果集
     4. 返回融合后的 Top-N 文档
-    
+
     为什么使用混合检索：
     - Embedding: 擅长语义匹配，但对罕见词和精确匹配较弱
     - BM25: 擅长精确匹配和罕见词，但语义理解较弱
     - RRF 融合: 结合两者优势，提升召回率 15-20%
-    
+
     Args:
         query: 用户查询
         emb_index: Embedding 索引
@@ -532,48 +559,84 @@ async def hybrid_search_with_rrf(
         emb_candidates: Embedding 检索的候选数量（默认 50）
         bm25_candidates: BM25 检索的候选数量（默认 50）
         rrf_k: RRF 参数 k（默认 60，经验最优值）
-    
+        return_traversal_stats: 是否返回遍历统计信息
+
     Returns:
-        融合后的 Top-N 结果 [(doc, rrf_score), ...]
-    
+        如果 return_traversal_stats=False: [(doc, rrf_score), ...]
+        如果 return_traversal_stats=True: ([(doc, rrf_score), ...], traversal_stats_dict)
+
     Example:
         Query: "他喜欢吃什么？"
-        
+
         Embedding Top-3:
         - (doc_A: "用户喜爱川菜", 0.92)  # 语义匹配"喜欢"="喜爱"
         - (doc_B: "用户偏好清淡口味", 0.78)
         - (doc_C: "成都是美食之都", 0.65)
-        
+
         BM25 Top-3:
         - (doc_A: "用户喜爱川菜", 15.3)  # 精确匹配"喜欢"
         - (doc_D: "喜欢吃火锅", 12.7)  # 精确匹配"喜欢吃"
         - (doc_E: "最喜欢的菜是麻婆豆腐", 10.2)
-        
+
         RRF 融合:
         - doc_A: 同时在两个结果中排名靠前 → 最高分 ✅
         - doc_D: 只在 BM25 中排名高
         - doc_B: 只在 Embedding 中排名高
-        
+
         最终: [(doc_A, 0.0323), (doc_D, 0.0161), (doc_B, 0.0161), ...]
     """
+    # 🔥 统计：记录遍历的 MemUnit
+    traversal_stats = {
+        "emb_scored_ids": [],
+        "bm25_scored_ids": [],
+        "emb_returned_ids": [],
+        "bm25_returned_ids": [],
+        "fused_ids": [],
+        "total_memunits_in_index": len(emb_index),
+    }
+
     # 并行执行 Embedding 和 BM25 检索（提高效率）
     emb_task = search_with_emb_index(
-        query, emb_index, top_n=emb_candidates, query_embedding=query_embedding
+        query, emb_index, top_n=emb_candidates, query_embedding=query_embedding,
+        return_all_scored=return_traversal_stats
     )
-    bm25_task = asyncio.to_thread(search_with_bm25_index, query, bm25, docs, bm25_candidates)
-    
+    bm25_task = asyncio.to_thread(
+        search_with_bm25_index, query, bm25, docs, bm25_candidates,
+        return_all_scored=return_traversal_stats
+    )
+
     # 等待两个检索任务完成
-    emb_results, bm25_results = await asyncio.gather(emb_task, bm25_task)
-    
+    emb_result, bm25_result = await asyncio.gather(emb_task, bm25_task)
+
+    # 解析返回结果
+    if return_traversal_stats:
+        emb_results, emb_all_scored = emb_result
+        bm25_results, bm25_all_scored = bm25_result
+        traversal_stats["emb_scored_ids"] = emb_all_scored
+        traversal_stats["bm25_scored_ids"] = bm25_all_scored
+        traversal_stats["emb_returned_ids"] = [doc.get("event_id", "") for doc, _ in emb_results]
+        traversal_stats["bm25_returned_ids"] = [doc.get("event_id", "") for doc, _ in bm25_results]
+    else:
+        emb_results = emb_result
+        bm25_results = bm25_result
+
     # 如果其中一个检索结果为空，返回另一个
     if not emb_results and not bm25_results:
-        return []
+        return ([], traversal_stats) if return_traversal_stats else []
     elif not emb_results:
         logger.warning(f"Embedding search returned no results for query: {query}")
-        return bm25_results[:top_n]
+        result = bm25_results[:top_n]
+        if return_traversal_stats:
+            traversal_stats["fused_ids"] = [doc.get("event_id", "") for doc, _ in result]
+            return result, traversal_stats
+        return result
     elif not bm25_results:
         logger.warning(f"BM25 search returned no results for query: {query}")
-        return emb_results[:top_n]
+        result = emb_results[:top_n]
+        if return_traversal_stats:
+            traversal_stats["fused_ids"] = [doc.get("event_id", "") for doc, _ in result]
+            return result, traversal_stats
+        return result
 
     # 使用 RRF 融合两个检索结果
     fused_results = reciprocal_rank_fusion(emb_results, bm25_results, k=rrf_k)
@@ -581,7 +644,13 @@ async def hybrid_search_with_rrf(
     # 打印融合统计信息（用于调试）
     logger.debug(f"Hybrid search: Emb={len(emb_results)}, BM25={len(bm25_results)}, Fused={len(fused_results)}, Returning top-{top_n}")
 
-    return fused_results[:top_n]
+    result = fused_results[:top_n]
+
+    if return_traversal_stats:
+        traversal_stats["fused_ids"] = [doc.get("event_id", "") for doc, _ in result]
+        return result, traversal_stats
+
+    return result
 
 
 async def agentic_retrieval(
@@ -592,10 +661,11 @@ async def agentic_retrieval(
     emb_index,
     bm25,
     docs,
+    enable_traversal_stats: bool = False,  # 🔥 是否启用详细遍历统计
 ) -> Tuple[List[Tuple[dict, float]], dict]:
     """
     Agentic 多轮检索（LLM 引导）- 新流程
-    
+
     流程：
     1. Round 1: 混合检索 → Top 20 → Rerank → Top 5 → LLM 判断充分性
     2. 如果充分：返回原始 Top 20（rerank 前的）
@@ -603,7 +673,7 @@ async def agentic_retrieval(
        - LLM 生成改进查询
        - Round 2: 检索并合并到 40 个
        - Rerank 40 个 → 返回最终结果
-    
+
     Args:
         query: 用户查询
         config: 实验配置
@@ -612,13 +682,14 @@ async def agentic_retrieval(
         emb_index: Embedding 索引
         bm25: BM25 索引
         docs: 文档列表
-    
+        enable_traversal_stats: 是否启用详细遍历统计（用于分析检索覆盖率）
+
     Returns:
         (final_results, metadata)
     """
     import time
     start_time = time.time()
-    
+
     metadata = {
         "is_multi_round": False,
         "round1_count": 0,
@@ -630,7 +701,28 @@ async def agentic_retrieval(
         "final_count": 0,
         "total_latency_ms": 0.0,
     }
-    
+
+    # 🔥 遍历统计：记录每轮检索访问了哪些 MemUnit（使用 set 追踪唯一 ID）
+    traversal_stats = {
+        "total_memunits": len(emb_index),
+        # Round 1: Hybrid Search
+        "round1_emb_scored_ids": set(),      # Embedding 评分的所有 ID
+        "round1_bm25_scored_ids": set(),     # BM25 评分的所有 ID
+        "round1_returned_ids": set(),        # Round 1 返回的 Top 20 ID
+        # Round 1 Rerank
+        "round1_rerank_input_ids": set(),    # 参与 Rerank 的 ID（应该=round1_returned）
+        "round1_rerank_output_ids": set(),   # Rerank 输出的 Top 5 ID
+        # Round 2: Multi-Query Search
+        "round2_queries": [],                # Round 2 使用的查询
+        "round2_all_scored_ids": set(),      # Round 2 所有查询评分过的 ID
+        "round2_returned_ids": set(),        # Round 2 融合后返回的 ID
+        # Round 2 Rerank
+        "round2_rerank_input_ids": set(),    # 参与最终 Rerank 的 ID（合并后的 40 个）
+        "round2_rerank_output_ids": set(),   # 最终返回的 Top 20 ID
+        # 汇总
+        "all_reranked_ids": set(),           # 所有参与过 Rerank 的 ID（关键指标！）
+    }
+
     logger.info(f"{'='*60}")
     logger.info(f"Agentic Retrieval: {query[:60]}...")
     logger.info(f"{'='*60}")
@@ -639,17 +731,34 @@ async def agentic_retrieval(
     # ========== Round 1: 混合检索 Top 20 ==========
     logger.info(f"  [Round 1] Hybrid search for Top 20...")
 
-    round1_top20 = await hybrid_search_with_rrf(
-        query=query,
-        emb_index=emb_index,
-        bm25=bm25,
-        docs=docs,
-        top_n=20,  # 🔥 只取 Top 20
-        emb_candidates=config.hybrid_emb_candidates,
-        bm25_candidates=config.hybrid_bm25_candidates,
-        rrf_k=config.hybrid_rrf_k,
-    )
-    
+    if enable_traversal_stats:
+        round1_top20, r1_stats = await hybrid_search_with_rrf(
+            query=query,
+            emb_index=emb_index,
+            bm25=bm25,
+            docs=docs,
+            top_n=20,
+            emb_candidates=config.hybrid_emb_candidates,
+            bm25_candidates=config.hybrid_bm25_candidates,
+            rrf_k=config.hybrid_rrf_k,
+            return_traversal_stats=True,
+        )
+        # 记录 Round 1 的 ID
+        traversal_stats["round1_emb_scored_ids"] = set(r1_stats.get("emb_scored_ids", []))
+        traversal_stats["round1_bm25_scored_ids"] = set(r1_stats.get("bm25_scored_ids", []))
+        traversal_stats["round1_returned_ids"] = set(r1_stats.get("fused_ids", []))
+    else:
+        round1_top20 = await hybrid_search_with_rrf(
+            query=query,
+            emb_index=emb_index,
+            bm25=bm25,
+            docs=docs,
+            top_n=20,
+            emb_candidates=config.hybrid_emb_candidates,
+            bm25_candidates=config.hybrid_bm25_candidates,
+            rrf_k=config.hybrid_rrf_k,
+        )
+
     metadata["round1_count"] = len(round1_top20)
     logger.info(f"  [Round 1] Retrieved {len(round1_top20)} documents")
 
@@ -660,7 +769,7 @@ async def agentic_retrieval(
 
     # ========== Rerank Top 20 → Top 5 用于 Sufficiency Check ==========
     print(f"  [Rerank] Reranking Top 20 to get Top 5 for sufficiency check...")
-    
+
     if config.use_reranker:
         reranked_top5 = await reranker_search(
             query=query,
@@ -676,6 +785,14 @@ async def agentic_retrieval(
         )
         metadata["round1_reranked_count"] = len(reranked_top5)
         logger.debug(f"  [Rerank] Got Top 5 for sufficiency check")
+
+        # 🔥 记录 Rerank 统计
+        if enable_traversal_stats:
+            input_ids = set(doc.get("event_id", "") for doc, _ in round1_top20)
+            output_ids = set(doc.get("event_id", "") for doc, _ in reranked_top5)
+            traversal_stats["round1_rerank_input_ids"] = input_ids
+            traversal_stats["round1_rerank_output_ids"] = output_ids
+            traversal_stats["all_reranked_ids"].update(input_ids)  # 🔥 累计所有参与 Rerank 的 ID
     else:
         # 如果不使用 reranker，直接取前 5 个
         reranked_top5 = round1_top20[:5]
@@ -712,6 +829,29 @@ async def agentic_retrieval(
         metadata["final_count"] = len(final_results)
         metadata["total_latency_ms"] = (time.time() - start_time) * 1000
 
+        # 🔥 打印最终遍历统计
+        if enable_traversal_stats:
+            final_ids = set(doc.get("event_id", "") for doc, _ in final_results)
+            total_mu = traversal_stats["total_memunits"]
+            rerank_count = len(traversal_stats["all_reranked_ids"])
+
+            logger.info(f"  [📊 Traversal Summary] Round 1 only (sufficient)")
+            logger.info(f"      Total MemUnits: {total_mu}")
+            logger.info(f"      Emb scored: {len(traversal_stats['round1_emb_scored_ids'])} ({len(traversal_stats['round1_emb_scored_ids'])/total_mu*100:.1f}%)")
+            logger.info(f"      BM25 scored: {len(traversal_stats['round1_bm25_scored_ids'])} ({len(traversal_stats['round1_bm25_scored_ids'])/total_mu*100:.1f}%)")
+            logger.info(f"      🔥 Total Reranked: {rerank_count}/{total_mu} ({rerank_count/total_mu*100:.1f}%)")
+            logger.info(f"      Final returned: {len(final_ids)}")
+
+            metadata["traversal_stats"] = {
+                "total_memunits": total_mu,
+                "emb_scored": len(traversal_stats["round1_emb_scored_ids"]),
+                "bm25_scored": len(traversal_stats["round1_bm25_scored_ids"]),
+                "total_reranked": rerank_count,
+                "rerank_coverage_percent": round(rerank_count/total_mu*100, 1),
+                "final_returned": len(final_ids),
+                "is_multi_round": False,
+            }
+
         logger.info(f"  [Complete] Latency: {metadata['total_latency_ms']:.0f}ms")
         return final_results, metadata
 
@@ -744,7 +884,11 @@ async def agentic_retrieval(
 
         # ========== Round 2: 并行执行多个查询检索 ==========
         logger.info(f"  [Round 2] Executing {len(refined_queries)} queries in parallel...")
-        
+
+        # 🔥 记录 Round 2 的查询
+        if enable_traversal_stats:
+            traversal_stats["round2_queries"] = refined_queries
+
         # 🔥 并行执行所有查询的混合检索
         multi_query_tasks = [
             hybrid_search_with_rrf(
@@ -756,12 +900,28 @@ async def agentic_retrieval(
                 emb_candidates=config.hybrid_emb_candidates,
                 bm25_candidates=config.hybrid_bm25_candidates,
                 rrf_k=config.hybrid_rrf_k,
+                return_traversal_stats=enable_traversal_stats,
             )
             for q in refined_queries
         ]
-        
+
         # 等待所有查询完成
-        multi_query_results = await asyncio.gather(*multi_query_tasks)
+        raw_results = await asyncio.gather(*multi_query_tasks)
+
+        # 🔥 解析结果并收集统计
+        if enable_traversal_stats:
+            multi_query_results = []
+            for i, result in enumerate(raw_results):
+                if isinstance(result, tuple):
+                    docs_result, stats = result
+                    multi_query_results.append(docs_result)
+                    # 累计 Round 2 评分过的 ID
+                    traversal_stats["round2_all_scored_ids"].update(stats.get("emb_scored_ids", []))
+                    traversal_stats["round2_all_scored_ids"].update(stats.get("bm25_scored_ids", []))
+                else:
+                    multi_query_results.append(result)
+        else:
+            multi_query_results = raw_results
 
         # 打印每个查询的召回数
         for i, results in enumerate(multi_query_results, 1):
@@ -865,6 +1025,52 @@ async def agentic_retrieval(
 
     metadata["final_count"] = len(final_results)
     metadata["total_latency_ms"] = (time.time() - start_time) * 1000
+
+    # 🔥 打印最终遍历统计（多轮）
+    if enable_traversal_stats:
+        # 记录 Round 2 Rerank 的 ID
+        round2_rerank_input_ids = set(doc.get("event_id", "") for doc, _ in combined_results)
+        final_ids = set(doc.get("event_id", "") for doc, _ in final_results)
+        traversal_stats["round2_rerank_input_ids"] = round2_rerank_input_ids
+        traversal_stats["round2_rerank_output_ids"] = final_ids
+        traversal_stats["all_reranked_ids"].update(round2_rerank_input_ids)  # 🔥 累计所有参与 Rerank 的 ID
+
+        total_mu = traversal_stats["total_memunits"]
+        r1_rerank_count = len(traversal_stats["round1_rerank_input_ids"])
+        r2_rerank_count = len(round2_rerank_input_ids)
+        total_rerank_count = len(traversal_stats["all_reranked_ids"])
+
+        # 计算评分覆盖率
+        r1_emb = len(traversal_stats["round1_emb_scored_ids"])
+        r1_bm25 = len(traversal_stats["round1_bm25_scored_ids"])
+        r2_scored = len(traversal_stats["round2_all_scored_ids"])
+
+        logger.info(f"  [📊 Traversal Summary] Multi-round retrieval")
+        logger.info(f"      Total MemUnits: {total_mu}")
+        logger.info(f"      Round 1 - Emb scored: {r1_emb}, BM25 scored: {r1_bm25}")
+        logger.info(f"      Round 2 - All scored: {r2_scored}")
+        logger.info(f"      Round 1 Rerank: {r1_rerank_count}/{total_mu} ({r1_rerank_count/total_mu*100:.1f}%)")
+        logger.info(f"      Round 2 Rerank: {r2_rerank_count}/{total_mu} ({r2_rerank_count/total_mu*100:.1f}%)")
+        logger.info(f"      🔥 Total Unique Reranked: {total_rerank_count}/{total_mu} ({total_rerank_count/total_mu*100:.1f}%)")
+        logger.info(f"      Final returned: {len(final_ids)}")
+
+        # 🔥 将所有 ID 打印到 debug 日志（便于详细分析）
+        logger.debug(f"  [IDs Detail] Round 1 Rerank Input: {sorted(list(traversal_stats['round1_rerank_input_ids']))}")
+        logger.debug(f"  [IDs Detail] Round 2 Rerank Input: {sorted(list(round2_rerank_input_ids))}")
+        logger.debug(f"  [IDs Detail] All Reranked (unique): {sorted(list(traversal_stats['all_reranked_ids']))}")
+
+        metadata["traversal_stats"] = {
+            "total_memunits": total_mu,
+            "round1_emb_scored": r1_emb,
+            "round1_bm25_scored": r1_bm25,
+            "round2_all_scored": r2_scored,
+            "round1_rerank_count": r1_rerank_count,
+            "round2_rerank_count": r2_rerank_count,
+            "total_reranked": total_rerank_count,
+            "rerank_coverage_percent": round(total_rerank_count/total_mu*100, 1),
+            "final_returned": len(final_ids),
+            "is_multi_round": True,
+        }
 
     logger.info(f"  [Complete] Final: {len(final_results)} docs | Latency: {metadata['total_latency_ms']:.0f}ms")
     logger.info(f"{'='*60}\n")
@@ -1260,6 +1466,7 @@ async def main():
                             emb_index=emb_index,
                             bm25=bm25,
                             docs=docs,
+                            enable_traversal_stats=True,  # 🔥 启用遍历统计
                         )
                     
                     elif config.retrieval_mode == "lightweight":

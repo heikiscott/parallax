@@ -497,6 +497,7 @@ class ParallaxAdapter(BaseAdapter):
                 emb_index=emb_index,
                 bm25=bm25,
                 docs=docs,
+                enable_traversal_stats=True,  # 🔥 启用遍历统计
             )
         elif retrieval_mode == "lightweight":
             # 轻量级检索
