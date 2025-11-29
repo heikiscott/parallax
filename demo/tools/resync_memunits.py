@@ -10,8 +10,8 @@ from typing import List
 
 from core.di import get_bean_by_type
 from core.observation.logger import get_logger
-from infra_layer.adapters.out.persistence.document.memory.memunit import MemUnit
-from biz_layer.memunit_sync import MemUnitSyncService
+from infra.adapters.out.persistence.document.memory.memunit import MemUnit
+from services.memunit_sync import MemUnitSyncService
 
 logger = get_logger(__name__)
 

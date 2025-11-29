@@ -700,12 +700,12 @@ async def memorize(request: MemorizeRequest) -> List[Memory]:
         MemoryType.SEMANTIC_SUMMARY, 
         MemoryType.EVENT_LOG
     ]
-    if request.raw_data_type == SourceType.CONVERSATION:
+    if request.source_type == SourceType.CONVERSATION:
         request = await preprocess_conv_request(request, current_time)
         if request == None:
             return None
 
-    if request.raw_data_type == SourceType.CONVERSATION:
+    if request.source_type == SourceType.CONVERSATION:
         # async with distributed_lock(f"memunit_extract_{request.group_id}") as acquired:
         #     # 120s等待，获取不到
         #     if not acquired:
@@ -731,7 +731,7 @@ async def memorize(request: MemorizeRequest) -> List[Memory]:
         memunit_result = await memory_manager.extract_memunit(
             request.history_raw_data_list,
             request.new_raw_data_list,
-            request.raw_data_type,
+            request.source_type,
             request.group_id,
             request.group_name,
             request.user_id_list,
@@ -749,7 +749,7 @@ async def memorize(request: MemorizeRequest) -> List[Memory]:
         memunit_result = await memory_manager.extract_memunit(
             request.history_raw_data_list,
             request.new_raw_data_list,
-            request.raw_data_type,
+            request.source_type,
             request.group_id,
             request.group_name,
             request.user_id_list,
@@ -779,7 +779,7 @@ async def memorize(request: MemorizeRequest) -> List[Memory]:
 
     if memunit == None:
         await update_status_when_no_memunit(
-            request, status_result, current_time, request.raw_data_type
+            request, status_result, current_time, request.source_type
         )
         logger.warning(f"[mem_memorize] 跳过提取MemUnit")
         return None
@@ -897,7 +897,7 @@ async def memorize(request: MemorizeRequest) -> List[Memory]:
             await save_memories(semantic_and_eventlog, current_time)
 
         await update_status_after_memunit(
-            request, memunits, current_time, request.raw_data_type
+            request, memunits, current_time, request.source_type
         )
 
         # TODO: 实际项目中应该加锁避免并发问题

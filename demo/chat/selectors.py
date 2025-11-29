@@ -8,7 +8,7 @@ from typing import List, Dict, Any, Optional
 from demo.config import ScenarioType
 from demo.utils import query_all_groups_from_mongodb
 from demo.ui import I18nTexts
-from common_utils.cli_ui import CLIUI
+from utils.cli_ui import CLIUI
 
 
 class LanguageSelector:

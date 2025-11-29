@@ -3,16 +3,16 @@
 可以被其他测试脚本导入使用，也可以独立运行
 """
 import asyncio
-from infra_layer.adapters.out.persistence.document.memory.memunit import MemUnit
-from infra_layer.adapters.out.persistence.document.memory.episodic_memory import EpisodicMemory
-from infra_layer.adapters.out.persistence.document.memory.personal_semantic_memory import PersonalSemanticMemory
-from infra_layer.adapters.out.persistence.document.memory.personal_event_log import PersonalEventLog
-from infra_layer.adapters.out.persistence.document.memory.conversation_status import ConversationStatus
-from infra_layer.adapters.out.persistence.document.memory.cluster_state import ClusterState
-from infra_layer.adapters.out.persistence.document.memory.user_profile import UserProfile
-from infra_layer.adapters.out.search.milvus.memory.episodic_memory_collection import EpisodicMemoryCollection
-from infra_layer.adapters.out.search.milvus.memory.semantic_memory_collection import SemanticMemoryCollection
-from infra_layer.adapters.out.search.milvus.memory.event_log_collection import EventLogCollection
+from infra.adapters.out.persistence.document.memory.memunit import MemUnit
+from infra.adapters.out.persistence.document.memory.episodic_memory import EpisodicMemory
+from infra.adapters.out.persistence.document.memory.personal_semantic_memory import PersonalSemanticMemory
+from infra.adapters.out.persistence.document.memory.personal_event_log import PersonalEventLog
+from infra.adapters.out.persistence.document.memory.conversation_status import ConversationStatus
+from infra.adapters.out.persistence.document.memory.cluster_state import ClusterState
+from infra.adapters.out.persistence.document.memory.user_profile import UserProfile
+from infra.adapters.out.search.milvus.memory.episodic_memory_collection import EpisodicMemoryCollection
+from infra.adapters.out.search.milvus.memory.semantic_memory_collection import SemanticMemoryCollection
+from infra.adapters.out.search.milvus.memory.event_log_collection import EventLogCollection
 from core.di import get_bean_by_type
 from component.redis_provider import RedisProvider
 
@@ -109,7 +109,7 @@ async def clear_all_memories(verbose: bool = True):
         
         try:
             from component.elasticsearch_client_factory import ElasticsearchClientFactory
-            from infra_layer.adapters.out.search.elasticsearch.memory.episodic_memory import EpisodicMemoryDoc
+            from infra.adapters.out.search.elasticsearch.memory.episodic_memory import EpisodicMemoryDoc
             
             # 获取ES客户端连接
             es_factory = get_bean_by_type(ElasticsearchClientFactory)
@@ -240,7 +240,7 @@ async def clear_all_memories(verbose: bool = True):
             # 3. 验证 Elasticsearch
             try:
                 from component.elasticsearch_client_factory import ElasticsearchClientFactory
-                from infra_layer.adapters.out.search.elasticsearch.memory.episodic_memory import EpisodicMemoryDoc
+                from infra.adapters.out.search.elasticsearch.memory.episodic_memory import EpisodicMemoryDoc
                 
                 # 获取ES客户端连接
                 es_factory = get_bean_by_type(ElasticsearchClientFactory)

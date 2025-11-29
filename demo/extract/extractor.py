@@ -6,11 +6,11 @@
 from typing import Dict, Any, List
 from pathlib import Path
 
-from agentic_layer.memory_manager import MemoryManager
-from memory_layer.memory_manager import MemorizeRequest
-from memory_layer.types import RawDataType
-from memory_layer.memunit_extractor.base_memunit_extractor import RawData
-from common_utils.datetime_utils import from_iso_format
+from agents.memory_manager import MemoryManager
+from memory.orchestrator.extraction_orchestrator import MemorizeRequest
+from memory.schema import SourceType
+from memory.memunit_extractor.base_memunit_extractor import RawData
+from utils.datetime_utils import from_iso_format
 
 from demo.config import ExtractModeConfig, MongoDBConfig
 from demo.utils import ensure_mongo_beanie_ready
@@ -131,7 +131,7 @@ class MemoryExtractor:
             raw_item = RawData(
                 content=message_payload,
                 data_id=str(message_id),
-                data_type=RawDataType.CONVERSATION,
+                data_type=SourceType.CONVERSATION,
             )
             
             # 初始化历史
@@ -143,7 +143,7 @@ class MemoryExtractor:
             request = MemorizeRequest(
                 history_raw_data_list=list(history),
                 new_raw_data_list=[raw_item],
-                raw_data_type=RawDataType.CONVERSATION,
+                source_type=SourceType.CONVERSATION,
                 user_id_list=["default"],
                 group_id=self.config.group_id,
                 group_name=self.config.group_name,

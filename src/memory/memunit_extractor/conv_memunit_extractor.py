@@ -373,7 +373,7 @@ class ConvMemUnitExtractor(MemUnitExtractor):
                 summary=summary_text,
                 group_id=request.group_id,
                 participants=participants,  # 使用合并后的participants
-                type=self.raw_data_type,
+                type=self.source_type,
             )
 
             # 自动触发情景记忆提取

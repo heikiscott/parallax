@@ -7,7 +7,7 @@ import re
 from typing import List, Dict, Any, Optional
 
 from demo.ui import I18nTexts
-from common_utils.cli_ui import CLIUI
+from utils.cli_ui import CLIUI
 
 
 def extract_event_time_from_memory(mem: Dict[str, Any]) -> str:

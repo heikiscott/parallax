@@ -400,7 +400,7 @@ import os
 
 # ============= 开发环境初始化 (必须在最上面) =============
 # 1. 设置环境变量和Python路径
-from common_utils.load_env import setup_environment
+from utils.load_env import setup_environment
 setup_environment(load_env_file_name=".env.development", check_env_var="GEMINI_API_KEY")
 
 # 2. 启用Mock模式（开发环境默认启用）
@@ -446,7 +446,7 @@ if __name__ == "__main__":
 import os
 
 # ============= 开发环境初始化 =============
-from common_utils.load_env import setup_environment
+from utils.load_env import setup_environment
 setup_environment(load_env_file_name=".env.development")
 
 from core.di.utils import enable_mock_mode

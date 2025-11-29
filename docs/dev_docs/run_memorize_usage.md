@@ -215,9 +215,9 @@ python src/bootstrap.py src/run_memorize.py \
 
 ### 核心依赖
 
-- `infra_layer.adapters.input.api.mapper.group_chat_converter`: 格式转换
-- `agentic_layer.memory_manager`: 记忆管理器
-- `agentic_layer.converter`: 请求转换
+- `infra.adapters.input.api.mapper.group_chat_converter`: 格式转换
+- `agents.memory_manager`: 记忆管理器
+- `agents.converter`: 请求转换
 - `core.observation.logger`: 日志工具
 
 ### 扩展建议

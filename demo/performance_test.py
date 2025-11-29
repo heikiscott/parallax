@@ -17,10 +17,10 @@ from datetime import datetime, timedelta
 from typing import Dict, List
 from dataclasses import dataclass
 
-from memory_layer.memory_manager import MemoryManager
-from memory_layer.memunit_extractor.base_memunit_extractor import RawData
-from memory_layer.types import RawDataType, MemoryType, MemUnit
-from common_utils.datetime_utils import get_now_with_timezone
+from agents.memory_manager import MemoryManager
+from memory.memunit_extractor.base_memunit_extractor import RawData
+from memory.schema import SourceType, MemoryType, MemUnit
+from utils.datetime_utils import get_now_with_timezone
 import uuid
 
 
@@ -156,7 +156,7 @@ class PerformanceTester:
             raw_data = RawData(
                 content=msg,
                 data_id=f"msg_{idx:03d}",
-                data_type=RawDataType.CONVERSATION,
+                data_type=SourceType.CONVERSATION,
                 metadata={"group_id": "test_group_001"}
             )
             messages.append(raw_data)
@@ -232,7 +232,7 @@ class PerformanceTester:
             memunit, status_result = await self.memory_manager.extract_memunit(
                 history_raw_data_list=cumulative_history,
                 new_raw_data_list=single_new_message,  # 只传入一条新消息
-                raw_data_type=RawDataType.CONVERSATION,
+                source_type=SourceType.CONVERSATION,
                 group_id="test_group_001",
                 group_name="测试群组",
                 user_id_list=["user_001"],

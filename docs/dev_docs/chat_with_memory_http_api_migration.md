@@ -93,7 +93,7 @@ class ChatModeConfig:
 
 ```python
 # ❌ 删除
-from agentic_layer.memory_manager import MemoryManager
+from agents.memory_manager import MemoryManager
 
 # ✅ 添加
 import httpx

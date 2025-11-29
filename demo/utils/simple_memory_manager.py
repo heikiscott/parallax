@@ -7,7 +7,7 @@ import re
 import asyncio
 import httpx
 from typing import List, Dict, Any
-from common_utils.datetime_utils import get_now_with_timezone, to_iso_format
+from utils.datetime_utils import get_now_with_timezone, to_iso_format
 
 
 def extract_event_time_from_memory(mem: Dict[str, Any]) -> str:

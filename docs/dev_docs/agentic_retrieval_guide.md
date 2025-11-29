@@ -27,9 +27,9 @@ uv run python src/bootstrap.py demo/chat_with_memory.py
 ### 2. 在代码中使用
 
 ```python
-from agentic_layer.memory_manager import MemoryManager
-from memory_layer.llm.llm_provider import LLMProvider
-from agentic_layer.agentic_utils import AgenticConfig
+from agents.memory_manager import MemoryManager
+from providers.llm.llm_provider import LLMProvider
+from agents.agentic_utils import AgenticConfig
 
 # 初始化 LLM Provider
 llm = LLMProvider(
@@ -64,7 +64,7 @@ if result['metadata']['is_multi_round']:
 ### 自定义 Agentic 配置
 
 ```python
-from agentic_layer.agentic_utils import AgenticConfig
+from agents.agentic_utils import AgenticConfig
 
 # 创建自定义配置
 config = AgenticConfig(
@@ -323,8 +323,8 @@ config = AgenticConfig(
 
 ```python
 import asyncio
-from agentic_layer.memory_manager import MemoryManager
-from memory_layer.llm.llm_provider import LLMProvider
+from agents.memory_manager import MemoryManager
+from providers.llm.llm_provider import LLMProvider
 
 async def main():
     # 初始化

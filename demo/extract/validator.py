@@ -6,16 +6,16 @@
 from collections import Counter
 
 from core.di import get_bean_by_type
-from infra_layer.adapters.out.persistence.repository.memunit_raw_repository import (
+from infra.adapters.out.persistence.repository.memunit_raw_repository import (
     MemUnitRawRepository,
 )
-from infra_layer.adapters.out.search.repository.episodic_memory_milvus_repository import (
+from infra.adapters.out.search.repository.episodic_memory_milvus_repository import (
     EpisodicMemoryMilvusRepository,
 )
-from infra_layer.adapters.out.search.repository.episodic_memory_es_repository import (
+from infra.adapters.out.search.repository.episodic_memory_es_repository import (
     EpisodicMemoryEsRepository,
 )
-from agentic_layer.vectorize_service import get_vectorize_service
+from agents.vectorize_service import get_vectorize_service
 
 
 class ResultValidator:

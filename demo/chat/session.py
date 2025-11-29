@@ -12,8 +12,8 @@ from pathlib import Path
 from demo.config import ChatModeConfig, LLMConfig, ScenarioType
 from demo.utils import query_memunits_by_group_and_time
 from demo.ui import I18nTexts
-from memory_layer.llm.llm_provider import LLMProvider
-from common_utils.datetime_utils import get_now_with_timezone
+from providers.llm.llm_provider import LLMProvider
+from utils.datetime_utils import get_now_with_timezone
 
 
 class ChatSession:
@@ -476,7 +476,7 @@ class ChatSession:
     async def reload_data(self) -> None:
         """重新加载记忆数据"""
         from .ui import ChatUI
-        from common_utils.cli_ui import CLIUI
+        from utils.cli_ui import CLIUI
         
         display_name = "group_chat" if self.group_id == "AI产品群" else self.group_id
         

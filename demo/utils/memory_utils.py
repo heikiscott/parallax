@@ -24,7 +24,7 @@ from motor.motor_asyncio import AsyncIOMotorClient
 from beanie import init_beanie
 
 # 导入项目中的文档模型
-from infra_layer.adapters.out.persistence.document.memory.memunit import (
+from infra.adapters.out.persistence.document.memory.memunit import (
     MemUnit as DocMemUnit,
 )
 from demo.config import MongoDBConfig
@@ -38,14 +38,14 @@ from demo.config import MongoDBConfig
 def set_prompt_language(language: str) -> None:
     """设置记忆提取的 Prompt 语言
     
-    通过设置环境变量 MEMORY_LANGUAGE 来控制 src/memory_layer/prompts 使用的语言。
+    通过设置环境变量 MEMORY_LANGUAGE 来控制 src/memory/prompts 使用的语言。
     这会影响所有记忆提取器（MemUnit、Profile、Episode、Semantic）使用的 Prompt。
-    
+
     Args:
         language: 语言代码，"zh" 或 "en"
-        
+
     注意：
-        - 必须在导入 memory_layer 相关模块之前调用
+        - 必须在导入 memory 相关模块之前调用
         - 建议在程序启动时立即调用
     """
     if language not in ["zh", "en"]:

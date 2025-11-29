@@ -15,7 +15,7 @@ from typing import Optional
 from demo.config import ChatModeConfig, LLMConfig, MongoDBConfig
 from demo.utils import ensure_mongo_beanie_ready
 from demo.ui import I18nTexts
-from common_utils.cli_ui import CLIUI
+from utils.cli_ui import CLIUI
 
 from .session import ChatSession
 from .ui import ChatUI

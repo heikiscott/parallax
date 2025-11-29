@@ -35,7 +35,7 @@ def get_default_scan_paths():
         os.path.join(base_path, "core/lock"),
         os.path.join(base_path, "core/cache"),
         os.path.join(base_path, "providers"),
-        os.path.join(base_path, "infrastructure"),
+        os.path.join(base_path, "infra"),
         os.path.join(base_path, "agents"),
         os.path.join(base_path, "services"),
     ]
@@ -46,7 +46,7 @@ def get_default_task_directories():
     base_path = get_base_scan_path()
     return [
         os.path.join(base_path, "core/asynctasks/examples"),
-        os.path.join(base_path, "infrastructure/adapters/input/jobs"),
+        os.path.join(base_path, "infra/adapters/input/jobs"),
     ]
 
 

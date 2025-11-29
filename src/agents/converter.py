@@ -187,7 +187,7 @@ def _create_memorize_request(
     return MemorizeRequest(
         history_raw_data_list=history_data,
         new_raw_data_list=new_data,
-        raw_data_type=data_type,
+        source_type=data_type,
         user_id_list=participants,
         group_id=group_id,
         group_name=group_name,

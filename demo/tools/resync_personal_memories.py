@@ -10,10 +10,10 @@ from typing import List
 
 from core.di import get_bean_by_type
 from core.observation.logger import get_logger
-from infra_layer.adapters.out.persistence.document.memory.personal_semantic_memory import (
+from infra.adapters.out.persistence.document.memory.personal_semantic_memory import (
     PersonalSemanticMemory,
 )
-from biz_layer.personal_memory_sync import PersonalMemorySyncService
+from services.personal_memory_sync import PersonalMemorySyncService
 
 logger = get_logger(__name__)
 
