@@ -8,7 +8,7 @@ from typing import List, Dict, Any, Optional
 from datetime import datetime, timedelta
 
 # 使用动态语言提示词导入（根据 MEMORY_LANGUAGE 环境变量自动选择）
-from ..prompts import (
+from prompts.memory import (
     get_group_semantic_generation_prompt,
     get_semantic_generation_prompt,
 )

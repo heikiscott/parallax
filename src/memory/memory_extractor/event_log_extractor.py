@@ -12,10 +12,10 @@ import json
 import re
 
 # 使用动态语言提示词导入（根据 MEMORY_LANGUAGE 环境变量自动选择）
-from ..prompts import EVENT_LOG_PROMPT
+from prompts.memory import EVENT_LOG_PROMPT
 
 # 评估专用提示词
-from ..prompts.en.eval.add.event_log_prompts import EVENT_LOG_PROMPT as EVAL_EVENT_LOG_PROMPT
+from prompts.memory.en.eval.add.event_log_prompts import EVENT_LOG_PROMPT as EVAL_EVENT_LOG_PROMPT
 
 from providers.llm.llm_provider import LLMProvider
 from utils.datetime_utils import get_now_with_timezone

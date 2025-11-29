@@ -15,14 +15,14 @@ logger = get_logger(__name__)
 
 
 # 使用动态语言提示词导入（根据 MEMORY_LANGUAGE 环境变量自动选择）
-from ..prompts import (
+from prompts.memory import (
     EPISODE_GENERATION_PROMPT,
     GROUP_EPISODE_GENERATION_PROMPT,
     DEFAULT_CUSTOM_INSTRUCTIONS,
 )
 
 # 评估专用提示词
-from ..prompts.en.eval.add.episode_mem_prompts import (
+from prompts.memory.en.eval.add.episode_mem_prompts import (
     EPISODE_GENERATION_PROMPT as EVAL_EPISODE_GENERATION_PROMPT,
     GROUP_EPISODE_GENERATION_PROMPT as EVAL_GROUP_EPISODE_GENERATION_PROMPT,
     DEFAULT_CUSTOM_INSTRUCTIONS as EVAL_DEFAULT_CUSTOM_INSTRUCTIONS,

@@ -9,7 +9,7 @@
 2. 现有代码无需修改，直接从 memory.prompts 导入使用
 
 示例：
-    from memory.prompts import (
+    from prompts.memory import (
         EPISODE_GENERATION_PROMPT,
         CONVERSATION_PROFILE_PART1_EXTRACTION_PROMPT,
         get_semantic_generation_prompt,
