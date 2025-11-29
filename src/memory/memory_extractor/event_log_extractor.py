@@ -15,7 +15,7 @@ import re
 from ..prompts import EVENT_LOG_PROMPT
 
 # 评估专用提示词
-from ..prompts.en.eval.event_log_prompts import EVENT_LOG_PROMPT as EVAL_EVENT_LOG_PROMPT
+from ..prompts.en.eval.add.event_log_prompts import EVENT_LOG_PROMPT as EVAL_EVENT_LOG_PROMPT
 
 from providers.llm.llm_provider import LLMProvider
 from utils.datetime_utils import get_now_with_timezone

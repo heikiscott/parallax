@@ -16,7 +16,7 @@ logger = logging.getLogger(__name__)
 
 
 from eval.adapters.parallax.config import ExperimentConfig
-from memory.prompts.en.eval.answer_prompts import ANSWER_PROMPT
+from memory.prompts.en.eval.answer.answer_prompts import ANSWER_PROMPT
 
 # 使用 Memory Layer 的 LLMProvider
 from providers.llm.llm_provider import LLMProvider
