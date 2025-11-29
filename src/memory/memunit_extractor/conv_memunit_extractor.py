@@ -35,7 +35,7 @@ from ..memory_extractor.episode_memory_extractor import (
     EpisodeMemoryExtractRequest,
 )
 from core.observation.logger import get_logger
-from agents.vectorize_service import get_vectorize_service
+from agents.deep_infra_vectorize_service import get_vectorize_service
 
 logger = get_logger(__name__)
 

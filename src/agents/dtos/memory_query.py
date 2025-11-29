@@ -14,7 +14,7 @@ from agents.memory_models import (
 
 
 @dataclass
-class FetchMemRequest:
+class FetchMemoryRequest:
     """记忆获取请求"""
 
     user_id: str
@@ -38,7 +38,7 @@ class FetchMemRequest:
 
 
 @dataclass
-class FetchMemResponse:
+class FetchMemoryResponse:
     """记忆获取响应"""
 
     memories: List[MemoryModel]
@@ -48,7 +48,7 @@ class FetchMemResponse:
 
 
 @dataclass
-class RetrieveMemRequest:
+class RetrieveMemoryRequest:
     """记忆检索请求"""
 
     user_id: str
@@ -68,7 +68,7 @@ class RetrieveMemRequest:
 
 
 @dataclass
-class RetrieveMemResponse:
+class RetrieveMemoryResponse:
     """记忆检索响应"""
 
     memories: List[Dict[str, List[Memory]]]

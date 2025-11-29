@@ -15,7 +15,7 @@ from prompts.memory import (
 from providers.llm.llm_provider import LLMProvider
 from .base_memory_extractor import MemoryExtractor, MemoryExtractRequest
 from ..schema import MemoryType, MemUnit, Memory, SemanticMemoryItem
-from agents.vectorize_service import get_vectorize_service
+from agents.deep_infra_vectorize_service import get_vectorize_service
 from core.observation.logger import get_logger
 
 logger = get_logger(__name__)

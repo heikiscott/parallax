@@ -243,7 +243,7 @@ def _convert_episode_memory_to_doc(
     from infra.adapters.out.persistence.document.memory.episodic_memory import (
         EpisodicMemory,
     )
-    from agents.vectorize_service import get_vectorize_service
+    from agents.deep_infra_vectorize_service import get_vectorize_service
 
     # 解析时间戳为datetime对象
     if current_time is None:

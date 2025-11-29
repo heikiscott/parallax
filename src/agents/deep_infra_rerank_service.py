@@ -93,7 +93,7 @@ class DeepInfraRerankServiceInterface(ABC):
 
         Args:
             query: 查询文本
-            retrieve_response: RetrieveMemResponse对象
+            retrieve_response: RetrieveMemoryResponse对象
 
         Returns:
             重排序后的RerankMemResponse对象
@@ -440,10 +440,10 @@ class DeepInfraRerankService(DeepInfraRerankServiceInterface):
 
         Args:
             query: 查询文本
-            retrieve_response: RetrieveMemResponse对象或all_hits列表
+            retrieve_response: RetrieveMemoryResponse对象或all_hits列表
 
         Returns:
-            重排序后的RerankMemResponse对象（当输入是RetrieveMemResponse时）
+            重排序后的RerankMemResponse对象（当输入是RetrieveMemoryResponse时）
             或重排序后的hit列表（当输入是all_hits列表时）
         """
         # 检查输入类型，如果是all_hits列表，则使用专门的方法处理
@@ -451,7 +451,7 @@ class DeepInfraRerankService(DeepInfraRerankServiceInterface):
             # 对于all_hits列表，直接返回重排序后的hit列表
             return await self._rerank_all_hits(query, retrieve_response, instruction)
 
-        # 原有的处理RetrieveMemResponse的逻辑
+        # 原有的处理RetrieveMemoryResponse的逻辑
         if not hasattr(retrieve_response, 'memories') or not retrieve_response.memories:
             # 如果没有记忆数据，直接返回空结果
             return RerankMemResponse(

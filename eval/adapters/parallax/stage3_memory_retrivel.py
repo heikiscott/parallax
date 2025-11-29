@@ -23,8 +23,8 @@ from eval.adapters.parallax.config import ExperimentConfig
 
 # from eval.adapters.parallax.tools.embedding_provider import EmbeddingProvider
 # from eval.adapters.parallax.tools.reranker_provider import RerankerProvider
-from agents import vectorize_service
-from agents import rerank_service
+from agents import deep_infra_vectorize_service as vectorize_service
+from agents import deep_infra_rerank_service as rerank_service
 
 from eval.adapters.parallax.tools import agentic_utils
 

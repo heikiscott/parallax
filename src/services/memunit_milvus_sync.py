@@ -15,7 +15,7 @@ from infra.adapters.out.search.repository.episodic_memory_milvus_repository impo
 from infra.adapters.out.search.repository.episodic_memory_es_repository import (
     EpisodicMemoryEsRepository,
 )
-from agents.vectorize_service import DeepInfraVectorizeServiceInterface
+from agents.deep_infra_vectorize_service import DeepInfraVectorizeServiceInterface
 from core.di import get_bean_by_type, service
 from utils.datetime_utils import get_now_with_timezone
 
@@ -49,7 +49,7 @@ class MemUnitMilvusSyncService:
         self.es_repo = es_repo or get_bean_by_type(EpisodicMemoryEsRepository)
         
         if vectorize_service is None:
-            from agents.vectorize_service import get_vectorize_service
+            from agents.deep_infra_vectorize_service import get_vectorize_service
             self.vectorize_service = get_vectorize_service()
         else:
             self.vectorize_service = vectorize_service

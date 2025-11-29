@@ -14,12 +14,12 @@ from dataclasses import dataclass
 from memory.schema import Memory
 from services.mem_memorize import memorize
 from memory.orchestrator import MemorizeRequest
-from .fetch_mem_service import get_fetch_memory_service
+from .fetch_memory_service import get_fetch_memory_service
 from .dtos.memory_query import (
-    FetchMemRequest,
-    FetchMemResponse,
-    RetrieveMemRequest,
-    RetrieveMemResponse,
+    FetchMemoryRequest,
+    FetchMemoryResponse,
+    RetrieveMemoryRequest,
+    RetrieveMemoryResponse,
     Metadata,
 )
 from core.di import get_bean_by_type
@@ -38,8 +38,8 @@ from infra.adapters.out.persistence.document.memory.user_profile import (
 from infra.adapters.out.search.repository.episodic_memory_milvus_repository import (
     EpisodicMemoryMilvusRepository,
 )
-from .vectorize_service import get_vectorize_service
-from .rerank_service import get_rerank_service
+from .deep_infra_vectorize_service import get_vectorize_service
+from .deep_infra_rerank_service import get_rerank_service
 from .retrieval_utils import lightweight_retrieval, build_bm25_index, search_with_bm25
 import os
 
@@ -91,14 +91,14 @@ class MemoryManager:
     # --------- Read path (query -> fetch_mem) ---------
     # 基于kv的记忆读取，包括静态与动态记忆
     @trace_logger(operation_name="agents 记忆读取")
-    async def fetch_mem(self, request: FetchMemRequest) -> FetchMemResponse:
+    async def fetch_mem(self, request: FetchMemoryRequest) -> FetchMemoryResponse:
         """获取记忆数据，支持多种记忆类型
 
         Args:
-            request: FetchMemRequest 包含查询参数
+            request: FetchMemoryRequest 包含查询参数
 
         Returns:
-            FetchMemResponse 包含查询结果
+            FetchMemoryResponse 包含查询结果
         """
         logger.debug(
             f"fetch_mem called with request: user_id={request.user_id}, memory_type={request.memory_type}"
@@ -124,8 +124,8 @@ class MemoryManager:
     # 基于retrieve_method的记忆读取，包括静态与动态记忆
     @trace_logger(operation_name="agents 记忆检索")
     async def retrieve_mem(
-        self, retrieve_mem_request: 'RetrieveMemRequest'
-    ) -> RetrieveMemResponse:
+        self, retrieve_mem_request: 'RetrieveMemoryRequest'
+    ) -> RetrieveMemoryResponse:
         """检索记忆数据，根据 retrieve_method 分发到不同的检索方法
 
         Args:
@@ -164,7 +164,7 @@ class MemoryManager:
 
         except Exception as e:
             logger.error(f"Error in retrieve_mem: {e}", exc_info=True)
-            return RetrieveMemResponse(
+            return RetrieveMemoryResponse(
                 memories=[],
                 original_data=[],
                 scores=[],
@@ -190,8 +190,8 @@ class MemoryManager:
     # 关键词检索方法（原来的 retrieve_mem 逻辑）
     @trace_logger(operation_name="agents 关键词记忆检索")
     async def retrieve_mem_keyword(
-        self, retrieve_mem_request: 'RetrieveMemRequest'
-    ) -> RetrieveMemResponse:
+        self, retrieve_mem_request: 'RetrieveMemoryRequest'
+    ) -> RetrieveMemoryResponse:
         """基于关键词的记忆检索（原 retrieve_mem 的实现）
 
         Args:
@@ -213,7 +213,7 @@ class MemoryManager:
                 logger.warning(
                     f"关键词检索未找到结果: user_id={retrieve_mem_request.user_id}, query={retrieve_mem_request.query}"
                 )
-                return RetrieveMemResponse(
+                return RetrieveMemoryResponse(
                     memories=[],
                     original_data=[],
                     scores=[],
@@ -241,7 +241,7 @@ class MemoryManager:
                 f"EpisodicMemoryEsRepository multi_search returned {len(memories)} groups for query: {retrieve_mem_request.query}"
             )
 
-            return RetrieveMemResponse(
+            return RetrieveMemoryResponse(
                 memories=memories,
                 scores=scores,
                 importance_scores=importance_scores,
@@ -262,7 +262,7 @@ class MemoryManager:
 
         except Exception as e:
             logger.error(f"Error in retrieve_mem_keyword: {e}", exc_info=True)
-            return RetrieveMemResponse(
+            return RetrieveMemoryResponse(
                 memories=[],
                 original_data=[],
                 scores=[],
@@ -286,7 +286,7 @@ class MemoryManager:
             )
 
     async def get_keyword_search_results(
-        self, retrieve_mem_request: 'RetrieveMemRequest'
+        self, retrieve_mem_request: 'RetrieveMemoryRequest'
     ) -> Dict[str, Any]:
         try:
             # 从 Request 中获取参数
@@ -336,8 +336,8 @@ class MemoryManager:
     # 基于向量的记忆检索
     @trace_logger(operation_name="agents 向量记忆检索")
     async def retrieve_mem_vector(
-        self, retrieve_mem_request: 'RetrieveMemRequest'
-    ) -> RetrieveMemResponse:
+        self, retrieve_mem_request: 'RetrieveMemoryRequest'
+    ) -> RetrieveMemoryResponse:
         """基于向量相似性的记忆检索
 
         Args:
@@ -465,7 +465,7 @@ class MemoryManager:
                 f"EpisodicMemoryMilvusRepository vector_search returned {len(memories)} groups for query: {query}"
             )
 
-            return RetrieveMemResponse(
+            return RetrieveMemoryResponse(
                 memories=memories,
                 scores=scores,
                 importance_scores=importance_scores,
@@ -486,7 +486,7 @@ class MemoryManager:
 
         except Exception as e:
             logger.error(f"Error in retrieve_mem_vector: {e}")
-            return RetrieveMemResponse(
+            return RetrieveMemoryResponse(
                 memories=[],
                 original_data=[],
                 scores=[],
@@ -506,7 +506,7 @@ class MemoryManager:
             )
 
     async def get_vector_search_results(
-        self, retrieve_mem_request: 'RetrieveMemRequest'
+        self, retrieve_mem_request: 'RetrieveMemoryRequest'
     ) -> Dict[str, Any]:
         try:
             # 从 Request 中获取参数
@@ -617,15 +617,15 @@ class MemoryManager:
     # 混合记忆检索
     @trace_logger(operation_name="agents 混合记忆检索")
     async def retrieve_mem_hybrid(
-        self, retrieve_mem_request: 'RetrieveMemRequest'
-    ) -> RetrieveMemResponse:
+        self, retrieve_mem_request: 'RetrieveMemoryRequest'
+    ) -> RetrieveMemoryResponse:
         """基于关键词和向量的混合记忆检索
 
         Args:
-            retrieve_mem_request: RetrieveMemRequest 包含检索参数
+            retrieve_mem_request: RetrieveMemoryRequest 包含检索参数
 
         Returns:
-            RetrieveMemResponse 包含混合检索结果
+            RetrieveMemoryResponse 包含混合检索结果
         """
         try:
             logger.debug(
@@ -650,7 +650,7 @@ class MemoryManager:
             )
 
             # 创建关键词检索请求
-            keyword_request = RetrieveMemRequest(
+            keyword_request = RetrieveMemoryRequest(
                 user_id=user_id,
                 memory_types=retrieve_mem_request.memory_types,
                 top_k=top_k,
@@ -662,7 +662,7 @@ class MemoryManager:
             )
 
             # 创建向量检索请求
-            vector_request = RetrieveMemRequest(
+            vector_request = RetrieveMemoryRequest(
                 user_id=user_id,
                 memory_types=retrieve_mem_request.memory_types,
                 top_k=top_k,
@@ -693,7 +693,7 @@ class MemoryManager:
 
         except Exception as e:
             logger.error(f"Error in retrieve_mem_hybrid: {e}")
-            return RetrieveMemResponse(
+            return RetrieveMemoryResponse(
                 memories=[],
                 original_data=[],
                 scores=[],
@@ -734,7 +734,7 @@ class MemoryManager:
         top_k: int,
         user_id: str,
         query: str,
-    ) -> RetrieveMemResponse:
+    ) -> RetrieveMemoryResponse:
         """合并关键词和向量检索的原始搜索结果，并进行重新排序
 
         Args:
@@ -745,7 +745,7 @@ class MemoryManager:
             query: 查询文本
 
         Returns:
-            RetrieveMemResponse: 合并和重新排序后的结果
+            RetrieveMemoryResponse: 合并和重新排序后的结果
         """
         # 提取搜索结果
         keyword_hits = keyword_search_results
@@ -793,7 +793,7 @@ class MemoryManager:
         )
 
         # 构建最终结果
-        return RetrieveMemResponse(
+        return RetrieveMemoryResponse(
             memories=memories,
             scores=scores,
             importance_scores=importance_scores,

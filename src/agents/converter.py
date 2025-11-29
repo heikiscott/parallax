@@ -16,7 +16,7 @@ from infra.adapters.input.format_transfer import (
 
 from .schemas import DataFields
 from .memory_models import MemoryType
-from .dtos.memory_query import RetrieveMemRequest, FetchMemRequest
+from .dtos.memory_query import RetrieveMemoryRequest, FetchMemoryRequest
 from memory.orchestrator import MemorizeRequest
 from memory.schema import SourceType
 from memory.memunit_extractor.base_memunit_extractor import RawData
@@ -26,15 +26,15 @@ import logging
 logger = logging.getLogger(__name__)
 
 
-def convert_dict_to_fetch_mem_request(data: Dict[str, Any]) -> FetchMemRequest:
+def convert_dict_to_fetch_memory_request(data: Dict[str, Any]) -> FetchMemoryRequest:
     """
-    将字典转换为 FetchMemRequest 对象
+    将字典转换为 FetchMemoryRequest 对象
 
     Args:
-        data: 包含 FetchMemRequest 字段的字典
+        data: 包含 FetchMemoryRequest 字段的字典
 
     Returns:
-        FetchMemRequest 对象
+        FetchMemoryRequest 对象
 
     Raises:
         ValueError: 当必需字段缺失或类型不正确时
@@ -47,8 +47,8 @@ def convert_dict_to_fetch_mem_request(data: Dict[str, Any]) -> FetchMemRequest:
         # 转换 memory_type，如果未提供则使用默认值
         memory_type = MemoryType(data.get("memory_type", "multiple"))
         logger.debug(f"version_range: {data.get('version_range', None)}")
-        # 构建 FetchMemRequest 对象
-        return FetchMemRequest(
+        # 构建 FetchMemoryRequest 对象
+        return FetchMemoryRequest(
             user_id=data["user_id"],
             memory_type=memory_type,
             limit=data.get("limit", 10),
@@ -59,21 +59,21 @@ def convert_dict_to_fetch_mem_request(data: Dict[str, Any]) -> FetchMemRequest:
             version_range=data.get("version_range", None),
         )
     except Exception as e:
-        raise ValueError(f"FetchMemRequest 转换失败: {e}")
+        raise ValueError(f"FetchMemoryRequest 转换失败: {e}")
 
 
-def convert_dict_to_retrieve_mem_request(
+def convert_dict_to_retrieve_memory_request(
     data: Dict[str, Any], query: Optional[str] = None
-) -> RetrieveMemRequest:
+) -> RetrieveMemoryRequest:
     """
-    将字典转换为 RetrieveMemRequest 对象
+    将字典转换为 RetrieveMemoryRequest 对象
 
     Args:
-        data: 包含 RetrieveMemRequest 字段的字典
+        data: 包含 RetrieveMemoryRequest 字段的字典
         query: 查询文本（可选）
 
     Returns:
-        RetrieveMemRequest 对象
+        RetrieveMemoryRequest 对象
 
     Raises:
         ValueError: 当必需字段缺失或类型不正确时
@@ -97,7 +97,7 @@ def convert_dict_to_retrieve_mem_request(
             )
             retrieve_method = RetrieveMethod.KEYWORD
 
-        return RetrieveMemRequest(
+        return RetrieveMemoryRequest(
             retrieve_method=retrieve_method,
             user_id=data["user_id"],
             query=query or data.get("query", None),
@@ -110,7 +110,7 @@ def convert_dict_to_retrieve_mem_request(
             radius=data.get("radius", None),  # COSINE 相似度阈值
         )
     except Exception as e:
-        raise ValueError(f"RetrieveMemRequest 转换失败: {e}")
+        raise ValueError(f"RetrieveMemoryRequest 转换失败: {e}")
 
 
 def _extract_current_time(data: Dict[str, Any]) -> Optional[datetime]:

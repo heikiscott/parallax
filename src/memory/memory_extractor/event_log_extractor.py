@@ -236,7 +236,7 @@ class EventLogExtractor:
             )
             
             # 7. 为每个 atomic_fact 生成 embedding
-            from agents.vectorize_service import get_vectorize_service
+            from agents.deep_infra_vectorize_service import get_vectorize_service
             vectorize_service = get_vectorize_service()
             
             fact_embeddings = []

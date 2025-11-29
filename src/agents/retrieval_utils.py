@@ -15,7 +15,7 @@ import logging
 import asyncio
 from typing import List, Tuple, Dict, Any, Optional
 from core.nlp.stopwords_utils import filter_stopwords as filter_chinese_stopwords
-from .vectorize_service import get_vectorize_service
+from .deep_infra_vectorize_service import get_vectorize_service
 
 logger = logging.getLogger(__name__)
 

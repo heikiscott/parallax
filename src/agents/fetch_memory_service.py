@@ -33,7 +33,7 @@ from infra.adapters.out.persistence.repository.relationship_raw_repository impor
 from infra.adapters.out.persistence.repository.behavior_history_raw_repository import (
     BehaviorHistoryRawRepository,
 )
-from .dtos.memory_query import FetchMemResponse, FetchMemRequest
+from .dtos.memory_query import FetchMemoryResponse, FetchMemoryRequest
 
 from .memory_models import (
     MemoryType,
@@ -50,7 +50,7 @@ from .memory_models import (
     Metadata,
 )
 
-from .dtos.memory_query import FetchMemResponse, FetchMemResponse
+
 
 logger = logging.getLogger(__name__)
 
@@ -65,7 +65,7 @@ class FetchMemoryServiceInterface(ABC):
         memory_type: MemoryType,
         version_range: Optional[Tuple[Optional[str], Optional[str]]] = None,
         limit: int = 10,
-    ) -> FetchMemResponse:
+    ) -> FetchMemoryResponse:
         """
         根据用户ID查找记忆
 
@@ -382,7 +382,7 @@ class FetchMemoryServiceImpl(FetchMemoryServiceInterface):
         memory_type: MemoryType,
         version_range: Optional[Tuple[Optional[str], Optional[str]]] = None,
         limit: int = 10,
-    ) -> FetchMemResponse:
+    ) -> FetchMemoryResponse:
         """
         根据用户ID查找记忆
 
@@ -557,7 +557,7 @@ class FetchMemoryServiceImpl(FetchMemoryServiceInterface):
             )
             print(f"---- response_metadata: {response_metadata}")
 
-            return FetchMemResponse(
+            return FetchMemoryResponse(
                 memories=memories,
                 total_count=len(memories),
                 has_more=len(memories) == limit,
@@ -582,7 +582,7 @@ class FetchMemoryServiceImpl(FetchMemoryServiceInterface):
                     limit=limit,
                 )
 
-            return FetchMemResponse(
+            return FetchMemoryResponse(
                 memories=[], total_count=0, has_more=False, metadata=error_metadata
             )
 
@@ -747,7 +747,7 @@ async def find_memories_by_user_id(
     memory_type: MemoryType,
     version_range: Optional[Tuple[Optional[str], Optional[str]]] = None,
     limit: int = 10,
-) -> FetchMemResponse:
+) -> FetchMemoryResponse:
     """
     便捷函数：根据用户ID查找记忆
 

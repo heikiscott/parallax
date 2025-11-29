@@ -49,10 +49,10 @@
 ```
 agents/
 ├── memory_manager.py          (1,870行) 🔥 核心 - 记忆管理器
-├── fetch_mem_service.py       (831行)   记忆获取服务
+├── fetch_memory_service.py       (831行)   记忆获取服务
 ├── retrieval_utils.py         (785行)   检索工具（向量、BM25、RRF）
-├── rerank_service.py          (720行)   重排序服务
-├── vectorize_service.py       (572行)   向量化服务
+├── deep_infra_rerank_service.py          (720行)   重排序服务
+├── deep_infra_vectorize_service.py       (572行)   向量化服务
 ├── agentic_utils.py
 ├── converter.py
 ├── memory_models.py
@@ -72,7 +72,7 @@ agents/
   - 记忆获取和整合
   - 多种检索策略整合
 
-#### `fetch_mem_service.py` (831行)
+#### `fetch_memory_service.py` (831行)
 - **作用**: 记忆数据访问的服务层接口
 - **功能**:
   - 对接 DB 的 repository
@@ -87,13 +87,13 @@ agents/
   - RRF (Reciprocal Rank Fusion) 融合检索
   - Lightweight retrieval
 
-#### `rerank_service.py` (720行)
+#### `deep_infra_rerank_service.py` (720行)
 - **作用**: DeepInfra 重排序服务
 - **功能**:
   - 对检索结果进行重新排序
   - 提高检索结果相关性
 
-#### `vectorize_service.py` (572行)
+#### `deep_infra_vectorize_service.py` (572行)
 - **作用**: DeepInfra 向量化服务
 - **功能**:
   - 文本向量化

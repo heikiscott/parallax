@@ -6,8 +6,8 @@ from typing import Any, Dict, List, Mapping, Optional, Sequence, TYPE_CHECKING
 from memory.orchestrator import MemorizeRequest
 
 if TYPE_CHECKING:
-    from .dtos.memory_query import FetchMemRequest
-    from .dtos.memory_query import RetrieveMemRequest
+    from .dtos.memory_query import FetchMemoryRequest
+    from .dtos.memory_query import RetrieveMemoryRequest
 
 """
 本文件中的各类RawData结构是需要与Memorize方法的输入结构一致
@@ -224,10 +224,10 @@ class Request:
     # Fields for MEMORIZE REQTYPE
     memorize_request: Optional[MemorizeRequest] = None
     # Fields for FETCH_MEM REQTYPE
-    fetch_mem_request: Optional['FetchMemRequest'] = None
+    fetch_mem_request: Optional['FetchMemoryRequest'] = None
 
     # Fields for RETRIEVE REQTYPE
-    retrieve_mem_request: Optional['RetrieveMemRequest'] = None
+    retrieve_mem_request: Optional['RetrieveMemoryRequest'] = None
     override_keys: Optional[Sequence[str]] = None  # 废弃
 
     source: AppType = (

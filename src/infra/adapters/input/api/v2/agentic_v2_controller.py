@@ -13,10 +13,10 @@ from core.di.decorators import controller
 from core.interface.controller.base_controller import BaseController, post
 from agents.memory_manager import MemoryManager
 from agents.converter import (
-    convert_dict_to_fetch_mem_request,
-    convert_dict_to_retrieve_mem_request,
+    convert_dict_to_fetch_memory_request,
+    convert_dict_to_retrieve_memory_request,
 )
-from agents.dtos.memory_query import RetrieveMemRequest, RetrieveMemRequest
+from agents.dtos.memory_query import RetrieveMemoryRequest
 from core.constants.errors import ErrorCode, ErrorStatus
 from agents.converter import _handle_conversation_format
 
@@ -224,7 +224,7 @@ class AgenticV2Controller(BaseController):
                                 "total_count": 100,
                                 "has_more": False,
                                 "metadata": {
-                                    "source": "fetch_mem_service",
+                                    "source": "fetch_memory_service",
                                     "user_id": "user_123",
                                     "memory_type": "fetch",
                                 },
@@ -286,7 +286,7 @@ class AgenticV2Controller(BaseController):
             )
 
             # 直接使用 converter 转换
-            fetch_request = convert_dict_to_fetch_mem_request(body)
+            fetch_request = convert_dict_to_fetch_memory_request(body)
 
             # 调用 memory_manager 的 fetch_mem 方法
             response = await self.memory_manager.fetch_mem(fetch_request)
@@ -441,7 +441,7 @@ class AgenticV2Controller(BaseController):
             )
 
             # 直接使用 converter 转换
-            retrieve_request = convert_dict_to_retrieve_mem_request(body, query=query)
+            retrieve_request = convert_dict_to_retrieve_memory_request(body, query=query)
 
             # 使用 retrieve_mem 方法（支持 keyword 和 hybrid）
             response = await self.memory_manager.retrieve_mem(retrieve_request)
@@ -603,7 +603,7 @@ class AgenticV2Controller(BaseController):
             )
 
             # 使用 converter 转换
-            retrieve_request = convert_dict_to_retrieve_mem_request(body, query=query)
+            retrieve_request = convert_dict_to_retrieve_memory_request(body, query=query)
             retrieve_request.retrieve_method = RetrieveMethod.KEYWORD
 
             # 调用 memory_manager 的 retrieve_mem_keyword 方法
@@ -770,8 +770,8 @@ class AgenticV2Controller(BaseController):
                 query,
             )
 
-            # 使用 converter 转换（RetrieveMemRequest 继承自 RetrieveMemRequest）
-            retrieve_request = convert_dict_to_retrieve_mem_request(body, query=query)
+            # 使用 converter 转换（RetrieveMemoryRequest 继承自 RetrieveMemoryRequest）
+            retrieve_request = convert_dict_to_retrieve_memory_request(body, query=query)
             retrieve_request.retrieve_method = RetrieveMethod.VECTOR
 
             # 调用 memory_manager 的 retrieve_mem_vector 方法
@@ -939,7 +939,7 @@ class AgenticV2Controller(BaseController):
                 query,
             )
 
-            # 使用 converter 转换（RetrieveMemRequest 继承自 RetrieveMemRequest）
+            # 使用 converter 转换（RetrieveMemoryRequest 继承自 RetrieveMemoryRequest）
             retrieve_request = convert_dict_to_retrieve_mem_request(body, query=query)
             retrieve_request.retrieve_method = RetrieveMethod.HYBRID
 
