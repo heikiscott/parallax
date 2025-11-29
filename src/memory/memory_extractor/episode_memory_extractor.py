@@ -33,7 +33,8 @@ from providers.llm.llm_provider import LLMProvider
 
 from .base_memory_extractor import MemoryExtractor, MemoryExtractRequest
 from .semantic_memory_extractor import SemanticMemoryExtractor
-from ..schema import MemoryType, RawDataType, MemUnit, EpisodeMemory
+from ..schema import MemoryType, MemUnit, EpisodeMemory
+from ..schema import SourceType
 
 from utils.datetime_utils import get_now_with_timezone
 
@@ -290,7 +291,7 @@ class EpisodeMemoryExtractor(MemoryExtractor):
         first_memunit = request.memunit_list[0]
 
         # 根据类型选择不同的处理方式
-        if first_memunit.type == RawDataType.CONVERSATION:
+        if first_memunit.type == SourceType.CONVERSATION:
             all_content_text = []
             prompt_template = ""
             # 对话类型处理

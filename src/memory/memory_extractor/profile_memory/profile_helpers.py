@@ -6,7 +6,8 @@ from typing import Any, Dict, Iterable, List, Optional, Set
 
 from core.observation.logger import get_logger
 
-from ...schema import Memory, MemoryType, RawDataType
+from ...schema import Memory, MemoryType
+from ...schema import SourceType
 from .project_helpers import (
     convert_projects_to_dataclass,
     merge_projects_participated,
@@ -238,7 +239,7 @@ def profile_payload_to_memory(
         working_habit_preference=working_habit_values or None,
         interests=interests_values or None,
         tendency=tendency_values or None,
-        type=RawDataType.CONVERSATION,
+        type=SourceType.CONVERSATION,
     )
 
 
@@ -298,7 +299,7 @@ def merge_single_profile(
         working_habit_preference=merged_value_fields.get("working_habit_preference"),
         interests=merged_value_fields.get("interests"),
         tendency=merged_value_fields.get("tendency"),
-        type=RawDataType.CONVERSATION,
+        type=SourceType.CONVERSATION,
     )
 
 
@@ -357,7 +358,7 @@ def merge_profiles(
             working_habit_preference=participant_profile.get("working_habit_preference"),
             interests=participant_profile.get("interests"),
             tendency=participant_profile.get("tendency"),
-            type=RawDataType.CONVERSATION,
+            type=SourceType.CONVERSATION,
         )
         merged_dict[user_id] = profile_memory
 

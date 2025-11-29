@@ -10,7 +10,8 @@ from providers.llm.llm_provider import LLMProvider
 from ..memunit_extractor.conv_memunit_extractor import ConvMemUnitExtractor
 from ..memunit_extractor.base_memunit_extractor import RawData
 from ..memunit_extractor.conv_memunit_extractor import ConversationMemUnitExtractRequest
-from ..schema import MemUnit, RawDataType, MemoryType, Memory
+from ..schema import SourceType
+from ..schema import MemUnit, MemoryType, Memory
 from ..memory_extractor.episode_memory_extractor import (
     EpisodeMemoryExtractor,
     EpisodeMemoryExtractRequest,
@@ -35,7 +36,7 @@ logger = get_logger(__name__)
 class MemorizeRequest:
     history_raw_data_list: list[RawData]
     new_raw_data_list: list[RawData]
-    raw_data_type: RawDataType
+    source_type: SourceType
     # 整个group全量的user_id列表
     user_id_list: List[str]
     group_id: Optional[str] = None
@@ -114,7 +115,7 @@ class ExtractionOrchestrator:
         self,
         history_raw_data_list: list[RawData],
         new_raw_data_list: list[RawData],
-        raw_data_type: RawDataType,
+        source_type: SourceType,
         group_id: Optional[str] = None,
         group_name: Optional[str] = None,
         user_id_list: Optional[List[str]] = None,
@@ -214,7 +215,7 @@ class ExtractionOrchestrator:
                 old_memory_list=old_memory_list,
             )
         elif memory_type == MemoryType.PROFILE:
-            if memunit_list[0].type == RawDataType.CONVERSATION:
+            if memunit_list[0].type == SourceType.CONVERSATION:
                 extractor = ProfileMemoryExtractor(
                     self.profile_memory_extractor_llm_provider
                 )

@@ -11,7 +11,7 @@
 
 import time
 from memory.orchestrator import MemorizeRequest
-from memory.schema import MemoryType, MemUnit, Memory, RawDataType, ProfileMemory, GroupProfileMemory
+from memory.schema import MemoryType, MemUnit, Memory, ProfileMemory, GroupProfileMemory, SourceType
 from memory.memunit_extractor.base_memunit_extractor import RawData
 from memory.memory_extractor.profile_memory.types import (
     GroupImportanceEvidence,
@@ -762,7 +762,7 @@ def _convert_memunit_to_document(
         # 问题：BaseModel对象的嵌套验证导致无限递归，即使最简单的结构也有问题
         # TODO: 需要找到更好的解决方案来正确转换original_data
         doc_original_data = []
-        if memunit.type == RawDataType.CONVERSATION:
+        if memunit.type == SourceType.CONVERSATION:
             for raw_data_dict in memunit.original_data:
                 # 实际的数据结构是: {'speaker_id': 'user_1', 'speaker_name': 'Alice', 'content': '消息内容', 'timestamp': '...'}
                 # 这里的 content 是直接的消息字符串，不是嵌套字典
@@ -845,8 +845,8 @@ def _convert_memunit_to_document(
         doc_type = None
         if memunit.type:
             try:
-                # 将RawDataType转换为DataTypeEnum
-                if memunit.type == RawDataType.CONVERSATION:
+                # 将SourceType转换为DataTypeEnum
+                if memunit.type == SourceType.CONVERSATION:
                     doc_type = DataTypeEnum.CONVERSATION
             except Exception as e:
                 logger.warning(f"数据类型转换失败: {e}")
@@ -958,7 +958,7 @@ async def _get_raw_data_by_time_range(
         from providers.database.redis_provider import RedisProvider
         from core.di import get_bean_by_type
         from memory.memunit_extractor.base_memunit_extractor import RawData
-        from memory.schema import RawDataType
+        from memory.schema import SourceType
         from utils.datetime_utils import from_iso_format
         import json
         
@@ -995,7 +995,7 @@ async def _get_raw_data_by_time_range(
                     raw_item = RawData(
                         content=message_payload,
                         data_id=str(msg.get("message_id")),
-                        data_type=RawDataType.CONVERSATION,
+                        data_type=SourceType.CONVERSATION,
                     )
                     
                     raw_data_list.append(raw_item)

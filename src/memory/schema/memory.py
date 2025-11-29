@@ -6,7 +6,7 @@ import datetime
 
 from utils.datetime_utils import to_iso_format
 from .memory_type import MemoryType
-from .raw_data_type import RawDataType
+from .source_type import SourceType
 
 if TYPE_CHECKING:
     from .semantic import SemanticMemoryItem
@@ -31,7 +31,7 @@ class Memory:
 
     group_id: Optional[str] = None
     participants: Optional[List[str]] = None
-    type: Optional[RawDataType] = None
+    type: Optional[SourceType] = None
     keywords: Optional[List[str]] = None
     linked_entities: Optional[List[str]] = None
 

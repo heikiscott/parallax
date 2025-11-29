@@ -5,7 +5,7 @@ from typing import List, Dict, Any, Optional, TYPE_CHECKING
 import datetime
 
 from utils.datetime_utils import to_iso_format
-from .raw_data_type import RawDataType
+from .source_type import SourceType
 
 if TYPE_CHECKING:
     from .semantic import SemanticMemoryItem
@@ -30,7 +30,7 @@ class MemUnit:
     # Optional fields
     group_id: Optional[str] = None
     participants: Optional[List[str]] = None
-    type: Optional[RawDataType] = None
+    type: Optional[SourceType] = None
     keywords: Optional[List[str]] = None
     subject: Optional[str] = None
     linked_entities: Optional[List[str]] = None

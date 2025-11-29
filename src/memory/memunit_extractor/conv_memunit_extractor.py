@@ -19,7 +19,7 @@ from utils.datetime_utils import (
     get_now_with_timezone,
 )
 from providers.llm.llm_provider import LLMProvider
-from ..schema import RawDataType
+from ..schema import SourceType
 from prompts.memory.zh.conv_prompts import CONV_BOUNDARY_DETECTION_PROMPT
 
 from prompts.memory.en.eval.add.conv_prompts import CONV_BOUNDARY_DETECTION_PROMPT as EVAL_CONV_BOUNDARY_DETECTION_PROMPT
@@ -62,8 +62,8 @@ class ConvMemUnitExtractor(MemUnitExtractor):
         llm_provider=LLMProvider,
         use_eval_prompts: bool = False,
     ):
-        # Ensure base class receives the correct raw_data_type and provider
-        super().__init__(RawDataType.CONVERSATION, llm_provider)
+        # Ensure base class receives the correct source_type and provider
+        super().__init__(SourceType.CONVERSATION, llm_provider)
         self.llm_provider = llm_provider
         self.use_eval_prompts = use_eval_prompts
         self.episode_extractor = EpisodeMemoryExtractor(llm_provider, use_eval_prompts)

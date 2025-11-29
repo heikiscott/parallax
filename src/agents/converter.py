@@ -18,7 +18,7 @@ from .schemas import DataFields
 from .memory_models import MemoryType
 from .dtos.memory_query import RetrieveMemRequest, FetchMemRequest
 from memory.orchestrator import MemorizeRequest
-from memory.schema import RawDataType
+from memory.schema import SourceType
 from memory.memunit_extractor.base_memunit_extractor import RawData
 
 import logging
@@ -145,7 +145,7 @@ def _extract_current_time(data: Dict[str, Any]) -> Optional[datetime]:
 def _create_memorize_request(
     history_data: List[RawData],
     new_data: List[RawData],
-    data_type: RawDataType,
+    data_type: SourceType,
     participants: List[str],
     group_id: str = None,
     group_name: str = None,
@@ -244,7 +244,7 @@ async def _handle_conversation_format(data: Dict[str, Any]) -> MemorizeRequest:
     return _create_memorize_request(
         history_data=history_raw_data_list,
         new_data=new_raw_data_list,
-        data_type=RawDataType(data.get(DataFields.RAW_DATA_TYPE, "Conversation")),
+        data_type=SourceType(data.get(DataFields.RAW_DATA_TYPE, "Conversation")),
         participants=participants,
         group_id=data.get(DataFields.GROUP_ID),
         group_name=data.get("group_name"),

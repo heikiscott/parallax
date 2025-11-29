@@ -4,7 +4,7 @@ import json
 import traceback
 from memory.orchestrator import MemorizeRequest, MemorizeOfflineRequest
 from memory.orchestrator import ExtractionOrchestrator
-from memory.schema import MemoryType, MemUnit, Memory, RawDataType, SemanticMemoryItem
+from memory.schema import MemoryType, MemUnit, Memory, SemanticMemoryItem, SourceType
 from memory.memory_extractor.event_log_extractor import EventLog
 from memory.memunit_extractor.base_memunit_extractor import RawData
 from infra.adapters.out.persistence.document.memory.memunit import DataTypeEnum
@@ -46,7 +46,7 @@ from infra.adapters.out.persistence.repository.group_profile_raw_repository impo
     GroupProfileRawRepository,
 )
 from services.conversation_data_repo import ConversationDataRepository
-from memory.schema import RawDataType
+# SourceType already imported above
 from typing import List, Dict, Optional
 import uuid
 from datetime import datetime, timedelta
@@ -203,17 +203,17 @@ async def _trigger_clustering(group_id: str, memunit: MemUnit, scene: Optional[s
         raise  # 重新抛出异常，让调用者知道失败了
 
 
-def _convert_data_type_to_raw_data_type(data_type) -> RawDataType:
+def _convert_data_type_to_source_type(data_type) -> SourceType:
     """
-    将不同的数据类型枚举转换为统一的RawDataType
+    将不同的数据类型枚举转换为统一的SourceType
 
     Args:
-        data_type: 可能是DataTypeEnum、RawDataType或字符串
+        data_type: 可能是DataTypeEnum、SourceType或字符串
 
     Returns:
-        RawDataType: 转换后的统一数据类型
+        SourceType: 转换后的统一数据类型
     """
-    if isinstance(data_type, RawDataType):
+    if isinstance(data_type, SourceType):
         return data_type
 
     # 获取字符串值
@@ -224,12 +224,12 @@ def _convert_data_type_to_raw_data_type(data_type) -> RawDataType:
 
     # 映射转换
     type_mapping = {
-        "Conversation": RawDataType.CONVERSATION,
-        "CONVERSATION": RawDataType.CONVERSATION,
+        "Conversation": SourceType.CONVERSATION,
+        "CONVERSATION": SourceType.CONVERSATION,
         # 其他类型映射到CONVERSATION作为默认值
     }
 
-    return type_mapping.get(type_str, RawDataType.CONVERSATION)
+    return type_mapping.get(type_str, SourceType.CONVERSATION)
 
 
 from services.mem_db_operations import (
@@ -346,7 +346,7 @@ async def preprocess_conv_request(
                     "timestamp": message_time,
                 },
                 data_id=str(msg_dict.get("message_id")),
-                data_type=RawDataType.CONVERSATION,
+                data_type=SourceType.CONVERSATION,
             )
             history_raw_data_list.append(raw_data)
         
@@ -369,9 +369,9 @@ async def update_status_when_no_memunit(
     request: MemorizeRequest,
     status_result: StatusResult,
     current_time: datetime,
-    data_type: RawDataType,
+    data_type: SourceType,
 ):
-    if data_type == RawDataType.CONVERSATION:
+    if data_type == SourceType.CONVERSATION:
         # 尝试更新状态表
         try:
             status_repo = get_bean_by_type(ConversationStatusRawRepository)
@@ -410,9 +410,9 @@ async def update_status_after_memunit(
     request: MemorizeRequest,
     memunits: List[MemUnit],
     current_time: datetime,
-    data_type: RawDataType,
+    data_type: SourceType,
 ):
-    if data_type == RawDataType.CONVERSATION:
+    if data_type == SourceType.CONVERSATION:
         # 更新状态表中的last_memunit_time至memunits最后一个时间戳
         try:
             status_repo = get_bean_by_type(ConversationStatusRawRepository)
@@ -656,7 +656,7 @@ async def load_core_memories(
                     summary=f"用户{user_id}的基本信息：{getattr(core_memory, 'position', '未知角色')}",
                     group_id=request.group_id,
                     participants=[user_id],
-                    type=RawDataType.CONVERSATION,
+                    type=SourceType.CONVERSATION,
                     # ProfileMemory 特有字段 - 直接使用原始字典格式
                     hard_skills=getattr(core_memory, 'hard_skills', None),
                     soft_skills=getattr(core_memory, 'soft_skills', None),
@@ -700,12 +700,12 @@ async def memorize(request: MemorizeRequest) -> List[Memory]:
         MemoryType.SEMANTIC_SUMMARY, 
         MemoryType.EVENT_LOG
     ]
-    if request.raw_data_type == RawDataType.CONVERSATION:
+    if request.raw_data_type == SourceType.CONVERSATION:
         request = await preprocess_conv_request(request, current_time)
         if request == None:
             return None
 
-    if request.raw_data_type == RawDataType.CONVERSATION:
+    if request.raw_data_type == SourceType.CONVERSATION:
         # async with distributed_lock(f"memunit_extract_{request.group_id}") as acquired:
         #     # 120s等待，获取不到
         #     if not acquired:

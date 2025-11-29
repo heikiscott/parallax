@@ -11,7 +11,7 @@ from typing import List, Dict, Any, Optional
 from datetime import datetime
 import json
 from providers.llm.llm_provider import LLMProvider
-from memory.schema import RawDataType, Memory, MemUnit
+from memory.schema import Memory, MemUnit, SourceType
 import re
 
 try:
@@ -272,9 +272,9 @@ class StatusResult:
 
 class MemUnitExtractor(ABC):
     def __init__(
-        self, raw_data_type: RawDataType, llm_provider=LLMProvider
+        self, source_type: SourceType, llm_provider=LLMProvider
     ):
-        self.raw_data_type = raw_data_type
+        self.source_type = source_type
         self._llm_provider = llm_provider
 
     @abstractmethod
