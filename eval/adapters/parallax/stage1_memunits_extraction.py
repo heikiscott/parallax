@@ -36,7 +36,7 @@ from memory.memory_extractor.episode_memory_extractor import (
     EpisodeMemoryExtractor,
 )
 from memory.memory_extractor.event_log_extractor import EventLogExtractor
-from memory.schema import RawDataType
+from memory.schema import SourceType
 
 # 新增：聚类和 Profile 管理组件
 from memory.cluster_manager import (
@@ -242,7 +242,7 @@ async def memunit_extraction_from_conversation(
         set_activity_id(f"add-{conv_id}-ep{memunit_counter}")
 
         memunit = MemUnit(
-            type=RawDataType.CONVERSATION,
+            type=SourceType.CONVERSATION,
             event_id=str(uuid.uuid4()),
             user_id_list=list(speakers),
             original_data=history_raw_data_list,
