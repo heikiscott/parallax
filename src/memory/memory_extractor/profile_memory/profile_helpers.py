@@ -13,8 +13,8 @@ from .project_helpers import (
     project_to_dict,
 )
 from .skill_helpers import merge_skill_lists, normalize_skills_with_evidence
-from .types import ProfileMemory
 from .value_helpers import extract_values_with_evidence, merge_value_with_evidences_lists
+from ...schema import ProfileMemory
 
 logger = get_logger(__name__)
 

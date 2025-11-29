@@ -25,6 +25,24 @@ from providers.llm.openai_provider import OpenAIProvider
 from providers.llm.protocol import LLMError
 
 
+def create_mock_stream(content="Success"):
+    """Create a mock async iterator that simulates OpenAI streaming response."""
+    async def mock_stream():
+        # First chunk with content
+        chunk1 = MagicMock()
+        chunk1.choices = [MagicMock(delta=MagicMock(content=content), finish_reason=None)]
+        chunk1.usage = None
+        yield chunk1
+
+        # Final chunk with finish_reason and usage
+        chunk2 = MagicMock()
+        chunk2.choices = [MagicMock(delta=MagicMock(content=None), finish_reason="stop")]
+        chunk2.usage = MagicMock(prompt_tokens=10, completion_tokens=20, total_tokens=30)
+        yield chunk2
+
+    return mock_stream()
+
+
 @pytest.fixture
 def provider():
     """Create a test provider with dual-layer rate limiting config."""
@@ -97,13 +115,9 @@ def test_provider_uses_environment_defaults():
 async def test_success_no_retry(provider):
     """Test: Successful requests don't trigger retry."""
 
-    mock_response = MagicMock()
-    mock_response.choices = [MagicMock(message=MagicMock(content="Success"), finish_reason="stop")]
-    mock_response.usage = MagicMock(prompt_tokens=10, completion_tokens=20, total_tokens=30)
-
     async def fast_create(*args, **kwargs):
         await asyncio.sleep(0.01)
-        return mock_response
+        return create_mock_stream("Success")
 
     provider.client.chat.completions.create = AsyncMock(side_effect=fast_create)
 
@@ -145,15 +159,14 @@ async def test_retry_with_exponential_backoff():
                 body=None
             )
 
-        # Success on 4th attempt
-        mock_response = MagicMock()
-        mock_response.choices = [MagicMock(message=MagicMock(content="Success"), finish_reason="stop")]
-        mock_response.usage = MagicMock(prompt_tokens=10, completion_tokens=20, total_tokens=30)
-        return mock_response
+        # Success on 4th attempt - return streaming response
+        return create_mock_stream("Success")
 
     provider.client.chat.completions.create = AsyncMock(side_effect=failing_then_success)
 
-    result = await provider.generate("Test")
+    # Mock sleep to make test faster
+    with patch('asyncio.sleep', new_callable=AsyncMock):
+        result = await provider.generate("Test")
 
     assert result == "Success"
     assert call_count == 4, f"Expected 4 attempts, got {call_count}"
@@ -260,10 +273,7 @@ async def test_concurrency_control_with_semaphore():
         async with lock:
             active_count -= 1
 
-        mock_response = MagicMock()
-        mock_response.choices = [MagicMock(message=MagicMock(content="Success"), finish_reason="stop")]
-        mock_response.usage = MagicMock(prompt_tokens=10, completion_tokens=20, total_tokens=30)
-        return mock_response
+        return create_mock_stream("Success")
 
     provider.client.chat.completions.create = AsyncMock(side_effect=track_concurrency)
 
@@ -314,10 +324,7 @@ async def test_no_race_condition_high_concurrency():
         async with lock:
             active_count -= 1
 
-        mock_response = MagicMock()
-        mock_response.choices = [MagicMock(message=MagicMock(content="Success"), finish_reason="stop")]
-        mock_response.usage = MagicMock(prompt_tokens=10, completion_tokens=20, total_tokens=30)
-        return mock_response
+        return create_mock_stream("Success")
 
     provider.client.chat.completions.create = AsyncMock(side_effect=concurrent_requests)
 
@@ -364,10 +371,7 @@ async def test_mixed_success_and_retry():
         # Every 3rd call succeeds immediately, others fail once then succeed
         if call_count % 3 == 0:
             # Immediate success
-            mock_response = MagicMock()
-            mock_response.choices = [MagicMock(message=MagicMock(content="Success"), finish_reason="stop")]
-            mock_response.usage = MagicMock(prompt_tokens=10, completion_tokens=20, total_tokens=30)
-            return mock_response
+            return create_mock_stream("Success")
         elif call_count % 3 == 1:
             # First call fails
             raise openai.RateLimitError(
@@ -377,10 +381,7 @@ async def test_mixed_success_and_retry():
             )
         else:
             # Second call succeeds (after retry)
-            mock_response = MagicMock()
-            mock_response.choices = [MagicMock(message=MagicMock(content="Success"), finish_reason="stop")]
-            mock_response.usage = MagicMock(prompt_tokens=10, completion_tokens=20, total_tokens=30)
-            return mock_response
+            return create_mock_stream("Success")
 
     provider.client.chat.completions.create = AsyncMock(side_effect=mixed_responses)
 
@@ -433,10 +434,7 @@ async def test_retryable_error_types():
             if call_count == 1:
                 raise error
 
-            mock_response = MagicMock()
-            mock_response.choices = [MagicMock(message=MagicMock(content="Success"), finish_reason="stop")]
-            mock_response.usage = MagicMock(prompt_tokens=10, completion_tokens=20, total_tokens=30)
-            return mock_response
+            return create_mock_stream("Success")
 
         provider.client.chat.completions.create = AsyncMock(side_effect=fail_then_succeed)
 

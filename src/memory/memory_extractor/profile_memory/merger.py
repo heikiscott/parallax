@@ -11,7 +11,8 @@ from providers.llm.llm_provider import LLMProvider
 from .data_normalize import merge_single_profile, project_to_dict
 from .project_helpers import merge_projects_participated
 from .skill_helpers import merge_skill_lists_keep_highest_level
-from .types import ProfileMemory, ImportanceEvidence
+from .types import ImportanceEvidence
+from ...schema import ProfileMemory
 from .value_helpers import merge_value_with_evidences_lists, merge_value_with_evidences_lists_keep_highest_level
 
 logger = get_logger(__name__)

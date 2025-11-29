@@ -9,7 +9,7 @@ import os
 
 from providers.llm.llm_provider import LLMProvider
 from .base_memory_extractor import MemoryExtractor, MemoryExtractRequest
-from ..schema import Memory, MemoryType
+from ..schema import MemoryType, GroupProfileMemory
 from utils.datetime_utils import (
     get_now_with_timezone,
     from_timestamp,
@@ -123,38 +123,6 @@ class TopicInfo:
             status=status,
             last_active_at=last_active_at,
         )
-
-
-@dataclass
-class GroupProfileMemory(Memory):
-    """
-    Group Profile Memory aligned with design document.
-
-    Contains group core information extracted from conversations.
-    Evidences are now stored within topics and roles instead of separately.
-    """
-
-    # 新增字段，不与基类冲突
-    group_name: Optional[str] = None
-
-    # 提取结果（包含 strong + weak，按 last_active_at 排序，限制为 max_topics 个）
-    # topics 包含 evidences 和 confidence
-    topics: Optional[List[TopicInfo]] = field(default_factory=list)
-    # roles 的每个 assignment 包含 evidences 和 confidence
-    # 格式: role -> [{"user_id": "xxx", "user_name": "xxx", "confidence": "strong|weak", "evidences": [...]}]
-    roles: Optional[Dict[str, List[Dict[str, str]]]] = field(default_factory=dict)
-
-    # 注意：summary 和 group_id 已经在基类中定义为 Optional，这里不需要重复定义
-
-    def __post_init__(self):
-        """Set memory_type to GROUP_PROFILE and call parent __post_init__."""
-        self.memory_type = MemoryType.GROUP_PROFILE
-        # 确保 topics 和 roles 不为 None，防止历史数据或异常情况导致的 None 值
-        if self.topics is None:
-            self.topics = []
-        if self.roles is None:
-            self.roles = {}
-        super().__post_init__()
 
 
 @dataclass

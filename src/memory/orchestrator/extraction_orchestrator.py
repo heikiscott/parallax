@@ -10,11 +10,10 @@ from providers.llm.llm_provider import LLMProvider
 from ..memunit_extractor.conv_memunit_extractor import ConvMemUnitExtractor
 from ..memunit_extractor.base_memunit_extractor import RawData
 from ..memunit_extractor.conv_memunit_extractor import ConversationMemUnitExtractRequest
-from ..schema import MemUnit, RawDataType, MemoryType
+from ..schema import MemUnit, RawDataType, MemoryType, Memory
 from ..memory_extractor.episode_memory_extractor import (
     EpisodeMemoryExtractor,
     EpisodeMemoryExtractRequest,
-    Memory,
 )
 from ..memory_extractor.profile_memory_extractor import (
     ProfileMemoryExtractor,

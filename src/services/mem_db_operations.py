@@ -11,13 +11,9 @@
 
 import time
 from memory.orchestrator import MemorizeRequest
-from memory.schema import MemoryType, MemUnit, Memory, RawDataType
+from memory.schema import MemoryType, MemUnit, Memory, RawDataType, ProfileMemory, GroupProfileMemory
 from memory.memunit_extractor.base_memunit_extractor import RawData
-from memory.memory_extractor.profile_memory_extractor import ProfileMemory
-from memory.memory_extractor.group_profile_memory_extractor import (
-    GroupProfileMemory,
-)
-from memory.memory_extractor.profile_memory_extractor import (
+from memory.memory_extractor.profile_memory.types import (
     GroupImportanceEvidence,
     ImportanceEvidence,
 )
@@ -46,7 +42,7 @@ from infra.adapters.out.persistence.document.memory.memunit import (
     RawData as DocRawData,
     DataTypeEnum,
 )
-from memory.memory_extractor.profile_memory_extractor import ProjectInfo
+from memory.memory_extractor.profile_memory.types import ProjectInfo
 from services.conversation_data_repo import ConversationDataRepository
 from dataclasses import dataclass
 from typing import List, Dict, Any, Optional

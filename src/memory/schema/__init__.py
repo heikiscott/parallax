@@ -9,7 +9,10 @@ from .memory_type import MemoryType
 from .raw_data_type import RawDataType
 from .memunit import MemUnit
 from .memory import Memory
-from .semantic import SemanticMemory, SemanticMemoryItem
+from .semantic_memory import SemanticMemory, SemanticMemoryItem
+from .episode_memory import EpisodeMemory
+from .profile_memory import ProfileMemory
+from .group_profile_memory import GroupProfileMemory
 
 __all__ = [
     "MemoryType",
@@ -18,4 +21,7 @@ __all__ = [
     "Memory",
     "SemanticMemory",
     "SemanticMemoryItem",
+    "EpisodeMemory",
+    "ProfileMemory",
+    "GroupProfileMemory",
 ]

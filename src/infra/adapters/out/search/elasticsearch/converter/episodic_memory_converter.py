@@ -11,7 +11,7 @@ from core.observation.logger import get_logger
 
 # EpisodicMemory类型不再需要导入，因为参数类型已经简化为Any
 from core.nlp.stopwords_utils import filter_stopwords
-from memory.memory_extractor.episode_memory_extractor import EpisodeMemory
+from memory.schema import EpisodeMemory
 from infra.adapters.out.search.elasticsearch.memory.episodic_memory import (
     EpisodicMemoryDoc,
 )
@@ -154,8 +154,6 @@ class EpisodicMemoryConverter(BaseEsConverter[EpisodicMemoryDoc]):
             Exception: 当转换过程中发生错误时抛出异常
         """
         raise NotImplementedError("from_memory方法不再使用")
-
-        from memory.memory_extractor.episode_memory_extractor import EpisodeMemory
 
         if not isinstance(episode_memory, EpisodeMemory):
             # from gongjie

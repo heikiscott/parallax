@@ -8,17 +8,16 @@ from memory.schema import MemoryType, MemUnit, Memory, RawDataType, SemanticMemo
 from memory.memory_extractor.event_log_extractor import EventLog
 from memory.memunit_extractor.base_memunit_extractor import RawData
 from infra.adapters.out.persistence.document.memory.memunit import DataTypeEnum
+from memory.schema import ProfileMemory, GroupProfileMemory
 from memory.memory_extractor.profile_memory_extractor import (
-    ProfileMemory,
     ProfileMemoryExtractor,
     ProfileMemoryExtractRequest,
     ProfileMemoryMerger,
-    ProjectInfo,
 )
+from memory.memory_extractor.profile_memory.types import ProjectInfo
 from memory.memory_extractor.group_profile_memory_extractor import (
     GroupProfileMemoryExtractor,
     GroupProfileMemoryExtractRequest,
-    GroupProfileMemory,
 )
 from core.di import get_bean_by_type, enable_mock_mode, scan_packages
 from providers.database.redis_provider import RedisProvider

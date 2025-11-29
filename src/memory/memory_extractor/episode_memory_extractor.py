@@ -33,29 +33,13 @@ from providers.llm.llm_provider import LLMProvider
 
 from .base_memory_extractor import MemoryExtractor, MemoryExtractRequest
 from .semantic_memory_extractor import SemanticMemoryExtractor
-from ..schema import MemoryType, Memory, RawDataType, MemUnit
+from ..schema import MemoryType, RawDataType, MemUnit, EpisodeMemory
 
 from utils.datetime_utils import get_now_with_timezone
 
 from core.observation.logger import get_logger
 
 logger = get_logger(__name__)
-
-
-@dataclass
-class EpisodeMemory(Memory):
-    """
-    Simple result class for memory extraction.
-
-    Contains the essential information for extracted memories.
-    """
-
-    event_id: str = field(default=None)
-
-    def __post_init__(self):
-        """Set memory_type to EPISODE_SUMMARY and call parent __post_init__."""
-        self.memory_type = MemoryType.EPISODE_SUMMARY
-        super().__post_init__()
 
 
 @dataclass

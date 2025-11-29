@@ -3,12 +3,12 @@
 from .types import (
     GroupImportanceEvidence,
     ImportanceEvidence,
-    ProfileMemory,
     ProfileMemoryExtractRequest,
     ProjectInfo,
 )
 from .merger import ProfileMemoryMerger
 from .extractor import ProfileMemoryExtractor
+from ...schema import ProfileMemory
 
 __all__ = [
     "GroupImportanceEvidence",

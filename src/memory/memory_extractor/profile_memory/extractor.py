@@ -41,7 +41,8 @@ from .data_normalize import (
 from .evidence_utils import filter_opinion_tendency_by_type, remove_entries_without_evidence           
 from .project_helpers import filter_project_items_by_type
 from .merger import convert_important_info_to_evidence
-from .types import GroupImportanceEvidence, ImportanceEvidence, ProfileMemory, ProfileMemoryExtractRequest, ProjectInfo
+from .types import GroupImportanceEvidence, ImportanceEvidence, ProfileMemoryExtractRequest, ProjectInfo
+from ...schema import ProfileMemory
 from ..base_memory_extractor import MemoryExtractor, MemoryExtractRequest
 
 logger = get_logger(__name__)
