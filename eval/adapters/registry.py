@@ -14,7 +14,7 @@ _ADAPTER_REGISTRY: Dict[str, Type[BaseAdapter]] = {}
 # 适配器模块映射（用于延迟加载）
 _ADAPTER_MODULES = {
     # 本地系统
-    "parallax": "eval.adapters.parallax_adapter",
+    "parallax": "eval.adapters.parallax.parallax_adapter",
     
     # 在线 API 系统
     "mem0": "eval.adapters.online.mem0_adapter",
