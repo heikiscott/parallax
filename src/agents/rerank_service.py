@@ -292,6 +292,17 @@ class DeepInfraRerankService(DeepInfraRerankServiceInterface):
                     else:
                         raise DeepInfraRerankError(f"Rerank client error: {type(e).__name__}: {e}")
 
+                except (TimeoutError, asyncio.TimeoutError) as e:
+                    logger.warning(
+                        f"DeepInfra Rerank API timeout (attempt {attempt + 1}/{self.config.max_retries}): "
+                        f"Request timed out after {self.config.timeout}s"
+                    )
+                    if attempt < self.config.max_retries - 1:
+                        await asyncio.sleep(2**attempt)
+                        continue
+                    else:
+                        raise DeepInfraRerankError(f"Rerank timeout after {self.config.max_retries} attempts")
+
                 except Exception as e:
                     error_msg = str(e) if str(e) else "No error message"
                     logger.error(
