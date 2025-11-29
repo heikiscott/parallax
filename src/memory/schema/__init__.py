@@ -14,13 +14,9 @@ from .episode_memory import EpisodeMemory
 from .profile_memory import ProfileMemory
 from .group_profile_memory import GroupProfileMemory
 
-# Backward compatibility alias
-RawDataType = SourceType
-
 __all__ = [
     "MemoryType",
     "SourceType",
-    "RawDataType",  # Backward compatibility
     "MemUnit",
     "Memory",
     "SemanticMemory",

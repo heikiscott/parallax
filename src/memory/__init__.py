@@ -7,7 +7,7 @@ LLM providers, memory extraction, and type definitions.
 
 from providers.llm import LLMProvider, OpenAIProvider, create_provider, create_provider_from_env
 
-from .schema import MemoryType, SourceType, RawDataType
+from .schema import MemoryType, SourceType
 
 __all__ = [
     "LLMProvider",
@@ -16,5 +16,4 @@ __all__ = [
     "create_provider_from_env",
     "MemoryType",
     "SourceType",
-    "RawDataType",  # Backward compatibility
 ]
