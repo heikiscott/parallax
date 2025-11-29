@@ -11,9 +11,9 @@ import time
 from typing import Dict, Any
 from dataclasses import dataclass
 
-from memory.types import Memory
+from memory.schema import Memory
 from services.mem_memorize import memorize
-from memory.extraction_orchestrator import MemorizeRequest
+from memory.orchestrator import MemorizeRequest
 from .fetch_mem_service import get_fetch_memory_service
 from .dtos.memory_query import (
     FetchMemRequest,

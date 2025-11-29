@@ -2,9 +2,9 @@ import random
 import time
 import json
 import traceback
-from memory.extraction_orchestrator import MemorizeRequest, MemorizeOfflineRequest
-from memory.extraction_orchestrator import ExtractionOrchestrator
-from memory.types import MemoryType, MemUnit, Memory, RawDataType, SemanticMemoryItem
+from memory.orchestrator import MemorizeRequest, MemorizeOfflineRequest
+from memory.orchestrator import ExtractionOrchestrator
+from memory.schema import MemoryType, MemUnit, Memory, RawDataType, SemanticMemoryItem
 from memory.memory_extractor.event_log_extractor import EventLog
 from memory.memunit_extractor.base_memunit_extractor import RawData
 from infra.adapters.out.persistence.document.memory.memunit import DataTypeEnum
@@ -47,7 +47,7 @@ from infra.adapters.out.persistence.repository.group_profile_raw_repository impo
     GroupProfileRawRepository,
 )
 from services.conversation_data_repo import ConversationDataRepository
-from memory.types import RawDataType
+from memory.schema import RawDataType
 from typing import List, Dict, Optional
 import uuid
 from datetime import datetime, timedelta

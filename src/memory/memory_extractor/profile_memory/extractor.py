@@ -18,7 +18,7 @@ from prompts.memory import (
     CONVERSATION_PROFILE_PART2_EXTRACTION_PROMPT,
     CONVERSATION_PROFILE_PART3_EXTRACTION_PROMPT,
 )
-from ...types import MemoryType, MemUnit
+from ...schema import MemoryType, MemUnit
 from .conversation import (
     annotate_relative_dates,
     build_conversation_text,

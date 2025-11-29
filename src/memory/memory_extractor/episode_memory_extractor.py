@@ -33,7 +33,7 @@ from providers.llm.llm_provider import LLMProvider
 
 from .base_memory_extractor import MemoryExtractor, MemoryExtractRequest
 from .semantic_memory_extractor import SemanticMemoryExtractor
-from ..types import MemoryType, Memory, RawDataType, MemUnit
+from ..schema import MemoryType, Memory, RawDataType, MemUnit
 
 from utils.datetime_utils import get_now_with_timezone
 

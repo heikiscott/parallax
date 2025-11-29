@@ -6,7 +6,7 @@ from typing import Any, Dict, Iterable, List, Optional, Set
 
 from core.observation.logger import get_logger
 
-from ...types import Memory, MemoryType, RawDataType
+from ...schema import Memory, MemoryType, RawDataType
 from .project_helpers import (
     convert_projects_to_dataclass,
     merge_projects_participated,

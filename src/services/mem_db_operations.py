@@ -10,8 +10,8 @@
 """
 
 import time
-from memory.extraction_orchestrator import MemorizeRequest
-from memory.types import MemoryType, MemUnit, Memory, RawDataType
+from memory.orchestrator import MemorizeRequest
+from memory.schema import MemoryType, MemUnit, Memory, RawDataType
 from memory.memunit_extractor.base_memunit_extractor import RawData
 from memory.memory_extractor.profile_memory_extractor import ProfileMemory
 from memory.memory_extractor.group_profile_memory_extractor import (
@@ -962,7 +962,7 @@ async def _get_raw_data_by_time_range(
         from providers.database.redis_provider import RedisProvider
         from core.di import get_bean_by_type
         from memory.memunit_extractor.base_memunit_extractor import RawData
-        from memory.types import RawDataType
+        from memory.schema import RawDataType
         from utils.datetime_utils import from_iso_format
         import json
         

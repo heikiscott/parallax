@@ -11,7 +11,7 @@ from typing import List, Dict, Any, Optional
 from datetime import datetime
 import json
 from providers.llm.llm_provider import LLMProvider
-from memory.types import RawDataType, Memory, MemUnit
+from memory.schema import RawDataType, Memory, MemUnit
 import re
 
 try:

@@ -4,7 +4,7 @@ from dataclasses import dataclass, field
 from enum import Enum
 from typing import Any, Dict, List, Optional, Union
 from datetime import datetime
-from memory.types import Memory
+from memory.schema import Memory
 from agents.memory_models import (
     MemoryType,
     Metadata,

@@ -9,7 +9,7 @@ import os
 
 from providers.llm.llm_provider import LLMProvider
 from .base_memory_extractor import MemoryExtractor, MemoryExtractRequest
-from ..types import Memory, MemoryType
+from ..schema import Memory, MemoryType
 from utils.datetime_utils import (
     get_now_with_timezone,
     from_timestamp,

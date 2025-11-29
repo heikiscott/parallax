@@ -7,26 +7,26 @@ from typing import List, Optional
 from core.observation.logger import get_logger
 
 from providers.llm.llm_provider import LLMProvider
-from .memunit_extractor.conv_memunit_extractor import ConvMemUnitExtractor
-from .memunit_extractor.base_memunit_extractor import RawData
-from .memunit_extractor.conv_memunit_extractor import ConversationMemUnitExtractRequest
-from .types import MemUnit, RawDataType, MemoryType
-from .memory_extractor.episode_memory_extractor import (
+from ..memunit_extractor.conv_memunit_extractor import ConvMemUnitExtractor
+from ..memunit_extractor.base_memunit_extractor import RawData
+from ..memunit_extractor.conv_memunit_extractor import ConversationMemUnitExtractRequest
+from ..schema import MemUnit, RawDataType, MemoryType
+from ..memory_extractor.episode_memory_extractor import (
     EpisodeMemoryExtractor,
     EpisodeMemoryExtractRequest,
     Memory,
 )
-from .memory_extractor.profile_memory_extractor import (
+from ..memory_extractor.profile_memory_extractor import (
     ProfileMemoryExtractor,
     ProfileMemoryExtractRequest,
 )
-from .memory_extractor.group_profile_memory_extractor import (
+from ..memory_extractor.group_profile_memory_extractor import (
     GroupProfileMemoryExtractor,
     GroupProfileMemoryExtractRequest,
 )
-from .memory_extractor.event_log_extractor import EventLogExtractor
-from .memory_extractor.semantic_memory_extractor import SemanticMemoryExtractor
-from .memunit_extractor.base_memunit_extractor import StatusResult
+from ..memory_extractor.event_log_extractor import EventLogExtractor
+from ..memory_extractor.semantic_memory_extractor import SemanticMemoryExtractor
+from ..memunit_extractor.base_memunit_extractor import StatusResult
 
 
 logger = get_logger(__name__)

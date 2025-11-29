@@ -5,7 +5,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Any, Dict, List, Optional
 
-from ...types import Memory, MemoryType
+from ...schema import Memory, MemoryType
 from ..base_memory_extractor import MemoryExtractRequest
 
 

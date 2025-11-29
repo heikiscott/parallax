@@ -36,7 +36,7 @@ from memory.memory_extractor.episode_memory_extractor import (
     EpisodeMemoryExtractor,
 )
 from memory.memory_extractor.event_log_extractor import EventLogExtractor
-from memory.types import RawDataType
+from memory.schema import RawDataType
 
 # 新增：聚类和 Profile 管理组件
 from memory.cluster_manager import (

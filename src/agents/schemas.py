@@ -3,7 +3,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from enum import Enum
 from typing import Any, Dict, List, Mapping, Optional, Sequence, TYPE_CHECKING
-from memory.extraction_orchestrator import MemorizeRequest
+from memory.orchestrator import MemorizeRequest
 
 if TYPE_CHECKING:
     from .dtos.memory_query import FetchMemRequest

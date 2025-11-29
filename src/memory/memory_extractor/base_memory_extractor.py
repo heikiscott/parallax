@@ -10,7 +10,7 @@ from dataclasses import dataclass
 from typing import List, Optional
 import uuid
 
-from ..types import MemoryType, Memory, MemUnit
+from ..schema import MemoryType, Memory, MemUnit
 
 
 @dataclass
