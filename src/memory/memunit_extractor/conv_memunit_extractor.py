@@ -22,7 +22,7 @@ from providers.llm.llm_provider import LLMProvider
 from ..types import RawDataType
 from ..prompts.zh.conv_prompts import CONV_BOUNDARY_DETECTION_PROMPT
 
-from ..prompts.en.benchmark.conv_prompts import CONV_BOUNDARY_DETECTION_PROMPT as EVAL_CONV_BOUNDARY_DETECTION_PROMPT
+from ..prompts.en.eval.conv_prompts import CONV_BOUNDARY_DETECTION_PROMPT as EVAL_CONV_BOUNDARY_DETECTION_PROMPT
 from .base_memunit_extractor import (
     MemUnitExtractor,
     RawData,

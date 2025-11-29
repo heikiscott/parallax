@@ -13,9 +13,9 @@ from pathlib import Path
 from typing import List, Tuple, Optional
 
 # 从 Python 文件导入 prompts（替代读取 txt 文件）
-from eval.adapters.parallax.prompts.sufficiency_check_prompts import SUFFICIENCY_CHECK_PROMPT
-from eval.adapters.parallax.prompts.refined_query_prompts import REFINED_QUERY_PROMPT
-from eval.adapters.parallax.prompts.multi_query_prompts import MULTI_QUERY_GENERATION_PROMPT
+from memory.prompts.en.eval.sufficiency_check_prompts import SUFFICIENCY_CHECK_PROMPT
+from memory.prompts.en.eval.refined_query_prompts import REFINED_QUERY_PROMPT
+from memory.prompts.en.eval.multi_query_prompts import MULTI_QUERY_GENERATION_PROMPT
 
 
 def format_documents_for_llm(
