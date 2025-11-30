@@ -13,8 +13,9 @@ from prompts.memory import (
     get_semantic_generation_prompt,
 )
 from providers.llm.llm_provider import LLMProvider
-from .base_memory_extractor import MemoryExtractor, MemoryExtractRequest
-from ..schema import MemoryType, MemUnit, Memory, SemanticMemoryItem
+from .memory_extractor import MemoryExtractor
+from .memory_extract_request import MemoryExtractRequest
+from memory.schema import MemoryType, MemUnit, Memory, SemanticMemoryItem
 from agents.deep_infra_vectorize_service import get_vectorize_service
 from core.observation.logger import get_logger
 
@@ -188,27 +189,30 @@ class SemanticMemoryExtractor(MemoryExtractor):
     @staticmethod
     def _clean_date_string(date_str: Optional[str]) -> Optional[str]:
         """清理日期字符串，移除非法字符
-        
+
         Args:
             date_str: 原始日期字符串
-            
+
         Returns:
             清理后的日期字符串，如果无效则返回 None
         """
         if not date_str or not isinstance(date_str, str):
             return None
-        
+
         import re
+
         # 只保留数字和连字符，移除其他字符（如中文、空格等）
         cleaned = re.sub(r'[^\d\-]', '', date_str)
-        
+
         # 验证格式是否为 YYYY-MM-DD
         if re.match(r'^\d{4}-\d{2}-\d{2}$', cleaned):
             return cleaned
         else:
-            logger.warning(f"时间格式无效，已清理但仍不符合 YYYY-MM-DD: 原始='{date_str}', 清理后='{cleaned}'")
+            logger.warning(
+                f"时间格式无效，已清理但仍不符合 YYYY-MM-DD: 原始='{date_str}', 清理后='{cleaned}'"
+            )
             return None
-    
+
     async def _parse_semantic_memories_response(
         self,
         response: str,
@@ -245,7 +249,7 @@ class SemanticMemoryExtractor(MemoryExtractor):
                 semantic_memories = []
 
                 for item in data:
-                    
+
                     content = item.get('content', '')
                     evidence = item.get('evidence', '')  # ← 读取 evidence
 
@@ -253,7 +257,7 @@ class SemanticMemoryExtractor(MemoryExtractor):
                     item_start_time = item.get('start_time', start_time)
                     item_end_time = item.get('end_time')
                     item_duration_days = item.get('duration_days')
-                    
+
                     # 清理时间格式（防止 LLM 输出错误的格式）
                     item_start_time = self._clean_date_string(item_start_time)
                     item_end_time = self._clean_date_string(item_end_time)
@@ -288,7 +292,6 @@ class SemanticMemoryExtractor(MemoryExtractor):
                     )
 
                     semantic_memories.append(memory_item)
-                    
 
                 return semantic_memories
             else:

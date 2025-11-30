@@ -7,26 +7,24 @@ from typing import List, Optional
 from core.observation.logger import get_logger
 
 from providers.llm.llm_provider import LLMProvider
-from ..memunit_extractor.conv_memunit_extractor import ConvMemUnitExtractor
-from ..memunit_extractor.base_memunit_extractor import RawData
-from ..memunit_extractor.conv_memunit_extractor import ConversationMemUnitExtractRequest
+from ..extraction.memunit import (
+    ConvMemUnitExtractor,
+    ConversationMemUnitExtractRequest,
+    RawData,
+    StatusResult,
+)
 from ..schema import SourceType
 from ..schema import MemUnit, MemoryType, Memory
-from ..memory_extractor.episode_memory_extractor import (
+from ..extraction.memory import (
     EpisodeMemoryExtractor,
     EpisodeMemoryExtractRequest,
-)
-from ..memory_extractor.profile_memory_extractor import (
     ProfileMemoryExtractor,
     ProfileMemoryExtractRequest,
-)
-from ..memory_extractor.group_profile_memory_extractor import (
     GroupProfileMemoryExtractor,
     GroupProfileMemoryExtractRequest,
+    EventLogExtractor,
+    SemanticMemoryExtractor,
 )
-from ..memory_extractor.event_log_extractor import EventLogExtractor
-from ..memory_extractor.semantic_memory_extractor import SemanticMemoryExtractor
-from ..memunit_extractor.base_memunit_extractor import StatusResult
 
 
 logger = get_logger(__name__)

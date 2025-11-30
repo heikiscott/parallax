@@ -12,7 +12,7 @@ from .data_normalize import merge_single_profile, project_to_dict
 from .project_helpers import merge_projects_participated
 from .skill_helpers import merge_skill_lists_keep_highest_level
 from .types import ImportanceEvidence
-from ...schema import ProfileMemory
+from memory.schema import ProfileMemory
 from .value_helpers import merge_value_with_evidences_lists, merge_value_with_evidences_lists_keep_highest_level
 
 logger = get_logger(__name__)
@@ -84,32 +84,10 @@ class ProfileMemoryMerger:
                 }
             )
 
-        # while len(records) > 10:
-        #     removed = False
-        #     for i, record in enumerate(records):
-        #         if not record["has_date"]:
-        #             del records[i]
-        #             removed = True
-        #             break
-        #     if removed:
-        #         continue
-
-        #     oldest_index = 0
-        #     oldest_date = records[0]["date"]
-        #     for i in range(1, len(records)):
-        #         current_date = records[i]["date"]
-        #         if current_date is None:
-        #             continue
-        #         if oldest_date is None or current_date < oldest_date:
-        #             oldest_date = current_date
-        #             oldest_index = i
-        #     del records[oldest_index]
-
         return [record["entry"] for record in records]
 
     @classmethod
     def _profile_memory_to_prompt_dict(cls, profile: ProfileMemory) -> Dict[str, Any]:
-        
 
         def truncate_evidences_in_items(items: Optional[List[Dict[str, Any]]]) -> List[Dict[str, Any]]:
             if not items:
@@ -251,7 +229,6 @@ class ProfileMemoryMerger:
             if profile.user_name:
                 user_name = profile.user_name
                 break
-
 
         # Collect all group_ids
         group_ids = [p.group_id for p in matching_profiles if p.group_id]

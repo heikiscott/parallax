@@ -42,7 +42,7 @@ from eval.adapters.parallax import (
 
 # 导入 Memory Layer 组件
 from providers.llm.llm_provider import LLMProvider
-from memory.memory_extractor.event_log_extractor import EventLogExtractor
+from memory.extraction.memory import EventLogExtractor
 
 
 @register_adapter("parallax")

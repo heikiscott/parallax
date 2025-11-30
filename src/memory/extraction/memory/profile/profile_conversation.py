@@ -12,7 +12,7 @@ from core.observation.logger import get_logger
 
 # 使用动态语言提示词导入（根据 MEMORY_LANGUAGE 环境变量自动选择）
 from prompts.memory import CONVERSATION_PROFILE_EVIDENCE_COMPLETION_PROMPT
-from ...schema import MemUnit
+from memory.schema import MemUnit
 from .types import GroupImportanceEvidence, ImportanceEvidence, ProfileMemoryExtractRequest
 
 logger = get_logger(__name__)

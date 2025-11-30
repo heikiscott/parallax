@@ -26,16 +26,17 @@ from utils.datetime_utils import (
     get_now_with_timezone,
 )
 from providers.llm.llm_provider import LLMProvider
-from memory.memunit_extractor.base_memunit_extractor import RawData, MemUnit
-from memory.memunit_extractor.conv_memunit_extractor import (
+from memory.extraction.memunit import (
+    RawData,
     ConvMemUnitExtractor,
     ConversationMemUnitExtractRequest,
 )
-from memory.memory_extractor.episode_memory_extractor import (
+from memory.extraction.memory import (
     EpisodeMemoryExtractRequest,
     EpisodeMemoryExtractor,
+    EventLogExtractor,
 )
-from memory.memory_extractor.event_log_extractor import EventLogExtractor
+from memory.schema import MemUnit
 from memory.schema import SourceType
 
 # 新增：聚类和 Profile 管理组件

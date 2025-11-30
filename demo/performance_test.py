@@ -18,7 +18,7 @@ from typing import Dict, List
 from dataclasses import dataclass
 
 from agents.memory_manager import MemoryManager
-from memory.memunit_extractor.base_memunit_extractor import RawData
+from memory.extraction.memunit import RawData
 from memory.schema import SourceType, MemoryType, MemUnit
 from utils.datetime_utils import get_now_with_timezone
 import uuid

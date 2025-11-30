@@ -1,29 +1,13 @@
 """
-Simple Memory Extraction Base Class for Parallax
-
-This module provides a simple base class for extracting memories
-from boundary detection results (BoundaryResult).
+Memory extraction abstract base class.
 """
 
 from abc import ABC, abstractmethod
-from dataclasses import dataclass
-from typing import List, Optional
+from typing import Optional
 import uuid
 
-from ..schema import MemoryType, Memory, MemUnit
-
-
-@dataclass
-class MemoryExtractRequest:
-    memunit_list: List[MemUnit]
-    user_id_list: List[str]
-    group_id: Optional[str] = None
-    group_name: Optional[str] = None
-    participants: Optional[List[str]] = None
-
-    old_memory_list: Optional[List[Memory]] = None
-
-    user_organization: Optional[List] = None
+from memory.schema import MemoryType, Memory
+from .memory_extract_request import MemoryExtractRequest
 
 
 class MemoryExtractor(ABC):

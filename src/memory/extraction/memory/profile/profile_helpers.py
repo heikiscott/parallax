@@ -6,8 +6,8 @@ from typing import Any, Dict, Iterable, List, Optional, Set
 
 from core.observation.logger import get_logger
 
-from ...schema import Memory, MemoryType
-from ...schema import SourceType
+from memory.schema import Memory, MemoryType
+from memory.schema import SourceType
 from .project_helpers import (
     convert_projects_to_dataclass,
     merge_projects_participated,
@@ -15,7 +15,7 @@ from .project_helpers import (
 )
 from .skill_helpers import merge_skill_lists, normalize_skills_with_evidence
 from .value_helpers import extract_values_with_evidence, merge_value_with_evidences_lists
-from ...schema import ProfileMemory
+from memory.schema import ProfileMemory
 
 logger = get_logger(__name__)
 

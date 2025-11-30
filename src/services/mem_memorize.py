@@ -5,17 +5,17 @@ import traceback
 from memory.orchestrator import MemorizeRequest, MemorizeOfflineRequest
 from memory.orchestrator import ExtractionOrchestrator
 from memory.schema import MemoryType, MemUnit, Memory, SemanticMemoryItem, SourceType
-from memory.memory_extractor.event_log_extractor import EventLog
-from memory.memunit_extractor.base_memunit_extractor import RawData
+from memory.extraction.memory.event_log_extractor import EventLog
+from memory.extraction.memunit import RawData, StatusResult
 from infra.adapters.out.persistence.document.memory.memunit import DataTypeEnum
 from memory.schema import ProfileMemory, GroupProfileMemory
-from memory.memory_extractor.profile_memory_extractor import (
+from memory.extraction.memory.profile import (
     ProfileMemoryExtractor,
     ProfileMemoryExtractRequest,
     ProfileMemoryMerger,
+    ProjectInfo,
 )
-from memory.memory_extractor.profile_memory.types import ProjectInfo
-from memory.memory_extractor.group_profile_memory_extractor import (
+from memory.extraction.memory.group_profile import (
     GroupProfileMemoryExtractor,
     GroupProfileMemoryExtractRequest,
 )
@@ -54,7 +54,6 @@ import os
 import asyncio
 from collections import defaultdict
 from utils.datetime_utils import get_now_with_timezone, to_iso_format, from_iso_format
-from memory.memunit_extractor.base_memunit_extractor import StatusResult
 import traceback
 
 from core.lock.redis_distributed_lock import distributed_lock

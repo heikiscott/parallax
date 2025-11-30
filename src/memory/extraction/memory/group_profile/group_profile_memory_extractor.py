@@ -8,8 +8,9 @@ import hashlib
 import os
 
 from providers.llm.llm_provider import LLMProvider
-from .base_memory_extractor import MemoryExtractor, MemoryExtractRequest
-from ..schema import MemoryType, GroupProfileMemory
+from ..memory_extractor import MemoryExtractor
+from ..memory_extract_request import MemoryExtractRequest
+from memory.schema import MemoryType, GroupProfileMemory
 from utils.datetime_utils import (
     get_now_with_timezone,
     from_timestamp,
@@ -176,7 +177,7 @@ class GroupProfileMemoryExtractor(MemoryExtractor):
     def data_processor(self):
         """Lazy load data processor."""
         if self._data_processor is None:
-            from .group_profile.data_processor import GroupProfileDataProcessor
+            from .data_processor import GroupProfileDataProcessor
 
             self._data_processor = GroupProfileDataProcessor(self.conversation_source)
         return self._data_processor
@@ -185,7 +186,7 @@ class GroupProfileMemoryExtractor(MemoryExtractor):
     def topic_processor(self):
         """Lazy load topic processor."""
         if self._topic_processor is None:
-            from .group_profile.topic_processor import TopicProcessor
+            from .topic_processor import TopicProcessor
 
             self._topic_processor = TopicProcessor(self.data_processor)
         return self._topic_processor
@@ -194,7 +195,7 @@ class GroupProfileMemoryExtractor(MemoryExtractor):
     def role_processor(self):
         """Lazy load role processor."""
         if self._role_processor is None:
-            from .group_profile.role_processor import RoleProcessor
+            from .role_processor import RoleProcessor
 
             self._role_processor = RoleProcessor(self.data_processor)
         return self._role_processor
@@ -203,7 +204,7 @@ class GroupProfileMemoryExtractor(MemoryExtractor):
     def llm_handler(self):
         """Lazy load LLM handler."""
         if self._llm_handler is None:
-            from .group_profile.llm_handler import GroupProfileLLMHandler
+            from .llm_handler import GroupProfileLLMHandler
 
             self._llm_handler = GroupProfileLLMHandler(
                 self.llm_provider, self.max_topics

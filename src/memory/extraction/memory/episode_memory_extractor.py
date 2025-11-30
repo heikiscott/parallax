@@ -1,14 +1,17 @@
 """
-Simple Memory Extraction Base Class for Parallax
+Episode Memory Extractor for Parallax
 
-This module provides a simple base class for extracting memories
-from boundary detection results (BoundaryResult).
+This module provides extraction of episode memories from MemUnits.
 """
 
 from dataclasses import dataclass, field
 from typing import Optional, List, Dict, Any
 from datetime import datetime
-import re, json, asyncio, uuid
+import re
+import json
+import asyncio
+import uuid
+
 from core.observation.logger import get_logger
 
 logger = get_logger(__name__)
@@ -31,10 +34,11 @@ from prompts.memory.en.eval.add.episode_mem_prompts import (
 
 from providers.llm.llm_provider import LLMProvider
 
-from .base_memory_extractor import MemoryExtractor, MemoryExtractRequest
+from .memory_extractor import MemoryExtractor
+from .memory_extract_request import MemoryExtractRequest
 from .semantic_memory_extractor import SemanticMemoryExtractor
-from ..schema import MemoryType, MemUnit, EpisodeMemory
-from ..schema import SourceType
+from memory.schema import MemoryType, MemUnit, EpisodeMemory
+from memory.schema import SourceType
 
 from utils.datetime_utils import get_now_with_timezone
 
@@ -49,7 +53,9 @@ class EpisodeMemoryExtractRequest(MemoryExtractRequest):
 
 
 class EpisodeMemoryExtractor(MemoryExtractor):
-    def __init__(self, llm_provider: LLMProvider | None = None, use_eval_prompts: bool = False):
+    def __init__(
+        self, llm_provider: LLMProvider | None = None, use_eval_prompts: bool = False
+    ):
         super().__init__(MemoryType.EPISODE_SUMMARY)
         self.llm_provider = llm_provider
         self.semantic_extractor = SemanticMemoryExtractor(self.llm_provider)

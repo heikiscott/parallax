@@ -132,7 +132,7 @@ class GroupProfileDataProcessor:
             合并、去重后的 memunit_ids（历史顺序不变，新的按时间排序追加，最多 max_count 个）
         """
         from utils.datetime_utils import get_now_with_timezone
-        from ..group_profile_memory_extractor import convert_to_datetime
+        from .group_profile_memory_extractor import convert_to_datetime
 
         historical = historical or []
 
@@ -318,7 +318,7 @@ class GroupProfileDataProcessor:
         Returns separate fields for easier processing.
         """
         from datetime import datetime
-        from ...schema import MemoryType
+        from memory.schema import MemoryType
 
         if not old_memory_list:
             return None

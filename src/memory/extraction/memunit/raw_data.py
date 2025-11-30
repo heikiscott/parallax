@@ -1,17 +1,11 @@
 """
-Simple Boundary Detection Base Class for Parallax
-
-This module provides a simple and extensible base class for detecting
-boundaries in various types of content (conversations, emails, notes, etc.).
+Raw data structure for storing original content with serialization support.
 """
 
-from abc import ABC, abstractmethod
 from dataclasses import dataclass
-from typing import List, Dict, Any, Optional
+from typing import Dict, Any, Optional
 from datetime import datetime
 import json
-from providers.llm.llm_provider import LLMProvider
-from memory.schema import Memory, MemUnit, SourceType
 import re
 
 try:
@@ -26,7 +20,7 @@ iso_pattern = r'^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}'
 
 
 @dataclass
-class RawData:  # MemUnit
+class RawData:
     """Raw data structure for storing original content."""
 
     content: dict[str, Any]
@@ -247,38 +241,3 @@ class RawData:  # MemUnit
         )
 
         return instance
-
-
-@dataclass
-class MemUnitExtractRequest:
-    history_raw_data_list: List[RawData]
-    new_raw_data_list: List[RawData]
-    # 整个群的user id
-    user_id_list: List[str]
-    group_id: Optional[str] = None
-    group_name: Optional[str] = None
-
-    old_memory_list: Optional[List[Memory]] = None
-    smart_mask_flag: Optional[bool] = False
-
-
-@dataclass
-class StatusResult:
-    """Status control result."""
-
-    # 表示下次触发时，这次的对话会累积一起作为new message输入
-    should_wait: bool
-
-
-class MemUnitExtractor(ABC):
-    def __init__(
-        self, source_type: SourceType, llm_provider=LLMProvider
-    ):
-        self.source_type = source_type
-        self._llm_provider = llm_provider
-
-    @abstractmethod
-    async def extract_memunit(
-        self, request: MemUnitExtractRequest
-    ) -> tuple[Optional[MemUnit], Optional[StatusResult]]:
-        pass

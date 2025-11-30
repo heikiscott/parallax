@@ -230,7 +230,7 @@ async def main():
         systems_need_rerank = ["parallax"]
         if args.system in systems_need_rerank:
             try:
-                from agents import rerank_service
+                from agents import deep_infra_rerank_service as rerank_service
                 reranker = rerank_service.get_rerank_service()
                 if hasattr(reranker, 'close') and callable(getattr(reranker, 'close')):
                     await reranker.close()

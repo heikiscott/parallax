@@ -9,7 +9,7 @@ from pathlib import Path
 from agents.memory_manager import MemoryManager
 from memory.orchestrator.extraction_orchestrator import MemorizeRequest
 from memory.schema import SourceType
-from memory.memunit_extractor.base_memunit_extractor import RawData
+from memory.extraction.memunit import RawData
 from utils.datetime_utils import from_iso_format
 
 from demo.config import ExtractModeConfig, MongoDBConfig

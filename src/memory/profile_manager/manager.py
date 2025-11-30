@@ -5,7 +5,7 @@ from typing import Any, Dict, List, Optional, Set
 from pathlib import Path
 
 from providers.llm.llm_provider import LLMProvider
-from memory.memory_extractor.profile_memory_extractor import (
+from memory.extraction.memory.profile import (
     ProfileMemoryExtractor,
     ProfileMemoryExtractRequest,
 )

@@ -19,7 +19,7 @@ from .memory_models import MemoryType
 from .dtos.memory_query import RetrieveMemoryRequest, FetchMemoryRequest
 from memory.orchestrator import MemorizeRequest
 from memory.schema import SourceType
-from memory.memunit_extractor.base_memunit_extractor import RawData
+from memory.extraction.memunit import RawData
 
 import logging
 

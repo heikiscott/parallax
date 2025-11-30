@@ -8,7 +8,7 @@ from typing import List, Optional
 from core.observation.logger import get_logger
 from core.di.decorators import repository
 from services.conversation_data_repo import ConversationDataRepository
-from memory.memunit_extractor.base_memunit_extractor import RawData
+from memory.extraction.memunit import RawData
 from services.mem_db_operations import _normalize_datetime_for_storage
 from utils.datetime_utils import get_now_with_timezone
 from core.di import get_bean

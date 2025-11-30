@@ -1,41 +1,39 @@
 """
-Simple Boundary Detection Base Class for Parallax
-
-This module provides a simple and extensible base class for detecting
-boundaries in various types of content (conversations, emails, notes, etc.).
+Conversation MemUnit Extractor for detecting boundaries in conversations.
 """
 
 import time
-import os
-from typing import Dict, Any, Optional, List, Tuple
+from typing import Dict, Any, Optional, List
 from datetime import datetime
 from dataclasses import dataclass
 import uuid
-import json, re
+import json
+import re
 import asyncio
+
 from utils.datetime_utils import (
     from_iso_format as dt_from_iso_format,
     from_timestamp as dt_from_timestamp,
     get_now_with_timezone,
 )
 from providers.llm.llm_provider import LLMProvider
-from ..schema import SourceType
+from memory.schema import SourceType, MemUnit
 from prompts.memory.zh.conv_prompts import CONV_BOUNDARY_DETECTION_PROMPT
-
-from prompts.memory.en.eval.add.conv_prompts import CONV_BOUNDARY_DETECTION_PROMPT as EVAL_CONV_BOUNDARY_DETECTION_PROMPT
-from .base_memunit_extractor import (
-    MemUnitExtractor,
-    RawData,
-    MemUnit,
-    StatusResult,
-    MemUnitExtractRequest,
-)
-from ..memory_extractor.episode_memory_extractor import (
-    EpisodeMemoryExtractor,
-    EpisodeMemoryExtractRequest,
+from prompts.memory.en.eval.add.conv_prompts import (
+    CONV_BOUNDARY_DETECTION_PROMPT as EVAL_CONV_BOUNDARY_DETECTION_PROMPT,
 )
 from core.observation.logger import get_logger
 from agents.deep_infra_vectorize_service import get_vectorize_service
+
+from .raw_data import RawData
+from .memunit_extract_request import MemUnitExtractRequest
+from .status_result import StatusResult
+from .memunit_extractor import MemUnitExtractor
+
+from memory.extraction.memory.episode_memory_extractor import (
+    EpisodeMemoryExtractor,
+    EpisodeMemoryExtractRequest,
+)
 
 logger = get_logger(__name__)
 
@@ -67,7 +65,7 @@ class ConvMemUnitExtractor(MemUnitExtractor):
         self.llm_provider = llm_provider
         self.use_eval_prompts = use_eval_prompts
         self.episode_extractor = EpisodeMemoryExtractor(llm_provider, use_eval_prompts)
-        
+
         if use_eval_prompts:
             self.conv_boundary_detection_prompt = EVAL_CONV_BOUNDARY_DETECTION_PROMPT
         else:
@@ -343,7 +341,7 @@ class ConvMemUnitExtractor(MemUnitExtractor):
         if should_end:
             # TODO 重构专项：转为int逻辑不对 应该保持为datetime
             ts_value = history_message_dict_list[-1].get("timestamp")
-            
+
             if isinstance(ts_value, str):
                 # 统一解析为带时区的 datetime
                 timestamp = dt_from_iso_format(ts_value.replace("Z", "+00:00"))
@@ -351,7 +349,6 @@ class ConvMemUnitExtractor(MemUnitExtractor):
                 timestamp = dt_from_timestamp(ts_value)
             else:
                 timestamp = get_now_with_timezone()
-        
 
             participants = self._extract_participant_ids(history_message_dict_list)
             # 创建 MemUnit
@@ -363,7 +360,9 @@ class ConvMemUnitExtractor(MemUnitExtractor):
                     fallback_text = last_msg.get("content") or ""
                 elif isinstance(last_msg, str):
                     fallback_text = last_msg
-            summary_text = boundary_detection_result.topic_summary or (fallback_text.strip()[:200] if fallback_text else "会话片段")
+            summary_text = boundary_detection_result.topic_summary or (
+                fallback_text.strip()[:200] if fallback_text else "会话片段"
+            )
 
             memunit = MemUnit(
                 event_id=str(uuid.uuid4()),
@@ -402,7 +401,7 @@ class ConvMemUnitExtractor(MemUnitExtractor):
                         # GROUP_EPISODE_GENERATION_PROMPT 模式：返回包含情景记忆的 MemUnit
                         logger.info(f"✅ 成功生成情景记忆并存储到 MemUnit 中")
                         # Attach embedding info to MemUnit (episode preferred)
-                        
+
                         text_for_embed = (
                             episode_result.episode or episode_result.summary or ""
                         )
@@ -419,8 +418,6 @@ class ConvMemUnitExtractor(MemUnitExtractor):
                                 vs.get_model_name()
                             )
 
-                        
-                        
                         # 提交到聚类器（如果存在）
                         if hasattr(self, '_cluster_worker') and self._cluster_worker:
                             try:
@@ -429,7 +426,7 @@ class ConvMemUnitExtractor(MemUnitExtractor):
                                 )
                             except Exception as e:
                                 logger.debug(f"Failed to submit to cluster worker: {e}")
-                        
+
                         return (episode_result, status_control_result)
                     else:
                         logger.warning(
@@ -459,14 +456,14 @@ class ConvMemUnitExtractor(MemUnitExtractor):
                     memunit.extend["vector_model"] = vs.get_model_name()
             except Exception:
                 logger.debug("Embedding attach failed; continue without it")
-            
+
             # 提交到聚类器（如果存在）
             if hasattr(self, '_cluster_worker') and self._cluster_worker:
                 try:
                     self._cluster_worker.submit(request.group_id, memunit.to_dict())
                 except Exception as e:
                     logger.debug(f"Failed to submit to cluster worker: {e}")
-            
+
             return (memunit, status_control_result)
         elif should_wait:
             logger.debug(f"⏳ Waiting for more messages: {reason}")

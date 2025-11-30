@@ -12,8 +12,8 @@
 import time
 from memory.orchestrator import MemorizeRequest
 from memory.schema import MemoryType, MemUnit, Memory, ProfileMemory, GroupProfileMemory, SourceType
-from memory.memunit_extractor.base_memunit_extractor import RawData
-from memory.memory_extractor.profile_memory.types import (
+from memory.extraction.memunit import RawData
+from memory.extraction.memory.profile.types import (
     GroupImportanceEvidence,
     ImportanceEvidence,
 )
@@ -42,7 +42,7 @@ from infra.adapters.out.persistence.document.memory.memunit import (
     RawData as DocRawData,
     DataTypeEnum,
 )
-from memory.memory_extractor.profile_memory.types import ProjectInfo
+from memory.extraction.memory.profile.types import ProjectInfo
 from services.conversation_data_repo import ConversationDataRepository
 from dataclasses import dataclass
 from typing import List, Dict, Any, Optional
@@ -957,7 +957,7 @@ async def _get_raw_data_by_time_range(
     try:
         from providers.database.redis_provider import RedisProvider
         from core.di import get_bean_by_type
-        from memory.memunit_extractor.base_memunit_extractor import RawData
+        from memory.extraction.memunit import RawData
         from memory.schema import SourceType
         from utils.datetime_utils import from_iso_format
         import json
@@ -1530,7 +1530,7 @@ def _convert_group_profile_raw_to_memory_format(
     Returns:
         Dict[str, Any]: 转换后的数据字典
     """
-    from memory.memory_extractor.group_profile_memory_extractor import TopicInfo
+    from memory.extraction.memory.group_profile import TopicInfo
     from datetime import datetime
 
     # 安全地转换topics字段

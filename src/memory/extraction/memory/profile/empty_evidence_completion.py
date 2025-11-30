@@ -7,7 +7,7 @@ from typing import AbstractSet, Any, Callable, Dict, List, Optional, Set, Tuple
 from core.observation.logger import get_logger
 
 from providers.llm.llm_provider import LLMProvider
-from .conversation import build_evidence_completion_prompt
+from .profile_conversation import build_evidence_completion_prompt
 from .data_normalize import merge_evidences_recursive
 from .evidence_utils import conversation_id_from_evidence, ensure_str_list, format_evidence_entry
 

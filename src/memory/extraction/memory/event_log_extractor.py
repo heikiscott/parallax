@@ -15,7 +15,9 @@ import re
 from prompts.memory import EVENT_LOG_PROMPT
 
 # 评估专用提示词
-from prompts.memory.en.eval.add.event_log_prompts import EVENT_LOG_PROMPT as EVAL_EVENT_LOG_PROMPT
+from prompts.memory.en.eval.add.event_log_prompts import (
+    EVENT_LOG_PROMPT as EVAL_EVENT_LOG_PROMPT,
+)
 
 from providers.llm.llm_provider import LLMProvider
 from utils.datetime_utils import get_now_with_timezone
@@ -46,9 +48,9 @@ class EventLog:
     def from_dict(cls, data: Dict[str, Any]) -> "EventLog":
         """Create EventLog from dictionary."""
         return cls(
-            time=data.get("time", ""), 
+            time=data.get("time", ""),
             atomic_fact=data.get("atomic_fact", []),
-            fact_embeddings=data.get("fact_embeddings")
+            fact_embeddings=data.get("fact_embeddings"),
         )
 
 
@@ -71,7 +73,7 @@ class EventLogExtractor:
         """
         self.llm_provider = llm_provider
         self.use_eval_prompts = use_eval_prompts
-        
+
         # 根据 use_eval_prompts 选择对应的提示词
         if self.use_eval_prompts:
             self.event_log_prompt = EVAL_EVENT_LOG_PROMPT
@@ -234,16 +236,19 @@ class EventLogExtractor:
             event_log = EventLog(
                 time=event_log_data["time"], atomic_fact=event_log_data["atomic_fact"]
             )
-            
+
             # 7. 为每个 atomic_fact 生成 embedding
             from agents.deep_infra_vectorize_service import get_vectorize_service
+
             vectorize_service = get_vectorize_service()
-            
+
             fact_embeddings = []
             for fact in event_log.atomic_fact:
                 fact_emb = await vectorize_service.get_embedding(fact)
-                fact_embeddings.append(fact_emb.tolist() if hasattr(fact_emb, 'tolist') else fact_emb)
-            
+                fact_embeddings.append(
+                    fact_emb.tolist() if hasattr(fact_emb, 'tolist') else fact_emb
+                )
+
             event_log.fact_embeddings = fact_embeddings
 
             logger.debug(
