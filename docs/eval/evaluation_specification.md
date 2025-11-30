@@ -520,12 +520,14 @@ def compute_maxsim_score(query_emb, atomic_fact_embs):
 
 ```python
 # 从检索到的 MemUnit 中提取内容
-for doc, score in top_results[:response_top_k]:  # 默认 top_k=10
+for doc, score in top_results[:response_top_k]:  # response_top_k = 20 (config.py)
     subject = doc.get('subject', 'N/A')      # ✅ 使用 subject
     narrative = doc.get('narrative', 'N/A')  # ✅ 使用 narrative
     doc_text = f"{subject}: {narrative}\n---"
     retrieved_docs_text.append(doc_text)
 ```
+
+> **说明**: `response_top_k` 配置在 `config.py:67`，默认值为 **20**，即使用检索返回的 Top 20 个 MemUnit 构建 Context。
 
 ### 6.3 填充到答案生成的字段
 
