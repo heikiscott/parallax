@@ -144,7 +144,7 @@ def build_conversation_text(
     Returns:
         Tuple of (formatted conversation text, conversation_id)
     """
-    conversation_id = getattr(memunit, "event_id", None)
+    conversation_id = getattr(memunit, "unit_id", None)
     conversation_id_str = str(conversation_id) if conversation_id is not None else ""
     data_list: List[Any] = getattr(memunit, "original_data", []) or []
 
@@ -187,14 +187,14 @@ def build_episode_text(
         user_id_to_name: Pre-extracted user_id to user_name mapping
 
     Returns:
-        Tuple of (formatted episode text, event_id)
+        Tuple of (formatted episode text, unit_id)
     """
-    event_id = getattr(memunit, "event_id", None)
-    event_id_str = str(event_id) if event_id is not None else ""
+    unit_id = getattr(memunit, "unit_id", None)
+    unit_id_str = str(unit_id) if unit_id is not None else ""
     episode_content = getattr(memunit, "episode", None) or ""
 
     if not episode_content:
-        return "", event_id_str or None
+        return "", unit_id_str or None
 
     # Get participants (list of user_ids)
     participants = getattr(memunit, "participants", None) or []
@@ -202,17 +202,17 @@ def build_episode_text(
     # Build referList for append_user_ids_to_names using participants
     aggregated_refer_list: List[Dict[str, Any]] = []
     for user_id in participants:
-        user_id_str = str(user_id)
-        user_name = user_id_to_name.get(user_id_str, "")
+        user_id_str_local = str(user_id)
+        user_name = user_id_to_name.get(user_id_str_local, "")
         if user_name:
-            aggregated_refer_list.append({"_id": user_id_str, "name": user_name})
+            aggregated_refer_list.append({"_id": user_id_str_local, "name": user_name})
 
     # Apply user_id annotations to episode content (without @ symbol)
     annotated_content = append_user_ids_to_names(episode_content, aggregated_refer_list)
 
-    # Format with timestamp and event_id
+    # Format with timestamp and unit_id
     timestamp = getattr(memunit, "timestamp", None)
-    return f"[{timestamp}][episode_id:{event_id_str}] {annotated_content}", event_id_str or None
+    return f"[{timestamp}][episode_id:{unit_id_str}] {annotated_content}", unit_id_str or None
 
 
 def annotate_relative_dates(text: str, base_date: Optional[str] = None) -> str:

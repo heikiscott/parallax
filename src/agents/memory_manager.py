@@ -839,7 +839,7 @@ class MemoryManager:
                 group_id = source.get('group_id', '')
                 timestamp_raw = source.get('timestamp', '')
                 episode = source.get('episode', '')
-                memunit_event_id_list = source.get('memunit_event_id_list', [])
+                memunit_id_list = source.get('memunit_id_list', [])
                 subject = source.get('subject', '')
                 summary = source.get('summary', '')
                 participants = source.get('participants', [])
@@ -856,7 +856,7 @@ class MemoryManager:
                     group_id = source.get('group_id', '')
                     timestamp_raw = source.get('timestamp', '')
                     episode = source.get('episode', '')
-                    memunit_event_id_list = source.get('memunit_event_id_list', [])
+                    memunit_id_list = source.get('memunit_id_list', [])
                     subject = source.get('subject', '')
                     summary = source.get('summary', '')
                     participants = source.get('participants', [])
@@ -870,7 +870,7 @@ class MemoryManager:
                     timestamp_raw = hit.get('timestamp')
                     episode = hit.get('episode', '')
                     metadata = hit.get('metadata', {})
-                    memunit_event_id_list = metadata.get('memunit_event_id_list', [])
+                    memunit_id_list = metadata.get('memunit_id_list', [])
                     subject = metadata.get('subject', '')
                     summary = metadata.get('summary', '')
                     participants = metadata.get('participants', [])
@@ -883,7 +883,7 @@ class MemoryManager:
                 timestamp_raw = hit.get('timestamp')
                 episode = hit.get('episode', '')
                 metadata = hit.get('metadata', {})
-                memunit_event_id_list = metadata.get('memunit_event_id_list', [])
+                memunit_id_list = metadata.get('memunit_id_list', [])
                 subject = metadata.get('subject', '')
                 summary = metadata.get('summary', '')
                 participants = metadata.get('participants', [])
@@ -919,14 +919,14 @@ class MemoryManager:
 
             # 获取 memunit 数据
             memunits = []
-            if memunit_event_id_list:
+            if memunit_id_list:
                 memunit_repo = get_bean_by_type(MemUnitRawRepository)
-                for event_id in memunit_event_id_list:
-                    memunit = await memunit_repo.get_by_event_id(event_id)
+                for unit_id in memunit_id_list:
+                    memunit = await memunit_repo.get_by_unit_id(unit_id)
                     if memunit:
                         memunits.append(memunit)
                     else:
-                        logger.warning(f"未找到 memunit: event_id={event_id}")
+                        logger.warning(f"未找到 memunit: unit_id={unit_id}")
                         continue
 
             # 为每个 memunit 添加原始数据
@@ -940,13 +940,12 @@ class MemoryManager:
                 memory_type="episode_summary",  # 情景记忆类型
                 user_id=user_id,
                 timestamp=timestamp,
-                ori_event_id_list=[hit_id],
+                memunit_id_list=memunit_id_list or [hit_id],
                 subject=subject,
                 summary=summary,
                 episode=episode,
                 group_id=group_id,
                 participants=participants,
-                memunit_event_id_list=memunit_event_id_list,
             )
 
             # 添加搜索来源信息到 extend 字段

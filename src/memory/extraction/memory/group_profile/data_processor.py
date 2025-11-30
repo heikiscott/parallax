@@ -75,8 +75,8 @@ class GroupProfileDataProcessor:
             # 构建 memunit 参与者映射
             memunit_participants = {}
             for memunit in memunit_list:
-                if hasattr(memunit, 'event_id'):
-                    memunit_id = str(memunit.event_id)
+                if hasattr(memunit, 'unit_id'):
+                    memunit_id = str(memunit.unit_id)
                     participants = (
                         set(memunit.participants)
                         if hasattr(memunit, 'participants') and memunit.participants
@@ -145,9 +145,9 @@ class GroupProfileDataProcessor:
         # 构建 memunit_id 到 timestamp 的映射（用于对新的 memunit_ids 排序）
         memunit_id_to_timestamp = {}
         for memunit in memunit_list:
-            if hasattr(memunit, 'event_id') and hasattr(memunit, 'timestamp'):
+            if hasattr(memunit, 'unit_id') and hasattr(memunit, 'timestamp'):
                 # 转换为字符串以匹配 LLM 输出的格式
-                memunit_id = str(memunit.event_id)
+                memunit_id = str(memunit.unit_id)
                 timestamp = convert_to_datetime(memunit.timestamp)
                 memunit_id_to_timestamp[memunit_id] = timestamp
 
@@ -272,7 +272,7 @@ class GroupProfileDataProcessor:
 
         for memunit in memunit_list:
             # 确保 memunit_id 是字符串（处理 MongoDB ObjectId）
-            raw_id = getattr(memunit, 'event_id', f'unknown_{id(memunit)}')
+            raw_id = getattr(memunit, 'unit_id', f'unknown_{id(memunit)}')
             memunit_id = str(raw_id)
 
             if self.conversation_source == "original":

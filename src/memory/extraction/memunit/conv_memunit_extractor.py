@@ -365,7 +365,7 @@ class ConvMemUnitExtractor(MemUnitExtractor):
             )
 
             memunit = MemUnit(
-                event_id=str(uuid.uuid4()),
+                unit_id=str(uuid.uuid4()),
                 user_id_list=request.user_id_list,
                 original_data=history_message_dict_list,
                 timestamp=timestamp,

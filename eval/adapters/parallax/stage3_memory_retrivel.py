@@ -187,7 +187,7 @@ def search_with_bm25_index(query: str, bm25, docs, top_n: int = 5, return_all_sc
 
     Returns:
         如果 return_all_scored=False: [(doc, score), ...]
-        如果 return_all_scored=True: ([(doc, score), ...], [所有被评分的 event_id])
+        如果 return_all_scored=True: ([(doc, score), ...], [所有被评分的 unit_id])
     """
     stemmer = PorterStemmer()
     stop_words = set(stopwords.words("english"))
@@ -203,7 +203,7 @@ def search_with_bm25_index(query: str, bm25, docs, top_n: int = 5, return_all_sc
 
     if return_all_scored:
         # 返回所有被评分的文档 ID（BM25 会对所有文档打分）
-        all_scored_ids = [doc.get("event_id", f"unknown_{i}") for i, (doc, _) in enumerate(results_with_scores)]
+        all_scored_ids = [doc.get("unit_id", f"unknown_{i}") for i, (doc, _) in enumerate(results_with_scores)]
         return sorted_results[:top_n], all_scored_ids
 
     return sorted_results[:top_n]
@@ -245,22 +245,22 @@ def reciprocal_rank_fusion(
         
         融合结果: [(doc1, 0.0323), (doc2, 0.0323), (doc3, 0.0159), (doc4, 0.0159)]
     """
-    # 🔥 修复：使用 event_id 作为唯一标识，而不是 Python 内存地址
+    # 🔥 修复：使用 unit_id 作为唯一标识，而不是 Python 内存地址
     # 原因：BM25 和 Embedding 索引分别加载 JSON，创建了不同的 Python 对象
     # 即使内容相同，id() 也会不同，导致无法去重
-    doc_rrf_scores = {}  # {event_id: rrf_score}
-    doc_map = {}         # {event_id: doc}
+    doc_rrf_scores = {}  # {unit_id: rrf_score}
+    doc_map = {}         # {unit_id: doc}
     
     # 处理 Embedding 检索结果
     for rank, (doc, score) in enumerate(emb_results, start=1):
-        doc_id = doc.get("event_id", id(doc))  # 🔥 优先使用 event_id，回退到 id()
+        doc_id = doc.get("unit_id", id(doc))  # 🔥 优先使用 unit_id，回退到 id()
         if doc_id not in doc_map:
             doc_map[doc_id] = doc
         doc_rrf_scores[doc_id] = doc_rrf_scores.get(doc_id, 0.0) + 1.0 / (k + rank)
     
     # 处理 BM25 检索结果
     for rank, (doc, score) in enumerate(bm25_results, start=1):
-        doc_id = doc.get("event_id", id(doc))  # 🔥 优先使用 event_id，回退到 id()
+        doc_id = doc.get("unit_id", id(doc))  # 🔥 优先使用 unit_id，回退到 id()
         if doc_id not in doc_map:
             doc_map[doc_id] = doc
         doc_rrf_scores[doc_id] = doc_rrf_scores.get(doc_id, 0.0) + 1.0 / (k + rank)
@@ -320,16 +320,16 @@ def multi_rrf_fusion(
     if len(results_list) == 1:
         return results_list[0]
     
-    # 🔥 修复：使用 event_id 作为唯一标识，而不是 Python 内存地址
+    # 🔥 修复：使用 unit_id 作为唯一标识，而不是 Python 内存地址
     # 原因：BM25 和 Embedding 索引分别加载 JSON，创建了不同的 Python 对象
     # 即使内容相同，id() 也会不同，导致无法去重
-    doc_rrf_scores = {}  # {event_id: rrf_score}
-    doc_map = {}         # {event_id: doc}
+    doc_rrf_scores = {}  # {unit_id: rrf_score}
+    doc_map = {}         # {unit_id: doc}
     
     # 遍历每个查询的检索结果
     for query_results in results_list:
         for rank, (doc, score) in enumerate(query_results, start=1):
-            doc_id = doc.get("event_id", id(doc))  # 🔥 优先使用 event_id，回退到 id()
+            doc_id = doc.get("unit_id", id(doc))  # 🔥 优先使用 unit_id，回退到 id()
             if doc_id not in doc_map:
                 doc_map[doc_id] = doc
             # 累加 RRF 分数
@@ -461,7 +461,7 @@ async def search_with_emb_index(
 
     Returns:
         如果 return_all_scored=False: [(doc, score), ...]
-        如果 return_all_scored=True: ([(doc, score), ...], [所有被评分的 event_id])
+        如果 return_all_scored=True: ([(doc, score), ...], [所有被评分的 unit_id])
     """
     # 获取 query 的 embedding（如果未提供则调用 API）
     if query_embedding is not None:
@@ -518,7 +518,7 @@ async def search_with_emb_index(
 
     if return_all_scored:
         # 返回所有被评分的文档 ID（Embedding 会对所有有 embedding 的文档打分）
-        all_scored_ids = [doc.get("event_id", f"unknown_{i}") for i, (doc, _) in enumerate(doc_scores)]
+        all_scored_ids = [doc.get("unit_id", f"unknown_{i}") for i, (doc, _) in enumerate(doc_scores)]
         return sorted_results[:top_n], all_scored_ids
 
     return sorted_results[:top_n]
@@ -614,8 +614,8 @@ async def hybrid_search_with_rrf(
         bm25_results, bm25_all_scored = bm25_result
         traversal_stats["emb_scored_ids"] = emb_all_scored
         traversal_stats["bm25_scored_ids"] = bm25_all_scored
-        traversal_stats["emb_returned_ids"] = [doc.get("event_id", "") for doc, _ in emb_results]
-        traversal_stats["bm25_returned_ids"] = [doc.get("event_id", "") for doc, _ in bm25_results]
+        traversal_stats["emb_returned_ids"] = [doc.get("unit_id", "") for doc, _ in emb_results]
+        traversal_stats["bm25_returned_ids"] = [doc.get("unit_id", "") for doc, _ in bm25_results]
     else:
         emb_results = emb_result
         bm25_results = bm25_result
@@ -627,14 +627,14 @@ async def hybrid_search_with_rrf(
         logger.warning(f"Embedding search returned no results for query: {query}")
         result = bm25_results[:top_n]
         if return_traversal_stats:
-            traversal_stats["fused_ids"] = [doc.get("event_id", "") for doc, _ in result]
+            traversal_stats["fused_ids"] = [doc.get("unit_id", "") for doc, _ in result]
             return result, traversal_stats
         return result
     elif not bm25_results:
         logger.warning(f"BM25 search returned no results for query: {query}")
         result = emb_results[:top_n]
         if return_traversal_stats:
-            traversal_stats["fused_ids"] = [doc.get("event_id", "") for doc, _ in result]
+            traversal_stats["fused_ids"] = [doc.get("unit_id", "") for doc, _ in result]
             return result, traversal_stats
         return result
 
@@ -647,7 +647,7 @@ async def hybrid_search_with_rrf(
     result = fused_results[:top_n]
 
     if return_traversal_stats:
-        traversal_stats["fused_ids"] = [doc.get("event_id", "") for doc, _ in result]
+        traversal_stats["fused_ids"] = [doc.get("unit_id", "") for doc, _ in result]
         return result, traversal_stats
 
     return result
@@ -788,8 +788,8 @@ async def agentic_retrieval(
 
         # 🔥 记录 Rerank 统计
         if enable_traversal_stats:
-            input_ids = set(doc.get("event_id", "") for doc, _ in round1_top20)
-            output_ids = set(doc.get("event_id", "") for doc, _ in reranked_top5)
+            input_ids = set(doc.get("unit_id", "") for doc, _ in round1_top20)
+            output_ids = set(doc.get("unit_id", "") for doc, _ in reranked_top5)
             traversal_stats["round1_rerank_input_ids"] = input_ids
             traversal_stats["round1_rerank_output_ids"] = output_ids
             traversal_stats["all_reranked_ids"].update(input_ids)  # 🔥 累计所有参与 Rerank 的 ID
@@ -831,7 +831,7 @@ async def agentic_retrieval(
 
         # 🔥 打印最终遍历统计
         if enable_traversal_stats:
-            final_ids = set(doc.get("event_id", "") for doc, _ in final_results)
+            final_ids = set(doc.get("unit_id", "") for doc, _ in final_results)
             total_mu = traversal_stats["total_memunits"]
             rerank_count = len(traversal_stats["all_reranked_ids"])
 
@@ -980,11 +980,11 @@ async def agentic_retrieval(
     # ========== 合并：确保总共 40 个文档 ==========
     logger.info(f"  [Merge] Combining Round 1 and Round 2 to ensure 40 documents...")
     
-    # 🔥 修复：使用 event_id 去重，而不是 Python 内存地址
+    # 🔥 修复：使用 unit_id 去重，而不是 Python 内存地址
     # 原因：BM25 和 Embedding 索引分别加载 JSON，创建了不同的 Python 对象
-    round1_ids = {doc.get("event_id", id(doc)) for doc, _ in round1_top20}
+    round1_ids = {doc.get("unit_id", id(doc)) for doc, _ in round1_top20}
     round2_unique = [(doc, score) for doc, score in round2_results 
-                     if doc.get("event_id", id(doc)) not in round1_ids]
+                     if doc.get("unit_id", id(doc)) not in round1_ids]
     
     # 合并：Round1 Top20 + Round2 去重后的文档（确保总数=40）
     combined_results = round1_top20.copy()  # 先加入 Round1 的 20 个
@@ -1029,8 +1029,8 @@ async def agentic_retrieval(
     # 🔥 打印最终遍历统计（多轮）
     if enable_traversal_stats:
         # 记录 Round 2 Rerank 的 ID
-        round2_rerank_input_ids = set(doc.get("event_id", "") for doc, _ in combined_results)
-        final_ids = set(doc.get("event_id", "") for doc, _ in final_results)
+        round2_rerank_input_ids = set(doc.get("unit_id", "") for doc, _ in combined_results)
+        final_ids = set(doc.get("unit_id", "") for doc, _ in final_results)
         traversal_stats["round2_rerank_input_ids"] = round2_rerank_input_ids
         traversal_stats["round2_rerank_output_ids"] = final_ids
         traversal_stats["all_reranked_ids"].update(round2_rerank_input_ids)  # 🔥 累计所有参与 Rerank 的 ID
@@ -1554,26 +1554,26 @@ async def main():
                             "use_hybrid_search": config.use_hybrid_search,
                         }
 
-                    # ========== 提取 event_ids ==========
-                    event_ids = []
+                    # ========== 提取 unit_ids ==========
+                    unit_ids = []
                     if top_results:
                         for doc, score in top_results:
-                            event_id = doc.get('event_id')
-                            if event_id:
-                                event_ids.append(event_id)
+                            unit_id = doc.get('unit_id')
+                            if unit_id:
+                                unit_ids.append(unit_id)
 
                     # 计算处理时间
                     qa_latency_ms = (time.time() - qa_start_time) * 1000
                     
                     result = {
                         "query": question,
-                        "event_ids": event_ids,  # 🔥 返回 event_ids 而不是 context
+                        "unit_ids": unit_ids,  # 🔥 返回 unit_ids 而不是 context
                         "original_qa": qa_pair,
                         "retrieval_metadata": {
                             **retrieval_metadata,
                             "qa_latency_ms": qa_latency_ms,
-                            "target_event_ids_count": len(top_results),  # 记录目标数量
-                            "actual_event_ids_count": len(event_ids),    # 记录实际提取的数量
+                            "target_unit_ids_count": len(top_results),  # 记录目标数量
+                            "actual_unit_ids_count": len(unit_ids),    # 记录实际提取的数量
                         }
                     }
                     

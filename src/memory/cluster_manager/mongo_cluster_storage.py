@@ -96,7 +96,7 @@ class MongoClusterStorage(ClusterStorage):
         self,
         group_id: str
     ) -> Dict[str, str]:
-        """获取群组的 event_id -> cluster_id 映射
+        """获取群组的 unit_id -> cluster_id 映射
         
         Args:
             group_id: 群组ID

@@ -103,7 +103,7 @@ async def _trigger_clustering(group_id: str, memunit: MemUnit, scene: Optional[s
             - None/"work"/"company" 等：使用 group_chat 场景
             - "assistant"/"companion" 等：使用 assistant 场景
     """
-    logger.info(f"[聚类] 开始触发聚类: group_id={group_id}, event_id={memunit.event_id}, scene={scene}")
+    logger.info(f"[聚类] 开始触发聚类: group_id={group_id}, unit_id={memunit.unit_id}, scene={scene}")
     
     try:
         from memory.cluster_manager import ClusterManager, ClusterManagerConfig, MongoClusterStorage
@@ -167,15 +167,15 @@ async def _trigger_clustering(group_id: str, memunit: MemUnit, scene: Optional[s
         
         # 将 MemUnit 转换为聚类所需的字典格式
         memunit_dict = {
-            "event_id": str(memunit.event_id),
+            "unit_id": str(memunit.unit_id),
             "episode": memunit.episode,
             "timestamp": memunit.timestamp.timestamp() if memunit.timestamp else None,
             "participants": memunit.participants or [],
             "group_id": group_id,
         }
-        
-        logger.info(f"[聚类] 开始执行聚类: {memunit_dict['event_id']}")
-        logger.info(f"[聚类] 开始执行聚类: event_id={memunit_dict['event_id']}")
+
+        logger.info(f"[聚类] 开始执行聚类: {memunit_dict['unit_id']}")
+        logger.info(f"[聚类] 开始执行聚类: unit_id={memunit_dict['unit_id']}")
         
         # 执行聚类（会自动触发 ProfileManager 的回调）
         cluster_id = await cluster_manager.cluster_memunit(
@@ -186,10 +186,10 @@ async def _trigger_clustering(group_id: str, memunit: MemUnit, scene: Optional[s
         logger.info(f"[聚类] 聚类完成: cluster_id={cluster_id}")
         
         if cluster_id:
-            logger.info(f"[聚类] ✅ MemUnit {memunit.event_id} -> Cluster {cluster_id} (group: {group_id})")
-            logger.info(f"[聚类] ✅ MemUnit {memunit.event_id} -> Cluster {cluster_id}")
+            logger.info(f"[聚类] ✅ MemUnit {memunit.unit_id} -> Cluster {cluster_id} (group: {group_id})")
+            logger.info(f"[聚类] ✅ MemUnit {memunit.unit_id} -> Cluster {cluster_id}")
         else:
-            logger.warning(f"[聚类] ⚠️ MemUnit {memunit.event_id} 聚类返回 None (group: {group_id})")
+            logger.warning(f"[聚类] ⚠️ MemUnit {memunit.unit_id} 聚类返回 None (group: {group_id})")
             logger.warning(f"[聚类] ⚠️ 聚类返回 None")
     
     except Exception as e:
@@ -649,7 +649,7 @@ async def load_core_memories(
                     memory_type=MemoryType.CORE,
                     user_id=user_id,
                     timestamp=to_iso_format(current_time),
-                    ori_event_id_list=[],
+                    memunit_id_list=[],
                     # Memory 基类可选字段
                     subject=f"{getattr(core_memory, 'user_name', user_id)}的个人档案",
                     summary=f"用户{user_id}的基本信息：{getattr(core_memory, 'position', '未知角色')}",
@@ -772,7 +772,7 @@ async def memorize(request: MemorizeRequest) -> List[Memory]:
         logger.info(f"[边界检测结果] 判断: {'需要等待更多消息' if status_result.should_wait else '非边界，继续累积'}")
     else:
         logger.info(f"[边界检测结果] 判断: 是边界！成功提取MemUnit")
-        logger.info(f"[边界检测结果] MemUnit event_id: {memunit.event_id}")
+        logger.info(f"[边界检测结果] MemUnit unit_id: {memunit.unit_id}")
         logger.info(f"[边界检测结果] Episode: {memunit.episode[:100] if memunit.episode else 'None'}...")
     logger.info(f"=" * 80)
 
@@ -802,25 +802,25 @@ async def memorize(request: MemorizeRequest) -> List[Memory]:
 
     # 同步 MemUnit 到 Milvus 和 ES（包括 episode/semantic_memories/event_log）
     memunit_repo = get_bean_by_type(MemUnitRawRepository)
-    doc_memunit = await memunit_repo.get_by_event_id(str(memunit.event_id))
-    
+    doc_memunit = await memunit_repo.get_by_unit_id(str(memunit.unit_id))
+
     if doc_memunit:
         sync_service = get_bean_by_type(MemUnitSyncService)
         sync_stats = await sync_service.sync_memunit(
-            doc_memunit, 
-            sync_to_es=True, 
+            doc_memunit,
+            sync_to_es=True,
             sync_to_milvus=True
         )
         logger.info(
-            f"[mem_memorize] MemUnit 同步到 Milvus/ES 完成: {memunit.event_id}, "
+            f"[mem_memorize] MemUnit 同步到 Milvus/ES 完成: {memunit.unit_id}, "
             f"stats={sync_stats}"
         )
     else:
-        logger.warning(f"[mem_memorize] 无法加载 MemUnit 进行同步: {memunit.event_id}")
+        logger.warning(f"[mem_memorize] 无法加载 MemUnit 进行同步: {memunit.unit_id}")
 
     # print_memory = random.random() < 0.1
 
-    logger.info(f"[mem_memorize] 成功保存MemUnit: {memunit.event_id}")
+    logger.info(f"[mem_memorize] 成功保存MemUnit: {memunit.unit_id}")
 
     # if print_memory:
     #     logger.info(f"[mem_memorize] 打印MemUnit: {memunit}")

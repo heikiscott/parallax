@@ -281,33 +281,33 @@ class ProfileManager:
         
         full_memunits = []
         for mc in memunits:
-            event_id = getattr(mc, 'event_id', None) or getattr(mc, '_id', None) or getattr(mc, 'id', None)
-            if event_id:
-                logger.debug(f"[ProfileManager] 正在从 MongoDB 加载 MemUnit: {event_id} (类型: {type(event_id).__name__})")
+            unit_id = getattr(mc, 'unit_id', None) or getattr(mc, '_id', None) or getattr(mc, 'id', None)
+            if unit_id:
+                logger.debug(f"[ProfileManager] 正在从 MongoDB 加载 MemUnit: {unit_id} (类型: {type(unit_id).__name__})")
                 # 从 MongoDB 加载完整的 MemUnit
                 # 尝试多种方式查询
                 full_mc = None
+
+                # 方式1: 用 _id 字段查询 (unit_id 是 _id 的别名)
+                full_mc = await MemUnitDoc.find_one({"_id": str(unit_id)})
                 
-                # 方式1: 用 event_id 字段查询
-                full_mc = await MemUnitDoc.find_one({"event_id": str(event_id)})
-                
-                # 方式2: 如果没找到，尝试用 _id 查询
+                # 方式2: 如果没找到，尝试用 ObjectId 查询
                 if not full_mc:
                     try:
                         from bson import ObjectId
-                        if isinstance(event_id, (str, ObjectId)):
-                            oid = ObjectId(str(event_id)) if isinstance(event_id, str) else event_id
+                        if isinstance(unit_id, (str, ObjectId)):
+                            oid = ObjectId(str(unit_id)) if isinstance(unit_id, str) else unit_id
                             full_mc = await MemUnitDoc.get(oid)
                             if full_mc:
                                 logger.debug(f"[ProfileManager] ✅ 用 _id 找到了")
                     except Exception as e:
                         logger.warning(f"[ProfileManager] ⚠️  用 _id 查询失败: {e}")
-                
+
                 if full_mc:
                     full_memunits.append(full_mc)
                     logger.debug(f"[ProfileManager] ✅ 加载成功，包含 episode: {len(full_mc.episode) if full_mc.episode else 0} 字符")
                 else:
-                    logger.warning(f"[ProfileManager] ⚠️  未找到 MemUnit: {event_id}，使用原始字典")
+                    logger.warning(f"[ProfileManager] ⚠️  未找到 MemUnit: {unit_id}，使用原始字典")
                     # 如果找不到，使用原始的字典对象
                     full_memunits.append(mc)
         
@@ -557,8 +557,8 @@ class ProfileManager:
             gid = group_id or "__default__"
             state = cluster_worker._states.get(gid)
             if state:
-                event_id = str(memunit.get("event_id"))
-                cluster_id = state.eventid_to_cluster.get(event_id)
+                unit_id = str(memunit.get("unit_id"))
+                cluster_id = state.unitid_to_cluster.get(unit_id)
                 
                 if cluster_id:
                     # Create a simple wrapper object for the memunit dict

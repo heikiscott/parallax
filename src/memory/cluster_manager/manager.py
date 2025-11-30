@@ -22,14 +22,14 @@ except ImportError:
 
 class ClusterState:
     """Internal state for a single group's clustering."""
-    
+
     def __init__(self):
         """Initialize empty cluster state."""
-        self.event_ids: List[str] = []
+        self.unit_ids: List[str] = []
         self.timestamps: List[float] = []
         self.vectors: List[np.ndarray] = []
         self.cluster_ids: List[str] = []
-        self.eventid_to_cluster: Dict[str, str] = {}
+        self.unitid_to_cluster: Dict[str, str] = {}
         self.next_cluster_idx: int = 0
         
         # Centroid-based clustering state
@@ -37,37 +37,37 @@ class ClusterState:
         self.cluster_counts: Dict[str, int] = {}
         self.cluster_last_ts: Dict[str, Optional[float]] = {}
     
-    def assign_new_cluster(self, event_id: str) -> str:
-        """Assign a new cluster ID to an event.
-        
+    def assign_new_cluster(self, unit_id: str) -> str:
+        """Assign a new cluster ID to a MemUnit.
+
         Args:
-            event_id: Event identifier
-        
+            unit_id: MemUnit identifier
+
         Returns:
             New cluster ID
         """
         cluster_id = f"cluster_{self.next_cluster_idx:03d}"
         self.next_cluster_idx += 1
-        self.eventid_to_cluster[event_id] = cluster_id
+        self.unitid_to_cluster[unit_id] = cluster_id
         self.cluster_ids.append(cluster_id)
         return cluster_id
-    
+
     def add_to_cluster(
         self,
-        event_id: str,
+        unit_id: str,
         cluster_id: str,
         vector: np.ndarray,
         timestamp: Optional[float]
     ) -> None:
-        """Add an event to an existing cluster.
-        
+        """Add a MemUnit to an existing cluster.
+
         Args:
-            event_id: Event identifier
+            unit_id: MemUnit identifier
             cluster_id: Cluster to add to
-            vector: Event embedding vector
-            timestamp: Event timestamp
+            vector: MemUnit embedding vector
+            timestamp: MemUnit timestamp
         """
-        self.eventid_to_cluster[event_id] = cluster_id
+        self.unitid_to_cluster[unit_id] = cluster_id
         self.cluster_ids.append(cluster_id)
         self._update_cluster_centroid(cluster_id, vector, timestamp)
     
@@ -109,10 +109,10 @@ class ClusterState:
     def to_dict(self) -> Dict[str, Any]:
         """Convert state to dictionary for serialization."""
         return {
-            "event_ids": self.event_ids,
+            "unit_ids": self.unit_ids,
             "timestamps": self.timestamps,
             "cluster_ids": self.cluster_ids,
-            "eventid_to_cluster": self.eventid_to_cluster,
+            "unitid_to_cluster": self.unitid_to_cluster,
             "next_cluster_idx": self.next_cluster_idx,
             "cluster_centroids": {
                 cid: centroid.tolist()
@@ -121,22 +121,22 @@ class ClusterState:
             "cluster_counts": self.cluster_counts,
             "cluster_last_ts": self.cluster_last_ts,
         }
-    
+
     @staticmethod
     def from_dict(data: Dict[str, Any]) -> "ClusterState":
         """Create ClusterState from dictionary.
-        
+
         Args:
             data: Dictionary representation
-        
+
         Returns:
             ClusterState instance
         """
         state = ClusterState()
-        state.event_ids = list(data.get("event_ids", []))
+        state.unit_ids = list(data.get("unit_ids", []))
         state.timestamps = list(data.get("timestamps", []))
         state.cluster_ids = list(data.get("cluster_ids", []))
-        state.eventid_to_cluster = dict(data.get("eventid_to_cluster", {}))
+        state.unitid_to_cluster = dict(data.get("unitid_to_cluster", {}))
         state.next_cluster_idx = int(data.get("next_cluster_idx", 0))
         
         centroids = data.get("cluster_centroids", {}) or {}
@@ -178,7 +178,7 @@ class ClusterManager:
         
         # Register callback
         def on_cluster(group_id, memunit, cluster_id):
-            print(f"MemUnit {memunit['event_id']} -> {cluster_id}")
+            print(f"MemUnit {memunit['unit_id']} -> {cluster_id}")
         
         cluster_mgr.on_cluster_assigned(on_cluster)
         
@@ -248,7 +248,7 @@ class ClusterManager:
         
         Args:
             group_id: Group/conversation identifier
-            memunit: MemUnit dictionary with event_id, timestamp, episode/summary
+            memunit: MemUnit dictionary with unit_id, timestamp, episode/summary
         
         Returns:
             Cluster ID if successful, None otherwise
@@ -271,42 +271,42 @@ class ClusterManager:
         state = self._states[group_id]
         
         # Extract key fields
-        event_id = str(memunit.get("event_id", ""))
-        if not event_id:
-            logger.warning("MemUnit missing event_id, skipping clustering")
+        unit_id = str(memunit.get("unit_id", ""))
+        if not unit_id:
+            logger.warning("MemUnit missing unit_id, skipping clustering")
             return None
-        
+
         timestamp = self._parse_timestamp(memunit.get("timestamp"))
         text = self._extract_text(memunit)
-        
+
         # Get embedding
         vector = await self._get_embedding(text)
         if vector is None or vector.size == 0:
-            logger.warning(f"Failed to get embedding for event {event_id}, creating singleton cluster")
-            cluster_id = state.assign_new_cluster(event_id)
-            state.event_ids.append(event_id)
+            logger.warning(f"Failed to get embedding for unit {unit_id}, creating singleton cluster")
+            cluster_id = state.assign_new_cluster(unit_id)
+            state.unit_ids.append(unit_id)
             state.timestamps.append(timestamp or 0.0)
             state.vectors.append(np.zeros((1,), dtype=np.float32))
             self._stats["new_clusters"] += 1
             self._stats["failed_embeddings"] += 1
             await self._notify_callbacks(group_id, memunit, cluster_id)
             return cluster_id
-        
+
         # Find best matching cluster
         cluster_id = self._find_best_cluster(state, vector, timestamp)
-        
+
         # Add to cluster
         if cluster_id is None:
             # Create new cluster
-            cluster_id = state.assign_new_cluster(event_id)
+            cluster_id = state.assign_new_cluster(unit_id)
             state._update_cluster_centroid(cluster_id, vector, timestamp)
             self._stats["new_clusters"] += 1
         else:
             # Add to existing cluster
-            state.add_to_cluster(event_id, cluster_id, vector, timestamp)
-        
+            state.add_to_cluster(unit_id, cluster_id, vector, timestamp)
+
         # Update state
-        state.event_ids.append(event_id)
+        state.unit_ids.append(unit_id)
         state.timestamps.append(timestamp or 0.0)
         state.vectors.append(vector)
         
@@ -425,7 +425,7 @@ class ClusterManager:
                         if text:
                             lines.append(text)
         
-        return "\n".join(lines) if lines else str(memunit.get("event_id", ""))
+        return "\n".join(lines) if lines else str(memunit.get("unit_id", ""))
     
     def _parse_timestamp(self, timestamp: Any) -> Optional[float]:
         """Parse timestamp to float seconds.
@@ -479,13 +479,13 @@ class ClusterManager:
                 logger.error(f"Callback error: {e}")
     
     async def get_cluster_assignments(self, group_id: str) -> Dict[str, str]:
-        """Get event_id -> cluster_id mapping for a group.
-        
+        """Get unit_id -> cluster_id mapping for a group.
+
         Args:
             group_id: Group identifier
-        
+
         Returns:
-            Dictionary mapping event_id to cluster_id
+            Dictionary mapping unit_id to cluster_id
         """
         return await self._storage.get_cluster_assignments(group_id)
     

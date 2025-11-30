@@ -303,9 +303,9 @@ class GroupProfileMemoryExtractor(MemoryExtractor):
 
             # ===== 5. 收集有效memunit IDs =====
             valid_memunit_ids = set(
-                str(mc.event_id)
+                str(mc.unit_id)
                 for mc in memunit_list
-                if hasattr(mc, 'event_id') and mc.event_id
+                if hasattr(mc, 'unit_id') and mc.unit_id
             )
             logger.debug(
                 f"[extract_memory] Valid memunit IDs count: {len(valid_memunit_ids)}"
@@ -357,8 +357,8 @@ class GroupProfileMemoryExtractor(MemoryExtractor):
                 memory_type=MemoryType.GROUP_PROFILE,
                 user_id="",
                 timestamp=get_now_with_timezone(),
-                ori_event_id_list=[
-                    str(mc.event_id) for mc in memunit_list if hasattr(mc, 'event_id')
+                memunit_id_list=[
+                    str(mc.unit_id) for mc in memunit_list if hasattr(mc, 'unit_id')
                 ],
                 group_id=group_id,
                 group_name=group_name,

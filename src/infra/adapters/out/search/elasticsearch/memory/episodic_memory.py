@@ -113,7 +113,7 @@ class EpisodicMemoryDoc(AliasDoc("episodic-memory", number_of_shards=3)):
     linked_entities = e_field.Keyword(multi=True)  # 关联实体ID列表
 
     subject = e_field.Text()  # 事件标题
-    memunit_event_id_list = e_field.Keyword(multi=True)  # 记忆单元事件ID列表
+    memunit_id_list = e_field.Keyword(multi=True)  # 关联的 MemUnit ID 列表
 
     # 扩展字段
     extend = e_field.Object(dynamic=True)  # 灵活的扩展字段

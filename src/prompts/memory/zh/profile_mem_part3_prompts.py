@@ -72,7 +72,7 @@ Practicality（实用性）：对实用建议与理论讨论的偏好。
 输出要求：
 - 仅返回一个围栏 JSON 代码块（```json ... ```），代码块外无额外文本。
 - 仅使用 ASCII 引号（无智能引号）。
-- 证据格式：优先使用"[conversation_id:EVENT_ID]"或对话 memunits 中出现的原始"EVENT_ID"。
+- 证据格式：优先使用"[conversation_id:UNIT_ID]"或对话 memunits 中出现的原始"UNIT_ID"。
 - 仅包括观察到的维度；省略未知或不支持的维度。
 - 字段必须与系统使用的现有架构对齐。
 

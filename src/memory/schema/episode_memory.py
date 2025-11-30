@@ -9,7 +9,7 @@
 - 个人视角: 从单一用户的角度描述事件
 - 叙事性: 以故事形式描述，而非简单的事实罗列
 - 主观性: 包含个人感受、反应和解读
-- 可追溯: 通过 event_id 关联到源 MemUnit
+- 可追溯: 通过 memunit_id_list 关联到源 MemUnit
 
 多视角生成:
 ==========
@@ -42,7 +42,7 @@
     episode = EpisodeMemory(
         user_id="alice_123",
         timestamp=datetime.now(),
-        ori_event_id_list=["memunit_456"],
+        memunit_id_list=["memunit_456"],
         event_id="episode_789",
         episode="今天我和团队讨论了项目时间线...",
         summary="项目时间线讨论",
@@ -78,14 +78,14 @@ class EpisodeMemory(Memory):
 
     情景记忆特有字段:
         - event_id: 情景记忆自身的唯一标识符
-          不同于 ori_event_id_list (源 MemUnit ID)
+          不同于 memunit_id_list (源 MemUnit ID)
           用于存储和检索时的主键
 
     继承自 Memory 基类的字段:
         - memory_type: 自动设置为 MemoryType.EPISODE_SUMMARY
         - user_id: 记忆所属用户 (该视角的主人)
         - timestamp: 事件发生时间
-        - ori_event_id_list: 源 MemUnit 事件ID列表
+        - memunit_id_list: 源 MemUnit ID 列表
         - episode: 完整的叙事文本 (主要内容)
         - summary: 简短摘要
         - subject: 话题/标题
@@ -105,7 +105,7 @@ class EpisodeMemory(Memory):
         >>> episode = EpisodeMemory(
         ...     user_id="user_123",
         ...     timestamp=datetime.now(),
-        ...     ori_event_id_list=["memunit_1"],
+        ...     memunit_id_list=["memunit_1"],
         ...     event_id="episode_1",
         ...     episode="今天我了解了新功能的使用方法...",
         ...     summary="学习新功能",

@@ -234,20 +234,20 @@ class ProfileMemoryMerger:
         group_ids = [p.group_id for p in matching_profiles if p.group_id]
         merged_group_id = ",".join(group_ids) if group_ids else base_profile.group_id or ""
 
-        # Get the most recent timestamp and ori_event_id_list
+        # Get the most recent timestamp and memunit_id_list
         timestamp = base_profile.timestamp
-        ori_event_id_list = base_profile.ori_event_id_list
+        memunit_id_list = base_profile.memunit_id_list
         for profile in matching_profiles[1:]:
             if profile.timestamp:
                 timestamp = profile.timestamp
-            if profile.ori_event_id_list:
-                ori_event_id_list = profile.ori_event_id_list
+            if profile.memunit_id_list:
+                memunit_id_list = profile.memunit_id_list
 
         return ProfileMemory(
             memory_type=base_profile.memory_type,
             user_id=user_id,
             timestamp=timestamp,
-            ori_event_id_list=ori_event_id_list,
+            memunit_id_list=memunit_id_list,
             user_name=user_name,
             group_id=merged_group_id,
             hard_skills=merged_hard_skills,

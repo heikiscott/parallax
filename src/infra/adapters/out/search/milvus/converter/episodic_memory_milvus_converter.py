@@ -133,7 +133,7 @@ class EpisodicMemoryMilvusConverter(BaseMilvusConverter[EpisodicMemoryCollection
             "linked_entities": getattr(source_doc, 'linked_entities', None),
             # MongoDB 特有字段
             "subject": getattr(source_doc, 'subject', None),
-            "memunit_event_id_list": getattr(source_doc, 'memunit_event_id_list', None),
+            "memunit_id_list": getattr(source_doc, 'memunit_id_list', None),
             # 扩展字段
             "extend": getattr(source_doc, 'extend', None),
         }

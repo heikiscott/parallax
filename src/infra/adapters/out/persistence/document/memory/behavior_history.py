@@ -23,8 +23,8 @@ class BehaviorHistory(DocumentBase, AuditBase):
         ...,
         description="行为类型列表（chat、follow-up、Smart-Reply、Vote、file、Email、link-doc等）",
     )
-    event_id: Optional[str] = Field(
-        default=None, description="关联记忆单元ID（若存在）"
+    memunit_id: Optional[str] = Field(
+        default=None, description="关联的 MemUnit ID（若存在）"
     )
     meta: Optional[Dict[str, Any]] = Field(
         default=None, description="元信息：对话详情、Email原文等"
@@ -42,7 +42,7 @@ class BehaviorHistory(DocumentBase, AuditBase):
                 "user_id": "user_001",
                 "timestamp": datetime(2021, 1, 1, 0, 0, 0),
                 "behavior_type": ["chat", "follow-up"],
-                "event_id": "evt_001",
+                "memunit_id": "memunit_001",
                 "meta": {
                     "conversation_id": "conv_001",
                     "message_count": 5,
@@ -67,7 +67,7 @@ class BehaviorHistory(DocumentBase, AuditBase):
                 ],
                 name="idx_user_type_timestamp",
             ),
-            IndexModel([("event_id", ASCENDING)], name="idx_event_id"),
+            IndexModel([("memunit_id", ASCENDING)], name="idx_memunit_id"),
         ]
         validate_on_save = True
         use_state_management = True

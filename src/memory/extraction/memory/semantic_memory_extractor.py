@@ -104,7 +104,7 @@ class SemanticMemoryExtractor(MemoryExtractor):
             # 解析JSON响应
             start_time = self._extract_start_time_from_timestamp(memunit.timestamp)
             semantic_memories = await self._parse_semantic_memories_response(
-                response, memunit.event_id, start_time
+                response, memunit.unit_id, start_time
             )
 
             # 确保返回恰好10条
@@ -158,7 +158,7 @@ class SemanticMemoryExtractor(MemoryExtractor):
 
             # 解析JSON响应
             source_episode_id = (
-                episode.ori_event_id_list[0] if episode.ori_event_id_list else None
+                episode.memunit_id_list[0] if episode.memunit_id_list else None
             )
             start_time = self._extract_start_time_from_timestamp(episode.timestamp)
             semantic_memories = await self._parse_semantic_memories_response(

@@ -31,8 +31,8 @@ class EpisodicMemory(DocumentBase, AuditBase):
         default=None, description="关联的实体ID"
     )
 
-    memunit_event_id_list: Optional[List[str]] = Field(
-        default=None, description="记忆单元事件ID"
+    memunit_id_list: Optional[List[str]] = Field(
+        default=None, description="关联的 MemUnit ID 列表"
     )
 
     extend: Optional[Dict[str, Any]] = Field(default=None, description="备用拓展字段")

@@ -85,8 +85,8 @@ class TopicProcessor:
         for memunit in memunit_list:
             # If filter_ids provided, only consider memunits in the filter
             # 转换为字符串以匹配 filter_ids 中的格式
-            if filter_ids and hasattr(memunit, 'event_id'):
-                memunit_id_str = str(memunit.event_id)
+            if filter_ids and hasattr(memunit, 'unit_id'):
+                memunit_id_str = str(memunit.unit_id)
                 if memunit_id_str not in filter_ids:
                     continue
 

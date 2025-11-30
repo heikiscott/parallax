@@ -69,7 +69,7 @@ roles 是角色类型到用户列表的映射:
     group_profile = GroupProfileMemory(
         user_id="group_admin",
         timestamp=datetime.now(),
-        ori_event_id_list=["memunit_1", "memunit_2"],
+        memunit_id_list=["memunit_1", "memunit_2"],
         group_id="group_123",
         group_name="工程团队",
         topics=[topic_info_1, topic_info_2],
@@ -159,7 +159,7 @@ class GroupProfileMemory(Memory):
         >>> profile = GroupProfileMemory(
         ...     user_id="admin_123",
         ...     timestamp=datetime.now(),
-        ...     ori_event_id_list=["mu_1"],
+        ...     memunit_id_list=["mu_1"],
         ...     group_id="grp_456",
         ...     group_name="开发组",
         ...     topics=[...],  # TopicInfo 对象列表

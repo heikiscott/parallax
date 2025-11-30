@@ -9,6 +9,7 @@ MemUnit 是对话边界检测的输出，代表一段语义完整的对话内容
 
     原始消息 --> 边界检测 --> MemUnit --> 记忆提取 --> Memory
                                │
+                               ├── unit_id: 唯一标识
                                ├── original_data: 原始消息列表
                                ├── summary: 内容摘要
                                ├── episode: 情景描述
@@ -29,7 +30,7 @@ MemUnit 是原始输入数据和最终提取记忆之间的中间表示。
     from memory.schema import MemUnit, SourceType
 
     memunit = MemUnit(
-        event_id="evt_123",
+        unit_id="mu_123",
         user_id_list=["user_1", "user_2"],
         original_data=[
             {"speaker_id": "user_1", "content": "你好!", "timestamp": "..."},
@@ -65,7 +66,7 @@ class MemUnit:
     =============
 
     1. 标识字段 (Identity):
-        - event_id: 唯一标识符，用于追踪和关联
+        - unit_id: 唯一标识符，用于追踪和关联
 
     2. 用户字段 (Users):
         - user_id_list: 涉及的所有用户ID
@@ -101,13 +102,13 @@ class MemUnit:
 
     验证规则:
     ========
-    - event_id: 必填
+    - unit_id: 必填
     - original_data: 必填，不能为空
     - summary: 必填，不能为空
     """
 
     # ===== 1. 标识字段 =====
-    event_id: str  # 唯一标识符 (UUID格式)
+    unit_id: str  # 唯一标识符 (UUID格式)
 
     # ===== 2. 用户字段 =====
     user_id_list: List[str]  # 涉及的所有用户ID
@@ -139,8 +140,8 @@ class MemUnit:
 
     def __post_init__(self):
         """初始化后验证必填字段"""
-        if not self.event_id:
-            raise ValueError("event_id 是必填字段")
+        if not self.unit_id:
+            raise ValueError("unit_id 是必填字段")
         if not self.original_data:
             raise ValueError("original_data 是必填字段")
         if not self.summary:
@@ -150,7 +151,7 @@ class MemUnit:
         """返回简洁的字符串表示"""
         summary_preview = self.summary[:50] if self.summary else ""
         return (
-            f"MemUnit(event_id={self.event_id}, "
+            f"MemUnit(unit_id={self.unit_id}, "
             f"messages={len(self.original_data)}, "
             f"timestamp={self.timestamp}, "
             f"summary={summary_preview}...)"
@@ -165,7 +166,7 @@ class MemUnit:
         """
         return {
             # 标识字段
-            "event_id": self.event_id,
+            "unit_id": self.unit_id,
             # 用户字段
             "user_id_list": self.user_id_list,
             "participants": self.participants,

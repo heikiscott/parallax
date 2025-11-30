@@ -39,25 +39,25 @@ class MemUnitRawRepository(BaseRepository[MemUnit]):
         """初始化仓库"""
         super().__init__(MemUnit)
 
-    async def get_by_event_id(self, event_id: str) -> Optional[MemUnit]:
+    async def get_by_unit_id(self, unit_id: str) -> Optional[MemUnit]:
         """
-        根据 event_id 获取 MemUnit
+        根据 unit_id 获取 MemUnit
 
         Args:
-            event_id: 事件 ID
+            unit_id: MemUnit ID
 
         Returns:
             MemUnit 实例或 None
         """
         try:
-            result = await self.model.find_one({"_id": ObjectId(event_id)})
+            result = await self.model.find_one({"_id": ObjectId(unit_id)})
             if result:
-                logger.debug("✅ 根据 event_id 获取 MemUnit 成功: %s", event_id)
+                logger.debug("✅ 根据 unit_id 获取 MemUnit 成功: %s", unit_id)
             else:
-                logger.debug("⚠️  未找到 MemUnit: event_id=%s", event_id)
+                logger.debug("⚠️  未找到 MemUnit: unit_id=%s", unit_id)
             return result
         except Exception as e:
-            logger.error("❌ 根据 event_id 获取 MemUnit 失败: %s", e)
+            logger.error("❌ 根据 unit_id 获取 MemUnit 失败: %s", e)
             return None
 
     async def append_memunit(
@@ -68,23 +68,23 @@ class MemUnitRawRepository(BaseRepository[MemUnit]):
         """
         try:
             await memunit.insert(session=session)
-            print(f"✅ 追加 MemUnit 成功: {memunit.event_id}")
+            print(f"✅ 追加 MemUnit 成功: {memunit.unit_id}")
             return memunit
         except Exception as e:
             logger.error("❌ 追加 MemUnit 失败: %s", e)
             return None
 
-    async def update_by_event_id(
+    async def update_by_unit_id(
         self,
-        event_id: str,
+        unit_id: str,
         update_data: Dict[str, Any],
         session: Optional[AsyncIOMotorClientSession] = None,
     ) -> Optional[MemUnit]:
         """
-        根据 event_id 更新 MemUnit
+        根据 unit_id 更新 MemUnit
 
         Args:
-            event_id: 事件 ID
+            unit_id: MemUnit ID
             update_data: 更新数据字典
             session: 可选的 MongoDB 会话，用于事务支持
 
@@ -92,41 +92,41 @@ class MemUnitRawRepository(BaseRepository[MemUnit]):
             更新后的 MemUnit 实例或 None
         """
         try:
-            memunit = await self.get_by_event_id(event_id)
+            memunit = await self.get_by_unit_id(unit_id)
             if memunit:
                 for key, value in update_data.items():
                     if hasattr(memunit, key):
                         setattr(memunit, key, value)
                 await memunit.save(session=session)
-                logger.debug("✅ 根据 event_id 更新 MemUnit 成功: %s", event_id)
+                logger.debug("✅ 根据 unit_id 更新 MemUnit 成功: %s", unit_id)
                 return memunit
             return None
         except Exception as e:
-            logger.error("❌ 根据 event_id 更新 MemUnit 失败: %s", e)
+            logger.error("❌ 根据 unit_id 更新 MemUnit 失败: %s", e)
             raise e
 
-    async def delete_by_event_id(
-        self, event_id: str, session: Optional[AsyncIOMotorClientSession] = None
+    async def delete_by_unit_id(
+        self, unit_id: str, session: Optional[AsyncIOMotorClientSession] = None
     ) -> bool:
         """
-        根据 event_id 删除 MemUnit
+        根据 unit_id 删除 MemUnit
 
         Args:
-            event_id: 事件 ID
+            unit_id: MemUnit ID
             session: 可选的 MongoDB 会话，用于事务支持
 
         Returns:
             删除成功返回 True，否则返回 False
         """
         try:
-            memunit = await self.get_by_event_id(event_id)
+            memunit = await self.get_by_unit_id(unit_id)
             if memunit:
                 await memunit.delete(session=session)
-                logger.debug("✅ 根据 event_id 删除 MemUnit 成功: %s", event_id)
+                logger.debug("✅ 根据 unit_id 删除 MemUnit 成功: %s", unit_id)
                 return True
             return False
         except Exception as e:
-            logger.error("❌ 根据 event_id 删除 MemUnit 失败: %s", e)
+            logger.error("❌ 根据 unit_id 删除 MemUnit 失败: %s", e)
             return False
 
     # ==================== 查询方法 ====================

@@ -22,7 +22,7 @@
 ========
 - Memory 通常不直接实例化，而是使用具体的子类
 - 子类在 __post_init__ 中自动设置 memory_type
-- 所有记忆都可追溯到源 MemUnit (通过 ori_event_id_list)
+- 所有记忆都可追溯到源 MemUnit (通过 memunit_id_list)
 
 使用示例:
 ========
@@ -33,7 +33,7 @@
     episode = EpisodeMemory(
         user_id="user_123",
         timestamp=datetime.now(),
-        ori_event_id_list=["event_1"],
+        memunit_id_list=["memunit_1"],
         episode="用户讨论了项目需求..."
     )
 """
@@ -75,8 +75,7 @@ class Memory:
           存储为 UTC，序列化时转换为 ISO 格式
 
     4. 溯源字段 (Provenance):
-        - ori_event_id_list: 源事件ID列表，关联到源 MemUnit
-        - memunit_event_id_list: 用于创建此记忆的 MemUnit 事件ID
+        - memunit_id_list: 用于创建此记忆的 MemUnit ID 列表
 
     5. 内容字段 (Content):
         - subject: 简短的主题/标题
@@ -109,8 +108,7 @@ class Memory:
     timestamp: datetime.datetime  # 创建时间/事件时间
 
     # ===== 4. 溯源字段 =====
-    ori_event_id_list: List[str]  # 源事件ID列表
-    memunit_event_id_list: Optional[List[str]] = None  # MemUnit 事件ID列表
+    memunit_id_list: List[str]  # 用于创建此记忆的 MemUnit ID 列表
 
     # ===== 5. 内容字段 =====
     subject: Optional[str] = None  # 主题/标题
@@ -172,7 +170,7 @@ class Memory:
             # 时间字段
             "timestamp": timestamp_str,
             # 溯源字段
-            "ori_event_id_list": self.ori_event_id_list,
+            "memunit_id_list": self.memunit_id_list,
             # 内容字段
             "subject": self.subject,
             "summary": self.summary,

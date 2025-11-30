@@ -134,7 +134,8 @@ class MemUnit(DocumentBase, AuditBase):
     )
 
     @property
-    def event_id(self) -> Optional[PydanticObjectId]:
+    def unit_id(self) -> Optional[PydanticObjectId]:
+        """MemUnit 的唯一标识符，返回 MongoDB 文档 _id"""
         return self.id
 
     class Settings:

@@ -31,14 +31,14 @@ TEMPLATE = """Episodes memories for conversation between {speaker_1} and {speake
 
 def load_memunits_by_conversation(conv_idx: int, memunits_dir: Path) -> Dict[str, dict]:
     """
-    加载指定对话的所有 memunits，返回 event_id -> memunit 的映射
+    加载指定对话的所有 memunits，返回 unit_id -> memunit 的映射
     
     Args:
         conv_idx: 对话索引
         memunits_dir: memunits 目录路径
     
     Returns:
-        {event_id: memunit_dict} 的映射
+        {unit_id: memunit_dict} 的映射
     """
     memunit_file = memunits_dir / f"memunit_list_conv_{conv_idx}.json"
     
@@ -50,12 +50,12 @@ def load_memunits_by_conversation(conv_idx: int, memunits_dir: Path) -> Dict[str
         with open(memunit_file, "r", encoding="utf-8") as f:
             memunits = json.load(f)
         
-        # 构建 event_id -> memunit 的映射
+        # 构建 unit_id -> memunit 的映射
         memunit_map = {}
         for memunit in memunits:
-            event_id = memunit.get("event_id")
-            if event_id:
-                memunit_map[event_id] = memunit
+            unit_id = memunit.get("unit_id")
+            if unit_id:
+                memunit_map[unit_id] = memunit
         
         return memunit_map
     
@@ -64,33 +64,33 @@ def load_memunits_by_conversation(conv_idx: int, memunits_dir: Path) -> Dict[str
         return {}
 
 
-def build_context_from_event_ids(
-    event_ids: List[str],
+def build_context_from_unit_ids(
+    unit_ids: List[str],
     memunit_map: Dict[str, dict],
     speaker_a: str,
     speaker_b: str,
     top_k: int = 10
 ) -> str:
     """
-    根据 event_ids 从 memunit_map 中提取对应的 episode memory，构建 context
-    
+    根据 unit_ids 从 memunit_map 中提取对应的 episode memory，构建 context
+
     Args:
-        event_ids: 检索到的 event_ids 列表（已按相关性排序）
-        memunit_map: event_id -> memunit 的映射
+        unit_ids: 检索到的 unit_ids 列表（已按相关性排序）
+        memunit_map: unit_id -> memunit 的映射
         speaker_a: 说话者 A
         speaker_b: 说话者 B
-        top_k: 选择前 k 个 event_ids（默认 10）
-    
+        top_k: 选择前 k 个 unit_ids（默认 10）
+
     Returns:
         格式化的 context 字符串
     """
-    # 🔥 选择 top-k event_ids
-    selected_event_ids = event_ids[:top_k]
-    
+    # 🔥 选择 top-k unit_ids
+    selected_unit_ids = unit_ids[:top_k]
+
     # 从 memunit_map 中提取对应的 episode memory
     retrieved_docs_text = []
-    for event_id in selected_event_ids:
-        memunit = memunit_map.get(event_id)
+    for unit_id in selected_unit_ids:
+        memunit = memunit_map.get(unit_id)
         if not memunit:
             # 找不到对应的 memunit，跳过
             continue
@@ -186,17 +186,17 @@ async def process_qa(
     speaker_b: str
 ):
     """
-    处理单个 QA 对（新版：从 event_ids 构建 context）
-    
+    处理单个 QA 对（新版：从 unit_ids 构建 context）
+
     Args:
         qa: 问题和答案对
-        search_result: 检索结果（包含 event_ids）
+        search_result: 检索结果（包含 unit_ids）
         llm_provider: LLM Provider
         experiment_config: 实验配置
-        memunit_map: event_id -> memunit 的映射
+        memunit_map: unit_id -> memunit 的映射
         speaker_a: 说话者 A
         speaker_b: 说话者 B
-    
+
     Returns:
         包含问题、答案、类别等信息的字典
     """
@@ -205,12 +205,12 @@ async def process_qa(
     gold_answer = qa.get("answer")
     qa_category = qa.get("category")
 
-    # 🔥 从 event_ids 构建 context（使用 top_k）
-    event_ids = search_result.get("event_ids", [])
+    # 🔥 从 unit_ids 构建 context（使用 top_k）
+    unit_ids = search_result.get("unit_ids", [])
     top_k = experiment_config.response_top_k
-    
-    context = build_context_from_event_ids(
-        event_ids=event_ids,
+
+    context = build_context_from_unit_ids(
+        unit_ids=unit_ids,
         memunit_map=memunit_map,
         speaker_a=speaker_a,
         speaker_b=speaker_b,
@@ -226,14 +226,14 @@ async def process_qa(
     # 只在 verbose 模式下输出（减少日志）
     # print(f"Processed question: {query}")
     # print(f"Answer: {answer}")
-    
+
     return {
         "question": query,
         "answer": answer,
         "category": qa_category,
         "golden_answer": gold_answer,
         "search_context": context,  # 保存构建的 context
-        "event_ids_used": event_ids[:top_k],  # 🔥 记录实际使用的 event_ids
+        "unit_ids_used": unit_ids[:top_k],  # 🔥 记录实际使用的 unit_ids
         "response_duration_ms": response_duration_ms,
         "search_duration_ms": search_result.get("retrieval_metadata", {}).get("total_latency_ms", 0),
     }

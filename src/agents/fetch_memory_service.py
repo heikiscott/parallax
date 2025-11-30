@@ -366,7 +366,7 @@ class FetchMemoryServiceImpl(FetchMemoryServiceInterface):
             action_description=f"行为类型: {behavior.behavior_type}",
             context=behavior.meta or {},
             result="成功",
-            session_id=behavior.event_id,
+            session_id=behavior.memunit_id,
             created_at=behavior.created_at,
             updated_at=behavior.updated_at,
             metadata=Metadata(

@@ -51,13 +51,13 @@ class ClusterStorage(ABC):
         self,
         group_id: str
     ) -> Dict[str, str]:
-        """Get event_id -> cluster_id mapping for a group.
-        
+        """Get unit_id -> cluster_id mapping for a group.
+
         Args:
             group_id: Group identifier
-        
+
         Returns:
-            Dictionary mapping event_id to cluster_id
+            Dictionary mapping unit_id to cluster_id
         """
         pass
     
@@ -133,9 +133,9 @@ class InMemoryClusterStorage(ClusterStorage):
         self,
         group_id: str
     ) -> Dict[str, str]:
-        """Get event_id -> cluster_id mapping for a group."""
+        """Get unit_id -> cluster_id mapping for a group."""
         state = self._states.get(group_id, {})
-        return state.get("eventid_to_cluster", {})
+        return state.get("unitid_to_cluster", {})
     
     async def clear(self, group_id: Optional[str] = None) -> bool:
         """Clear cluster state."""

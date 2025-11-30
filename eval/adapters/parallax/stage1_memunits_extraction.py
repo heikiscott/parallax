@@ -244,7 +244,7 @@ async def memunit_extraction_from_conversation(
 
         memunit = MemUnit(
             type=SourceType.CONVERSATION,
-            event_id=str(uuid.uuid4()),
+            unit_id=str(uuid.uuid4()),
             user_id_list=list(speakers),
             original_data=history_raw_data_list,
             timestamp=(memunit_list[-1].timestamp if memunit_list else get_now_with_timezone()),

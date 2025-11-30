@@ -161,15 +161,15 @@ class ExtractionOrchestrator:
             if self._event_log_extractor is None:
                 self._event_log_extractor = EventLogExtractor(llm_provider=self.event_log_llm_provider)
             
-            logger.debug(f"开始提取 Event Log: {memunit.event_id}")
+            logger.debug(f"开始提取 Event Log: {memunit.unit_id}")
             event_log = await self._event_log_extractor.extract_event_log(
                 episode_text=memunit.episode,
                 timestamp=memunit.timestamp
             )
-            
+
             if event_log:
                 memunit.event_log = event_log
-                logger.debug(f"Event Log 提取成功: {memunit.event_id}")
+                logger.debug(f"Event Log 提取成功: {memunit.unit_id}")
         
         logger.debug(
             f"提取MemUnit完成, raw_data_type: {raw_data_type}, "

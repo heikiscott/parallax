@@ -477,8 +477,8 @@ class EpisodeMemoryExtractor(MemoryExtractor):
                     return EpisodeMemory(
                         memory_type=MemoryType.EPISODE_SUMMARY,
                         user_id=user_id,
-                        ori_event_id_list=[
-                            memunit.event_id for memunit in request.memunit_list
+                        memunit_id_list=[
+                            memunit.unit_id for memunit in request.memunit_list
                         ],
                         timestamp=start_time,
                         subject=title,
@@ -487,9 +487,6 @@ class EpisodeMemoryExtractor(MemoryExtractor):
                         group_id=request.group_id,
                         participants=participants,
                         type=getattr(first_memunit, 'type', None),
-                        memunit_event_id_list=[
-                            memunit.event_id for memunit in request.memunit_list
-                        ],
                     )
 
                 # 并发执行所有参与者的memory生成
@@ -517,8 +514,8 @@ class EpisodeMemoryExtractor(MemoryExtractor):
                     memory = EpisodeMemory(
                         memory_type=MemoryType.EPISODE_SUMMARY,
                         user_id=user_id,
-                        ori_event_id_list=[
-                            memunit.event_id for memunit in request.memunit_list
+                        memunit_id_list=[
+                            memunit.unit_id for memunit in request.memunit_list
                         ],
                         timestamp=start_time,
                         subject=title,
@@ -531,9 +528,6 @@ class EpisodeMemoryExtractor(MemoryExtractor):
                         group_id=request.group_id,
                         participants=participants,
                         type=getattr(first_memunit, 'type', None),
-                        memunit_event_id_list=[
-                            memunit.event_id for memunit in request.memunit_list
-                        ],
                     )
                     all_memories.append(memory)
             # 异步触发语义记忆提取，不影响主流程

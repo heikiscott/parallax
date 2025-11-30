@@ -47,7 +47,7 @@
     profile = ProfileMemory(
         user_id="user_123",
         timestamp=datetime.now(),
-        ori_event_id_list=["memunit_456"],
+        memunit_id_list=["memunit_456"],
         user_name="小明",
         hard_skills=[
             {"value": "Python", "level": "expert", "evidences": ["2024-01|conv_1"]},

@@ -92,8 +92,8 @@ class ProfileMemoryExtractor(MemoryExtractor):
             if dt_value:
                 date_str = dt_value.date().isoformat()
 
-            event_id_raw = getattr(memunit, "event_id", None)
-            event_id_str = str(event_id_raw) if event_id_raw is not None else None
+            unit_id_raw = getattr(memunit, "unit_id", None)
+            unit_id_str = str(unit_id_raw) if unit_id_raw is not None else None
             participants_raw = getattr(memunit, "participants", None)
             participants_set: Optional[AbstractSet[str]] = None
             if participants_raw:
@@ -105,17 +105,17 @@ class ProfileMemoryExtractor(MemoryExtractor):
                 if normalized_participants:
                     participants_set = frozenset(normalized_participants)
 
-            if event_id_str is not None:
-                conversation_participants_map[event_id_str] = participants_set
+            if unit_id_str is not None:
+                conversation_participants_map[unit_id_str] = participants_set
 
             if conversation_id:
                 valid_conversation_ids.add(conversation_id)
                 if date_str:
                     conversation_date_map.setdefault(conversation_id, date_str)
-            if event_id_str:
-                valid_conversation_ids.add(event_id_str)
+            if unit_id_str:
+                valid_conversation_ids.add(unit_id_str)
                 if date_str:
-                    conversation_date_map.setdefault(event_id_str, date_str)
+                    conversation_date_map.setdefault(unit_id_str, date_str)
 
         resolved_group_id = request.group_id
         if not resolved_group_id:
@@ -546,7 +546,7 @@ class ProfileMemoryExtractor(MemoryExtractor):
         conversation_text: str = ""
 
         for memunit in request.memunit_list:
-            episode_text, event_id = build_episode_text(memunit, user_id_to_name)
+            episode_text, unit_id = build_episode_text(memunit, user_id_to_name)
 
             if episode_text:
                 conversation_lines.append(episode_text)
@@ -578,16 +578,16 @@ class ProfileMemoryExtractor(MemoryExtractor):
                 date_str = dt_value.date().isoformat()
                 default_date = date_str
 
-            if event_id:
-                valid_conversation_ids.add(event_id)
+            if unit_id:
+                valid_conversation_ids.add(unit_id)
                 if date_str:
-                    conversation_date_map.setdefault(event_id, date_str)
-            event_id_from_memunit = getattr(memunit, "event_id", None)
-            if event_id_from_memunit:
-                event_id_str = str(event_id_from_memunit)
-                valid_conversation_ids.add(event_id_str)
+                    conversation_date_map.setdefault(unit_id, date_str)
+            unit_id_from_memunit = getattr(memunit, "unit_id", None)
+            if unit_id_from_memunit:
+                unit_id_str = str(unit_id_from_memunit)
+                valid_conversation_ids.add(unit_id_str)
                 if date_str:
-                    conversation_date_map.setdefault(event_id_str, date_str)
+                    conversation_date_map.setdefault(unit_id_str, date_str)
 
         if not conversation_text:
             logger.warning(
@@ -629,7 +629,7 @@ class ProfileMemoryExtractor(MemoryExtractor):
                 "personality, way_of_decision_making, working_habit_preference, interests, tendency, "
                 "motivation_system, fear_system, value_system, humor_use, colloquialism, output_reasoning. "
                 "For list-type fields, each item must be an object: {\\\"value\\\": string, \\\"evidences\\\": [string], \\\"level\\\": string?}. "
-                "Use evidences referencing conversation ids when possible (e.g., [conversation_id:EVENT_ID] or EVENT_ID). "
+                "Use evidences referencing conversation ids when possible (e.g., [conversation_id:UNIT_ID] or UNIT_ID)."
                 "Include user_id and user_name. Use ASCII quotes only. Return one fenced JSON block, no extra text.\n"
                 "Exact response template:\n"
                 "```json\n"
@@ -675,9 +675,9 @@ class ProfileMemoryExtractor(MemoryExtractor):
                 if structured_profiles:
                     fallback_evidences: List[str] = []
                     batch_event_ids: List[str] = [
-                        str(mc.event_id)
+                        str(mc.unit_id)
                         for mc in request.memunit_list
-                        if hasattr(mc, 'event_id') and mc.event_id
+                        if hasattr(mc, 'unit_id') and mc.unit_id
                     ]
                     for ev in batch_event_ids:
                         ev_date = conversation_date_map.get(ev) or default_date
@@ -751,9 +751,9 @@ class ProfileMemoryExtractor(MemoryExtractor):
 
                     fallback_evidences: List[str] = []
                     batch_event_ids: List[str] = [
-                        str(mc.event_id)
+                        str(mc.unit_id)
                         for mc in request.memunit_list
-                        if hasattr(mc, 'event_id') and mc.event_id
+                        if hasattr(mc, 'unit_id') and mc.unit_id
                     ]
                     for ev in batch_event_ids:
                         ev_date = conversation_date_map.get(ev) or default_date
@@ -763,10 +763,10 @@ class ProfileMemoryExtractor(MemoryExtractor):
                         memory_type=MemoryType.PROFILE,
                         user_id=user_id,
                         timestamp=_dt.now(),
-                        ori_event_id_list=[
-                            mc.event_id
+                        memunit_id_list=[
+                            mc.unit_id
                             for mc in request.memunit_list
-                            if hasattr(mc, 'event_id')
+                            if hasattr(mc, 'unit_id')
                         ],
                         group_id=request.group_id or "",
                         personality=[

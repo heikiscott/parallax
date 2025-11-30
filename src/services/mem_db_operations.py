@@ -280,7 +280,7 @@ def _convert_episode_memory_to_doc(
         type=str(episode_memory.type.value) if episode_memory.type else "",
         keywords=getattr(episode_memory, 'keywords', None),
         linked_entities=getattr(episode_memory, 'linked_entities', None),
-        memunit_event_id_list=getattr(episode_memory, 'memunit_event_id_list', None),
+        memunit_id_list=getattr(episode_memory, 'memunit_id_list', None),
         vector_model=getattr(episode_memory, 'vector_model', None),
         extend={
             "memory_type": episode_memory.memory_type.value,
@@ -888,7 +888,7 @@ def _convert_memunit_to_document(
         # 创建文档模型 - 直接传入timezone-aware的datetime对象而不是字符串
         # 这样可以避免基类的datetime验证器触发无限递归
         doc_memunit = DocMemUnit(
-            event_id=memunit.event_id,
+            unit_id=memunit.unit_id,
             user_id=primary_user_id,
             timestamp=timestamp_dt,  # 直接传入timezone-aware的datetime
             summary=memunit.summary,
@@ -1052,16 +1052,16 @@ async def _save_memunit_to_database(
 
         # 检查转换是否成功
         if doc_memunit is None:
-            logger.warning(f"MemUnit转换跳过，无法保存: {memunit.event_id}")
+            logger.warning(f"MemUnit转换跳过，无法保存: {memunit.unit_id}")
             return
 
         # 保存到数据库
         result = await memunit_repo.append_memunit(doc_memunit)
         if result:
-            memunit.event_id = str(result.event_id)
-            logger.info(f"[mem_db_operations] MemUnit保存成功: {memunit.event_id}")
+            memunit.unit_id = str(result.unit_id)
+            logger.info(f"[mem_db_operations] MemUnit保存成功: {memunit.unit_id}")
         else:
-            logger.info(f"[mem_db_operations] MemUnit保存失败: {memunit.event_id}")
+            logger.info(f"[mem_db_operations] MemUnit保存失败: {memunit.unit_id}")
 
     except Exception as e:
         logger.error(f"MemUnit保存失败: {e}")

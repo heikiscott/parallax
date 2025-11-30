@@ -141,7 +141,7 @@ class EventLogEsRepository(BaseRepository[EpisodicMemoryDoc]):
                 keywords=[],
                 linked_entities=[],
                 subject='',
-                memunit_event_id_list=[],
+                memunit_id_list=[],
                 extend=eventlog_extend,
                 created_at=created_at,
                 updated_at=updated_at,

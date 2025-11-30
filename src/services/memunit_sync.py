@@ -78,18 +78,18 @@ class MemUnitSyncService:
                 if hasattr(memunit, 'episode') and memunit.episode:
                     await self._sync_episode(memunit)
                     stats["episode"] = 1
-                    logger.debug(f"✅ 已同步 episode 到 Milvus: {memunit.event_id}")
-                
+                    logger.debug(f"✅ 已同步 episode 到 Milvus: {memunit.unit_id}")
+
                 # 刷新 Milvus，确保数据写入
                 await self.episodic_milvus_repo.flush()
-                logger.debug(f"✅ Milvus 数据已刷新: {memunit.event_id}")
-            
+                logger.debug(f"✅ Milvus 数据已刷新: {memunit.unit_id}")
+
             # 同步到 ES
             if sync_to_es:
                 es_count = await self._sync_to_es(memunit)
                 stats["es_records"] = es_count
-                logger.debug(f"✅ 已同步 {es_count} 条记录到 ES: {memunit.event_id}")
-                
+                logger.debug(f"✅ 已同步 {es_count} 条记录到 ES: {memunit.unit_id}")
+
                 # 刷新 ES 索引，确保数据可搜索
                 try:
                     client = await self.es_repo.get_client()
@@ -98,15 +98,15 @@ class MemUnitSyncService:
                     logger.debug(f"✅ ES 索引已刷新: {index_name}")
                 except Exception as e:
                     logger.warning(f"ES 索引刷新失败（可能不影响使用）: {e}")
-            
+
             logger.info(
-                f"MemUnit 同步完成: {memunit.event_id}, 统计: {stats}"
+                f"MemUnit 同步完成: {memunit.unit_id}, 统计: {stats}"
             )
-            
+
             return stats
-            
+
         except Exception as e:
-            logger.error(f"MemUnit 同步失败: {memunit.event_id}, error={e}")
+            logger.error(f"MemUnit 同步失败: {memunit.unit_id}, error={e}")
             raise
 
     async def _sync_episode(self, memunit: MemUnit) -> None:
@@ -122,11 +122,11 @@ class MemUnitSyncService:
             # 确保是 list 格式（可能是 numpy array）
             if hasattr(vector, 'tolist'):
                 vector = vector.tolist()
-            logger.debug(f"从 MongoDB 读取 episode embedding: {memunit.event_id}")
-        
+            logger.debug(f"从 MongoDB 读取 episode embedding: {memunit.unit_id}")
+
         if not vector:
             logger.warning(
-                f"episode 缺少 embedding，跳过同步到 Milvus: {memunit.event_id}"
+                f"episode 缺少 embedding，跳过同步到 Milvus: {memunit.unit_id}"
             )
             return
         
@@ -145,7 +145,7 @@ class MemUnitSyncService:
         
         # MemUnit 的 user_id 始终为 None（群组记忆）
         await self.episodic_milvus_repo.create_and_save_episodic_memory(
-            event_id=str(memunit.event_id),
+            event_id=str(memunit.unit_id),
             user_id=memunit.user_id,  # None for group memory
             timestamp=memunit.timestamp or get_now_with_timezone(),
             episode=memunit.episode,
@@ -158,9 +158,9 @@ class MemUnitSyncService:
             participants=getattr(memunit, 'participants', None),
             subject=getattr(memunit, 'subject', None),
             metadata="{}",
-            memunit_event_id_list=[str(memunit.event_id)],
+            memunit_id_list=[str(memunit.unit_id)],
         )
-        logger.debug(f"✅ 已同步 episode 到 Milvus: {memunit.event_id}")
+        logger.debug(f"✅ 已同步 episode 到 Milvus: {memunit.unit_id}")
 
     async def _sync_to_es(self, memunit: MemUnit) -> int:
         """同步 MemUnit.episode 到 ES
@@ -184,7 +184,7 @@ class MemUnitSyncService:
                 search_content.append(memunit.episode[:500])
                 
                 await self.es_repo.create_and_save_episodic_memory(
-                    event_id=f"{str(memunit.event_id)}_episode",
+                    event_id=f"{str(memunit.unit_id)}_episode",
                     user_id=memunit.user_id,
                     timestamp=memunit.timestamp or get_now_with_timezone(),
                     episode=memunit.episode,
@@ -196,14 +196,14 @@ class MemUnitSyncService:
                     participants=getattr(memunit, 'participants', None),
                     event_type="episode",  # 标记类型
                     subject=getattr(memunit, 'subject', None),
-                    memunit_event_id_list=[str(memunit.event_id)],
+                    memunit_id_list=[str(memunit.unit_id)],
                 )
                 count += 1
-            
+
             return count
-            
+
         except Exception as e:
-            logger.error(f"同步到 ES 失败: {memunit.event_id}, error={e}")
+            logger.error(f"同步到 ES 失败: {memunit.unit_id}, error={e}")
             return 0
 
     async def sync_memunits_batch(self, memunits: List[MemUnit]) -> Dict[str, Any]:
@@ -228,7 +228,7 @@ class MemUnitSyncService:
                 total_stats["success_memunits"] += 1
                 total_stats["total_episode"] += stats["episode"]
             except Exception as e:
-                logger.error(f"批量同步失败: {memunit.event_id}, error={e}")
+                logger.error(f"批量同步失败: {memunit.unit_id}, error={e}")
                 total_stats["failed_memunits"] += 1
                 continue
         
