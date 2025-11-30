@@ -896,13 +896,24 @@ Output JSON:
 
 | 字段 | 类型 | 用途 | 来源 |
 |------|------|------|------|
-| `event_id` | Keyword | 主键 | MongoDB `_id` |
-| `user_id` | Keyword | 过滤条件 | MemUnit.user_id_list 展开 |
+| `episode_id` | Keyword | 主键 | MongoDB `_id` |
+| `user_id` | Keyword | 过滤条件 | EpisodeMemory.user_id |
+| `user_name` | Keyword | 用户名称 | EpisodeMemory.user_name |
 | `search_content` | Text (分词) | **BM25 搜索主字段** | narrative 分词结果 |
-| `subject` | Text | 辅助搜索 | MemUnit.subject |
-| `narrative` | Text | 存储原文 | MemUnit.narrative |
-| `timestamp` | Date | 时间过滤 | MemUnit.timestamp |
-| `group_id` | Keyword | 过滤条件 | MemUnit.group_id |
+| `title` | Text | 标题搜索 | EpisodeMemory.subject |
+| `narrative` | Text | 核心内容 | EpisodeMemory.narrative |
+| `summary` | Text | 摘要 | EpisodeMemory.summary |
+| `timestamp` | Date | 时间过滤 | EpisodeMemory.timestamp |
+| `group_id` | Keyword | 群组过滤 | EpisodeMemory.group_id |
+| `participants` | Keyword (multi) | 参与者列表 | EpisodeMemory.participants |
+| `type` | Keyword | 事件类型 | EpisodeMemory.type |
+| `keywords` | Keyword (multi) | 关键词列表 | EpisodeMemory.keywords |
+| `linked_entities` | Keyword (multi) | 关联实体 | EpisodeMemory.linked_entities |
+| `subject` | Text | 事件标题 | EpisodeMemory.subject |
+| `memunit_id_list` | Keyword (multi) | 关联 MemUnit | EpisodeMemory.memunit_id_list |
+| `extend` | Object | 扩展字段 | EpisodeMemory.extend |
+| `created_at` | Date | 创建时间 | EpisodeMemory.created_at |
+| `updated_at` | Date | 更新时间 | EpisodeMemory.updated_at |
 
 **search_content 生成逻辑**:
 ```python
@@ -941,14 +952,22 @@ async def multi_search(self, query: List[str], user_id: str, ...):
 
 #### 7.2.2 Milvus (向量检索)
 
-**Collection 字段**:
+**Collection 字段** (定义于 `EpisodicMemoryCollection`):
 
 | 字段 | 类型 | 用途 |
 |------|------|------|
-| `event_id` | VARCHAR | 主键 |
-| `user_id` | VARCHAR | 过滤条件 |
-| `vector` | FLOAT_VECTOR | **向量搜索字段** |
+| `id` | VARCHAR | 主键（episode_id）|
+| `vector` | FLOAT_VECTOR (1024) | **向量搜索字段** |
+| `user_id` | VARCHAR | 用户过滤 |
+| `group_id` | VARCHAR | 群组过滤 |
+| `participants` | ARRAY[VARCHAR] | 参与者列表过滤 |
+| `event_type` | VARCHAR | 事件类型过滤 |
 | `timestamp` | INT64 | 时间过滤 |
+| `narrative` | VARCHAR | 叙事内容 |
+| `search_content` | VARCHAR | 搜索内容 |
+| `metadata` | VARCHAR (JSON) | 详细信息（非检索）|
+| `created_at` | INT64 | 创建时间 |
+| `updated_at` | INT64 | 更新时间 |
 
 **向量来源**:
 ```python
