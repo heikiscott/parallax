@@ -184,13 +184,21 @@ eval/
 | 字段 | 类型 | BM25检索 | Embedding检索 | 答案生成 | 说明 |
 |------|------|:--------:|:-------------:|:--------:|------|
 | `unit_id` | string | - | - | - | 唯一标识符 (UUID) |
+| `user_id_list` | list[str] | - | - | - | 涉及的所有用户ID |
+| `participants` | list[str] | - | - | - | 实际发言的参与者 |
 | `original_data` | list[dict] | - | - | - | 原始消息数据 |
 | `timestamp` | string | - | - | - | ISO格式时间戳 |
+| `group_id` | string | - | - | - | 群组ID，Eval未使用 |
+| `type` | SourceType | - | - | - | 数据源类型 (CONVERSATION) |
 | **`summary`** | string | **回退×2** | **回退** | ❌ | 简短摘要 |
 | **`subject`** | string | **回退×3** | **回退** | **✅** | 主题标题 |
 | **`narrative`** | string | **回退×1** | **回退** | **✅** | 详细叙事描述 |
+| `keywords` | list[str] | - | - | - | 预留字段，暂未实现 |
+| `linked_entities` | list[str] | - | - | - | 预留字段，暂未实现 |
+| `semantic_memories` | list[SemanticMemoryItem] | - | - | - | 语义记忆，Eval未使用 |
 | **`event_log.atomic_fact`** | list[str] | **✅优先** | - | - | 原子事实列表 |
 | **`event_log.fact_embeddings`** | list[list[float]] | - | **✅优先** | - | 事实向量 |
+| `extend` | dict | - | - | - | 扩展字段，存储embedding等 |
 
 > **重要说明**:
 >
