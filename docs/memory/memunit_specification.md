@@ -323,15 +323,17 @@ type: SourceType                # 数据源类型
 # ===== 6. 内容字段 (Content) =====
 summary: str                    # 简短摘要
 subject: Optional[str]          # 话题/主题
-keywords: Optional[List[str]]   # 关键词列表
-linked_entities: Optional[List[str]]  # 关联实体
 narrative: Optional[str]        # 详细叙事描述
 
-# ===== 7. 提取结果字段 (Extracted) =====
+# ===== 7. 检索字段 (Retrieval) =====
+keywords: Optional[List[str]]   # 关键词列表
+linked_entities: Optional[List[str]]  # 关联实体
+
+# ===== 8. 提取结果字段 (Extracted) =====
 semantic_memories: Optional[List[SemanticMemoryItem]]  # 语义记忆
 event_log: Optional[EventLog]   # 事件日志
 
-# ===== 8. 扩展字段 (Extension) =====
+# ===== 9. 扩展字段 (Extension) =====
 extend: Optional[Dict]          # 自定义元数据（包含 embedding、vector_model）
 ```
 
@@ -477,8 +479,6 @@ class SourceType(str, Enum):
 |------|------|------|------|------|
 | `summary` | `str` | ✅ | 简短摘要（1-2句话）| LLM 生成 |
 | `subject` | `str` | ❌ | 话题/主题标题 | LLM 生成 |
-| `keywords` | `List[str]` | ❌ | 关键词列表 | LLM 提取 |
-| `linked_entities` | `List[str]` | ❌ | 关联实体（人名、地点、品牌等）| LLM 提取 |
 | `narrative` | `str` | ❌ | 详细叙事描述（核心内容）| LLM 生成 |
 
 **字段关系**:
@@ -519,7 +519,16 @@ summary (简短) ⊂ subject (标题) ⊂ narrative (详细)
 
 ---
 
-#### 4.2.7 提取结果字段
+#### 4.2.7 检索字段
+
+| 字段 | 类型 | 必填 | 说明 | 来源 |
+|------|------|------|------|------|
+| `keywords` | `List[str]` | ❌ | 关键词列表（用于 BM25 检索）| LLM 提取 |
+| `linked_entities` | `List[str]` | ❌ | 关联实体（人名、地点、品牌等，用于实体匹配）| LLM 提取 |
+
+---
+
+#### 4.2.8 提取结果字段
 
 | 字段 | 类型 | 必填 | 说明 | 来源 |
 |------|------|------|------|------|
@@ -560,7 +569,7 @@ class SemanticMemoryItem:
 
 ---
 
-#### 4.2.8 扩展字段
+#### 4.2.9 扩展字段
 
 | 字段 | 类型 | 必填 | 说明 | 来源 |
 |------|------|------|------|------|
