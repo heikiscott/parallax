@@ -225,7 +225,7 @@ async def memunit_extraction_from_conversation(
                 history_raw_data_list = [history_raw_data_list[-1], raw_data]
             else:
                 history_raw_data_list = [raw_data]
-            memunit_result.summary = memunit_result.episode[:200] + "..."
+            memunit_result.summary = memunit_result.narrative[:200] + "..."
             memunit_list.append(memunit_result)
             memunit_counter += 1  # MemUnit 创建成功，计数器加1
         else:
@@ -260,9 +260,9 @@ async def memunit_extraction_from_conversation(
         episode_result = await episode_extractor.extract_memory(
             episode_request, use_group_prompt=True
         )
-        memunit.episode = episode_result.episode
+        memunit.narrative = episode_result.narrative
         memunit.subject = episode_result.subject
-        memunit.summary = episode_result.episode[:200] + "..."
+        memunit.summary = episode_result.narrative[:200] + "..."
         memunit.original_data = episode_extractor.get_conversation_text(
             history_raw_data_list
         )
@@ -396,19 +396,19 @@ async def process_single_conversation(
         # 🔥 优化：并发生成 event log（提升速度 10-20 倍）
         if event_log_extractor:
             # 准备所有需要提取 event log 的 memunits
-            memunits_with_episode = [
-                (idx, memunit) 
+            memunits_with_narrative = [
+                (idx, memunit)
                 for idx, memunit in enumerate(memunit_list)
-                if hasattr(memunit, 'episode') and memunit.episode
+                if hasattr(memunit, 'narrative') and memunit.narrative
             ]
-            
+
             # 定义单个 event log 提取任务
             async def extract_single_event_log(idx: int, memunit):
                 # 设置 activity_id: Event Log 提取
                 set_activity_id(f"add-{conv_id}-el{idx}")
                 try:
                     event_log = await event_log_extractor.extract_event_log(
-                        episode_text=memunit.episode,
+                        episode_text=memunit.narrative,
                         timestamp=memunit.timestamp
                     )
                     return idx, event_log
@@ -428,10 +428,10 @@ async def process_single_conversation(
                 async with sem:
                     return await extract_single_event_log(idx, memunit)
             
-            print(f"\n🔥 开始并发提取 {len(memunits_with_episode)} 个 event logs...")
+            print(f"\n🔥 开始并发提取 {len(memunits_with_narrative)} 个 event logs...")
             event_log_tasks = [
-                extract_with_semaphore(idx, memunit) 
-                for idx, memunit in memunits_with_episode
+                extract_with_semaphore(idx, memunit)
+                for idx, memunit in memunits_with_narrative
             ]
             event_log_results = await asyncio.gather(*event_log_tasks)
             

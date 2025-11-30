@@ -16,11 +16,11 @@ def extract_event_time_from_memory(mem: Dict[str, Any]) -> str:
     提取优先级：
     1. subject 字段中的日期（括号格式，如 "(2025-08-26)"）
     2. subject 字段中的日期（中文格式，如 "2025年8月26日"）
-    3. episode 内容中的日期（中文或 ISO 格式）
+    3. narrative 内容中的日期（中文或 ISO 格式）
     4. 如果都提取不到，返回 "N/A"（不显示存储时间）
     
     Args:
-        mem: 记忆字典，包含 subject, episode 等字段
+        mem: 记忆字典，包含 subject, narrative 等字段
         
     Returns:
         日期字符串，格式为 YYYY-MM-DD，或 "N/A"
@@ -30,16 +30,16 @@ def extract_event_time_from_memory(mem: Dict[str, Any]) -> str:
         >>> extract_event_time_from_memory(mem)
         '2025-08-26'
         
-        >>> mem = {"episode": "于2025年8月26日，用户咨询..."}
+        >>> mem = {"narrative": "于2025年8月26日，用户咨询..."}
         >>> extract_event_time_from_memory(mem)
         '2025-08-26'
-        
-        >>> mem = {"subject": "", "episode": ""}
+
+        >>> mem = {"subject": "", "narrative": ""}
         >>> extract_event_time_from_memory(mem)
         'N/A'
     """
     subject = mem.get("subject", "")
-    episode = mem.get("episode", "")
+    narrative = mem.get("narrative", "")
     
     # 1. 从 subject 提取：匹配括号内的 ISO 日期格式 (YYYY-MM-DD)
     if subject:
@@ -53,21 +53,21 @@ def extract_event_time_from_memory(mem: Dict[str, Any]) -> str:
             year, month, day = match.groups()
             return f"{year}-{month.zfill(2)}-{day.zfill(2)}"
     
-    # 3. 从 episode 提取（搜索整个内容，不限制字符数）
-    if episode:
+    # 3. 从 narrative 提取（搜索整个内容，不限制字符数）
+    if narrative:
         # 匹配 "于YYYY年MM月DD日" 或 "在YYYY年MM月DD日"
-        match = re.search(r'[于在](\d{4})年(\d{1,2})月(\d{1,2})日', episode)
+        match = re.search(r'[于在](\d{4})年(\d{1,2})月(\d{1,2})日', narrative)
         if match:
             year, month, day = match.groups()
             return f"{year}-{month.zfill(2)}-{day.zfill(2)}"
-        
+
         # 匹配 ISO 格式 "YYYY-MM-DD"
-        match = re.search(r'(\d{4})-(\d{2})-(\d{2})', episode)
+        match = re.search(r'(\d{4})-(\d{2})-(\d{2})', narrative)
         if match:
             return match.group(0)
-        
+
         # 匹配其他中文日期格式（不带"于/在"前缀）
-        match = re.search(r'(\d{4})年(\d{1,2})月(\d{1,2})日', episode)
+        match = re.search(r'(\d{4})年(\d{1,2})月(\d{1,2})日', narrative)
         if match:
             year, month, day = match.groups()
             return f"{year}-{month.zfill(2)}-{day.zfill(2)}"
@@ -214,16 +214,16 @@ class ChatUI:
             # 提取事件实际发生时间（不是存储时间）
             event_time = extract_event_time_from_memory(mem)
             
-            # 优先级：subject > summary > episode > atomic_fact > content
+            # 优先级：subject > summary > narrative > atomic_fact > content
             # 使用 strip() 确保空字符串被正确处理
             subject = (mem.get("subject") or "").strip()
             summary = (mem.get("summary") or "").strip()
-            episode = (mem.get("episode") or "").strip()
+            narrative = (mem.get("narrative") or "").strip()
             atomic_fact = (mem.get("atomic_fact") or "").strip()
             content = (mem.get("content") or "").strip()
-            
+
             # 选择第一个非空的字段
-            display_text = subject or summary or episode or atomic_fact or content or "(无内容)"
+            display_text = subject or summary or narrative or atomic_fact or content or "(无内容)"
             
             # 限制显示长度
             if len(display_text) > 80:

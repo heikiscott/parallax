@@ -278,7 +278,7 @@ class AgenticV3Controller(BaseController):
           * "embedding": 纯向量检索
           * "bm25": 纯关键词检索
         - **data_source** (可选): 数据源
-          * "episode": 从 MemUnit.episode 检索（默认）
+          * "episode": 从 MemUnit.narrative 检索（默认）
           * "event_log": 从 event_log.atomic_fact 检索
           * "semantic_memory": 从语义记忆检索
           * "profile": 仅需 user_id + group_id 的档案检索（query 可空）

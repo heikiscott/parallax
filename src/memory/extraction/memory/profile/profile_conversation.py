@@ -183,17 +183,17 @@ def build_episode_text(
     """Convert episode from a memunit into formatted text with user_id annotations.
 
     Args:
-        memunit: The memunit containing episode data
+        memunit: The memunit containing narrative data
         user_id_to_name: Pre-extracted user_id to user_name mapping
 
     Returns:
-        Tuple of (formatted episode text, unit_id)
+        Tuple of (formatted narrative text, unit_id)
     """
     unit_id = getattr(memunit, "unit_id", None)
     unit_id_str = str(unit_id) if unit_id is not None else ""
-    episode_content = getattr(memunit, "episode", None) or ""
+    narrative_content = getattr(memunit, "narrative", None) or ""
 
-    if not episode_content:
+    if not narrative_content:
         return "", unit_id_str or None
 
     # Get participants (list of user_ids)
@@ -207,8 +207,8 @@ def build_episode_text(
         if user_name:
             aggregated_refer_list.append({"_id": user_id_str_local, "name": user_name})
 
-    # Apply user_id annotations to episode content (without @ symbol)
-    annotated_content = append_user_ids_to_names(episode_content, aggregated_refer_list)
+    # Apply user_id annotations to narrative content (without @ symbol)
+    annotated_content = append_user_ids_to_names(narrative_content, aggregated_refer_list)
 
     # Format with timestamp and unit_id
     timestamp = getattr(memunit, "timestamp", None)

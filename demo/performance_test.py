@@ -263,7 +263,7 @@ class PerformanceTester:
                 print(f"        - Event ID: {memunit.unit_id}")
                 print(f"        - Summary: {memunit.summary[:100] if memunit.summary else 'N/A'}...")
                 print(f"        - Subject: {memunit.subject[:100] if memunit.subject else 'N/A'}...")
-                print(f"        - Episode: {'有' if memunit.episode else '无'} ({len(memunit.episode) if memunit.episode else 0} 字符)")
+                print(f"        - Narrative: {'有' if memunit.narrative else '无'} ({len(memunit.narrative) if memunit.narrative else 0} 字符)")
                 print(f"        - 参与者: {', '.join(memunit.participants) if memunit.participants else 'N/A'}")
                 print(f"        - 时间戳: {memunit.timestamp}")
                 
@@ -313,7 +313,7 @@ class PerformanceTester:
         if memunit:
             print(f"\n  ✅ MemUnit 提取成功（仅 MemUnit，不含下游记忆）")
             print(f"  Event ID: {memunit.unit_id}")
-            print(f"  Episode 长度: {len(memunit.episode) if memunit.episode else 0} 字符")
+            print(f"  Narrative 长度: {len(memunit.narrative) if memunit.narrative else 0} 字符")
             print(f"  语义记忆: {'有' if hasattr(memunit, 'semantic_memories') and memunit.semantic_memories else '无'}")
             print(f"  事件日志: {'有' if hasattr(memunit, 'event_log') and memunit.event_log else '无'}")
             
@@ -379,7 +379,7 @@ class PerformanceTester:
                 print(f"     - User ID: {ep.user_id}")
                 print(f"     - Subject: {ep.subject[:100] if ep.subject else 'N/A'}...")
                 print(f"     - Summary: {ep.summary[:150] if ep.summary else 'N/A'}...")
-                print(f"     - Episode: {ep.episode[:200] if ep.episode else 'N/A'}...")
+                print(f"     - Narrative: {ep.narrative[:200] if ep.narrative else 'N/A'}...")
                 print(f"     - 时间戳: {ep.timestamp}")
         else:
             print(f"  ⚠️ Episode Memory 未提取")

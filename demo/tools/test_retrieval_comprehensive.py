@@ -519,7 +519,7 @@ async def demo_semantic_memory_evidence():
                     print("\n📝 语义记忆详情（包含 evidence）:")
                     for i, mem in enumerate(memories[:5], 1):
                         print(f"\n  [{i}] 相关度: {mem.get('score', 0):.4f}")
-                        print(f"      内容: {mem.get('episode', '')[:100]}")
+                        print(f"      内容: {mem.get('narrative', '')[:100]}")
                         
                         # 重点展示 evidence 字段
                         evidence = mem.get('evidence', '')

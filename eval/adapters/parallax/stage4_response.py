@@ -96,8 +96,8 @@ def build_context_from_unit_ids(
             continue
         
         subject = memunit.get('subject', 'N/A')
-        episode = memunit.get('episode', 'N/A')
-        doc_text = f"{subject}: {episode}\n---"
+        narrative = memunit.get('narrative', 'N/A')
+        doc_text = f"{subject}: {narrative}\n---"
         retrieved_docs_text.append(doc_text)
     
     # 拼接所有文档

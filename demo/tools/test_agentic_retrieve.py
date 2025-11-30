@@ -158,8 +158,8 @@ class AgenticRetrievalTester:
                             score = mem.get('score', 0)
                             subject = mem.get('subject', '')
                             summary = mem.get('summary', '')
-                            episode = mem.get('episode', '')
-                            content = subject or summary or episode[:60]
+                            narrative = mem.get('narrative', '')
+                            content = subject or summary or narrative[:60]
                             print(f"       [{i}] 分数: {score:.4f} | {content[:50]}{'...' if len(content) > 50 else ''}")
                     
                     return test_result

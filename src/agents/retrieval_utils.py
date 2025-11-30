@@ -53,7 +53,7 @@ def build_bm25_index(candidates):
     # 提取文本并分词（支持中英文）
     tokenized_docs = []
     for mem in candidates:
-        text = getattr(mem, "episode", None) or getattr(mem, "summary", "") or ""
+        text = getattr(mem, "narrative", None) or getattr(mem, "summary", "") or ""
         has_chinese = bool(re.search(r'[\u4e00-\u9fff]', text))
         
         if has_chinese:
@@ -451,7 +451,7 @@ async def rerank_candidates(
                 hit.update(doc)
             else:
                 # 如果 doc 是对象，提取关键字段
-                hit["episode"] = getattr(doc, "episode", "")
+                hit["narrative"] = getattr(doc, "narrative", "")
                 hit["summary"] = getattr(doc, "summary", "")
                 hit["subject"] = getattr(doc, "subject", "")
                 

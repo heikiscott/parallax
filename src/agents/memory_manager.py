@@ -838,7 +838,7 @@ class MemoryManager:
                 user_id = source.get('user_id', '')
                 group_id = source.get('group_id', '')
                 timestamp_raw = source.get('timestamp', '')
-                episode = source.get('episode', '')
+                narrative = source.get('narrative', '')
                 memunit_id_list = source.get('memunit_id_list', [])
                 subject = source.get('subject', '')
                 summary = source.get('summary', '')
@@ -855,7 +855,7 @@ class MemoryManager:
                     user_id = source.get('user_id', '')
                     group_id = source.get('group_id', '')
                     timestamp_raw = source.get('timestamp', '')
-                    episode = source.get('episode', '')
+                    narrative = source.get('narrative', '')
                     memunit_id_list = source.get('memunit_id_list', [])
                     subject = source.get('subject', '')
                     summary = source.get('summary', '')
@@ -868,7 +868,7 @@ class MemoryManager:
                     user_id = hit.get('user_id', '')
                     group_id = hit.get('group_id', '')
                     timestamp_raw = hit.get('timestamp')
-                    episode = hit.get('episode', '')
+                    narrative = hit.get('narrative', '')
                     metadata = hit.get('metadata', {})
                     memunit_id_list = metadata.get('memunit_id_list', [])
                     subject = metadata.get('subject', '')
@@ -881,7 +881,7 @@ class MemoryManager:
                 user_id = hit.get('user_id', '')
                 group_id = hit.get('group_id', '')
                 timestamp_raw = hit.get('timestamp')
-                episode = hit.get('episode', '')
+                narrative = hit.get('narrative', '')
                 metadata = hit.get('metadata', {})
                 memunit_id_list = metadata.get('memunit_id_list', [])
                 subject = metadata.get('subject', '')
@@ -1320,7 +1320,7 @@ class MemoryManager:
                         'user_id': source.get('user_id', ''),
                         'group_id': source.get('group_id', ''),
                         'timestamp': source.get('timestamp', ''),
-                        'episode': source.get('episode', ''),
+                        'narrative': source.get('narrative', ''),
                         'search_content': source.get('search_content', []),
                         'metadata': metadata,
                     }
@@ -1347,7 +1347,7 @@ class MemoryManager:
                         'group_id': result.get('group_id', ''),
                         'timestamp': result.get('timestamp', ''),
                         'subject': result.get('metadata', {}).get('title', ''),
-                        'episode': result.get('episode', '') if data_source == "episode" else result.get('content', '') if data_source == "semantic_memory" else result.get('atomic_fact', ''),
+                        'narrative': result.get('narrative', '') if data_source == "episode" else result.get('content', '') if data_source == "semantic_memory" else result.get('atomic_fact', ''),
                         'summary': result.get('metadata', {}).get('summary', ''),
                         'evidence': result.get('evidence', '') if data_source == "semantic_memory" else '',
                         'metadata': result.get('metadata', {}),
@@ -1408,7 +1408,7 @@ class MemoryManager:
                             'group_id': doc.get('group_id', ''),
                             'timestamp': doc.get('timestamp', ''),
                             'subject': '',
-                            'episode': doc.get('episode', ''),
+                            'narrative': doc.get('narrative', ''),
                             'summary': '',
                             'evidence': doc.get('evidence', ''),
                             'metadata': doc.get('metadata', {}),
@@ -1418,7 +1418,7 @@ class MemoryManager:
                     else:
                         # 来自 Milvus 的结果（需要转换字段名）
                         # 根据 data_source 获取正确的内容字段
-                        content_field = 'episode'  # 默认
+                        content_field = 'narrative'  # 默认
                         evidence_field = ''
                         if data_source == "semantic_memory":
                             content_field = 'content'
@@ -1435,7 +1435,7 @@ class MemoryManager:
                             'group_id': doc.get('group_id', ''),
                             'timestamp': doc.get('timestamp', ''),
                             'subject': doc.get('metadata', {}).get('title', '') if isinstance(doc.get('metadata'), dict) else '',
-                            'episode': doc.get(content_field, ''),
+                            'narrative': doc.get(content_field, ''),
                             'summary': doc.get('metadata', {}).get('summary', '') if isinstance(doc.get('metadata'), dict) else '',
                             'evidence': evidence_field,
                             'metadata': doc.get('metadata', {}) if isinstance(doc.get('metadata'), dict) else {},
@@ -1651,7 +1651,7 @@ class MemoryManager:
                 candidates_for_rerank = [
                     {
                         "index": i,
-                        "episode": mem.get("episode", ""),
+                        "narrative": mem.get("narrative", ""),
                         "summary": mem.get("summary", ""),
                         "subject": mem.get("subject", ""),
                         "score": mem.get("score", 0),
@@ -1805,7 +1805,7 @@ class MemoryManager:
                 candidates_for_rerank = [
                     {
                         "index": i,
-                        "episode": mem.get("episode", ""),
+                        "narrative": mem.get("narrative", ""),
                         "summary": mem.get("summary", ""),
                         "subject": mem.get("subject", ""),
                         "score": mem.get("score", 0),

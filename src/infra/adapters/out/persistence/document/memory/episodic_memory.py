@@ -24,7 +24,7 @@ class EpisodicMemory(DocumentBase, AuditBase):
     )
     summary: str = Field(..., min_length=1, description="记忆单元")
     subject: Optional[str] = Field(default=None, description="记忆单元主题")
-    episode: str = Field(..., min_length=1, description="情景记忆")
+    narrative: str = Field(..., min_length=1, description="叙事描述（核心内容字段）")
     type: Optional[str] = Field(default=None, description="情景类型，如Conversation等")
     keywords: Optional[List[str]] = Field(default=None, description="关键词")
     linked_entities: Optional[List[str]] = Field(
@@ -52,7 +52,7 @@ class EpisodicMemory(DocumentBase, AuditBase):
                 "participants": ["张三", "李四"],
                 "summary": "讨论了项目进度和下周计划",
                 "subject": "项目会议",
-                "episode": "在会议室进行了项目进度讨论，确定了下周的开发任务分配",
+                "narrative": "在会议室进行了项目进度讨论，确定了下周的开发任务分配",
                 "type": "Conversation",
                 "keywords": ["项目", "进度", "会议"],
                 "linked_entities": ["proj_001", "task_123"],

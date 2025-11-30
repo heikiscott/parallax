@@ -44,7 +44,7 @@
         timestamp=datetime.now(),
         memunit_id_list=["memunit_456"],
         episode_id="episode_789",
-        episode="今天我和团队讨论了项目时间线...",
+        narrative="今天我和团队讨论了项目时间线...",
         summary="项目时间线讨论",
         subject="Sprint 规划"
     )
@@ -86,7 +86,7 @@ class EpisodeMemory(Memory):
         - user_id: 记忆所属用户 (该视角的主人)
         - timestamp: 事件发生时间
         - memunit_id_list: 源 MemUnit ID 列表
-        - episode: 完整的叙事文本 (主要内容)
+        - narrative: 完整的叙事文本 (主要内容)
         - summary: 简短摘要
         - subject: 话题/标题
         - group_id: 群组ID
@@ -107,7 +107,7 @@ class EpisodeMemory(Memory):
         ...     timestamp=datetime.now(),
         ...     memunit_id_list=["memunit_1"],
         ...     episode_id="episode_1",
-        ...     episode="今天我了解了新功能的使用方法...",
+        ...     narrative="今天我了解了新功能的使用方法...",
         ...     summary="学习新功能",
         ...     subject="功能培训"
         ... )

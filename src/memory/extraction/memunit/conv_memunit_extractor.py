@@ -400,10 +400,10 @@ class ConvMemUnitExtractor(MemUnitExtractor):
                     if episode_result and isinstance(episode_result, MemUnit):
                         # GROUP_EPISODE_GENERATION_PROMPT 模式：返回包含情景记忆的 MemUnit
                         logger.info(f"✅ 成功生成情景记忆并存储到 MemUnit 中")
-                        # Attach embedding info to MemUnit (episode preferred)
+                        # Attach embedding info to MemUnit (narrative preferred)
 
                         text_for_embed = (
-                            episode_result.episode or episode_result.summary or ""
+                            episode_result.narrative or episode_result.summary or ""
                         )
                         if text_for_embed:
                             vs = get_vectorize_service()
@@ -445,7 +445,7 @@ class ConvMemUnitExtractor(MemUnitExtractor):
 
             # Attach embedding info to MemUnit if available
             try:
-                text_for_embed = memunit.episode
+                text_for_embed = memunit.narrative
                 if text_for_embed:
                     vs = get_vectorize_service()
                     vec = await vs.get_embedding(text_for_embed)

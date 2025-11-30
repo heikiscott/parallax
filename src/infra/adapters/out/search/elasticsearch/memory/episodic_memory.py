@@ -14,7 +14,7 @@ class EpisodicMemoryDoc(AliasDoc("episodic-memory", number_of_shards=3)):
     情景记忆Elasticsearch文档
 
     基于MongoDB EpisodicMemory模型，用于高效的BM25文本检索。
-    主要检索字段为title和episode的拼接内容。
+    主要检索字段为title和narrative的拼接内容。
 
     字段说明：
     - episode_id: 情景记忆唯一标识（对应MongoDB的_id）
@@ -22,7 +22,7 @@ class EpisodicMemoryDoc(AliasDoc("episodic-memory", number_of_shards=3)):
     - user_name: 用户名称
     - timestamp: 事件发生时间
     - title: 事件标题（对应MongoDB的subject字段）
-    - episode: 情景描述（核心内容）
+    - narrative: 叙事描述（核心内容）
     - search_content: BM25搜索字段（支持多值存储，用于精确词匹配）
     - summary: 事件摘要
     - group_id: 群组ID（可选）
@@ -34,7 +34,7 @@ class EpisodicMemoryDoc(AliasDoc("episodic-memory", number_of_shards=3)):
 
     分词处理说明：
     - 应用层负责中文分词（推荐使用jieba）
-    - title、episode、summary字段存储预分词结果（空格分隔）
+    - title、narrative、summary字段存储预分词结果（空格分隔）
     - search_content字段支持多值存储，每个值是一个搜索词
     - ES使用standard分析器处理search_content，original子字段用于精确匹配
     - 搜索时使用terms查询在search_content.original字段中匹配多个词
@@ -66,7 +66,7 @@ class EpisodicMemoryDoc(AliasDoc("episodic-memory", number_of_shards=3)):
         },
     )
 
-    episode = e_field.Text(
+    narrative = e_field.Text(
         required=True,
         analyzer=whitespace_lowercase_trim_stop_analyzer,
         search_analyzer=whitespace_lowercase_trim_stop_analyzer,

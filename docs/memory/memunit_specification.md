@@ -576,7 +576,7 @@ class SemanticMemoryItem:
 
 **填充逻辑**:
 ```python
-text_for_embed = episode_result.episode or episode_result.summary or ""
+text_for_embed = episode_result.narrative or episode_result.summary or ""
 if text_for_embed:
     vs = get_vectorize_service()
     vec = await vs.get_embedding(text_for_embed)
@@ -889,9 +889,9 @@ Output JSON:
 |------|------|------|------|
 | `event_id` | Keyword | 主键 | MongoDB `_id` |
 | `user_id` | Keyword | 过滤条件 | MemUnit.user_id_list 展开 |
-| `search_content` | Text (分词) | **BM25 搜索主字段** | episode 分词结果 |
+| `search_content` | Text (分词) | **BM25 搜索主字段** | narrative 分词结果 |
 | `subject` | Text | 辅助搜索 | MemUnit.subject |
-| `episode` | Text | 存储原文 | MemUnit.episode |
+| `narrative` | Text | 存储原文 | MemUnit.narrative |
 | `timestamp` | Date | 时间过滤 | MemUnit.timestamp |
 | `group_id` | Keyword | 过滤条件 | MemUnit.group_id |
 
@@ -899,8 +899,8 @@ Output JSON:
 ```python
 def _build_search_content(cls, source_doc):
     text_content = []
-    if source_doc.episode:
-        text_content.append(source_doc.episode)
+    if source_doc.narrative:
+        text_content.append(source_doc.narrative)
 
     combined_text = ' '.join(text_content)
     search_content = list(jieba.cut(combined_text))
@@ -994,8 +994,8 @@ response = RetrieveMemoryResponse(
 │  MemUnit (Schema)                                                       │
 │  ├─ unit_id ──────────────────────────────────────────────────────┐    │
 │  │                                                                 │    │
-│  ├─ episode ──┬─→ MongoDB.EpisodicMemory.episode                  │    │
-│  │            ├─→ ES.EpisodicMemoryDoc.episode                    │    │
+│  ├─ narrative ─┬─→ MongoDB.EpisodicMemory.narrative               │    │
+│  │             ├─→ ES.EpisodicMemoryDoc.narrative                 │    │
 │  │            ├─→ ES.EpisodicMemoryDoc.search_content (分词)      │    │
 │  │            └─→ Milvus.vector (向量化后)                        │    │
 │  │                                                                 │    │

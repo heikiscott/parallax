@@ -497,7 +497,7 @@ async def search_with_emb_index(
         # 回退到传统字段（保持向后兼容）
         # 对于传统字段，也使用 MaxSim 策略（取最大值）
         field_scores = []
-        for field in ["subject", "summary", "episode"]:
+        for field in ["subject", "summary", "narrative"]:
             if field in embeddings:
                 field_emb = embeddings[field]
                 field_norm = np.linalg.norm(field_emb)
@@ -1162,10 +1162,10 @@ async def reranker_search(
                 original_indices.append(idx)
                 continue
 
-        # 回退到原有的 episode 字段（保持向后兼容）
-        if episode_text := doc.get("episode"):
+        # 回退到原有的 narrative 字段（保持向后兼容）
+        if narrative_text := doc.get("narrative"):
             docs_with_episode.append(doc)
-            doc_texts.append(episode_text)
+            doc_texts.append(narrative_text)
             original_indices.append(idx)
 
     if not doc_texts:

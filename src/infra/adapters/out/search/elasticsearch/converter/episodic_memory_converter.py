@@ -74,7 +74,7 @@ class EpisodicMemoryConverter(BaseEsConverter[EpisodicMemoryDoc]):
                 title=getattr(
                     source_doc, 'subject', None
                 ),  # MongoDB的subject映射到ES的title
-                episode=source_doc.episode,
+                narrative=source_doc.narrative,
                 search_content=search_content,  # BM25搜索的核心字段
                 summary=getattr(source_doc, 'summary', None),
                 # 分类和标签字段
@@ -118,8 +118,8 @@ class EpisodicMemoryConverter(BaseEsConverter[EpisodicMemoryDoc]):
         text_content = []
 
         # 收集所有文本内容
-        if hasattr(source_doc, 'episode') and source_doc.episode:
-            text_content.append(source_doc.episode)
+        if hasattr(source_doc, 'narrative') and source_doc.narrative:
+            text_content.append(source_doc.narrative)
 
         # 将所有文本内容合并并使用jieba分词
         combined_text = ' '.join(text_content)
@@ -164,9 +164,9 @@ class EpisodicMemoryConverter(BaseEsConverter[EpisodicMemoryDoc]):
             raise ValueError("Memory对象不能为空")
 
         try:
-            # 使用jieba分词处理episode内容
-            episode_text = getattr(episode_memory, "episode", "") or ""
-            search_content = list(jieba.cut(episode_text))
+            # 使用jieba分词处理narrative内容
+            narrative_text = getattr(episode_memory, "narrative", "") or ""
+            search_content = list(jieba.cut(narrative_text))
 
             query_words = filter_stopwords(search_content, min_length=2)
             search_content = [word.strip() for word in query_words if word.strip()]
@@ -188,7 +188,7 @@ class EpisodicMemoryConverter(BaseEsConverter[EpisodicMemoryDoc]):
                 title=getattr(
                     episode_memory, 'subject', None
                 ),  # Memory的subject映射到ES的title
-                episode=episode_text,
+                narrative=narrative_text,
                 search_content=search_content,  # 使用jieba分词结果
                 summary=getattr(episode_memory, "summary", ""),
                 # 分类和标签字段

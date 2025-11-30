@@ -90,7 +90,7 @@ class SemanticMemoryExtractor(MemoryExtractor):
             # 构建提示词
             prompt = get_group_semantic_generation_prompt(
                 memunit_summary=memunit.summary,
-                memunit_episode=memunit.episode or "",
+                memunit_episode=memunit.narrative or "",
                 user_ids=memunit.user_id_list,
             )
 
@@ -149,7 +149,7 @@ class SemanticMemoryExtractor(MemoryExtractor):
             # 直接使用episode的user_id
             prompt = get_semantic_generation_prompt(
                 episode_summary=episode.summary or "",
-                episode_content=episode.episode or "",
+                episode_content=episode.narrative or "",
                 user_id=episode.user_id,
             )
 

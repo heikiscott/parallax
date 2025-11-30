@@ -212,15 +212,15 @@ Respond with strict JSON only (no extra text):
     def _extract_text(self, memunit: Any) -> str:
         """Extract representative text from a memunit.
         
-        Priority: episode > summary > original_data
+        Priority: narrative > summary > original_data
         """
         if memunit is None:
             return ""
-        
-        # Try episode first
-        episode = getattr(memunit, "episode", None)
-        if isinstance(episode, str) and episode.strip():
-            return episode.strip()
+
+        # Try narrative first
+        narrative = getattr(memunit, "narrative", None)
+        if isinstance(narrative, str) and narrative.strip():
+            return narrative.strip()
         
         # Try summary
         summary = getattr(memunit, "summary", None)

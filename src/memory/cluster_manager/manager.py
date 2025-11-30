@@ -403,10 +403,10 @@ class ClusterManager:
         Returns:
             Extracted text
         """
-        # Try episode first
-        episode = memunit.get("episode")
-        if isinstance(episode, str) and episode.strip():
-            return episode.strip()
+        # Try narrative first
+        narrative = memunit.get("narrative")
+        if isinstance(narrative, str) and narrative.strip():
+            return narrative.strip()
         
         # Try summary
         summary = memunit.get("summary")

@@ -261,9 +261,9 @@ class GroupProfileDataProcessor:
         return "\n".join(lines)
 
     def get_episode_text(self, memunit) -> str:
-        """Extract episode text from memunit."""
-        if hasattr(memunit, 'episode') and memunit.episode:
-            return memunit.episode
+        """Extract narrative text from memunit."""
+        if hasattr(memunit, 'narrative') and memunit.narrative:
+            return memunit.narrative
         return ""
 
     def combine_conversation_text_with_ids(self, memunit_list: List) -> str:
@@ -285,15 +285,15 @@ class GroupProfileDataProcessor:
                 all_conversation_text.append(annotated_text)
 
             elif self.conversation_source == "episode":
-                # 方式2：只用episode字段
+                # 方式2：只用narrative字段
                 episode_text = self.get_episode_text(memunit)
                 if episode_text:
                     annotated_text = f"=== MEMUNIT_ID: {memunit_id} ===\n{episode_text}"
                     all_conversation_text.append(annotated_text)
                 else:
-                    # 如果没有episode，回退到original_data
+                    # 如果没有narrative，回退到original_data
                     logger.warning(
-                        f"No episode found for memunit {memunit_id}, using original_data as fallback"
+                        f"No narrative found for memunit {memunit_id}, using original_data as fallback"
                     )
                     conversation_text = self.get_conversation_text(
                         memunit.original_data

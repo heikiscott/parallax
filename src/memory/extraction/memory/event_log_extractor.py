@@ -267,7 +267,7 @@ class EventLogExtractor:
         批量提取event logs
 
         Args:
-            episodes: episode列表，每个episode包含'episode'和'timestamp'字段
+            episodes: episode列表，每个episode包含'narrative'和'timestamp'字段
 
         Returns:
             List[Optional[EventLog]]: 提取的event log列表
@@ -277,7 +277,7 @@ class EventLogExtractor:
         # 并发提取所有event logs
         tasks = [
             self.extract_event_log(
-                episode_text=ep.get("episode", ""), timestamp=ep.get("timestamp")
+                episode_text=ep.get("narrative", ""), timestamp=ep.get("timestamp")
             )
             for ep in episodes
         ]

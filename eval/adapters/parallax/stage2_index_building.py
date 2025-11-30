@@ -59,7 +59,7 @@ def build_searchable_text(doc: dict) -> str:
     2. Otherwise, fall back to original fields:
        - "subject" corresponds to "title" (weight * 3)
        - "summary" corresponds to "summary" (weight * 2)
-       - "episode" corresponds to "content" (weight * 1)
+       - "narrative" corresponds to "content" (weight * 1)
     """
     parts = []
 
@@ -88,8 +88,8 @@ def build_searchable_text(doc: dict) -> str:
         parts.extend([doc["summary"]] * 2)
 
     # Content
-    if doc.get("episode"):
-        parts.append(doc["episode"])
+    if doc.get("narrative"):
+        parts.append(doc["narrative"])
 
     return " ".join(str(part) for part in parts if part)
 
@@ -242,7 +242,7 @@ async def build_emb_index(config: ExperimentConfig, data_dir: Path, emb_save_dir
                     continue
 
             # 回退到原有字段（保持向后兼容）
-            for field in ["subject", "summary", "episode"]:
+            for field in ["subject", "summary", "narrative"]:
                 if text := doc.get(field):
                     texts_to_embed.append(text)
                     doc_field_map.append((doc_idx, field))
@@ -357,7 +357,7 @@ async def build_emb_index(config: ExperimentConfig, data_dir: Path, emb_save_dir
         #             ],
         #             "subject": [ ... embedding vector ... ],  # 向后兼容的传统字段
         #             "summary": [ ... embedding vector ... ],
-        #             "episode": [ ... embedding vector ... ]
+        #             "narrative": [ ... embedding vector ... ]
         #         }
         #     },
         #     ...

@@ -34,7 +34,7 @@
         user_id="user_123",
         timestamp=datetime.now(),
         memunit_id_list=["memunit_1"],
-        episode="用户讨论了项目需求..."
+        narrative="用户讨论了项目需求..."
     )
 """
 
@@ -80,7 +80,7 @@ class Memory:
     5. 内容字段 (Content):
         - subject: 简短的主题/标题
         - summary: 简洁摘要 (1-3句话)
-        - episode: 详细的叙事描述
+        - narrative: 详细的叙事描述
 
     6. 上下文字段 (Context):
         - group_id: 群组ID (个人记忆为 None)
@@ -113,7 +113,7 @@ class Memory:
     # ===== 5. 内容字段 =====
     subject: Optional[str] = None  # 主题/标题
     summary: Optional[str] = None  # 简洁摘要
-    episode: Optional[str] = None  # 详细叙事
+    narrative: Optional[str] = None  # 详细叙事
 
     # ===== 6. 上下文字段 =====
     group_id: Optional[str] = None  # 群组ID
@@ -174,7 +174,7 @@ class Memory:
             # 内容字段
             "subject": self.subject,
             "summary": self.summary,
-            "episode": self.episode,
+            "narrative": self.narrative,
             # 上下文字段
             "group_id": self.group_id,
             "participants": self.participants,

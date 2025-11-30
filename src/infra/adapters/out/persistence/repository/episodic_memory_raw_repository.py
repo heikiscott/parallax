@@ -124,10 +124,10 @@ class EpisodicMemoryRawRepository(BaseRepository[EpisodicMemory]):
         """
 
         # 同步向量
-        if episodic_memory.episode and not episodic_memory.vector:
+        if episodic_memory.narrative and not episodic_memory.vector:
             try:
                 vector = await self.vectorize_service.get_embedding(
-                    episodic_memory.episode
+                    episodic_memory.narrative
                 )
                 episodic_memory.vector = vector.tolist()
                 # 设置向量化模型信息

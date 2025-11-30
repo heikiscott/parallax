@@ -72,7 +72,7 @@ class EpisodicMemoryMilvusConverter(BaseMilvusConverter[EpisodicMemoryCollection
                 # 时间字段 - 转换为 Unix 时间戳
                 "timestamp": timestamp,
                 # 核心内容字段
-                "episode": source_doc.episode,
+                "narrative": source_doc.narrative,
                 "search_content": cls._build_search_content(source_doc),
                 # 分类字段
                 "event_type": (
@@ -163,9 +163,9 @@ class EpisodicMemoryMilvusConverter(BaseMilvusConverter[EpisodicMemoryCollection
         if hasattr(source_doc, 'summary') and source_doc.summary:
             text_content.append(source_doc.summary)
 
-        if hasattr(source_doc, 'episode') and source_doc.episode:
-            # episode 可能很长，只取前 500 字符
-            text_content.append(source_doc.episode[:500])
+        if hasattr(source_doc, 'narrative') and source_doc.narrative:
+            # narrative 可能很长，只取前 500 字符
+            text_content.append(source_doc.narrative[:500])
 
         # 返回 JSON 字符串列表格式，保持与 MemUnit 同步逻辑一致
         return json.dumps(text_content, ensure_ascii=False)

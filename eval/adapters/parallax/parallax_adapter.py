@@ -526,7 +526,7 @@ class ParallaxAdapter(BaseAdapter):
         results = []
         for doc, score in top_results:
             results.append({
-                "content": doc.get("episode", ""),
+                "content": doc.get("narrative", ""),
                 "score": float(score),
                 "metadata": {
                     "subject": doc.get("subject", ""),
@@ -549,8 +549,8 @@ class ParallaxAdapter(BaseAdapter):
             retrieved_docs_text = []
             for doc, score in top_results[:response_top_k]:  # 使用 config 中的 response_top_k
                 subject = doc.get('subject', 'N/A')
-                episode = doc.get('episode', 'N/A')
-                doc_text = f"{subject}: {episode}\n---"
+                narrative = doc.get('narrative', 'N/A')
+                doc_text = f"{subject}: {narrative}\n---"
                 retrieved_docs_text.append(doc_text)
             
             speaker_memories = "\n\n".join(retrieved_docs_text)

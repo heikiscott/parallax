@@ -80,7 +80,7 @@ class EpisodicMemoryEsRepository(BaseRepository[EpisodicMemoryDoc]):
         episode_id: str,
         user_id: str,
         timestamp: datetime,
-        episode: str,
+        narrative: str,
         search_content: List[str],
         user_name: Optional[str] = None,
         title: Optional[str] = None,
@@ -103,7 +103,7 @@ class EpisodicMemoryEsRepository(BaseRepository[EpisodicMemoryDoc]):
             episode_id: 情景记忆唯一标识
             user_id: 用户ID（必需）
             timestamp: 事件发生时间（必需）
-            episode: 情景描述（必需）
+            narrative: 叙事描述（必需）
             search_content: 搜索内容列表（支持多个搜索词，必需）
             type: 事件类型
             user_name: 用户名称
@@ -140,7 +140,7 @@ class EpisodicMemoryEsRepository(BaseRepository[EpisodicMemoryDoc]):
                 user_name=user_name or '',
                 timestamp=timestamp,
                 title=title or '',
-                episode=episode,
+                narrative=narrative,
                 search_content=search_content,
                 summary=summary or '',
                 group_id=group_id,

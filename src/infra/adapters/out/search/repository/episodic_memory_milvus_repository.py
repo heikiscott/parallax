@@ -45,7 +45,7 @@ class EpisodicMemoryMilvusRepository(BaseMilvusRepository[EpisodicMemoryCollecti
         episode_id: str,
         user_id: str,
         timestamp: datetime,
-        episode: str,
+        narrative: str,
         search_content: List[str],
         vector: List[float],
         user_name: Optional[str] = None,
@@ -71,7 +71,7 @@ class EpisodicMemoryMilvusRepository(BaseMilvusRepository[EpisodicMemoryCollecti
             episode_id: 情景记忆唯一标识
             user_id: 用户ID（必需）
             timestamp: 事件发生时间（必需）
-            episode: 情景描述（必需）
+            narrative: 叙事描述（必需）
             search_content: 搜索内容列表（必需）
             vector: 文本向量（必需，维度必须为1024）
             user_name: 用户名称
@@ -135,7 +135,7 @@ class EpisodicMemoryMilvusRepository(BaseMilvusRepository[EpisodicMemoryCollecti
                 "participants": participants or [],
                 "event_type": event_type or "",
                 "timestamp": int(timestamp.timestamp()),
-                "episode": episode,
+                "narrative": narrative,
                 "search_content": json.dumps(search_content, ensure_ascii=False),
                 "metadata": metadata_json,
                 "created_at": int(created_at.timestamp()),
@@ -153,7 +153,7 @@ class EpisodicMemoryMilvusRepository(BaseMilvusRepository[EpisodicMemoryCollecti
                 "episode_id": episode_id,
                 "user_id": user_id,
                 "timestamp": timestamp,
-                "episode": episode,
+                "narrative": narrative,
                 "search_content": search_content,
                 "metadata": metadata_dict,
             }
@@ -265,7 +265,7 @@ class EpisodicMemoryMilvusRepository(BaseMilvusRepository[EpisodicMemoryCollecti
                             "timestamp": datetime.fromtimestamp(
                                 hit.entity.get("timestamp", 0)
                             ),
-                            "episode": hit.entity.get("episode"),
+                            "narrative": hit.entity.get("narrative"),
                             "search_content": search_content,
                             "metadata": metadata,
                         }

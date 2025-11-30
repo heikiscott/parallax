@@ -12,7 +12,7 @@ MemUnit 是对话边界检测的输出，代表一段语义完整的对话内容
                                ├── unit_id: 唯一标识
                                ├── original_data: 原始消息列表
                                ├── summary: 内容摘要
-                               ├── episode: 情景描述
+                               ├── narrative: 叙事描述
                                ├── semantic_memories: 语义关联
                                └── event_log: 事件日志
 
@@ -31,29 +31,29 @@ MemUnit 是原始输入数据和最终提取记忆之间的中间表示。
 **MemUnit 不是包含 Memory，而是"分解"为多种 Memory 类型**
 
 **重要：MemUnit 采用嵌入式存储，不是引用式存储**
-- `MemUnit.episode` 是**完整的内容字符串**，不是 EpisodeMemory 的 ID 引用
+- `MemUnit.narrative` 是**完整的内容字符串**，不是 EpisodeMemory 的 ID 引用
 - `MemUnit.semantic_memories` 是**完整的对象列表**，不是 SemanticMemory 的 ID 列表
 - `MemUnit.event_log` 是**完整的对象**，不是 EventLog 的 ID 引用
 
 1. MemUnit 的角色:
    - **临时中间对象**: 在提取流程中承载数据
    - **存储到 MongoDB**: MemUnit 作为完整文档持久化到 `memunits` 集合
-     * episode 字段存储完整的情景描述文本
+     * narrative 字段存储完整的叙事描述文本
      * semantic_memories 字段存储完整的语义记忆对象列表
      * event_log 字段存储完整的事件日志对象
-   - **同步到检索引擎**: MemUnit.episode **复制**到 ES/Milvus 作为 EpisodeMemory
+   - **同步到检索引擎**: MemUnit.narrative **复制**到 ES/Milvus 作为 EpisodeMemory
 
 2. Memory 的生成（数据复制，非引用）:
    从 MemUnit 中**复制提取**出不同类型的 Memory 对象，各自独立存储：
    
    a) **EpisodeMemory (群组视角情景记忆)**
-      - 来源: 复制 MemUnit.episode 的内容（字符串）
+      - 来源: 复制 MemUnit.narrative 的内容（字符串）
       - 存储: MongoDB episodic_memories 集合 + ES + Milvus
-      - 关系: EpisodeMemory.episode = MemUnit.episode（内容相同，存储独立）
+      - 关系: EpisodeMemory.narrative = MemUnit.narrative（内容相同，存储独立）
       - 用途: 向量检索、全文检索、System Prompt 上下文
-   
+
    b) **个人 EpisodeMemory (个人视角情景记忆)**
-      - 来源: 从 MemUnit.episode 进一步提取（LLM 改写为个人视角）
+      - 来源: 从 MemUnit.narrative 进一步提取（LLM 改写为个人视角）
       - 存储: MongoDB episodic_memories 集合 + ES + Milvus
       - 用途: 个人化的记忆检索
    
@@ -72,7 +72,7 @@ MemUnit 是原始输入数据和最终提取记忆之间的中间表示。
 3. 为什么采用嵌入式存储 + 复制分发的设计?
    - **MemUnit 的完整性**: MemUnit 作为历史快照，保留提取时的完整数据
    - **解耦提取与检索**: MemUnit 专注于边界检测，Memory 专注于检索优化
-   - **多视角记忆**: 同一 episode 内容可以生成群组和个人视角的不同检索记录
+   - **多视角记忆**: 同一 narrative 内容可以生成群组和个人视角的不同检索记录
    - **灵活检索**: 不同类型的 Memory 有独立的索引结构和检索策略
    - **可溯源**: 通过 MemUnit 可以追溯记忆的原始提取结果
    - **数据冗余**: 牺牲存储空间换取查询性能和数据独立性
@@ -91,7 +91,7 @@ MemUnit 是原始输入数据和最终提取记忆之间的中间表示。
         timestamp=datetime.now(),
         summary="两位用户互相打招呼",
         type=SourceType.CONVERSATION,
-        episode="用户1向用户2问好，用户2热情回应..."
+        narrative="用户1向用户2问好，用户2热情回应..."
     )
 """
 
@@ -127,7 +127,7 @@ class MemUnit:
     - participants: ✅ 从消息提取
     - type: ✅ CONVERSATION
     - subject: ❌ None
-    - episode: ❌ None
+    - narrative: ❌ None
     - keywords: ❌ None (预留字段，暂未实现)
     - linked_entities: ❌ None (预留字段，暂未实现)
     - semantic_memories: ❌ None
@@ -136,7 +136,7 @@ class MemUnit:
 
     提取阶段 (EpisodeMemoryExtractor.extract_memory):
     - subject: ✅ LLM 提取的 title
-    - episode: ✅ LLM 提取的 content
+    - narrative: ✅ LLM 提取的 content
     - extend['embedding']: ✅ 向量化后赋值
 
     语义提取阶段 (SemanticMemoryExtractor):
@@ -170,17 +170,19 @@ class MemUnit:
         - type: 数据源类型 (通常为 CONVERSATION)
 
     6. 内容字段 (Content):
-        - summary: 简短摘要 (1-2句话)
         - subject: 话题/主题
+        - summary: 简短摘要 (1-2句话)
+        - narrative: 详细的叙事描述
+
+    7. 索引字段 (Indexing):
         - keywords: 关键词列表 (预留字段)
         - linked_entities: 关联实体 (预留字段)
-        - episode: 详细的情景描述
 
-    7. 提取结果字段 (Extracted):
+    8. 提取结果字段 (Extracted):
         - semantic_memories: 语义记忆关联列表
         - event_log: 事件日志 (带时间戳的原子事实)
 
-    8. 扩展字段 (Extension):
+    9. 扩展字段 (Extension):
         - extend: 自定义元数据
 
     验证规则:
@@ -224,8 +226,8 @@ class MemUnit:
     """
     原始消息列表
     - 产生方式: 用户的原始输入 (ChatRawData)
-    - 使用方式: 
-        1. 作为 LLM 提取 summary/episode 的输入源
+    - 使用方式:
+        1. 作为 LLM 提取 summary/narrative 的输入源
         2. 存档，用于追溯原始对话
         3. 一般不直接用于检索或 System Prompt (除非需要展示原始引用)
     """
@@ -258,16 +260,7 @@ class MemUnit:
         1. 决定后续的处理策略 (不同类型可能走不同的提取管道)
     """
 
-    # ===== 6. 内容字段 (核心检索与Prompt字段) =====
-    summary: str = None
-    """
-    简短摘要 (1-2句话)
-    - 产生方式: LLM 提取 (Boundary Detection 阶段或后续提取)
-    - 使用方式: 
-        1. 存入 ES/Milvus 的 search_content 字段，用于全文检索
-        2. 在 UI 上展示记忆预览
-    """
-
+    # ===== 6. 内容字段 =====
     subject: Optional[str] = None
     """
     话题/主题
@@ -276,10 +269,87 @@ class MemUnit:
         2. **提取后**: 由 EpisodeMemoryExtractor.extract_memory() 赋值
            (从 LLM 响应中提取 title 字段)
     - 使用方式:
-        1. 存入 ES/Milvus 的 search_content/subject 字段，用于检索
-        2. 帮助快速了解记忆主题
+        1. 作为 System Prompt 中记忆块的标题
+        2. 存入 ES/Milvus 的 subject 字段
     """
 
+    summary: str = None
+    """
+    简短摘要 (1-2句话)
+    - 产生方式: LLM 提取 (Boundary Detection 阶段或后续提取)
+    - 使用方式:
+        1. 存入 ES/Milvus 的 search_content 字段
+        2. 在 UI 上展示记忆预览
+    """
+
+    narrative: Optional[str] = None
+    """
+    详细叙事描述 (核心字段)
+
+    **命名说明：为什么叫 narrative 而不是 episode？**
+
+    - `narrative` (叙事): 纯文本内容，描述事件的叙述性文字
+    - `EpisodeMemory` (情景记忆): 完整的记忆对象，包含 ID、用户、时间、向量等
+
+    这样命名可以清晰区分：
+    - `MemUnit.narrative` = 叙事**文本** (str)
+    - `EpisodeMemory` = 情景记忆**对象** (包含 narrative 文本 + 元数据)
+
+    **为什么是 str 而不是 EpisodeMemory 类？**
+
+    设计哲学：MemUnit 只存储"提取的内容"，而 EpisodeMemory 是"检索优化的文档结构"
+
+    1. **层次分离**:
+       - `MemUnit.narrative`: 纯内容层 - 仅存储 LLM 提取的叙事描述文本
+       - `EpisodeMemory`: 文档层 - 包含 ID、用户、时间、索引、embedding 等检索所需的完整结构
+
+    2. **避免循环依赖**:
+       - 如果存储 `EpisodeMemory` 对象，会引入复杂的对象嵌套
+       - 保持简单的字符串存储，避免结构混乱
+
+    3. **关系类比**:
+       ```
+       类比数据库设计:
+       MemUnit.narrative = "文本内容"      (相当于原始数据)
+       EpisodeMemory     = 完整的表记录    (ID + 内容 + 索引 + embedding)
+
+       就像你不会在 User 表里嵌套完整的 Post 对象，只存 post_content 字符串
+       然后在 Posts 表里存完整的 {id, user_id, content, created_at, ...}
+       ```
+
+    4. **数据流转**:
+       ```python
+       # Step 1: MemUnit 提取阶段
+       memunit = MemUnit(
+           narrative="用户A和用户B讨论了项目进展..."  # 纯文本
+       )
+
+       # Step 2: 保存到 MongoDB
+       await memunit_repo.save(memunit)  # narrative 作为字符串字段存储
+
+       # Step 3: 同步到检索引擎 (memunit_sync.py)
+       episode_memory = EpisodeMemory(
+           episode_id=memunit.unit_id,
+           narrative=memunit.narrative,  # 复制文本内容
+           user_id=memunit.user_id,
+           timestamp=memunit.timestamp,
+           embedding=generate_embedding(memunit.narrative),  # 生成向量
+           # ... 其他检索优化字段
+       )
+       await es_repo.save(episode_memory)  # 存储到 ES/Milvus
+       ```
+
+    - 产生方式:
+        1. **创建时**: 为 None
+        2. **提取后**: 由 EpisodeMemoryExtractor.extract_memory() 赋值
+           (从 LLM 响应中提取 content 字段，将对话转化为第三人称叙事)
+    - 使用方式:
+        1. **向量检索源**: 用于生成 Embedding (存入 extend['embedding'])
+        2. **全文检索源**: 复制到 ES/Milvus 的 EpisodeMemory.narrative 字段
+        3. **System Prompt**: 检索命中后，将此字段内容放入 Prompt 作为长期记忆上下文
+    """
+
+    # ===== 7. 索引字段 =====
     keywords: Optional[List[str]] = None
     """
     关键词列表 (预留字段，暂未实现)
@@ -300,65 +370,7 @@ class MemUnit:
         1. 存入 ES 的 linked_entities 字段，用于实体关联检索
     """
 
-    episode: Optional[str] = None
-    """
-    详细情景描述 (核心字段)
-
-    **为什么是 str 而不是 EpisodeMemory 类？**
-
-    设计哲学：MemUnit 只存储"提取的内容"，而 EpisodeMemory 是"检索优化的文档结构"
-
-    1. **层次分离**:
-       - `MemUnit.episode`: 纯内容层 - 仅存储 LLM 提取的情景描述文本
-       - `EpisodeMemory`: 文档层 - 包含 ID、用户、时间、索引、embedding 等检索所需的完整结构
-
-    2. **避免循环依赖**:
-       - 如果 `episode` 是 `EpisodeMemory` 对象，会引入复杂的对象嵌套
-       - `EpisodeMemory` 本身也有 `episode: str` 字段，会造成结构混乱
-
-    3. **关系类比**:
-       ```
-       类比数据库设计:
-       MemUnit.episode = "文本内容"       (相当于原始数据)
-       EpisodeMemory    = 完整的表记录    (ID + 内容 + 索引 + embedding)
-
-       就像你不会在 User 表里嵌套完整的 Post 对象，只存 post_content 字符串
-       然后在 Posts 表里存完整的 {id, user_id, content, created_at, ...}
-       ```
-
-    4. **数据流转**:
-       ```python
-       # Step 1: MemUnit 提取阶段
-       memunit = MemUnit(
-           episode="用户A和用户B讨论了项目进展..."  # 纯文本
-       )
-
-       # Step 2: 保存到 MongoDB
-       await memunit_repo.save(memunit)  # episode 作为字符串字段存储
-
-       # Step 3: 同步到检索引擎 (memunit_sync.py)
-       episode_memory = EpisodeMemory(
-           episode_id=memunit.unit_id,
-           episode=memunit.episode,  # 复制文本内容
-           user_id=memunit.user_id,
-           timestamp=memunit.timestamp,
-           embedding=generate_embedding(memunit.episode),  # 生成向量
-           # ... 其他检索优化字段
-       )
-       await es_repo.save(episode_memory)  # 存储到 ES/Milvus
-       ```
-
-    - 产生方式:
-        1. **创建时**: 为 None
-        2. **提取后**: 由 EpisodeMemoryExtractor.extract_memory() 赋值
-           (从 LLM 响应中提取 content 字段，将对话转化为第三人称叙事)
-    - 使用方式:
-        1. **向量检索源**: 用于生成 Embedding (存入 extend['embedding'])
-        2. **全文检索源**: 复制到 ES/Milvus 的 EpisodeMemory.episode 字段
-        3. **System Prompt**: 检索命中后，将此字段内容放入 Prompt 作为长期记忆上下文
-    """
-
-    # ===== 7. 提取结果字段 =====
+    # ===== 8. 提取结果字段 =====
     semantic_memories: Optional[List['SemanticMemoryItem']] = None
     """
     语义记忆关联列表
@@ -401,13 +413,13 @@ class MemUnit:
         3. 用于构建时间线、因果关系追踪
     """
 
-    # ===== 8. 扩展字段 =====
+    # ===== 9. 扩展字段 =====
     extend: Optional[Dict[str, Any]] = None
     """
     自定义元数据
     - 产生方式: 程序处理过程中添加
-    - 使用方式: 
-        1. **embedding**: 存储 episode 的向量表示，用于 Milvus 检索
+    - 使用方式:
+        1. **embedding**: 存储 narrative 的向量表示，用于 Milvus 检索
         2. vector_model: 记录使用的向量模型版本
     """
 
@@ -451,11 +463,12 @@ class MemUnit:
             "group_id": self.group_id,
             "type": str(self.type.value) if self.type else None,
             # 内容字段
-            "summary": self.summary,
             "subject": self.subject,
+            "summary": self.summary,
+            "narrative": self.narrative,
+            # 索引字段
             "keywords": self.keywords,
             "linked_entities": self.linked_entities,
-            "episode": self.episode,
             # 提取结果字段
             "semantic_memories": (
                 [item.to_dict() for item in self.semantic_memories]

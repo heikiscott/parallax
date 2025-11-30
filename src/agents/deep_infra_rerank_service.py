@@ -423,9 +423,9 @@ class DeepInfraRerankService(DeepInfraRerankServiceInterface):
         Returns:
             提取的文本内容
         """
-        # 优先使用episode，其次使用summary，最后使用subject
-        if hasattr(memory, 'episode') and memory.episode:
-            return memory.episode
+        # 优先使用narrative，其次使用summary，最后使用subject
+        if hasattr(memory, 'narrative') and memory.narrative:
+            return memory.narrative
         elif hasattr(memory, 'summary') and memory.summary:
             return memory.summary
         elif hasattr(memory, 'subject') and memory.subject:
@@ -690,20 +690,20 @@ class DeepInfraRerankService(DeepInfraRerankServiceInterface):
         Returns:
             提取的文本内容
         """
-        # 优先使用episode，其次使用summary，最后使用subject
+        # 优先使用narrative，其次使用summary，最后使用subject
         if '_source' in hit:
             # ES格式
             source = hit['_source']
-            if source.get('episode'):
-                return source['episode']
+            if source.get('narrative'):
+                return source['narrative']
             elif source.get('summary'):
                 return source['summary']
             elif source.get('subject'):
                 return source['subject']
         else:
             # Milvus格式
-            if hit.get('episode'):
-                return hit['episode']
+            if hit.get('narrative'):
+                return hit['narrative']
             elif hit.get('summary'):
                 return hit['summary']
             elif hit.get('subject'):

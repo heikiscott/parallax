@@ -39,11 +39,11 @@ async def _fetch_candidates(
     查询缺失向量的情景记忆候选文档。
 
     返回以下两类文档：
-    1) episode 不为空且 vector 不存在/为 None/为空数组 的文档
+    1) narrative 不为空且 vector 不存在/为 None/为空数组 的文档
     2) vector_model 不等于目标模型（TARGET_VECTOR_MODEL） 的文档（即需要重刷）
     """
     and_filters: List[Dict[str, Any]] = [
-        {"episode": {"$exists": True, "$ne": ""}},
+        {"narrative": {"$exists": True, "$ne": ""}},
         {
             "$or": [
                 {"vector": {"$exists": False}},
@@ -81,17 +81,17 @@ async def _process_one(
     document: EpisodicMemory, semaphore: asyncio.Semaphore
 ) -> Tuple[Optional[str], Optional[str]]:
     """
-    处理单个文档：向量化 episode 并回写 vector 与 vector_model。
+    处理单个文档：向量化 narrative 并回写 vector 与 vector_model。
 
     返回 (doc_id, error)；成功时 error 为 None。
     """
     async with semaphore:
         try:
-            if not document.episode:
-                return str(document.id), "episode 为空，跳过"
+            if not document.narrative:
+                return str(document.id), "narrative 为空，跳过"
 
             vectorize_service = get_vectorize_service()
-            embedding = await vectorize_service.get_embedding(document.episode)
+            embedding = await vectorize_service.get_embedding(document.narrative)
             vector_list = embedding.tolist()  # 与仓库逻辑保持一致
             model_name = vectorize_service.get_model_name()
 

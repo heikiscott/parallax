@@ -157,13 +157,13 @@ class ExtractionOrchestrator:
         )
         
         # 2. 如果成功提取 MemUnit，且启用了 Event Log 提取
-        if memunit and enable_event_log_extraction and hasattr(memunit, 'episode') and memunit.episode:
+        if memunit and enable_event_log_extraction and hasattr(memunit, 'narrative') and memunit.narrative:
             if self._event_log_extractor is None:
                 self._event_log_extractor = EventLogExtractor(llm_provider=self.event_log_llm_provider)
-            
+
             logger.debug(f"开始提取 Event Log: {memunit.unit_id}")
             event_log = await self._event_log_extractor.extract_event_log(
-                episode_text=memunit.episode,
+                episode_text=memunit.narrative,
                 timestamp=memunit.timestamp
             )
 
@@ -256,9 +256,9 @@ class ExtractionOrchestrator:
             extractor = EventLogExtractor(
                     llm_provider=self.event_log_llm_provider
                 )
-            
+
             event_log = await extractor.extract_event_log(
-                episode_text=episode_memory.episode,
+                episode_text=episode_memory.narrative,
                 timestamp=episode_memory.timestamp
             )
             

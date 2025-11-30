@@ -42,16 +42,16 @@ def format_documents_for_llm(
         # 🔥 根据 use_episode 参数选择格式
         if use_episode:
             # 使用 Episode Memory 格式（完整叙述）
-            episode = doc.get("episode", "N/A")
-            
-            # 限制 episode 长度（避免 prompt 过长）
-            if len(episode) > 500:
-                episode = episode[:500] + "..."
-            
+            narrative = doc.get("narrative", "N/A")
+
+            # 限制 narrative 长度（避免 prompt 过长）
+            if len(narrative) > 500:
+                narrative = narrative[:500] + "..."
+
             doc_text = (
                 f"Document {i}:\n"
                 f"  Title: {subject}\n"
-                f"  Content: {episode}\n"
+                f"  Content: {narrative}\n"
             )
             formatted_docs.append(doc_text)
         else:
@@ -60,13 +60,13 @@ def format_documents_for_llm(
                 event_log = doc["event_log"]
                 time_str = event_log.get("time", "N/A")
                 atomic_facts = event_log.get("atomic_fact", [])
-                
+
                 if isinstance(atomic_facts, list) and atomic_facts:
                     # 格式化为：Document N: 标题 + 时间 + 事实列表
                     facts_text = "\n     ".join(atomic_facts[:5])  # 最多显示 5 个 facts
                     if len(atomic_facts) > 5:
                         facts_text += f"\n     ... and {len(atomic_facts) - 5} more facts"
-                    
+
                     doc_text = (
                         f"Document {i}:\n"
                         f"  Title: {subject}\n"
@@ -76,16 +76,16 @@ def format_documents_for_llm(
                     )
                     formatted_docs.append(doc_text)
                     continue
-            
-            # 如果没有 event_log，回退到 episode
-            episode = doc.get("episode", "N/A")
-            if len(episode) > 500:
-                episode = episode[:500] + "..."
-            
+
+            # 如果没有 event_log，回退到 narrative
+            narrative = doc.get("narrative", "N/A")
+            if len(narrative) > 500:
+                narrative = narrative[:500] + "..."
+
             doc_text = (
                 f"Document {i}:\n"
                 f"  Title: {subject}\n"
-                f"  Content: {episode}\n"
+                f"  Content: {narrative}\n"
             )
             formatted_docs.append(doc_text)
     

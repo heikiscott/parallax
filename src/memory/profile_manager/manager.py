@@ -305,7 +305,7 @@ class ProfileManager:
 
                 if full_mc:
                     full_memunits.append(full_mc)
-                    logger.debug(f"[ProfileManager] ✅ 加载成功，包含 episode: {len(full_mc.episode) if full_mc.episode else 0} 字符")
+                    logger.debug(f"[ProfileManager] ✅ 加载成功，包含 narrative: {len(full_mc.narrative) if full_mc.narrative else 0} 字符")
                 else:
                     logger.warning(f"[ProfileManager] ⚠️  未找到 MemUnit: {unit_id}，使用原始字典")
                     # 如果找不到，使用原始的字典对象

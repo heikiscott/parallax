@@ -139,8 +139,8 @@ def format_documents_for_llm(
         else:
             timestamp_str = str(timestamp)
         
-        # 优先使用 episode（MemUnit 的核心内容）
-        content = getattr(candidate, 'episode', None)
+        # 优先使用 narrative（MemUnit 的核心内容）
+        content = getattr(candidate, 'narrative', None)
         if not content:
             content = getattr(candidate, 'summary', None)
         if not content:

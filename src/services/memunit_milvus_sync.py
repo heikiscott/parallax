@@ -1,6 +1,6 @@
 """MemUnit 到 Milvus 同步服务
 
-负责将 MemUnit.episode 同步到 Milvus 向量数据库（群组记忆）。
+负责将 MemUnit.narrative 同步到 Milvus 向量数据库（群组记忆）。
 PersonalSemanticMemory 和 PersonalEventLog 由 PersonalMemorySyncService 处理。
 """
 
@@ -25,8 +25,8 @@ logger = logging.getLogger(__name__)
 @service(name="memunit_milvus_sync_service", primary=True)
 class MemUnitMilvusSyncService:
     """MemUnit 到 Milvus 同步服务
-    
-    只负责将 MemUnit.episode 同步到 Milvus（群组记忆）。
+
+    只负责将 MemUnit.narrative 同步到 Milvus（群组记忆）。
     PersonalSemanticMemory 和 PersonalEventLog 由 PersonalMemorySyncService 处理。
     """
 
@@ -59,7 +59,7 @@ class MemUnitMilvusSyncService:
     async def sync_memunit(
         self, memunit: MemUnit, sync_to_es: bool = True, sync_to_milvus: bool = True
     ) -> Dict[str, int]:
-        """同步单个 MemUnit.episode 到 Milvus 和 ES
+        """同步单个 MemUnit.narrative 到 Milvus 和 ES
         
         Args:
             memunit: MemUnit 文档对象
@@ -67,18 +67,18 @@ class MemUnitMilvusSyncService:
             sync_to_milvus: 是否同步到 Milvus（默认 True）
             
         Returns:
-            同步统计信息 {"episode": 1}
+            同步统计信息 {"narrative": 1, "es_records": 1}
         """
-        stats = {"episode": 0, "es_records": 0}
+        stats = {"narrative": 0, "es_records": 0}
         
         try:
             # 同步到 Milvus
             if sync_to_milvus:
-                # 只同步 episode（群组记忆）
-                if hasattr(memunit, 'episode') and memunit.episode:
-                    await self._sync_episode(memunit)
-                    stats["episode"] = 1
-                    logger.debug(f"✅ 已同步 episode 到 Milvus: {memunit.unit_id}")
+                # 只同步 narrative（群组记忆）
+                if hasattr(memunit, 'narrative') and memunit.narrative:
+                    await self._sync_narrative(memunit)
+                    stats["narrative"] = 1
+                    logger.debug(f"✅ 已同步 narrative 到 Milvus: {memunit.unit_id}")
                 
                 # 刷新 Milvus，确保数据写入
                 await self.episodic_milvus_repo.flush()
@@ -109,9 +109,9 @@ class MemUnitMilvusSyncService:
             logger.error(f"MemUnit 同步失败: {memunit.unit_id}, error={e}")
             raise
 
-    async def _sync_episode(self, memunit: MemUnit) -> None:
-        """同步 episode 到 Milvus
-        
+    async def _sync_narrative(self, memunit: MemUnit) -> None:
+        """同步 narrative 到 Milvus
+
         Args:
             memunit: MemUnit 文档对象
         """
@@ -122,11 +122,11 @@ class MemUnitMilvusSyncService:
             # 确保是 list 格式（可能是 numpy array）
             if hasattr(vector, 'tolist'):
                 vector = vector.tolist()
-            logger.debug(f"从 MongoDB 读取 episode embedding: {memunit.unit_id}")
-        
+            logger.debug(f"从 MongoDB 读取 narrative embedding: {memunit.unit_id}")
+
         if not vector:
             logger.warning(
-                f"episode 缺少 embedding，跳过同步到 Milvus: {memunit.unit_id}"
+                f"narrative 缺少 embedding，跳过同步到 Milvus: {memunit.unit_id}"
             )
             return
         
@@ -137,7 +137,7 @@ class MemUnitMilvusSyncService:
         if hasattr(memunit, 'summary') and memunit.summary:
             search_content.append(memunit.summary)
         if not search_content:
-            search_content.append(memunit.episode[:100])  # 使用 episode 前 100 字符
+            search_content.append(memunit.narrative[:100])  # 使用 narrative 前 100 字符
         
         # 确保 vector 是 list 格式
         if hasattr(vector, 'tolist'):
@@ -145,10 +145,10 @@ class MemUnitMilvusSyncService:
         
         # MemUnit 的 user_id 始终为 None（群组记忆）
         await self.episodic_milvus_repo.create_and_save_episodic_memory(
-            episode_id=f"{str(memunit.unit_id)}_episode",
+            episode_id=str(memunit.unit_id),
             user_id=memunit.user_id,  # None for group memory
             timestamp=memunit.timestamp or get_now_with_timezone(),
-            episode=memunit.episode,
+            narrative=memunit.narrative,
             search_content=search_content,
             vector=vector,
             user_name=memunit.user_id,
@@ -160,10 +160,10 @@ class MemUnitMilvusSyncService:
             metadata="{}",
             memunit_id_list=[str(memunit.unit_id)],
         )
-        logger.debug(f"✅ 已同步 episode 到 Milvus: {memunit.unit_id}")
+        logger.debug(f"✅ 已同步 narrative 到 Milvus: {memunit.unit_id}")
 
     async def _sync_to_es(self, memunit: MemUnit) -> int:
-        """同步 MemUnit.episode 到 ES
+        """同步 MemUnit.narrative 到 ES
         
         Args:
             memunit: MemUnit 文档对象
@@ -174,20 +174,20 @@ class MemUnitMilvusSyncService:
         count = 0
         
         try:
-            # 只同步 episode（群组记忆）
-            if hasattr(memunit, 'episode') and memunit.episode:
+            # 只同步 narrative（群组记忆）
+            if hasattr(memunit, 'narrative') and memunit.narrative:
                 search_content = []
                 if hasattr(memunit, 'subject') and memunit.subject:
                     search_content.append(memunit.subject)
                 if hasattr(memunit, 'summary') and memunit.summary:
                     search_content.append(memunit.summary)
-                search_content.append(memunit.episode[:500])
-                
+                search_content.append(memunit.narrative[:500])
+
                 await self.es_repo.create_and_save_episodic_memory(
-                    episode_id=f"{str(memunit.unit_id)}_episode",
+                    episode_id=f"{str(memunit.unit_id)}_narrative",
                     user_id=memunit.user_id,
                     timestamp=memunit.timestamp or get_now_with_timezone(),
-                    episode=memunit.episode,
+                    narrative=memunit.narrative,
                     search_content=search_content,
                     user_name=memunit.user_id,
                     title=getattr(memunit, 'subject', None),
@@ -219,14 +219,14 @@ class MemUnitMilvusSyncService:
             "total_memunits": len(memunits),
             "success_memunits": 0,
             "failed_memunits": 0,
-            "total_episode": 0,
+            "total_narrative": 0,
         }
-        
+
         for memunit in memunits:
             try:
                 stats = await self.sync_memunit(memunit)
                 total_stats["success_memunits"] += 1
-                total_stats["total_episode"] += stats["episode"]
+                total_stats["total_narrative"] += stats["narrative"]
             except Exception as e:
                 logger.error(f"批量同步失败: {memunit.unit_id}, error={e}")
                 total_stats["failed_memunits"] += 1

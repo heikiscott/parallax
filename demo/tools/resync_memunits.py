@@ -1,5 +1,5 @@
 """
-批量将 MongoDB 中现有的 MemUnit.episode 重新同步到 Milvus / ES。
+批量将 MongoDB 中现有的 MemUnit.narrative 重新同步到 Milvus / ES。
 
 运行方式：
     uv run python src/bootstrap.py demo/tools/resync_memunits.py

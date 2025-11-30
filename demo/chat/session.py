@@ -369,15 +369,15 @@ class ChatSession:
                 timestamp = mem.get("timestamp", "")[:10]
                 subject = mem.get("subject", "")
                 summary = mem.get("summary", "")
-                episode = mem.get("episode", "")
-                
+                narrative = mem.get("narrative", "")
+
                 parts = [f"[{i}] {self.texts.get('prompt_memory_date', date=timestamp)}"]
                 if subject:
                     parts.append(self.texts.get("prompt_memory_subject", subject=subject))
                 if summary:
                     parts.append(self.texts.get("prompt_memory_content", content=summary))
-                if episode:
-                    parts.append(self.texts.get("prompt_memory_episode", episode=episode))
+                if narrative:
+                    parts.append(self.texts.get("prompt_memory_narrative", narrative=narrative))
                 
                 memory_lines.append(" | ".join(parts))
             

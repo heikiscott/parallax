@@ -382,10 +382,10 @@ class EpisodeMemoryExtractor(MemoryExtractor):
             summary = data["summary"]
 
             # GROUP_EPISODE_GENERATION_PROMPT 模式：将情景记忆存储到 MemUnit 中，返回 MemUnit
-            # 更新 MemUnit 的 episode 字段
+            # 更新 MemUnit 的 narrative 字段
             for memunit in request.memunit_list:
                 memunit.subject = title
-                memunit.episode = content
+                memunit.narrative = content
 
             if use_semantic_extraction:
                 await self._trigger_semantic_extraction_for_memunit_async(
@@ -523,7 +523,7 @@ class EpisodeMemoryExtractor(MemoryExtractor):
                             [memunit.summary for memunit in request.memunit_list]
                         ),
                         episode="\n".join(
-                            [memunit.episode for memunit in request.memunit_list]
+                            [memunit.narrative for memunit in request.memunit_list]
                         ),
                         group_id=request.group_id,
                         participants=participants,

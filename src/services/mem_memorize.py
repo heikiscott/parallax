@@ -168,7 +168,7 @@ async def _trigger_clustering(group_id: str, memunit: MemUnit, scene: Optional[s
         # 将 MemUnit 转换为聚类所需的字典格式
         memunit_dict = {
             "unit_id": str(memunit.unit_id),
-            "episode": memunit.episode,
+            "narrative": memunit.narrative,
             "timestamp": memunit.timestamp.timestamp() if memunit.timestamp else None,
             "participants": memunit.participants or [],
             "group_id": group_id,
@@ -502,7 +502,7 @@ async def save_memories(
             )
         else:
             # 所有通过 save_memories 保存的 episode 都是从 EpisodeMemoryExtractor 提取的个人视角 episode
-            # 群组 episode 是存储在 MemUnit.episode 中，由 memunit_sync.py 同步到 Milvus
+            # 群组 episode 是存储在 MemUnit.narrative 中，由 memunit_sync.py 同步到 Milvus
             milvus_entity["memory_sub_type"] = "personal_episode"
             milvus_entity["start_time"] = 0
             milvus_entity["end_time"] = 0
@@ -513,7 +513,7 @@ async def save_memories(
                 milvus_entity["metadata"] = "{}"
             # 确保 search_content 字段存在
             if "search_content" not in milvus_entity:
-                milvus_entity["search_content"] = milvus_entity.get("episode", "")[:500]
+                milvus_entity["search_content"] = milvus_entity.get("narrative", "")[:500]
             
             await episodic_memory_milvus_repo.insert(milvus_entity)
             logger.debug(
@@ -773,7 +773,7 @@ async def memorize(request: MemorizeRequest) -> List[Memory]:
     else:
         logger.info(f"[边界检测结果] 判断: 是边界！成功提取MemUnit")
         logger.info(f"[边界检测结果] MemUnit unit_id: {memunit.unit_id}")
-        logger.info(f"[边界检测结果] Episode: {memunit.episode[:100] if memunit.episode else 'None'}...")
+        logger.info(f"[边界检测结果] Narrative: {memunit.narrative[:100] if memunit.narrative else 'None'}...")
     logger.info(f"=" * 80)
 
     if memunit == None:

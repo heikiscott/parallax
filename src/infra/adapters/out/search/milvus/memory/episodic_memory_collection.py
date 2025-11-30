@@ -72,10 +72,10 @@ class EpisodicMemoryCollection(MilvusCollectionWithSuffix):
                 name="timestamp", dtype=DataType.INT64, description="事件时间戳"
             ),
             FieldSchema(
-                name="episode",
+                name="narrative",
                 dtype=DataType.VARCHAR,
                 max_length=10000,
-                description="情景描述",
+                description="叙事描述（核心内容字段）",
             ),
             FieldSchema(
                 name="search_content",

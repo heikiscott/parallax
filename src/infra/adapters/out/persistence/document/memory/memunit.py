@@ -82,7 +82,7 @@ class MemUnit(DocumentBase, AuditBase):
     - participants: ✅ 从消息提取
     - type: ✅ CONVERSATION
     - subject: ❌ None
-    - episode: ❌ None
+    - narrative: ❌ None
     - keywords: ❌ None (预留字段，暂未实现)
     - linked_entities: ❌ None (预留字段，暂未实现)
     - semantic_memories: ❌ None
@@ -91,7 +91,7 @@ class MemUnit(DocumentBase, AuditBase):
 
     提取阶段 (EpisodeMemoryExtractor.extract_memory):
     - subject: ✅ LLM 提取的 title
-    - episode: ✅ LLM 提取的 content
+    - narrative: ✅ LLM 提取的 content
     - extend['embedding']: ✅ 向量化后赋值
 
     语义提取阶段 (SemanticMemoryExtractor):
@@ -141,7 +141,7 @@ class MemUnit(DocumentBase, AuditBase):
         default=None, description="关联的实体ID（预留字段，暂未实现）"
     )
 
-    episode: Optional[str] = Field(default=None, description="情景记忆")
+    narrative: Optional[str] = Field(default=None, description="叙事描述（核心内容字段）")
     semantic_memories: Optional[List] = Field(default=None, description="语义记忆")
     event_log: Optional[Dict] = Field(default=None, description="Event Log 原子事实")
     extend: Optional[Dict] = Field(default=None, description="扩展字段")

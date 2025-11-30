@@ -272,9 +272,9 @@ def _convert_episode_memory_to_doc(
         participants=episode_memory.participants,
         summary=episode_memory.summary or "",
         subject=episode_memory.subject or "",
-        episode=(
-            episode_memory.episode
-            if hasattr(episode_memory, 'episode')
+        narrative=(
+            episode_memory.narrative
+            if hasattr(episode_memory, 'narrative')
             else episode_memory.summary or ""
         ),
         type=str(episode_memory.type.value) if episode_memory.type else "",
@@ -900,7 +900,7 @@ def _convert_memunit_to_document(
             subject=memunit.subject,
             keywords=memunit.keywords,
             linked_entities=memunit.linked_entities,
-            episode=memunit.episode,
+            narrative=memunit.narrative,
             semantic_memories=semantic_memories_list,  # ✅ 添加语义记忆
             event_log=event_log_dict,  # ✅ 添加事件日志
             extend=extend_dict if extend_dict else None,  # ✅ 添加 extend（包含 embedding）
