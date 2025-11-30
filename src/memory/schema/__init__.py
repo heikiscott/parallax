@@ -14,6 +14,7 @@
 - episode_memory.py: 情景记忆 (EpisodeMemory)
 - profile_memory.py: 用户画像 (ProfileMemory)
 - group_profile_memory.py: 群体画像 (GroupProfileMemory)
+- event_log.py: 事件日志 (EventLog) - 原子事实
 
 类型层次:
 ========
@@ -26,7 +27,8 @@
 
     独立类型:
         ├── SemanticMemory (语义记忆 - 事实性)
-        └── SemanticMemoryItem (语义记忆项 - 预测性)
+        ├── SemanticMemoryItem (语义记忆项 - 预测性)
+        └── EventLog (事件日志 - 原子事实)
 
 使用示例:
 ========
@@ -39,6 +41,7 @@
         GroupProfileMemory,
         SemanticMemory,
         SemanticMemoryItem,
+        EventLog,
     )
 """
 
@@ -50,6 +53,7 @@ from .semantic_memory import SemanticMemory, SemanticMemoryItem
 from .episode_memory import EpisodeMemory
 from .profile_memory import ProfileMemory
 from .group_profile_memory import GroupProfileMemory
+from .event_log import EventLog
 
 __all__ = [
     # 枚举类型
@@ -64,4 +68,5 @@ __all__ = [
     "EpisodeMemory",
     "ProfileMemory",
     "GroupProfileMemory",
+    "EventLog",
 ]

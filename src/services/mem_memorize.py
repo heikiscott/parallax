@@ -4,8 +4,7 @@ import json
 import traceback
 from memory.orchestrator import MemorizeRequest, MemorizeOfflineRequest
 from memory.orchestrator import ExtractionOrchestrator
-from memory.schema import MemoryType, MemUnit, Memory, SemanticMemoryItem, SourceType
-from memory.extraction.memory.event_log_extractor import EventLog
+from memory.schema import MemoryType, MemUnit, Memory, SemanticMemoryItem, SourceType, EventLog
 from memory.extraction.memunit import RawData, StatusResult
 from infra.adapters.out.persistence.document.memory.memunit import DataTypeEnum
 from memory.schema import ProfileMemory, GroupProfileMemory

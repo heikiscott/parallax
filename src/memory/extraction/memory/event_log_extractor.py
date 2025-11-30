@@ -5,7 +5,6 @@ This module extracts atomic event logs from episode memories for optimized retri
 Each event log contains a time and a list of atomic facts extracted from the episode.
 """
 
-from dataclasses import dataclass
 from typing import Optional, List, Dict, Any
 from datetime import datetime
 import json
@@ -24,34 +23,10 @@ from utils.datetime_utils import get_now_with_timezone
 
 from core.observation.logger import get_logger
 
+# EventLog 数据结构从 schema 模块导入
+from memory.schema import EventLog
+
 logger = get_logger(__name__)
-
-
-@dataclass
-class EventLog:
-    """
-    Event log data structure containing time and atomic facts.
-    """
-
-    time: str  # 事件发生时间，格式如 "March 10, 2024(Sunday) at 2:00 PM"
-    atomic_fact: List[str]  # 原子事实列表，每个事实是一个完整的句子
-    fact_embeddings: List[List[float]] = None  # 每个 atomic_fact 对应的 embedding
-
-    def to_dict(self) -> Dict[str, Any]:
-        """Convert EventLog to dictionary format."""
-        result = {"time": self.time, "atomic_fact": self.atomic_fact}
-        if self.fact_embeddings:
-            result["fact_embeddings"] = self.fact_embeddings
-        return result
-
-    @classmethod
-    def from_dict(cls, data: Dict[str, Any]) -> "EventLog":
-        """Create EventLog from dictionary."""
-        return cls(
-            time=data.get("time", ""),
-            atomic_fact=data.get("atomic_fact", []),
-            fact_embeddings=data.get("fact_embeddings"),
-        )
 
 
 class EventLogExtractor:

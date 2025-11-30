@@ -136,7 +136,119 @@ class SemanticMemory:
     source_episodes: List[str]  # 来源 episode ID
 ```
 
-### 2.3 字段用途分类：检索 vs 返回给 Prompt
+### 2.3 嵌入式存储 + 复制分发设计哲学
+
+**核心设计**：MemUnit 采用**嵌入式存储**，同时通过**复制分发**生成独立的检索文档。
+
+```
+┌─────────────────────────────────────────────────────────────────────────┐
+│                    存储架构设计                                          │
+├─────────────────────────────────────────────────────────────────────────┤
+│                                                                         │
+│  MemUnit (MongoDB: memunits 集合)                                       │
+│  ├── narrative: "详细叙事..." ─────────┬─────────────────────────────┐  │
+│  ├── semantic_memories: [{...}] ───────┼──────────────────────┐      │  │
+│  └── event_log: {...} ─────────────────┼───────────────┐      │      │  │
+│                                        │               │      │      │  │
+│      ┌─────────────────────────────────┘               │      │      │  │
+│      │ 复制分发                                         │      │      │  │
+│      ▼                                                 ▼      ▼      │  │
+│  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────────┐   │  │
+│  │ EpisodeMemory   │  │ PersonalEventLog│  │ PersonalSemantic    │   │  │
+│  │ (独立文档)      │  │ (独立文档)      │  │ Memory (独立文档)   │   │  │
+│  │                 │  │                 │  │                     │   │  │
+│  │ • MongoDB       │  │ • MongoDB       │  │ • MongoDB           │   │  │
+│  │ • ES 索引       │  │ • ES 索引       │  │ • ES 索引           │   │  │
+│  │ • Milvus 向量   │  │ • Milvus 向量   │  │ • Milvus 向量       │   │  │
+│  └─────────────────┘  └─────────────────┘  └─────────────────────┘   │  │
+│                                                                         │
+└─────────────────────────────────────────────────────────────────────────┘
+```
+
+**三个核心概念的关系**：
+
+| 概念 | 在 MemUnit 中 | 独立存储 | 说明 |
+|------|--------------|----------|------|
+| **narrative** | `str` (纯文本) | `EpisodeMemory` (完整文档) | 文本 vs 文档 |
+| **semantic_memories** | `List[SemanticMemoryItem]` (轻量) | `SemanticMemory` (完整文档) | 预测 vs 事实 |
+| **event_log** | `EventLog` (嵌入对象) | `PersonalEventLog` (完整文档) | 嵌入 vs 独立 |
+
+**为什么这样设计？**
+
+```
+┌─────────────────────────────────────────────────────────────────────────┐
+│                    设计哲学                                              │
+├─────────────────────────────────────────────────────────────────────────┤
+│                                                                         │
+│  1. MemUnit 作为历史快照                                                 │
+│     └─ 保留提取时的完整数据，支持溯源和审计                              │
+│     └─ 即使下游索引重建，原始数据不丢失                                  │
+│                                                                         │
+│  2. 解耦提取与检索                                                       │
+│     └─ MemUnit 专注于边界检测和内容提取                                  │
+│     └─ EpisodeMemory/EventLog/SemanticMemory 专注于检索优化              │
+│                                                                         │
+│  3. 多视角记忆支持                                                       │
+│     └─ 同一 MemUnit.narrative 可生成多个用户视角的 EpisodeMemory         │
+│     └─ 群组对话 → 每个参与者一份独立的情景记忆                           │
+│                                                                         │
+│  4. 灵活的检索策略                                                       │
+│     └─ EpisodeMemory: 向量 + BM25 混合检索                               │
+│     └─ EventLog: 原子事实级别的细粒度检索                                │
+│     └─ SemanticMemory: 知识图谱式的事实查询                              │
+│                                                                         │
+│  5. 数据冗余换性能                                                       │
+│     └─ 牺牲存储空间，换取查询独立性和性能                                │
+│     └─ 各类型 Memory 可独立优化索引结构                                  │
+│                                                                         │
+└─────────────────────────────────────────────────────────────────────────┘
+```
+
+**数据流转示例**：
+
+```python
+# Step 1: MemUnit 提取阶段 - 嵌入式存储
+memunit = MemUnit(
+    unit_id="mu_123",
+    narrative="用户A和用户B讨论了项目进展...",  # 纯文本
+    semantic_memories=[SemanticMemoryItem(content="用户A熟悉Python")],  # 嵌入
+    event_log=EventLog(time="...", atomic_fact=["A提到项目延期"])  # 嵌入
+)
+
+# Step 2: 保存 MemUnit 到 MongoDB (完整快照)
+await memunit_repo.save(memunit)
+
+# Step 3: 复制分发到独立存储
+# 3a. narrative → EpisodeMemory (每个参与者一份)
+for user_id in memunit.user_id_list:
+    episode = EpisodeMemory(
+        episode_id=generate_id(),
+        user_id=user_id,
+        narrative=memunit.narrative,  # 复制文本
+        vector=get_embedding(memunit.narrative),  # 生成向量
+        memunit_id_list=[memunit.unit_id]  # 引用回 MemUnit
+    )
+    await episode_repo.save(episode)  # MongoDB + ES + Milvus
+
+# 3b. event_log → PersonalEventLog
+event_log_doc = PersonalEventLog(
+    user_id=user_id,
+    atomic_fact=memunit.event_log.atomic_fact,
+    fact_embeddings=memunit.event_log.fact_embeddings
+)
+await event_log_repo.save(event_log_doc)  # MongoDB + ES + Milvus
+
+# 3c. semantic_memories → PersonalSemanticMemory
+for item in memunit.semantic_memories:
+    semantic = PersonalSemanticMemory(
+        user_id=user_id,
+        content=item.content,
+        embedding=item.embedding
+    )
+    await semantic_repo.save(semantic)  # MongoDB + ES + Milvus
+```
+
+### 2.4 字段用途分类：检索 vs 返回给 Prompt
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────┐
@@ -185,7 +297,7 @@ class SemanticMemory:
 └─────────────────────────────────────────────────────────────────────────┘
 ```
 
-### 2.4 完整数据流图
+### 2.5 完整数据流图
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────┐
