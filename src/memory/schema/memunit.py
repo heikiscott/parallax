@@ -1,35 +1,44 @@
 """
-MemUnit - Memory Unit Data Structure.
+记忆单元模块 (MemUnit - Memory Unit)
 
-This module defines MemUnit, the fundamental unit of extracted memory content.
-A MemUnit represents a coherent segment of conversation or content that has been
-identified as a meaningful boundary for memory extraction.
+定义 MemUnit，即从对话中提取的基本记忆单元。
+MemUnit 是对话边界检测的输出，代表一段语义完整的对话内容。
 
-Processing Flow:
-----------------
-    Raw Messages --> Boundary Detection --> MemUnit --> Memory Extraction --> Memory
-                                              |
-                                              +-- Contains: original_data, episode,
-                                                  semantic_memories, event_log
+处理流程:
+========
 
-A MemUnit is the intermediate representation between raw input data and
-final extracted memories (EpisodeMemory, SemanticMemory, etc.).
+    原始消息 --> 边界检测 --> MemUnit --> 记忆提取 --> Memory
+                               │
+                               ├── original_data: 原始消息列表
+                               ├── summary: 内容摘要
+                               ├── episode: 情景描述
+                               ├── semantic_memories: 语义关联
+                               └── event_log: 事件日志
 
-Usage:
-------
+MemUnit 是原始输入数据和最终提取记忆之间的中间表示。
+它封装了一组语义相关的消息，作为后续记忆提取的输入单元。
+
+核心概念:
+========
+- 边界检测: 将连续的对话流切分为语义完整的片段
+- 话题转换: 当对话主题发生变化时，生成新的 MemUnit
+- 多用户: 一个 MemUnit 可能包含多个用户的消息
+
+使用示例:
+========
     from memory.schema import MemUnit, SourceType
 
     memunit = MemUnit(
         event_id="evt_123",
         user_id_list=["user_1", "user_2"],
         original_data=[
-            {"speaker_id": "user_1", "content": "Hello!", "timestamp": "..."},
-            {"speaker_id": "user_2", "content": "Hi there!", "timestamp": "..."},
+            {"speaker_id": "user_1", "content": "你好!", "timestamp": "..."},
+            {"speaker_id": "user_2", "content": "嗨!", "timestamp": "..."},
         ],
         timestamp=datetime.now(),
-        summary="A greeting exchange between two users",
+        summary="两位用户互相打招呼",
         type=SourceType.CONVERSATION,
-        episode="User 1 greeted User 2, who responded warmly..."
+        episode="用户1向用户2问好，用户2热情回应..."
     )
 """
 
@@ -47,130 +56,133 @@ if TYPE_CHECKING:
 @dataclass
 class MemUnit:
     """
-    Memory Unit - The atomic unit of extracted conversation content.
+    记忆单元 (Memory Unit) - 对话内容提取的原子单位
 
-    A MemUnit captures a coherent segment of conversation or content that
-    has been identified through boundary detection. It serves as the input
-    for downstream memory extraction (episode, semantic, profile memories).
+    MemUnit 封装了通过边界检测识别出的一段语义完整的对话内容，
+    作为下游记忆提取（情景记忆、语义记忆、用户画像等）的输入。
 
-    Attributes:
-        event_id (str): Unique identifier for this memory unit.
-            Format: UUID string. Used for tracing and linking memories.
+    字段分组说明:
+    =============
 
-        user_id_list (List[str]): List of all user IDs involved in this unit.
-            May differ from participants if some users are mentioned but not speaking.
+    1. 标识字段 (Identity):
+        - event_id: 唯一标识符，用于追踪和关联
 
-        original_data (List[Dict[str, Any]]): Raw message data that forms this unit.
-            Each dict typically contains:
-            - speaker_id: Who sent the message
-            - speaker_name: Display name of the sender
-            - content: Message text
-            - timestamp: When the message was sent
-            - Additional fields depending on source type
+    2. 用户字段 (Users):
+        - user_id_list: 涉及的所有用户ID
+        - participants: 实际发言的参与者 (user_id_list 的子集)
 
-        timestamp (datetime): When this memory unit was created/detected.
-            Usually the timestamp of the last message in the unit.
+    3. 原始数据 (Raw Data):
+        - original_data: 原始消息列表，每条消息包含:
+            - speaker_id: 发言者ID
+            - speaker_name: 发言者名称
+            - content: 消息内容
+            - timestamp: 发送时间
 
-        summary (str): Brief summary of the conversation content.
-            Generated during boundary detection, 1-2 sentences.
+    4. 时间字段 (Timing):
+        - timestamp: 该单元的时间戳 (通常是最后一条消息的时间)
 
-        group_id (Optional[str]): ID of the group/chat where this occurred.
-            None for direct messages or non-group contexts.
+    5. 上下文字段 (Context):
+        - group_id: 群组ID (私聊场景为 None)
+        - type: 数据源类型 (通常为 CONVERSATION)
 
-        participants (Optional[List[str]]): Active participants (speakers) in this unit.
-            Subset of user_id_list who actually sent messages.
+    6. 内容字段 (Content):
+        - summary: 简短摘要 (1-2句话)
+        - subject: 话题/主题
+        - keywords: 关键词列表
+        - linked_entities: 关联实体 (项目名、产品名等)
+        - episode: 详细的情景描述
 
-        type (Optional[SourceType]): Source type of the original data.
-            Usually SourceType.CONVERSATION for chat messages.
+    7. 提取结果字段 (Extracted):
+        - semantic_memories: 语义记忆关联列表
+        - event_log: 事件日志 (带时间戳的原子事实)
 
-        keywords (Optional[List[str]]): Key terms extracted from the content.
-            Used for search and categorization.
+    8. 扩展字段 (Extension):
+        - extend: 自定义元数据
 
-        subject (Optional[str]): Topic or subject of the conversation.
-            Example: "API authentication implementation"
-
-        linked_entities (Optional[List[str]]): External entities referenced.
-            Project names, product names, URLs, etc.
-
-        episode (Optional[str]): Detailed episodic narrative of events.
-            Group-level episode summary generated during extraction.
-
-        semantic_memories (Optional[List[SemanticMemoryItem]]): Predicted associations.
-            Forward-looking semantic associations about impact on users.
-
-        event_log (Optional[Any]): Atomic event log extracted from this unit.
-            Contains timestamped facts for fine-grained recall.
-
-        extend (Optional[Dict[str, Any]]): Extension field for custom metadata.
-            Use for source-specific fields not in the standard schema.
-
-    Raises:
-        ValueError: If event_id, original_data, or summary is missing/empty.
+    验证规则:
+    ========
+    - event_id: 必填
+    - original_data: 必填，不能为空
+    - summary: 必填，不能为空
     """
 
-    # === Required Fields ===
-    event_id: str
-    user_id_list: List[str]
-    original_data: List[Dict[str, Any]]
-    timestamp: datetime.datetime
-    summary: str
+    # ===== 1. 标识字段 =====
+    event_id: str  # 唯一标识符 (UUID格式)
 
-    # === Context Fields ===
-    group_id: Optional[str] = None
-    participants: Optional[List[str]] = None
-    type: Optional[SourceType] = None
+    # ===== 2. 用户字段 =====
+    user_id_list: List[str]  # 涉及的所有用户ID
+    participants: Optional[List[str]] = None  # 实际发言的参与者
 
-    # === Content Fields ===
-    keywords: Optional[List[str]] = None
-    subject: Optional[str] = None
-    linked_entities: Optional[List[str]] = None
-    episode: Optional[str] = None
+    # ===== 3. 原始数据 =====
+    original_data: List[Dict[str, Any]] = None  # 原始消息列表
 
-    # === Extracted Content Fields ===
-    semantic_memories: Optional[List['SemanticMemoryItem']] = None
-    event_log: Optional[Any] = None
+    # ===== 4. 时间字段 =====
+    timestamp: datetime.datetime = None  # 单元时间戳
 
-    # === Extension Field ===
-    extend: Optional[Dict[str, Any]] = None
+    # ===== 5. 上下文字段 =====
+    group_id: Optional[str] = None  # 群组ID
+    type: Optional[SourceType] = None  # 数据源类型
+
+    # ===== 6. 内容字段 =====
+    summary: str = None  # 简短摘要 (1-2句话)
+    subject: Optional[str] = None  # 话题/主题
+    keywords: Optional[List[str]] = None  # 关键词列表
+    linked_entities: Optional[List[str]] = None  # 关联实体
+    episode: Optional[str] = None  # 详细情景描述
+
+    # ===== 7. 提取结果字段 =====
+    semantic_memories: Optional[List['SemanticMemoryItem']] = None  # 语义记忆关联
+    event_log: Optional[Any] = None  # 事件日志
+
+    # ===== 8. 扩展字段 =====
+    extend: Optional[Dict[str, Any]] = None  # 自定义元数据
 
     def __post_init__(self):
-        """Validate required fields after initialization."""
+        """初始化后验证必填字段"""
         if not self.event_id:
-            raise ValueError("event_id is required")
+            raise ValueError("event_id 是必填字段")
         if not self.original_data:
-            raise ValueError("original_data is required")
+            raise ValueError("original_data 是必填字段")
         if not self.summary:
-            raise ValueError("summary is required")
+            raise ValueError("summary 是必填字段")
 
     def __repr__(self) -> str:
-        """Return a concise string representation."""
+        """返回简洁的字符串表示"""
+        summary_preview = self.summary[:50] if self.summary else ""
         return (
             f"MemUnit(event_id={self.event_id}, "
             f"messages={len(self.original_data)}, "
             f"timestamp={self.timestamp}, "
-            f"summary={self.summary[:50]}...)"
+            f"summary={summary_preview}...)"
         )
 
     def to_dict(self) -> Dict[str, Any]:
         """
-        Convert MemUnit to dictionary for serialization.
+        转换为字典格式，用于序列化
 
-        Returns:
-            Dictionary representation suitable for JSON/database storage.
+        返回:
+            适合 JSON 序列化或数据库存储的字典
         """
         return {
+            # 标识字段
             "event_id": self.event_id,
+            # 用户字段
             "user_id_list": self.user_id_list,
-            "original_data": self.original_data,
-            "timestamp": to_iso_format(self.timestamp),
-            "summary": self.summary,
-            "group_id": self.group_id,
             "participants": self.participants,
+            # 原始数据
+            "original_data": self.original_data,
+            # 时间字段
+            "timestamp": to_iso_format(self.timestamp),
+            # 上下文字段
+            "group_id": self.group_id,
             "type": str(self.type.value) if self.type else None,
-            "keywords": self.keywords,
+            # 内容字段
+            "summary": self.summary,
             "subject": self.subject,
+            "keywords": self.keywords,
             "linked_entities": self.linked_entities,
             "episode": self.episode,
+            # 提取结果字段
             "semantic_memories": (
                 [item.to_dict() for item in self.semantic_memories]
                 if self.semantic_memories
@@ -180,5 +192,6 @@ class MemUnit:
                 self.event_log.to_dict() if hasattr(self.event_log, 'to_dict')
                 else self.event_log
             ) if self.event_log else None,
+            # 扩展字段
             "extend": self.extend,
         }

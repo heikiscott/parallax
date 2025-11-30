@@ -1,26 +1,32 @@
 """
-Memory Base Class.
+记忆基类模块 (Memory Base Class)
 
-This module defines the base Memory class that all specific memory types inherit from.
-It provides the common structure and serialization methods for extracted memories.
+定义所有具体记忆类型继承的基类 Memory。
+提供通用的结构和序列化方法。
 
-Inheritance Hierarchy:
-----------------------
-    Memory (base class)
-        |
-        +-- EpisodeMemory
-        |       Personal narrative memories
-        |
-        +-- ProfileMemory
-        |       User profile and characteristics
-        |
-        +-- GroupProfileMemory
-                Group collective profile
+继承层次结构:
+=============
 
-Usage:
-------
-    # Memory is typically not instantiated directly.
-    # Use specific subclasses instead:
+    Memory (基类)
+        │
+        ├── EpisodeMemory (情景记忆)
+        │       个人叙事性记忆，从特定用户视角描述
+        │
+        ├── ProfileMemory (用户画像)
+        │       用户特征档案，包含技能、性格、偏好等
+        │
+        └── GroupProfileMemory (群体画像)
+                群体特征，包含话题、角色、互动模式
+
+设计原则:
+========
+- Memory 通常不直接实例化，而是使用具体的子类
+- 子类在 __post_init__ 中自动设置 memory_type
+- 所有记忆都可追溯到源 MemUnit (通过 ori_event_id_list)
+
+使用示例:
+========
+    # Memory 通常不直接实例化，使用子类:
 
     from memory.schema import EpisodeMemory, ProfileMemory
 
@@ -28,7 +34,7 @@ Usage:
         user_id="user_123",
         timestamp=datetime.now(),
         ori_event_id_list=["event_1"],
-        episode="User discussed project requirements..."
+        episode="用户讨论了项目需求..."
     )
 """
 
@@ -47,108 +53,107 @@ if TYPE_CHECKING:
 @dataclass
 class Memory:
     """
-    Base class for all extracted memories.
+    记忆基类 - 所有提取记忆类型的父类
 
-    This dataclass provides the common structure shared by all memory types.
-    Subclasses (EpisodeMemory, ProfileMemory, etc.) extend this with type-specific fields.
+    此数据类提供所有记忆类型共享的通用结构。
+    子类 (EpisodeMemory, ProfileMemory 等) 在此基础上扩展特定字段。
 
-    Attributes:
-        memory_type (MemoryType): Type of this memory (EPISODE_SUMMARY, PROFILE, etc.).
-            Set automatically by subclasses in __post_init__.
+    字段分组说明:
+    =============
 
-        user_id (str): ID of the user this memory belongs to.
-            For personal memories, this is the memory owner.
-            For group memories, this may be a representative user or group admin.
+    1. 类型字段 (Type):
+        - memory_type: 记忆类型 (EPISODE_SUMMARY, PROFILE 等)
+          由子类在 __post_init__ 中自动设置
 
-        timestamp (datetime): When this memory was created or when the events occurred.
-            Stored in UTC, converted to ISO format for serialization.
+    2. 归属字段 (Ownership):
+        - user_id: 记忆所属用户ID
+          对于个人记忆，这是记忆的拥有者
+          对于群体记忆，可能是代表用户或群管理员
 
-        ori_event_id_list (List[str]): Original event IDs that this memory is derived from.
-            Links back to source MemUnits for traceability.
+    3. 时间字段 (Timing):
+        - timestamp: 记忆创建时间或事件发生时间
+          存储为 UTC，序列化时转换为 ISO 格式
 
-        subject (Optional[str]): Brief subject/title of the memory content.
-            Example: "Project kickoff meeting", "Technical discussion about API"
+    4. 溯源字段 (Provenance):
+        - ori_event_id_list: 源事件ID列表，关联到源 MemUnit
+        - memunit_event_id_list: 用于创建此记忆的 MemUnit 事件ID
 
-        summary (Optional[str]): Concise summary of the memory content.
-            Typically 1-3 sentences describing the key points.
+    5. 内容字段 (Content):
+        - subject: 简短的主题/标题
+        - summary: 简洁摘要 (1-3句话)
+        - episode: 详细的叙事描述
 
-        episode (Optional[str]): Detailed narrative description.
-            Full episodic content for EPISODE_SUMMARY type memories.
+    6. 上下文字段 (Context):
+        - group_id: 群组ID (个人记忆为 None)
+        - participants: 参与者用户ID列表
+        - type: 源数据类型 (通常为 CONVERSATION)
 
-        group_id (Optional[str]): ID of the group where this memory originated.
-            None for personal/individual memories.
+    7. 索引字段 (Indexing):
+        - keywords: 关键词，用于搜索和分类
+        - linked_entities: 关联实体 (项目名、产品名等)
 
-        participants (Optional[List[str]]): User IDs of people involved in this memory.
-            Useful for multi-party conversations.
+    8. 关联字段 (Relations):
+        - semantic_memories: 关联的语义记忆预测
 
-        type (Optional[SourceType]): Source type of the original data.
-            Usually SourceType.CONVERSATION for chat-based memories.
-
-        keywords (Optional[List[str]]): Extracted keywords for search/indexing.
-            Example: ["python", "api", "authentication"]
-
-        linked_entities (Optional[List[str]]): Related entity references.
-            Example: project names, product names, external references.
-
-        memunit_event_id_list (Optional[List[str]]): MemUnit event IDs used to create this memory.
-            Different from ori_event_id_list which may reference other sources.
-
-        semantic_memories (Optional[List[SemanticMemoryItem]]): Associated semantic predictions.
-            Forward-looking associations about how events may impact the user.
-
-        extend (Optional[Dict[str, Any]]): Extension field for additional metadata.
-            Use for custom fields that don't fit the standard schema.
+    9. 扩展字段 (Extension):
+        - extend: 自定义元数据，用于非标准字段
     """
 
-    # === Required Fields ===
-    memory_type: MemoryType
-    user_id: str
-    timestamp: datetime.datetime
-    ori_event_id_list: List[str]
+    # ===== 1. 类型字段 =====
+    memory_type: MemoryType  # 记忆类型 (由子类自动设置)
 
-    # === Content Fields ===
-    subject: Optional[str] = None
-    summary: Optional[str] = None
-    episode: Optional[str] = None
+    # ===== 2. 归属字段 =====
+    user_id: str  # 记忆所属用户ID
 
-    # === Context Fields ===
-    group_id: Optional[str] = None
-    participants: Optional[List[str]] = None
-    type: Optional[SourceType] = None
+    # ===== 3. 时间字段 =====
+    timestamp: datetime.datetime  # 创建时间/事件时间
 
-    # === Indexing Fields ===
-    keywords: Optional[List[str]] = None
-    linked_entities: Optional[List[str]] = None
+    # ===== 4. 溯源字段 =====
+    ori_event_id_list: List[str]  # 源事件ID列表
+    memunit_event_id_list: Optional[List[str]] = None  # MemUnit 事件ID列表
 
-    # === Relationship Fields ===
-    memunit_event_id_list: Optional[List[str]] = None
-    semantic_memories: Optional[List['SemanticMemoryItem']] = None
+    # ===== 5. 内容字段 =====
+    subject: Optional[str] = None  # 主题/标题
+    summary: Optional[str] = None  # 简洁摘要
+    episode: Optional[str] = None  # 详细叙事
 
-    # === Extension Field ===
-    extend: Optional[Dict[str, Any]] = None
+    # ===== 6. 上下文字段 =====
+    group_id: Optional[str] = None  # 群组ID
+    participants: Optional[List[str]] = None  # 参与者列表
+    type: Optional[SourceType] = None  # 源数据类型
+
+    # ===== 7. 索引字段 =====
+    keywords: Optional[List[str]] = None  # 关键词
+    linked_entities: Optional[List[str]] = None  # 关联实体
+
+    # ===== 8. 关联字段 =====
+    semantic_memories: Optional[List['SemanticMemoryItem']] = None  # 语义记忆关联
+
+    # ===== 9. 扩展字段 =====
+    extend: Optional[Dict[str, Any]] = None  # 自定义元数据
 
     def __post_init__(self):
         """
-        Post-initialization hook for subclasses.
+        初始化后钩子，供子类重写
 
-        Subclasses should override this to set memory_type automatically.
-        Always call super().__post_init__() after setting memory_type.
+        子类应重写此方法以自动设置 memory_type。
+        设置 memory_type 后应调用 super().__post_init__()。
         """
         pass
 
     def to_dict(self) -> Dict[str, Any]:
         """
-        Convert memory to dictionary for serialization.
+        转换为字典格式，用于序列化
 
-        Handles type conversions:
-        - datetime -> ISO format string
-        - MemoryType/SourceType -> string value
-        - SemanticMemoryItem -> dict via to_dict()
+        类型转换处理:
+        - datetime -> ISO 格式字符串
+        - MemoryType/SourceType -> 字符串值
+        - SemanticMemoryItem -> 通过 to_dict() 转换
 
-        Returns:
-            Dictionary representation suitable for JSON serialization or database storage.
+        返回:
+            适合 JSON 序列化或数据库存储的字典
         """
-        # Handle timestamp conversion (may be datetime, str, or None)
+        # 处理时间戳转换 (可能是 datetime、str 或 None)
         timestamp_str = None
         if self.timestamp:
             if isinstance(self.timestamp, str):
@@ -160,22 +165,31 @@ class Memory:
                     timestamp_str = str(self.timestamp) if self.timestamp else None
 
         return {
+            # 类型字段
             "memory_type": self.memory_type.value if self.memory_type else None,
+            # 归属字段
             "user_id": self.user_id,
+            # 时间字段
             "timestamp": timestamp_str,
+            # 溯源字段
             "ori_event_id_list": self.ori_event_id_list,
+            # 内容字段
             "subject": self.subject,
             "summary": self.summary,
             "episode": self.episode,
+            # 上下文字段
             "group_id": self.group_id,
             "participants": self.participants,
             "type": self.type.value if self.type else None,
+            # 索引字段
             "keywords": self.keywords,
             "linked_entities": self.linked_entities,
+            # 关联字段
             "semantic_memories": (
                 [item.to_dict() for item in self.semantic_memories]
                 if self.semantic_memories
                 else None
             ),
+            # 扩展字段
             "extend": self.extend,
         }

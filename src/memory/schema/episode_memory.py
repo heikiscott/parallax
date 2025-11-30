@@ -1,35 +1,42 @@
 """
-Episode Memory - Personal Narrative Memory.
+情景记忆模块 (Episode Memory)
 
-This module defines EpisodeMemory, which captures personal narrative experiences
-from a specific user's perspective. Episode memories are the primary output
-of the memory extraction pipeline.
+定义 EpisodeMemory，用于存储从特定用户视角描述的个人叙事性记忆。
+情景记忆是记忆提取流水线的主要输出类型。
 
-Characteristics:
-----------------
-- Personal: Written from ONE user's point of view
-- Narrative: Describes events as a story, not just facts
-- Contextual: Includes emotions, reactions, and interpretations
-- Traceable: Links back to source MemUnit via event_id
+核心特点:
+========
+- 个人视角: 从单一用户的角度描述事件
+- 叙事性: 以故事形式描述，而非简单的事实罗列
+- 主观性: 包含个人感受、反应和解读
+- 可追溯: 通过 event_id 关联到源 MemUnit
 
-Example:
---------
-    MemUnit (group event):
-        "Alice and Bob discussed the new API design. Bob suggested REST,
-         while Alice preferred GraphQL. They agreed to prototype both."
+多视角生成:
+==========
+同一个 MemUnit (群体事件) 会为每个参与者生成不同的 EpisodeMemory:
 
-    EpisodeMemory for Alice:
-        "I discussed API design with Bob. He suggested REST, but I prefer
-         GraphQL for its flexibility. We agreed to prototype both approaches
-         to make a data-driven decision."
+    MemUnit (群体事件):
+        "小明和小红讨论了新的 API 设计。小明建议用 REST，
+         小红倾向于 GraphQL。他们决定分别做原型对比。"
 
-    EpisodeMemory for Bob:
-        "Alice and I had a productive discussion about API design. I proposed
-         REST for its simplicity, and she suggested GraphQL. We'll prototype
-         both to compare."
+    EpisodeMemory (小明视角):
+        "今天我和小红讨论了 API 设计。我建议用 REST 因为简单，
+         她提出了 GraphQL 的灵活性优势。我们达成共识，
+         各自做原型来数据驱动决策。"
 
-Usage:
-------
+    EpisodeMemory (小红视角):
+        "我和小明进行了一次富有成效的 API 设计讨论。
+         他提议用 REST，我推荐了 GraphQL。
+         我们决定同时做两个原型来比较。"
+
+使用场景:
+========
+- 个性化回忆: 用户询问 "上次我们讨论了什么?"
+- 上下文理解: 理解用户在特定事件中的角色和立场
+- 对话连贯性: 保持对话的一致性和连续性
+
+使用示例:
+========
     from memory.schema import EpisodeMemory
 
     episode = EpisodeMemory(
@@ -37,9 +44,9 @@ Usage:
         timestamp=datetime.now(),
         ori_event_id_list=["memunit_456"],
         event_id="episode_789",
-        episode="I discussed the project timeline with the team...",
-        summary="Project timeline discussion",
-        subject="Sprint planning"
+        episode="今天我和团队讨论了项目时间线...",
+        summary="项目时间线讨论",
+        subject="Sprint 规划"
     )
 """
 
@@ -52,50 +59,68 @@ from .memory_type import MemoryType
 @dataclass
 class EpisodeMemory(Memory):
     """
-    Episode Memory - Personal narrative from user's perspective.
+    情景记忆 - 从用户视角描述的个人叙事记忆
 
-    Extends Memory base class with episode-specific fields.
-    Automatically sets memory_type to EPISODE_SUMMARY.
+    继承 Memory 基类，自动设置 memory_type 为 EPISODE_SUMMARY。
 
-    Each EpisodeMemory represents how ONE user experienced a set of events.
-    The same MemUnit typically generates multiple EpisodeMemory instances,
-    one for each participant, each with their own perspective.
+    每个 EpisodeMemory 代表一个用户对一组事件的主观体验。
+    同一个 MemUnit 通常会为每个参与者生成独立的 EpisodeMemory，
+    每份记忆都带有各自的视角。
 
-    Attributes:
-        event_id (str): Unique identifier for this episode memory.
-            Different from ori_event_id_list which contains source MemUnit IDs.
-            This is the episode's own ID for storage and retrieval.
+    与其他记忆类型的区别:
+    ====================
+    - EpisodeMemory: 主观叙事 ("我和小明讨论了...")
+    - SemanticMemory: 客观事实 ("小明会 Python")
+    - ProfileMemory: 特征档案 (技能、性格、偏好)
 
-    Inherited from Memory:
-        - memory_type: Auto-set to MemoryType.EPISODE_SUMMARY
-        - user_id: The user whose perspective this episode represents
-        - timestamp: When the events occurred
-        - ori_event_id_list: Source MemUnit event IDs
-        - episode: The full narrative text (main content)
-        - summary: Brief summary of the episode
-        - subject: Topic/title of the episode
-        - group_id, participants, keywords, etc.
+    字段说明:
+    ========
 
-    Example:
+    情景记忆特有字段:
+        - event_id: 情景记忆自身的唯一标识符
+          不同于 ori_event_id_list (源 MemUnit ID)
+          用于存储和检索时的主键
+
+    继承自 Memory 基类的字段:
+        - memory_type: 自动设置为 MemoryType.EPISODE_SUMMARY
+        - user_id: 记忆所属用户 (该视角的主人)
+        - timestamp: 事件发生时间
+        - ori_event_id_list: 源 MemUnit 事件ID列表
+        - episode: 完整的叙事文本 (主要内容)
+        - summary: 简短摘要
+        - subject: 话题/标题
+        - group_id: 群组ID
+        - participants: 参与者列表
+        - keywords: 关键词
+        - semantic_memories: 关联的语义记忆预测
+
+    使用场景:
+    ========
+    - 记录用户的主观体验和经历
+    - 支持 "我" 视角的回忆查询
+    - 保持对话的个性化和连贯性
+    - 追踪用户在群体事件中的参与
+
+    示例:
         >>> episode = EpisodeMemory(
         ...     user_id="user_123",
         ...     timestamp=datetime.now(),
         ...     ori_event_id_list=["memunit_1"],
         ...     event_id="episode_1",
-        ...     episode="Today I learned about the new feature...",
-        ...     summary="Learning about new feature",
-        ...     subject="Feature onboarding"
+        ...     episode="今天我了解了新功能的使用方法...",
+        ...     summary="学习新功能",
+        ...     subject="功能培训"
         ... )
     """
 
-    # === Episode-Specific Field ===
-    event_id: str = field(default=None)
+    # ===== 情景记忆特有字段 =====
+    event_id: str = field(default=None)  # 情景记忆的唯一标识符
 
     def __post_init__(self):
         """
-        Initialize episode memory with correct type.
+        初始化情景记忆
 
-        Sets memory_type to EPISODE_SUMMARY and calls parent initialization.
+        自动设置 memory_type 为 EPISODE_SUMMARY，并调用父类初始化。
         """
         self.memory_type = MemoryType.EPISODE_SUMMARY
         super().__post_init__()
