@@ -98,16 +98,41 @@ class BaseAdapter(ABC):
     def build_lazy_index(self, conversations: List[Conversation], output_dir: Any) -> Any:
         """
         构建延迟加载的索引元数据
-        
+
         🔥 默认实现：返回 None（在线 API 系统不需要索引）
         🔥 本地系统（如 Parallax）应该重写此方法
-        
+
         Args:
             conversations: 对话列表
             output_dir: 输出目录
-            
+
         Returns:
             索引对象或元数据（本地系统返回索引元数据，在线系统返回 None）
         """
         return None
+
+    async def cluster(
+        self,
+        conversations: List[Conversation],
+        output_dir: Any,
+        **kwargs
+    ) -> Dict[str, Any]:
+        """
+        群体事件聚类（Cluster 阶段）
+
+        可选操作，用于对 MemUnits 进行 LLM 驱动的事件聚类。
+        运行在 Add 阶段之后，Search 阶段之前。
+
+        🔥 默认实现：返回空字典（不支持聚类的系统跳过）
+        🔥 支持聚类的系统（如 Parallax）应该重写此方法
+
+        Args:
+            conversations: 对话列表
+            output_dir: 输出目录
+            **kwargs: 额外参数
+
+        Returns:
+            聚类结果字典，包含 cluster_indices 等信息
+        """
+        return {"cluster_indices": {}}
 

@@ -26,7 +26,35 @@ class ExperimentConfig:
     profile_scenario: str = "assistant"       # Profile 场景：group_chat 或 assistant
     profile_min_confidence: float = 0.6        # Profile 价值判别阈值
     profile_min_memunits: int = 1              # Profile 提取最小 MemUnits 数量
-    
+
+    # ===== 群体事件聚类配置 (Group Event Cluster) =====
+    enable_group_event_cluster: bool = True   # 是否启用群体事件聚类
+    group_event_cluster_config: dict = {
+        "llm_provider": "openai",
+        "llm_model": None,  # None 表示使用主 LLM 配置
+        "llm_api_key": None,  # None 表示从环境变量读取
+        "llm_base_url": None,  # None 表示从环境变量读取
+        "llm_temperature": 0.0,
+        "summary_update_threshold": 5,
+        "max_clusters_in_prompt": 20,
+        "max_members_per_cluster_in_prompt": 3,
+    }
+
+    # ===== 聚类增强检索配置 =====
+    cluster_retrieval_config: dict = {
+        "enable_cluster_expansion": True,
+        "expansion_strategy": "insert_after_hit",  # insert_after_hit, append_to_end, merge_by_score, replace_rerank
+        "max_expansion_per_hit": 3,
+        "max_total_expansion": 10,
+        "expansion_budget_ratio": 0.3,
+        "prefer_time_adjacent": True,
+        "time_window_hours": None,
+        "expansion_score_decay": 0.7,
+        "deduplicate_expanded": True,
+        "rerank_after_expansion": False,
+        "rerank_top_n_after_expansion": 20,
+    }
+
     # 🔥 检索模式选择：'agentic' 或 'lightweight'
     # - agentic: 复杂的多轮检索，LLM引导，质量高但速度慢
     # - lightweight: 快速混合检索，BM25+Embedding混排，速度快但质量略低

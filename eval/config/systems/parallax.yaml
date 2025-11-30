@@ -17,3 +17,5 @@ llm:
 search:
   mode: "agentic"  # agentic | lightweight
 
+
+enable_group_event_cluster: true

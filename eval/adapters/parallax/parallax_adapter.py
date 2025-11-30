@@ -478,15 +478,27 @@ class ParallaxAdapter(BaseAdapter):
             if emb_file.exists():
                 with open(emb_file, "rb") as f:
                     emb_index = pickle.load(f)
-        
+
+        # 🔥 按需加载聚类索引（如果启用）
+        cluster_index = None
+        if self.config.get('enable_group_event_cluster', False):
+            from memory.group_event_cluster import GroupEventClusterIndex
+            clusters_dir = Path(index.get("output_dir", self.output_dir)) / "event_clusters"
+            cluster_file = clusters_dir / f"conv_{conv_index}.json"
+            if cluster_file.exists():
+                try:
+                    cluster_index = GroupEventClusterIndex.load_from_file(cluster_file)
+                except Exception:
+                    cluster_index = None
+
         # 调用 stage3 检索实现
         search_config = self.config.get("search", {})
         retrieval_mode = search_config.get("mode", "agentic")
-        
+
         exp_config = self._convert_config_to_experiment_config()
         # 从 exp_config 获取正确格式的 llm_config
         llm_config = exp_config.llm_config.get(exp_config.llm_service, {})
-        
+
         if retrieval_mode == "agentic":
             # Agentic 检索
             top_results, metadata = await stage3_memory_retrivel.agentic_retrieval(
@@ -497,7 +509,8 @@ class ParallaxAdapter(BaseAdapter):
                 emb_index=emb_index,
                 bm25=bm25,
                 docs=docs,
-                enable_traversal_stats=True,  # 🔥 启用遍历统计
+                cluster_index=cluster_index,  # 🔥 传递聚类索引
+                enable_traversal_stats=True,
             )
         elif retrieval_mode == "lightweight":
             # 轻量级检索
@@ -524,13 +537,22 @@ class ParallaxAdapter(BaseAdapter):
         
         # 转换为评测框架需要的格式
         results = []
+        origin_map = metadata.get("origin_map", {}) if isinstance(metadata, dict) else {}
         for doc, score in top_results:
+            unit_id = doc.get("unit_id", "")
+            meta = doc.get("metadata", {}).copy() if isinstance(doc.get("metadata", {}), dict) else {}
+            if unit_id and "unit_id" not in meta:
+                meta["unit_id"] = unit_id
+            if unit_id and unit_id in origin_map:
+                meta["origin"] = origin_map[unit_id]
+
             results.append({
                 "content": doc.get("narrative", ""),
                 "score": float(score),
                 "metadata": {
                     "subject": doc.get("subject", ""),
                     "summary": doc.get("summary", ""),
+                    **meta,
                 }
             })
         
@@ -574,7 +596,51 @@ class ParallaxAdapter(BaseAdapter):
             results=results,
             retrieval_metadata=metadata
         )
-    
+
+    async def cluster(
+        self,
+        conversations: List[Conversation],
+        output_dir: Any = None,
+        checkpoint_manager=None,
+        **kwargs
+    ) -> Dict[str, Any]:
+        """
+        Cluster 阶段：群体事件聚类
+
+        对 MemUnits 进行 LLM 驱动的事件聚类。
+        运行在 Add 阶段之后，Search 阶段之前。
+
+        调用流程：
+        - Stage 1.5: 群体事件聚类 (stage1_5_group_event_cluster.py)
+
+        Args:
+            conversations: 对话列表
+            output_dir: 输出目录
+            checkpoint_manager: 断点续传管理器
+
+        Returns:
+            聚类结果字典，包含 cluster_indices
+        """
+        from eval.adapters.parallax import stage1_5_group_event_cluster
+
+        # 检查是否启用聚类
+        enable_clustering = self.config.get('enable_group_event_cluster', False)
+        if not enable_clustering:
+            return {"cluster_indices": {}}
+
+        output_dir = Path(output_dir) if output_dir else self.output_dir
+        memunits_dir = output_dir / "memunits"
+        clusters_dir = output_dir / "event_clusters"
+
+        # 调用 stage1_5 执行聚类
+        return await stage1_5_group_event_cluster.run_group_event_clustering(
+            conversations=conversations,
+            memunits_dir=memunits_dir,
+            clusters_dir=clusters_dir,
+            config=self.config,
+            checkpoint_manager=checkpoint_manager,
+        )
+
     async def answer(self, query: str, context: str, **kwargs) -> str:
         """
         Answer 阶段：生成答案
@@ -641,6 +707,14 @@ class ParallaxAdapter(BaseAdapter):
         if "mode" in search_config:
             exp_config.retrieval_mode = search_config["mode"]
             exp_config.use_agentic_retrieval = (exp_config.retrieval_mode == "agentic")
+
+        # 映射群体事件聚类配置（检索增强用）
+        if "enable_group_event_cluster" in self.config:
+            exp_config.enable_group_event_cluster = self.config.get("enable_group_event_cluster", False)
+        if "group_event_cluster_config" in self.config:
+            exp_config.group_event_cluster_config = self.config.get("group_event_cluster_config", {})
+        if "cluster_retrieval_config" in self.config:
+            exp_config.cluster_retrieval_config = self.config.get("cluster_retrieval_config", {})
         
         return exp_config
     

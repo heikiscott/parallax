@@ -31,6 +31,13 @@ from eval.adapters.parallax.tools import agentic_utils
 # 新增：使用 Memory Layer 的 LLMProvider
 from providers.llm.llm_provider import LLMProvider
 
+# 🔥 新增：群体事件聚类增强检索
+from memory.group_event_cluster import (
+    GroupEventClusterIndex,
+    ClusterRetrievalConfig,
+    expand_with_cluster,
+)
+
 
 # This file depends on the rank_bm25 library.
 # If you haven't installed it yet, run: pip install rank_bm25
@@ -653,6 +660,91 @@ async def hybrid_search_with_rrf(
     return result
 
 
+async def _apply_cluster_expansion(
+    final_results: List[Tuple[dict, float]],
+    metadata: dict,
+    cluster_index: Optional[GroupEventClusterIndex],
+    config: ExperimentConfig,
+    docs: List[dict],
+    query: str,
+    logger,
+) -> Tuple[List[Tuple[dict, float]], dict]:
+    """
+    应用聚类增强扩展到检索结果
+
+    Args:
+        final_results: 原检索结果
+        metadata: 检索元数据
+        cluster_index: 聚类索引（可选）
+        config: 实验配置
+        docs: 所有文档列表
+        query: 原始查询
+        logger: 日志记录器
+
+    Returns:
+        (expanded_results, updated_metadata)
+    """
+    # 检查是否启用聚类扩展
+    cluster_retrieval_cfg = getattr(config, 'cluster_retrieval_config', {})
+    enable_expansion = cluster_retrieval_cfg.get('enable_cluster_expansion', False)
+
+    if not enable_expansion or cluster_index is None:
+        logger.debug(f"  [Cluster] Expansion disabled or no cluster index")
+        return final_results, metadata
+
+    # 创建配置对象
+    cluster_config = ClusterRetrievalConfig.from_dict(cluster_retrieval_cfg)
+
+    # 构建 all_docs_map（unit_id -> doc）
+    all_docs_map = {doc.get("unit_id"): doc for doc in docs if doc.get("unit_id")}
+
+    logger.info(f"  [Cluster] Applying cluster expansion (strategy={cluster_config.expansion_strategy})...")
+
+    # 执行聚类扩展
+    expanded_results, expansion_metadata = expand_with_cluster(
+        original_results=final_results,
+        cluster_index=cluster_index,
+        config=cluster_config,
+        all_docs_map=all_docs_map,
+    )
+
+    # 记录扩展统计
+    expanded_count = expansion_metadata.get("expanded_count", 0)
+    clusters_hit = expansion_metadata.get("clusters_hit", [])
+
+    logger.info(f"  [Cluster] Expanded {expanded_count} docs from {len(clusters_hit)} clusters")
+    logger.debug(f"  [Cluster] Clusters hit: {clusters_hit}")
+
+    # 更新 metadata
+    metadata["cluster_expansion"] = expansion_metadata
+
+    # 可选：扩展后全量 rerank（仅在 replace_rerank 或 rerank_after_expansion 为 True 时触发）
+    needs_rerank = (
+        cluster_config.expansion_strategy == "replace_rerank"
+        or cluster_config.rerank_after_expansion
+    )
+    if needs_rerank and config.use_reranker and expanded_results:
+        try:
+            expanded_results = await reranker_search(
+                query=query,
+                results=expanded_results,
+                top_n=cluster_config.rerank_top_n_after_expansion,
+                reranker_instruction=config.reranker_instruction,
+                batch_size=config.reranker_batch_size,
+                max_retries=config.reranker_max_retries,
+                retry_delay=config.reranker_retry_delay,
+                timeout=config.reranker_timeout,
+                fallback_threshold=config.reranker_fallback_threshold,
+                config=config,
+            )
+            metadata.setdefault("cluster_expansion", {})["reranked"] = True
+        except Exception as e:
+            logger.warning(f"  [Cluster] Rerank after expansion failed: {e}")
+            metadata.setdefault("cluster_expansion", {})["reranked"] = False
+
+    return expanded_results, metadata
+
+
 async def agentic_retrieval(
     query: str,
     config: ExperimentConfig,
@@ -661,6 +753,7 @@ async def agentic_retrieval(
     emb_index,
     bm25,
     docs,
+    cluster_index: Optional[GroupEventClusterIndex] = None,  # 🔥 新增：聚类索引
     enable_traversal_stats: bool = False,  # 🔥 是否启用详细遍历统计
 ) -> Tuple[List[Tuple[dict, float]], dict]:
     """
@@ -761,6 +854,7 @@ async def agentic_retrieval(
 
     metadata["round1_count"] = len(round1_top20)
     logger.info(f"  [Round 1] Retrieved {len(round1_top20)} documents")
+    _log_ids("[Round 1] Unit IDs", round1_top20)
 
     if not round1_top20:
         logger.warning(f"  [Warning] No results from Round 1")
@@ -826,8 +920,25 @@ async def agentic_retrieval(
         logger.info(f"  [Decision] Sufficient! Using original Round 1 Top 20 results")
 
         final_results = round1_top20  # 🔥 返回原始的 Top 20（不是 reranked 的）
+
+        # ========== 🔥 聚类增强扩展 ==========
+        final_results, metadata = await _apply_cluster_expansion(
+            final_results=final_results,
+            metadata=metadata,
+            cluster_index=cluster_index,
+            config=config,
+            docs=docs,
+            query=query,
+            logger=logger,
+        )
+
         metadata["final_count"] = len(final_results)
         metadata["total_latency_ms"] = (time.time() - start_time) * 1000
+        cluster_ids = set(metadata.get("cluster_expansion", {}).get("expanded_unit_ids", []))
+        if cluster_ids:
+            _log_ids("[Cluster] Expanded unit_ids", [( {"unit_id": uid}, 0) for uid in cluster_ids])
+        round1_ids = {doc.get("unit_id", "") for doc, _ in round1_top20}
+        metadata["origin_map"] = _build_origin_map(round1_ids, set(), cluster_ids)
 
         # 🔥 打印最终遍历统计
         if enable_traversal_stats:
@@ -943,6 +1054,7 @@ async def agentic_retrieval(
         metadata["multi_query_total_docs"] = sum(len(r) for r in multi_query_results)
 
         logger.info(f"  [Multi-RRF] Fused {metadata['multi_query_total_docs']} → {len(round2_results)} unique documents")
+        _log_ids("[Round 2] Unit IDs (multi-query fused)", round2_results)
 
     else:
         # 🔥 回退到单查询模式（保持向后兼容）
@@ -976,6 +1088,7 @@ async def agentic_retrieval(
         
         metadata["round2_count"] = len(round2_results)
         logger.info(f"  [Round 2] Retrieved {len(round2_results)} documents")
+        _log_ids("[Round 2] Unit IDs (single refined)", round2_results)
 
     # ========== 合并：确保总共 40 个文档 ==========
     logger.info(f"  [Merge] Combining Round 1 and Round 2 to ensure 40 documents...")
@@ -989,7 +1102,8 @@ async def agentic_retrieval(
     # 合并：Round1 Top20 + Round2 去重后的文档（确保总数=40）
     combined_results = round1_top20.copy()  # 先加入 Round1 的 20 个
     needed_from_round2 = 40 - len(combined_results)  # 需要 20 个
-    combined_results.extend(round2_unique[:needed_from_round2])
+    round2_slice = round2_unique[:needed_from_round2]
+    combined_results.extend(round2_slice)
     
     actual_count = len(combined_results)
     duplicates_removed = len(round2_results) - len(round2_unique)
@@ -999,6 +1113,7 @@ async def agentic_retrieval(
     logger.debug(f"  [Merge] Round2 duplicates removed: {duplicates_removed} documents")
     logger.debug(f"  [Merge] Round2 unique added: {round2_added} documents")
     logger.info(f"  [Merge] Combined total: {actual_count} documents (target: 40)")
+    _log_ids("[Merge] Combined IDs (pre-rerank)", combined_results)
 
     # ========== Rerank 合并后的 40 个文档 ==========
     if config.use_reranker and len(combined_results) > 0:
@@ -1023,8 +1138,25 @@ async def agentic_retrieval(
         final_results = combined_results[:20]
         logger.debug(f"  [No Rerank] Returning Top 20 from combined results")
 
+    # ========== 🔥 聚类增强扩展 ==========
+    final_results, metadata = await _apply_cluster_expansion(
+        final_results=final_results,
+        metadata=metadata,
+        cluster_index=cluster_index,
+        config=config,
+        docs=docs,
+        query=query,
+        logger=logger,
+    )
+
     metadata["final_count"] = len(final_results)
     metadata["total_latency_ms"] = (time.time() - start_time) * 1000
+    cluster_ids = set(metadata.get("cluster_expansion", {}).get("expanded_unit_ids", []))
+    if cluster_ids:
+        _log_ids("[Cluster] Expanded unit_ids", [({"unit_id": uid}, 0) for uid in cluster_ids])
+    round1_ids = {doc.get("unit_id", "") for doc, _ in round1_top20}
+    round2_ids = {doc.get("unit_id", "") for doc, _ in round2_slice}
+    metadata["origin_map"] = _build_origin_map(round1_ids, round2_ids, cluster_ids)
 
     # 🔥 打印最终遍历统计（多轮）
     if enable_traversal_stats:
@@ -1407,7 +1539,7 @@ async def main():
             docs = index_data["docs"]
 
             logger.debug(f"Loaded both Embedding and BM25 indexes for conversation {i} (Hybrid Search)")
-        
+
         elif config.use_emb:
             # 仅加载 Embedding 索引
             emb_index_path = emb_index_dir / f"embedding_index_conv_{i}.pkl"
@@ -1430,6 +1562,21 @@ async def main():
                 index_data = pickle.load(f)
             bm25 = index_data["bm25"]
             docs = index_data["docs"]
+
+        # 🔥 新增：加载聚类索引（如果启用）
+        cluster_index = None
+        if getattr(config, 'enable_group_event_cluster', False):
+            cluster_index_dir = save_dir / "event_clusters"
+            cluster_index_path = cluster_index_dir / f"conv_{i}.json"
+            if cluster_index_path.exists():
+                try:
+                    cluster_index = GroupEventClusterIndex.load_from_file(cluster_index_path)
+                    logger.info(f"  ✅ Loaded cluster index: {len(cluster_index.clusters)} clusters, {cluster_index.total_units} units")
+                except Exception as e:
+                    logger.warning(f"  ⚠️  Failed to load cluster index: {e}")
+                    cluster_index = None
+            else:
+                logger.debug(f"  📭 No cluster index found at {cluster_index_path}")
 
         # Parallelize per-question retrieval with bounded concurrency
         # 🔥 并发数从环境变量读取，避免 API 限流
@@ -1466,6 +1613,7 @@ async def main():
                             emb_index=emb_index,
                             bm25=bm25,
                             docs=docs,
+                            cluster_index=cluster_index,  # 🔥 新增：聚类索引
                             enable_traversal_stats=True,  # 🔥 启用遍历统计
                         )
                     
@@ -1632,3 +1780,24 @@ async def main():
 
 if __name__ == "__main__":
     asyncio.run(main())
+    def _log_ids(prefix: str, docs: List[Tuple[dict, float]], limit: int = 20):
+        ids = [d.get("unit_id", "") for d, _ in docs if d.get("unit_id")]
+        if not ids:
+            logger.info(f"  {prefix}: (no unit_ids)")
+            return
+        short = ids[:limit]
+        suffix = " ..." if len(ids) > limit else ""
+        logger.info(f"  {prefix}: {', '.join(short)}{suffix}")
+
+    def _build_origin_map(round1_ids: set, round2_ids: set, cluster_ids: set) -> dict:
+        origin_map = {}
+        for uid in round1_ids:
+            if uid:
+                origin_map[uid] = "round1"
+        for uid in round2_ids:
+            if uid and uid not in origin_map:
+                origin_map[uid] = "round2"
+        for uid in cluster_ids:
+            if uid and uid not in origin_map:
+                origin_map[uid] = "cluster"
+        return origin_map

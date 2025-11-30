@@ -21,6 +21,7 @@ from providers.llm.llm_provider import LLMProvider
 
 # 导入各个阶段的执行函数
 from eval.core.stages.add_stage import run_add_stage
+from eval.core.stages.cluster_stage import run_cluster_stage
 from eval.core.stages.search_stage import run_search_stage
 from eval.core.stages.answer_stage import run_answer_stage
 from eval.core.stages.evaluate_stage import run_evaluate_stage
@@ -29,9 +30,10 @@ from eval.core.stages.evaluate_stage import run_evaluate_stage
 class Pipeline:
     """
     评测 Pipeline
-    
-    四阶段流程：
+
+    五阶段流程：
     1. Add: 摄入对话数据并构建索引
+    1.5. Cluster: 群体事件聚类（可选）
     2. Search: 检索相关记忆
     3. Answer: 生成答案
     4. Evaluate: 评估答案质量
@@ -275,7 +277,33 @@ class Pipeline:
                 
                 self.console.print(f"[green]✅ Wait completed, ready for search[/green]\n")
                 self.logger.info("✅ Post-add wait completed")
-        
+
+        # ===== Stage 1.5: Cluster (Optional) =====
+        # 只有启用了 enable_group_event_cluster 才执行
+        adapter_config = getattr(self.adapter, 'config', {})
+        # 兼容 dict 和对象两种配置格式
+        if isinstance(adapter_config, dict):
+            enable_clustering = adapter_config.get('enable_group_event_cluster', False)
+        else:
+            enable_clustering = getattr(adapter_config, 'enable_group_event_cluster', False)
+
+        if enable_clustering and "cluster" not in self.completed_stages:
+            self.logger.info("Starting Stage 1.5: Cluster")
+
+            cluster_results = await run_cluster_stage(
+                adapter=self.adapter,
+                conversations=dataset.conversations,
+                output_dir=self.output_dir,
+                checkpoint_manager=self.checkpoint,
+                logger=self.logger,
+                console=self.console,
+                completed_stages=self.completed_stages,
+            )
+            results.update(cluster_results)
+
+        elif enable_clustering and "cluster" in self.completed_stages:
+            self.console.print("\n[yellow]⏭️  Skip Cluster stage (already completed)[/yellow]")
+
         # ===== Stage 2: Search =====
         if "search" in stages and "search" not in self.completed_stages:
             self.logger.info("Starting Stage 2: Search")
