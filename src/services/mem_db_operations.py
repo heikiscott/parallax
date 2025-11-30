@@ -890,6 +890,7 @@ def _convert_memunit_to_document(
         doc_memunit = DocMemUnit(
             unit_id=memunit.unit_id,
             user_id=primary_user_id,
+            user_id_list=getattr(memunit, 'user_id_list', None),  # 添加 user_id_list 字段
             timestamp=timestamp_dt,  # 直接传入timezone-aware的datetime
             summary=memunit.summary,
             group_id=memunit.group_id,

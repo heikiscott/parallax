@@ -12,7 +12,6 @@ from beanie import Indexed
 from core.oxm.mongo.document_base import DocumentBase
 from pydantic import BaseModel, Field, ConfigDict
 from pymongo import IndexModel, ASCENDING, DESCENDING
-from beanie import PydanticObjectId
 from core.oxm.mongo.audit_base import AuditBase
 
 
@@ -69,14 +68,62 @@ class MemUnit(DocumentBase, AuditBase):
     MemUnit 文档模型
 
     情景切分之后的结果存储模型，支持灵活扩展和高性能查询。
+
+    字段生命周期:
+    =============
+
+    创建阶段 (ConvMemUnitExtractor.extract_memunit):
+    - unit_id: ✅ 生成 UUID
+    - user_id_list: ✅ 从请求获取
+    - original_data: ✅ 处理后的消息列表
+    - timestamp: ✅ 从最后消息获取
+    - summary: ✅ 边界检测生成
+    - group_id: ✅ 从请求获取
+    - participants: ✅ 从消息提取
+    - type: ✅ CONVERSATION
+    - subject: ❌ None
+    - episode: ❌ None
+    - keywords: ❌ None (预留字段，暂未实现)
+    - linked_entities: ❌ None (预留字段，暂未实现)
+    - semantic_memories: ❌ None
+    - event_log: ❌ None
+    - extend: ❌ None
+
+    提取阶段 (EpisodeMemoryExtractor.extract_memory):
+    - subject: ✅ LLM 提取的 title
+    - episode: ✅ LLM 提取的 content
+    - extend['embedding']: ✅ 向量化后赋值
+
+    语义提取阶段 (SemanticMemoryExtractor):
+    - semantic_memories: ✅ 语义记忆列表
+
+    事件提取阶段 (ExtractionOrchestrator):
+    - event_log: ✅ 事件日志对象
     """
 
-    # 核心字段（必填）
-    user_id: Optional[Indexed(str)] = Field(None, description="用户ID，核心查询字段。群组记忆时为None，个人记忆时为用户ID")
+    # ===== 标识字段 =====
+    unit_id: Optional[Indexed(str)] = Field(
+        default=None,
+        description="Schema MemUnit 中生成的 UUID，独立于 MongoDB _id，用于跨系统追踪"
+    )
+
+    # ===== 用户字段 =====
+    user_id: Optional[Indexed(str)] = Field(
+        default=None,
+        description="用户ID，核心查询字段。群组记忆时为None，个人记忆时为用户ID"
+    )
+    user_id_list: Optional[List[str]] = Field(
+        default=None,
+        description="涉及的所有用户ID列表，用于权限过滤和生成个人视角记忆"
+    )
+
+    # ===== 时间字段 =====
     timestamp: Indexed(datetime) = Field(..., description="发生时间，分片键")
+
+    # ===== 内容字段 =====
     summary: str = Field(..., min_length=1, description="记忆单元摘要")
 
-    # 可选字段
+    # ===== 上下文字段 =====
     group_id: Optional[Indexed(str)] = Field(
         default=None, description="群组ID，为空表示私聊"
     )
@@ -88,9 +135,10 @@ class MemUnit(DocumentBase, AuditBase):
 
     subject: Optional[str] = Field(default=None, description="记忆单元主题")
 
-    keywords: Optional[List[str]] = Field(default=None, description="关键词")
+    # 预留字段，暂未实现 LLM 提取逻辑，后续可能会实现
+    keywords: Optional[List[str]] = Field(default=None, description="关键词（预留字段，暂未实现）")
     linked_entities: Optional[List[str]] = Field(
-        default=None, description="关联的实体ID"
+        default=None, description="关联的实体ID（预留字段，暂未实现）"
     )
 
     episode: Optional[str] = Field(default=None, description="情景记忆")
@@ -132,11 +180,6 @@ class MemUnit(DocumentBase, AuditBase):
             }
         },
     )
-
-    @property
-    def unit_id(self) -> Optional[PydanticObjectId]:
-        """MemUnit 的唯一标识符，返回 MongoDB 文档 _id"""
-        return self.id
 
     class Settings:
         """Beanie 设置"""

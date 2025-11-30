@@ -114,6 +114,37 @@ class MemUnit:
     MemUnit 封装了通过边界检测识别出的一段语义完整的对话内容，
     作为下游记忆提取（情景记忆、语义记忆、用户画像等）的输入。
 
+    字段生命周期:
+    =============
+
+    创建阶段 (ConvMemUnitExtractor.extract_memunit):
+    - unit_id: ✅ 生成 UUID
+    - user_id_list: ✅ 从请求获取
+    - original_data: ✅ 处理后的消息列表
+    - timestamp: ✅ 从最后消息获取
+    - summary: ✅ 边界检测生成
+    - group_id: ✅ 从请求获取
+    - participants: ✅ 从消息提取
+    - type: ✅ CONVERSATION
+    - subject: ❌ None
+    - episode: ❌ None
+    - keywords: ❌ None (预留字段，暂未实现)
+    - linked_entities: ❌ None (预留字段，暂未实现)
+    - semantic_memories: ❌ None
+    - event_log: ❌ None
+    - extend: ❌ None
+
+    提取阶段 (EpisodeMemoryExtractor.extract_memory):
+    - subject: ✅ LLM 提取的 title
+    - episode: ✅ LLM 提取的 content
+    - extend['embedding']: ✅ 向量化后赋值
+
+    语义提取阶段 (SemanticMemoryExtractor):
+    - semantic_memories: ✅ 语义记忆列表
+
+    事件提取阶段 (ExtractionOrchestrator):
+    - event_log: ✅ 事件日志对象
+
     字段分组说明:
     =============
 
@@ -141,8 +172,8 @@ class MemUnit:
     6. 内容字段 (Content):
         - summary: 简短摘要 (1-2句话)
         - subject: 话题/主题
-        - keywords: 关键词列表
-        - linked_entities: 关联实体 (项目名、产品名等)
+        - keywords: 关键词列表 (预留字段)
+        - linked_entities: 关联实体 (预留字段)
         - episode: 详细的情景描述
 
     7. 提取结果字段 (Extracted):
@@ -240,64 +271,71 @@ class MemUnit:
     subject: Optional[str] = None
     """
     话题/主题
-    - 产生方式: LLM 提取
-    - 使用方式: 
+    - 产生方式:
+        1. **创建时**: 为 None
+        2. **提取后**: 由 EpisodeMemoryExtractor.extract_memory() 赋值
+           (从 LLM 响应中提取 title 字段)
+    - 使用方式:
         1. 存入 ES/Milvus 的 search_content/subject 字段，用于检索
         2. 帮助快速了解记忆主题
     """
 
     keywords: Optional[List[str]] = None
     """
-    关键词列表
-    - 产生方式: LLM 提取
-    - 使用方式: 
+    关键词列表 (预留字段，暂未实现)
+    - 产生方式:
+        1. **当前状态**: 始终为 None，暂未实现 LLM 提取逻辑
+        2. **规划中**: 后续可能在 EpisodeMemoryExtractor 中添加关键词提取
+    - 使用方式 (规划中):
         1. 存入 ES 的 keywords 字段，用于精确匹配或增强检索
     """
 
     linked_entities: Optional[List[str]] = None
     """
-    关联实体
-    - 产生方式: LLM 提取 (NER)
-    - 使用方式: 
+    关联实体 (预留字段，暂未实现)
+    - 产生方式:
+        1. **当前状态**: 始终为 None，暂未实现 LLM 提取逻辑
+        2. **规划中**: 后续可能通过 NER 提取实体（项目名、产品名等）
+    - 使用方式 (规划中):
         1. 存入 ES 的 linked_entities 字段，用于实体关联检索
     """
 
     episode: Optional[str] = None
     """
     详细情景描述 (核心字段)
-    
+
     **为什么是 str 而不是 EpisodeMemory 类？**
-    
+
     设计哲学：MemUnit 只存储"提取的内容"，而 EpisodeMemory 是"检索优化的文档结构"
-    
+
     1. **层次分离**:
        - `MemUnit.episode`: 纯内容层 - 仅存储 LLM 提取的情景描述文本
        - `EpisodeMemory`: 文档层 - 包含 ID、用户、时间、索引、embedding 等检索所需的完整结构
-    
+
     2. **避免循环依赖**:
        - 如果 `episode` 是 `EpisodeMemory` 对象，会引入复杂的对象嵌套
        - `EpisodeMemory` 本身也有 `episode: str` 字段，会造成结构混乱
-    
+
     3. **关系类比**:
        ```
        类比数据库设计:
        MemUnit.episode = "文本内容"       (相当于原始数据)
        EpisodeMemory    = 完整的表记录    (ID + 内容 + 索引 + embedding)
-       
+
        就像你不会在 User 表里嵌套完整的 Post 对象，只存 post_content 字符串
        然后在 Posts 表里存完整的 {id, user_id, content, created_at, ...}
        ```
-    
+
     4. **数据流转**:
        ```python
        # Step 1: MemUnit 提取阶段
        memunit = MemUnit(
            episode="用户A和用户B讨论了项目进展..."  # 纯文本
        )
-       
+
        # Step 2: 保存到 MongoDB
        await memunit_repo.save(memunit)  # episode 作为字符串字段存储
-       
+
        # Step 3: 同步到检索引擎 (memunit_sync.py)
        episode_memory = EpisodeMemory(
            episode_id=memunit.unit_id,
@@ -309,9 +347,12 @@ class MemUnit:
        )
        await es_repo.save(episode_memory)  # 存储到 ES/Milvus
        ```
-    
-    - 产生方式: LLM 提取 (EpisodeMemoryExtractor)，将对话转化为第三人称叙事
-    - 使用方式: 
+
+    - 产生方式:
+        1. **创建时**: 为 None
+        2. **提取后**: 由 EpisodeMemoryExtractor.extract_memory() 赋值
+           (从 LLM 响应中提取 content 字段，将对话转化为第三人称叙事)
+    - 使用方式:
         1. **向量检索源**: 用于生成 Embedding (存入 extend['embedding'])
         2. **全文检索源**: 复制到 ES/Milvus 的 EpisodeMemory.episode 字段
         3. **System Prompt**: 检索命中后，将此字段内容放入 Prompt 作为长期记忆上下文
