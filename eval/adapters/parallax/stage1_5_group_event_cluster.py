@@ -92,13 +92,27 @@ async def run_group_event_clustering(
     )
     storage = JsonClusterStorage(output_dir=clusters_dir)
 
+    # ===== 获取 memunit 文件对应的 conv_id 列表（避免用 0..N 推断）=====
+    memunit_files = list(memunits_dir.glob("memunit_list_conv_*.json")) + list(memunits_dir.glob("memunits_conv_*.json"))
+    conv_ids = []
+    for path in memunit_files:
+        name = path.stem  # memunit_list_conv_8
+        if "memunit_list_conv_" in name:
+            conv_ids.append(name.split("memunit_list_conv_")[-1])
+        elif "memunits_conv_" in name:
+            conv_ids.append(name.split("memunits_conv_")[-1])
+
+    if not conv_ids:
+        msg = f"No memunit files found in {memunits_dir}, aborting clustering"
+        console.print(f"  ❌ {msg}", style="red")
+        raise FileNotFoundError(msg)
+
     # 检查已完成的会话（断点续传）
     # 注：文件本身就是 checkpoint，无论 checkpoint_manager 是否存在都要检查
-    all_conv_ids = [i for i in range(len(conversations))]
-    completed_convs = load_cluster_progress(clusters_dir, all_conv_ids)
+    completed_convs = load_cluster_progress(clusters_dir, conv_ids)
 
     # 过滤出待处理的会话
-    pending_conv_ids = [i for i in all_conv_ids if i not in completed_convs]
+    pending_conv_ids = [cid for cid in conv_ids if cid not in completed_convs]
 
     console.print(f"\n📊 总会话数: {len(conversations)}", style="bold cyan")
     console.print(f"✅ 已完成: {len(completed_convs)}", style="bold green")
@@ -157,9 +171,9 @@ async def run_group_event_clustering(
 
                 # 加载 MemUnits
                 if memunits_path is None:
-                    console.print(f"  ⚠️  {conv_id}: memunits file not found, skipping", style="yellow")
-                    progress.advance(task)
-                    continue
+                    msg = f"{conv_id}: memunits file not found, aborting clustering"
+                    console.print(f"  ❌  {msg}", style="red")
+                    raise FileNotFoundError(msg)
 
                 try:
                     with open(memunits_path, "r", encoding="utf-8") as f:
