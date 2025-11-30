@@ -473,7 +473,21 @@ for doc_idx, doc in enumerate(original_docs):
 |---------|---------|------|
 | **BM25** | `event_log.atomic_fact` | 关键词匹配，原子事实拼接后分词 |
 | **Embedding (MaxSim)** | `event_log.fact_embeddings` | 语义匹配，找最相关的 atomic_fact |
-| **Reranker** | `event_log.atomic_fact` 或 `narrative` | 格式化为多行文本进行重排 |
+| **Reranker** | **`event_log.atomic_fact`** (优先) | 格式化为：时间 + 每句 fact 单独一行 |
+
+**Reranker 输入格式说明**:
+
+- **优先**: 如果存在 `event_log.atomic_fact`，格式化为多行文本：
+
+  ```text
+  May 08, 2023(Monday) at 01:56 PM
+  Caroline greeted her friend Melanie with enthusiasm.
+  Caroline expressed joy at seeing Melanie again.
+  Caroline inquired about Melanie's well-being.
+  ```
+
+- **回退**: 仅当没有 event_log 时，才使用 `narrative` 字段
+- 在 locomo-q30-1 评测中，所有 MemUnit 都有 event_log，因此 **Reranker 实际只使用 atomic_fact**
 
 ### 5.3 MaxSim 策略说明
 
