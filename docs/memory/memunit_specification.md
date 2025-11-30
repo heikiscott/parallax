@@ -86,7 +86,7 @@ class EpisodicMemoryRawRepository(BaseRepository[EpisodicMemory]):
 │                                                                         │
 │  MemUnit                                                                │
 │  ├── unit_id: "uuid-xxx"                                                │
-│  ├── episode: "详细叙事..."                                              │
+│  ├── narrative: "详细叙事..."                                            │
 │  ├── summary: "简短摘要..."                                              │
 │  ├── semantic_memories: [          ← 嵌入在内部，不是引用                │
 │  │     {                                                                │
@@ -148,12 +148,12 @@ class SemanticMemory:
 │  ├─────────────────────────────────────────────────────────────────┤   │
 │  │                                                                 │   │
 │  │ 关键词检索 (ES BM25):                                           │   │
-│  │   • search_content ← episode 分词后的词列表 (主搜索字段)         │   │
+│  │   • search_content ← narrative 分词后的词列表 (主搜索字段)       │   │
 │  │   • subject       ← 标题/主题                                   │   │
 │  │   • keywords      ← 关键词列表                                  │   │
 │  │                                                                 │   │
 │  │ 向量检索 (Milvus ANN):                                          │   │
-│  │   • vector        ← episode 向量化后的嵌入                      │   │
+│  │   • vector        ← narrative 向量化后的嵌入                    │   │
 │  │                                                                 │   │
 │  │ 过滤条件:                                                        │   │
 │  │   • user_id       ← 用户归属过滤                                │   │
@@ -167,7 +167,7 @@ class SemanticMemory:
 │  ├─────────────────────────────────────────────────────────────────┤   │
 │  │                                                                 │   │
 │  │ 核心内容 (构建 Prompt 上下文):                                   │   │
-│  │   • episode       ← 详细叙事描述 (主要内容)                      │   │
+│  │   • narrative     ← 详细叙事描述 (主要内容)                      │   │
 │  │   • summary       ← 简短摘要                                    │   │
 │  │   • subject       ← 标题                                        │   │
 │  │                                                                 │   │
@@ -199,7 +199,7 @@ class SemanticMemory:
 │  │ MemUnit (中间产物)                                               │   │
 │  │ ├── unit_id                                                     │   │
 │  │ ├── original_data ─────────────────────────────────────────┐    │   │
-│  │ ├── episode (LLM生成)                                      │    │   │
+│  │ ├── narrative (LLM生成)                                    │    │   │
 │  │ ├── summary                                                │    │   │
 │  │ ├── subject                                                │    │   │
 │  │ ├── semantic_memories: [...] (嵌入)                        │    │   │
@@ -213,7 +213,7 @@ class SemanticMemory:
 │  │ ├── episode_id               ├── episode_id                    │   │
 │  │ ├── user_id: "A"             ├── user_id: "B"                  │   │
 │  │ ├── memunit_id_list ─────────┴────→ [unit_id] (引用回MemUnit)  │   │
-│  │ ├── episode (个人视角)       ├── episode (个人视角)             │   │
+│  │ ├── narrative (个人视角)     ├── narrative (个人视角)           │   │
 │  │ └── ...                      └── ...                           │   │
 │  └─────────────────────────────────────────────────────────────────┘   │
 │      │                                                                  │
@@ -233,7 +233,7 @@ class SemanticMemory:
 │                    ┌─────────────────┐                                  │
 │                    │ 检索返回        │                                  │
 │                    │ EpisodeMemory   │ ← 返回给 Prompt                  │
-│                    │ (episode,       │                                  │
+│                    │ (narrative,     │                                  │
 │                    │  summary,       │                                  │
 │                    │  subject,       │                                  │
 │                    │  timestamp)     │                                  │
@@ -276,12 +276,12 @@ class MemUnit:
 │                                                                         │
 │  2. 增强阶段                                                             │
 │     └─ EpisodeMemoryExtractor.extract_memory()                          │
-│        └─ LLM 生成 episode、summary、subject                             │
+│        └─ LLM 生成 narrative、summary、subject                           │
 │        └─ 可选：提取 SemanticMemory、EventLog                            │
 │                                                                         │
 │  3. 存储阶段                                                             │
 │     └─ MemUnitRawRepository.insert()                                    │
-│        └─ 向量化 episode 字段                                            │
+│        └─ 向量化 narrative 字段                                          │
 │        └─ 存储到 MongoDB                                                 │
 │                                                                         │
 │  4. 索引阶段                                                             │
@@ -325,7 +325,7 @@ summary: str                    # 简短摘要
 subject: Optional[str]          # 话题/主题
 keywords: Optional[List[str]]   # 关键词列表
 linked_entities: Optional[List[str]]  # 关联实体
-episode: Optional[str]          # 详细情景描述
+narrative: Optional[str]        # 详细叙事描述
 
 # ===== 7. 提取结果字段 (Extracted) =====
 semantic_memories: Optional[List[SemanticMemoryItem]]  # 语义记忆
@@ -479,11 +479,11 @@ class SourceType(str, Enum):
 | `subject` | `str` | ❌ | 话题/主题标题 | LLM 生成 |
 | `keywords` | `List[str]` | ❌ | 关键词列表 | LLM 提取 |
 | `linked_entities` | `List[str]` | ❌ | 关联实体（人名、地点、品牌等）| LLM 提取 |
-| `episode` | `str` | ❌ | 详细情景描述（核心内容）| LLM 生成 |
+| `narrative` | `str` | ❌ | 详细叙事描述（核心内容）| LLM 生成 |
 
 **字段关系**:
 ```
-summary (简短) ⊂ subject (标题) ⊂ episode (详细)
+summary (简短) ⊂ subject (标题) ⊂ narrative (详细)
      │               │               │
      └── 1-2句话 ────┴── 10-20字 ────┴── 完整叙事段落
 ```
@@ -495,7 +495,7 @@ summary (简短) ⊂ subject (标题) ⊂ episode (详细)
 
   "subject": "Caroline and Melanie Catch Up on Life's Challenges May 8, 2023",
 
-  "episode": "On May 8, 2023, at 1:56 PM UTC, Caroline greeted her friend Melanie with enthusiasm, expressing happiness to see her and inquiring about her well-being. Melanie responded positively but mentioned feeling overwhelmed with her responsibilities related to her children and work. She asked Caroline if there was anything new happening in her life. This interaction highlighted their friendship and mutual support, with Caroline showing genuine interest in Melanie's busy life while Melanie reciprocated by asking about Caroline's updates."
+  "narrative": "On May 8, 2023, at 1:56 PM UTC, Caroline greeted her friend Melanie with enthusiasm, expressing happiness to see her and inquiring about her well-being. Melanie responded positively but mentioned feeling overwhelmed with her responsibilities related to her children and work. She asked Caroline if there was anything new happening in her life. This interaction highlighted their friendship and mutual support, with Caroline showing genuine interest in Melanie's busy life while Melanie reciprocated by asking about Caroline's updates."
 }
 ```
 
@@ -569,7 +569,7 @@ class SemanticMemoryItem:
 **常见 extend 内容**:
 ```json
 {
-  "embedding": [0.0123, -0.0456, ...],  // episode 的向量表示
+  "embedding": [0.0123, -0.0456, ...],  // narrative 的向量表示
   "vector_model": "bge-m3"              // 向量化模型名称
 }
 ```
@@ -661,7 +661,7 @@ if text_for_embed:
   "keywords": null,
   "linked_entities": null,
 
-  "episode": "On May 8, 2023, at 1:56 PM UTC, Caroline greeted her friend Melanie with enthusiasm, expressing happiness to see her and inquiring about her well-being. Melanie responded positively but mentioned feeling overwhelmed with her responsibilities related to her children and work. She asked Caroline if there was anything new happening in her life. This interaction highlighted their friendship and mutual support, with Caroline showing genuine interest in Melanie's busy life while Melanie reciprocated by asking about Caroline's updates.",
+  "narrative": "On May 8, 2023, at 1:56 PM UTC, Caroline greeted her friend Melanie with enthusiasm, expressing happiness to see her and inquiring about her well-being. Melanie responded positively but mentioned feeling overwhelmed with her responsibilities related to her children and work. She asked Caroline if there was anything new happening in her life. This interaction highlighted their friendship and mutual support, with Caroline showing genuine interest in Melanie's busy life while Melanie reciprocated by asking about Caroline's updates.",
 
   "semantic_memories": null,
 
@@ -711,7 +711,7 @@ if text_for_embed:
 MemUnit                    →  ES Document (检索)
 ────────────────────────────────────────────────
 unit_id                    →  (不直接存储，通过 memunit_id_list 关联)
-episode                    →  episode, search_content (分词后)
+narrative                  →  narrative, search_content (分词后)
 subject                    →  subject, title
 summary                    →  summary
 timestamp                  →  timestamp
@@ -765,13 +765,13 @@ extend.embedding           →  (存储到 Milvus)
 │            │                                                            │
 │            ▼                                                            │
 │  5. 触发 EpisodeMemoryExtractor                                         │
-│     ├─ 调用 LLM 生成 episode (详细叙事)                                   │
+│     ├─ 调用 LLM 生成 narrative (详细叙事)                                 │
 │     ├─ 生成 subject (标题)                                               │
 │     └─ 可选: 提取 SemanticMemory、EventLog                               │
 │            │                                                            │
 │            ▼                                                            │
 │  6. 向量化                                                               │
-│     ├─ 调用 vectorize_service.get_embedding(episode)                    │
+│     ├─ 调用 vectorize_service.get_embedding(narrative)                  │
 │     └─ 存储到 extend.embedding                                          │
 │            │                                                            │
 │            ▼                                                            │
@@ -944,7 +944,7 @@ async def multi_search(self, query: List[str], user_id: str, ...):
 **向量来源**:
 ```python
 # MemUnit.extend.embedding
-vec = await vectorize_service.get_embedding(episode)
+vec = await vectorize_service.get_embedding(narrative)
 ```
 
 **搜索查询示例**:
@@ -1033,7 +1033,7 @@ response = RetrieveMemoryResponse(
 | MemUnit 字段 | MongoDB 字段 | ES 字段 | Milvus 字段 | 用途 |
 |-------------|--------------|---------|-------------|------|
 | `unit_id` | `unit_id` | - | - | 唯一标识 |
-| `episode` | `episode` | `episode`, `search_content` | `vector` | 核心内容 |
+| `narrative` | `narrative` | `narrative`, `search_content` | `vector` | 核心内容 |
 | `subject` | `subject` | `subject`, `title` | - | 标题 |
 | `summary` | `summary` | `summary` | - | 摘要 |
 | `timestamp` | `timestamp` | `timestamp` | `timestamp` | 时间过滤 |

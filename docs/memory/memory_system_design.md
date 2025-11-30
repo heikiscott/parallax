@@ -53,7 +53,7 @@ class MemUnit(BaseModel):
 
     # ===== 核心内容 =====
     summary: str                    # 简短摘要 (必填)
-    episode: str                    # 详细情景描述
+    narrative: str                  # 详细叙事描述
     subject: Optional[str]          # 话题/标题
     participants: List[str]         # 参与者列表
 
@@ -81,7 +81,7 @@ class EpisodeMemory(Memory):
     memunit_id_list: List[str]      # 源MemUnit ID列表
 
     # ===== 核心内容 =====
-    episode: str                    # 完整叙事文本
+    narrative: str                  # 完整叙事文本
     summary: str                    # 简短摘要
     subject: str                    # 话题/标题
 
@@ -309,7 +309,7 @@ class EpisodicMemoryDoc:
     event_id: str           # 主键
     user_id: str            # 用户ID
     group_id: str           # 群组ID
-    search_content: str     # 组合搜索字段 (title + summary + episode)
+    search_content: str     # 组合搜索字段 (title + summary + narrative)
     keywords: List[str]     # 关键词列表
     subject: str            # 主题
     vector: List[float]     # 向量 (用于混合搜索)
@@ -403,7 +403,7 @@ async def retrieve_mem_keyword(request: RetrieveMemoryRequest):
 ```
 
 **ES 搜索字段**:
-- `search_content`: 组合字段 (title + summary + episode)
+- `search_content`: 组合字段 (title + summary + narrative)
 - `keywords`: 关键词列表
 - `subject`: 主题
 
@@ -496,7 +496,7 @@ MemUnit
 ├─ unit_id: str (UUID)
 ├─ original_data: List[Dict]
 ├─ summary: str
-├─ episode: str
+├─ narrative: str
 ├─ participants: List[str]
 ├─ semantic_memories: List[SemanticMemoryItem]
 └─ event_log: EventLog
@@ -509,12 +509,12 @@ MemUnit
     │    ├─ user_id: str
     │    ├─ event_id: str
     │    ├─ memunit_id_list: [unit_id]
-    │    ├─ episode: str (个人视角)
+    │    ├─ narrative: str (个人视角)
     │    └─ summary, subject, keywords
     │
     └──▶ EpisodicMemoryRawRepository.append_episodic_memory()
          │
-         ├──▶ 向量化: vectorize_service.get_embedding(episode)
+         ├──▶ 向量化: vectorize_service.get_embedding(narrative)
          │
          ├──▶ MongoDB 存储
          │
