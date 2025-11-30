@@ -246,11 +246,11 @@ class SemanticMemory:
 
 ## 3. MemUnit 定义与定位
 
-### 2.1 代码位置
+### 3.1 代码位置
 
 **文件路径**: `src/memory/schema/memunit.py`
 
-### 2.2 类定义
+### 3.2 类定义
 
 ```python
 @dataclass
@@ -263,7 +263,7 @@ class MemUnit:
     """
 ```
 
-### 2.3 生命周期
+### 3.3 生命周期
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────┐
@@ -300,7 +300,7 @@ class MemUnit:
 
 ## 4. 字段详细说明
 
-### 3.1 字段分组概览
+### 4.1 字段分组概览
 
 ```python
 # ===== 1. 标识字段 (Identity) =====
@@ -335,9 +335,9 @@ event_log: Optional[EventLog]   # 事件日志
 extend: Optional[Dict]          # 自定义元数据（包含 embedding、vector_model）
 ```
 
-### 3.2 各字段详细说明
+### 4.2 各字段详细说明
 
-#### 3.2.1 标识字段
+#### 4.2.1 标识字段
 
 | 字段 | 类型 | 必填 | 说明 | 来源 |
 |------|------|------|------|------|
@@ -355,7 +355,7 @@ extend: Optional[Dict]          # 自定义元数据（包含 embedding、vector
 
 ---
 
-#### 3.2.2 用户字段
+#### 4.2.2 用户字段
 
 | 字段 | 类型 | 必填 | 说明 | 来源 |
 |------|------|------|------|------|
@@ -389,7 +389,7 @@ def _extract_participant_ids(self, chat_raw_data_list):
 
 ---
 
-#### 3.2.3 原始数据字段
+#### 4.2.3 原始数据字段
 
 | 字段 | 类型 | 必填 | 说明 | 来源 |
 |------|------|------|------|------|
@@ -429,7 +429,7 @@ SUPPORTED_MSG_TYPES = {
 
 ---
 
-#### 3.2.4 时间字段
+#### 4.2.4 时间字段
 
 | 字段 | 类型 | 必填 | 说明 | 来源 |
 |------|------|------|------|------|
@@ -454,7 +454,7 @@ else:
 
 ---
 
-#### 3.2.5 上下文字段
+#### 4.2.5 上下文字段
 
 | 字段 | 类型 | 必填 | 说明 | 来源 |
 |------|------|------|------|------|
@@ -471,7 +471,7 @@ class SourceType(str, Enum):
 
 ---
 
-#### 3.2.6 内容字段（核心）
+#### 4.2.6 内容字段（核心）
 
 | 字段 | 类型 | 必填 | 说明 | 来源 |
 |------|------|------|------|------|
@@ -519,7 +519,7 @@ summary (简短) ⊂ subject (标题) ⊂ episode (详细)
 
 ---
 
-#### 3.2.7 提取结果字段
+#### 4.2.7 提取结果字段
 
 | 字段 | 类型 | 必填 | 说明 | 来源 |
 |------|------|------|------|------|
@@ -560,7 +560,7 @@ class SemanticMemoryItem:
 
 ---
 
-#### 3.2.8 扩展字段
+#### 4.2.8 扩展字段
 
 | 字段 | 类型 | 必填 | 说明 | 来源 |
 |------|------|------|------|------|
@@ -589,7 +589,7 @@ if text_for_embed:
 
 ## 5. 完整实例分析
 
-### 4.1 原始对话数据（Eval 测试集）
+### 5.1 原始对话数据（Eval 测试集）
 
 **来源**: `eval/data/locomo/locomo-mini.json`
 
@@ -615,7 +615,7 @@ if text_for_embed:
 }
 ```
 
-### 4.2 抽取出的 MemUnit
+### 5.2 抽取出的 MemUnit
 
 **来源**: `eval/results/locomo-mini/memunits/memunit_list_conv_0.json`
 
@@ -683,7 +683,7 @@ if text_for_embed:
 }
 ```
 
-### 4.3 检索结果示例
+### 5.3 检索结果示例
 
 **查询**: "When did Caroline go to the LGBTQ support group?"
 
@@ -705,7 +705,7 @@ if text_for_embed:
 }
 ```
 
-### 4.4 字段转换关系
+### 5.4 字段转换关系
 
 ```
 MemUnit                    →  ES Document (检索)
@@ -725,7 +725,7 @@ extend.embedding           →  (存储到 Milvus)
 
 ## 6. 抽取流程详解
 
-### 5.1 流程图
+### 6.1 流程图
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────┐
@@ -786,7 +786,7 @@ extend.embedding           →  (存储到 Milvus)
 └─────────────────────────────────────────────────────────────────────────┘
 ```
 
-### 5.2 关键代码
+### 6.2 关键代码
 
 **边界检测提示词** (Eval 模式):
 ```python
@@ -841,7 +841,7 @@ Output JSON:
 
 ## 7. 检索流程详解
 
-### 6.1 检索架构
+### 7.1 检索架构
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────┐
@@ -879,9 +879,9 @@ Output JSON:
 └─────────────────────────────────────────────────────────────────────────┘
 ```
 
-### 6.2 检索字段映射
+### 7.2 检索字段映射
 
-#### 6.2.1 Elasticsearch (关键词检索)
+#### 7.2.1 Elasticsearch (关键词检索)
 
 **索引字段** (定义于 `EpisodicMemoryDoc`):
 
@@ -930,7 +930,7 @@ async def multi_search(self, query: List[str], user_id: str, ...):
     return await search.execute()
 ```
 
-#### 6.2.2 Milvus (向量检索)
+#### 7.2.2 Milvus (向量检索)
 
 **Collection 字段**:
 
@@ -963,7 +963,7 @@ async def vector_search(self, query_vector, user_id, limit=10, radius=0.7):
     return results
 ```
 
-### 6.3 检索结果处理
+### 7.3 检索结果处理
 
 ```python
 # 检索后的处理流程
@@ -984,7 +984,7 @@ response = RetrieveMemoryResponse(
 
 ## 8. 字段映射关系
 
-### 7.1 完整映射图
+### 8.1 完整映射图
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────┐
@@ -1028,7 +1028,7 @@ response = RetrieveMemoryResponse(
 └─────────────────────────────────────────────────────────────────────────┘
 ```
 
-### 7.2 存储层对比
+### 8.2 存储层对比
 
 | MemUnit 字段 | MongoDB 字段 | ES 字段 | Milvus 字段 | 用途 |
 |-------------|--------------|---------|-------------|------|
@@ -1047,7 +1047,7 @@ response = RetrieveMemoryResponse(
 
 ## 9. 关键文件索引
 
-### 8.1 Schema 定义
+### 9.1 Schema 定义
 
 | 文件 | 说明 |
 |------|------|
@@ -1055,7 +1055,7 @@ response = RetrieveMemoryResponse(
 | [src/memory/schema/source_type.py](../../src/memory/schema/source_type.py) | SourceType 枚举 |
 | [src/memory/schema/episode_memory.py](../../src/memory/schema/episode_memory.py) | EpisodeMemory 定义 |
 
-### 8.2 抽取逻辑
+### 9.2 抽取逻辑
 
 | 文件 | 说明 |
 |------|------|
@@ -1063,14 +1063,14 @@ response = RetrieveMemoryResponse(
 | [src/memory/extraction/memory/episode_memory_extractor.py](../../src/memory/extraction/memory/episode_memory_extractor.py) | Episode 抽取器 |
 | [src/memory/orchestrator/extraction_orchestrator.py](../../src/memory/orchestrator/extraction_orchestrator.py) | 抽取编排器 |
 
-### 8.3 提示词
+### 9.3 提示词
 
 | 文件 | 说明 |
 |------|------|
 | [src/prompts/memory/en/eval/add/conv_prompts.py](../../src/prompts/memory/en/eval/add/conv_prompts.py) | Eval 边界检测提示词 |
 | [src/prompts/memory/en/eval/add/episode_mem_prompts.py](../../src/prompts/memory/en/eval/add/episode_mem_prompts.py) | Eval Episode 生成提示词 |
 
-### 8.4 存储层
+### 9.4 存储层
 
 | 文件 | 说明 |
 |------|------|
@@ -1079,14 +1079,14 @@ response = RetrieveMemoryResponse(
 | [src/infra/adapters/out/search/elasticsearch/converter/episodic_memory_converter.py](../../src/infra/adapters/out/search/elasticsearch/converter/episodic_memory_converter.py) | ES 转换器 |
 | [src/infra/adapters/out/search/repository/episodic_memory_es_repository.py](../../src/infra/adapters/out/search/repository/episodic_memory_es_repository.py) | ES Repository |
 
-### 8.5 检索逻辑
+### 9.5 检索逻辑
 
 | 文件 | 说明 |
 |------|------|
 | [src/agents/memory_manager.py](../../src/agents/memory_manager.py) | 记忆管理器（检索入口）|
 | [src/agents/fetch_memory_service.py](../../src/agents/fetch_memory_service.py) | 记忆获取服务 |
 
-### 8.6 Eval 测试数据
+### 9.6 Eval 测试数据
 
 | 文件 | 说明 |
 |------|------|
