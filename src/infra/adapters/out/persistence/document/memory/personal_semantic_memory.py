@@ -25,7 +25,7 @@ class PersonalSemanticMemory(DocumentBase, AuditBase):
     # 核心字段（必填）
     user_id: str = Field(..., description="用户ID")
     content: str = Field(..., min_length=1, description="语义记忆内容")
-    parent_episode_id: str = Field(..., description="父情景记忆的 event_id")
+    parent_episode_id: str = Field(..., description="父情景记忆的 episode_id")
 
     # 时间范围字段
     start_time: Optional[str] = Field(default=None, description="语义记忆开始时间（日期字符串，如 2024-01-01）")
@@ -67,7 +67,7 @@ class PersonalSemanticMemory(DocumentBase, AuditBase):
     )
 
     @property
-    def event_id(self) -> Optional[PydanticObjectId]:
+    def episode_id(self) -> Optional[PydanticObjectId]:
         """兼容性属性，返回文档ID"""
         return self.id
 

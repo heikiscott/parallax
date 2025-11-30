@@ -52,7 +52,7 @@ class EventLogConverter(BaseEsConverter[EpisodicMemoryDoc]):
             # 创建 ES 文档实例
             es_doc = EpisodicMemoryDoc(
                 # 基础标识字段
-                event_id=str(source_doc.id) if source_doc.id else "",
+                episode_id=str(source_doc.id) if source_doc.id else "",
                 user_id=source_doc.user_id,
                 user_name=None,  # 个人事件日志没有 user_name
                 # 时间字段

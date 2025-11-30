@@ -49,7 +49,7 @@ logger = logging.getLogger(__name__)
 @dataclass
 class EventLogCandidate:
     """Event Log 候选对象（用于从 atomic_fact 检索）"""
-    event_id: str
+    episode_id: str
     user_id: str
     group_id: str
     timestamp: datetime
@@ -843,7 +843,7 @@ class MemoryManager:
                 subject = source.get('subject', '')
                 summary = source.get('summary', '')
                 participants = source.get('participants', [])
-                hit_id = source.get('event_id', '')
+                hit_id = source.get('episode_id', '')
                 search_source = hit.get('_search_source', 'keyword')  # 默认为关键词检索
             elif source_type == "hybrid":
                 # 混合检索结果格式，需要根据_search_source字段判断
@@ -860,7 +860,7 @@ class MemoryManager:
                     subject = source.get('subject', '')
                     summary = source.get('summary', '')
                     participants = source.get('participants', [])
-                    hit_id = source.get('event_id', '')
+                    hit_id = source.get('episode_id', '')
                 else:
                     # 向量检索结果格式
                     hit_id = hit.get('id', '')
@@ -1316,7 +1316,7 @@ class MemoryManager:
                     metadata = source.get('extend', {})
                     result = {
                         'score': bm25_score,
-                        'event_id': source.get('event_id', ''),
+                        'episode_id': source.get('episode_id', ''),
                         'user_id': source.get('user_id', ''),
                         'group_id': source.get('group_id', ''),
                         'timestamp': source.get('timestamp', ''),
@@ -1342,7 +1342,7 @@ class MemoryManager:
                 memories = [
                     {
                         'score': score,
-                        'event_id': result.get('id', ''),
+                        'episode_id': result.get('id', ''),
                         'user_id': result.get('user_id', ''),
                         'group_id': result.get('group_id', ''),
                         'timestamp': result.get('timestamp', ''),
@@ -1398,12 +1398,12 @@ class MemoryManager:
                 memories = []
                 for doc, rrf_score in final_results:
                     # doc 可能来自 Milvus 或 ES，需要统一格式
-                    # 区分方法：Milvus 有 'id' 字段，ES 有 'event_id' 字段
-                    if 'event_id' in doc and 'id' not in doc:
+                    # 区分方法：Milvus 有 'id' 字段，ES 有 'episode_id' 字段
+                    if 'episode_id' in doc and 'id' not in doc:
                         # 来自 ES 的结果（已经是标准格式）
                         memory = {
                             'score': rrf_score,
-                            'event_id': doc.get('event_id', ''),
+                            'episode_id': doc.get('episode_id', ''),
                             'user_id': doc.get('user_id', ''),
                             'group_id': doc.get('group_id', ''),
                             'timestamp': doc.get('timestamp', ''),
@@ -1430,7 +1430,7 @@ class MemoryManager:
                         end_val = doc.get('end_time')
                         memory = {
                             'score': rrf_score,
-                            'event_id': doc.get('id', ''),  # Milvus 用 'id'
+                            'episode_id': doc.get('id', ''),  # Milvus 用 'id'
                             'user_id': doc.get('user_id', ''),
                             'group_id': doc.get('group_id', ''),
                             'timestamp': doc.get('timestamp', ''),
@@ -1780,11 +1780,11 @@ class MemoryManager:
             # ========== 去重和融合 ==========
             logger.info("Merge: Deduplicating and combining Round 1 + Round 2...")
             
-            # 去重：使用 event_id
-            round1_event_ids = {mem.get("event_id") for mem in round1_memories}
+            # 去重：使用 episode_id
+            round1_episode_ids = {mem.get("episode_id") for mem in round1_memories}
             round2_unique = [
                 mem for mem in all_round2_memories
-                if mem.get("event_id") not in round1_event_ids
+                if mem.get("episode_id") not in round1_episode_ids
             ]
             
             # 合并：Round 1 (20) + Round 2 去重后的结果（最多取到总数 40）

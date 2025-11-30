@@ -25,7 +25,7 @@ class PersonalEventLog(DocumentBase, AuditBase):
     # 核心字段（必填）
     user_id: str = Field(..., description="用户ID")
     atomic_fact: str = Field(..., min_length=1, description="原子事实内容")
-    parent_episode_id: str = Field(..., description="父情景记忆的 event_id")
+    parent_episode_id: str = Field(..., description="父情景记忆的 episode_id")
 
     # 时间信息
     timestamp: datetime = Field(..., description="事件发生时间")
@@ -63,7 +63,7 @@ class PersonalEventLog(DocumentBase, AuditBase):
     )
 
     @property
-    def event_id(self) -> Optional[PydanticObjectId]:
+    def episode_id(self) -> Optional[PydanticObjectId]:
         """兼容性属性，返回文档ID"""
         return self.id
 

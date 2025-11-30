@@ -17,12 +17,12 @@ class ClusterState(DocumentBase, AuditBase):
     group_id: Indexed(str) = Field(..., description="群组ID，主键")
     
     # 基础聚类信息
-    event_ids: List[str] = Field(default_factory=list, description="所有 event_id 列表")
+    unit_ids: List[str] = Field(default_factory=list, description="所有 MemUnit ID 列表")
     timestamps: List[float] = Field(default_factory=list, description="时间戳列表")
     cluster_ids: List[str] = Field(default_factory=list, description="聚类 ID 列表")
     
-    # event_id -> cluster_id 映射
-    eventid_to_cluster: Dict[str, str] = Field(default_factory=dict, description="事件到聚类的映射")
+    # unit_id -> cluster_id 映射
+    unitid_to_cluster: Dict[str, str] = Field(default_factory=dict, description="MemUnit 到聚类的映射")
     
     # 聚类元数据
     next_cluster_idx: int = Field(default=0, description="下一个聚类索引")

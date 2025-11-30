@@ -43,7 +43,7 @@
         user_id="alice_123",
         timestamp=datetime.now(),
         memunit_id_list=["memunit_456"],
-        event_id="episode_789",
+        episode_id="episode_789",
         episode="今天我和团队讨论了项目时间线...",
         summary="项目时间线讨论",
         subject="Sprint 规划"
@@ -77,7 +77,7 @@ class EpisodeMemory(Memory):
     ========
 
     情景记忆特有字段:
-        - event_id: 情景记忆自身的唯一标识符
+        - episode_id: 情景记忆自身的唯一标识符
           不同于 memunit_id_list (源 MemUnit ID)
           用于存储和检索时的主键
 
@@ -106,7 +106,7 @@ class EpisodeMemory(Memory):
         ...     user_id="user_123",
         ...     timestamp=datetime.now(),
         ...     memunit_id_list=["memunit_1"],
-        ...     event_id="episode_1",
+        ...     episode_id="episode_1",
         ...     episode="今天我了解了新功能的使用方法...",
         ...     summary="学习新功能",
         ...     subject="功能培训"
@@ -114,7 +114,7 @@ class EpisodeMemory(Memory):
     """
 
     # ===== 情景记忆特有字段 =====
-    event_id: str = field(default=None)  # 情景记忆的唯一标识符
+    episode_id: str = field(default=None)  # 情景记忆的唯一标识符 (Episode ID)
 
     def __post_init__(self):
         """

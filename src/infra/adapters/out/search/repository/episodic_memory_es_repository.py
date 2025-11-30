@@ -77,7 +77,7 @@ class EpisodicMemoryEsRepository(BaseRepository[EpisodicMemoryDoc]):
 
     async def create_and_save_episodic_memory(
         self,
-        event_id: str,
+        episode_id: str,
         user_id: str,
         timestamp: datetime,
         episode: str,
@@ -100,7 +100,7 @@ class EpisodicMemoryEsRepository(BaseRepository[EpisodicMemoryDoc]):
         创建并保存情景记忆文档
 
         Args:
-            event_id: 事件唯一标识
+            episode_id: 情景记忆唯一标识
             user_id: 用户ID（必需）
             timestamp: 事件发生时间（必需）
             episode: 情景描述（必需）
@@ -134,7 +134,7 @@ class EpisodicMemoryEsRepository(BaseRepository[EpisodicMemoryDoc]):
             # 创建文档实例
             normalized_user_id = user_id or ""
             doc = EpisodicMemoryDoc(
-                event_id=event_id,
+                episode_id=episode_id,
                 type=event_type,
                 user_id=normalized_user_id,
                 user_name=user_name or '',
@@ -159,12 +159,12 @@ class EpisodicMemoryEsRepository(BaseRepository[EpisodicMemoryDoc]):
             await doc.save(using=client)
 
             logger.debug(
-                "✅ 创建情景记忆文档成功: event_id=%s, user_id=%s", event_id, user_id
+                "✅ 创建情景记忆文档成功: episode_id=%s, user_id=%s", episode_id, user_id
             )
             return doc
 
         except Exception as e:
-            logger.error("❌ 创建情景记忆文档失败: event_id=%s, error=%s", event_id, e)
+            logger.error("❌ 创建情景记忆文档失败: episode_id=%s, error=%s", episode_id, e)
             raise
 
     # ==================== 搜索功能 ====================
@@ -416,7 +416,7 @@ class EpisodicMemoryEsRepository(BaseRepository[EpisodicMemoryDoc]):
 
     async def append_episodic_memory(
         self,
-        event_id: str,
+        episode_id: str,
         user_id: str,
         timestamp: datetime,
         episode: str,
@@ -449,7 +449,7 @@ class EpisodicMemoryEsRepository(BaseRepository[EpisodicMemoryDoc]):
         """
         # 创建并保存文档
         doc = await self.create_and_save_episodic_memory(
-            event_id=event_id,
+            episode_id=episode_id,
             user_id=user_id,
             timestamp=timestamp,
             episode=episode,
@@ -472,33 +472,33 @@ class EpisodicMemoryEsRepository(BaseRepository[EpisodicMemoryDoc]):
 
     # ==================== 删除功能 ====================
 
-    async def delete_by_event_id(self, event_id: str, refresh: bool = False) -> bool:
+    async def delete_by_episode_id(self, episode_id: str, refresh: bool = False) -> bool:
         """
-        根据event_id删除情景记忆文档
+        根据episode_id删除情景记忆文档
 
         Args:
-            event_id: 事件唯一标识
+            episode_id: 情景记忆唯一标识
             refresh: 是否立即刷新索引
 
         Returns:
             删除成功返回 True，否则返回 False
         """
         try:
-            # 使用基类的delete_by_id方法，因为我们设置文档ID为event_id
-            result = await self.delete_by_id(event_id, refresh=refresh)
+            # 使用基类的delete_by_id方法，因为我们设置文档ID为episode_id
+            result = await self.delete_by_id(episode_id, refresh=refresh)
 
             if result:
-                logger.debug("✅ 根据event_id删除情景记忆成功: event_id=%s", event_id)
+                logger.debug("✅ 根据episode_id删除情景记忆成功: episode_id=%s", episode_id)
             else:
                 logger.warning(
-                    "⚠️ 根据event_id删除情景记忆失败，文档不存在: event_id=%s", event_id
+                    "⚠️ 根据episode_id删除情景记忆失败，文档不存在: episode_id=%s", episode_id
                 )
 
             return result
 
         except Exception as e:
             logger.error(
-                "❌ 根据event_id删除情景记忆失败: event_id=%s, error=%s", event_id, e
+                "❌ 根据episode_id删除情景记忆失败: episode_id=%s, error=%s", episode_id, e
             )
             raise
 

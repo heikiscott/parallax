@@ -61,7 +61,7 @@ class EpisodicMemoryConverter(BaseEsConverter[EpisodicMemoryDoc]):
             # 创建ES文档实例
             es_doc = EpisodicMemoryDoc(
                 # 基础标识字段
-                event_id=(
+                episode_id=(
                     str(source_doc.id)
                     if hasattr(source_doc, 'id') and source_doc.id
                     else ""
@@ -179,7 +179,7 @@ class EpisodicMemoryConverter(BaseEsConverter[EpisodicMemoryDoc]):
             # 创建ES文档实例
             es_doc = EpisodicMemoryDoc(
                 # 基础标识字段
-                event_id=getattr(episode_memory, "event_id", ""),
+                episode_id=getattr(episode_memory, "episode_id", ""),
                 user_id=getattr(episode_memory, "user_id", ""),
                 user_name=getattr(episode_memory, 'user_name', None),
                 # 时间字段
@@ -210,8 +210,8 @@ class EpisodicMemoryConverter(BaseEsConverter[EpisodicMemoryDoc]):
             )
 
             # 设置ES文档ID
-            if hasattr(episode_memory, 'event_id') and episode_memory.event_id:
-                es_doc.meta.id = episode_memory.event_id
+            if hasattr(episode_memory, 'episode_id') and episode_memory.episode_id:
+                es_doc.meta.id = episode_memory.episode_id
 
             return es_doc
 

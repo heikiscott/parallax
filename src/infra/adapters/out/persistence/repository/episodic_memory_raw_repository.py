@@ -28,9 +28,9 @@ class EpisodicMemoryRawRepository(BaseRepository[EpisodicMemory]):
 
     # ==================== 基础 CRUD 方法 ====================
 
-    async def get_by_event_id(
+    async def get_by_episode_id(
         self,
-        event_id: str,
+        episode_id: str,
         user_id: str,
         session: Optional[AsyncIOMotorClientSession] = None,
     ) -> Optional[EpisodicMemory]:
@@ -38,7 +38,7 @@ class EpisodicMemoryRawRepository(BaseRepository[EpisodicMemory]):
         根据事件ID和用户ID获取情景记忆
 
         Args:
-            event_id: 事件ID
+            episode_id: 情景记忆ID
             user_id: 用户ID
             session: 可选的 MongoDB 会话，用于事务支持
 
@@ -46,16 +46,16 @@ class EpisodicMemoryRawRepository(BaseRepository[EpisodicMemory]):
             EpisodicMemory 或 None
         """
         try:
-            # 将字符串 event_id 转换为 ObjectId
-            object_id = ObjectId(event_id)
+            # 将字符串 episode_id 转换为 ObjectId
+            object_id = ObjectId(episode_id)
             result = await self.model.find_one(
                 {"_id": object_id, "user_id": user_id}, session=session
             )
             if result:
-                logger.debug("✅ 根据事件ID和用户ID获取情景记忆成功: %s", event_id)
+                logger.debug("✅ 根据事件ID和用户ID获取情景记忆成功: %s", episode_id)
             else:
                 logger.debug(
-                    "ℹ️  未找到情景记忆: event_id=%s, user_id=%s", event_id, user_id
+                    "ℹ️  未找到情景记忆: episode_id=%s, user_id=%s", episode_id, user_id
                 )
             return result
         except Exception as e:
@@ -137,8 +137,8 @@ class EpisodicMemoryRawRepository(BaseRepository[EpisodicMemory]):
         try:
             await episodic_memory.insert(session=session)
             logger.info(
-                "✅ 追加情景记忆成功: event_id=%s, user_id=%s",
-                episodic_memory.event_id,
+                "✅ 追加情景记忆成功: episode_id=%s, user_id=%s",
+                episodic_memory.episode_id,
                 episodic_memory.user_id,
             )
             return episodic_memory
@@ -146,9 +146,9 @@ class EpisodicMemoryRawRepository(BaseRepository[EpisodicMemory]):
             logger.error("❌ 追加情景记忆失败: %s", e)
             return None
 
-    async def delete_by_event_id(
+    async def delete_by_episode_id(
         self,
-        event_id: str,
+        episode_id: str,
         user_id: str,
         session: Optional[AsyncIOMotorClientSession] = None,
     ) -> bool:
@@ -156,7 +156,7 @@ class EpisodicMemoryRawRepository(BaseRepository[EpisodicMemory]):
         根据事件ID和用户ID删除情景记忆
 
         Args:
-            event_id: 事件ID
+            episode_id: 情景记忆ID
             user_id: 用户ID
             session: 可选的 MongoDB 会话，用于事务支持
 
@@ -164,8 +164,8 @@ class EpisodicMemoryRawRepository(BaseRepository[EpisodicMemory]):
             是否删除成功
         """
         try:
-            # 将字符串 event_id 转换为 ObjectId
-            object_id = ObjectId(event_id)
+            # 将字符串 episode_id 转换为 ObjectId
+            object_id = ObjectId(episode_id)
             # 直接删除并检查删除数量
             result = await self.model.find(
                 {"_id": object_id, "user_id": user_id}, session=session
@@ -177,12 +177,12 @@ class EpisodicMemoryRawRepository(BaseRepository[EpisodicMemory]):
             success = deleted_count > 0
 
             if success:
-                logger.info("✅ 根据事件ID和用户ID删除情景记忆成功: %s", event_id)
+                logger.info("✅ 根据事件ID和用户ID删除情景记忆成功: %s", episode_id)
                 return True
             else:
                 logger.warning(
-                    "⚠️  未找到要删除的情景记忆: event_id=%s, user_id=%s",
-                    event_id,
+                    "⚠️  未找到要删除的情景记忆: episode_id=%s, user_id=%s",
+                    episode_id,
                     user_id,
                 )
                 return False

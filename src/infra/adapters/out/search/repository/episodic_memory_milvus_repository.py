@@ -42,7 +42,7 @@ class EpisodicMemoryMilvusRepository(BaseMilvusRepository[EpisodicMemoryCollecti
 
     async def create_and_save_episodic_memory(
         self,
-        event_id: str,
+        episode_id: str,
         user_id: str,
         timestamp: datetime,
         episode: str,
@@ -61,14 +61,14 @@ class EpisodicMemoryMilvusRepository(BaseMilvusRepository[EpisodicMemoryCollecti
         extend: Optional[Dict[str, Any]] = None,
         created_at: Optional[datetime] = None,
         updated_at: Optional[datetime] = None,
-        parent_event_id: Optional[str] = None,
+        parent_episode_id: Optional[str] = None,
         metadata: Optional[str] = None,
     ) -> Dict[str, Any]:
         """
         创建并保存情景记忆文档
 
         Args:
-            event_id: 事件唯一标识
+            episode_id: 情景记忆唯一标识
             user_id: 用户ID（必需）
             timestamp: 事件发生时间（必需）
             episode: 情景描述（必需）
@@ -87,7 +87,7 @@ class EpisodicMemoryMilvusRepository(BaseMilvusRepository[EpisodicMemoryCollecti
             extend: 扩展字段
             created_at: 创建时间
             updated_at: 更新时间
-            parent_event_id: 父事件ID（用于关联拆分的记录）
+            parent_episode_id: 父事件ID（用于关联拆分的记录）
             metadata: 元数据JSON字符串（可选，如果不传则自动构建）
 
         Returns:
@@ -115,7 +115,7 @@ class EpisodicMemoryMilvusRepository(BaseMilvusRepository[EpisodicMemoryCollecti
                     "extend": extend or {},
                     "created_at": created_at.isoformat(),
                     "updated_at": updated_at.isoformat(),
-                    "parent_event_id": parent_event_id or "",  # 父事件ID，用于关联拆分的记录
+                    "parent_episode_id": parent_episode_id or "",  # 父事件ID，用于关联拆分的记录
                 }
                 metadata_json = json.dumps(metadata_dict, ensure_ascii=False)
             else:
@@ -128,7 +128,7 @@ class EpisodicMemoryMilvusRepository(BaseMilvusRepository[EpisodicMemoryCollecti
 
             # 准备实体数据
             entity = {
-                "id": event_id,
+                "id": episode_id,
                 "vector": vector,
                 "user_id": user_id or "",  # Milvus VARCHAR 不接受 None，转为空字符串
                 "group_id": group_id or "",
@@ -146,11 +146,11 @@ class EpisodicMemoryMilvusRepository(BaseMilvusRepository[EpisodicMemoryCollecti
             await self.insert(entity)
 
             logger.debug(
-                "✅ 创建情景记忆文档成功: event_id=%s, user_id=%s", event_id, user_id
+                "✅ 创建情景记忆文档成功: episode_id=%s, user_id=%s", episode_id, user_id
             )
 
             return {
-                "event_id": event_id,
+                "episode_id": episode_id,
                 "user_id": user_id,
                 "timestamp": timestamp,
                 "episode": episode,
@@ -159,7 +159,7 @@ class EpisodicMemoryMilvusRepository(BaseMilvusRepository[EpisodicMemoryCollecti
             }
 
         except Exception as e:
-            logger.error("❌ 创建情景记忆文档失败: event_id=%s, error=%s", event_id, e)
+            logger.error("❌ 创建情景记忆文档失败: episode_id=%s, error=%s", episode_id, e)
             raise
 
     # ==================== 搜索功能 ====================
@@ -280,24 +280,24 @@ class EpisodicMemoryMilvusRepository(BaseMilvusRepository[EpisodicMemoryCollecti
 
     # ==================== 删除功能 ====================
 
-    async def delete_by_event_id(self, event_id: str) -> bool:
+    async def delete_by_episode_id(self, episode_id: str) -> bool:
         """
-        根据event_id删除情景记忆文档
+        根据episode_id删除情景记忆文档
 
         Args:
-            event_id: 事件唯一标识
+            episode_id: 情景记忆唯一标识
 
         Returns:
             删除成功返回 True，否则返回 False
         """
         try:
-            success = await self.delete_by_id(event_id)
+            success = await self.delete_by_id(episode_id)
             if success:
-                logger.debug("✅ 根据event_id删除情景记忆成功: event_id=%s", event_id)
+                logger.debug("✅ 根据episode_id删除情景记忆成功: episode_id=%s", episode_id)
             return success
         except Exception as e:
             logger.error(
-                "❌ 根据event_id删除情景记忆失败: event_id=%s, error=%s", event_id, e
+                "❌ 根据episode_id删除情景记忆失败: episode_id=%s, error=%s", episode_id, e
             )
             return False
 

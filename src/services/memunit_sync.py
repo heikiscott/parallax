@@ -145,7 +145,7 @@ class MemUnitSyncService:
         
         # MemUnit 的 user_id 始终为 None（群组记忆）
         await self.episodic_milvus_repo.create_and_save_episodic_memory(
-            event_id=str(memunit.unit_id),
+            episode_id=str(memunit.unit_id),
             user_id=memunit.user_id,  # None for group memory
             timestamp=memunit.timestamp or get_now_with_timezone(),
             episode=memunit.episode,
@@ -184,7 +184,7 @@ class MemUnitSyncService:
                 search_content.append(memunit.episode[:500])
                 
                 await self.es_repo.create_and_save_episodic_memory(
-                    event_id=f"{str(memunit.unit_id)}_episode",
+                    episode_id=f"{str(memunit.unit_id)}_episode",
                     user_id=memunit.user_id,
                     timestamp=memunit.timestamp or get_now_with_timezone(),
                     episode=memunit.episode,

@@ -123,7 +123,7 @@ class MemoryExtractor:
                 entry.get("message_id")
                 or entry.get("id")
                 or entry.get("uuid")
-                or entry.get("event_id")
+                or entry.get("unit_id")
                 or f"msg_{idx}"
             )
             

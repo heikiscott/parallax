@@ -62,8 +62,8 @@ class EpisodicMemoryMilvusConverter(BaseMilvusConverter[EpisodicMemoryCollection
             milvus_entity = {
                 # 基础标识字段
                 "id": (
-                    str(source_doc.event_id)
-                    if hasattr(source_doc, 'event_id') and source_doc.event_id
+                    str(source_doc.episode_id)
+                    if hasattr(source_doc, 'episode_id') and source_doc.episode_id
                     else ""
                 ),
                 "user_id": source_doc.user_id,

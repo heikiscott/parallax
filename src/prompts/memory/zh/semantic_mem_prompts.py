@@ -34,7 +34,7 @@ GROUP_SEMANTIC_GENERATION_PROMPT = """
 
 ## 示例输入（工作场景）：
 {
-  "event_id": "group-2025-001",
+  "episode_id": "group-2025-001",
   "group_id": "group_001",
   "user_id_list": ["user_1", "user_2", "user_3"],
   "summary": "团队完成了阶段性项目复盘会议，讨论了任务分配和未来方向。",
@@ -80,7 +80,7 @@ GROUP_SEMANTIC_GENERATION_PROMPT = """
 
 ## 示例输入（生活场景）：
 {
-  "event_id": "group-2025-002",
+  "episode_id": "group-2025-002",
   "group_id": "family_001",
   "user_id_list": ["user_1", "user_2"],
   "summary": "user_1崴脚了，user_2帮忙照顾。",
@@ -134,7 +134,7 @@ GROUP_SEMANTIC_GENERATION_PROMPT = """
   - start_time: 从输入内容中提取事件发生的具体日期（通常在summary或episode中），格式为YYYY-MM-DD
   - end_time: 从原文内容中提取具体的结束时间点，如果原文中有明确的结束时间（如"10月24日前"、"2025-11-15"等），则提取具体日期，否则结合事件内容和常识合理推断
   - duration_days: 从原文内容中提取持续时间，如果原文中有明确的时间描述（如"一周内"、"7天"、"一个月"等），则提取天数，否则结合事件内容和常识合理推断
-  - source_episode_id: 使用输入中的event_id
+  - source_episode_id: 使用输入中的episode_id
   - evidence: 从原文内容中提取支持该联想预测的具体证据，必须是原文中明确提到的事实或行为，不超过30字
   - **重要**：优先从原文中提取明确的时间信息，如果没有则结合事件内容和常识进行合理推断，时间不能为null
 """
@@ -170,7 +170,7 @@ SEMANTIC_GENERATION_PROMPT = """
 
 ## 示例输入（生活场景）：
 {
-  "event_id": "test-001",
+  "episode_id": "test-001",
   "user_id": "XiaoMing",
   "subject": "小明完成智齿拔除手术及术后医嘱",
   "summary": "小明在今天下午成功拔除了智齿，医生强调未来一周注意口腔清洁。",
@@ -232,7 +232,7 @@ SEMANTIC_GENERATION_PROMPT = """
 
 ## 示例输入（工作场景）：
 {
-  "event_id": "work-001",
+  "episode_id": "work-001",
   "user_id": "LiHua",
   "subject": "李华参加了项目管理培训",
   "summary": "李华参加了为期三天的项目管理培训，学习了新的工作方法。",
@@ -295,7 +295,7 @@ SEMANTIC_GENERATION_PROMPT = """
   - start_time: 从输入内容中提取事件发生的具体日期（通常在summary或episode中），格式为YYYY-MM-DD
   - end_time: 从原文内容中提取具体的结束时间点，如果原文中有明确的结束时间（如"10月24日前"、"2025-11-15"等），则提取具体日期，否则结合事件内容和常识合理推断
   - duration_days: 从原文内容中提取持续时间，如果原文中有明确的时间描述（如"一周内"、"7天"、"一个月"等），则提取天数，否则结合事件内容和常识合理推断
-  - source_episode_id: 使用输入中的event_id
+  - source_episode_id: 使用输入中的episode_id
   - evidence: 从输入内容中提取支持该联想预测的具体证据，必须是原文中明确提到的事实或行为，不超过30字
   - **重要**：优先从原文中提取明确的时间信息，如果没有则结合事件内容和常识进行合理推断，时间不能为null
 """

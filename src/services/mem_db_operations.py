@@ -284,7 +284,7 @@ def _convert_episode_memory_to_doc(
         vector_model=getattr(episode_memory, 'vector_model', None),
         extend={
             "memory_type": episode_memory.memory_type.value,
-            "ori_event_id": getattr(episode_memory, 'ori_event_id', None),
+            
             "tags": getattr(episode_memory, 'tags', None),
         },
     )
@@ -316,7 +316,7 @@ def _convert_semantic_memory_to_doc(
     return PersonalSemanticMemory(
         user_id=semantic_memory.user_id,
         content=semantic_memory.content,
-        parent_episode_id=str(parent_doc.event_id),
+        parent_episode_id=str(parent_doc.episode_id),
         start_time=semantic_memory.start_time,
         end_time=semantic_memory.end_time,
         duration_days=semantic_memory.duration_days,
@@ -367,7 +367,7 @@ def _convert_event_log_to_docs(
         doc = PersonalEventLog(
             user_id=event_log.user_id,
             atomic_fact=fact,
-            parent_episode_id=str(parent_doc.event_id),
+            parent_episode_id=str(parent_doc.episode_id),
             timestamp=parent_doc.timestamp or current_time,
             group_id=event_log.group_id,
             participants=parent_doc.participants,

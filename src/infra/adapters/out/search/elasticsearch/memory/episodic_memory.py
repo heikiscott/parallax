@@ -17,7 +17,7 @@ class EpisodicMemoryDoc(AliasDoc("episodic-memory", number_of_shards=3)):
     主要检索字段为title和episode的拼接内容。
 
     字段说明：
-    - event_id: 事件唯一标识（对应MongoDB的_id）
+    - episode_id: 情景记忆唯一标识（对应MongoDB的_id）
     - user_id: 用户ID（必需，用于过滤）
     - user_name: 用户名称
     - timestamp: 事件发生时间
@@ -45,10 +45,10 @@ class EpisodicMemoryDoc(AliasDoc("episodic-memory", number_of_shards=3)):
     - edge_completion: 前缀匹配和自动补全
     """
 
-    ID_SOURCE_FIELD = "event_id"
+    ID_SOURCE_FIELD = "episode_id"
 
     # 基础标识字段
-    event_id = e_field.Keyword(required=True)
+    episode_id = e_field.Keyword(required=True)
     user_id = e_field.Keyword(required=True)
     user_name = e_field.Keyword()
 

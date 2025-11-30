@@ -674,12 +674,12 @@ class ProfileMemoryExtractor(MemoryExtractor):
 
                 if structured_profiles:
                     fallback_evidences: List[str] = []
-                    batch_event_ids: List[str] = [
+                    batch_unit_ids: List[str] = [
                         str(mc.unit_id)
                         for mc in request.memunit_list
                         if hasattr(mc, 'unit_id') and mc.unit_id
                     ]
-                    for ev in batch_event_ids:
+                    for ev in batch_unit_ids:
                         ev_date = conversation_date_map.get(ev) or default_date
                         fallback_evidences.append(f"{ev_date}|{ev}" if ev_date else ev)
 
@@ -750,12 +750,12 @@ class ProfileMemoryExtractor(MemoryExtractor):
                     from datetime import datetime as _dt
 
                     fallback_evidences: List[str] = []
-                    batch_event_ids: List[str] = [
+                    batch_unit_ids: List[str] = [
                         str(mc.unit_id)
                         for mc in request.memunit_list
                         if hasattr(mc, 'unit_id') and mc.unit_id
                     ]
-                    for ev in batch_event_ids:
+                    for ev in batch_unit_ids:
                         ev_date = conversation_date_map.get(ev) or default_date
                         fallback_evidences.append(f"{ev_date}|{ev}" if ev_date else ev)
 

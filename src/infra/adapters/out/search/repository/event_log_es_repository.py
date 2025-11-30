@@ -127,7 +127,7 @@ class EventLogEsRepository(BaseRepository[EpisodicMemoryDoc]):
 
             # 创建文档实例（复用 EpisodicMemoryDoc）
             doc = EpisodicMemoryDoc(
-                event_id=log_id,
+                episode_id=log_id,
                 type="event_log",  # 标记类型
                 user_id=user_id,
                 user_name='',

@@ -62,7 +62,7 @@ class EpisodicMemory(DocumentBase, AuditBase):
     )
 
     @property
-    def event_id(self) -> Optional[PydanticObjectId]:
+    def episode_id(self) -> Optional[PydanticObjectId]:
         return self.id
 
     class Settings:

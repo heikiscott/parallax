@@ -32,7 +32,7 @@ Return results as a JSON array, each association includes time information:
 
 ## Example Input (Work Scenario):
 {
-  "event_id": "group-2025-001",
+  "episode_id": "group-2025-001",
   "group_id": "group_001",
   "user_id_list": ["user_1", "user_2", "user_3"],
   "summary": "The team completed a staged project retrospective meeting, discussing task allocation and future directions.",
@@ -60,7 +60,7 @@ Return results as a JSON array, each association includes time information:
 
 ## Example Input (Life Scenario):
 {
-  "event_id": "group-2025-002",
+  "episode_id": "group-2025-002",
   "group_id": "family_001",
   "user_id_list": ["user_1", "user_2"],
   "summary": "user_1 sprained their ankle, user_2 helped take care.",
@@ -95,7 +95,7 @@ Return results as a JSON array, each association includes time information:
   - start_time: Extract the specific date when the event occurred from the MemUnit's timestamp field, format: YYYY-MM-DD
   - end_time: Extract the specific end time from the original content. If there's an explicit end time (e.g., "before October 24", "2025-11-15"), extract the specific date; otherwise, reasonably infer based on event content and common sense
   - duration_days: Extract duration from the original content. If there's explicit time description (e.g., "within a week", "7 days", "one month"), extract days; otherwise, reasonably infer based on event content and common sense
-  - source_episode_id: Use the event_id from the input
+  - source_episode_id: Use the episode_id from the input
   - **Important**: Prioritize extracting explicit time information from the original text; if not available, make reasonable inferences based on event content and common sense. Time cannot be null
 """
 
@@ -128,7 +128,7 @@ Return results as a JSON array, each association includes time information:
 
 ## Example Input (Life Scenario):
 {
-  "event_id": "test-001",
+  "episode_id": "test-001",
   "user_id": "XiaoMing",
   "subject": "XiaoMing completed wisdom tooth extraction surgery and post-operative instructions",
   "summary": "XiaoMing successfully had wisdom tooth extraction this afternoon, doctor emphasized attention to diet and hygiene for the next week.",
@@ -156,7 +156,7 @@ Return results as a JSON array, each association includes time information:
 
 ## Example Input (Work Scenario):
 {
-  "event_id": "work-001",
+  "episode_id": "work-001",
   "user_id": "LiHua",
   "subject": "LiHua attended project management training",
   "summary": "LiHua attended a three-day project management training and learned new working methods.",
@@ -192,7 +192,7 @@ Return results as a JSON array, each association includes time information:
   - start_time: Extract the specific date when the event occurred from the MemUnit's timestamp field, format: YYYY-MM-DD
   - end_time: Extract the specific end time from the original content. If there's an explicit end time (e.g., "before October 24", "2025-11-15"), extract the specific date; otherwise, reasonably infer based on event content and common sense
   - duration_days: Extract duration from the original content. If there's explicit time description (e.g., "within a week", "7 days", "one month"), extract days; otherwise, reasonably infer based on event content and common sense
-  - source_episode_id: Use the event_id from the input
+  - source_episode_id: Use the episode_id from the input
   - **Important**: Prioritize extracting explicit time information from the original text; if not available, make reasonable inferences based on event content and common sense. Time cannot be null
 """
 

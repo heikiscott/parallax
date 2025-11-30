@@ -27,7 +27,7 @@ class SemanticMemory(DocumentBase, AuditBase):
 
     # 可选字段
     link: Optional[List[str]] = Field(
-        default=None, description="来源链接，如event_id、raw_data等"
+        default=None, description="来源链接，如episode_id、raw_data等"
     )
 
     model_config = ConfigDict(

@@ -256,11 +256,11 @@ class PerformanceTester:
             # 如果 MemUnit 被提取，打印基本信息
             if memunit:
                 print(f"     🎯 边界检测成功，MemUnit已提取！")
-                print(f"     Event ID: {memunit.event_id}")
+                print(f"     Event ID: {memunit.unit_id}")
                 
                 # 打印 MemUnit 基本信息（注意：已禁用下游记忆提取）
                 print(f"\n     📋 MemUnit 基本信息:")
-                print(f"        - Event ID: {memunit.event_id}")
+                print(f"        - Event ID: {memunit.unit_id}")
                 print(f"        - Summary: {memunit.summary[:100] if memunit.summary else 'N/A'}...")
                 print(f"        - Subject: {memunit.subject[:100] if memunit.subject else 'N/A'}...")
                 print(f"        - Episode: {'有' if memunit.episode else '无'} ({len(memunit.episode) if memunit.episode else 0} 字符)")
@@ -312,7 +312,7 @@ class PerformanceTester:
         
         if memunit:
             print(f"\n  ✅ MemUnit 提取成功（仅 MemUnit，不含下游记忆）")
-            print(f"  Event ID: {memunit.event_id}")
+            print(f"  Event ID: {memunit.unit_id}")
             print(f"  Episode 长度: {len(memunit.episode) if memunit.episode else 0} 字符")
             print(f"  语义记忆: {'有' if hasattr(memunit, 'semantic_memories') and memunit.semantic_memories else '无'}")
             print(f"  事件日志: {'有' if hasattr(memunit, 'event_log') and memunit.event_log else '无'}")
@@ -358,7 +358,7 @@ class PerformanceTester:
         print("\n" + "="*80)
         print("📊 测试 2: Episode Memory 提取")
         print("="*80)
-        print(f"  基于 MemUnit: {memunit.event_id}")
+        print(f"  基于 MemUnit: {memunit.unit_id}")
         
         episode_memories = await self._measure_time(
             "Episode Memory 提取",
@@ -397,7 +397,7 @@ class PerformanceTester:
         print("\n" + "="*80)
         print("📊 测试 3: Profile Memory 提取")
         print("="*80)
-        print(f"  基于 MemUnit: {memunit.event_id}")
+        print(f"  基于 MemUnit: {memunit.unit_id}")
         
         profile_memories = await self._measure_time(
             "Profile Memory 提取",

@@ -96,14 +96,14 @@ class FetchMemoryServiceInterface(ABC):
         pass
 
     @abstractmethod
-    async def find_episodic_by_event_id(
-        self, event_id: str, user_id: str
+    async def find_episodic_by_episode_id(
+        self, episode_id: str, user_id: str
     ) -> Optional[EpisodicMemoryModel]:
         """
         根据事件ID查找情景记忆
 
         Args:
-            event_id: 事件ID
+            episode_id: 情景记忆ID
             user_id: 用户ID
 
         Returns:
@@ -291,7 +291,7 @@ class FetchMemoryServiceImpl(FetchMemoryServiceInterface):
         return EpisodicMemoryModel(
             id=str(episodic_memory.id),
             user_id=episodic_memory.user_id,
-            episode_id=episodic_memory.event_id,
+            episode_id=episodic_memory.episode_id,
             title=episodic_memory.subject,
             summary=episodic_memory.summary,
             participants=episodic_memory.participants or [],
@@ -615,9 +615,9 @@ class FetchMemoryServiceImpl(FetchMemoryServiceInterface):
 
                 case MemoryType.EPISODIC_MEMORY:
                     # 情景记忆通过事件ID查询，需要用户ID
-                    # 这里假设memory_id是event_id，需要额外的用户ID参数
+                    # 这里假设memory_id是episode_id，需要额外的用户ID参数
                     logger.warning(
-                        "Episodic memory query by ID requires user_id, use find_episodic_by_event_id instead"
+                        "Episodic memory query by ID requires user_id, use find_episodic_by_episode_id instead"
                     )
                     return None
 
@@ -647,34 +647,34 @@ class FetchMemoryServiceImpl(FetchMemoryServiceInterface):
             logger.error(f"Error fetching memory by ID {memory_id}: {e}")
             return None
 
-    async def find_episodic_by_event_id(
-        self, event_id: str, user_id: str
+    async def find_episodic_by_episode_id(
+        self, episode_id: str, user_id: str
     ) -> Optional[EpisodicMemoryModel]:
         """
         根据事件ID查找情景记忆
 
         Args:
-            event_id: 事件ID
+            episode_id: 情景记忆ID
             user_id: 用户ID
 
         Returns:
             情景记忆模型，如果未找到则返回None
         """
         logger.debug(
-            f"Fetching episodic memory by event_id: {event_id}, user_id: {user_id}"
+            f"Fetching episodic memory by episode_id: {episode_id}, user_id: {user_id}"
         )
 
         try:
             self._get_repositories()
-            episodic_memory = await self._episodic_repo.get_by_event_id(
-                event_id, user_id
+            episodic_memory = await self._episodic_repo.get_by_episode_id(
+                episode_id, user_id
             )
             if episodic_memory:
                 return self._convert_episodic_memory(episodic_memory)
             return None
 
         except Exception as e:
-            logger.error(f"Error fetching episodic memory by event_id {event_id}: {e}")
+            logger.error(f"Error fetching episodic memory by episode_id {episode_id}: {e}")
             return None
 
     async def find_entity_by_entity_id(self, entity_id: str) -> Optional[EntityModel]:
@@ -781,21 +781,21 @@ async def find_memory_by_id(
     return await service.find_by_id(memory_id, memory_type)
 
 
-async def find_episodic_memory_by_event_id(
-    event_id: str, user_id: str
+async def find_episodic_memory_by_episode_id(
+    episode_id: str, user_id: str
 ) -> Optional[EpisodicMemoryModel]:
     """
     便捷函数：根据事件ID查找情景记忆
 
     Args:
-        event_id: 事件ID
+        episode_id: 情景记忆ID
         user_id: 用户ID
 
     Returns:
         情景记忆模型，如果未找到则返回None
     """
     service = get_fetch_memory_service()
-    return await service.find_episodic_by_event_id(event_id, user_id)
+    return await service.find_episodic_by_episode_id(episode_id, user_id)
 
 
 async def find_entity_by_entity_id(entity_id: str) -> Optional[EntityModel]:

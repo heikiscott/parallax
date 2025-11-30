@@ -484,7 +484,7 @@ async def save_memories(
         # 转换为EpisodicMemory文档格式
         doc = _convert_episode_memory_to_doc(episode_mem, current_time)
         doc = await episodic_memory_repo.append_episodic_memory(doc)
-        episode_mem.event_id = str(doc.event_id)
+        episode_mem.episode_id = str(doc.episode_id)
         
         # 保存到 ES
         es_doc = EpisodicMemoryConverter.from_mongo(doc)
@@ -497,8 +497,8 @@ async def save_memories(
         
         if not vector or (isinstance(vector, list) and len(vector) == 0):
             logger.warning(
-                "[mem_memorize] 跳过写入Milvus：向量为空或缺失，event_id=%s",
-                getattr(doc, 'event_id', None),
+                "[mem_memorize] 跳过写入Milvus：向量为空或缺失，episode_id=%s",
+                getattr(doc, 'episode_id', None),
             )
         else:
             # 所有通过 save_memories 保存的 episode 都是从 EpisodeMemoryExtractor 提取的个人视角 episode
@@ -517,10 +517,10 @@ async def save_memories(
             
             await episodic_memory_milvus_repo.insert(milvus_entity)
             logger.debug(
-                f"✅ 保存 personal_episode: user_id={doc.user_id}, event_id={episode_mem.event_id}"
+                f"✅ 保存 personal_episode: user_id={doc.user_id}, episode_id={episode_mem.episode_id}"
             )
         
-        logger.debug(f"✅ 保存 episode_memory: {episode_mem.event_id}")
+        logger.debug(f"✅ 保存 episode_memory: {episode_mem.episode_id}")
 
     # 保存Profile记忆到CoreMemoryRawRepository
     for profile_mem in profile_memories:
@@ -547,8 +547,8 @@ async def save_memories(
         if not sem_mem.content or not sem_mem.embedding:
             continue
         
-        parent_event_id = sem_mem.parent_event_id
-        parent_doc = await episodic_memory_repo.get_by_event_id(str(parent_event_id), sem_mem.user_id)
+        parent_episode_id = sem_mem.parent_episode_id
+        parent_doc = await episodic_memory_repo.get_by_episode_id(str(parent_episode_id), sem_mem.user_id)
         if not parent_doc:
             continue
         
@@ -578,8 +578,8 @@ async def save_memories(
         if not event_log.atomic_fact or not event_log.fact_embeddings:
             continue
         
-        parent_event_id = event_log.parent_event_id
-        parent_doc = await episodic_memory_repo.get_by_event_id(str(parent_event_id), event_log.user_id)
+        parent_episode_id = event_log.parent_episode_id
+        parent_doc = await episodic_memory_repo.get_by_episode_id(str(parent_episode_id), event_log.user_id)
         if not parent_doc:
             continue
         
@@ -879,13 +879,13 @@ async def memorize(request: MemorizeRequest) -> List[Memory]:
                         # 为提取的记忆添加元信息
                         if isinstance(extracted_memories, list):
                             for mem in extracted_memories:
-                                mem.parent_event_id = episode_mem.event_id
+                                mem.parent_episode_id = episode_mem.episode_id
                                 mem.user_id = episode_mem.user_id
                                 mem.group_id = episode_mem.group_id
                             memory_list += extracted_memories
                         else:
                             # EventLog 类型
-                            extracted_memories.parent_event_id = episode_mem.event_id
+                            extracted_memories.parent_episode_id = episode_mem.episode_id
                             extracted_memories.user_id = episode_mem.user_id
                             extracted_memories.group_id = episode_mem.group_id
                             memory_list.append(extracted_memories)

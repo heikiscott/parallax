@@ -138,7 +138,7 @@ class SemanticMemoryEsRepository(BaseRepository[EpisodicMemoryDoc]):
 
             # 创建文档实例（复用 EpisodicMemoryDoc）
             doc = EpisodicMemoryDoc(
-                event_id=memory_id,
+                episode_id=memory_id,
                 type="semantic_memory",  # 标记类型
                 user_id=user_id,
                 user_name='',
