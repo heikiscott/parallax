@@ -745,6 +745,32 @@ async def _apply_cluster_expansion(
     return expanded_results, metadata
 
 
+def _log_ids(prefix: str, docs: List[Tuple[dict, float]], limit: int = 20):
+    """Log a short list of unit_ids for debugging."""
+    ids = [d.get("unit_id", "") for d, _ in docs if d.get("unit_id")]
+    if not ids:
+        logger.info(f"  {prefix}: (no unit_ids)")
+        return
+    short = ids[:limit]
+    suffix = " ..." if len(ids) > limit else ""
+    logger.info(f"  {prefix}: {', '.join(short)}{suffix}")
+
+
+def _build_origin_map(round1_ids: set, round2_ids: set, cluster_ids: set) -> dict:
+    """Build origin mapping for unit_ids."""
+    origin_map = {}
+    for uid in round1_ids:
+        if uid:
+            origin_map[uid] = "round1"
+    for uid in round2_ids:
+        if uid and uid not in origin_map:
+            origin_map[uid] = "round2"
+    for uid in cluster_ids:
+        if uid and uid not in origin_map:
+            origin_map[uid] = "cluster"
+    return origin_map
+
+
 async def agentic_retrieval(
     query: str,
     config: ExperimentConfig,
@@ -1780,24 +1806,3 @@ async def main():
 
 if __name__ == "__main__":
     asyncio.run(main())
-    def _log_ids(prefix: str, docs: List[Tuple[dict, float]], limit: int = 20):
-        ids = [d.get("unit_id", "") for d, _ in docs if d.get("unit_id")]
-        if not ids:
-            logger.info(f"  {prefix}: (no unit_ids)")
-            return
-        short = ids[:limit]
-        suffix = " ..." if len(ids) > limit else ""
-        logger.info(f"  {prefix}: {', '.join(short)}{suffix}")
-
-    def _build_origin_map(round1_ids: set, round2_ids: set, cluster_ids: set) -> dict:
-        origin_map = {}
-        for uid in round1_ids:
-            if uid:
-                origin_map[uid] = "round1"
-        for uid in round2_ids:
-            if uid and uid not in origin_map:
-                origin_map[uid] = "round2"
-        for uid in cluster_ids:
-            if uid and uid not in origin_map:
-                origin_map[uid] = "cluster"
-        return origin_map
