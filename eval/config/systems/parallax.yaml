@@ -9,7 +9,7 @@ adapter: "parallax"
 # LLM configuration
 llm:
   provider: "${LLM_PROVIDER:openai}"
-  model: "${LLM_MODEL:gpt-4o-mini}"  # 使用 gpt-4o-mini 进行答案生成
+  model: "${LLM_MODEL:gpt-4.1-mini}"  # 默认使用 gpt-4.1-mini（除评判外的各阶段）
   api_key: "${LLM_API_KEY}"
   base_url: "${LLM_BASE_URL:https://api.openai.com/v1}"
   max_tokens: ${LLM_MAX_TOKENS:16384}  # gpt-4o-mini max completion tokens limit
