@@ -65,6 +65,23 @@ class ExperimentConfig:
     # - agentic: 复杂的多轮检索，LLM引导，质量高但速度慢
     # - lightweight: 快速混合检索，BM25+Embedding混排，速度快但质量略低
     retrieval_mode: str = "agentic"  # 'agentic' | 'lightweight'
+
+    # ===== 问题分类与策略路由配置 (Question Classification & Strategy Routing) =====
+    enable_question_classification: bool = True  # 是否启用问题分类
+    question_classification_config: dict = {
+        # 分类器类型：'rule_based' (纯正则) 或 'llm' (LLM分类)
+        # ⚠️ 注意：当前仅实现了 rule_based，llm 分类器尚未集成到路由流程
+        "classifier_type": "rule_based",
+        # 默认策略：当分类失败时使用
+        # 可选: 'gec_cluster_rerank', 'gec_insert_after_hit', 'agentic_only'
+        "default_strategy": "gec_insert_after_hit",
+        # 是否记录分类结果到 metadata
+        "log_classification": True,
+        # 策略覆盖：可针对特定问题类型强制使用某策略
+        # 格式: {"question_type": "strategy"}
+        # 示例: {"EVENT_TEMPORAL": "gec_cluster_rerank", "ATTRIBUTE_IDENTITY": "agentic_only"}
+        "strategy_overrides": {},
+    }
     
     #  检索配置
     use_hybrid_search: bool = True  # 是否使用混合检索（Embedding + BM25 + RRF）

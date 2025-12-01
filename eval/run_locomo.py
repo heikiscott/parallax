@@ -136,6 +136,7 @@ def run_evaluation(dataset: str, output_dir: Path, conv_id: int = None):
             stderr=subprocess.STDOUT,
             text=True,
             encoding='utf-8',
+            errors='replace',
             bufsize=1
         )
 

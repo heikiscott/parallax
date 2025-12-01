@@ -500,18 +500,33 @@ class ParallaxAdapter(BaseAdapter):
         llm_config = exp_config.llm_config.get(exp_config.llm_service, {})
 
         if retrieval_mode == "agentic":
-            # Agentic 检索
-            top_results, metadata = await stage3_memory_retrivel.agentic_retrieval(
-                query=query,
-                config=exp_config,
-                llm_provider=self.llm_provider,
-                llm_config=llm_config,
-                emb_index=emb_index,
-                bm25=bm25,
-                docs=docs,
-                cluster_index=cluster_index,  # 🔥 传递聚类索引
-                enable_traversal_stats=True,
-            )
+            # 🔥 策略路由检索（默认启用）
+            if exp_config.enable_question_classification:
+                from eval.adapters.parallax.strategy import route_and_retrieve
+                top_results, metadata = await route_and_retrieve(
+                    query=query,
+                    config=exp_config,
+                    llm_provider=self.llm_provider,
+                    llm_config=llm_config,
+                    emb_index=emb_index,
+                    bm25=bm25,
+                    docs=docs,
+                    cluster_index=cluster_index,
+                    enable_traversal_stats=True,
+                )
+            else:
+                # 原始 Agentic 检索（不分类）
+                top_results, metadata = await stage3_memory_retrivel.agentic_retrieval(
+                    query=query,
+                    config=exp_config,
+                    llm_provider=self.llm_provider,
+                    llm_config=llm_config,
+                    emb_index=emb_index,
+                    bm25=bm25,
+                    docs=docs,
+                    cluster_index=cluster_index,
+                    enable_traversal_stats=True,
+                )
         elif retrieval_mode == "lightweight":
             # 轻量级检索
             top_results, metadata = await stage3_memory_retrivel.lightweight_retrieval(
