@@ -212,8 +212,8 @@ class ParallaxAdapter(BaseAdapter):
                     "timestamp": timestamp_str,
                 }
                 
-                # 添加可选字段
-                for optional_field in ["img_url", "blip_caption", "query"]:
+                # 添加可选字段（包括 dia_id 用于 ground truth 映射）
+                for optional_field in ["dia_id", "img_url", "blip_caption", "query"]:
                     if optional_field in msg.metadata and msg.metadata[optional_field] is not None:
                         message_dict[optional_field] = msg.metadata[optional_field]
                 
@@ -713,8 +713,8 @@ class ParallaxAdapter(BaseAdapter):
             exp_config.enable_group_event_cluster = self.config.get("enable_group_event_cluster", False)
         if "group_event_cluster_config" in self.config:
             exp_config.group_event_cluster_config = self.config.get("group_event_cluster_config", {})
-        if "cluster_retrieval_config" in self.config:
-            exp_config.cluster_retrieval_config = self.config.get("cluster_retrieval_config", {})
+        if "group_event_cluster_retrieval_config" in self.config:
+            exp_config.group_event_cluster_retrieval_config = self.config.get("group_event_cluster_retrieval_config", {})
         
         return exp_config
     

@@ -12,7 +12,7 @@ Usage:
         GroupEventClusterConfig,
         GroupEventClusterIndex,
         expand_with_cluster,
-        ClusterRetrievalConfig,
+        GroupEventClusterRetrievalConfig,
     )
 
     # Configure and create clusterer
@@ -29,12 +29,15 @@ Usage:
     index.save_to_file(Path("clusters/conv_0.json"))
 
     # Use for retrieval enhancement
-    retrieval_config = ClusterRetrievalConfig()
-    expanded_results, metadata = expand_with_cluster(
+    retrieval_config = GroupEventClusterRetrievalConfig()
+    expanded_results, metadata = await expand_with_cluster(
         original_results=search_results,
         cluster_index=index,
         config=retrieval_config,
         all_docs_map=docs_map,
+        # For cluster_rerank strategy, also pass:
+        # query=query,
+        # llm_provider=llm_provider,
     )
 """
 
@@ -45,7 +48,7 @@ from .schema import (
 )
 from .config import (
     GroupEventClusterConfig,
-    ClusterRetrievalConfig,
+    GroupEventClusterRetrievalConfig,
 )
 from .storage import (
     ClusterStorage,
@@ -65,7 +68,7 @@ __all__ = [
     "GroupEventClusterIndex",
     # Config
     "GroupEventClusterConfig",
-    "ClusterRetrievalConfig",
+    "GroupEventClusterRetrievalConfig",
     # Storage
     "ClusterStorage",
     "JsonClusterStorage",

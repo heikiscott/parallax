@@ -112,16 +112,16 @@ class GroupEventClusterConfig:
 
 
 @dataclass
-class ClusterRetrievalConfig:
+class GroupEventClusterRetrievalConfig:
     """
-    Cluster-enhanced retrieval configuration.
+    Group Event Cluster retrieval configuration.
 
     Controls how clustering results are integrated into the retrieval process.
     """
 
     # === Basic Switch ===
-    enable_cluster_expansion: bool = True
-    """Whether to enable cluster expansion"""
+    enable_group_event_cluster_retrieval: bool = True
+    """Whether to enable group event cluster retrieval"""
 
     # === Expansion Strategy ===
     expansion_strategy: str = "insert_after_hit"
@@ -220,11 +220,53 @@ class ClusterRetrievalConfig:
     rerank_top_n_after_expansion: int = 20
     """Top N to return after expansion Rerank"""
 
+    # ==========================================================
+    # Cluster Rerank 策略专用配置
+    # 仅当 expansion_strategy="cluster_rerank" 时生效
+    # ==========================================================
+
+    cluster_rerank_max_clusters: int = 10
+    """
+    [Cluster Rerank] LLM 最多可以选择的 Cluster 数量上限。
+
+    LLM 会根据查询复杂度智能决定实际选择的数量：
+    - 问题很具体时：可能只选 1 个
+    - 问题涉及多个事件：可能选 2-3 个
+    - 问题很宽泛/比较性问题：可能选 4+ 个
+
+    此配置是硬上限，最终返回的 MemUnits 数量由
+    cluster_rerank_total_max_members 控制。
+
+    默认值: 10
+    """
+
+    cluster_rerank_max_members_per_cluster: int = 15
+    """
+    [Cluster Rerank] 每个被选中的 Cluster 最多返回的 MemUnits 数量。
+
+    - 如果 Cluster 成员数 < 此值，返回全部成员
+    - 如果 Cluster 成员数 >= 此值，按时间顺序取前 N 个
+
+    默认值: 15
+    """
+
+    cluster_rerank_total_max_members: int = 30
+    """
+    [Cluster Rerank] 最终返回的 MemUnits 总数上限。
+
+    这是所有选中 Clusters 成员总和的硬上限：
+    - 按 Cluster 被选中的顺序依次添加成员
+    - 达到此上限后停止添加
+    - 防止返回过多内容给 LLM 生成答案
+
+    默认值: 30
+    """
+
     @classmethod
-    def from_dict(cls, data: Dict[str, Any]) -> "ClusterRetrievalConfig":
+    def from_dict(cls, data: Dict[str, Any]) -> "GroupEventClusterRetrievalConfig":
         """Create config from dictionary."""
         return cls(
-            enable_cluster_expansion=data.get("enable_cluster_expansion", True),
+            enable_group_event_cluster_retrieval=data.get("enable_group_event_cluster_retrieval", True),
             expansion_strategy=data.get("expansion_strategy", "insert_after_hit"),
             max_expansion_per_hit=data.get("max_expansion_per_hit", 2),
             max_total_expansion=data.get("max_total_expansion", 10),
@@ -235,12 +277,16 @@ class ClusterRetrievalConfig:
             deduplicate_expanded=data.get("deduplicate_expanded", True),
             rerank_after_expansion=data.get("rerank_after_expansion", False),
             rerank_top_n_after_expansion=data.get("rerank_top_n_after_expansion", 20),
+            # Cluster Rerank 策略配置
+            cluster_rerank_max_clusters=data.get("cluster_rerank_max_clusters", 10),
+            cluster_rerank_max_members_per_cluster=data.get("cluster_rerank_max_members_per_cluster", 15),
+            cluster_rerank_total_max_members=data.get("cluster_rerank_total_max_members", 30),
         )
 
     def to_dict(self) -> Dict[str, Any]:
         """Convert config to dictionary."""
         return {
-            "enable_cluster_expansion": self.enable_cluster_expansion,
+            "enable_group_event_cluster_retrieval": self.enable_group_event_cluster_retrieval,
             "expansion_strategy": self.expansion_strategy,
             "max_expansion_per_hit": self.max_expansion_per_hit,
             "max_total_expansion": self.max_total_expansion,
@@ -251,4 +297,8 @@ class ClusterRetrievalConfig:
             "deduplicate_expanded": self.deduplicate_expanded,
             "rerank_after_expansion": self.rerank_after_expansion,
             "rerank_top_n_after_expansion": self.rerank_top_n_after_expansion,
+            # Cluster Rerank 策略配置
+            "cluster_rerank_max_clusters": self.cluster_rerank_max_clusters,
+            "cluster_rerank_max_members_per_cluster": self.cluster_rerank_max_members_per_cluster,
+            "cluster_rerank_total_max_members": self.cluster_rerank_total_max_members,
         }

@@ -4,20 +4,32 @@ This module provides functions to expand retrieval results using cluster informa
 """
 
 from datetime import timedelta
-from typing import Any, Dict, List, Optional, Set, Tuple
+from typing import Any, Dict, List, Optional, Set, Tuple, TYPE_CHECKING
 import logging
 
 from .schema import ClusterMember, GroupEventCluster, GroupEventClusterIndex
-from .config import ClusterRetrievalConfig
+from .config import GroupEventClusterRetrievalConfig
+from .utils import (
+    format_clusters_for_selection,
+    parse_cluster_selection_response,
+    CLUSTER_SELECTION_PROMPT,
+)
+
+if TYPE_CHECKING:
+    from providers.llm.llm_provider import LLMProvider
 
 logger = logging.getLogger(__name__)
 
 
-def expand_with_cluster(
+async def expand_with_cluster(
     original_results: List[Tuple[dict, float]],
     cluster_index: GroupEventClusterIndex,
-    config: ClusterRetrievalConfig,
+    config: GroupEventClusterRetrievalConfig,
     all_docs_map: Dict[str, dict],
+    # 新增可选参数（仅 cluster_rerank 策略需要）
+    query: Optional[str] = None,
+    llm_provider: Optional["LLMProvider"] = None,
+    llm_config: Optional[dict] = None,
 ) -> Tuple[List[Tuple[dict, float]], Dict[str, Any]]:
     """
     Expand retrieval results using cluster index.
@@ -27,13 +39,16 @@ def expand_with_cluster(
         cluster_index: Cluster index for lookups
         config: Cluster retrieval configuration
         all_docs_map: unit_id -> doc mapping for getting expanded document content
+        query: Original query (required for cluster_rerank strategy)
+        llm_provider: LLM provider (required for cluster_rerank strategy)
+        llm_config: LLM configuration (optional for cluster_rerank strategy)
 
     Returns:
         (expanded_results, metadata)
         - expanded_results: Expanded result list
         - metadata: Expansion statistics
     """
-    if not config.enable_cluster_expansion:
+    if not config.enable_group_event_cluster_retrieval:
         return original_results, {"enabled": False}
 
     if config.expansion_strategy == "insert_after_hit":
@@ -53,6 +68,16 @@ def expand_with_cluster(
         return _expand_for_rerank(
             original_results, cluster_index, config, all_docs_map
         )
+    elif config.expansion_strategy == "cluster_rerank":
+        # Cluster-level rerank: LLM selects relevant clusters
+        if not query or not llm_provider:
+            logger.warning("cluster_rerank requires query and llm_provider")
+            return original_results, {"enabled": False, "error": "missing_params"}
+
+        return await _expand_cluster_rerank(
+            original_results, cluster_index, config, all_docs_map,
+            query, llm_provider, llm_config
+        )
     else:
         logger.warning(f"Unknown expansion strategy: {config.expansion_strategy}")
         return original_results, {"enabled": False, "error": "unknown_strategy"}
@@ -61,7 +86,7 @@ def expand_with_cluster(
 def _expand_insert_after_hit(
     original_results: List[Tuple[dict, float]],
     cluster_index: GroupEventClusterIndex,
-    config: ClusterRetrievalConfig,
+    config: GroupEventClusterRetrievalConfig,
     all_docs_map: Dict[str, dict],
 ) -> Tuple[List[Tuple[dict, float]], Dict[str, Any]]:
     """
@@ -152,7 +177,7 @@ def _expand_insert_after_hit(
 def _expand_append_to_end(
     original_results: List[Tuple[dict, float]],
     cluster_index: GroupEventClusterIndex,
-    config: ClusterRetrievalConfig,
+    config: GroupEventClusterRetrievalConfig,
     all_docs_map: Dict[str, dict],
 ) -> Tuple[List[Tuple[dict, float]], Dict[str, Any]]:
     """
@@ -239,7 +264,7 @@ def _expand_append_to_end(
 def _expand_merge_by_score(
     original_results: List[Tuple[dict, float]],
     cluster_index: GroupEventClusterIndex,
-    config: ClusterRetrievalConfig,
+    config: GroupEventClusterRetrievalConfig,
     all_docs_map: Dict[str, dict],
 ) -> Tuple[List[Tuple[dict, float]], Dict[str, Any]]:
     """
@@ -326,7 +351,7 @@ def _expand_merge_by_score(
 def _expand_for_rerank(
     original_results: List[Tuple[dict, float]],
     cluster_index: GroupEventClusterIndex,
-    config: ClusterRetrievalConfig,
+    config: GroupEventClusterRetrievalConfig,
     all_docs_map: Dict[str, dict],
 ) -> Tuple[List[Tuple[dict, float]], Dict[str, Any]]:
     """
@@ -347,7 +372,7 @@ def _select_expansion_candidates(
     cluster: GroupEventCluster,
     hit_unit_id: str,
     seen_unit_ids: Set[str],
-    config: ClusterRetrievalConfig,
+    config: GroupEventClusterRetrievalConfig,
 ) -> List[ClusterMember]:
     """
     Select expansion candidate members from a cluster.
@@ -429,7 +454,7 @@ def _build_metadata(
     final_count: int,
     clusters_expanded: Dict[str, Dict[str, Any]],
     expansion_budget: int,
-    config: ClusterRetrievalConfig,
+    config: GroupEventClusterRetrievalConfig,
 ) -> Dict[str, Any]:
     """Build expansion metadata dictionary."""
     expanded_unit_ids = []
@@ -498,3 +523,208 @@ def get_related_units_for_query(
                     break
 
     return related
+
+
+# =============================================================================
+# Cluster Rerank Strategy
+# =============================================================================
+
+async def _expand_cluster_rerank(
+    original_results: List[Tuple[dict, float]],
+    cluster_index: GroupEventClusterIndex,
+    config: GroupEventClusterRetrievalConfig,
+    all_docs_map: Dict[str, dict],
+    query: str,
+    llm_provider: "LLMProvider",
+    llm_config: Optional[dict] = None,
+) -> Tuple[List[Tuple[dict, float]], Dict[str, Any]]:
+    """
+    Cluster-level rerank expansion strategy.
+
+    This strategy:
+    1. Extracts unique clusters from original retrieval results
+    2. Uses LLM to intelligently select the most relevant clusters
+    3. Returns MemUnits from selected clusters in time order
+    4. Applies member limits (per-cluster and total)
+
+    Args:
+        original_results: Original retrieval results [(doc, score), ...]
+        cluster_index: Cluster index for lookups
+        config: Cluster retrieval configuration
+        all_docs_map: unit_id -> doc mapping
+        query: Original user query
+        llm_provider: LLM provider for cluster selection
+        llm_config: Optional LLM configuration
+
+    Returns:
+        (expanded_results, metadata)
+    """
+    metadata = {
+        "enabled": True,
+        "strategy": "cluster_rerank",
+        "original_count": len(original_results),
+        "clusters_found": [],
+        "clusters_selected": [],
+        "selection_reasoning": "",
+        "members_per_cluster": {},
+        "final_count": 0,
+        "truncated": False,
+    }
+
+    # Step 1: Extract unique clusters from original results
+    cluster_hit_counts: Dict[str, int] = {}  # cluster_id -> hit count
+    unique_clusters: List[GroupEventCluster] = []
+    seen_cluster_ids: Set[str] = set()
+
+    for doc, score in original_results:
+        unit_id = doc.get("unit_id")
+        if not unit_id:
+            continue
+
+        cluster = cluster_index.get_cluster_by_unit(unit_id)
+        if not cluster:
+            continue
+
+        if cluster.cluster_id not in seen_cluster_ids:
+            seen_cluster_ids.add(cluster.cluster_id)
+            unique_clusters.append(cluster)
+
+        cluster_hit_counts[cluster.cluster_id] = cluster_hit_counts.get(cluster.cluster_id, 0) + 1
+
+    metadata["clusters_found"] = list(seen_cluster_ids)
+
+    if not unique_clusters:
+        logger.warning("  [Cluster Rerank] No clusters found in original results")
+        return original_results, metadata
+
+    # 打印找到的 clusters 及其 topic
+    cluster_topics = [(c.cluster_id, c.topic) for c in unique_clusters]
+    logger.info(f"  ┌─[Cluster Rerank] Found {len(unique_clusters)} clusters from {len(original_results)} results")
+    for cid, topic in cluster_topics:
+        hit_count = cluster_hit_counts.get(cid, 0)
+        logger.info(f"  │  {cid}: \"{topic}\" (hits: {hit_count})")
+
+    # Step 2: Use LLM to select relevant clusters
+    clusters_info = format_clusters_for_selection(unique_clusters, cluster_hit_counts)
+
+    prompt = CLUSTER_SELECTION_PROMPT.format(
+        query=query,
+        clusters_info=clusters_info,
+        max_clusters=config.cluster_rerank_max_clusters,
+    )
+
+    try:
+        response = await llm_provider.generate(prompt)
+        selection_result = parse_cluster_selection_response(response)
+        selected_cluster_ids = selection_result.get("selected_clusters", [])
+        metadata["selection_reasoning"] = selection_result.get("reasoning", "")
+
+        # Validate and limit selected clusters
+        valid_selected_ids = [
+            cid for cid in selected_cluster_ids
+            if cid in seen_cluster_ids
+        ][:config.cluster_rerank_max_clusters]
+
+        if not valid_selected_ids:
+            logger.warning("LLM selected no valid clusters, falling back to top hit clusters")
+            # Fallback: select clusters with most hits
+            sorted_clusters = sorted(
+                cluster_hit_counts.items(),
+                key=lambda x: x[1],
+                reverse=True
+            )
+            valid_selected_ids = [cid for cid, _ in sorted_clusters[:config.cluster_rerank_max_clusters]]
+
+        metadata["clusters_selected"] = valid_selected_ids
+        logger.info(f"  ├─[Cluster Rerank] LLM selected {len(valid_selected_ids)} clusters: {valid_selected_ids}")
+        if metadata["selection_reasoning"]:
+            logger.info(f"  │  Reasoning: {metadata['selection_reasoning']}")
+
+    except Exception as e:
+        logger.error(f"  [Cluster Rerank] LLM selection failed: {e}")
+        # Fallback: select clusters with most hits
+        sorted_clusters = sorted(
+            cluster_hit_counts.items(),
+            key=lambda x: x[1],
+            reverse=True
+        )
+        valid_selected_ids = [cid for cid, _ in sorted_clusters[:config.cluster_rerank_max_clusters]]
+        metadata["clusters_selected"] = valid_selected_ids
+        metadata["selection_reasoning"] = f"Fallback due to error: {e}"
+
+    # Step 3: Collect MemUnits from selected clusters (time-ordered)
+    final_results: List[Tuple[dict, float]] = []
+    total_members_added = 0
+    unit_to_cluster_map: Dict[str, str] = {}  # unit_id -> cluster_id mapping
+
+    for cluster_id in valid_selected_ids:
+        cluster = cluster_index.get_cluster(cluster_id)
+        if not cluster:
+            continue
+
+        members_added_for_cluster = 0
+
+        # Members are already time-sorted in cluster
+        for member in cluster.members:
+            # Check total limit
+            if total_members_added >= config.cluster_rerank_total_max_members:
+                metadata["truncated"] = True
+                break
+
+            # Check per-cluster limit
+            if members_added_for_cluster >= config.cluster_rerank_max_members_per_cluster:
+                break
+
+            # Get document
+            doc = all_docs_map.get(member.unit_id)
+            if not doc:
+                continue
+
+            # Use a score based on cluster selection order and position
+            # Higher score for earlier selected clusters and earlier members
+            base_score = 1.0 - (valid_selected_ids.index(cluster_id) * 0.1)
+            final_results.append((doc, base_score))
+            unit_to_cluster_map[member.unit_id] = cluster_id
+            members_added_for_cluster += 1
+            total_members_added += 1
+
+        metadata["members_per_cluster"][cluster_id] = members_added_for_cluster
+
+        # Check if we hit total limit
+        if total_members_added >= config.cluster_rerank_total_max_members:
+            break
+
+    metadata["final_count"] = len(final_results)
+    metadata["unit_to_cluster"] = unit_to_cluster_map  # 每个 MemUnit 对应的 Cluster
+
+    # 构建 cluster 详情（用于 checkpoint）
+    cluster_details = {}
+    for cluster_id in valid_selected_ids:
+        cluster = cluster_index.get_cluster(cluster_id)
+        if cluster:
+            cluster_details[cluster_id] = {
+                "topic": cluster.topic,
+                "summary": cluster.summary,
+                "member_count": len(cluster.members),
+                "members_returned": metadata["members_per_cluster"].get(cluster_id, 0),
+            }
+    metadata["cluster_details"] = cluster_details
+
+    # 打印每个选中 cluster 的详情和 MemUnit IDs
+    logger.info(f"  ├─[Cluster Rerank] Selected clusters detail:")
+    for cluster_id in valid_selected_ids:
+        detail = cluster_details.get(cluster_id, {})
+        cluster = cluster_index.get_cluster(cluster_id)
+        member_ids = [m.unit_id[:8] for m in cluster.members] if cluster else []
+        logger.info(f"  │  {cluster_id}: \"{detail.get('topic', 'N/A')}\" -> {detail.get('members_returned', 0)}/{detail.get('member_count', 0)} members")
+        if member_ids:
+            logger.info(f"  │    MemUnits: {', '.join(member_ids)}...")
+
+    # 打印最终返回的 MemUnit IDs
+    final_unit_ids = [doc.get("unit_id", "")[:8] for doc, _ in final_results]
+    logger.info(f"  └─[Cluster Rerank] Final: {len(final_results)} MemUnits from {len(valid_selected_ids)} clusters")
+    logger.info(f"     Final MemUnit IDs: {', '.join(final_unit_ids)}")
+    if metadata["truncated"]:
+        logger.info(f"     ⚠️ Result truncated (reached max {config.cluster_rerank_total_max_members} members)")
+
+    return final_results, metadata

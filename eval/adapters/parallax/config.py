@@ -40,10 +40,12 @@ class ExperimentConfig:
         "max_members_per_cluster_in_prompt": 3,
     }
 
-    # ===== 聚类增强检索配置 =====
-    cluster_retrieval_config: dict = {
-        "enable_cluster_expansion": True,
-        "expansion_strategy": "insert_after_hit",  # insert_after_hit, append_to_end, merge_by_score, replace_rerank
+    # ===== 群体事件聚类检索配置 =====
+    group_event_cluster_retrieval_config: dict = {
+        "enable_group_event_cluster_retrieval": True,
+        # 可选策略: insert_after_hit, append_to_end, merge_by_score, replace_rerank, cluster_rerank
+        "expansion_strategy": "cluster_rerank",
+        # 通用扩展参数
         "max_expansion_per_hit": 3,
         "max_total_expansion": 10,
         "expansion_budget_ratio": 0.3,
@@ -53,6 +55,10 @@ class ExperimentConfig:
         "deduplicate_expanded": True,
         "rerank_after_expansion": False,
         "rerank_top_n_after_expansion": 20,
+        # cluster_rerank 策略专用配置
+        "cluster_rerank_max_clusters": 10,          # LLM 最多选择的 Cluster 数量（LLM 自己决定选几个）
+        "cluster_rerank_max_members_per_cluster": 15,  # 每个 Cluster 最多返回的 MemUnits
+        "cluster_rerank_total_max_members": 30,     # 最终返回的 MemUnits 总数上限
     }
 
     # 🔥 检索模式选择：'agentic' 或 'lightweight'

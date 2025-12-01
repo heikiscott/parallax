@@ -4,7 +4,9 @@ Search 阶段
 负责检索相关记忆。
 """
 import asyncio
-from typing import List, Any, Optional
+import json
+from pathlib import Path
+from typing import List, Any, Optional, Dict, Set, Tuple
 from logging import Logger
 from tqdm import tqdm
 
@@ -12,6 +14,191 @@ from eval.core.data_models import QAPair, SearchResult
 from eval.adapters.base import BaseAdapter
 from eval.utils.checkpoint import CheckpointManager
 from core.observation.logger import set_activity_id
+
+
+def _build_evidence_to_cluster_mapping(
+    output_dir: Path,
+    conv_index: str,
+    logger: Logger,
+) -> Tuple[Dict[str, str], Dict[str, str], Dict[str, List[str]]]:
+    """
+    构建 evidence (dia_id) → MemUnit → Cluster 的映射。
+
+    Args:
+        output_dir: 输出目录
+        conv_index: 对话索引（例如 "0"）
+        logger: 日志器
+
+    Returns:
+        Tuple of:
+        - dia_id_to_unit_id: dia_id → unit_id 映射
+        - unit_id_to_cluster_id: unit_id → cluster_id 映射
+        - cluster_id_to_unit_ids: cluster_id → [unit_id] 映射
+    """
+    dia_id_to_unit_id: Dict[str, str] = {}
+    unit_id_to_cluster_id: Dict[str, str] = {}
+    cluster_id_to_unit_ids: Dict[str, List[str]] = {}
+
+    # Step 1: 从 memunit 文件建立 dia_id → unit_id 映射
+    memunit_file = output_dir / "memunits" / f"memunit_list_conv_{conv_index}.json"
+    if memunit_file.exists():
+        try:
+            with open(memunit_file, "r", encoding="utf-8") as f:
+                memunits = json.load(f)
+            for memunit in memunits:
+                unit_id = memunit.get("unit_id", "")
+                original_data = memunit.get("original_data", [])
+                for msg in original_data:
+                    dia_id = msg.get("dia_id")
+                    if dia_id:
+                        dia_id_to_unit_id[dia_id] = unit_id
+            logger.debug(f"  Loaded {len(dia_id_to_unit_id)} dia_id mappings from {memunit_file.name}")
+        except Exception as e:
+            logger.warning(f"  Failed to load memunit file: {e}")
+    else:
+        logger.warning(f"  Memunit file not found: {memunit_file}")
+
+    # Step 2: 从 cluster index 建立 unit_id → cluster_id 映射
+    cluster_file = output_dir / "event_clusters" / f"conv_{conv_index}.json"
+    if cluster_file.exists():
+        try:
+            with open(cluster_file, "r", encoding="utf-8") as f:
+                cluster_data = json.load(f)
+            clusters = cluster_data.get("clusters", {})
+            for cluster_id, cluster_info in clusters.items():
+                members = cluster_info.get("members", [])
+                cluster_id_to_unit_ids[cluster_id] = []
+                for member in members:
+                    unit_id = member.get("unit_id", "")
+                    if unit_id:
+                        unit_id_to_cluster_id[unit_id] = cluster_id
+                        cluster_id_to_unit_ids[cluster_id].append(unit_id)
+            logger.debug(f"  Loaded {len(unit_id_to_cluster_id)} unit_id mappings from {cluster_file.name}")
+        except Exception as e:
+            logger.warning(f"  Failed to load cluster file: {e}")
+    else:
+        logger.debug(f"  Cluster file not found: {cluster_file}")
+
+    return dia_id_to_unit_id, unit_id_to_cluster_id, cluster_id_to_unit_ids
+
+
+def _get_ground_truth_clusters(
+    evidence_list: List[str],
+    dia_id_to_unit_id: Dict[str, str],
+    unit_id_to_cluster_id: Dict[str, str],
+) -> Tuple[List[str], List[str], Dict[str, List[str]]]:
+    """
+    根据 evidence 获取 ground truth 的 MemUnits 和 Clusters。
+
+    Args:
+        evidence_list: evidence dia_id 列表
+        dia_id_to_unit_id: dia_id → unit_id 映射
+        unit_id_to_cluster_id: unit_id → cluster_id 映射
+
+    Returns:
+        Tuple of:
+        - ground_truth_unit_ids: 应该包含的 unit_id 列表
+        - ground_truth_cluster_ids: 应该选择的 cluster_id 列表
+        - evidence_detail: 详细映射 {dia_id: [unit_id, cluster_id]}
+    """
+    ground_truth_unit_ids: List[str] = []
+    ground_truth_cluster_ids: Set[str] = set()
+    evidence_detail: Dict[str, List[str]] = {}
+
+    for dia_id in evidence_list:
+        unit_id = dia_id_to_unit_id.get(dia_id)
+        cluster_id = unit_id_to_cluster_id.get(unit_id) if unit_id else None
+
+        evidence_detail[dia_id] = [
+            unit_id if unit_id else "NOT_FOUND",
+            cluster_id if cluster_id else "NOT_FOUND"
+        ]
+
+        if unit_id and unit_id not in ground_truth_unit_ids:
+            ground_truth_unit_ids.append(unit_id)
+        if cluster_id:
+            ground_truth_cluster_ids.add(cluster_id)
+
+    return ground_truth_unit_ids, list(ground_truth_cluster_ids), evidence_detail
+
+
+def _extract_cluster_selection_data(
+    results_for_conv: List[dict],
+    qa_list: List[QAPair],
+    dia_id_to_unit_id: Dict[str, str],
+    unit_id_to_cluster_id: Dict[str, str],
+) -> Optional[dict]:
+    """
+    从检索结果中提取 Cluster Selection 信息，用于生成 checkpoint。
+
+    Args:
+        results_for_conv: 当前对话的所有 QA 检索结果
+        qa_list: QA 对列表（包含 evidence 信息）
+        dia_id_to_unit_id: dia_id → unit_id 映射
+        unit_id_to_cluster_id: unit_id → cluster_id 映射
+
+    Returns:
+        Cluster selection checkpoint 数据，包含每个问题的选择详情和 ground truth；
+        如果没有 cluster_rerank 数据则返回 None
+    """
+    checkpoint_data = {
+        "qa_count": len(results_for_conv),
+        "questions": [],
+    }
+
+    # 建立 question_id → QAPair 映射，用于获取 evidence
+    qa_by_id = {qa.question_id: qa for qa in qa_list}
+
+    for result in results_for_conv:
+        if not result:
+            continue
+
+        retrieval_meta = result.get("retrieval_metadata", {})
+        cluster_expansion = retrieval_meta.get("cluster_expansion", {})
+
+        # 只有 cluster_rerank 策略才有这些信息
+        if cluster_expansion.get("strategy") == "cluster_rerank":
+            question_id = result.get("question_id", "")
+            qa = qa_by_id.get(question_id)
+
+            # 获取 ground truth
+            ground_truth_unit_ids = []
+            ground_truth_cluster_ids = []
+            evidence_detail = {}
+
+            if qa and qa.evidence:
+                ground_truth_unit_ids, ground_truth_cluster_ids, evidence_detail = _get_ground_truth_clusters(
+                    qa.evidence,
+                    dia_id_to_unit_id,
+                    unit_id_to_cluster_id,
+                )
+
+            # 计算 cluster selection 是否正确
+            clusters_selected = cluster_expansion.get("clusters_selected", [])
+            cluster_hit = bool(set(clusters_selected) & set(ground_truth_cluster_ids)) if ground_truth_cluster_ids else None
+
+            question_data = {
+                "query": result.get("query", ""),
+                "question_id": question_id,
+                # 实际选择
+                "clusters_found": cluster_expansion.get("clusters_found", []),
+                "clusters_selected": clusters_selected,
+                "selection_reasoning": cluster_expansion.get("selection_reasoning", ""),
+                "cluster_details": cluster_expansion.get("cluster_details", {}),
+                "members_per_cluster": cluster_expansion.get("members_per_cluster", {}),
+                "final_count": cluster_expansion.get("final_count", 0),
+                "truncated": cluster_expansion.get("truncated", False),
+                # Ground Truth
+                "evidence": qa.evidence if qa else [],
+                "evidence_detail": evidence_detail,
+                "ground_truth_unit_ids": ground_truth_unit_ids,
+                "ground_truth_cluster_ids": ground_truth_cluster_ids,
+                # 评估
+                "cluster_hit": cluster_hit,
+            }
+            checkpoint_data["questions"].append(question_data)
+
+    return checkpoint_data if checkpoint_data["questions"] else None
 
 
 async def run_search_stage(
@@ -118,11 +305,57 @@ async def run_search_stage(
         ]
         
         all_search_results_dict[conv_id] = results_for_conv_dict
-        
+
         # 🔥 每处理完一个会话就保存检查点
         if checkpoint_manager:
             checkpoint_manager.save_search_progress(all_search_results_dict)
-    
+
+        # 🔥 保存 Cluster Selection Checkpoint（如果使用 cluster_rerank 策略）
+        try:
+            # 获取输出目录（从 index 或 checkpoint_manager）
+            output_dir = None
+            if isinstance(index, dict):
+                output_dir = index.get("output_dir")
+            if not output_dir and checkpoint_manager:
+                output_dir = checkpoint_manager.output_dir
+
+            if output_dir:
+                output_dir = Path(output_dir)
+                # 从 conv_id 提取数字索引（例如 "locomo_0" -> "0"）
+                conv_index = conv_id.split("_")[-1] if "_" in conv_id else conv_id
+
+                # 构建 evidence → MemUnit → Cluster 映射
+                dia_id_to_unit_id, unit_id_to_cluster_id, _ = _build_evidence_to_cluster_mapping(
+                    output_dir, conv_index, logger
+                )
+
+                cluster_selection_data = _extract_cluster_selection_data(
+                    results_for_conv_dict,
+                    qa_list,
+                    dia_id_to_unit_id,
+                    unit_id_to_cluster_id,
+                )
+
+                if cluster_selection_data:
+                    cluster_selection_dir = output_dir / "cluster_selection"
+                    cluster_selection_dir.mkdir(parents=True, exist_ok=True)
+
+                    cluster_selection_path = cluster_selection_dir / f"conv_{conv_index}.json"
+
+                    with open(cluster_selection_path, "w", encoding="utf-8") as f:
+                        json.dump(cluster_selection_data, f, indent=2, ensure_ascii=False)
+
+                    # 计算并打印 cluster hit 统计
+                    total_questions = len(cluster_selection_data["questions"])
+                    cluster_hits = sum(1 for q in cluster_selection_data["questions"] if q.get("cluster_hit") is True)
+                    cluster_misses = sum(1 for q in cluster_selection_data["questions"] if q.get("cluster_hit") is False)
+                    no_ground_truth = total_questions - cluster_hits - cluster_misses
+
+                    logger.info(f"  💾 Cluster selection checkpoint saved: {cluster_selection_path.name}")
+                    logger.info(f"     Cluster Hit: {cluster_hits}/{total_questions - no_ground_truth} ({cluster_hits/(total_questions - no_ground_truth)*100:.1f}%)" if (total_questions - no_ground_truth) > 0 else "")
+        except Exception as e:
+            logger.warning(f"  ⚠️  Failed to save cluster selection checkpoint: {e}")
+
     # 关闭进度条
     pbar.close()
     

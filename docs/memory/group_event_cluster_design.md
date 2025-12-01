@@ -887,11 +887,11 @@ class GroupEventClusterer:
 
 ### 7.1 配置设计
 
-#### 7.1.1 ClusterRetrievalConfig
+#### 7.1.1 GroupEventClusterRetrievalConfig
 
 ```python
 @dataclass
-class ClusterRetrievalConfig:
+class GroupEventClusterRetrievalConfig:
     """
     聚类增强检索配置
 
@@ -899,7 +899,7 @@ class ClusterRetrievalConfig:
     """
 
     # === 基础开关 ===
-    enable_cluster_expansion: bool = True
+    enable_group_event_cluster_retrieval: bool = True
     """是否启用聚类扩展"""
 
     # === 扩展策略 ===
@@ -912,6 +912,7 @@ class ClusterRetrievalConfig:
     - "append_to_end": 将所有扩展文档追加到结果末尾
     - "merge_by_score": 为扩展文档计算衰减分数，与原结果混合排序
     - "replace_rerank": 扩展后整体重新 Rerank（成本较高）
+    - "cluster_rerank": Cluster 级别重排，LLM 智能选择最相关 Clusters（需要额外配置）
     """
 
     # === 扩展数量控制 ===
@@ -1021,8 +1022,8 @@ class ExperimentConfig:
     """GroupEventClusterConfig 配置"""
 
     # ===== 聚类增强检索配置 =====
-    cluster_retrieval_config: dict = field(default_factory=lambda: {
-        "enable_cluster_expansion": True,
+    group_event_cluster_retrieval_config: dict = field(default_factory=lambda: {
+        "enable_group_event_cluster_retrieval": True,
         "expansion_strategy": "insert_after_hit",
         "max_expansion_per_hit": 2,
         "max_total_expansion": 10,
@@ -1033,7 +1034,7 @@ class ExperimentConfig:
         "deduplicate_expanded": True,
         "rerank_after_expansion": False,
     })
-    """ClusterRetrievalConfig 配置"""
+    """GroupEventClusterRetrievalConfig 配置"""
 ```
 
 ### 7.2 扩展策略详解
@@ -1070,7 +1071,7 @@ class ExperimentConfig:
 def expand_with_insert_after_hit(
     original_results: List[Tuple[dict, float]],
     cluster_index: GroupEventClusterIndex,
-    config: ClusterRetrievalConfig,
+    config: GroupEventClusterRetrievalConfig,
     all_docs_map: Dict[str, dict],  # unit_id -> doc
 ) -> List[Tuple[dict, float]]:
     """
@@ -1145,7 +1146,7 @@ def _select_expansion_candidates(
     cluster: GroupEventCluster,
     hit_unit_id: str,
     seen_unit_ids: Set[str],
-    config: ClusterRetrievalConfig,
+    config: GroupEventClusterRetrievalConfig,
 ) -> List[ClusterMember]:
     """
     选择扩展候选成员
@@ -1285,6 +1286,163 @@ def _select_expansion_candidates(
 - 成本高：增加一次 Rerank API 调用
 - 延迟增加
 
+#### 7.2.5 Strategy 5: cluster_rerank（Cluster 级别重排）
+
+**原理**：让 LLM 智能选择最相关的 Clusters，返回选中 Clusters 的所有成员（按时间顺序）。
+
+```
+流程:
+  原检索 Top 20 MemUnits
+    → 提取对应的 Clusters（去重）
+    → LLM 智能选择 1-N 个最相关 Clusters
+    → 返回选中 Clusters 的 MemUnits（按时间顺序）
+    → 应用数量限制
+    → 生成答案
+```
+
+**核心思想**：
+
+不是在 MemUnit 级别做扩展，而是退一步到 Cluster 级别：
+- 先找到命中的 Clusters
+- 让 LLM 根据查询判断哪些 Clusters 最相关
+- LLM 可以灵活选择 1-N 个 Clusters（问题具体时选 1 个，宽泛时选多个）
+- 返回完整的时间线上下文
+
+**专用配置**：
+
+```python
+# 仅当 expansion_strategy="cluster_rerank" 时生效
+
+cluster_rerank_max_clusters: int = 10
+"""
+LLM 最多可以选择的 Cluster 数量上限。
+LLM 会根据查询复杂度智能决定实际选择的数量：
+- 问题很具体时：可能只选 1 个
+- 问题涉及多个事件：可能选 2-3 个
+- 问题很宽泛/比较性问题：可能选 4+ 个
+"""
+
+cluster_rerank_max_members_per_cluster: int = 15
+"""
+每个 Cluster 最多返回的 MemUnits 数量。
+如果 Cluster 成员少于此值，返回全部。
+"""
+
+cluster_rerank_total_max_members: int = 30
+"""
+最终返回的 MemUnits 总数上限。
+这是所有选中 Clusters 成员总和的硬上限。
+"""
+```
+
+**配置层级**：
+
+```
+限制层级（从宽到严）：
+┌─────────────────────────────────────────────────────────────┐
+│ 1. cluster_rerank_max_clusters = 5                          │
+│    └─ LLM 最多选 5 个 Cluster                               │
+│                                                             │
+│ 2. cluster_rerank_max_members_per_cluster = 15              │
+│    └─ 每个 Cluster 最多贡献 15 个 MemUnits                  │
+│                                                             │
+│ 3. cluster_rerank_total_max_members = 30 ← 最终硬上限       │
+│    └─ 无论选了几个 Cluster，最终不超过 30 个 MemUnits       │
+└─────────────────────────────────────────────────────────────┘
+```
+
+**示例场景**：
+
+| 场景 | LLM 选择 | 实际返回 |
+|------|---------|---------|
+| 问题很具体（"Caroline 什么时候决定领养"） | 1 个 Cluster (12 成员) | 12 个 MemUnits |
+| 问题涉及两个事件 | 2 个 Clusters (18 + 8 成员) | 26 个 MemUnits |
+| 问题很宽泛 | 3 个 Clusters (15 + 15 + 10 成员) | 30 个 MemUnits (被总上限截断) |
+
+**LLM 选择 Prompt**：
+
+LLM 会看到查询和候选 Clusters 的信息（topic, summary, 成员数, 时间范围），
+然后选择最相关的 Clusters 并提供选择理由。
+
+**优点**：
+- 智能选择：LLM 根据查询灵活决定需要几个 Clusters
+- 完整上下文：返回整个事件的时间线，而非零散片段
+- 时间顺序：返回的 MemUnits 按时间排序，保持叙事连贯
+- 避免碎片化：不会只返回事件的部分内容
+
+**缺点**：
+- 成本：需要调用 LLM 进行 Cluster 选择
+- 延迟：增加一次 LLM 调用
+
+**适用场景**：
+- 问题涉及事件的完整过程（如 "Caroline 的领养计划是怎么发展的"）
+- 需要时间线上下文来回答问题
+- 问题范围不确定，需要 LLM 智能判断
+
+**Checkpoint 机制**：
+
+cluster_rerank 策略会生成独立的 checkpoint 文件，保存在 `cluster_selection/` 目录下：
+
+```
+experiment_name/
+├── search_results.json
+├── search_results_checkpoint.json
+└── cluster_selection/
+    ├── locomo_exp_user_0.json
+    ├── locomo_exp_user_1.json
+    └── ...
+```
+
+每个 checkpoint 文件包含：
+
+```json
+{
+    "qa_count": 10,
+    "questions": [
+        {
+            "query": "When did Caroline decide to adopt?",
+            "clusters_found": ["gec_001", "gec_003", "gec_007"],
+            "clusters_selected": ["gec_001"],
+            "selection_reasoning": "Only gec_001 contains adoption-related info",
+            "cluster_details": {
+                "gec_001": {"topic": "Caroline's adoption plan", "member_count": 12}
+            },
+            "members_per_cluster": {"gec_001": 12},
+            "final_count": 12,
+            "truncated": false,
+            "evidence_cluster_analysis": {
+                "unique_evidence_clusters": ["gec_001"],
+                "cluster_coverage": 1.0
+            }
+        }
+    ]
+}
+```
+
+**结果标注**：
+
+search_results.json 中每个问题的结果包含 cluster 信息：
+
+```json
+{
+    "query": "When did Caroline decide to adopt?",
+    "unit_ids": ["mu_001", "mu_003", "mu_007"],
+    "unit_cluster_info": [
+        {"unit_id": "mu_001", "cluster_id": "gec_001"},
+        {"unit_id": "mu_003", "cluster_id": "gec_001"},
+        {"unit_id": "mu_007", "cluster_id": "gec_001"}
+    ],
+    "evidence_cluster_analysis": {
+        "evidence_details": [
+            {"evidence_id": "mu_001", "cluster_id": "gec_001", "in_results": true}
+        ],
+        "unique_evidence_clusters": ["gec_001"],
+        "clusters_in_results": ["gec_001"],
+        "cluster_coverage": 1.0
+    }
+}
+```
+
 ### 7.3 整合到检索流程
 
 #### 7.3.1 整体流程图
@@ -1306,7 +1464,7 @@ def _select_expansion_candidates(
                                     │
                                     ▼
                     ┌───────────────────────────────┐
-                    │  enable_cluster_expansion?    │
+                    │  enable_group_event_cluster_retrieval?    │
                     └───────────────────────────────┘
                           │              │
                          Yes             No
@@ -1414,7 +1572,7 @@ def _select_expansion_candidates(
 
 from memory.group_event_cluster import (
     GroupEventClusterIndex,
-    ClusterRetrievalConfig,
+    GroupEventClusterRetrievalConfig,
     expand_with_cluster,  # 核心扩展函数
 )
 
@@ -1438,11 +1596,11 @@ async def agentic_retrieval(
     final_results = ...  # 现有逻辑得到的结果
 
     # ========== 聚类增强扩展 ==========
-    cluster_retrieval_config = ClusterRetrievalConfig.from_dict(
-        config.cluster_retrieval_config
+    group_event_cluster_retrieval_config = GroupEventClusterRetrievalConfig.from_dict(
+        config.group_event_cluster_retrieval_config
     )
 
-    if (cluster_retrieval_config.enable_cluster_expansion
+    if (group_event_cluster_retrieval_config.enable_group_event_cluster_retrieval
         and cluster_index is not None):
 
         # 构建 all_docs_map（用于获取扩展文档内容）
@@ -1452,16 +1610,16 @@ async def agentic_retrieval(
         expanded_results, expansion_metadata = expand_with_cluster(
             original_results=final_results,
             cluster_index=cluster_index,
-            config=cluster_retrieval_config,
+            config=group_event_cluster_retrieval_config,
             all_docs_map=all_docs_map,
         )
 
         # 可选：扩展后重新 Rerank
-        if cluster_retrieval_config.rerank_after_expansion:
+        if group_event_cluster_retrieval_config.rerank_after_expansion:
             expanded_results = await reranker_search(
                 query=query,
                 results=expanded_results,
-                top_n=cluster_retrieval_config.rerank_top_n_after_expansion,
+                top_n=group_event_cluster_retrieval_config.rerank_top_n_after_expansion,
                 # ... 其他参数 ...
             )
 
@@ -1481,7 +1639,7 @@ async def agentic_retrieval(
 def expand_with_cluster(
     original_results: List[Tuple[dict, float]],
     cluster_index: GroupEventClusterIndex,
-    config: ClusterRetrievalConfig,
+    config: GroupEventClusterRetrievalConfig,
     all_docs_map: Dict[str, dict],
 ) -> Tuple[List[Tuple[dict, float]], Dict[str, Any]]:
     """

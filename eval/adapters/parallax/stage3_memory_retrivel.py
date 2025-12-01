@@ -34,7 +34,7 @@ from providers.llm.llm_provider import LLMProvider
 # 🔥 新增：群体事件聚类增强检索
 from memory.group_event_cluster import (
     GroupEventClusterIndex,
-    ClusterRetrievalConfig,
+    GroupEventClusterRetrievalConfig,
     expand_with_cluster,
 )
 
@@ -668,6 +668,8 @@ async def _apply_cluster_expansion(
     docs: List[dict],
     query: str,
     logger,
+    llm_provider: Optional[LLMProvider] = None,
+    llm_config: Optional[dict] = None,
 ) -> Tuple[List[Tuple[dict, float]], dict]:
     """
     应用聚类增强扩展到检索结果
@@ -680,40 +682,65 @@ async def _apply_cluster_expansion(
         docs: 所有文档列表
         query: 原始查询
         logger: 日志记录器
+        llm_provider: LLM Provider（cluster_rerank 策略需要）
+        llm_config: LLM 配置（cluster_rerank 策略需要）
 
     Returns:
         (expanded_results, updated_metadata)
     """
     # 检查是否启用聚类扩展
-    cluster_retrieval_cfg = getattr(config, 'cluster_retrieval_config', {})
-    enable_expansion = cluster_retrieval_cfg.get('enable_cluster_expansion', False)
+    cluster_retrieval_cfg = getattr(config, 'group_event_cluster_retrieval_config', {})
+    enable_expansion = cluster_retrieval_cfg.get('enable_group_event_cluster_retrieval', False)
 
     if not enable_expansion or cluster_index is None:
         logger.debug(f"  [Cluster] Expansion disabled or no cluster index")
         return final_results, metadata
 
     # 创建配置对象
-    cluster_config = ClusterRetrievalConfig.from_dict(cluster_retrieval_cfg)
+    cluster_config = GroupEventClusterRetrievalConfig.from_dict(cluster_retrieval_cfg)
 
     # 构建 all_docs_map（unit_id -> doc）
     all_docs_map = {doc.get("unit_id"): doc for doc in docs if doc.get("unit_id")}
 
-    logger.info(f"  [Cluster] Applying cluster expansion (strategy={cluster_config.expansion_strategy})...")
+    logger.info(f"  ╔══[Cluster Expansion]══════════════════════════════════════")
+    logger.info(f"  ║ Strategy: {cluster_config.expansion_strategy}")
+    logger.info(f"  ║ Input: {len(final_results)} results, Cluster Index: {len(cluster_index.clusters)} clusters")
 
-    # 执行聚类扩展
-    expanded_results, expansion_metadata = expand_with_cluster(
+    # 执行聚类扩展（注意：现在是 async 函数）
+    expanded_results, expansion_metadata = await expand_with_cluster(
         original_results=final_results,
         cluster_index=cluster_index,
         config=cluster_config,
         all_docs_map=all_docs_map,
+        query=query,
+        llm_provider=llm_provider,
+        llm_config=llm_config,
     )
 
     # 记录扩展统计
-    expanded_count = expansion_metadata.get("expanded_count", 0)
-    clusters_hit = expansion_metadata.get("clusters_hit", [])
-
-    logger.info(f"  [Cluster] Expanded {expanded_count} docs from {len(clusters_hit)} clusters")
-    logger.debug(f"  [Cluster] Clusters hit: {clusters_hit}")
+    strategy = expansion_metadata.get("strategy", "unknown")
+    if strategy == "cluster_rerank":
+        # cluster_rerank 策略使用不同的 metadata 结构
+        final_count = expansion_metadata.get("final_count", 0)
+        clusters_selected = expansion_metadata.get("clusters_selected", [])
+        cluster_details = expansion_metadata.get("cluster_details", {})
+        logger.info(f"  ╠══[Cluster Rerank Result]═════════════════════════════════")
+        logger.info(f"  ║ Selected {len(clusters_selected)} clusters -> {final_count} MemUnits")
+        for cid in clusters_selected:
+            detail = cluster_details.get(cid, {})
+            logger.info(f"  ║   {cid}: \"{detail.get('topic', 'N/A')}\" ({detail.get('members_returned', 0)} members)")
+        # 打印最终 MemUnit IDs
+        unit_ids = list(expansion_metadata.get("unit_to_cluster", {}).keys())
+        if unit_ids:
+            short_ids = [uid[:8] for uid in unit_ids]
+            logger.info(f"  ║ Final MemUnits: {', '.join(short_ids)}")
+        logger.info(f"  ╚════════════════════════════════════════════════════════════")
+    else:
+        expanded_count = expansion_metadata.get("expanded_count", 0)
+        clusters_hit = expansion_metadata.get("clusters_hit", [])
+        logger.info(f"  ║ Expanded {expanded_count} docs from {len(clusters_hit)} clusters")
+        logger.info(f"  ╚════════════════════════════════════════════════════════════")
+        logger.debug(f"  [Cluster] Clusters hit: {clusters_hit}")
 
     # 更新 metadata
     metadata["cluster_expansion"] = expansion_metadata
@@ -769,6 +796,123 @@ def _build_origin_map(round1_ids: set, round2_ids: set, cluster_ids: set) -> dic
         if uid and uid not in origin_map:
             origin_map[uid] = "cluster"
     return origin_map
+
+
+def _extract_cluster_selection_data(results_for_conv: List[dict]) -> dict:
+    """
+    从检索结果中提取 Cluster Selection 信息，用于生成 checkpoint。
+
+    Args:
+        results_for_conv: 当前对话的所有 QA 检索结果
+
+    Returns:
+        Cluster selection checkpoint 数据，包含每个问题的选择详情
+    """
+    checkpoint_data = {
+        "qa_count": len(results_for_conv),
+        "questions": [],
+    }
+
+    for result in results_for_conv:
+        if not result:
+            continue
+
+        retrieval_meta = result.get("retrieval_metadata", {})
+        cluster_expansion = retrieval_meta.get("cluster_expansion", {})
+
+        # 只有 cluster_rerank 策略才有这些信息
+        if cluster_expansion.get("strategy") == "cluster_rerank":
+            question_data = {
+                "query": result.get("query", ""),
+                "clusters_found": cluster_expansion.get("clusters_found", []),
+                "clusters_selected": cluster_expansion.get("clusters_selected", []),
+                "selection_reasoning": cluster_expansion.get("selection_reasoning", ""),
+                "cluster_details": cluster_expansion.get("cluster_details", {}),
+                "members_per_cluster": cluster_expansion.get("members_per_cluster", {}),
+                "final_count": cluster_expansion.get("final_count", 0),
+                "truncated": cluster_expansion.get("truncated", False),
+                # Evidence 分析
+                "evidence_cluster_analysis": result.get("evidence_cluster_analysis"),
+            }
+            checkpoint_data["questions"].append(question_data)
+
+    return checkpoint_data if checkpoint_data["questions"] else None
+
+
+def _analyze_evidence_clusters(
+    evidence_list: list,
+    cluster_index: GroupEventClusterIndex,
+    unit_ids: List[str],
+) -> dict:
+    """
+    分析标准答案的 evidence 对应的 MemUnit 和 Cluster。
+
+    Args:
+        evidence_list: 标准答案中的 evidence 列表（包含 evidence_id）
+        cluster_index: 聚类索引
+        unit_ids: 检索返回的 unit_ids
+
+    Returns:
+        分析结果，包含：
+        - evidence_units: 每个 evidence 对应的 MemUnit（如果能匹配）
+        - evidence_clusters: 每个 evidence 对应的 Cluster
+        - coverage: 检索结果覆盖了多少 evidence clusters
+    """
+    analysis = {
+        "evidence_details": [],
+        "unique_evidence_clusters": [],
+        "clusters_in_results": [],
+        "cluster_coverage": 0.0,
+    }
+
+    evidence_clusters = set()
+    clusters_in_results = set()
+    retrieved_unit_set = set(unit_ids)
+
+    for evidence in evidence_list:
+        evidence_id = evidence.get("evidence_id")
+        if not evidence_id:
+            continue
+
+        # 尝试匹配 evidence_id 到 unit_id
+        # evidence_id 格式可能是 "locomo_exp_user_0_mu_5" 或 "mu_5"
+        matched_unit_id = None
+        matched_cluster_id = None
+
+        # 直接匹配
+        if evidence_id in cluster_index.unit_to_cluster:
+            matched_unit_id = evidence_id
+            matched_cluster_id = cluster_index.unit_to_cluster.get(evidence_id)
+        else:
+            # 尝试提取 mu_X 部分进行匹配
+            for unit_id in cluster_index.unit_to_cluster.keys():
+                if evidence_id in unit_id or unit_id in evidence_id:
+                    matched_unit_id = unit_id
+                    matched_cluster_id = cluster_index.unit_to_cluster.get(unit_id)
+                    break
+
+        detail = {
+            "evidence_id": evidence_id,
+            "matched_unit_id": matched_unit_id,
+            "cluster_id": matched_cluster_id,
+            "in_results": matched_unit_id in retrieved_unit_set if matched_unit_id else False,
+        }
+        analysis["evidence_details"].append(detail)
+
+        if matched_cluster_id:
+            evidence_clusters.add(matched_cluster_id)
+            if matched_unit_id and matched_unit_id in retrieved_unit_set:
+                clusters_in_results.add(matched_cluster_id)
+
+    analysis["unique_evidence_clusters"] = list(evidence_clusters)
+    analysis["clusters_in_results"] = list(clusters_in_results)
+
+    if evidence_clusters:
+        analysis["cluster_coverage"] = len(clusters_in_results) / len(evidence_clusters)
+    else:
+        analysis["cluster_coverage"] = 0.0
+
+    return analysis
 
 
 async def agentic_retrieval(
@@ -956,6 +1100,8 @@ async def agentic_retrieval(
             docs=docs,
             query=query,
             logger=logger,
+            llm_provider=llm_provider,
+            llm_config=llm_config,
         )
 
         metadata["final_count"] = len(final_results)
@@ -1173,6 +1319,8 @@ async def agentic_retrieval(
         docs=docs,
         query=query,
         logger=logger,
+        llm_provider=llm_provider,
+        llm_config=llm_config,
     )
 
     metadata["final_count"] = len(final_results)
@@ -1738,11 +1886,36 @@ async def main():
 
                     # 计算处理时间
                     qa_latency_ms = (time.time() - qa_start_time) * 1000
-                    
+
+                    # ========== 提取 Cluster 信息 ==========
+                    cluster_expansion_meta = retrieval_metadata.get("cluster_expansion", {})
+                    unit_to_cluster = cluster_expansion_meta.get("unit_to_cluster", {})
+
+                    # 构建每个 unit_id 的 cluster 信息
+                    unit_cluster_info = []
+                    for unit_id in unit_ids:
+                        cluster_id = unit_to_cluster.get(unit_id)
+                        unit_cluster_info.append({
+                            "unit_id": unit_id,
+                            "cluster_id": cluster_id,  # 可能为 None（非 cluster_rerank 策略）
+                        })
+
+                    # 分析 evidence 应该在哪个 Cluster
+                    evidence_cluster_analysis = None
+                    if cluster_index and qa_pair.get("evidence"):
+                        evidence_analysis = _analyze_evidence_clusters(
+                            evidence_list=qa_pair.get("evidence", []),
+                            cluster_index=cluster_index,
+                            unit_ids=unit_ids,
+                        )
+                        evidence_cluster_analysis = evidence_analysis
+
                     result = {
                         "query": question,
                         "unit_ids": unit_ids,  # 🔥 返回 unit_ids 而不是 context
+                        "unit_cluster_info": unit_cluster_info,  # 🔥 每个 unit 对应的 cluster
                         "original_qa": qa_pair,
+                        "evidence_cluster_analysis": evidence_cluster_analysis,  # 🔥 evidence 对应的 cluster
                         "retrieval_metadata": {
                             **retrieval_metadata,
                             "qa_latency_ms": qa_latency_ms,
@@ -1750,7 +1923,7 @@ async def main():
                             "actual_unit_ids_count": len(unit_ids),    # 记录实际提取的数量
                         }
                     }
-                    
+
                     return result
                     
             except Exception as e:
@@ -1777,6 +1950,21 @@ async def main():
             logger.info(f"✅ Checkpoint saved: {len(all_search_results)} conversations")
         except Exception as e:
             logger.warning(f"⚠️  Failed to save checkpoint: {e}")
+
+        # 🔥 保存 Cluster Selection Checkpoint（独立文件）
+        cluster_retrieval_cfg = getattr(config, 'group_event_cluster_retrieval_config', {})
+        if cluster_retrieval_cfg.get('expansion_strategy') == 'cluster_rerank':
+            try:
+                cluster_selection_checkpoint = _extract_cluster_selection_data(results_for_conv)
+                if cluster_selection_checkpoint:
+                    cluster_selection_dir = save_dir / "cluster_selection"
+                    cluster_selection_dir.mkdir(parents=True, exist_ok=True)
+                    cluster_selection_path = cluster_selection_dir / f"{conv_id}.json"
+                    with open(cluster_selection_path, "w", encoding="utf-8") as f:
+                        json.dump(cluster_selection_checkpoint, f, indent=2, ensure_ascii=False)
+                    logger.debug(f"  💾 Cluster selection checkpoint saved: {cluster_selection_path}")
+            except Exception as e:
+                logger.warning(f"  ⚠️  Failed to save cluster selection checkpoint: {e}")
 
     # Save all results to a single JSON file in the specified format
     print(f"\n{'='*60}")
