@@ -177,6 +177,20 @@ def _extract_cluster_selection_data(
             clusters_selected = cluster_expansion.get("clusters_selected", [])
             cluster_hit = bool(set(clusters_selected) & set(ground_truth_cluster_ids)) if ground_truth_cluster_ids else None
 
+            # 🔥 新增：计算 memunit_hit（选中的 Cluster 是否包含 ground truth MemUnit）
+            # 这个指标更准确，因为不同 Cluster 可能包含相同的 MemUnit
+            unit_to_cluster = cluster_expansion.get("unit_to_cluster", {})
+            selected_unit_ids = set(unit_to_cluster.keys())
+            ground_truth_unit_set = set(ground_truth_unit_ids)
+
+            # memunit_hit: 选中的 MemUnit 是否与 ground truth 有交集
+            memunit_hit = bool(selected_unit_ids & ground_truth_unit_set) if ground_truth_unit_ids else None
+            # memunit_coverage: 覆盖了多少比例的 ground truth MemUnit
+            memunit_coverage = (
+                len(selected_unit_ids & ground_truth_unit_set) / len(ground_truth_unit_set)
+                if ground_truth_unit_set else None
+            )
+
             question_data = {
                 "query": result.get("query", ""),
                 "question_id": question_id,
@@ -193,10 +207,39 @@ def _extract_cluster_selection_data(
                 "evidence_detail": evidence_detail,
                 "ground_truth_unit_ids": ground_truth_unit_ids,
                 "ground_truth_cluster_ids": ground_truth_cluster_ids,
-                # 评估
-                "cluster_hit": cluster_hit,
+                # 评估指标
+                "cluster_hit": cluster_hit,  # Cluster ID 匹配
+                "memunit_hit": memunit_hit,  # MemUnit ID 匹配（更准确）
+                "memunit_coverage": memunit_coverage,  # MemUnit 覆盖率
+                "selected_unit_ids": list(selected_unit_ids),  # 选中的 MemUnit IDs
             }
             checkpoint_data["questions"].append(question_data)
+
+    # 🔥 新增：汇总统计
+    if checkpoint_data["questions"]:
+        questions = checkpoint_data["questions"]
+        total = len(questions)
+
+        # cluster_hit 统计
+        cluster_hits = [q["cluster_hit"] for q in questions if q["cluster_hit"] is not None]
+        cluster_hit_count = sum(cluster_hits) if cluster_hits else 0
+
+        # memunit_hit 统计（更准确的指标）
+        memunit_hits = [q["memunit_hit"] for q in questions if q["memunit_hit"] is not None]
+        memunit_hit_count = sum(memunit_hits) if memunit_hits else 0
+
+        # memunit_coverage 平均值
+        coverages = [q["memunit_coverage"] for q in questions if q["memunit_coverage"] is not None]
+        avg_coverage = sum(coverages) / len(coverages) if coverages else 0
+
+        checkpoint_data["summary"] = {
+            "total_questions": total,
+            "cluster_hit_count": cluster_hit_count,
+            "cluster_hit_rate": cluster_hit_count / total if total else 0,
+            "memunit_hit_count": memunit_hit_count,
+            "memunit_hit_rate": memunit_hit_count / total if total else 0,
+            "avg_memunit_coverage": avg_coverage,
+        }
 
     return checkpoint_data if checkpoint_data["questions"] else None
 

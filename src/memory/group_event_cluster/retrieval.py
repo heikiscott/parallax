@@ -669,6 +669,10 @@ async def _expand_cluster_rerank(
                 logger.info("  ├─[Cluster Rerank] LLM found no relevant clusters, returning original results")
                 metadata["clusters_selected"] = []
                 metadata["fallback_to_original"] = True
+                metadata["final_count"] = len(original_results)
+                metadata["cluster_members_count"] = 0
+                metadata["original_supplement_count"] = len(original_results)
+                logger.info(f"  └─[Cluster Rerank] Fallback: returning {len(original_results)} original results")
                 # Return original results instead of cluster-based results
                 return original_results, metadata
             else:
