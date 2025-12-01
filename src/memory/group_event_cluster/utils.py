@@ -104,46 +104,85 @@ def parse_cluster_assignment_response(response: str) -> dict:
     """
     Parse LLM response for cluster assignment.
 
+    Always returns the multi-assignment format: {"assignments": [...], "reason": "..."}
+
+    Handles LLM response variations (not data format compatibility):
+    1. Multi-assignment format: {"assignments": [...], "reason": "..."}
+    2. Single-assignment format (converted): {"decision": "...", "cluster_id": "...", ...}
+
     Args:
         response: Raw LLM response string
 
     Returns:
-        Parsed decision dict with keys: decision, cluster_id (optional),
-        new_topic (optional), reason (optional)
+        Parsed decision dict: {"assignments": [...], "reason": "..."}
     """
     # Try to extract JSON from response
+    parsed = None
     try:
         # First try direct JSON parse
-        return json.loads(response.strip())
+        parsed = json.loads(response.strip())
     except json.JSONDecodeError:
         pass
 
-    # Try to find JSON in response
-    json_match = re.search(r'\{[^{}]*\}', response, re.DOTALL)
-    if json_match:
-        try:
-            return json.loads(json_match.group())
-        except json.JSONDecodeError:
-            pass
+    # Try to find JSON in response (handle nested braces for arrays)
+    if not parsed:
+        # Try to match JSON with arrays
+        json_match = re.search(r'\{.*\}', response, re.DOTALL)
+        if json_match:
+            try:
+                parsed = json.loads(json_match.group())
+            except json.JSONDecodeError:
+                pass
 
-    # Fallback: try to parse key-value pairs
-    result = {"decision": "NEW", "reason": "Failed to parse response"}
+    if parsed:
+        # Check if it's new multi-assignment format
+        if "assignments" in parsed:
+            return parsed
+        # It's legacy format, convert to new format for consistency
+        if "decision" in parsed:
+            return _convert_legacy_to_multi_assignment(parsed)
+        return parsed
+
+    # Fallback: try to parse key-value pairs from text
+    result = {"assignments": [], "reason": "Failed to parse response"}
 
     if "EXISTING" in response.upper():
-        result["decision"] = "EXISTING"
-        # Try to extract cluster_id
-        cluster_match = re.search(r'gec_\d+', response)
-        if cluster_match:
-            result["cluster_id"] = cluster_match.group()
+        # Try to extract cluster_id(s)
+        cluster_matches = re.findall(r'gec_\d+', response)
+        for cluster_id in cluster_matches:
+            result["assignments"].append({"type": "EXISTING", "cluster_id": cluster_id})
 
     if "NEW" in response.upper():
-        result["decision"] = "NEW"
-        # Try to extract topic (look for quoted string or after "topic:")
+        # Try to extract topic
         topic_match = re.search(r'"new_topic":\s*"([^"]+)"', response)
         if topic_match:
-            result["new_topic"] = topic_match.group(1)
+            result["assignments"].append({"type": "NEW", "new_topic": topic_match.group(1)})
+        elif not result["assignments"]:
+            result["assignments"].append({"type": "NEW", "new_topic": "Unknown topic"})
+
+    # If no assignments found, default to NEW
+    if not result["assignments"]:
+        result["assignments"].append({"type": "NEW", "new_topic": "Unknown topic"})
 
     return result
+
+
+def _convert_legacy_to_multi_assignment(legacy: dict) -> dict:
+    """Convert single-assignment LLM response to multi-assignment format."""
+    assignments = []
+
+    if legacy.get("decision") == "EXISTING":
+        cluster_id = legacy.get("cluster_id", "")
+        if cluster_id:
+            assignments.append({"type": "EXISTING", "cluster_id": cluster_id})
+    elif legacy.get("decision") == "NEW":
+        new_topic = legacy.get("new_topic", "Unknown topic")
+        assignments.append({"type": "NEW", "new_topic": new_topic})
+
+    return {
+        "assignments": assignments,
+        "reason": legacy.get("reason", ""),
+    }
 
 
 # =============================================================================

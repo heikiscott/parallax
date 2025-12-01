@@ -95,7 +95,7 @@ class GroupEventClusterer:
         # Initialize index
         self.index = GroupEventClusterIndex(
             clusters={},
-            unit_to_cluster={},
+            unit_to_clusters={},
             conversation_id=conversation_id,
             total_units=0,
             created_at=datetime.now(),
@@ -109,12 +109,13 @@ class GroupEventClusterer:
         # Process each MemUnit
         for i, memunit in enumerate(sorted_memunits):
             try:
-                cluster_id = await self._cluster_single_memunit(memunit)
+                cluster_ids = await self._cluster_single_memunit(memunit)
 
                 if progress_callback:
-                    progress_callback(i + 1, len(sorted_memunits), cluster_id)
+                    # Report first cluster_id for progress (backward compatible)
+                    progress_callback(i + 1, len(sorted_memunits), cluster_ids[0] if cluster_ids else "")
 
-                logger.debug(f"Processed {i+1}/{len(sorted_memunits)}: {memunit.get('unit_id')} -> {cluster_id}")
+                logger.debug(f"Processed {i+1}/{len(sorted_memunits)}: {memunit.get('unit_id')} -> {cluster_ids}")
 
             except Exception as e:
                 logger.error(f"Error processing MemUnit {memunit.get('unit_id')}: {e}")
@@ -125,12 +126,14 @@ class GroupEventClusterer:
 
         return self.index
 
-    async def _cluster_single_memunit(self, memunit: Dict[str, Any]) -> str:
+    async def _cluster_single_memunit(self, memunit: Dict[str, Any]) -> List[str]:
         """
-        Process a single MemUnit and assign it to a cluster.
+        Process a single MemUnit and assign it to one or more clusters.
+
+        A MemUnit can belong to multiple clusters if it discusses multiple topics.
 
         Returns:
-            cluster_id the MemUnit was assigned to
+            List of cluster_ids the MemUnit was assigned to
         """
         unit_id = memunit.get("unit_id", "")
         narrative = memunit.get("narrative", "")
@@ -147,9 +150,9 @@ class GroupEventClusterer:
                 narrative=narrative,
                 timestamp=timestamp,
             )
-            return cluster_id
+            return [cluster_id]
 
-        # Step 3: Use LLM to decide cluster assignment
+        # Step 3: Use LLM to decide cluster assignment(s)
         decision = await self._llm_decide_cluster(
             unit_id=unit_id,
             unit_summary=unit_summary,
@@ -157,35 +160,48 @@ class GroupEventClusterer:
             timestamp=timestamp,
         )
 
-        # Step 4: Handle the decision
-        if decision.get("decision") == "NEW":
-            cluster_id = await self._create_new_cluster(
-                unit_id=unit_id,
-                unit_summary=unit_summary,
-                narrative=narrative,
-                timestamp=timestamp,
-                topic=decision.get("new_topic"),
-            )
-        else:
-            cluster_id = decision.get("cluster_id", "")
-            if cluster_id and cluster_id in self.index.clusters:
-                self._add_to_existing_cluster(
-                    cluster_id=cluster_id,
-                    unit_id=unit_id,
-                    unit_summary=unit_summary,
-                    timestamp=timestamp,
-                )
-            else:
-                # Fallback: create new cluster if specified cluster doesn't exist
-                logger.warning(f"Cluster {cluster_id} not found, creating new one")
+        # Step 4: Handle multi-assignment response
+        assigned_cluster_ids: List[str] = []
+        assignments = decision.get("assignments", [])
+
+        for assignment in assignments:
+            assign_type = assignment.get("type", "")
+
+            if assign_type == "NEW":
                 cluster_id = await self._create_new_cluster(
                     unit_id=unit_id,
                     unit_summary=unit_summary,
                     narrative=narrative,
                     timestamp=timestamp,
+                    topic=assignment.get("new_topic"),
                 )
+                assigned_cluster_ids.append(cluster_id)
 
-        return cluster_id
+            elif assign_type == "EXISTING":
+                cluster_id = assignment.get("cluster_id", "")
+                if cluster_id and cluster_id in self.index.clusters:
+                    self._add_to_existing_cluster(
+                        cluster_id=cluster_id,
+                        unit_id=unit_id,
+                        unit_summary=unit_summary,
+                        timestamp=timestamp,
+                    )
+                    assigned_cluster_ids.append(cluster_id)
+                else:
+                    logger.warning(f"Cluster {cluster_id} not found, skipping")
+
+        # Fallback: create new cluster if no valid assignments
+        if not assigned_cluster_ids:
+            logger.warning(f"No valid assignments for {unit_id}, creating new cluster")
+            cluster_id = await self._create_new_cluster(
+                unit_id=unit_id,
+                unit_summary=unit_summary,
+                narrative=narrative,
+                timestamp=timestamp,
+            )
+            assigned_cluster_ids.append(cluster_id)
+
+        return assigned_cluster_ids
 
     async def _generate_unit_summary(self, narrative: str) -> str:
         """Generate a brief summary for a MemUnit."""
@@ -214,8 +230,11 @@ class GroupEventClusterer:
     ) -> Dict[str, Any]:
         """Use LLM to decide which cluster a MemUnit belongs to."""
         if not self.llm_provider:
-            # Fallback: always create new cluster
-            return {"decision": "NEW", "new_topic": f"Event {self._next_cluster_idx + 1}"}
+            # Fallback: always create new cluster (use new multi-assignment format)
+            return {
+                "assignments": [{"type": "NEW", "new_topic": f"Event {self._next_cluster_idx + 1}"}],
+                "reason": "No LLM provider available",
+            }
 
         try:
             # Format existing clusters for prompt
@@ -247,7 +266,10 @@ class GroupEventClusterer:
 
         except Exception as e:
             logger.warning(f"LLM cluster decision failed: {e}")
-            return {"decision": "NEW", "new_topic": f"Event {self._next_cluster_idx + 1}"}
+            return {
+                "assignments": [{"type": "NEW", "new_topic": f"Event {self._next_cluster_idx + 1}"}],
+                "reason": f"LLM error: {e}",
+            }
 
     async def _create_new_cluster(
         self,
@@ -287,8 +309,12 @@ class GroupEventClusterer:
 
         # Add to index
         self.index.clusters[cluster_id] = cluster
-        self.index.unit_to_cluster[unit_id] = cluster_id
-        self.index.total_units += 1
+
+        # Update unit_to_clusters mapping (one-to-many)
+        if unit_id not in self.index.unit_to_clusters:
+            self.index.unit_to_clusters[unit_id] = []
+            self.index.total_units += 1
+        self.index.unit_to_clusters[unit_id].append(cluster_id)
         self.index.updated_at = datetime.now()
 
         logger.info(f"Created new cluster {cluster_id}: {topic}")
@@ -317,9 +343,12 @@ class GroupEventClusterer:
         # Add to cluster (maintains time ordering)
         cluster.add_member(member)
 
-        # Update index
-        self.index.unit_to_cluster[unit_id] = cluster_id
-        self.index.total_units += 1
+        # Update unit_to_clusters mapping (one-to-many)
+        if unit_id not in self.index.unit_to_clusters:
+            self.index.unit_to_clusters[unit_id] = []
+            self.index.total_units += 1
+        if cluster_id not in self.index.unit_to_clusters[unit_id]:
+            self.index.unit_to_clusters[unit_id].append(cluster_id)
         self.index.updated_at = datetime.now()
 
         # Check if summary update is needed

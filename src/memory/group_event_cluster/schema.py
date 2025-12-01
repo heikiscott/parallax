@@ -188,11 +188,11 @@ class GroupEventClusterIndex:
     Primary storage for all Clusters.
     """
 
-    unit_to_cluster: Dict[str, str] = field(default_factory=dict)
+    unit_to_clusters: Dict[str, List[str]] = field(default_factory=dict)
     """
-    unit_id -> cluster_id mapping.
-    Used for quick lookup of which Cluster a MemUnit belongs to.
-    This is the ONLY source linking MemUnit to Cluster.
+    unit_id -> [cluster_id, ...] mapping (one-to-many).
+    A MemUnit can belong to multiple Clusters if it discusses multiple topics.
+    Used for quick lookup of which Clusters a MemUnit belongs to.
     """
 
     # === Metadata ===
@@ -216,14 +216,14 @@ class GroupEventClusterIndex:
         """Get Cluster by cluster_id."""
         return self.clusters.get(cluster_id)
 
-    def get_cluster_by_unit(self, unit_id: str) -> Optional[GroupEventCluster]:
-        """Get the Cluster that a MemUnit belongs to."""
-        cluster_id = self.unit_to_cluster.get(unit_id)
-        return self.clusters.get(cluster_id) if cluster_id else None
+    def get_clusters_by_unit(self, unit_id: str) -> List[GroupEventCluster]:
+        """Get all Clusters that a MemUnit belongs to (supports multi-cluster assignment)."""
+        cluster_ids = self.unit_to_clusters.get(unit_id, [])
+        return [self.clusters[cid] for cid in cluster_ids if cid in self.clusters]
 
-    def get_cluster_id_by_unit(self, unit_id: str) -> Optional[str]:
-        """Get cluster_id by unit_id."""
-        return self.unit_to_cluster.get(unit_id)
+    def get_cluster_ids_by_unit(self, unit_id: str) -> List[str]:
+        """Get all cluster_ids for a unit_id."""
+        return self.unit_to_clusters.get(unit_id, [])
 
     def get_units_by_cluster(self, cluster_id: str) -> List[str]:
         """
@@ -237,30 +237,38 @@ class GroupEventClusterIndex:
 
     def get_related_units(self, unit_id: str, exclude_self: bool = True) -> List[str]:
         """
-        Get other MemUnits in the same Cluster.
-        Returns time-sorted list.
+        Get other MemUnits in the same Cluster(s).
+        Returns deduplicated, time-sorted list from ALL clusters the unit belongs to.
         This is the core method for retrieval expansion.
         """
-        cluster = self.get_cluster_by_unit(unit_id)
-        if not cluster:
+        clusters = self.get_clusters_by_unit(unit_id)
+        if not clusters:
             return []
 
-        if exclude_self:
-            return [m.unit_id for m in cluster.members if m.unit_id != unit_id]
-        return [m.unit_id for m in cluster.members]
+        # Collect all related units from all clusters, deduplicate
+        related_units = set()
+        for cluster in clusters:
+            for member in cluster.members:
+                if not exclude_self or member.unit_id != unit_id:
+                    related_units.add(member.unit_id)
 
-    def get_cluster_topic(self, unit_id: str) -> Optional[str]:
-        """Get the topic of the Cluster that unit_id belongs to."""
-        cluster = self.get_cluster_by_unit(unit_id)
-        return cluster.topic if cluster else None
+        return list(related_units)
+
+    def get_cluster_topics(self, unit_id: str) -> List[str]:
+        """Get all topics of Clusters that unit_id belongs to."""
+        clusters = self.get_clusters_by_unit(unit_id)
+        return [c.topic for c in clusters if c.topic]
 
     # === Modification methods ===
     def add_cluster(self, cluster: GroupEventCluster) -> None:
         """Add a new cluster to the index."""
         self.clusters[cluster.cluster_id] = cluster
-        # Update unit_to_cluster mapping
+        # Update unit_to_clusters mapping (append, don't overwrite)
         for member in cluster.members:
-            self.unit_to_cluster[member.unit_id] = cluster.cluster_id
+            if member.unit_id not in self.unit_to_clusters:
+                self.unit_to_clusters[member.unit_id] = []
+            if cluster.cluster_id not in self.unit_to_clusters[member.unit_id]:
+                self.unit_to_clusters[member.unit_id].append(cluster.cluster_id)
         self.updated_at = datetime.now()
 
     def add_unit_to_cluster(
@@ -270,6 +278,7 @@ class GroupEventClusterIndex:
     ) -> bool:
         """
         Add a MemUnit to an existing cluster.
+        Supports multi-cluster assignment (unit can belong to multiple clusters).
 
         Returns:
             True if successful, False if cluster not found
@@ -278,9 +287,20 @@ class GroupEventClusterIndex:
         if not cluster:
             return False
 
+        # Check if unit already in this cluster
+        existing_unit_ids = [m.unit_id for m in cluster.members]
+        if member.unit_id in existing_unit_ids:
+            return True  # Already a member, skip
+
         cluster.add_member(member)
-        self.unit_to_cluster[member.unit_id] = cluster_id
-        self.total_units += 1
+
+        # Add to unit_to_clusters (append to list)
+        if member.unit_id not in self.unit_to_clusters:
+            self.unit_to_clusters[member.unit_id] = []
+            self.total_units += 1  # Only count unique units
+        if cluster_id not in self.unit_to_clusters[member.unit_id]:
+            self.unit_to_clusters[member.unit_id].append(cluster_id)
+
         self.updated_at = datetime.now()
         return True
 
@@ -288,10 +308,13 @@ class GroupEventClusterIndex:
     def get_stats(self) -> Dict[str, Any]:
         """Get statistics information."""
         cluster_sizes = [len(c.members) for c in self.clusters.values()]
+        # Count units with multiple cluster assignments
+        multi_cluster_units = sum(1 for cids in self.unit_to_clusters.values() if len(cids) > 1)
         return {
             "total_clusters": len(self.clusters),
             "total_units": self.total_units,
-            "indexed_units": len(self.unit_to_cluster),
+            "indexed_units": len(self.unit_to_clusters),
+            "multi_cluster_units": multi_cluster_units,
             "avg_cluster_size": sum(cluster_sizes) / len(cluster_sizes) if cluster_sizes else 0,
             "max_cluster_size": max(cluster_sizes) if cluster_sizes else 0,
             "min_cluster_size": min(cluster_sizes) if cluster_sizes else 0,
@@ -306,7 +329,7 @@ class GroupEventClusterIndex:
                 cid: cluster.to_dict()
                 for cid, cluster in self.clusters.items()
             },
-            "unit_to_cluster": self.unit_to_cluster,
+            "unit_to_clusters": self.unit_to_clusters,
             "metadata": {
                 "conversation_id": self.conversation_id,
                 "total_units": self.total_units,
@@ -325,13 +348,14 @@ class GroupEventClusterIndex:
             for cid, cdata in data.get("clusters", {}).items()
         }
 
+        unit_to_clusters = data.get("unit_to_clusters", {})
         metadata = data.get("metadata", {})
         created_at = metadata.get("created_at")
         updated_at = metadata.get("updated_at")
 
         return cls(
             clusters=clusters,
-            unit_to_cluster=data.get("unit_to_cluster", {}),
+            unit_to_clusters=unit_to_clusters,
             conversation_id=metadata.get("conversation_id", ""),
             total_units=metadata.get("total_units", 0),
             created_at=datetime.fromisoformat(created_at) if created_at else datetime.now(),

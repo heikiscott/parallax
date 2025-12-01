@@ -122,44 +122,49 @@ def _expand_insert_after_hit(
         if total_expanded >= expansion_budget:
             continue
 
-        # Get the Cluster this MemUnit belongs to
-        cluster = cluster_index.get_cluster_by_unit(unit_id)
-        if not cluster:
+        # Get ALL Clusters this MemUnit belongs to (supports multi-cluster)
+        clusters = cluster_index.get_clusters_by_unit(unit_id)
+        if not clusters:
             continue
 
-        # Get expansion candidates from Cluster
-        candidates = _select_expansion_candidates(
-            cluster=cluster,
-            hit_unit_id=unit_id,
-            seen_unit_ids=seen_unit_ids,
-            config=config,
-        )
-
-        # Track cluster expansion info
-        if cluster.cluster_id not in clusters_expanded:
-            clusters_expanded[cluster.cluster_id] = {
-                "hit_unit_ids": [],
-                "expanded_unit_ids": [],
-            }
-        clusters_expanded[cluster.cluster_id]["hit_unit_ids"].append(unit_id)
-
-        # Add expanded documents with decayed scores
-        for member in candidates[:config.max_expansion_per_hit]:
+        # Expand from each cluster
+        for cluster in clusters:
             if total_expanded >= expansion_budget:
                 break
-            if dedup and member.unit_id in seen_unit_ids:
-                continue
 
-            expanded_doc = all_docs_map.get(member.unit_id)
-            if not expanded_doc:
-                continue
+            # Get expansion candidates from Cluster
+            candidates = _select_expansion_candidates(
+                cluster=cluster,
+                hit_unit_id=unit_id,
+                seen_unit_ids=seen_unit_ids,
+                config=config,
+            )
 
-            expanded_score = score * config.expansion_score_decay
-            expanded_results.append((expanded_doc, expanded_score))
-            if dedup:
-                seen_unit_ids.add(member.unit_id)
-            total_expanded += 1
-            clusters_expanded[cluster.cluster_id]["expanded_unit_ids"].append(member.unit_id)
+            # Track cluster expansion info
+            if cluster.cluster_id not in clusters_expanded:
+                clusters_expanded[cluster.cluster_id] = {
+                    "hit_unit_ids": [],
+                    "expanded_unit_ids": [],
+                }
+            clusters_expanded[cluster.cluster_id]["hit_unit_ids"].append(unit_id)
+
+            # Add expanded documents with decayed scores
+            for member in candidates[:config.max_expansion_per_hit]:
+                if total_expanded >= expansion_budget:
+                    break
+                if dedup and member.unit_id in seen_unit_ids:
+                    continue
+
+                expanded_doc = all_docs_map.get(member.unit_id)
+                if not expanded_doc:
+                    continue
+
+                expanded_score = score * config.expansion_score_decay
+                expanded_results.append((expanded_doc, expanded_score))
+                if dedup:
+                    seen_unit_ids.add(member.unit_id)
+                total_expanded += 1
+                clusters_expanded[cluster.cluster_id]["expanded_unit_ids"].append(member.unit_id)
 
     metadata = _build_metadata(
         strategy="insert_after_hit",
@@ -211,39 +216,43 @@ def _expand_append_to_end(
         if not unit_id:
             continue
 
-        cluster = cluster_index.get_cluster_by_unit(unit_id)
-        if not cluster:
+        clusters = cluster_index.get_clusters_by_unit(unit_id)
+        if not clusters:
             continue
 
-        candidates = _select_expansion_candidates(
-            cluster=cluster,
-            hit_unit_id=unit_id,
-            seen_unit_ids=seen_unit_ids,
-            config=config,
-        )
-
-        if cluster.cluster_id not in clusters_expanded:
-            clusters_expanded[cluster.cluster_id] = {
-                "hit_unit_ids": [],
-                "expanded_unit_ids": [],
-            }
-        clusters_expanded[cluster.cluster_id]["hit_unit_ids"].append(unit_id)
-
-        for member in candidates[:config.max_expansion_per_hit]:
+        for cluster in clusters:
             if total_expanded >= expansion_budget:
                 break
-            if member.unit_id in seen_unit_ids:
-                continue
 
-            expanded_doc = all_docs_map.get(member.unit_id)
-            if not expanded_doc:
-                continue
+            candidates = _select_expansion_candidates(
+                cluster=cluster,
+                hit_unit_id=unit_id,
+                seen_unit_ids=seen_unit_ids,
+                config=config,
+            )
 
-            expanded_score = score * config.expansion_score_decay
-            expanded_docs.append((expanded_doc, expanded_score))
-            seen_unit_ids.add(member.unit_id)
-            total_expanded += 1
-            clusters_expanded[cluster.cluster_id]["expanded_unit_ids"].append(member.unit_id)
+            if cluster.cluster_id not in clusters_expanded:
+                clusters_expanded[cluster.cluster_id] = {
+                    "hit_unit_ids": [],
+                    "expanded_unit_ids": [],
+                }
+            clusters_expanded[cluster.cluster_id]["hit_unit_ids"].append(unit_id)
+
+            for member in candidates[:config.max_expansion_per_hit]:
+                if total_expanded >= expansion_budget:
+                    break
+                if member.unit_id in seen_unit_ids:
+                    continue
+
+                expanded_doc = all_docs_map.get(member.unit_id)
+                if not expanded_doc:
+                    continue
+
+                expanded_score = score * config.expansion_score_decay
+                expanded_docs.append((expanded_doc, expanded_score))
+                seen_unit_ids.add(member.unit_id)
+                total_expanded += 1
+                clusters_expanded[cluster.cluster_id]["expanded_unit_ids"].append(member.unit_id)
 
     # Combine original and expanded
     final_results = list(original_results) + expanded_docs
@@ -298,39 +307,43 @@ def _expand_merge_by_score(
         if not unit_id:
             continue
 
-        cluster = cluster_index.get_cluster_by_unit(unit_id)
-        if not cluster:
+        clusters = cluster_index.get_clusters_by_unit(unit_id)
+        if not clusters:
             continue
 
-        candidates = _select_expansion_candidates(
-            cluster=cluster,
-            hit_unit_id=unit_id,
-            seen_unit_ids=seen_unit_ids,
-            config=config,
-        )
-
-        if cluster.cluster_id not in clusters_expanded:
-            clusters_expanded[cluster.cluster_id] = {
-                "hit_unit_ids": [],
-                "expanded_unit_ids": [],
-            }
-        clusters_expanded[cluster.cluster_id]["hit_unit_ids"].append(unit_id)
-
-        for member in candidates[:config.max_expansion_per_hit]:
+        for cluster in clusters:
             if total_expanded >= expansion_budget:
                 break
-            if member.unit_id in seen_unit_ids:
-                continue
 
-            expanded_doc = all_docs_map.get(member.unit_id)
-            if not expanded_doc:
-                continue
+            candidates = _select_expansion_candidates(
+                cluster=cluster,
+                hit_unit_id=unit_id,
+                seen_unit_ids=seen_unit_ids,
+                config=config,
+            )
 
-            expanded_score = score * config.expansion_score_decay
-            all_docs.append((expanded_doc, expanded_score))
-            seen_unit_ids.add(member.unit_id)
-            total_expanded += 1
-            clusters_expanded[cluster.cluster_id]["expanded_unit_ids"].append(member.unit_id)
+            if cluster.cluster_id not in clusters_expanded:
+                clusters_expanded[cluster.cluster_id] = {
+                    "hit_unit_ids": [],
+                    "expanded_unit_ids": [],
+                }
+            clusters_expanded[cluster.cluster_id]["hit_unit_ids"].append(unit_id)
+
+            for member in candidates[:config.max_expansion_per_hit]:
+                if total_expanded >= expansion_budget:
+                    break
+                if member.unit_id in seen_unit_ids:
+                    continue
+
+                expanded_doc = all_docs_map.get(member.unit_id)
+                if not expanded_doc:
+                    continue
+
+                expanded_score = score * config.expansion_score_decay
+                all_docs.append((expanded_doc, expanded_score))
+                seen_unit_ids.add(member.unit_id)
+                total_expanded += 1
+                clusters_expanded[cluster.cluster_id]["expanded_unit_ids"].append(member.unit_id)
 
     # Sort by score descending
     final_results = sorted(all_docs, key=lambda x: x[1], reverse=True)
@@ -492,6 +505,7 @@ def get_related_units_for_query(
     Get related unit_ids for a set of query hits.
 
     This is a utility function for simple expansion scenarios.
+    Supports multi-cluster membership: iterates all clusters each unit belongs to.
 
     Args:
         query_hit_unit_ids: List of unit_ids that matched the query
@@ -500,27 +514,38 @@ def get_related_units_for_query(
         exclude_hits: Whether to exclude the original hit unit_ids
 
     Returns:
-        List of related unit_ids (time-sorted within each cluster)
+        List of related unit_ids (deduplicated)
     """
-    related = []
+    related: List[str] = []
     seen_clusters: Set[str] = set()
+    seen_units: Set[str] = set()
     hit_set = set(query_hit_unit_ids)
 
     for unit_id in query_hit_unit_ids:
-        cluster = cluster_index.get_cluster_by_unit(unit_id)
-        if not cluster or cluster.cluster_id in seen_clusters:
+        # Get ALL clusters this unit belongs to (multi-cluster support)
+        clusters = cluster_index.get_clusters_by_unit(unit_id)
+        if not clusters:
             continue
 
-        seen_clusters.add(cluster.cluster_id)
-
-        # Get members (already time-sorted)
-        for member in cluster.members:
-            if exclude_hits and member.unit_id in hit_set:
+        for cluster in clusters:
+            if cluster.cluster_id in seen_clusters:
                 continue
-            if member.unit_id not in related:
-                related.append(member.unit_id)
-                if len([r for r in related if cluster_index.get_cluster_id_by_unit(r) == cluster.cluster_id]) >= max_per_cluster:
+
+            seen_clusters.add(cluster.cluster_id)
+            members_added = 0
+
+            # Get members (already time-sorted)
+            for member in cluster.members:
+                if members_added >= max_per_cluster:
                     break
+                if exclude_hits and member.unit_id in hit_set:
+                    continue
+                if member.unit_id in seen_units:
+                    continue
+
+                related.append(member.unit_id)
+                seen_units.add(member.unit_id)
+                members_added += 1
 
     return related
 
@@ -581,15 +606,17 @@ async def _expand_cluster_rerank(
         if not unit_id:
             continue
 
-        cluster = cluster_index.get_cluster_by_unit(unit_id)
-        if not cluster:
+        # Get ALL clusters this unit belongs to (multi-cluster support)
+        clusters = cluster_index.get_clusters_by_unit(unit_id)
+        if not clusters:
             continue
 
-        if cluster.cluster_id not in seen_cluster_ids:
-            seen_cluster_ids.add(cluster.cluster_id)
-            unique_clusters.append(cluster)
+        for cluster in clusters:
+            if cluster.cluster_id not in seen_cluster_ids:
+                seen_cluster_ids.add(cluster.cluster_id)
+                unique_clusters.append(cluster)
 
-        cluster_hit_counts[cluster.cluster_id] = cluster_hit_counts.get(cluster.cluster_id, 0) + 1
+            cluster_hit_counts[cluster.cluster_id] = cluster_hit_counts.get(cluster.cluster_id, 0) + 1
 
     metadata["clusters_found"] = list(seen_cluster_ids)
 
@@ -625,15 +652,34 @@ async def _expand_cluster_rerank(
             if cid in seen_cluster_ids
         ][:config.cluster_rerank_max_clusters]
 
-        if not valid_selected_ids:
-            logger.warning("LLM selected no valid clusters, falling back to top hit clusters")
-            # Fallback: select clusters with most hits
-            sorted_clusters = sorted(
-                cluster_hit_counts.items(),
-                key=lambda x: x[1],
-                reverse=True
-            )
-            valid_selected_ids = [cid for cid, _ in sorted_clusters[:config.cluster_rerank_max_clusters]]
+        # Check if LLM explicitly said no clusters are relevant
+        reasoning_lower = metadata["selection_reasoning"].lower()
+        no_relevant_indicators = [
+            "none of the clusters",
+            "no cluster",
+            "no relevant",
+            "not relevant",
+            "cannot find",
+            "unable to find",
+        ]
+        llm_found_no_relevant = any(indicator in reasoning_lower for indicator in no_relevant_indicators)
+
+        if not valid_selected_ids or llm_found_no_relevant:
+            if llm_found_no_relevant:
+                logger.info("  ├─[Cluster Rerank] LLM found no relevant clusters, returning original results")
+                metadata["clusters_selected"] = []
+                metadata["fallback_to_original"] = True
+                # Return original results instead of cluster-based results
+                return original_results, metadata
+            else:
+                logger.warning("LLM selected no valid clusters, falling back to top hit clusters")
+                # Fallback: select clusters with most hits
+                sorted_clusters = sorted(
+                    cluster_hit_counts.items(),
+                    key=lambda x: x[1],
+                    reverse=True
+                )
+                valid_selected_ids = [cid for cid, _ in sorted_clusters[:config.cluster_rerank_max_clusters]]
 
         metadata["clusters_selected"] = valid_selected_ids
         logger.info(f"  ├─[Cluster Rerank] LLM selected {len(valid_selected_ids)} clusters: {valid_selected_ids}")
@@ -652,10 +698,11 @@ async def _expand_cluster_rerank(
         metadata["clusters_selected"] = valid_selected_ids
         metadata["selection_reasoning"] = f"Fallback due to error: {e}"
 
-    # Step 3: Collect MemUnits from selected clusters (time-ordered)
+    # Step 3: Collect MemUnits from selected clusters (time-ordered, deduplicated)
     final_results: List[Tuple[dict, float]] = []
     total_members_added = 0
-    unit_to_cluster_map: Dict[str, str] = {}  # unit_id -> cluster_id mapping
+    seen_unit_ids: Set[str] = set()  # For deduplication across clusters
+    unit_to_cluster_map: Dict[str, List[str]] = {}  # unit_id -> [cluster_ids] mapping
 
     for cluster_id in valid_selected_ids:
         cluster = cluster_index.get_cluster(cluster_id)
@@ -675,6 +722,13 @@ async def _expand_cluster_rerank(
             if members_added_for_cluster >= config.cluster_rerank_max_members_per_cluster:
                 break
 
+            # Deduplicate: skip if already added from another cluster
+            if member.unit_id in seen_unit_ids:
+                # Track that this unit also belongs to this cluster
+                if member.unit_id in unit_to_cluster_map:
+                    unit_to_cluster_map[member.unit_id].append(cluster_id)
+                continue
+
             # Get document
             doc = all_docs_map.get(member.unit_id)
             if not doc:
@@ -684,7 +738,8 @@ async def _expand_cluster_rerank(
             # Higher score for earlier selected clusters and earlier members
             base_score = 1.0 - (valid_selected_ids.index(cluster_id) * 0.1)
             final_results.append((doc, base_score))
-            unit_to_cluster_map[member.unit_id] = cluster_id
+            seen_unit_ids.add(member.unit_id)
+            unit_to_cluster_map[member.unit_id] = [cluster_id]
             members_added_for_cluster += 1
             total_members_added += 1
 
@@ -694,8 +749,39 @@ async def _expand_cluster_rerank(
         if total_members_added >= config.cluster_rerank_total_max_members:
             break
 
-    metadata["final_count"] = len(final_results)
+    metadata["cluster_members_count"] = len(final_results)
     metadata["unit_to_cluster"] = unit_to_cluster_map  # 每个 MemUnit 对应的 Cluster
+
+    # Step 4: Hybrid Strategy - Supplement with original rerank results
+    original_supplement_count = 0
+    if config.hybrid_enable_original_supplement:
+        # Calculate remaining budget
+        remaining_budget = min(
+            config.hybrid_original_supplement_count,
+            config.hybrid_max_total_results - len(final_results)
+        )
+
+        if remaining_budget > 0:
+            # Add original results that are not in cluster results (preserving rerank order)
+            for doc, score in original_results:
+                if remaining_budget <= 0:
+                    break
+                unit_id = doc.get("unit_id")
+                if not unit_id or unit_id in seen_unit_ids:
+                    continue
+
+                # Use decayed score to indicate these are supplementary
+                supplementary_score = score * 0.8  # Slight decay for supplementary results
+                final_results.append((doc, supplementary_score))
+                seen_unit_ids.add(unit_id)
+                original_supplement_count += 1
+                remaining_budget -= 1
+
+            if original_supplement_count > 0:
+                logger.info(f"  ├─[Hybrid] Supplemented {original_supplement_count} MemUnits from original rerank")
+
+    metadata["original_supplement_count"] = original_supplement_count
+    metadata["final_count"] = len(final_results)
 
     # 构建 cluster 详情（用于 checkpoint）
     cluster_details = {}
@@ -722,7 +808,9 @@ async def _expand_cluster_rerank(
 
     # 打印最终返回的 MemUnit IDs
     final_unit_ids = [doc.get("unit_id", "")[:8] for doc, _ in final_results]
-    logger.info(f"  └─[Cluster Rerank] Final: {len(final_results)} MemUnits from {len(valid_selected_ids)} clusters")
+    cluster_count = metadata.get("cluster_members_count", 0)
+    supplement_count = metadata.get("original_supplement_count", 0)
+    logger.info(f"  └─[Cluster Rerank] Final: {len(final_results)} MemUnits ({cluster_count} from clusters + {supplement_count} from original rerank)")
     logger.info(f"     Final MemUnit IDs: {', '.join(final_unit_ids)}")
     if metadata["truncated"]:
         logger.info(f"     ⚠️ Result truncated (reached max {config.cluster_rerank_total_max_members} members)")

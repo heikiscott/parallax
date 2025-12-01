@@ -88,21 +88,32 @@
 └─────────────────────────────────────────────────────────────────────────┘
 ```
 
-### 2.3 MemUnit 与 Cluster 的关系
+### 2.3 MemUnit 与 Cluster 的关系（One-to-Many）
 
-**设计决策：MemUnit 本身不存储 cluster_id**
+**设计决策：MemUnit 可属于多个 Cluster**
+
+一个 MemUnit 可能讨论多个主题，因此需要支持一对多的关系：
 
 | 方案 | 说明 | 采用 |
 |------|------|------|
-| MemUnit 添加 cluster_id 字段 | 修改 MemUnit schema | ❌ 不采用 |
-| **通过 Index 维护映射关系** | `unit_to_cluster: {unit_id: cluster_id}` | ✅ 采用 |
-| 存储在 MemUnit.extend 中 | `extend["group_event_cluster_id"]` | 可选（用于缓存） |
+| MemUnit 添加 cluster_id 字段 | 修改 MemUnit schema，只能属于一个 Cluster | ❌ 不采用 |
+| **通过 Index 维护映射关系** | `unit_to_clusters: {unit_id: [cluster_id, ...]}` | ✅ 采用 |
 
 **理由**：
 1. **保持 MemUnit 纯净**：MemUnit 是边界检测的输出，聚类是后续处理
-2. **支持多种聚类策略**：同一 MemUnit 可能在不同策略下属于不同 Cluster
+2. **支持多主题 MemUnit**：一段对话可能同时涉及多个事件/主题
 3. **避免循环依赖**：MemUnit 不依赖聚类模块
 4. **灵活性**：可以在不修改 MemUnit 的情况下重新聚类
+
+**示例**：
+
+```python
+# 一个 MemUnit 同时讨论了露营和领养两个话题
+unit_to_clusters = {
+    "mu_015": ["gec_001", "gec_003"],  # 属于两个 Cluster
+    "mu_020": ["gec_002"],              # 只属于一个 Cluster
+}
+```
 
 ### 2.4 聚类粒度
 
@@ -246,10 +257,11 @@ class GroupEventClusterIndex:
     所有 Cluster 的主存储
     """
 
-    unit_to_cluster: Dict[str, str]
+    unit_to_clusters: Dict[str, List[str]]
     """
-    unit_id → cluster_id 映射
-    用于快速查找 MemUnit 所属的 Cluster
+    unit_id → [cluster_id, ...] 映射（One-to-Many）
+    一个 MemUnit 可以属于多个 Cluster（如果它讨论了多个主题）
+    用于快速查找 MemUnit 所属的 Cluster(s)
     【这是 MemUnit 与 Cluster 关联的唯一来源】
     """
 
@@ -274,14 +286,14 @@ class GroupEventClusterIndex:
         """通过 cluster_id 获取 Cluster"""
         return self.clusters.get(cluster_id)
 
-    def get_cluster_by_unit(self, unit_id: str) -> Optional[GroupEventCluster]:
-        """通过 unit_id 获取所属的 Cluster"""
-        cluster_id = self.unit_to_cluster.get(unit_id)
-        return self.clusters.get(cluster_id) if cluster_id else None
+    def get_clusters_by_unit(self, unit_id: str) -> List[GroupEventCluster]:
+        """通过 unit_id 获取所属的所有 Cluster（支持多 Cluster）"""
+        cluster_ids = self.unit_to_clusters.get(unit_id, [])
+        return [self.clusters[cid] for cid in cluster_ids if cid in self.clusters]
 
-    def get_cluster_id_by_unit(self, unit_id: str) -> Optional[str]:
-        """通过 unit_id 获取 cluster_id"""
-        return self.unit_to_cluster.get(unit_id)
+    def get_cluster_ids_by_unit(self, unit_id: str) -> List[str]:
+        """通过 unit_id 获取所有 cluster_id"""
+        return self.unit_to_clusters.get(unit_id, [])
 
     def get_units_by_cluster(self, cluster_id: str) -> List[str]:
         """
@@ -297,22 +309,27 @@ class GroupEventClusterIndex:
     def get_related_units(self, unit_id: str, exclude_self: bool = True) -> List[str]:
         """
         获取与指定 unit_id 同 Cluster 的其他 MemUnit
-        【返回按时间排序的列表】
+        【返回按时间排序的列表，跨多个 Cluster 去重】
         这是检索扩展的核心方法
         """
-        cluster = self.get_cluster_by_unit(unit_id)
-        if not cluster:
+        clusters = self.get_clusters_by_unit(unit_id)
+        if not clusters:
             return []
 
-        # members 已按时间排序
-        if exclude_self:
-            return [m.unit_id for m in cluster.members if m.unit_id != unit_id]
-        return [m.unit_id for m in cluster.members]
+        # 收集所有相关 MemUnit（去重）
+        related_units = set()
+        for cluster in clusters:
+            for m in cluster.members:
+                if exclude_self and m.unit_id == unit_id:
+                    continue
+                related_units.add(m.unit_id)
 
-    def get_cluster_topic(self, unit_id: str) -> Optional[str]:
-        """获取 unit_id 所属 Cluster 的主题"""
-        cluster = self.get_cluster_by_unit(unit_id)
-        return cluster.topic if cluster else None
+        return list(related_units)
+
+    def get_cluster_topics(self, unit_id: str) -> List[str]:
+        """获取 unit_id 所属所有 Cluster 的主题"""
+        clusters = self.get_clusters_by_unit(unit_id)
+        return [c.topic for c in clusters if c.topic]
 
     # === 统计方法 ===
     def get_stats(self) -> Dict[str, Any]:
@@ -335,7 +352,7 @@ class GroupEventClusterIndex:
                 cid: cluster.to_dict()
                 for cid, cluster in self.clusters.items()
             },
-            "unit_to_cluster": self.unit_to_cluster,
+            "unit_to_clusters": self.unit_to_clusters,
             "metadata": {
                 "conversation_id": self.conversation_id,
                 "total_units": self.total_units,
@@ -425,13 +442,13 @@ eval/results/{experiment_name}/event_clusters/conv_{id}.json
       "updated_at": "2024-01-01T00:00:00+08:00"
     }
   },
-  "unit_to_cluster": {
-    "mu_003": "gec_001",
-    "mu_005": "gec_002",
-    "mu_007": "gec_001",
-    "mu_012": "gec_002",
-    "mu_015": "gec_001",
-    "mu_023": "gec_001"
+  "unit_to_clusters": {
+    "mu_003": ["gec_001"],
+    "mu_005": ["gec_002"],
+    "mu_007": ["gec_001"],
+    "mu_012": ["gec_002"],
+    "mu_015": ["gec_001", "gec_003"],
+    "mu_023": ["gec_001"]
   },
   "metadata": {
     "conversation_id": "conv_0",
@@ -877,7 +894,88 @@ class GroupEventClusterer:
 
 ### 6.3 LLM Prompt 设计
 
-见原文档第 4.2 节，将所有 `EventCluster` 替换为 `GroupEventCluster`。
+#### 6.3.1 Cluster Assignment Prompt（多分配）
+
+LLM 判断 MemUnit 应该归属哪些 Cluster，支持一对多分配：
+
+**核心规则**：
+
+1. **Rule 1: Assign to ALL Relevant Clusters (Multi-Assignment)**
+   - 必须分配到所有相关的 Cluster，不能只选"最佳"的
+   - 一个 MemUnit 提到 3 个主题 → 分配到 3 个 Cluster
+
+2. **Rule 2: Single Topic Per Cluster**
+   - 每个 Cluster 只能有一个主题
+   - ❌ 禁止：`"Caroline's career and Melanie's art"`
+   - ✅ 正确：`"Caroline's career plans"`, `"Melanie's art hobby"`
+
+3. **Rule 3: Granular Topic Differentiation**
+   - 创建具体的主题，不是宽泛的分类
+   - ✅ `"Melanie's pottery class"` (与 painting 分开)
+   - ✅ `"Caroline's LGBTQ support group"` (与 conference 分开)
+
+**响应格式**：
+
+```json
+{
+  "assignments": [
+    {"type": "EXISTING", "cluster_id": "gec_001"},
+    {"type": "EXISTING", "cluster_id": "gec_003"},
+    {"type": "NEW", "new_topic": "Specific Single Topic"}
+  ],
+  "reason": "Topic1 matches gec_001, Topic2 matches gec_003, Topic3 is new"
+}
+```
+
+#### 6.3.2 Cluster Topic Prompt（高粒度）
+
+生成 Cluster 主题时要求最大程度的具体性：
+
+**Specificity Hierarchy（优先更具体的）**：
+
+```text
+❌ "Melanie's hobbies" → 太宽泛
+❌ "Melanie's art" → 仍然宽泛
+✅ "Melanie's painting hobby" → 好
+✅✅ "Melanie's lake sunrise painting" → 最好（如果适用）
+```
+
+**好的示例**：
+
+- `"Melanie's pottery class"`
+- `"Caroline's adoption research"`
+- `"Caroline's LGBTQ support group"`
+- `"Caroline's transgender conference"`
+- `"Melanie's family camping trips"`
+
+**坏的示例（避免）**：
+
+- ❌ `"Caroline's career and Melanie's art"` (复合主题)
+- ❌ `"Art and creativity"` (复合 + 模糊)
+- ❌ `"Personal updates"` (太模糊)
+- ❌ `"Life events"` (太模糊)
+
+#### 6.3.3 Cluster Selection Prompt（用于 cluster_rerank）
+
+LLM 从候选 Cluster 中选择最相关的：
+
+**选择指南**：
+
+- **1 个 Cluster**：问题询问特定单一事件
+- **2-3 个 Cluster**：问题涉及相关事件或需要多个讨论的上下文
+- **4+ 个 Cluster**：问题宽泛、比较性、或询问多个事件的模式/趋势
+
+**响应格式**：
+
+```json
+{"selected_clusters": ["gec_001", "gec_003"], "reasoning": "Brief explanation"}
+```
+
+如果没有相关 Cluster：
+
+```json
+{"selected_clusters": [], "reasoning": "None of the clusters contain relevant information"}
+```
 
 ---
 
@@ -1378,6 +1476,93 @@ LLM 会看到查询和候选 Clusters 的信息（topic, summary, 成员数, 时
 - 问题涉及事件的完整过程（如 "Caroline 的领养计划是怎么发展的"）
 - 需要时间线上下文来回答问题
 - 问题范围不确定，需要 LLM 智能判断
+
+#### 7.2.6 Hybrid Strategy: Cluster + Original Rerank 混合策略
+
+**原理**：在 Cluster 成员基础上，补充原始 Rerank 结果作为安全网。
+
+```
+最终结果 = [Cluster 成员 (按时间排序, 去重)] + [原始 Rerank 结果 (去重, 按分数排序)]
+```
+
+**配置参数**：
+
+```python
+# 仅当 expansion_strategy="cluster_rerank" 时生效
+
+hybrid_enable_original_supplement: bool = True
+"""
+是否启用原始 Rerank 结果补充。
+启用后，Cluster 成员之后会补充原始 Rerank 结果中未被包含的 MemUnits。
+"""
+
+hybrid_original_supplement_count: int = 10
+"""
+从原始 Rerank 结果中最多补充的 MemUnits 数量。
+这些 MemUnits 会排在 Cluster 成员之后，按原始 Rerank 分数排序。
+"""
+
+hybrid_max_total_results: int = 40
+"""
+混合策略最终返回的 MemUnits 总数上限。
+= Cluster 成员 + 原始 Rerank 补充
+"""
+```
+
+**流程**：
+
+```
+1. LLM 选择 Cluster(s) → 获取 Cluster 成员（例如 25 个）
+2. 检查预算：hybrid_max_total_results - 当前数量 = 剩余预算
+3. 从原始 Rerank 结果中补充（去重，最多 hybrid_original_supplement_count 个）
+4. 返回最终结果（Cluster 成员 + 原始 Rerank 补充）
+```
+
+**安全网效果**：
+
+- 即使 LLM Cluster 选择错误，原始 Rerank 高分结果仍会出现在后面
+- 对于 43% 只选 1 个 Cluster 的问题，如果选错了，原始结果能补救
+- 平衡了 Cluster 的主题聚合优势和原始 Rerank 的精确匹配优势
+
+**示例**：
+
+| 步骤 | 结果 |
+|------|------|
+| LLM 选择 1 个 Cluster | 12 个 MemUnits |
+| 剩余预算 | 40 - 12 = 28 |
+| 补充原始 Rerank（去重后） | 8 个 MemUnits |
+| 最终结果 | 20 个 MemUnits |
+
+#### 7.2.7 Fallback 逻辑：无相关 Cluster
+
+**场景**：LLM 判断没有 Cluster 与查询相关时
+
+**检测逻辑**：
+
+```python
+no_relevant_indicators = [
+    "none of the clusters",
+    "no cluster",
+    "no relevant",
+    "not relevant",
+    "cannot find",
+    "unable to find",
+]
+```
+
+**行为**：
+
+当检测到 LLM 回复中包含上述关键词时：
+
+1. **不选择任何 Cluster**（不会 fallback 到"选择所有 Cluster"）
+2. **直接返回原始 Rerank 结果**
+3. 在 metadata 中标记 `fallback_to_original: True`
+
+**示例日志**：
+
+```
+[Cluster Rerank] LLM found no relevant clusters, returning original results
+```
 
 **Checkpoint 机制**：
 

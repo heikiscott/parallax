@@ -8,10 +8,12 @@ for clustering decisions and summary generation.
 # Cluster Assignment Prompt
 # =============================================================================
 
-CLUSTER_ASSIGNMENT_PROMPT = """You are a memory clustering assistant. Your task is to determine whether a new memory unit belongs to an existing thematic cluster or should create a new cluster.
+CLUSTER_ASSIGNMENT_PROMPT = """You are a memory clustering assistant. Your task is to determine which thematic cluster(s) a new memory unit belongs to.
 
 ## Context
-We are building a group perspective memory system that clusters related memory units (MemUnits) by **TOPIC/THEME**, not by time. Each cluster represents a **specific topic or event theme** that may span across multiple conversations and time periods.
+We are building a group perspective memory system that clusters related memory units (MemUnits) by **TOPIC/THEME**, not by time. Each cluster represents **ONE specific topic** that may span across multiple conversations and time periods.
+
+**CRITICAL**: A single MemUnit can belong to MULTIPLE clusters if it discusses multiple distinct topics. You MUST assign to ALL relevant clusters, not just the primary one.
 
 ## Existing Clusters
 {existing_clusters}
@@ -23,35 +25,53 @@ We are building a group perspective memory system that clusters related memory u
 - Narrative: {narrative}
 
 ## Task
-Analyze the new memory unit and determine:
-1. Does it belong to any existing cluster based on **TOPIC SIMILARITY**? (Ignore timestamp - same topic discussed at different times should be in the same cluster)
-2. If yes, which cluster? (Provide cluster_id)
-3. If no, create a new cluster with a specific topic name (10-30 chars)
+Carefully analyze the new memory unit and determine:
+1. **List ALL topics** mentioned in this MemUnit (even briefly mentioned ones)
+2. For EACH topic, check if an existing cluster matches
+3. If a topic has no matching cluster, create a NEW one
 
-## CRITICAL Rules - Topic-Based Clustering
-- **TOPIC is the PRIMARY criterion**, NOT time proximity
-- Same topic discussed on different days/months → SAME cluster
-- Different topics discussed in the same conversation → DIFFERENT clusters
-- A cluster should represent ONE specific theme, such as:
-  - "Caroline's LGBTQ journey" (all discussions about her LGBTQ experiences)
-  - "Melanie's painting hobby" (all mentions of painting/art)
-  - "Caroline's adoption plan" (all discussions about adoption)
-  - "Family support and relationships" (discussions about family bonds)
-- Do NOT create vague clusters like "Catch-up conversation" or "Daily chat"
-- Each cluster should answer: "What SPECIFIC TOPIC is this about?"
+## CRITICAL Rules
 
-## Examples
-- MemUnit about LGBTQ support group on May 7 → "Caroline's LGBTQ journey"
-- MemUnit about LGBTQ school event on June 9 → SAME cluster "Caroline's LGBTQ journey" (same topic, different time)
-- MemUnit about painting on May 8 → "Melanie's painting hobby"
-- MemUnit about career counseling on May 8 → NEW cluster "Caroline's career plans" (different topic, same day)
+### Rule 1: Assign to ALL Relevant Clusters (Multi-Assignment)
+- **ALWAYS** assign to EVERY cluster that relates to the content
+- A MemUnit mentioning 3 topics → assign to 3 clusters
+- Do NOT just pick the "best" or "primary" cluster - assign to ALL matching ones
+- Example: MemUnit about "camping trip + kids' excitement + summer plans" → assign to clusters for camping, family activities, AND summer planning
+
+### Rule 2: Single Topic Per Cluster
+- **Each cluster = ONE specific topic** (never combine topics)
+- **NEVER** create compound topics like:
+  - ❌ "Caroline's career and Melanie's art"
+  - ❌ "Family camping and adoption plans"
+- **ALWAYS** use singular, focused topics like:
+  - ✅ "Caroline's career plans"
+  - ✅ "Melanie's camping trips"
+  - ✅ "Caroline's adoption journey"
+
+### Rule 3: Granular Topic Differentiation
+- Create SPECIFIC topics, not broad categories
+- Differentiate related but distinct topics:
+  - ✅ "Melanie's pottery class" (separate from painting)
+  - ✅ "Melanie's painting hobby" (separate from pottery)
+  - ✅ "Caroline's adoption research" (separate from adoption meetings)
+  - ✅ "Caroline's LGBTQ support group" (separate from LGBTQ conference)
+
+## Examples of Multi-Assignment
+- MemUnit: "Melanie talked about her kids' excitement for camping, and Caroline shared her adoption research"
+  → Assign to: "Melanie's family activities", "Melanie's camping trips", "Caroline's adoption journey" (3 clusters)
+
+- MemUnit: "Caroline attended LGBTQ conference and discussed her counseling career plans"
+  → Assign to: "Caroline's LGBTQ advocacy", "Caroline's career plans" (2 clusters)
+
+- MemUnit: "Melanie shared a painting she made last year"
+  → Assign to: "Melanie's painting hobby" only (1 cluster)
 
 ## Response Format (JSON)
-If belongs to existing cluster:
-{{"decision": "EXISTING", "cluster_id": "gec_XXX", "reason": "Same topic: [topic name]"}}
-
-If should create new cluster:
-{{"decision": "NEW", "new_topic": "Specific Topic Name", "reason": "New topic not covered by existing clusters"}}
+{{"assignments": [
+    {{"type": "EXISTING", "cluster_id": "gec_001"}},
+    {{"type": "EXISTING", "cluster_id": "gec_003"}},
+    {{"type": "NEW", "new_topic": "Specific Single Topic"}}
+], "reason": "Topic1 matches gec_001, Topic2 matches gec_003, Topic3 is new"}}
 
 Respond with JSON only, no additional text."""
 
@@ -103,35 +123,54 @@ Provide only the summary text."""
 # Cluster Topic Generation Prompt
 # =============================================================================
 
-CLUSTER_TOPIC_PROMPT = """Generate a short, SPECIFIC topic name for this thematic cluster.
+CLUSTER_TOPIC_PROMPT = """Generate a short, HIGHLY SPECIFIC topic name for this thematic cluster.
 
 ## Event Description
 {description}
 
 ## Requirements
-- 10-30 characters
-- Must be a SPECIFIC THEME, not a generic description
-- Format: "[Person]'s [specific topic]" or "[Specific activity/theme]"
+- 15-40 characters (can be longer if needed for specificity)
+- Must be a HIGHLY SPECIFIC SINGLE THEME
+- Format: "[Person]'s [specific action/item]" or "[Specific event/activity]"
 - Include the main participant's name when relevant
 - Use the same language as the input
 
-## Good Examples (Specific Themes)
-- "Caroline's LGBTQ journey"
-- "Melanie's painting hobby"
-- "Caroline's adoption plan"
-- "Caroline's career goals"
-- "Family picnic planning"
-- "Mental health charity run"
+## CRITICAL: MAXIMUM SPECIFICITY
+- Be as specific as possible to avoid semantic overlap with other clusters
+- Include distinguishing details (activity type, context, item)
 
-## Bad Examples (Too Vague - AVOID)
-- "Conversation"
-- "Catch-up chat"
-- "Daily discussion"
-- "Caroline and Melanie's talk"
-- "Life updates"
+## Specificity Hierarchy (prefer more specific):
+- ❌ "Melanie's hobbies" → too broad
+- ❌ "Melanie's art" → still broad
+- ✅ "Melanie's painting hobby" → good
+- ✅✅ "Melanie's lake sunrise painting" → best (if applicable)
+
+- ❌ "Caroline's LGBTQ activities" → too broad
+- ✅ "Caroline's LGBTQ support group" → good
+- ✅ "Caroline's LGBTQ conference attendance" → good (different from support group)
+
+## Good Examples (Highly Specific)
+- "Melanie's pottery class"
+- "Melanie's painting hobby"
+- "Caroline's adoption research"
+- "Caroline's adoption council meeting"
+- "Caroline's LGBTQ support group"
+- "Caroline's transgender conference"
+- "Caroline's counseling career goal"
+- "Melanie's family camping trips"
+- "Melanie's charity 5K run"
+- "Caroline's school LGBTQ speech"
+
+## Bad Examples (AVOID)
+- ❌ "Caroline's career and Melanie's art" (compound)
+- ❌ "Art and creativity" (compound + vague)
+- ❌ "Conversation" (too vague)
+- ❌ "Personal updates" (too vague)
+- ❌ "Support and encouragement" (too vague)
+- ❌ "Life events" (too vague)
 
 ## Response
-Provide only the topic name."""
+Provide only the topic name (single specific topic, no compounds)."""
 
 
 # =============================================================================

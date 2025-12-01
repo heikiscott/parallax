@@ -877,32 +877,32 @@ def _analyze_evidence_clusters(
         # 尝试匹配 evidence_id 到 unit_id
         # evidence_id 格式可能是 "locomo_exp_user_0_mu_5" 或 "mu_5"
         matched_unit_id = None
-        matched_cluster_id = None
+        matched_cluster_ids = []
 
         # 直接匹配
-        if evidence_id in cluster_index.unit_to_cluster:
+        if evidence_id in cluster_index.unit_to_clusters:
             matched_unit_id = evidence_id
-            matched_cluster_id = cluster_index.unit_to_cluster.get(evidence_id)
+            matched_cluster_ids = cluster_index.unit_to_clusters.get(evidence_id, [])
         else:
             # 尝试提取 mu_X 部分进行匹配
-            for unit_id in cluster_index.unit_to_cluster.keys():
+            for unit_id in cluster_index.unit_to_clusters.keys():
                 if evidence_id in unit_id or unit_id in evidence_id:
                     matched_unit_id = unit_id
-                    matched_cluster_id = cluster_index.unit_to_cluster.get(unit_id)
+                    matched_cluster_ids = cluster_index.unit_to_clusters.get(unit_id, [])
                     break
 
         detail = {
             "evidence_id": evidence_id,
             "matched_unit_id": matched_unit_id,
-            "cluster_id": matched_cluster_id,
+            "cluster_ids": matched_cluster_ids,
             "in_results": matched_unit_id in retrieved_unit_set if matched_unit_id else False,
         }
         analysis["evidence_details"].append(detail)
 
-        if matched_cluster_id:
-            evidence_clusters.add(matched_cluster_id)
+        for cluster_id in matched_cluster_ids:
+            evidence_clusters.add(cluster_id)
             if matched_unit_id and matched_unit_id in retrieved_unit_set:
-                clusters_in_results.add(matched_cluster_id)
+                clusters_in_results.add(cluster_id)
 
     analysis["unique_evidence_clusters"] = list(evidence_clusters)
     analysis["clusters_in_results"] = list(clusters_in_results)
@@ -1894,10 +1894,10 @@ async def main():
                     # 构建每个 unit_id 的 cluster 信息
                     unit_cluster_info = []
                     for unit_id in unit_ids:
-                        cluster_id = unit_to_cluster.get(unit_id)
+                        cluster_ids = unit_to_cluster.get(unit_id, [])
                         unit_cluster_info.append({
                             "unit_id": unit_id,
-                            "cluster_id": cluster_id,  # 可能为 None（非 cluster_rerank 策略）
+                            "cluster_ids": cluster_ids,  # 可能为空列表（非 cluster_rerank 策略）
                         })
 
                     # 分析 evidence 应该在哪个 Cluster

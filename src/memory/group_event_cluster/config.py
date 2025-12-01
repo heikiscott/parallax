@@ -262,6 +262,41 @@ class GroupEventClusterRetrievalConfig:
     默认值: 30
     """
 
+    # ==========================================================
+    # Hybrid Strategy: Cluster + Original Rerank 混合策略
+    # ==========================================================
+
+    hybrid_enable_original_supplement: bool = True
+    """
+    [Hybrid] 是否启用原始 Rerank 结果补充。
+
+    启用后，Cluster 成员之后会补充原始 Rerank 结果中未被包含的 MemUnits。
+    这样即使 Cluster 选择有误，原始高分结果仍能作为安全网。
+
+    默认值: True
+    """
+
+    hybrid_original_supplement_count: int = 10
+    """
+    [Hybrid] 从原始 Rerank 结果中最多补充的 MemUnits 数量。
+
+    这些 MemUnits 会排在 Cluster 成员之后：
+    - 去重：已在 Cluster 结果中的不会重复添加
+    - 按原始 Rerank 分数排序
+
+    默认值: 10
+    """
+
+    hybrid_max_total_results: int = 40
+    """
+    [Hybrid] 混合策略最终返回的 MemUnits 总数上限。
+
+    = Cluster 成员 + 原始 Rerank 补充
+    防止返回过多内容给 LLM 生成答案。
+
+    默认值: 40
+    """
+
     @classmethod
     def from_dict(cls, data: Dict[str, Any]) -> "GroupEventClusterRetrievalConfig":
         """Create config from dictionary."""
@@ -281,6 +316,10 @@ class GroupEventClusterRetrievalConfig:
             cluster_rerank_max_clusters=data.get("cluster_rerank_max_clusters", 10),
             cluster_rerank_max_members_per_cluster=data.get("cluster_rerank_max_members_per_cluster", 15),
             cluster_rerank_total_max_members=data.get("cluster_rerank_total_max_members", 30),
+            # Hybrid 策略配置
+            hybrid_enable_original_supplement=data.get("hybrid_enable_original_supplement", True),
+            hybrid_original_supplement_count=data.get("hybrid_original_supplement_count", 10),
+            hybrid_max_total_results=data.get("hybrid_max_total_results", 40),
         )
 
     def to_dict(self) -> Dict[str, Any]:
@@ -301,4 +340,8 @@ class GroupEventClusterRetrievalConfig:
             "cluster_rerank_max_clusters": self.cluster_rerank_max_clusters,
             "cluster_rerank_max_members_per_cluster": self.cluster_rerank_max_members_per_cluster,
             "cluster_rerank_total_max_members": self.cluster_rerank_total_max_members,
+            # Hybrid 策略配置
+            "hybrid_enable_original_supplement": self.hybrid_enable_original_supplement,
+            "hybrid_original_supplement_count": self.hybrid_original_supplement_count,
+            "hybrid_max_total_results": self.hybrid_max_total_results,
         }
