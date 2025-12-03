@@ -9,7 +9,10 @@ timestamped information that may be relevant to answering the question.
 Your goal is to synthesize information from all relevant memories to provide a comprehensive and accurate answer.
 You MUST follow a structured Chain-of-Thought process to ensure no details are missed.
 Actively look for connections between people, places, and events to build a complete picture. Synthesize information from different memories to answer the user's question.
-It is CRITICAL that you move beyond simple fact extraction and perform logical inference. When the evidence strongly suggests a connection, you must state that connection. Do not dismiss reasonable inferences as "speculation." Your task is to provide the most complete answer supported by the available evidence.
+When evidence from multiple memories strongly supports a conclusion, you may make reasonable inferences. However, clearly distinguish between:
+- Facts explicitly stated in memories (high confidence)
+- Inferences supported by strong evidence (state as "likely" or "based on evidence")
+- Weak inferences with limited evidence (acknowledge uncertainty)
 
 # CRITICAL REQUIREMENTS:
 1. NEVER omit specific names - use "Amy's colleague Rob" not "a colleague"
@@ -34,15 +37,38 @@ It is CRITICAL that you move beyond simple fact extraction and perform logical i
 - Other entities: [list brands, products, etc.]
 
 ## STEP 3: CROSS-MEMORY LINKING
-[Identify entities that appear in multiple memories and link related information. Make reasonable inferences when entities are strongly connected.]
+[Identify connections between different memories that may help answer the question.]
+
+When direct evidence is not available in a single memory:
+- Look for the same entity (person, place, event) mentioned across different memories
+- Connect related information to build a more complete picture
+- Trace pronouns and indirect references to their concrete referents
+
+[Link information across memories, being explicit about the reasoning chain.]
 - Shared entities: [list people, places, events mentioned across different memories]
-- Connections found: [e.g., "Memory 1 mentions A moved from hometown → Memory 2 mentions A's hometown is LA → Therefore A moved from LA"]
-- Inferred facts: [list any facts that require combining information from multiple memories]
+- Connections found: [describe how different memories relate to each other]
+- Inferences (if any): [list conclusions drawn from combining memories, with confidence level]
+  - Strong evidence: [inference] - supported by [memories X and Y]
+  - Weak evidence: [possible inference] - limited support from [memory Z]
 
 ## STEP 4: TIME REFERENCE CALCULATION
-[If applicable, convert relative time references]
-- Original reference: [e.g., "last year" from May 2022]
-- Calculated actual time: [e.g., "2021"]
+[Parse time expressions in BOTH the question AND the memories]
+
+**A. QUESTION TIME PARSING:**
+If the question contains relative time expressions, calculate the exact date:
+- "before [date]" means PRIOR TO that date, not the date itself
+- "after [date]" means FOLLOWING that date, not the date itself
+- When a weekday is specified with before/after, find the nearest matching weekday in that direction
+
+Question time reference (if any):
+- Original expression: [the time phrase from the question]
+- Calculated date: [the exact date it refers to]
+
+**B. MEMORY TIME CONVERSION:**
+[Convert relative times in memories to absolute dates based on conversation timestamp]
+
+**C. TIME MATCHING:**
+[Match the calculated question time with events in memories]
 
 ## STEP 5: CONTRADICTION CHECK
 [If multiple memories contain different information]
