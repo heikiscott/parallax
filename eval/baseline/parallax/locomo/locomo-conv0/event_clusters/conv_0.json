@@ -1,0 +1,1067 @@
+{
+  "clusters": {
+    "gec_001": {
+      "cluster_id": "gec_001",
+      "topic": "Caroline's May 2023 check-in with Melanie",
+      "summary": "On May 8, 2023, Caroline and Melanie reconnected in a friendly conversation where Caroline expressed happiness to see Melanie, who shared feeling overwhelmed with managing her children and work while inquiring about Caroline's recent activities.",
+      "members": [
+        {
+          "unit_id": "3fe73bfe-3bbe-4ee5-932b-b0d815674864",
+          "timestamp": "2023-05-08T13:56:30+08:00",
+          "summary": "On May 8, 2023, Caroline and Melanie reconnected in a friendly conversation where Caroline expressed happiness to see Melanie, who shared feeling overwhelmed with managing her children and work while inquiring about Caroline's recent activities."
+        },
+        {
+          "unit_id": "c90ed528-9100-45b6-a45e-bfccfaf3de52",
+          "timestamp": "2023-05-08T13:59:30+08:00",
+          "summary": "On May 8, 2023, Caroline shared with Melanie that attending an LGBTQ support group the previous day was a powerful and inspiring experience that helped her feel accepted and courageous in embracing herself. Melanie responded with support and encouragement, reflecting on the meaningful impact of the group and Caroline’s emotional uplift."
+        }
+      ],
+      "first_timestamp": "2023-05-08T13:56:30+08:00",
+      "last_timestamp": "2023-05-08T13:59:30+08:00",
+      "created_at": "2025-12-03T15:32:45.944641",
+      "updated_at": "2025-12-03T15:32:52.160810"
+    },
+    "gec_002": {
+      "cluster_id": "gec_002",
+      "topic": "Caroline's LGBTQ support group experience",
+      "summary": "Caroline shared with Melanie her journey of LGBTQ self-acceptance, advocacy, and passion for counseling, inspired by community support, pride events, and creative expression. They reflected on growth, resilience, and mutual encouragement throughout her evolving activism and mental health work.",
+      "members": [
+        {
+          "unit_id": "c90ed528-9100-45b6-a45e-bfccfaf3de52",
+          "timestamp": "2023-05-08T13:59:30+08:00",
+          "summary": "On May 8, 2023, Caroline shared with Melanie that attending an LGBTQ support group the previous day was a powerful and inspiring experience that helped her feel accepted and courageous in embracing herself. Melanie responded with support and encouragement, reflecting on the meaningful impact of the group and Caroline’s emotional uplift."
+        },
+        {
+          "unit_id": "6d883b21-d023-41be-97d8-78c7275823a0",
+          "timestamp": "2023-06-09T20:02:00+08:00",
+          "summary": "Caroline shared with Melanie details about a recent school event where she spoke about her transgender journey and advocated for LGBTQ inclusion, reflecting on her personal growth and the support from her friends and family. Melanie responded with pride and encouragement, and they both expressed mutual commitment to motivate and support each other through life's challenges."
+        },
+        {
+          "unit_id": "080847ba-dbe1-43a3-b295-7f817c6315fa",
+          "timestamp": "2023-06-27T10:45:30+08:00",
+          "summary": "On June 27, 2023, Melanie and Caroline discussed Caroline's interest in pursuing a career in counseling and mental health, particularly focusing on supporting trans individuals, with Melanie offering encouragement and praise for Caroline's dedication and personal growth. Caroline shared how her own experiences and participation in an LGBTQ+ counseling workshop inspired her passion for creating safe spaces and helping others."
+        },
+        {
+          "unit_id": "68bec8c2-169a-4030-af95-a83e703d0620",
+          "timestamp": "2023-07-03T13:37:00+08:00",
+          "summary": "Caroline shared with Melanie that attending an LGBTQ+ pride parade inspired her to pursue a career in counseling and mental health to support the community, while Melanie expressed support and encouragement for her goals."
+        },
+        {
+          "unit_id": "c679051e-ccb6-4388-ad14-948d62c313db",
+          "timestamp": "2023-07-06T20:19:00+08:00",
+          "summary": "On July 6, 2023, Caroline and Melanie reconnected warmly, with Caroline sharing her growing passion for counseling and mental health work while both expressed enthusiasm and support for each other's updates."
+        },
+        {
+          "unit_id": "4e2e78ad-4013-4dc1-9bf3-2cc7f347c3f8",
+          "timestamp": "2023-07-12T16:46:00+08:00",
+          "summary": "On July 12, 2023, Caroline and Melanie shared a supportive conversation reflecting on LGBTQ community experiences, mental health, personal growth, and shared interests such as pets and books. They discussed Caroline's attendance at an LGBTQ conference, her aspirations in counseling, and Melanie's positive mental health journey through running."
+        },
+        {
+          "unit_id": "4e2e78ad-4013-4dc1-9bf3-2cc7f347c3f8",
+          "timestamp": "2023-07-12T16:46:00+08:00",
+          "summary": "On July 12, 2023, Caroline and Melanie shared a supportive conversation reflecting on LGBTQ community experiences, mental health, personal growth, and shared interests such as pets and books. They discussed Caroline's attendance at an LGBTQ conference, her aspirations in counseling, and Melanie's positive mental health journey through running."
+        },
+        {
+          "unit_id": "828a87d8-5233-4b91-908a-5f0f9c5213ea",
+          "timestamp": "2023-07-17T14:36:00+08:00",
+          "summary": "Melanie and Caroline discussed Caroline's rewarding involvement in mentoring LGBTQ youth, including her experiences supporting a transgender teenager and attending a recent pride event, while Melanie shared personal family moments and expressed strong support for Caroline's advocacy work. The conversation highlighted themes of community, resilience, and mutual encouragement."
+        },
+        {
+          "unit_id": "86b8bd9b-4e52-4faa-845e-13adc2d33173",
+          "timestamp": "2023-07-20T20:59:00+08:00",
+          "summary": "On July 20, 2023, Caroline shared with Melanie her recent involvement in the 'Connected LGBTQ Activists' group, highlighting her fulfillment in contributing to LGBTQ rights and community support, while Melanie expressed enthusiasm and support for Caroline's activism and creative endeavors."
+        },
+        {
+          "unit_id": "db306b2b-d960-4a72-a43a-47d704fb4ed4",
+          "timestamp": "2023-07-20T21:01:30+08:00",
+          "summary": "On July 20, 2023, Caroline and Melanie discussed recent community and family events, including a pride parade Caroline missed and Melanie’s beach outings and annual camping trip, highlighting their shared appreciation for family traditions and community connection."
+        },
+        {
+          "unit_id": "cb93e34e-ed10-438f-bdd0-76c516a6bad1",
+          "timestamp": "2023-08-14T14:32:00+08:00",
+          "summary": "On August 14, 2023, Caroline and Melanie discussed Caroline's experiences at a pride parade and how she uses her art to express her trans identity and advocate for LGBTQ+ inclusivity, highlighting the therapeutic and storytelling power of her work."
+        },
+        {
+          "unit_id": "cf9d54b0-eb94-43fc-bc52-7209d612081b",
+          "timestamp": "2023-08-17T13:50:00+08:00",
+          "summary": "On August 17, 2023, Caroline shared with Melanie a difficult encounter with religious conservatives during a hike that prompted reflection on LGBTQ rights, while expressing gratitude for the support of accepting people around her."
+        },
+        {
+          "unit_id": "0e602682-fc75-4cc3-b2b8-536f23b3ff38",
+          "timestamp": "2023-08-17T14:00:00+08:00",
+          "summary": "On August 17, 2023, Caroline and Melanie reminisced about their enjoyable experience at last year's Pride fest and enthusiastically planned a special summer outing together to create new memories and strengthen their friendship."
+        },
+        {
+          "unit_id": "111ee5be-ca62-49f4-868b-750c32a4ed34",
+          "timestamp": "2023-08-25T13:37:00+08:00",
+          "summary": "Caroline shared with Melanie a challenging hiking experience and her sunset painting inspired by a beach visit, while Melanie responded with empathy and shared her pottery hobby, highlighting their mutual encouragement and emotional connection."
+        },
+        {
+          "unit_id": "18b152d0-d844-4c53-a98d-c99afaf0b384",
+          "timestamp": "2023-08-25T13:48:30+08:00",
+          "summary": "On August 25, 2023, Melanie and Caroline engaged in a meaningful conversation about Caroline's transgender journey, the significance of community and acceptance, and their shared passion for art as a form of expression and resilience. They exchanged images of their artwork and discussed how creativity fosters growth, joy, and mutual support."
+        },
+        {
+          "unit_id": "147e15d4-2f25-4056-995a-d051807bf125",
+          "timestamp": "2023-08-28T15:19:00+08:00",
+          "summary": "Melanie and Caroline discussed their upcoming art projects, with Melanie inspired by autumn and Caroline organizing an LGBTQ art show in September 2023 to promote community understanding and showcase LGBTQ artists. Both expressed excitement and mutual support for their creative and community-focused endeavors."
+        },
+        {
+          "unit_id": "03c10f73-0ed2-4d06-9977-9dd54fdee72a",
+          "timestamp": "2023-09-13T00:15:00+08:00",
+          "summary": "Caroline and Melanie discussed their artistic journeys and the emotional significance of art, with Caroline sharing how her paintings support the LGBTQ+ community and aid her gender identity exploration as a trans woman, while Melanie highlighted her experience with painting and pottery as calming and therapeutic. They exchanged images of their artwork and reflected on art’s role in self-expression, healing, and identity."
+        },
+        {
+          "unit_id": "55f1714e-4dc3-4567-963c-8e13078fc08c",
+          "timestamp": "2023-09-13T00:18:30+08:00",
+          "summary": "On September 13, 2023, Caroline shared with Melanie a painting symbolizing her journey as a trans woman and discussed the impact of her transition on her relationships, while Melanie offered support and reflected on joyful moments they recently shared. Both expressed empathy and encouragement throughout their conversation."
+        },
+        {
+          "unit_id": "f92cf41a-0b17-464b-901f-ad2a0d65fbaa",
+          "timestamp": "2023-10-13T10:43:30+08:00",
+          "summary": "On October 13, 2023, Melanie and Caroline discussed art and personal expression, focusing on Caroline’s experience at a transgender poetry reading that inspired her to create artwork symbolizing freedom and authenticity. They shared reflections on the calming and empowering nature of art and the importance of embracing one’s true self."
+        }
+      ],
+      "first_timestamp": "2023-05-08T13:59:30+08:00",
+      "last_timestamp": "2023-10-13T10:43:30+08:00",
+      "created_at": "2025-12-03T15:32:52.160810",
+      "updated_at": "2025-12-03T15:37:10.214098"
+    },
+    "gec_003": {
+      "cluster_id": "gec_003",
+      "topic": "Caroline's career plans",
+      "summary": "Caroline shared her growing passion for a career in mental health counseling, especially supporting the LGBTQ+ community and trans individuals. They discussed her inspirations from workshops, pride events, and conferences, with Melanie consistently offering encouragement and mutual support.",
+      "members": [
+        {
+          "unit_id": "46393a64-fd48-4430-a2c5-512cdd8bae82",
+          "timestamp": "2023-05-08T14:04:30+08:00",
+          "summary": "On May 8, 2023, Melanie and Caroline discussed Caroline's plans to pursue education and a career in mental health counseling, while Melanie shared her painting hobby and offered mutual support and encouragement."
+        },
+        {
+          "unit_id": "080847ba-dbe1-43a3-b295-7f817c6315fa",
+          "timestamp": "2023-06-27T10:45:30+08:00",
+          "summary": "On June 27, 2023, Melanie and Caroline discussed Caroline's interest in pursuing a career in counseling and mental health, particularly focusing on supporting trans individuals, with Melanie offering encouragement and praise for Caroline's dedication and personal growth. Caroline shared how her own experiences and participation in an LGBTQ+ counseling workshop inspired her passion for creating safe spaces and helping others."
+        },
+        {
+          "unit_id": "68bec8c2-169a-4030-af95-a83e703d0620",
+          "timestamp": "2023-07-03T13:37:00+08:00",
+          "summary": "Caroline shared with Melanie that attending an LGBTQ+ pride parade inspired her to pursue a career in counseling and mental health to support the community, while Melanie expressed support and encouragement for her goals."
+        },
+        {
+          "unit_id": "c679051e-ccb6-4388-ad14-948d62c313db",
+          "timestamp": "2023-07-06T20:19:00+08:00",
+          "summary": "On July 6, 2023, Caroline and Melanie reconnected warmly, with Caroline sharing her growing passion for counseling and mental health work while both expressed enthusiasm and support for each other's updates."
+        },
+        {
+          "unit_id": "4e2e78ad-4013-4dc1-9bf3-2cc7f347c3f8",
+          "timestamp": "2023-07-12T16:46:00+08:00",
+          "summary": "On July 12, 2023, Caroline and Melanie shared a supportive conversation reflecting on LGBTQ community experiences, mental health, personal growth, and shared interests such as pets and books. They discussed Caroline's attendance at an LGBTQ conference, her aspirations in counseling, and Melanie's positive mental health journey through running."
+        },
+        {
+          "unit_id": "4e2e78ad-4013-4dc1-9bf3-2cc7f347c3f8",
+          "timestamp": "2023-07-12T16:46:00+08:00",
+          "summary": "On July 12, 2023, Caroline and Melanie shared a supportive conversation reflecting on LGBTQ community experiences, mental health, personal growth, and shared interests such as pets and books. They discussed Caroline's attendance at an LGBTQ conference, her aspirations in counseling, and Melanie's positive mental health journey through running."
+        }
+      ],
+      "first_timestamp": "2023-05-08T14:04:30+08:00",
+      "last_timestamp": "2023-07-12T16:46:00+08:00",
+      "created_at": "2025-12-03T15:32:56.723726",
+      "updated_at": "2025-12-03T15:34:19.341558"
+    },
+    "gec_004": {
+      "cluster_id": "gec_004",
+      "topic": "Melanie's painting hobby",
+      "summary": "Melanie and Caroline shared their passion for art as a source of creativity, emotional expression, and community connection. Over time, their conversations evolved from personal hobbies and family projects to LGBTQ advocacy and collaborative art initiatives, highlighting mutual support and growth.",
+      "members": [
+        {
+          "unit_id": "46393a64-fd48-4430-a2c5-512cdd8bae82",
+          "timestamp": "2023-05-08T14:04:30+08:00",
+          "summary": "On May 8, 2023, Melanie and Caroline discussed Caroline's plans to pursue education and a career in mental health counseling, while Melanie shared her painting hobby and offered mutual support and encouragement."
+        },
+        {
+          "unit_id": "019f52e4-0f9a-4963-8e2d-aefb7e742a21",
+          "timestamp": "2023-07-15T13:54:30+08:00",
+          "summary": "Caroline and Melanie discussed Melanie's recent creative activities with her children, including a pottery workshop and nature-inspired painting, highlighting the family's bonding and appreciation of creativity and nature. Melanie shared photos and described the joyful and therapeutic experiences they had during these artistic projects."
+        },
+        {
+          "unit_id": "7149cf39-02c5-4469-943d-77d351001557",
+          "timestamp": "2023-07-15T13:58:30+08:00",
+          "summary": "Melanie and Caroline shared a heartfelt conversation about nature, meaningful life events, and personal experiences, including Melanie’s wedding and Caroline’s adoption journey, accompanied by photos that highlighted their appreciation for small moments and emotional connections."
+        },
+        {
+          "unit_id": "27affffa-f366-4481-bec0-f22e0d50d2c5",
+          "timestamp": "2023-07-17T14:39:00+08:00",
+          "summary": "On July 17, 2023, Melanie and Caroline discussed LGBTQ advocacy and art, with Caroline sharing details and an image of a painting she created for an upcoming LGBTQ art show inspired by themes of unity and strength. Both expressed admiration and excitement about the artwork and their ongoing creative efforts supporting the community."
+        },
+        {
+          "unit_id": "cb93e34e-ed10-438f-bdd0-76c516a6bad1",
+          "timestamp": "2023-08-14T14:32:00+08:00",
+          "summary": "On August 14, 2023, Caroline and Melanie discussed Caroline's experiences at a pride parade and how she uses her art to express her trans identity and advocate for LGBTQ+ inclusivity, highlighting the therapeutic and storytelling power of her work."
+        },
+        {
+          "unit_id": "1a26c30d-99cd-4f05-ad08-658b44e6820f",
+          "timestamp": "2023-08-23T15:39:30+08:00",
+          "summary": "On August 23, 2023, Caroline shared with Melanie her decision to begin the adoption process to become a mother, expressing excitement and nervousness, while they bonded over their pets and mutual passion for art and authenticity. Melanie offered support and encouragement throughout their conversation, which highlighted Caroline’s openness about her journey and values."
+        },
+        {
+          "unit_id": "111ee5be-ca62-49f4-868b-750c32a4ed34",
+          "timestamp": "2023-08-25T13:37:00+08:00",
+          "summary": "Caroline shared with Melanie a challenging hiking experience and her sunset painting inspired by a beach visit, while Melanie responded with empathy and shared her pottery hobby, highlighting their mutual encouragement and emotional connection."
+        },
+        {
+          "unit_id": "fcd27e1b-fc2f-4e09-9c19-d7092ce2100d",
+          "timestamp": "2023-08-25T13:38:00+08:00",
+          "summary": "On August 25, 2023, Caroline and Melanie discussed the emotional connection fostered by art and Melanie’s recent family volunteering experience at a homeless shelter, expressing mutual appreciation and admiration."
+        },
+        {
+          "unit_id": "18b152d0-d844-4c53-a98d-c99afaf0b384",
+          "timestamp": "2023-08-25T13:48:30+08:00",
+          "summary": "On August 25, 2023, Melanie and Caroline engaged in a meaningful conversation about Caroline's transgender journey, the significance of community and acceptance, and their shared passion for art as a form of expression and resilience. They exchanged images of their artwork and discussed how creativity fosters growth, joy, and mutual support."
+        },
+        {
+          "unit_id": "147e15d4-2f25-4056-995a-d051807bf125",
+          "timestamp": "2023-08-28T15:19:00+08:00",
+          "summary": "Melanie and Caroline discussed their upcoming art projects, with Melanie inspired by autumn and Caroline organizing an LGBTQ art show in September 2023 to promote community understanding and showcase LGBTQ artists. Both expressed excitement and mutual support for their creative and community-focused endeavors."
+        },
+        {
+          "unit_id": "03c10f73-0ed2-4d06-9977-9dd54fdee72a",
+          "timestamp": "2023-09-13T00:15:00+08:00",
+          "summary": "Caroline and Melanie discussed their artistic journeys and the emotional significance of art, with Caroline sharing how her paintings support the LGBTQ+ community and aid her gender identity exploration as a trans woman, while Melanie highlighted her experience with painting and pottery as calming and therapeutic. They exchanged images of their artwork and reflected on art’s role in self-expression, healing, and identity."
+        },
+        {
+          "unit_id": "1ca4c739-3ae8-48ff-b391-ef0faf5420ee",
+          "timestamp": "2023-10-13T10:38:30+08:00",
+          "summary": "On October 13, 2023, Melanie and Caroline discussed Melanie's recent injury that paused her pottery practice and shared their artistic creations, using art as a means of emotional expression and mutual support. Despite the setback, Melanie showed resilience by exploring painting, while Caroline encouraged and admired her work."
+        },
+        {
+          "unit_id": "f92cf41a-0b17-464b-901f-ad2a0d65fbaa",
+          "timestamp": "2023-10-13T10:43:30+08:00",
+          "summary": "On October 13, 2023, Melanie and Caroline discussed art and personal expression, focusing on Caroline’s experience at a transgender poetry reading that inspired her to create artwork symbolizing freedom and authenticity. They shared reflections on the calming and empowering nature of art and the importance of embracing one’s true self."
+        }
+      ],
+      "first_timestamp": "2023-05-08T14:04:30+08:00",
+      "last_timestamp": "2023-10-13T10:43:30+08:00",
+      "created_at": "2025-12-03T15:32:56.725460",
+      "updated_at": "2025-12-03T15:37:10.214098"
+    },
+    "gec_005": {
+      "cluster_id": "gec_005",
+      "topic": "Melanie's participation in mental health charity events",
+      "summary": "On May 25, 2023, Melanie and Caroline discussed Melanie’s recent participation in a mental health charity race and her ongoing journey of self-care, emphasizing its importance for personal well-being and family balance, while also sharing plans for the upcoming summer.",
+      "members": [
+        {
+          "unit_id": "1639f0aa-2032-4186-bd1e-9d8c86de798b",
+          "timestamp": "2023-05-25T13:17:00+08:00",
+          "summary": "On May 25, 2023, Melanie and Caroline discussed Melanie’s recent participation in a mental health charity race and her ongoing journey of self-care, emphasizing its importance for personal well-being and family balance, while also sharing plans for the upcoming summer."
+        }
+      ],
+      "first_timestamp": "2023-05-25T13:17:00+08:00",
+      "last_timestamp": "2023-05-25T13:17:00+08:00",
+      "created_at": "2025-12-03T15:33:04.566412",
+      "updated_at": "2025-12-03T15:33:04.566412"
+    },
+    "gec_006": {
+      "cluster_id": "gec_006",
+      "topic": "Melanie's self-care journey",
+      "summary": "On May 25, 2023, Melanie and Caroline discussed Melanie’s recent participation in a mental health charity race and her ongoing journey of self-care, emphasizing its importance for personal well-being and family balance, while also sharing plans for the upcoming summer.",
+      "members": [
+        {
+          "unit_id": "1639f0aa-2032-4186-bd1e-9d8c86de798b",
+          "timestamp": "2023-05-25T13:17:00+08:00",
+          "summary": "On May 25, 2023, Melanie and Caroline discussed Melanie’s recent participation in a mental health charity race and her ongoing journey of self-care, emphasizing its importance for personal well-being and family balance, while also sharing plans for the upcoming summer."
+        }
+      ],
+      "first_timestamp": "2023-05-25T13:17:00+08:00",
+      "last_timestamp": "2023-05-25T13:17:00+08:00",
+      "created_at": "2025-12-03T15:33:04.569455",
+      "updated_at": "2025-12-03T15:33:04.569455"
+    },
+    "gec_007": {
+      "cluster_id": "gec_007",
+      "topic": "Summer plans discussion",
+      "summary": "On May 25, 2023, Melanie and Caroline discussed Melanie’s recent participation in a mental health charity race and her ongoing journey of self-care, emphasizing its importance for personal well-being and family balance, while also sharing plans for the upcoming summer.",
+      "members": [
+        {
+          "unit_id": "1639f0aa-2032-4186-bd1e-9d8c86de798b",
+          "timestamp": "2023-05-25T13:17:00+08:00",
+          "summary": "On May 25, 2023, Melanie and Caroline discussed Melanie’s recent participation in a mental health charity race and her ongoing journey of self-care, emphasizing its importance for personal well-being and family balance, while also sharing plans for the upcoming summer."
+        },
+        {
+          "unit_id": "a54a90f3-f651-440b-b57a-784877be7d0f",
+          "timestamp": "2023-05-25T13:22:00+08:00",
+          "summary": "On May 25, 2023, Melanie and Caroline discussed Melanie’s family summer plans and Caroline’s hopeful journey toward adoption through an inclusive agency supporting LGBTQ+ individuals, with both expressing mutual support and optimism."
+        },
+        {
+          "unit_id": "de19e02f-8b38-4c7b-a747-fec8a5786d92",
+          "timestamp": "2023-07-20T21:04:30+08:00",
+          "summary": "Melanie and Caroline discussed Melanie's family camping trips, highlighting a memorable experience watching the Perseid meteor shower in 2022 that evoked feelings of awe and connection with the universe. The conversation emphasized the joy and appreciation of nature and family bonding during these cherished summer events."
+        },
+        {
+          "unit_id": "0e602682-fc75-4cc3-b2b8-536f23b3ff38",
+          "timestamp": "2023-08-17T14:00:00+08:00",
+          "summary": "On August 17, 2023, Caroline and Melanie reminisced about their enjoyable experience at last year's Pride fest and enthusiastically planned a special summer outing together to create new memories and strengthen their friendship."
+        }
+      ],
+      "first_timestamp": "2023-05-25T13:17:00+08:00",
+      "last_timestamp": "2023-08-17T14:00:00+08:00",
+      "created_at": "2025-12-03T15:33:04.571886",
+      "updated_at": "2025-12-03T15:35:45.504005"
+    },
+    "gec_008": {
+      "cluster_id": "gec_008",
+      "topic": "Caroline's adoption journey",
+      "summary": "On May 25, 2023, Melanie and Caroline discussed Melanie’s family summer plans and Caroline’s hopeful journey toward adoption through an inclusive agency supporting LGBTQ+ individuals, with both expressing mutual support and optimism.",
+      "members": [
+        {
+          "unit_id": "a54a90f3-f651-440b-b57a-784877be7d0f",
+          "timestamp": "2023-05-25T13:22:00+08:00",
+          "summary": "On May 25, 2023, Melanie and Caroline discussed Melanie’s family summer plans and Caroline’s hopeful journey toward adoption through an inclusive agency supporting LGBTQ+ individuals, with both expressing mutual support and optimism."
+        },
+        {
+          "unit_id": "7149cf39-02c5-4469-943d-77d351001557",
+          "timestamp": "2023-07-15T13:58:30+08:00",
+          "summary": "Melanie and Caroline shared a heartfelt conversation about nature, meaningful life events, and personal experiences, including Melanie’s wedding and Caroline’s adoption journey, accompanied by photos that highlighted their appreciation for small moments and emotional connections."
+        },
+        {
+          "unit_id": "1a26c30d-99cd-4f05-ad08-658b44e6820f",
+          "timestamp": "2023-08-23T15:39:30+08:00",
+          "summary": "On August 23, 2023, Caroline shared with Melanie her decision to begin the adoption process to become a mother, expressing excitement and nervousness, while they bonded over their pets and mutual passion for art and authenticity. Melanie offered support and encouragement throughout their conversation, which highlighted Caroline’s openness about her journey and values."
+        },
+        {
+          "unit_id": "e9b79c48-3709-42ce-9748-4102e7aa2ba1",
+          "timestamp": "2023-10-13T10:34:30+08:00",
+          "summary": "On October 13, 2023, Caroline and Melanie discussed Caroline's adoption journey and shared advice on the adoption process, while Melanie revealed a recent injury that paused her pottery practice, highlighting their mutual support and personal reflections."
+        },
+        {
+          "unit_id": "a520d753-f32a-4284-91b5-6565f7b3f319",
+          "timestamp": "2023-10-20T19:06:30+08:00",
+          "summary": "Caroline shared with Melanie her excitement and gratitude after passing adoption agency interviews, expressing her hope to create a loving family for children in need, while they exchanged emotional support and reflected on self-acceptance and the importance of nurturing connections."
+        }
+      ],
+      "first_timestamp": "2023-05-25T13:22:00+08:00",
+      "last_timestamp": "2023-10-20T19:06:30+08:00",
+      "created_at": "2025-12-03T15:33:09.528409",
+      "updated_at": "2025-12-03T15:37:20.957196"
+    },
+    "gec_009": {
+      "cluster_id": "gec_009",
+      "topic": "Melanie's marriage anniversary",
+      "summary": "Caroline and Melanie shared a warm conversation celebrating Melanie’s 5-year marriage anniversary, exchanging photos and expressing gratitude for joyful family moments and the happiness found in spending time with loved ones.",
+      "members": [
+        {
+          "unit_id": "f6757ce7-022e-417b-b0a4-3237cd08a948",
+          "timestamp": "2023-06-09T20:06:00+08:00",
+          "summary": "Caroline and Melanie shared a warm conversation celebrating Melanie’s 5-year marriage anniversary, exchanging photos and expressing gratitude for joyful family moments and the happiness found in spending time with loved ones."
+        },
+        {
+          "unit_id": "4e6b03f1-eb16-4fc9-afdf-8601c274261c",
+          "timestamp": "2023-07-15T14:04:30+08:00",
+          "summary": "On July 15, 2023, Melanie and Caroline shared a heartfelt conversation reflecting on significant personal experiences, including Melanie’s marriage and Caroline’s empowering participation in a recent pride parade, highlighting themes of love, acceptance, and community support."
+        }
+      ],
+      "first_timestamp": "2023-06-09T20:06:00+08:00",
+      "last_timestamp": "2023-07-15T14:04:30+08:00",
+      "created_at": "2025-12-03T15:33:19.536160",
+      "updated_at": "2025-12-03T15:34:33.206554"
+    },
+    "gec_010": {
+      "cluster_id": "gec_010",
+      "topic": "Caroline's sentimental family mementos",
+      "summary": "On June 27, 2023, Caroline and Melanie reconnected through a conversation where Caroline shared the sentimental significance of a necklace gifted by her grandmother, while Melanie reflected on meaningful family experiences, highlighting their mutual appreciation for personal mementos and family bonds.",
+      "members": [
+        {
+          "unit_id": "9426ceac-382c-4241-993f-6e7eea7b4a68",
+          "timestamp": "2023-06-27T10:39:30+08:00",
+          "summary": "On June 27, 2023, Caroline and Melanie reconnected through a conversation where Caroline shared the sentimental significance of a necklace gifted by her grandmother, while Melanie reflected on meaningful family experiences, highlighting their mutual appreciation for personal mementos and family bonds."
+        }
+      ],
+      "first_timestamp": "2023-06-27T10:39:30+08:00",
+      "last_timestamp": "2023-06-27T10:39:30+08:00",
+      "created_at": "2025-12-03T15:33:24.524195",
+      "updated_at": "2025-12-03T15:33:24.524195"
+    },
+    "gec_011": {
+      "cluster_id": "gec_011",
+      "topic": "Melanie's reflections on family experiences",
+      "summary": "On June 27, 2023, Caroline and Melanie reconnected through a conversation where Caroline shared the sentimental significance of a necklace gifted by her grandmother, while Melanie reflected on meaningful family experiences, highlighting their mutual appreciation for personal mementos and family bonds.",
+      "members": [
+        {
+          "unit_id": "9426ceac-382c-4241-993f-6e7eea7b4a68",
+          "timestamp": "2023-06-27T10:39:30+08:00",
+          "summary": "On June 27, 2023, Caroline and Melanie reconnected through a conversation where Caroline shared the sentimental significance of a necklace gifted by her grandmother, while Melanie reflected on meaningful family experiences, highlighting their mutual appreciation for personal mementos and family bonds."
+        }
+      ],
+      "first_timestamp": "2023-06-27T10:39:30+08:00",
+      "last_timestamp": "2023-06-27T10:39:30+08:00",
+      "created_at": "2025-12-03T15:33:24.524195",
+      "updated_at": "2025-12-03T15:33:24.524195"
+    },
+    "gec_012": {
+      "cluster_id": "gec_012",
+      "topic": "Melanie's family camping trip",
+      "summary": "They discussed Melanie’s family camping trips as cherished moments of bonding, nature appreciation, and resilience, highlighting activities like hiking, meteor shower watching, and overcoming challenges together, reflecting the ongoing importance of family traditions and support.",
+      "members": [
+        {
+          "unit_id": "743f97db-42aa-42fa-8838-475aa2f87359",
+          "timestamp": "2023-06-27T10:41:00+08:00",
+          "summary": "Melanie shared with Caroline about a memorable family camping trip in the mountains from June 20-26, 2023, highlighting activities like hiking and roasting marshmallows, and expressed how special the experience was for her and her children. Caroline responded with interest and affirmed the importance of such meaningful family moments."
+        },
+        {
+          "unit_id": "c7fb903b-7f78-41ee-90d7-967df4313a76",
+          "timestamp": "2023-07-15T14:10:00+08:00",
+          "summary": "Melanie and Caroline discussed Melanie's recent move, highlighting how her family's love and support, along with shared outdoor activities like camping and hiking, helped her find peace and happiness during this time. Both expressed gratitude and appreciation for their friendship throughout the conversation."
+        },
+        {
+          "unit_id": "db306b2b-d960-4a72-a43a-47d704fb4ed4",
+          "timestamp": "2023-07-20T21:01:30+08:00",
+          "summary": "On July 20, 2023, Caroline and Melanie discussed recent community and family events, including a pride parade Caroline missed and Melanie’s beach outings and annual camping trip, highlighting their shared appreciation for family traditions and community connection."
+        },
+        {
+          "unit_id": "de19e02f-8b38-4c7b-a747-fec8a5786d92",
+          "timestamp": "2023-07-20T21:04:30+08:00",
+          "summary": "Melanie and Caroline discussed Melanie's family camping trips, highlighting a memorable experience watching the Perseid meteor shower in 2022 that evoked feelings of awe and connection with the universe. The conversation emphasized the joy and appreciation of nature and family bonding during these cherished summer events."
+        },
+        {
+          "unit_id": "ac66b3ca-84a7-49cf-9108-a4f8c40e4b51",
+          "timestamp": "2023-10-20T19:06:30+08:00",
+          "summary": "Melanie and Caroline discussed a recent family road trip during which Melanie's son was involved in a car accident but remained unharmed, highlighting the family's resilience and the importance of cherishing loved ones. They also reflected on the healing power of nature and quality time spent together, especially during a camping trip following the ordeal."
+        }
+      ],
+      "first_timestamp": "2023-06-27T10:41:00+08:00",
+      "last_timestamp": "2023-10-20T19:06:30+08:00",
+      "created_at": "2025-12-03T15:33:30.248038",
+      "updated_at": "2025-12-03T15:37:17.013550"
+    },
+    "gec_013": {
+      "cluster_id": "gec_013",
+      "topic": "Meaningful family moments",
+      "summary": "They shared meaningful family moments, from camping trips and milestones like first steps to personal journeys and community support, emphasizing love, resilience, and gratitude. Their conversations evolved to highlight the enduring importance of connection and shared experiences.",
+      "members": [
+        {
+          "unit_id": "743f97db-42aa-42fa-8838-475aa2f87359",
+          "timestamp": "2023-06-27T10:41:00+08:00",
+          "summary": "Melanie shared with Caroline about a memorable family camping trip in the mountains from June 20-26, 2023, highlighting activities like hiking and roasting marshmallows, and expressed how special the experience was for her and her children. Caroline responded with interest and affirmed the importance of such meaningful family moments."
+        },
+        {
+          "unit_id": "7149cf39-02c5-4469-943d-77d351001557",
+          "timestamp": "2023-07-15T13:58:30+08:00",
+          "summary": "Melanie and Caroline shared a heartfelt conversation about nature, meaningful life events, and personal experiences, including Melanie’s wedding and Caroline’s adoption journey, accompanied by photos that highlighted their appreciation for small moments and emotional connections."
+        },
+        {
+          "unit_id": "c7fb903b-7f78-41ee-90d7-967df4313a76",
+          "timestamp": "2023-07-15T14:10:00+08:00",
+          "summary": "Melanie and Caroline discussed Melanie's recent move, highlighting how her family's love and support, along with shared outdoor activities like camping and hiking, helped her find peace and happiness during this time. Both expressed gratitude and appreciation for their friendship throughout the conversation."
+        },
+        {
+          "unit_id": "828a87d8-5233-4b91-908a-5f0f9c5213ea",
+          "timestamp": "2023-07-17T14:36:00+08:00",
+          "summary": "Melanie and Caroline discussed Caroline's rewarding involvement in mentoring LGBTQ youth, including her experiences supporting a transgender teenager and attending a recent pride event, while Melanie shared personal family moments and expressed strong support for Caroline's advocacy work. The conversation highlighted themes of community, resilience, and mutual encouragement."
+        },
+        {
+          "unit_id": "537fd5a6-4915-46d3-a97b-8d89f8695add",
+          "timestamp": "2023-07-20T21:07:30+08:00",
+          "summary": "On July 20, 2023, Melanie and Caroline shared a heartfelt conversation reflecting on meaningful life experiences and family, with Melanie expressing gratitude for moments like her youngest child's first steps and the love within her family. Both participants conveyed warmth and appreciation for the fleeting beauty of life and family milestones."
+        },
+        {
+          "unit_id": "d2244910-f790-4cb3-9720-c20c69d12217",
+          "timestamp": "2023-08-14T14:25:00+08:00",
+          "summary": "On August 14, 2023, Melanie and Caroline shared a heartfelt conversation reflecting on family gratitude and recent experiences, including Melanie's celebration of her daughter's birthday at a concert featuring Matt Patterson. The exchange highlighted their mutual appreciation for family, joy, and personal milestones."
+        },
+        {
+          "unit_id": "135b93b4-a979-44c7-8e60-3a63e44cc914",
+          "timestamp": "2023-08-28T15:23:30+08:00",
+          "summary": "Melanie shared about taking her children to a park, while Caroline discussed her fulfilling experience volunteering at an LGBTQ+ youth center, emphasizing the importance of community support and resilience. Both expressed positive emotions about family enjoyment and meaningful community engagement."
+        },
+        {
+          "unit_id": "ac66b3ca-84a7-49cf-9108-a4f8c40e4b51",
+          "timestamp": "2023-10-20T19:06:30+08:00",
+          "summary": "Melanie and Caroline discussed a recent family road trip during which Melanie's son was involved in a car accident but remained unharmed, highlighting the family's resilience and the importance of cherishing loved ones. They also reflected on the healing power of nature and quality time spent together, especially during a camping trip following the ordeal."
+        }
+      ],
+      "first_timestamp": "2023-06-27T10:41:00+08:00",
+      "last_timestamp": "2023-10-20T19:06:30+08:00",
+      "created_at": "2025-12-03T15:33:30.251353",
+      "updated_at": "2025-12-03T15:37:15.197059"
+    },
+    "gec_014": {
+      "cluster_id": "gec_014",
+      "topic": "Melanie's pottery class",
+      "summary": "They discussed Melanie’s pottery as a therapeutic and creative outlet, sharing experiences of artistic projects with family, mutual encouragement, and emotional support. Over time, their conversations reflected the evolving role of art in healing, bonding, and navigating life’s challenges.",
+      "members": [
+        {
+          "unit_id": "a5357064-8fd4-4ff2-a105-f738dc535ae2",
+          "timestamp": "2023-07-03T13:41:30+08:00",
+          "summary": "On July 3, 2023, Melanie and Caroline discussed their recent creative activities, with Melanie sharing her enthusiasm for pottery as a therapeutic and expressive outlet, while Caroline talked about learning piano as her new creative pursuit. They exchanged encouragement and admiration for each other's artistic journeys."
+        },
+        {
+          "unit_id": "d99d6f30-c63f-42e8-b2a9-a793f09ac078",
+          "timestamp": "2023-07-03T13:43:30+08:00",
+          "summary": "On July 3, 2023, Melanie and Caroline discussed their upcoming plans, with Melanie excited about exploring pottery and Caroline looking forward to attending a transgender conference later that month. They exchanged mutual encouragement and support, expressing enthusiasm for their respective activities."
+        },
+        {
+          "unit_id": "019f52e4-0f9a-4963-8e2d-aefb7e742a21",
+          "timestamp": "2023-07-15T13:54:30+08:00",
+          "summary": "Caroline and Melanie discussed Melanie's recent creative activities with her children, including a pottery workshop and nature-inspired painting, highlighting the family's bonding and appreciation of creativity and nature. Melanie shared photos and described the joyful and therapeutic experiences they had during these artistic projects."
+        },
+        {
+          "unit_id": "1d699dcb-e4e2-4c4a-9798-213a4a2ce895",
+          "timestamp": "2023-08-17T13:57:00+08:00",
+          "summary": "On August 17, 2023, Melanie and Caroline shared a heartfelt conversation about the importance of friendship, emotional support, and creative expression, with Melanie showcasing her colorful pottery project and both reflecting on how art and meaningful connections bring happiness and comfort in life’s challenges."
+        },
+        {
+          "unit_id": "e9b79c48-3709-42ce-9748-4102e7aa2ba1",
+          "timestamp": "2023-10-13T10:34:30+08:00",
+          "summary": "On October 13, 2023, Caroline and Melanie discussed Caroline's adoption journey and shared advice on the adoption process, while Melanie revealed a recent injury that paused her pottery practice, highlighting their mutual support and personal reflections."
+        },
+        {
+          "unit_id": "1ca4c739-3ae8-48ff-b391-ef0faf5420ee",
+          "timestamp": "2023-10-13T10:38:30+08:00",
+          "summary": "On October 13, 2023, Melanie and Caroline discussed Melanie's recent injury that paused her pottery practice and shared their artistic creations, using art as a means of emotional expression and mutual support. Despite the setback, Melanie showed resilience by exploring painting, while Caroline encouraged and admired her work."
+        },
+        {
+          "unit_id": "1ca4c739-3ae8-48ff-b391-ef0faf5420ee",
+          "timestamp": "2023-10-13T10:38:30+08:00",
+          "summary": "On October 13, 2023, Melanie and Caroline discussed Melanie's recent injury that paused her pottery practice and shared their artistic creations, using art as a means of emotional expression and mutual support. Despite the setback, Melanie showed resilience by exploring painting, while Caroline encouraged and admired her work."
+        }
+      ],
+      "first_timestamp": "2023-07-03T13:41:30+08:00",
+      "last_timestamp": "2023-10-13T10:38:30+08:00",
+      "created_at": "2025-12-03T15:33:46.237784",
+      "updated_at": "2025-12-03T15:37:03.655427"
+    },
+    "gec_015": {
+      "cluster_id": "gec_015",
+      "topic": "Caroline's piano learning",
+      "summary": "On July 3, 2023, Melanie and Caroline discussed their recent creative activities, with Melanie sharing her enthusiasm for pottery as a therapeutic and expressive outlet, while Caroline talked about learning piano as her new creative pursuit. They exchanged encouragement and admiration for each other's artistic journeys.",
+      "members": [
+        {
+          "unit_id": "a5357064-8fd4-4ff2-a105-f738dc535ae2",
+          "timestamp": "2023-07-03T13:41:30+08:00",
+          "summary": "On July 3, 2023, Melanie and Caroline discussed their recent creative activities, with Melanie sharing her enthusiasm for pottery as a therapeutic and expressive outlet, while Caroline talked about learning piano as her new creative pursuit. They exchanged encouragement and admiration for each other's artistic journeys."
+        }
+      ],
+      "first_timestamp": "2023-07-03T13:41:30+08:00",
+      "last_timestamp": "2023-07-03T13:41:30+08:00",
+      "created_at": "2025-12-03T15:33:46.239794",
+      "updated_at": "2025-12-03T15:33:46.239794"
+    },
+    "gec_016": {
+      "cluster_id": "gec_016",
+      "topic": "Caroline's attendance at transgender conferences",
+      "summary": "On July 3, 2023, Melanie and Caroline discussed their upcoming plans, with Melanie excited about exploring pottery and Caroline looking forward to attending a transgender conference later that month. They exchanged mutual encouragement and support, expressing enthusiasm for their respective activities.",
+      "members": [
+        {
+          "unit_id": "d99d6f30-c63f-42e8-b2a9-a793f09ac078",
+          "timestamp": "2023-07-03T13:43:30+08:00",
+          "summary": "On July 3, 2023, Melanie and Caroline discussed their upcoming plans, with Melanie excited about exploring pottery and Caroline looking forward to attending a transgender conference later that month. They exchanged mutual encouragement and support, expressing enthusiasm for their respective activities."
+        }
+      ],
+      "first_timestamp": "2023-07-03T13:43:30+08:00",
+      "last_timestamp": "2023-07-03T13:43:30+08:00",
+      "created_at": "2025-12-03T15:33:51.900461",
+      "updated_at": "2025-12-03T15:33:51.900461"
+    },
+    "gec_017": {
+      "cluster_id": "gec_017",
+      "topic": "Parenting experiences",
+      "summary": "On July 6, 2023, Melanie and Caroline discussed their parenting experiences and childhood memories, sharing photos and stories about their children’s activities and favorite books. They expressed joy in motherhood, the importance of learning, and the value of sharing stories with children.",
+      "members": [
+        {
+          "unit_id": "51e3a97c-8b7c-4610-a3f3-46dabf4e1b52",
+          "timestamp": "2023-07-06T20:22:30+08:00",
+          "summary": "On July 6, 2023, Melanie and Caroline discussed their parenting experiences and childhood memories, sharing photos and stories about their children’s activities and favorite books. They expressed joy in motherhood, the importance of learning, and the value of sharing stories with children."
+        }
+      ],
+      "first_timestamp": "2023-07-06T20:22:30+08:00",
+      "last_timestamp": "2023-07-06T20:22:30+08:00",
+      "created_at": "2025-12-03T15:34:03.284425",
+      "updated_at": "2025-12-03T15:34:03.284425"
+    },
+    "gec_018": {
+      "cluster_id": "gec_018",
+      "topic": "Childhood memories and children's activities",
+      "summary": "On July 6, 2023, Melanie and Caroline discussed their parenting experiences and childhood memories, sharing photos and stories about their children’s activities and favorite books. They expressed joy in motherhood, the importance of learning, and the value of sharing stories with children.",
+      "members": [
+        {
+          "unit_id": "51e3a97c-8b7c-4610-a3f3-46dabf4e1b52",
+          "timestamp": "2023-07-06T20:22:30+08:00",
+          "summary": "On July 6, 2023, Melanie and Caroline discussed their parenting experiences and childhood memories, sharing photos and stories about their children’s activities and favorite books. They expressed joy in motherhood, the importance of learning, and the value of sharing stories with children."
+        },
+        {
+          "unit_id": "613838fe-9cb9-4718-a4fd-ddfc2c8f2d32",
+          "timestamp": "2023-07-06T20:25:30+08:00",
+          "summary": "On July 6, 2023, Melanie and Caroline discussed the importance of friendship, compassion, and family support, with Caroline sharing how her strong support network has been instrumental in her transition journey, while Melanie reflected on childhood literature and family bonding."
+        },
+        {
+          "unit_id": "135b93b4-a979-44c7-8e60-3a63e44cc914",
+          "timestamp": "2023-08-28T15:23:30+08:00",
+          "summary": "Melanie shared about taking her children to a park, while Caroline discussed her fulfilling experience volunteering at an LGBTQ+ youth center, emphasizing the importance of community support and resilience. Both expressed positive emotions about family enjoyment and meaningful community engagement."
+        }
+      ],
+      "first_timestamp": "2023-07-06T20:22:30+08:00",
+      "last_timestamp": "2023-08-28T15:23:30+08:00",
+      "created_at": "2025-12-03T15:34:03.286270",
+      "updated_at": "2025-12-03T15:36:25.344348"
+    },
+    "gec_019": {
+      "cluster_id": "gec_019",
+      "topic": "Friendship and compassion themes",
+      "summary": "On July 6, 2023, Melanie and Caroline discussed the importance of friendship, compassion, and family support, with Caroline sharing how her strong support network has been instrumental in her transition journey, while Melanie reflected on childhood literature and family bonding.",
+      "members": [
+        {
+          "unit_id": "613838fe-9cb9-4718-a4fd-ddfc2c8f2d32",
+          "timestamp": "2023-07-06T20:25:30+08:00",
+          "summary": "On July 6, 2023, Melanie and Caroline discussed the importance of friendship, compassion, and family support, with Caroline sharing how her strong support network has been instrumental in her transition journey, while Melanie reflected on childhood literature and family bonding."
+        },
+        {
+          "unit_id": "1d699dcb-e4e2-4c4a-9798-213a4a2ce895",
+          "timestamp": "2023-08-17T13:57:00+08:00",
+          "summary": "On August 17, 2023, Melanie and Caroline shared a heartfelt conversation about the importance of friendship, emotional support, and creative expression, with Melanie showcasing her colorful pottery project and both reflecting on how art and meaningful connections bring happiness and comfort in life’s challenges."
+        }
+      ],
+      "first_timestamp": "2023-07-06T20:25:30+08:00",
+      "last_timestamp": "2023-08-17T13:57:00+08:00",
+      "created_at": "2025-12-03T15:34:09.674092",
+      "updated_at": "2025-12-03T15:35:38.904456"
+    },
+    "gec_020": {
+      "cluster_id": "gec_020",
+      "topic": "Caroline's attendance at LGBTQ conferences",
+      "summary": "On July 12, 2023, Caroline and Melanie shared a supportive conversation reflecting on LGBTQ community experiences, mental health, personal growth, and shared interests such as pets and books. They discussed Caroline's attendance at an LGBTQ conference, her aspirations in counseling, and Melanie's positive mental health journey through running.",
+      "members": [
+        {
+          "unit_id": "4e2e78ad-4013-4dc1-9bf3-2cc7f347c3f8",
+          "timestamp": "2023-07-12T16:46:00+08:00",
+          "summary": "On July 12, 2023, Caroline and Melanie shared a supportive conversation reflecting on LGBTQ community experiences, mental health, personal growth, and shared interests such as pets and books. They discussed Caroline's attendance at an LGBTQ conference, her aspirations in counseling, and Melanie's positive mental health journey through running."
+        }
+      ],
+      "first_timestamp": "2023-07-12T16:46:00+08:00",
+      "last_timestamp": "2023-07-12T16:46:00+08:00",
+      "created_at": "2025-12-03T15:34:16.960641",
+      "updated_at": "2025-12-03T15:34:16.960641"
+    },
+    "gec_021": {
+      "cluster_id": "gec_021",
+      "topic": "Caroline's participation in pride parades",
+      "summary": "On July 15, 2023, Melanie and Caroline shared a heartfelt conversation reflecting on significant personal experiences, including Melanie’s marriage and Caroline’s empowering participation in a recent pride parade, highlighting themes of love, acceptance, and community support.",
+      "members": [
+        {
+          "unit_id": "4e6b03f1-eb16-4fc9-afdf-8601c274261c",
+          "timestamp": "2023-07-15T14:04:30+08:00",
+          "summary": "On July 15, 2023, Melanie and Caroline shared a heartfelt conversation reflecting on significant personal experiences, including Melanie’s marriage and Caroline’s empowering participation in a recent pride parade, highlighting themes of love, acceptance, and community support."
+        }
+      ],
+      "first_timestamp": "2023-07-15T14:04:30+08:00",
+      "last_timestamp": "2023-07-15T14:04:30+08:00",
+      "created_at": "2025-12-03T15:34:33.206554",
+      "updated_at": "2025-12-03T15:34:33.206554"
+    },
+    "gec_022": {
+      "cluster_id": "gec_022",
+      "topic": "Caroline's mentoring of LGBTQ youth",
+      "summary": "Melanie and Caroline discussed Caroline's rewarding involvement in mentoring LGBTQ youth, including her experiences supporting a transgender teenager and attending a recent pride event, while Melanie shared personal family moments and expressed strong support for Caroline's advocacy work. The conversation highlighted themes of community, resilience, and mutual encouragement.",
+      "members": [
+        {
+          "unit_id": "828a87d8-5233-4b91-908a-5f0f9c5213ea",
+          "timestamp": "2023-07-17T14:36:00+08:00",
+          "summary": "Melanie and Caroline discussed Caroline's rewarding involvement in mentoring LGBTQ youth, including her experiences supporting a transgender teenager and attending a recent pride event, while Melanie shared personal family moments and expressed strong support for Caroline's advocacy work. The conversation highlighted themes of community, resilience, and mutual encouragement."
+        }
+      ],
+      "first_timestamp": "2023-07-17T14:36:00+08:00",
+      "last_timestamp": "2023-07-17T14:36:00+08:00",
+      "created_at": "2025-12-03T15:34:48.972202",
+      "updated_at": "2025-12-03T15:34:48.972202"
+    },
+    "gec_023": {
+      "cluster_id": "gec_023",
+      "topic": "Melanie's family moments",
+      "summary": "Melanie and Caroline discussed Caroline's rewarding involvement in mentoring LGBTQ youth, including her experiences supporting a transgender teenager and attending a recent pride event, while Melanie shared personal family moments and expressed strong support for Caroline's advocacy work. The conversation highlighted themes of community, resilience, and mutual encouragement.",
+      "members": [
+        {
+          "unit_id": "828a87d8-5233-4b91-908a-5f0f9c5213ea",
+          "timestamp": "2023-07-17T14:36:00+08:00",
+          "summary": "Melanie and Caroline discussed Caroline's rewarding involvement in mentoring LGBTQ youth, including her experiences supporting a transgender teenager and attending a recent pride event, while Melanie shared personal family moments and expressed strong support for Caroline's advocacy work. The conversation highlighted themes of community, resilience, and mutual encouragement."
+        }
+      ],
+      "first_timestamp": "2023-07-17T14:36:00+08:00",
+      "last_timestamp": "2023-07-17T14:36:00+08:00",
+      "created_at": "2025-12-03T15:34:48.974485",
+      "updated_at": "2025-12-03T15:34:48.974485"
+    },
+    "gec_024": {
+      "cluster_id": "gec_024",
+      "topic": "Caroline's LGBTQ advocacy through art",
+      "summary": "On July 17, 2023, Melanie and Caroline discussed LGBTQ advocacy and art, with Caroline sharing details and an image of a painting she created for an upcoming LGBTQ art show inspired by themes of unity and strength. Both expressed admiration and excitement about the artwork and their ongoing creative efforts supporting the community.",
+      "members": [
+        {
+          "unit_id": "27affffa-f366-4481-bec0-f22e0d50d2c5",
+          "timestamp": "2023-07-17T14:39:00+08:00",
+          "summary": "On July 17, 2023, Melanie and Caroline discussed LGBTQ advocacy and art, with Caroline sharing details and an image of a painting she created for an upcoming LGBTQ art show inspired by themes of unity and strength. Both expressed admiration and excitement about the artwork and their ongoing creative efforts supporting the community."
+        }
+      ],
+      "first_timestamp": "2023-07-17T14:39:00+08:00",
+      "last_timestamp": "2023-07-17T14:39:00+08:00",
+      "created_at": "2025-12-03T15:34:54.712050",
+      "updated_at": "2025-12-03T15:34:54.712050"
+    },
+    "gec_025": {
+      "cluster_id": "gec_025",
+      "topic": "Caroline's challenging hiking experience",
+      "summary": "Caroline shared with Melanie a challenging hiking experience and her sunset painting inspired by a beach visit, while Melanie responded with empathy and shared her pottery hobby, highlighting their mutual encouragement and emotional connection.",
+      "members": [
+        {
+          "unit_id": "111ee5be-ca62-49f4-868b-750c32a4ed34",
+          "timestamp": "2023-08-25T13:37:00+08:00",
+          "summary": "Caroline shared with Melanie a challenging hiking experience and her sunset painting inspired by a beach visit, while Melanie responded with empathy and shared her pottery hobby, highlighting their mutual encouragement and emotional connection."
+        }
+      ],
+      "first_timestamp": "2023-08-25T13:37:00+08:00",
+      "last_timestamp": "2023-08-25T13:37:00+08:00",
+      "created_at": "2025-12-03T15:35:57.145309",
+      "updated_at": "2025-12-03T15:35:57.145309"
+    },
+    "gec_026": {
+      "cluster_id": "gec_026",
+      "topic": "Caroline's transgender journey and community acceptance",
+      "summary": "On August 25, 2023, Melanie and Caroline engaged in a meaningful conversation about Caroline's transgender journey, the significance of community and acceptance, and their shared passion for art as a form of expression and resilience. They exchanged images of their artwork and discussed how creativity fosters growth, joy, and mutual support.",
+      "members": [
+        {
+          "unit_id": "18b152d0-d844-4c53-a98d-c99afaf0b384",
+          "timestamp": "2023-08-25T13:48:30+08:00",
+          "summary": "On August 25, 2023, Melanie and Caroline engaged in a meaningful conversation about Caroline's transgender journey, the significance of community and acceptance, and their shared passion for art as a form of expression and resilience. They exchanged images of their artwork and discussed how creativity fosters growth, joy, and mutual support."
+        }
+      ],
+      "first_timestamp": "2023-08-25T13:48:30+08:00",
+      "last_timestamp": "2023-08-25T13:48:30+08:00",
+      "created_at": "2025-12-03T15:36:12.130368",
+      "updated_at": "2025-12-03T15:36:12.130368"
+    },
+    "gec_027": {
+      "cluster_id": "gec_027",
+      "topic": "Caroline's organization of LGBTQ art shows",
+      "summary": "Melanie and Caroline discussed their upcoming art projects, with Melanie inspired by autumn and Caroline organizing an LGBTQ art show in September 2023 to promote community understanding and showcase LGBTQ artists. Both expressed excitement and mutual support for their creative and community-focused endeavors.",
+      "members": [
+        {
+          "unit_id": "147e15d4-2f25-4056-995a-d051807bf125",
+          "timestamp": "2023-08-28T15:19:00+08:00",
+          "summary": "Melanie and Caroline discussed their upcoming art projects, with Melanie inspired by autumn and Caroline organizing an LGBTQ art show in September 2023 to promote community understanding and showcase LGBTQ artists. Both expressed excitement and mutual support for their creative and community-focused endeavors."
+        }
+      ],
+      "first_timestamp": "2023-08-28T15:19:00+08:00",
+      "last_timestamp": "2023-08-28T15:19:00+08:00",
+      "created_at": "2025-12-03T15:36:19.618195",
+      "updated_at": "2025-12-03T15:36:19.618195"
+    },
+    "gec_028": {
+      "cluster_id": "gec_028",
+      "topic": "Caroline's volunteering at LGBTQ+ youth center",
+      "summary": "Melanie shared about taking her children to a park, while Caroline discussed her fulfilling experience volunteering at an LGBTQ+ youth center, emphasizing the importance of community support and resilience. Both expressed positive emotions about family enjoyment and meaningful community engagement.",
+      "members": [
+        {
+          "unit_id": "135b93b4-a979-44c7-8e60-3a63e44cc914",
+          "timestamp": "2023-08-28T15:23:30+08:00",
+          "summary": "Melanie shared about taking her children to a park, while Caroline discussed her fulfilling experience volunteering at an LGBTQ+ youth center, emphasizing the importance of community support and resilience. Both expressed positive emotions about family enjoyment and meaningful community engagement."
+        }
+      ],
+      "first_timestamp": "2023-08-28T15:23:30+08:00",
+      "last_timestamp": "2023-08-28T15:23:30+08:00",
+      "created_at": "2025-12-03T15:36:25.341031",
+      "updated_at": "2025-12-03T15:36:25.341031"
+    },
+    "gec_029": {
+      "cluster_id": "gec_029",
+      "topic": "Caroline's organization of children's talent show",
+      "summary": "Melanie and Caroline discussed Caroline's role in organizing a children's talent show for September 2023, sharing their mutual passion for music as a form of emotional expression and connection. The conversation highlighted Caroline's dedication to community engagement and both participants' appreciation for meaningful songs and instruments they play.",
+      "members": [
+        {
+          "unit_id": "a70eb25a-81e4-41bf-a57d-be3c983365b0",
+          "timestamp": "2023-08-28T15:32:30+08:00",
+          "summary": "Melanie and Caroline discussed Caroline's role in organizing a children's talent show for September 2023, sharing their mutual passion for music as a form of emotional expression and connection. The conversation highlighted Caroline's dedication to community engagement and both participants' appreciation for meaningful songs and instruments they play."
+        }
+      ],
+      "first_timestamp": "2023-08-28T15:32:30+08:00",
+      "last_timestamp": "2023-08-28T15:32:30+08:00",
+      "created_at": "2025-12-03T15:36:32.725165",
+      "updated_at": "2025-12-03T15:36:32.725165"
+    },
+    "gec_030": {
+      "cluster_id": "gec_030",
+      "topic": "Caroline's passion for music as emotional expression",
+      "summary": "Melanie and Caroline discussed Caroline's role in organizing a children's talent show for September 2023, sharing their mutual passion for music as a form of emotional expression and connection. The conversation highlighted Caroline's dedication to community engagement and both participants' appreciation for meaningful songs and instruments they play.",
+      "members": [
+        {
+          "unit_id": "a70eb25a-81e4-41bf-a57d-be3c983365b0",
+          "timestamp": "2023-08-28T15:32:30+08:00",
+          "summary": "Melanie and Caroline discussed Caroline's role in organizing a children's talent show for September 2023, sharing their mutual passion for music as a form of emotional expression and connection. The conversation highlighted Caroline's dedication to community engagement and both participants' appreciation for meaningful songs and instruments they play."
+        }
+      ],
+      "first_timestamp": "2023-08-28T15:32:30+08:00",
+      "last_timestamp": "2023-08-28T15:32:30+08:00",
+      "created_at": "2025-12-03T15:36:32.727297",
+      "updated_at": "2025-12-03T15:36:32.727297"
+    },
+    "gec_031": {
+      "cluster_id": "gec_031",
+      "topic": "Mutual appreciation of meaningful songs and instruments",
+      "summary": "Melanie and Caroline discussed Caroline's role in organizing a children's talent show for September 2023, sharing their mutual passion for music as a form of emotional expression and connection. The conversation highlighted Caroline's dedication to community engagement and both participants' appreciation for meaningful songs and instruments they play.",
+      "members": [
+        {
+          "unit_id": "a70eb25a-81e4-41bf-a57d-be3c983365b0",
+          "timestamp": "2023-08-28T15:32:30+08:00",
+          "summary": "Melanie and Caroline discussed Caroline's role in organizing a children's talent show for September 2023, sharing their mutual passion for music as a form of emotional expression and connection. The conversation highlighted Caroline's dedication to community engagement and both participants' appreciation for meaningful songs and instruments they play."
+        }
+      ],
+      "first_timestamp": "2023-08-28T15:32:30+08:00",
+      "last_timestamp": "2023-08-28T15:32:30+08:00",
+      "created_at": "2025-12-03T15:36:32.729626",
+      "updated_at": "2025-12-03T15:36:32.729626"
+    },
+    "gec_032": {
+      "cluster_id": "gec_032",
+      "topic": "Caroline's recent outdoor activities",
+      "summary": "Caroline and Melanie reconnected through a conversation sharing photos and experiences of recent outdoor activities, highlighting the refreshing and joyful moments found in nature and family time. They expressed mutual appreciation for the beauty of their surroundings and the meaningfulness of simple, shared experiences.",
+      "members": [
+        {
+          "unit_id": "2861c6ad-2d40-4968-9927-1e735c1522c8",
+          "timestamp": "2023-09-13T00:10:30+08:00",
+          "summary": "Caroline and Melanie reconnected through a conversation sharing photos and experiences of recent outdoor activities, highlighting the refreshing and joyful moments found in nature and family time. They expressed mutual appreciation for the beauty of their surroundings and the meaningfulness of simple, shared experiences."
+        }
+      ],
+      "first_timestamp": "2023-09-13T00:10:30+08:00",
+      "last_timestamp": "2023-09-13T00:10:30+08:00",
+      "created_at": "2025-12-03T15:36:39.226772",
+      "updated_at": "2025-12-03T15:36:39.226772"
+    },
+    "gec_033": {
+      "cluster_id": "gec_033",
+      "topic": "Melanie's recent outdoor activities",
+      "summary": "Caroline and Melanie reconnected through a conversation sharing photos and experiences of recent outdoor activities, highlighting the refreshing and joyful moments found in nature and family time. They expressed mutual appreciation for the beauty of their surroundings and the meaningfulness of simple, shared experiences.",
+      "members": [
+        {
+          "unit_id": "2861c6ad-2d40-4968-9927-1e735c1522c8",
+          "timestamp": "2023-09-13T00:10:30+08:00",
+          "summary": "Caroline and Melanie reconnected through a conversation sharing photos and experiences of recent outdoor activities, highlighting the refreshing and joyful moments found in nature and family time. They expressed mutual appreciation for the beauty of their surroundings and the meaningfulness of simple, shared experiences."
+        }
+      ],
+      "first_timestamp": "2023-09-13T00:10:30+08:00",
+      "last_timestamp": "2023-09-13T00:10:30+08:00",
+      "created_at": "2025-12-03T15:36:39.229078",
+      "updated_at": "2025-12-03T15:36:39.229078"
+    },
+    "gec_034": {
+      "cluster_id": "gec_034",
+      "topic": "Shared appreciation of nature and family time",
+      "summary": "Caroline and Melanie reconnected through a conversation sharing photos and experiences of recent outdoor activities, highlighting the refreshing and joyful moments found in nature and family time. They expressed mutual appreciation for the beauty of their surroundings and the meaningfulness of simple, shared experiences.",
+      "members": [
+        {
+          "unit_id": "2861c6ad-2d40-4968-9927-1e735c1522c8",
+          "timestamp": "2023-09-13T00:10:30+08:00",
+          "summary": "Caroline and Melanie reconnected through a conversation sharing photos and experiences of recent outdoor activities, highlighting the refreshing and joyful moments found in nature and family time. They expressed mutual appreciation for the beauty of their surroundings and the meaningfulness of simple, shared experiences."
+        }
+      ],
+      "first_timestamp": "2023-09-13T00:10:30+08:00",
+      "last_timestamp": "2023-09-13T00:10:30+08:00",
+      "created_at": "2025-12-03T15:36:39.231397",
+      "updated_at": "2025-12-03T15:36:39.231397"
+    }
+  },
+  "unit_to_clusters": {
+    "3fe73bfe-3bbe-4ee5-932b-b0d815674864": [
+      "gec_001"
+    ],
+    "c90ed528-9100-45b6-a45e-bfccfaf3de52": [
+      "gec_001",
+      "gec_002"
+    ],
+    "46393a64-fd48-4430-a2c5-512cdd8bae82": [
+      "gec_003",
+      "gec_004"
+    ],
+    "1639f0aa-2032-4186-bd1e-9d8c86de798b": [
+      "gec_005",
+      "gec_006",
+      "gec_007"
+    ],
+    "a54a90f3-f651-440b-b57a-784877be7d0f": [
+      "gec_007",
+      "gec_008"
+    ],
+    "6d883b21-d023-41be-97d8-78c7275823a0": [
+      "gec_002"
+    ],
+    "f6757ce7-022e-417b-b0a4-3237cd08a948": [
+      "gec_009"
+    ],
+    "9426ceac-382c-4241-993f-6e7eea7b4a68": [
+      "gec_010",
+      "gec_011"
+    ],
+    "743f97db-42aa-42fa-8838-475aa2f87359": [
+      "gec_012",
+      "gec_013"
+    ],
+    "080847ba-dbe1-43a3-b295-7f817c6315fa": [
+      "gec_003",
+      "gec_002"
+    ],
+    "68bec8c2-169a-4030-af95-a83e703d0620": [
+      "gec_002",
+      "gec_003"
+    ],
+    "a5357064-8fd4-4ff2-a105-f738dc535ae2": [
+      "gec_014",
+      "gec_015"
+    ],
+    "d99d6f30-c63f-42e8-b2a9-a793f09ac078": [
+      "gec_014",
+      "gec_016"
+    ],
+    "c679051e-ccb6-4388-ad14-948d62c313db": [
+      "gec_003",
+      "gec_002"
+    ],
+    "51e3a97c-8b7c-4610-a3f3-46dabf4e1b52": [
+      "gec_017",
+      "gec_018"
+    ],
+    "613838fe-9cb9-4718-a4fd-ddfc2c8f2d32": [
+      "gec_019",
+      "gec_018"
+    ],
+    "4e2e78ad-4013-4dc1-9bf3-2cc7f347c3f8": [
+      "gec_002",
+      "gec_003",
+      "gec_020"
+    ],
+    "019f52e4-0f9a-4963-8e2d-aefb7e742a21": [
+      "gec_014",
+      "gec_004"
+    ],
+    "7149cf39-02c5-4469-943d-77d351001557": [
+      "gec_004",
+      "gec_008",
+      "gec_013"
+    ],
+    "4e6b03f1-eb16-4fc9-afdf-8601c274261c": [
+      "gec_009",
+      "gec_021"
+    ],
+    "c7fb903b-7f78-41ee-90d7-967df4313a76": [
+      "gec_012",
+      "gec_013"
+    ],
+    "828a87d8-5233-4b91-908a-5f0f9c5213ea": [
+      "gec_002",
+      "gec_013",
+      "gec_022",
+      "gec_023"
+    ],
+    "27affffa-f366-4481-bec0-f22e0d50d2c5": [
+      "gec_024",
+      "gec_004"
+    ],
+    "86b8bd9b-4e52-4faa-845e-13adc2d33173": [
+      "gec_002"
+    ],
+    "db306b2b-d960-4a72-a43a-47d704fb4ed4": [
+      "gec_002",
+      "gec_012"
+    ],
+    "de19e02f-8b38-4c7b-a747-fec8a5786d92": [
+      "gec_012",
+      "gec_007"
+    ],
+    "537fd5a6-4915-46d3-a97b-8d89f8695add": [
+      "gec_013"
+    ],
+    "d2244910-f790-4cb3-9720-c20c69d12217": [
+      "gec_013"
+    ],
+    "cb93e34e-ed10-438f-bdd0-76c516a6bad1": [
+      "gec_002",
+      "gec_004"
+    ],
+    "cf9d54b0-eb94-43fc-bc52-7209d612081b": [
+      "gec_002"
+    ],
+    "1d699dcb-e4e2-4c4a-9798-213a4a2ce895": [
+      "gec_019",
+      "gec_014"
+    ],
+    "0e602682-fc75-4cc3-b2b8-536f23b3ff38": [
+      "gec_002",
+      "gec_007"
+    ],
+    "1a26c30d-99cd-4f05-ad08-658b44e6820f": [
+      "gec_008",
+      "gec_004"
+    ],
+    "111ee5be-ca62-49f4-868b-750c32a4ed34": [
+      "gec_002",
+      "gec_004",
+      "gec_025"
+    ],
+    "fcd27e1b-fc2f-4e09-9c19-d7092ce2100d": [
+      "gec_004"
+    ],
+    "18b152d0-d844-4c53-a98d-c99afaf0b384": [
+      "gec_002",
+      "gec_004",
+      "gec_026"
+    ],
+    "147e15d4-2f25-4056-995a-d051807bf125": [
+      "gec_002",
+      "gec_027",
+      "gec_004"
+    ],
+    "135b93b4-a979-44c7-8e60-3a63e44cc914": [
+      "gec_013",
+      "gec_028",
+      "gec_018"
+    ],
+    "a70eb25a-81e4-41bf-a57d-be3c983365b0": [
+      "gec_029",
+      "gec_030",
+      "gec_031"
+    ],
+    "2861c6ad-2d40-4968-9927-1e735c1522c8": [
+      "gec_032",
+      "gec_033",
+      "gec_034"
+    ],
+    "03c10f73-0ed2-4d06-9977-9dd54fdee72a": [
+      "gec_002",
+      "gec_004"
+    ],
+    "55f1714e-4dc3-4567-963c-8e13078fc08c": [
+      "gec_002"
+    ],
+    "e9b79c48-3709-42ce-9748-4102e7aa2ba1": [
+      "gec_008",
+      "gec_014"
+    ],
+    "1ca4c739-3ae8-48ff-b391-ef0faf5420ee": [
+      "gec_004",
+      "gec_014"
+    ],
+    "f92cf41a-0b17-464b-901f-ad2a0d65fbaa": [
+      "gec_002",
+      "gec_004"
+    ],
+    "ac66b3ca-84a7-49cf-9108-a4f8c40e4b51": [
+      "gec_012",
+      "gec_013"
+    ],
+    "a520d753-f32a-4284-91b5-6565f7b3f319": [
+      "gec_008"
+    ]
+  },
+  "metadata": {
+    "conversation_id": "conv_0",
+    "total_units": 47,
+    "total_clusters": 34,
+    "created_at": "2025-12-03T15:32:42.041970",
+    "updated_at": "2025-12-03T15:37:20.957196",
+    "llm_model": "gpt-4.1-mini"
+  }
+}

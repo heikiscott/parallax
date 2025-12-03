@@ -1,0 +1,77 @@
+2025-11-23 05:28:41,299 - providers.llm.openai_provider - WARNING - openai_provider.py:149 - [OpenAI-gpt-4o-mini] 耗时太长: 30.15s
+2025-11-23 05:28:42,501 - providers.llm.openai_provider - WARNING - openai_provider.py:149 - [OpenAI-gpt-4o-mini] 耗时太长: 31.35s
+2025-11-23 05:28:42,955 - providers.llm.openai_provider - WARNING - openai_provider.py:149 - [OpenAI-gpt-4o-mini] 耗时太长: 31.80s
+2025-11-23 05:28:52,656 - providers.llm.openai_provider - WARNING - openai_provider.py:149 - [OpenAI-gpt-4o-mini] 耗时太长: 31.29s
+2025-11-23 05:28:56,135 - providers.llm.openai_provider - WARNING - openai_provider.py:149 - [OpenAI-gpt-4o-mini] 耗时太长: 44.97s
+2025-11-23 05:28:57,003 - providers.llm.openai_provider - WARNING - openai_provider.py:149 - [OpenAI-gpt-4o-mini] 耗时太长: 30.92s
+2025-11-23 05:28:58,313 - providers.llm.openai_provider - WARNING - openai_provider.py:149 - [OpenAI-gpt-4o-mini] 耗时太长: 47.16s
+2025-11-23 05:28:58,324 - providers.llm.openai_provider - WARNING - openai_provider.py:149 - [OpenAI-gpt-4o-mini] 耗时太长: 47.17s
+2025-11-23 05:28:59,605 - providers.llm.openai_provider - WARNING - openai_provider.py:149 - [OpenAI-gpt-4o-mini] 耗时太长: 48.47s
+2025-11-23 05:29:00,273 - providers.llm.openai_provider - WARNING - openai_provider.py:149 - [OpenAI-gpt-4o-mini] 耗时太长: 49.11s
+2025-11-23 05:29:00,756 - providers.llm.openai_provider - WARNING - openai_provider.py:149 - [OpenAI-gpt-4o-mini] 耗时太长: 49.63s
+2025-11-23 05:29:00,845 - providers.llm.openai_provider - WARNING - openai_provider.py:149 - [OpenAI-gpt-4o-mini] 耗时太长: 49.71s
+2025-11-23 05:29:04,092 - providers.llm.openai_provider - WARNING - openai_provider.py:149 - [OpenAI-gpt-4o-mini] 耗时太长: 31.34s
+2025-11-23 05:29:12,105 - providers.llm.openai_provider - WARNING - openai_provider.py:149 - [OpenAI-gpt-4o-mini] 耗时太长: 30.80s
+2025-11-23 05:29:14,578 - providers.llm.openai_provider - WARNING - openai_provider.py:149 - [OpenAI-gpt-4o-mini] 耗时太长: 47.48s
+2025-11-23 05:29:18,026 - providers.llm.openai_provider - WARNING - openai_provider.py:149 - [OpenAI-gpt-4o-mini] 耗时太长: 66.88s
+2025-11-23 05:29:31,242 - providers.llm.openai_provider - WARNING - openai_provider.py:149 - [OpenAI-gpt-4o-mini] 耗时太长: 65.22s
+2025-11-23 05:29:32,608 - providers.llm.openai_provider - WARNING - openai_provider.py:149 - [OpenAI-gpt-4o-mini] 耗时太长: 66.43s
+2025-11-23 05:29:37,972 - providers.llm.openai_provider - WARNING - openai_provider.py:149 - [OpenAI-gpt-4o-mini] 耗时太长: 47.69s
+2025-11-23 05:29:47,624 - providers.llm.openai_provider - WARNING - openai_provider.py:149 - [OpenAI-gpt-4o-mini] 耗时太长: 46.69s
+2025-11-23 05:29:59,601 - eval.adapters.parallax.stage4_response - WARNING - stage4_response.py:162 - Answer generation error (attempt 1/5): OpenAI API error after retries: Connection error.
+2025-11-23 05:30:00,097 - eval.adapters.parallax.stage4_response - WARNING - stage4_response.py:162 - Answer generation error (attempt 1/5): OpenAI API error after retries: Connection error.
+2025-11-23 05:30:00,420 - providers.llm.openai_provider - WARNING - openai_provider.py:149 - [OpenAI-gpt-4o-mini] 耗时太长: 109.29s
+2025-11-23 05:30:00,669 - eval.adapters.parallax.stage4_response - WARNING - stage4_response.py:162 - Answer generation error (attempt 1/5): OpenAI API error after retries: Connection error.
+2025-11-23 05:30:00,707 - eval.adapters.parallax.stage4_response - WARNING - stage4_response.py:162 - Answer generation error (attempt 1/5): OpenAI API error after retries: Connection error.
+2025-11-23 05:30:00,824 - eval.adapters.parallax.stage4_response - WARNING - stage4_response.py:162 - Answer generation error (attempt 1/5): OpenAI API error after retries: Connection error.
+2025-11-23 05:30:01,190 - eval.adapters.parallax.stage4_response - WARNING - stage4_response.py:162 - Answer generation error (attempt 1/5): OpenAI API error after retries: Connection error.
+2025-11-23 05:30:01,744 - eval.adapters.parallax.stage4_response - WARNING - stage4_response.py:162 - Answer generation error (attempt 1/5): OpenAI API error after retries: Connection error.
+2025-11-23 05:30:02,331 - providers.llm.openai_provider - WARNING - openai_provider.py:149 - [OpenAI-gpt-4o-mini] 耗时太长: 63.32s
+2025-11-23 05:30:02,740 - eval.adapters.parallax.stage4_response - WARNING - stage4_response.py:162 - Answer generation error (attempt 1/5): OpenAI API error after retries: Connection error.
+2025-11-23 05:30:02,759 - eval.adapters.parallax.stage4_response - WARNING - stage4_response.py:162 - Answer generation error (attempt 1/5): OpenAI API error after retries: Connection error.
+2025-11-23 05:30:05,863 - providers.llm.openai_provider - WARNING - openai_provider.py:149 - [OpenAI-gpt-4o-mini] 耗时太长: 82.66s
+2025-11-23 05:30:10,177 - eval.adapters.parallax.stage4_response - WARNING - stage4_response.py:162 - Answer generation error (attempt 1/5): OpenAI API error after retries: Connection error.
+2025-11-23 05:30:12,595 - eval.adapters.parallax.stage4_response - WARNING - stage4_response.py:162 - Answer generation error (attempt 1/5): OpenAI API error after retries: Connection error.
+2025-11-23 05:30:22,929 - eval.adapters.parallax.stage4_response - WARNING - stage4_response.py:162 - Answer generation error (attempt 1/5): OpenAI API error after retries: Connection error.
+2025-11-23 05:30:46,825 - eval.adapters.parallax.stage4_response - WARNING - stage4_response.py:162 - Answer generation error (attempt 1/5): OpenAI API error after retries: Connection error.
+2025-11-23 05:30:48,508 - eval.adapters.parallax.stage4_response - WARNING - stage4_response.py:162 - Answer generation error (attempt 1/5): OpenAI API error after retries: Connection error.
+2025-11-23 05:30:48,682 - eval.adapters.parallax.stage4_response - WARNING - stage4_response.py:162 - Answer generation error (attempt 1/5): OpenAI API error after retries: Connection error.
+2025-11-23 05:30:59,399 - eval.adapters.parallax.stage4_response - WARNING - stage4_response.py:162 - Answer generation error (attempt 1/5): OpenAI API error after retries: Connection error.
+2025-11-23 05:31:06,764 - providers.llm.openai_provider - WARNING - openai_provider.py:149 - [OpenAI-gpt-4o-mini] 耗时太长: 66.09s
+2025-11-23 05:31:49,538 - eval.adapters.parallax.stage4_response - WARNING - stage4_response.py:162 - Answer generation error (attempt 2/5): OpenAI API error after retries: Connection error.
+2025-11-23 05:31:50,353 - eval.adapters.parallax.stage4_response - WARNING - stage4_response.py:162 - Answer generation error (attempt 2/5): OpenAI API error after retries: Connection error.
+2025-11-23 05:31:50,415 - eval.adapters.parallax.stage4_response - WARNING - stage4_response.py:162 - Answer generation error (attempt 2/5): OpenAI API error after retries: Connection error.
+2025-11-23 05:31:50,827 - eval.adapters.parallax.stage4_response - WARNING - stage4_response.py:162 - Answer generation error (attempt 2/5): OpenAI API error after retries: Connection error.
+2025-11-23 05:31:50,992 - eval.adapters.parallax.stage4_response - WARNING - stage4_response.py:162 - Answer generation error (attempt 2/5): OpenAI API error after retries: Connection error.
+2025-11-23 05:31:51,994 - eval.adapters.parallax.stage4_response - WARNING - stage4_response.py:162 - Answer generation error (attempt 2/5): OpenAI API error after retries: Connection error.
+2025-11-23 05:31:53,019 - eval.adapters.parallax.stage4_response - WARNING - stage4_response.py:162 - Answer generation error (attempt 2/5): OpenAI API error after retries: Connection error.
+2025-11-23 05:31:53,169 - eval.adapters.parallax.stage4_response - WARNING - stage4_response.py:162 - Answer generation error (attempt 2/5): OpenAI API error after retries: Connection error.
+2025-11-23 05:31:56,265 - providers.llm.openai_provider - WARNING - openai_provider.py:149 - [OpenAI-gpt-4o-mini] 耗时太长: 67.58s
+2025-11-23 05:32:00,923 - eval.adapters.parallax.stage4_response - WARNING - stage4_response.py:162 - Answer generation error (attempt 2/5): OpenAI API error after retries: Connection error.
+2025-11-23 05:32:04,336 - eval.adapters.parallax.stage4_response - WARNING - stage4_response.py:162 - Answer generation error (attempt 2/5): OpenAI API error after retries: Connection error.
+2025-11-23 05:32:10,835 - providers.llm.openai_provider - WARNING - openai_provider.py:149 - [OpenAI-gpt-4o-mini] 耗时太长: 84.01s
+2025-11-23 05:32:12,523 - eval.adapters.parallax.stage4_response - WARNING - stage4_response.py:162 - Answer generation error (attempt 2/5): OpenAI API error after retries: Connection error.
+2025-11-23 05:32:22,840 - providers.llm.openai_provider - WARNING - openai_provider.py:149 - [OpenAI-gpt-4o-mini] 耗时太长: 83.44s
+2025-11-23 05:32:39,195 - eval.adapters.parallax.stage4_response - WARNING - stage4_response.py:162 - Answer generation error (attempt 2/5): OpenAI API error after retries: Connection error.
+2025-11-23 05:32:39,766 - providers.llm.openai_provider - WARNING - openai_provider.py:149 - [OpenAI-gpt-4o-mini] 耗时太长: 46.75s
+2025-11-23 05:32:42,461 - providers.llm.openai_provider - WARNING - openai_provider.py:149 - [OpenAI-gpt-4o-mini] 耗时太长: 49.29s
+2025-11-23 05:32:47,197 - providers.llm.openai_provider - WARNING - openai_provider.py:149 - [OpenAI-gpt-4o-mini] 耗时太长: 46.27s
+2025-11-23 05:32:55,732 - providers.llm.openai_provider - WARNING - openai_provider.py:149 - [OpenAI-gpt-4o-mini] 耗时太长: 64.90s
+2025-11-23 05:33:26,824 - providers.llm.openai_provider - WARNING - openai_provider.py:149 - [OpenAI-gpt-4o-mini] 耗时太长: 47.63s
+2025-11-23 05:33:38,912 - eval.adapters.parallax.stage4_response - WARNING - stage4_response.py:162 - Answer generation error (attempt 3/5): OpenAI API error after retries: Connection error.
+2025-11-23 05:33:39,830 - eval.adapters.parallax.stage4_response - WARNING - stage4_response.py:162 - Answer generation error (attempt 3/5): OpenAI API error after retries: Connection error.
+2025-11-23 05:33:40,295 - eval.adapters.parallax.stage4_response - WARNING - stage4_response.py:162 - Answer generation error (attempt 3/5): OpenAI API error after retries: Connection error.
+2025-11-23 05:33:42,207 - eval.adapters.parallax.stage4_response - WARNING - stage4_response.py:162 - Answer generation error (attempt 3/5): OpenAI API error after retries: Connection error.
+2025-11-23 05:33:53,559 - eval.adapters.parallax.stage4_response - WARNING - stage4_response.py:162 - Answer generation error (attempt 3/5): OpenAI API error after retries: Connection error.
+2025-11-23 05:34:02,755 - eval.adapters.parallax.stage4_response - WARNING - stage4_response.py:162 - Answer generation error (attempt 3/5): OpenAI API error after retries: Connection error.
+2025-11-23 05:34:12,245 - providers.llm.openai_provider - WARNING - openai_provider.py:149 - [OpenAI-gpt-4o-mini] 耗时太长: 31.95s
+2025-11-23 05:35:26,994 - eval.adapters.parallax.stage4_response - WARNING - stage4_response.py:162 - Answer generation error (attempt 4/5): OpenAI API error after retries: Connection error.
+2025-11-23 05:35:29,746 - eval.adapters.parallax.stage4_response - WARNING - stage4_response.py:162 - Answer generation error (attempt 4/5): OpenAI API error after retries: Connection error.
+2025-11-23 05:35:32,931 - eval.adapters.parallax.stage4_response - WARNING - stage4_response.py:162 - Answer generation error (attempt 4/5): OpenAI API error after retries: Connection error.
+2025-11-23 05:35:44,228 - eval.adapters.parallax.stage4_response - WARNING - stage4_response.py:162 - Answer generation error (attempt 4/5): OpenAI API error after retries: Connection error.
+2025-11-23 05:35:51,916 - eval.adapters.parallax.stage4_response - WARNING - stage4_response.py:162 - Answer generation error (attempt 4/5): OpenAI API error after retries: Connection error.
+2025-11-23 05:36:24,302 - providers.llm.openai_provider - WARNING - openai_provider.py:149 - [OpenAI-gpt-4o-mini] 耗时太长: 32.38s
+2025-11-23 05:37:16,396 - eval.adapters.parallax.stage4_response - WARNING - stage4_response.py:162 - Answer generation error (attempt 5/5): OpenAI API error after retries: Connection error.
+2025-11-23 05:37:21,276 - eval.adapters.parallax.stage4_response - WARNING - stage4_response.py:162 - Answer generation error (attempt 5/5): OpenAI API error after retries: Connection error.
+2025-11-23 05:37:22,860 - eval.adapters.parallax.stage4_response - WARNING - stage4_response.py:162 - Answer generation error (attempt 5/5): OpenAI API error after retries: Connection error.
+2025-11-23 05:37:34,182 - eval.adapters.parallax.stage4_response - WARNING - stage4_response.py:162 - Answer generation error (attempt 5/5): OpenAI API error after retries: Connection error.

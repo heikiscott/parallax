@@ -1,0 +1,723 @@
+{
+  "clusters": {
+    "gec_001": {
+      "cluster_id": "gec_001",
+      "topic": "Sam and Evan's Family Trip Chat",
+      "summary": "Sam and Evan discussed Evan's recent family trip to the Rockies, where he hiked scenic trails and traveled in his new Toyota Prius after repairing and selling his old one. Both expressed positive feelings about the trip and the views Evan shared.",
+      "members": [
+        {
+          "unit_id": "73787f73-e24b-4aa5-af1f-6e22c723f6c9",
+          "timestamp": "2023-05-18T13:49:30+08:00",
+          "summary": "Sam and Evan discussed Evan's recent family trip to the Rockies, where he hiked scenic trails and traveled in his new Toyota Prius after repairing and selling his old one. Both expressed positive feelings about the trip and the views Evan shared."
+        },
+        {
+          "unit_id": "1d41bb9d-5ff3-4ab1-8cf9-a4d09c3ed2c7",
+          "timestamp": "2023-05-18T13:51:00+08:00",
+          "summary": "Evan and Sam discussed their hiking experiences, with Evan sharing recent positive impressions from a trail hike and Sam reminiscing about a cherished childhood hike with his father. Their conversation reflected appreciation and nostalgia for hiking memories."
+        }
+      ],
+      "first_timestamp": "2023-05-18T13:49:30+08:00",
+      "last_timestamp": "2023-05-18T13:51:00+08:00",
+      "created_at": "2025-12-01T00:03:09.522217",
+      "updated_at": "2025-12-01T00:03:14.191274"
+    },
+    "gec_002": {
+      "cluster_id": "gec_002",
+      "topic": "Sam and Evan's Painting Hobby Chat",
+      "summary": "On May 18, 2023, Evan and Sam discussed hobbies, with Sam expressing interest in trying painting while Evan shared his enthusiasm and experience with watercolor painting, encouraging Sam to explore new creative activities. The conversation was supportive and focused on personal growth through hobbies.",
+      "members": [
+        {
+          "unit_id": "cc0bd243-b431-47e9-9282-fd0bb0958e00",
+          "timestamp": "2023-05-18T13:57:30+08:00",
+          "summary": "On May 18, 2023, Evan and Sam discussed hobbies, with Sam expressing interest in trying painting while Evan shared his enthusiasm and experience with watercolor painting, encouraging Sam to explore new creative activities. The conversation was supportive and focused on personal growth through hobbies."
+        }
+      ],
+      "first_timestamp": "2023-05-18T13:57:30+08:00",
+      "last_timestamp": "2023-05-18T13:57:30+08:00",
+      "created_at": "2025-12-01T00:03:18.525590",
+      "updated_at": "2025-12-01T00:03:18.525590"
+    },
+    "gec_003": {
+      "cluster_id": "gec_003",
+      "topic": "Evan's Jasper Road Trip",
+      "summary": "Evan shared details and photos of a recent family road trip to Jasper with Sam, describing the scenic Icefields Parkway and a peaceful cabin retreat, while Sam discussed having a tough week, leading to a supportive and friendly exchange between them.",
+      "members": [
+        {
+          "unit_id": "83c392cc-933a-43e2-a759-561827d5785f",
+          "timestamp": "2023-05-24T19:13:00+08:00",
+          "summary": "Evan shared details and photos of a recent family road trip to Jasper with Sam, describing the scenic Icefields Parkway and a peaceful cabin retreat, while Sam discussed having a tough week, leading to a supportive and friendly exchange between them."
+        }
+      ],
+      "first_timestamp": "2023-05-24T19:13:00+08:00",
+      "last_timestamp": "2023-05-24T19:13:00+08:00",
+      "created_at": "2025-12-01T00:03:23.905664",
+      "updated_at": "2025-12-01T00:03:23.905664"
+    },
+    "gec_004": {
+      "cluster_id": "gec_004",
+      "topic": "Sam's Health and Lifestyle Chat",
+      "summary": "Evan and Sam discussed Sam’s recent health concerns, with Evan offering empathetic support and practical advice on adopting a healthier lifestyle through enjoyable exercise and stress-relief activities like painting. Sam expressed challenges with breaking old habits but committed to trying new approaches and keeping Evan updated.",
+      "members": [
+        {
+          "unit_id": "fb963c31-22eb-4df5-9ba6-de422b286218",
+          "timestamp": "2023-05-24T19:19:00+08:00",
+          "summary": "Evan and Sam discussed Sam’s recent health concerns, with Evan offering empathetic support and practical advice on adopting a healthier lifestyle through enjoyable exercise and stress-relief activities like painting. Sam expressed challenges with breaking old habits but committed to trying new approaches and keeping Evan updated."
+        }
+      ],
+      "first_timestamp": "2023-05-24T19:19:00+08:00",
+      "last_timestamp": "2023-05-24T19:19:00+08:00",
+      "created_at": "2025-12-01T00:03:28.658007",
+      "updated_at": "2025-12-01T00:03:28.658007"
+    },
+    "gec_005": {
+      "cluster_id": "gec_005",
+      "topic": "Evan's Health Scare and Lifestyle",
+      "summary": "The group discussed Evan's 2023 health scare and its impact on lifestyle changes. From June to December, Evan and Sam shared fitness plans, emotional support, gratitude practices, and frustrations with self-checkout machines, fostering mutual encouragement and wellbeing.",
+      "members": [
+        {
+          "unit_id": "f03ef1c6-2cf8-4491-8918-beaf08ff0f87",
+          "timestamp": "2023-06-06T16:02:00+08:00",
+          "summary": "On June 6, 2023, Evan shared with Sam his recent health scare involving a heart palpitation, prompting a conversation about making healthier lifestyle and dietary changes, with Evan encouraging Sam to adopt small, manageable habits and offering support for exercise routines. Both expressed mutual motivation and plans to support each other’s health journeys."
+        },
+        {
+          "unit_id": "68754080-a95f-48dc-af75-9a1897b3b0c4",
+          "timestamp": "2023-06-06T16:03:30+08:00",
+          "summary": "Evan and Sam discussed fitness plans, with Evan offering to show basic exercises to support Sam's goals, while Sam shared frustration over broken self-checkout machines at the supermarket earlier that day. The conversation was supportive and focused on collaboration despite Sam's earlier irritation."
+        },
+        {
+          "unit_id": "5458ee06-44dd-4d40-8288-45dffdd31320",
+          "timestamp": "2023-11-21T19:35:30+08:00",
+          "summary": "On November 21, 2023, Evan and Sam discussed recent health challenges and emotional support, with Evan sharing his health scare and both agreeing to practice daily gratitude to enhance their well-being. They expressed mutual encouragement and the importance of friendship in coping with difficult times."
+        },
+        {
+          "unit_id": "3ff04017-ff57-4eba-93e3-87096feeab72",
+          "timestamp": "2023-11-21T19:38:00+08:00",
+          "summary": "On November 21, 2023, Evan and Sam engaged in a supportive conversation about friendship, fitness routines, and scenic photography, sharing personal experiences and encouraging each other's wellbeing."
+        },
+        {
+          "unit_id": "4f938a19-ce88-4cf3-9292-312086226b00",
+          "timestamp": "2023-12-31T11:10:00+08:00",
+          "summary": "On December 31, 2023, Sam and Evan exchanged a friendly conversation where Sam expressed appreciation for Evan's recipe recommendations and shared his recurring frustration with the self-checkout system, which Evan found surprising. The dialogue highlighted both Sam's mild annoyance and their mutual goodwill."
+        }
+      ],
+      "first_timestamp": "2023-06-06T16:02:00+08:00",
+      "last_timestamp": "2023-12-31T11:10:00+08:00",
+      "created_at": "2025-12-01T00:03:34.032211",
+      "updated_at": "2025-12-01T00:07:07.431469"
+    },
+    "gec_006": {
+      "cluster_id": "gec_006",
+      "topic": "Sam's Emotional Health and Support",
+      "summary": "On July 27, 2023, Sam confided in Evan about feeling hurt by friends mocking his weight, prompting a commitment to healthier habits, while Evan shared his own health journey and offered support, advice on diet and exercise, and encouragement for Sam's progress.",
+      "members": [
+        {
+          "unit_id": "fa7107dd-4c8e-4352-b4a0-f06f9f534cf3",
+          "timestamp": "2023-07-27T11:01:30+08:00",
+          "summary": "On July 27, 2023, Sam confided in Evan about feeling hurt by friends mocking his weight, prompting a commitment to healthier habits, while Evan shared his own health journey and offered support, advice on diet and exercise, and encouragement for Sam's progress."
+        }
+      ],
+      "first_timestamp": "2023-07-27T11:01:30+08:00",
+      "last_timestamp": "2023-07-27T11:01:30+08:00",
+      "created_at": "2025-12-01T00:03:44.130694",
+      "updated_at": "2025-12-01T00:03:44.130694"
+    },
+    "gec_007": {
+      "cluster_id": "gec_007",
+      "topic": "Evan's Ongoing Health Journey & Canada Trip",
+      "summary": "On August 7, 2023, Evan and Sam discussed Evan's ongoing health journey, his recent uplifting experiences including a trip to Canada and meaningful encounters, and the motivations that help him persevere, such as family, adventure, and symbolic objects like a bonsai tree. Sam offered support and showed interest in Evan's health tools, highlighting the importance of consistency and resilience.",
+      "members": [
+        {
+          "unit_id": "f466f4e5-05ce-4ea6-a9b3-4160563ebf83",
+          "timestamp": "2023-08-07T20:04:00+08:00",
+          "summary": "On August 7, 2023, Evan and Sam discussed Evan's ongoing health journey, his recent uplifting experiences including a trip to Canada and meaningful encounters, and the motivations that help him persevere, such as family, adventure, and symbolic objects like a bonsai tree. Sam offered support and showed interest in Evan's health tools, highlighting the importance of consistency and resilience."
+        }
+      ],
+      "first_timestamp": "2023-08-07T20:04:00+08:00",
+      "last_timestamp": "2023-08-07T20:04:00+08:00",
+      "created_at": "2025-12-01T00:03:49.144998",
+      "updated_at": "2025-12-01T00:03:49.144998"
+    },
+    "gec_008": {
+      "cluster_id": "gec_008",
+      "topic": "Evan's Canada Trip with Partner",
+      "summary": "On August 13, 2023, Evan shared a photo and recounted his recent vacation in Canada with his new significant other to Sam, expressing excitement about their outdoor activities and a desire to reconnect. The conversation followed a brief farewell message from Evan earlier that week.",
+      "members": [
+        {
+          "unit_id": "2388484f-f3cb-4a3a-b69d-99d54308e408",
+          "timestamp": "2023-08-13T16:09:00+08:00",
+          "summary": "On August 13, 2023, Evan shared a photo and recounted his recent vacation in Canada with his new significant other to Sam, expressing excitement about their outdoor activities and a desire to reconnect. The conversation followed a brief farewell message from Evan earlier that week."
+        },
+        {
+          "unit_id": "0f9ca7bc-01c6-4212-b23f-71e4d934ee62",
+          "timestamp": "2023-08-13T16:15:00+08:00",
+          "summary": "On August 13, 2023, Sam and Evan engaged in a supportive conversation where Sam shared struggles with health issues and a motivational quote about taking small steps toward healthier habits, while Evan offered empathy, encouragement, and emphasized celebrating small victories."
+        },
+        {
+          "unit_id": "f74461dd-a37b-4234-a0eb-5dbd7d31a9b4",
+          "timestamp": "2023-08-13T16:18:00+08:00",
+          "summary": "Evan and Sam engaged in a brief supportive conversation where Evan shared his frustration about losing his keys, and Sam described an amazing dream, with both encouraging each other and expressing hope and perseverance."
+        }
+      ],
+      "first_timestamp": "2023-08-13T16:09:00+08:00",
+      "last_timestamp": "2023-08-13T16:18:00+08:00",
+      "created_at": "2025-12-01T00:03:56.483721",
+      "updated_at": "2025-12-01T00:04:06.424422"
+    },
+    "gec_009": {
+      "cluster_id": "gec_009",
+      "topic": "Evan's Son's Ankle Injury",
+      "summary": "Evan informed Sam about his son's recent ankle injury from a soccer accident, and they exchanged mutual support regarding personal health challenges while sharing healthy recipes to encourage better self-care. Both showed concern for each other's wellbeing and discussed ongoing efforts to improve their health.",
+      "members": [
+        {
+          "unit_id": "73162b05-12e7-4170-a582-4217917feadf",
+          "timestamp": "2023-08-15T16:27:30+08:00",
+          "summary": "Evan informed Sam about his son's recent ankle injury from a soccer accident, and they exchanged mutual support regarding personal health challenges while sharing healthy recipes to encourage better self-care. Both showed concern for each other's wellbeing and discussed ongoing efforts to improve their health."
+        },
+        {
+          "unit_id": "99fe0a4b-b6d2-4679-935f-a668e60222af",
+          "timestamp": "2023-12-17T18:54:00+08:00",
+          "summary": "On December 17, 2023, Evan and Sam reconnected after several days of no contact, discussing personal challenges including Evan’s son’s recent accident and Sam’s struggles with weight and motivation, while planning to go hiking together to support each other’s well-being. Throughout the conversation, they expressed empathy and encouragement, emphasizing the importance of trying new activities to cope and improve."
+        }
+      ],
+      "first_timestamp": "2023-08-15T16:27:30+08:00",
+      "last_timestamp": "2023-12-17T18:54:00+08:00",
+      "created_at": "2025-12-01T00:04:10.647655",
+      "updated_at": "2025-12-01T00:06:28.751658"
+    },
+    "gec_010": {
+      "cluster_id": "gec_010",
+      "topic": "Sam and Evan's Healthy Lifestyle & Painting",
+      "summary": "The group discussed Sam's commitment to a healthier lifestyle and Evan's passion for watercolor painting from August to October 2023, sharing support, creative stress relief, and motivation, culminating in planned painting sessions and advice on weightlifting amid health challenges.",
+      "members": [
+        {
+          "unit_id": "94b2b04c-43ac-4816-81ec-ec9c8be3a32b",
+          "timestamp": "2023-08-19T18:22:30+08:00",
+          "summary": "On August 19, 2023, Sam and Evan discussed Sam's new commitment to a healthier lifestyle, sharing healthy recipes and mutual encouragement, while Evan also shared enthusiasm for recently starting painting classes. Their conversation highlighted support, healthy living, and exploring creative activities."
+        },
+        {
+          "unit_id": "7aa10c2a-795a-4550-9272-9b9db1ae50f5",
+          "timestamp": "2023-08-19T18:29:30+08:00",
+          "summary": "On August 19, 2023, Evan shared with Sam his recent experience taking watercolor painting classes inspired by a gifted forest painting, expressing how painting and nature bring him peace and fulfillment. Sam showed admiration for Evan's artistic talents and interest in his creative journey."
+        },
+        {
+          "unit_id": "de0950a9-dd44-4bf2-abb2-69669c889b1a",
+          "timestamp": "2023-09-11T09:34:30+08:00",
+          "summary": "On September 11, 2023, Sam and Evan discussed their health and lifestyle changes, with Sam sharing his body transformation and struggles with cravings, while Evan encouraged creative stress relief through painting, leading them to plan a painting session together for September 16."
+        },
+        {
+          "unit_id": "81ca33f7-f516-454e-9aaa-de62c4180f82",
+          "timestamp": "2023-10-06T21:06:30+08:00",
+          "summary": "On October 6, 2023, Sam and Evan discussed their personal hobbies and self-expression, with Evan sharing his passion for watercolor painting and a recent adventure helping a lost tourist, while Sam talked about using writing as a therapeutic outlet. They exchanged experiences and advice, highlighting the importance of creative activities for emotional relief."
+        },
+        {
+          "unit_id": "5d2d7b74-00f5-49fe-9405-deacdf3c4d09",
+          "timestamp": "2023-10-14T16:07:00+08:00",
+          "summary": "In October 2023, after receiving a serious health warning about his weight, Sam sought support from Evan, who encouraged him to start weightlifting and provided advice and motivation. Their ongoing communication highlighted Evan’s role as a supportive friend helping Sam navigate his health journey with positivity and patience."
+        },
+        {
+          "unit_id": "73d505b2-3ef7-4211-bddc-290583b7187b",
+          "timestamp": "2023-10-14T16:14:30+08:00",
+          "summary": "Evan and Sam reconnected after a period of no contact, with Evan sharing a painting and encouraging Sam, who was stressed and feeling guilty about unhealthy habits, to try kayaking as a way to de-stress; Sam expressed excitement about an upcoming kayaking trip at Lake Tahoe."
+        },
+        {
+          "unit_id": "2c499759-2992-4958-b4f5-212a34658b3f",
+          "timestamp": "2024-01-10T00:28:30+08:00",
+          "summary": "Sam and Evan discussed health, diet, and exercise plans, with Sam sharing a meal and workout schedule inspired by recent ideas and committing to staying active through activities like snowshoeing, yoga, and beach walks, while Evan offered advice on balanced diets and low-impact exercises. They also touched on consulting a doctor for personalized guidance and shared motivational moments, including references to The Godfather and Sam’s recurring dream."
+        },
+        {
+          "unit_id": "167ca267-4260-4d03-98e1-7a69a9a7ad71",
+          "timestamp": "2024-01-10T00:28:30+08:00",
+          "summary": "Sam and Evan engaged in a supportive conversation where Sam shared his health struggles and efforts to stay positive, while Evan offered empathy, personal reflections, and encouragement to find peace and joy in nature and small moments. Their exchange included sharing photos and mutual encouragement to appreciate life’s restorative effects despite challenges."
+        }
+      ],
+      "first_timestamp": "2023-08-19T18:22:30+08:00",
+      "last_timestamp": "2024-01-10T00:28:30+08:00",
+      "created_at": "2025-12-01T00:04:15.698421",
+      "updated_at": "2025-12-01T00:07:43.408649"
+    },
+    "gec_011": {
+      "cluster_id": "gec_011",
+      "topic": "Evan and Sam's Winter Sports Chat",
+      "summary": "Evan and Sam discussed winter sports and recent travel, with Evan sharing his enjoyable skiing experiences in Banff and encouraging Sam to try winter activities despite Sam's physical reservations. The conversation was friendly and supportive, highlighting Evan's enthusiasm and Sam's appreciation.",
+      "members": [
+        {
+          "unit_id": "d25a5fa9-6f14-4d61-9363-470c2b21aeb4",
+          "timestamp": "2023-08-19T18:33:00+08:00",
+          "summary": "Evan and Sam discussed winter sports and recent travel, with Evan sharing his enjoyable skiing experiences in Banff and encouraging Sam to try winter activities despite Sam's physical reservations. The conversation was friendly and supportive, highlighting Evan's enthusiasm and Sam's appreciation."
+        }
+      ],
+      "first_timestamp": "2023-08-19T18:33:00+08:00",
+      "last_timestamp": "2023-08-19T18:33:00+08:00",
+      "created_at": "2025-12-01T00:04:25.600536",
+      "updated_at": "2025-12-01T00:04:25.600536"
+    },
+    "gec_012": {
+      "cluster_id": "gec_012",
+      "topic": "Sam and Evan's Fitness & Injury Chat",
+      "summary": "On August 27, 2023, Sam shared his excitement about starting a new diet and exercise routine with Evan, who responded by revealing he had twisted his knee the previous Friday, hindering his fitness activities; the conversation highlighted their mutual support amid Sam’s positive changes and Evan’s physical setback.",
+      "members": [
+        {
+          "unit_id": "db4739c6-5af6-49ea-ba67-b70fcfb9cfa7",
+          "timestamp": "2023-08-27T10:19:00+08:00",
+          "summary": "On August 27, 2023, Sam shared his excitement about starting a new diet and exercise routine with Evan, who responded by revealing he had twisted his knee the previous Friday, hindering his fitness activities; the conversation highlighted their mutual support amid Sam’s positive changes and Evan’s physical setback."
+        },
+        {
+          "unit_id": "11bff202-77f0-4f1a-aa48-641878e7459a",
+          "timestamp": "2023-08-27T10:21:00+08:00",
+          "summary": "On August 27, 2023, Evan and Sam discussed Evan's challenges with his knee and his interest in a captivating book, with Sam offering supportive advice on low-impact exercises like swimming and physical therapy to aid his recovery."
+        },
+        {
+          "unit_id": "e4b35f24-86cb-4b60-a489-0ae5812877cc",
+          "timestamp": "2023-10-06T20:59:00+08:00",
+          "summary": "On October 6, 2023, Sam and Evan reconnected, with Sam sharing his shift toward healthier eating and Evan revealing his recent knee injury from playing basketball with his children, which limited his activity but was being managed through physical therapy. Their conversation centered on support, health, and finding ways to stay active during recovery."
+        }
+      ],
+      "first_timestamp": "2023-08-27T10:19:00+08:00",
+      "last_timestamp": "2023-10-06T20:59:00+08:00",
+      "created_at": "2025-12-01T00:04:31.010927",
+      "updated_at": "2025-12-01T00:04:53.277960"
+    },
+    "gec_013": {
+      "cluster_id": "gec_013",
+      "topic": "Evan and Sam's Rocky Mountains Trip",
+      "summary": "On August 27, 2023, Evan and Sam discussed Evan's recent road trip to the Rocky Mountains, sharing photos and expressing enthusiasm for nature, hiking, and planning a future hike together near a nearby lake with scenic trails. Both conveyed positive feelings about relaxation and exploring the outdoors.",
+      "members": [
+        {
+          "unit_id": "4e55c95e-16b1-4af3-a15e-cda2331d4b3d",
+          "timestamp": "2023-08-27T10:27:00+08:00",
+          "summary": "On August 27, 2023, Evan and Sam discussed Evan's recent road trip to the Rocky Mountains, sharing photos and expressing enthusiasm for nature, hiking, and planning a future hike together near a nearby lake with scenic trails. Both conveyed positive feelings about relaxation and exploring the outdoors."
+        }
+      ],
+      "first_timestamp": "2023-08-27T10:27:00+08:00",
+      "last_timestamp": "2023-08-27T10:27:00+08:00",
+      "created_at": "2025-12-01T00:04:42.275492",
+      "updated_at": "2025-12-01T00:04:42.275492"
+    },
+    "gec_014": {
+      "cluster_id": "gec_014",
+      "topic": "Sam's Gastritis Health Scare",
+      "summary": "Sam and Evan discussed Sam's recent health scare with gastritis and his plans to improve his fitness, while Evan offered support and advice, leading them to plan a hiking trip together to motivate Sam's exercise routine.",
+      "members": [
+        {
+          "unit_id": "546c122c-2e55-48d8-aef2-fea5f9d82ebc",
+          "timestamp": "2023-10-17T13:57:30+08:00",
+          "summary": "Sam and Evan discussed Sam's recent health scare with gastritis and his plans to improve his fitness, while Evan offered support and advice, leading them to plan a hiking trip together to motivate Sam's exercise routine."
+        }
+      ],
+      "first_timestamp": "2023-10-17T13:57:30+08:00",
+      "last_timestamp": "2023-10-17T13:57:30+08:00",
+      "created_at": "2025-12-01T00:05:16.272914",
+      "updated_at": "2025-12-01T00:05:16.272914"
+    },
+    "gec_015": {
+      "cluster_id": "gec_015",
+      "topic": "Sam's Health Routine Challenges",
+      "summary": "Sam and Evan discussed Sam's challenges in maintaining a new health routine amid family pressure, with Evan offering empathetic support, practical advice on patience and gradual progress, and sharing his own similar experience to encourage Sam.",
+      "members": [
+        {
+          "unit_id": "216b8f30-6b0f-4017-958f-66aca99529c6",
+          "timestamp": "2023-10-25T14:59:30+08:00",
+          "summary": "Sam and Evan discussed Sam's challenges in maintaining a new health routine amid family pressure, with Evan offering empathetic support, practical advice on patience and gradual progress, and sharing his own similar experience to encourage Sam."
+        },
+        {
+          "unit_id": "fcee4dd3-67d4-4152-baed-f76875cdc148",
+          "timestamp": "2023-10-25T15:04:30+08:00",
+          "summary": "On October 25, 2023, Evan and Sam discussed lifestyle changes focused on healthy eating, regular walking, and mindset shifts toward well-being, with Evan sharing his experience of embracing patience and celebrating small victories to support Sam's journey. The conversation emphasized mutual encouragement and the importance of gradual progress for lasting change."
+        }
+      ],
+      "first_timestamp": "2023-10-25T14:59:30+08:00",
+      "last_timestamp": "2023-10-25T15:04:30+08:00",
+      "created_at": "2025-12-01T00:05:21.131296",
+      "updated_at": "2025-12-01T00:05:26.088266"
+    },
+    "gec_016": {
+      "cluster_id": "gec_016",
+      "topic": "Sam Becomes Weight Watchers Coach",
+      "summary": "On November 9, 2023, Sam shared with Evan the achievement of becoming a Weight Watchers coach, leading to mutual encouragement and support as Sam expressed motivation to help others and face upcoming challenges. Evan acknowledged Sam's progress while also sharing personal difficulties but reaffirmed continued support.",
+      "members": [
+        {
+          "unit_id": "c6bcd10d-118e-4ee9-ae85-8d77cebd3020",
+          "timestamp": "2023-11-09T21:16:30+08:00",
+          "summary": "On November 9, 2023, Sam shared with Evan the achievement of becoming a Weight Watchers coach, leading to mutual encouragement and support as Sam expressed motivation to help others and face upcoming challenges. Evan acknowledged Sam's progress while also sharing personal difficulties but reaffirmed continued support."
+        },
+        {
+          "unit_id": "356fb055-bcf8-4d8a-90b1-0f1eb23df5cb",
+          "timestamp": "2023-12-05T20:23:00+08:00",
+          "summary": "On December 5, 2023, Sam and Evan discussed health and wellness, with Sam sharing insights from a recent Weight Watchers meeting and endorsing yoga, which Evan decided to try for stress relief and flexibility. The conversation highlighted mutual support and encouragement in adopting healthier lifestyle habits."
+        }
+      ],
+      "first_timestamp": "2023-11-09T21:16:30+08:00",
+      "last_timestamp": "2023-12-05T20:23:00+08:00",
+      "created_at": "2025-12-01T00:05:30.850005",
+      "updated_at": "2025-12-01T00:06:11.974193"
+    },
+    "gec_017": {
+      "cluster_id": "gec_017",
+      "topic": "Evan's Job Loss and Support",
+      "summary": "On November 9, 2023, Evan shared with Sam that he had lost his job due to company downsizing and was facing personal challenges, while expressing gratitude for Sam’s ongoing support and encouragement to stay positive. Sam responded with sympathy and offered continued emotional support throughout their conversation.",
+      "members": [
+        {
+          "unit_id": "0dfdc72d-a865-429d-abb9-edb81aeea9c1",
+          "timestamp": "2023-11-09T21:20:30+08:00",
+          "summary": "On November 9, 2023, Evan shared with Sam that he had lost his job due to company downsizing and was facing personal challenges, while expressing gratitude for Sam’s ongoing support and encouragement to stay positive. Sam responded with sympathy and offered continued emotional support throughout their conversation."
+        }
+      ],
+      "first_timestamp": "2023-11-09T21:20:30+08:00",
+      "last_timestamp": "2023-11-09T21:20:30+08:00",
+      "created_at": "2025-12-01T00:05:36.225332",
+      "updated_at": "2025-12-01T00:05:36.225332"
+    },
+    "gec_018": {
+      "cluster_id": "gec_018",
+      "topic": "Evan and Sam's Beach Sunset Chat",
+      "summary": "Evan and Sam discussed a photo Evan shared of a sunset at his favorite beach spot, expressing appreciation and planning to visit the peaceful location together in December 2023 to enjoy its calming atmosphere.",
+      "members": [
+        {
+          "unit_id": "0eb94c21-f9aa-4890-8c74-53c399c53822",
+          "timestamp": "2023-11-09T21:24:30+08:00",
+          "summary": "Evan and Sam discussed a photo Evan shared of a sunset at his favorite beach spot, expressing appreciation and planning to visit the peaceful location together in December 2023 to enjoy its calming atmosphere."
+        }
+      ],
+      "first_timestamp": "2023-11-09T21:24:30+08:00",
+      "last_timestamp": "2023-11-09T21:24:30+08:00",
+      "created_at": "2025-12-01T00:05:40.855988",
+      "updated_at": "2025-12-01T00:05:40.855988"
+    },
+    "gec_019": {
+      "cluster_id": "gec_019",
+      "topic": "Evan and Sam's November Reconnection",
+      "summary": "In November 2023, Evan expressed excitement about planning an exploration activity for the following month, and later Sam reconnected with him after a long absence, initiating a friendly conversation centered around Evan’s upcoming trip.",
+      "members": [
+        {
+          "unit_id": "4c35ce95-5359-4496-9f38-ad22c80e3ed7",
+          "timestamp": "2023-11-21T19:30:00+08:00",
+          "summary": "In November 2023, Evan expressed excitement about planning an exploration activity for the following month, and later Sam reconnected with him after a long absence, initiating a friendly conversation centered around Evan’s upcoming trip."
+        }
+      ],
+      "first_timestamp": "2023-11-21T19:30:00+08:00",
+      "last_timestamp": "2023-11-21T19:30:00+08:00",
+      "created_at": "2025-12-01T00:05:45.454152",
+      "updated_at": "2025-12-01T00:05:45.454152"
+    },
+    "gec_020": {
+      "cluster_id": "gec_020",
+      "topic": "Evan's Childhood Island Reflections",
+      "summary": "Sam and Evan discussed the serene island where Evan grew up, with Evan sharing photos and reflecting on its peaceful, soul-calming impact on his life. The conversation highlighted Evan's deep emotional connection to his childhood home and the calming effect it had on both participants.",
+      "members": [
+        {
+          "unit_id": "f964e376-853b-466e-ac91-9360719a353c",
+          "timestamp": "2023-11-21T19:43:30+08:00",
+          "summary": "Sam and Evan discussed the serene island where Evan grew up, with Evan sharing photos and reflecting on its peaceful, soul-calming impact on his life. The conversation highlighted Evan's deep emotional connection to his childhood home and the calming effect it had on both participants."
+        }
+      ],
+      "first_timestamp": "2023-11-21T19:43:30+08:00",
+      "last_timestamp": "2023-11-21T19:43:30+08:00",
+      "created_at": "2025-12-01T00:06:00.848539",
+      "updated_at": "2025-12-01T00:06:00.848539"
+    },
+    "gec_021": {
+      "cluster_id": "gec_021",
+      "topic": "Evan's Prius Trouble & Sam's Weight Watchers",
+      "summary": "On December 5, 2023, Evan and Sam discussed Evan's recent frustration with his new Toyota Prius breaking down and Sam's positive experience attending a Weight Watchers meeting, with both expressing empathy and optimism about adapting to unexpected challenges. Their conversation highlighted mutual support and a shared focus on finding silver linings in difficult situations.",
+      "members": [
+        {
+          "unit_id": "798c6975-a3b5-4dd3-8576-3cb381bc274d",
+          "timestamp": "2023-12-05T20:18:30+08:00",
+          "summary": "On December 5, 2023, Evan and Sam discussed Evan's recent frustration with his new Toyota Prius breaking down and Sam's positive experience attending a Weight Watchers meeting, with both expressing empathy and optimism about adapting to unexpected challenges. Their conversation highlighted mutual support and a shared focus on finding silver linings in difficult situations."
+        }
+      ],
+      "first_timestamp": "2023-12-05T20:18:30+08:00",
+      "last_timestamp": "2023-12-05T20:18:30+08:00",
+      "created_at": "2025-12-01T00:06:06.815235",
+      "updated_at": "2025-12-01T00:06:06.815235"
+    },
+    "gec_022": {
+      "cluster_id": "gec_022",
+      "topic": "Evan's Partner Pregnancy News",
+      "summary": "Evan shared with Sam the exciting news that his partner is pregnant, expressing both excitement and nervousness about expecting a child, and they discussed the joys of parenthood and the importance of cherishing family memories.",
+      "members": [
+        {
+          "unit_id": "cf1a2470-3b80-4d66-b3a8-03b91393505f",
+          "timestamp": "2023-12-09T13:47:00+08:00",
+          "summary": "Evan shared with Sam the exciting news that his partner is pregnant, expressing both excitement and nervousness about expecting a child, and they discussed the joys of parenthood and the importance of cherishing family memories."
+        }
+      ],
+      "first_timestamp": "2023-12-09T13:47:00+08:00",
+      "last_timestamp": "2023-12-09T13:47:00+08:00",
+      "created_at": "2025-12-01T00:06:18.969812",
+      "updated_at": "2025-12-01T00:06:18.969812"
+    },
+    "gec_023": {
+      "cluster_id": "gec_023",
+      "topic": "Evan and Sam's Family Reunion Plans",
+      "summary": "On December 9, 2023, Evan and Sam discussed Evan's family memories showcased in a collage and plans for a big family reunion in summer 2024, emphasizing the importance of togetherness and creating new memories. Sam expressed support for the event, highlighting their appreciation for Evan's strong family values.",
+      "members": [
+        {
+          "unit_id": "4fe67a7c-f839-4185-89f5-3a06fb30ea5d",
+          "timestamp": "2023-12-09T13:52:00+08:00",
+          "summary": "On December 9, 2023, Evan and Sam discussed Evan's family memories showcased in a collage and plans for a big family reunion in summer 2024, emphasizing the importance of togetherness and creating new memories. Sam expressed support for the event, highlighting their appreciation for Evan's strong family values."
+        }
+      ],
+      "first_timestamp": "2023-12-09T13:52:00+08:00",
+      "last_timestamp": "2023-12-09T13:52:00+08:00",
+      "created_at": "2025-12-01T00:06:24.136988",
+      "updated_at": "2025-12-01T00:06:24.136988"
+    },
+    "gec_024": {
+      "cluster_id": "gec_024",
+      "topic": "Evan's Painting Achievement",
+      "summary": "On December 17, 2023, Evan shared a photo of a woman standing in front of a recently completed contemporary figurative painting, highlighting the emotional depth of the artwork and the accomplishment of trying something new. Sam engaged by commenting on the woman's confidence and inquiring about the painting and the woman's identity, to which Evan explained the painting's significance and credited the woman as a close friend who helped get the artwork exhibited.",
+      "members": [
+        {
+          "unit_id": "1dcdc14e-68a1-4e83-83c2-8adf39b029c6",
+          "timestamp": "2023-12-17T18:56:00+08:00",
+          "summary": "On December 17, 2023, Evan shared a photo of a woman standing in front of a recently completed contemporary figurative painting, highlighting the emotional depth of the artwork and the accomplishment of trying something new. Sam engaged by commenting on the woman's confidence and inquiring about the painting and the woman's identity, to which Evan explained the painting's significance and credited the woman as a close friend who helped get the artwork exhibited."
+        }
+      ],
+      "first_timestamp": "2023-12-17T18:56:00+08:00",
+      "last_timestamp": "2023-12-17T18:56:00+08:00",
+      "created_at": "2025-12-01T00:06:34.736300",
+      "updated_at": "2025-12-01T00:06:34.736300"
+    },
+    "gec_025": {
+      "cluster_id": "gec_025",
+      "topic": "Evan's Recent Marriage Announcement",
+      "summary": "On December 26, 2023, Sam and Evan reconnected, during which Evan shared that he had recently married a Canadian woman he fell in love with at first sight, expressing deep happiness and belief in love’s transformative power. Sam congratulated Evan and admired his fairy tale-like experience.",
+      "members": [
+        {
+          "unit_id": "53f5a963-c29e-4d4a-86e2-093d8c5d8083",
+          "timestamp": "2023-12-26T16:28:30+08:00",
+          "summary": "On December 26, 2023, Sam and Evan reconnected, during which Evan shared that he had recently married a Canadian woman he fell in love with at first sight, expressing deep happiness and belief in love’s transformative power. Sam congratulated Evan and admired his fairy tale-like experience."
+        }
+      ],
+      "first_timestamp": "2023-12-26T16:28:30+08:00",
+      "last_timestamp": "2023-12-26T16:28:30+08:00",
+      "created_at": "2025-12-01T00:06:40.840728",
+      "updated_at": "2025-12-01T00:06:40.840728"
+    },
+    "gec_026": {
+      "cluster_id": "gec_026",
+      "topic": "Evan and Sam's Love & Well-being Chat",
+      "summary": "On December 26, 2023, Evan and Sam discussed love and personal well-being, with Evan expressing admiration for love's beauty while Sam shared his newfound appreciation for morning running as a way to find clarity and positivity. Evan encouraged Sam to continue exploring new experiences, suggesting that personal fulfillment can come from unexpected places.",
+      "members": [
+        {
+          "unit_id": "51ce44e6-d8e1-45eb-a5a3-4b092005e649",
+          "timestamp": "2023-12-26T16:29:30+08:00",
+          "summary": "On December 26, 2023, Evan and Sam discussed love and personal well-being, with Evan expressing admiration for love's beauty while Sam shared his newfound appreciation for morning running as a way to find clarity and positivity. Evan encouraged Sam to continue exploring new experiences, suggesting that personal fulfillment can come from unexpected places."
+        }
+      ],
+      "first_timestamp": "2023-12-26T16:29:30+08:00",
+      "last_timestamp": "2023-12-26T16:29:30+08:00",
+      "created_at": "2025-12-01T00:06:45.441806",
+      "updated_at": "2025-12-01T00:06:45.441806"
+    },
+    "gec_027": {
+      "cluster_id": "gec_027",
+      "topic": "Sam and Evan's Art and Emotion Chat",
+      "summary": "On December 26, 2023, Sam and Evan engaged in a conversation about art and emotional expression, with Evan sharing his paintings and the feelings behind them while Sam expressed admiration and discussed his own budding interest in art. Their exchange highlighted a mutual appreciation for art’s ability to convey emotions and inspired encouragement for future creative efforts.",
+      "members": [
+        {
+          "unit_id": "abe709b9-5fa5-47d7-9521-8654155f040b",
+          "timestamp": "2023-12-26T16:34:00+08:00",
+          "summary": "On December 26, 2023, Sam and Evan engaged in a conversation about art and emotional expression, with Evan sharing his paintings and the feelings behind them while Sam expressed admiration and discussed his own budding interest in art. Their exchange highlighted a mutual appreciation for art’s ability to convey emotions and inspired encouragement for future creative efforts."
+        }
+      ],
+      "first_timestamp": "2023-12-26T16:34:00+08:00",
+      "last_timestamp": "2023-12-26T16:34:00+08:00",
+      "created_at": "2025-12-01T00:06:51.301305",
+      "updated_at": "2025-12-01T00:06:51.301305"
+    },
+    "gec_028": {
+      "cluster_id": "gec_028",
+      "topic": "Sam's Sketching and Key Loss Chat",
+      "summary": "Sam shared his budding interest in sketching inspired by Evan, who offered to help him get started, while they also discussed Evan's recurring issue of losing his keys and the idea of using a GPS sensor to prevent it.",
+      "members": [
+        {
+          "unit_id": "ece4108a-43ae-4395-9f2d-27e6b134ff6f",
+          "timestamp": "2023-12-26T16:35:30+08:00",
+          "summary": "Sam shared his budding interest in sketching inspired by Evan, who offered to help him get started, while they also discussed Evan's recurring issue of losing his keys and the idea of using a GPS sensor to prevent it."
+        }
+      ],
+      "first_timestamp": "2023-12-26T16:35:30+08:00",
+      "last_timestamp": "2023-12-26T16:35:30+08:00",
+      "created_at": "2025-12-01T00:06:55.945952",
+      "updated_at": "2025-12-01T00:06:55.945952"
+    },
+    "gec_029": {
+      "cluster_id": "gec_029",
+      "topic": "Sam and Evan's Outdoor & Health Chat",
+      "summary": "On December 31, 2023, Sam and Evan discussed their recent outdoor activities, a minor car accident Evan experienced, and shared healthy eating habits and snack recipes, highlighting mutual support and a focus on maintaining a healthy lifestyle.",
+      "members": [
+        {
+          "unit_id": "369b75e5-3f46-45c6-8e4d-052c843f1920",
+          "timestamp": "2023-12-31T11:08:30+08:00",
+          "summary": "On December 31, 2023, Sam and Evan discussed their recent outdoor activities, a minor car accident Evan experienced, and shared healthy eating habits and snack recipes, highlighting mutual support and a focus on maintaining a healthy lifestyle."
+        }
+      ],
+      "first_timestamp": "2023-12-31T11:08:30+08:00",
+      "last_timestamp": "2023-12-31T11:08:30+08:00",
+      "created_at": "2025-12-01T00:07:00.861610",
+      "updated_at": "2025-12-01T00:07:00.861610"
+    },
+    "gec_030": {
+      "cluster_id": "gec_030",
+      "topic": "Evan and Partner's Marriage News",
+      "summary": "On January 6, 2024, Evan shared with Sam that he and his partner had told their extended family about their marriage, expressing how overwhelmed and grateful they felt for the love and support from their families. Both Evan and Sam reflected on the importance of family as a source of comfort, happiness, and unwavering support.",
+      "members": [
+        {
+          "unit_id": "51d93916-fbba-4e28-8a3b-829527852fa4",
+          "timestamp": "2024-01-06T13:38:00+08:00",
+          "summary": "On January 6, 2024, Evan shared with Sam that he and his partner had told their extended family about their marriage, expressing how overwhelmed and grateful they felt for the love and support from their families. Both Evan and Sam reflected on the importance of family as a source of comfort, happiness, and unwavering support."
+        }
+      ],
+      "first_timestamp": "2024-01-06T13:38:00+08:00",
+      "last_timestamp": "2024-01-06T13:38:00+08:00",
+      "created_at": "2025-12-01T00:07:09.911864",
+      "updated_at": "2025-12-01T00:07:09.911864"
+    },
+    "gec_031": {
+      "cluster_id": "gec_031",
+      "topic": "Evan and Sam's Family Meals Chat",
+      "summary": "On January 6, 2024, Evan and Sam discussed their family meals and dietary habits, sharing photos and expressing excitement about a family get-together featuring homemade lasagna, while Evan committed to a new diet limiting himself to two ginger snaps per day.",
+      "members": [
+        {
+          "unit_id": "4ccd02ef-679c-4ef8-ad76-5401200405a1",
+          "timestamp": "2024-01-06T13:41:00+08:00",
+          "summary": "On January 6, 2024, Evan and Sam discussed their family meals and dietary habits, sharing photos and expressing excitement about a family get-together featuring homemade lasagna, while Evan committed to a new diet limiting himself to two ginger snaps per day."
+        }
+      ],
+      "first_timestamp": "2024-01-06T13:41:00+08:00",
+      "last_timestamp": "2024-01-06T13:41:00+08:00",
+      "created_at": "2025-12-01T00:07:15.201450",
+      "updated_at": "2025-12-01T00:07:15.201450"
+    },
+    "gec_032": {
+      "cluster_id": "gec_032",
+      "topic": "Sam's Cousin's Wedding Cake Chat",
+      "summary": "On January 6, 2024, Evan and Sam discussed a visually appealing wedding cake, with Evan admiring its appearance and Sam explaining it was from Sam's cousin's wedding, highlighting the special occasion.",
+      "members": [
+        {
+          "unit_id": "3c037de1-5543-4021-8ee7-2808e904404d",
+          "timestamp": "2024-01-06T13:42:00+08:00",
+          "summary": "On January 6, 2024, Evan and Sam discussed a visually appealing wedding cake, with Evan admiring its appearance and Sam explaining it was from Sam's cousin's wedding, highlighting the special occasion."
+        }
+      ],
+      "first_timestamp": "2024-01-06T13:42:00+08:00",
+      "last_timestamp": "2024-01-06T13:42:00+08:00",
+      "created_at": "2025-12-01T00:07:19.793508",
+      "updated_at": "2025-12-01T00:07:19.793508"
+    },
+    "gec_033": {
+      "cluster_id": "gec_033",
+      "topic": "Evan's Honeymoon Trip to Canada",
+      "summary": "Sam and Evan discussed Evan's upcoming honeymoon trip to Canada, where he plans to ski, try local cuisine like poutine, and enjoy snowy landscapes. Both expressed excitement and positive sentiments about the memorable experiences ahead.",
+      "members": [
+        {
+          "unit_id": "e8a85156-cfae-476a-a5e6-87a3a07bb106",
+          "timestamp": "2024-01-06T13:48:00+08:00",
+          "summary": "Sam and Evan discussed Evan's upcoming honeymoon trip to Canada, where he plans to ski, try local cuisine like poutine, and enjoy snowy landscapes. Both expressed excitement and positive sentiments about the memorable experiences ahead."
+        }
+      ],
+      "first_timestamp": "2024-01-06T13:48:00+08:00",
+      "last_timestamp": "2024-01-06T13:48:00+08:00",
+      "created_at": "2025-12-01T00:07:23.899960",
+      "updated_at": "2025-12-01T00:07:23.899960"
+    },
+    "gec_034": {
+      "cluster_id": "gec_034",
+      "topic": "Evan's Embarrassing Incident",
+      "summary": "Evan told Sam about an embarrassing incident on January 9, 2024, where he accidentally urinated near someone's roses after drinking too much, but after apologizing, the affected party was understanding. Sam responded with concern and reassurance, leading to a supportive and empathetic conversation.",
+      "members": [
+        {
+          "unit_id": "df6ae217-0589-4fbe-8d11-cbc07fc05f60",
+          "timestamp": "2024-01-10T00:20:30+08:00",
+          "summary": "Evan told Sam about an embarrassing incident on January 9, 2024, where he accidentally urinated near someone's roses after drinking too much, but after apologizing, the affected party was understanding. Sam responded with concern and reassurance, leading to a supportive and empathetic conversation."
+        }
+      ],
+      "first_timestamp": "2024-01-10T00:20:30+08:00",
+      "last_timestamp": "2024-01-10T00:20:30+08:00",
+      "created_at": "2025-12-01T00:07:28.676163",
+      "updated_at": "2025-12-01T00:07:28.676163"
+    },
+    "gec_035": {
+      "cluster_id": "gec_035",
+      "topic": "Learning from Mistakes & Snowshoeing",
+      "summary": "On January 10, 2024, Sam and Evan discussed the importance of understanding and learning from mistakes, with Evan also sharing his enjoyable experience of trying snowshoeing with his partner over the recent weekend.",
+      "members": [
+        {
+          "unit_id": "33c2dbad-a8ab-48d9-b618-ca5dcfc32580",
+          "timestamp": "2024-01-10T00:21:00+08:00",
+          "summary": "On January 10, 2024, Sam and Evan discussed the importance of understanding and learning from mistakes, with Evan also sharing his enjoyable experience of trying snowshoeing with his partner over the recent weekend."
+        }
+      ],
+      "first_timestamp": "2024-01-10T00:21:00+08:00",
+      "last_timestamp": "2024-01-10T00:21:00+08:00",
+      "created_at": "2025-12-01T00:07:33.181472",
+      "updated_at": "2025-12-01T00:07:33.181472"
+    }
+  },
+  "unit_to_cluster": {
+    "73787f73-e24b-4aa5-af1f-6e22c723f6c9": "gec_001",
+    "1d41bb9d-5ff3-4ab1-8cf9-a4d09c3ed2c7": "gec_001",
+    "cc0bd243-b431-47e9-9282-fd0bb0958e00": "gec_002",
+    "83c392cc-933a-43e2-a759-561827d5785f": "gec_003",
+    "fb963c31-22eb-4df5-9ba6-de422b286218": "gec_004",
+    "f03ef1c6-2cf8-4491-8918-beaf08ff0f87": "gec_005",
+    "68754080-a95f-48dc-af75-9a1897b3b0c4": "gec_005",
+    "fa7107dd-4c8e-4352-b4a0-f06f9f534cf3": "gec_006",
+    "f466f4e5-05ce-4ea6-a9b3-4160563ebf83": "gec_007",
+    "2388484f-f3cb-4a3a-b69d-99d54308e408": "gec_008",
+    "0f9ca7bc-01c6-4212-b23f-71e4d934ee62": "gec_008",
+    "f74461dd-a37b-4234-a0eb-5dbd7d31a9b4": "gec_008",
+    "73162b05-12e7-4170-a582-4217917feadf": "gec_009",
+    "94b2b04c-43ac-4816-81ec-ec9c8be3a32b": "gec_010",
+    "7aa10c2a-795a-4550-9272-9b9db1ae50f5": "gec_010",
+    "d25a5fa9-6f14-4d61-9363-470c2b21aeb4": "gec_011",
+    "db4739c6-5af6-49ea-ba67-b70fcfb9cfa7": "gec_012",
+    "11bff202-77f0-4f1a-aa48-641878e7459a": "gec_012",
+    "4e55c95e-16b1-4af3-a15e-cda2331d4b3d": "gec_013",
+    "de0950a9-dd44-4bf2-abb2-69669c889b1a": "gec_010",
+    "e4b35f24-86cb-4b60-a489-0ae5812877cc": "gec_012",
+    "81ca33f7-f516-454e-9aaa-de62c4180f82": "gec_010",
+    "5d2d7b74-00f5-49fe-9405-deacdf3c4d09": "gec_010",
+    "73d505b2-3ef7-4211-bddc-290583b7187b": "gec_010",
+    "546c122c-2e55-48d8-aef2-fea5f9d82ebc": "gec_014",
+    "216b8f30-6b0f-4017-958f-66aca99529c6": "gec_015",
+    "fcee4dd3-67d4-4152-baed-f76875cdc148": "gec_015",
+    "c6bcd10d-118e-4ee9-ae85-8d77cebd3020": "gec_016",
+    "0dfdc72d-a865-429d-abb9-edb81aeea9c1": "gec_017",
+    "0eb94c21-f9aa-4890-8c74-53c399c53822": "gec_018",
+    "4c35ce95-5359-4496-9f38-ad22c80e3ed7": "gec_019",
+    "5458ee06-44dd-4d40-8288-45dffdd31320": "gec_005",
+    "3ff04017-ff57-4eba-93e3-87096feeab72": "gec_005",
+    "f964e376-853b-466e-ac91-9360719a353c": "gec_020",
+    "798c6975-a3b5-4dd3-8576-3cb381bc274d": "gec_021",
+    "356fb055-bcf8-4d8a-90b1-0f1eb23df5cb": "gec_016",
+    "cf1a2470-3b80-4d66-b3a8-03b91393505f": "gec_022",
+    "4fe67a7c-f839-4185-89f5-3a06fb30ea5d": "gec_023",
+    "99fe0a4b-b6d2-4679-935f-a668e60222af": "gec_009",
+    "1dcdc14e-68a1-4e83-83c2-8adf39b029c6": "gec_024",
+    "53f5a963-c29e-4d4a-86e2-093d8c5d8083": "gec_025",
+    "51ce44e6-d8e1-45eb-a5a3-4b092005e649": "gec_026",
+    "abe709b9-5fa5-47d7-9521-8654155f040b": "gec_027",
+    "ece4108a-43ae-4395-9f2d-27e6b134ff6f": "gec_028",
+    "369b75e5-3f46-45c6-8e4d-052c843f1920": "gec_029",
+    "4f938a19-ce88-4cf3-9292-312086226b00": "gec_005",
+    "51d93916-fbba-4e28-8a3b-829527852fa4": "gec_030",
+    "4ccd02ef-679c-4ef8-ad76-5401200405a1": "gec_031",
+    "3c037de1-5543-4021-8ee7-2808e904404d": "gec_032",
+    "e8a85156-cfae-476a-a5e6-87a3a07bb106": "gec_033",
+    "df6ae217-0589-4fbe-8d11-cbc07fc05f60": "gec_034",
+    "33c2dbad-a8ab-48d9-b618-ca5dcfc32580": "gec_035",
+    "2c499759-2992-4958-b4f5-212a34658b3f": "gec_010",
+    "167ca267-4260-4d03-98e1-7a69a9a7ad71": "gec_010"
+  },
+  "metadata": {
+    "conversation_id": "conv_8",
+    "total_units": 54,
+    "total_clusters": 35,
+    "created_at": "2025-12-01T00:03:05.528598",
+    "updated_at": "2025-12-01T00:07:43.408649",
+    "llm_model": "gpt-4.1-mini"
+  }
+}

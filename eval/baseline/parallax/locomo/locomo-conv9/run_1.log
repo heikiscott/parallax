@@ -1,0 +1,1350 @@
+
+Loading configurations...
+  ✅ Loaded dataset config: locomo
+  ✅ Loaded system config: parallax
+
+Loading dataset: locomo
+  📂 Using eval/data/locomo/locomo10.json
+  ✅ Loaded 10 conversations, 1986 QA pairs
+
+Initializing components...
+INFO     Parallax Adapter initialized                                          
+INFO     LLM Model: gpt-4o-mini                                                
+INFO     Output Dir: D:\parallax\eval\results\locomo-conv9                     
+  ✅ Created adapter: Parallax
+  ✅ Created evaluator: LLMJudge
+  ✅ Created LLM provider: gpt-4o-mini
+  ✅ Created pipeline, output: D:\parallax\eval\results\locomo-conv9
+  📋 Filter categories: [5]
+
+============================================================
+🚀 Evaluation Pipeline
+============================================================
+Dataset: locomo
+System: Parallax
+Stages: all
+============================================================
+
+🔍 Selected conversation 9: locomo_9 (204 QA pairs)
+
+🔍 Filtered out 46 questions from categories: 5
+   Remaining questions: 158
+
+INFO     🔄 发现 checkpoint 文件: checkpoint_default.json                      
+INFO        上次运行时间: 2025-11-23T00:27:35.315412                           
+INFO        已完成阶段: add, search                                            
+INFO        已处理对话数: 158                                                  
+
+⏭️  Skip Add stage (already completed)
+
+⏭️  Skip Search stage (already completed)
+INFO     Starting Stage 3: Answer                                              
+INFO                                                                           
+         ============================================================          
+INFO     Stage 3/4: Answer                                                     
+INFO     ============================================================          
+INFO     🆕 No answer checkpoint found, starting from scratch                  
+INFO     Total questions: 158                                                  
+
+💬 Answer Progress:   0%|          | 0/158 [00:00<?, ?qa/s]
+💬 Answer Progress:   1%|          | 1/158 [00:12<33:47, 12.92s/qa]
+💬 Answer Progress:   1%|▏         | 2/158 [00:13<14:25,  5.55s/qa]
+💬 Answer Progress:   2%|▏         | 3/158 [00:13<08:31,  3.30s/qa]
+💬 Answer Progress:   3%|▎         | 4/158 [00:14<05:16,  2.06s/qa]
+💬 Answer Progress:   3%|▎         | 5/158 [00:14<03:32,  1.39s/qa]
+💬 Answer Progress:   4%|▍         | 7/158 [00:14<02:05,  1.20qa/s]
+💬 Answer Progress:   6%|▌         | 9/158 [00:15<01:23,  1.79qa/s]WARNING  [OpenAI-gpt-4o-mini] 耗时太长: 15.74s - 服务可能繁忙                  
+INFO     [OpenAI-gpt-4o-mini] 虽然成功但耗时过长，退避 9.0s (base=7.9s +       
+         jitter=1.1s)...                                                       
+WARNING  [OpenAI-gpt-4o-mini] 耗时太长: 15.88s - 服务可能繁忙                  
+INFO     [OpenAI-gpt-4o-mini] 虽然成功但耗时过长，退避 8.7s (base=7.9s +       
+         jitter=0.7s)...                                                       
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 16.11s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 9.1s (base=8.1s +            
+         jitter=1.0s, attempt 2/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 16.13s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 10.0s (base=8.1s +           
+         jitter=2.0s, attempt 2/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 16.16s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.2s 退避 8.5s (base=8.1s +            
+         jitter=0.4s, attempt 2/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 16.17s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.2s 退避 9.8s (base=8.1s +            
+         jitter=1.7s, attempt 2/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 16.54s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.5s 退避 10.7s (base=8.3s +           
+         jitter=2.4s, attempt 2/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 16.20s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.2s 退避 9.2s (base=8.1s +            
+         jitter=1.1s, attempt 2/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 16.21s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.2s 退避 9.6s (base=8.1s +            
+         jitter=1.5s, attempt 2/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 16.21s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.2s 退避 8.6s (base=8.1s +            
+         jitter=0.5s, attempt 2/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 16.21s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.2s 退避 9.5s (base=8.1s +            
+         jitter=1.4s, attempt 2/5)...                                          
+
+💬 Answer Progress:   6%|▋         | 10/158 [00:24<06:35,  2.67s/qa]
+💬 Answer Progress:   7%|▋         | 11/158 [00:25<05:01,  2.05s/qa]
+💬 Answer Progress:   8%|▊         | 12/158 [00:25<03:48,  1.57s/qa]WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 15.28s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 15.3s 退避 8.1s (base=7.6s +            
+         jitter=0.5s, attempt 2/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 14.99s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 15.0s 退避 7.6s (base=7.5s +            
+         jitter=0.1s, attempt 2/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 15.00s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 15.0s 退避 8.2s (base=7.5s +            
+         jitter=0.7s, attempt 2/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 14.99s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 15.0s 退避 8.0s (base=7.5s +            
+         jitter=0.5s, attempt 2/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 14.99s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 15.0s 退避 8.7s (base=7.5s +            
+         jitter=1.2s, attempt 2/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 15.00s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 15.0s 退避 9.2s (base=7.5s +            
+         jitter=1.7s, attempt 2/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 15.00s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 15.0s 退避 8.0s (base=7.5s +            
+         jitter=0.5s, attempt 2/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 15.29s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 15.3s 退避 9.0s (base=7.6s +            
+         jitter=1.3s, attempt 2/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 14.99s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 15.0s 退避 7.8s (base=7.5s +            
+         jitter=0.3s, attempt 2/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 16.12s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 9.6s (base=8.1s +            
+         jitter=1.5s, attempt 2/5)...                                          
+
+💬 Answer Progress:   8%|▊         | 13/158 [00:41<13:07,  5.43s/qa]WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 16.09s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 8.4s (base=8.0s +            
+         jitter=0.4s, attempt 2/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 2/5)                 
+WARNING     ⏱️  耗时: 16.13s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 8.7s (base=8.1s +            
+         jitter=0.6s, attempt 3/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 2/5)                 
+WARNING     ⏱️  耗时: 16.09s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 8.2s (base=8.0s +            
+         jitter=0.2s, attempt 3/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] 耗时太长: 15.85s - 服务可能繁忙                  
+INFO     [OpenAI-gpt-4o-mini] 虽然成功但耗时过长，退避 8.4s (base=7.9s +       
+         jitter=0.5s)...                                                       
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 2/5)                 
+WARNING     ⏱️  耗时: 16.12s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 9.8s (base=8.1s +            
+         jitter=1.8s, attempt 3/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 2/5)                 
+WARNING     ⏱️  耗时: 16.12s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 9.2s (base=8.1s +            
+         jitter=1.1s, attempt 3/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 2/5)                 
+WARNING     ⏱️  耗时: 16.11s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 10.2s (base=8.1s +           
+         jitter=2.1s, attempt 3/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 2/5)                 
+WARNING     ⏱️  耗时: 16.13s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 9.3s (base=8.1s +            
+         jitter=1.3s, attempt 3/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 2/5)                 
+WARNING     ⏱️  耗时: 16.10s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 10.0s (base=8.0s +           
+         jitter=1.9s, attempt 3/5)...                                          
+
+💬 Answer Progress:   9%|▉         | 14/158 [00:50<15:25,  6.42s/qa]WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 2/5)                 
+WARNING     ⏱️  耗时: 16.09s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 9.6s (base=8.0s +            
+         jitter=1.5s, attempt 3/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 2/5)                 
+WARNING     ⏱️  耗时: 16.13s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 8.6s (base=8.1s +            
+         jitter=0.5s, attempt 3/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 2/5)                 
+WARNING     ⏱️  耗时: 16.09s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 8.8s (base=8.0s +            
+         jitter=0.8s, attempt 3/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 2/5)                 
+WARNING     ⏱️  耗时: 16.10s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 10.2s (base=8.0s +           
+         jitter=2.2s, attempt 3/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 2/5)                 
+WARNING     ⏱️  耗时: 16.13s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 8.1s (base=8.1s +            
+         jitter=0.0s, attempt 3/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 2/5)                 
+WARNING     ⏱️  耗时: 16.15s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 9.6s (base=8.1s +            
+         jitter=1.5s, attempt 3/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] 耗时太长: 15.31s - 服务可能繁忙                  
+INFO     [OpenAI-gpt-4o-mini] 虽然成功但耗时过长，退避 8.7s (base=7.7s +       
+         jitter=1.1s)...                                                       
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 2/5)                 
+WARNING     ⏱️  耗时: 16.11s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 10.1s (base=8.1s +           
+         jitter=2.0s, attempt 3/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 15.00s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 15.0s 退避 9.5s (base=7.5s +            
+         jitter=2.0s, attempt 2/5)...                                          
+
+💬 Answer Progress:   9%|▉         | 15/158 [01:03<19:50,  8.32s/qa]WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 2/5)                 
+WARNING     ⏱️  耗时: 16.11s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 8.6s (base=8.1s +            
+         jitter=0.5s, attempt 3/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] 耗时太长: 15.08s - 服务可能繁忙                  
+INFO     [OpenAI-gpt-4o-mini] 虽然成功但耗时过长，退避 8.9s (base=7.5s +       
+         jitter=1.3s)...                                                       
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 3/5)                 
+WARNING     ⏱️  耗时: 16.09s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 9.8s (base=8.0s +            
+         jitter=1.7s, attempt 4/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 2/5)                 
+WARNING     ⏱️  耗时: 16.10s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 8.3s (base=8.1s +            
+         jitter=0.3s, attempt 3/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 3/5)                 
+WARNING     ⏱️  耗时: 16.09s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 9.5s (base=8.0s +            
+         jitter=1.4s, attempt 4/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 2/5)                 
+WARNING     ⏱️  耗时: 16.12s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 10.0s (base=8.1s +           
+         jitter=2.0s, attempt 3/5)...                                          
+
+💬 Answer Progress:  10%|█         | 16/158 [01:07<16:44,  7.07s/qa]WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 3/5)                 
+WARNING     ⏱️  耗时: 16.11s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 10.1s (base=8.1s +           
+         jitter=2.0s, attempt 4/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 3/5)                 
+WARNING     ⏱️  耗时: 16.10s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 10.1s (base=8.0s +           
+         jitter=2.1s, attempt 4/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 3/5)                 
+WARNING     ⏱️  耗时: 16.12s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 8.9s (base=8.1s +            
+         jitter=0.8s, attempt 4/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 3/5)                 
+WARNING     ⏱️  耗时: 16.13s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 9.2s (base=8.1s +            
+         jitter=1.1s, attempt 4/5)...                                          
+
+💬 Answer Progress:  11%|█         | 17/158 [01:14<16:29,  7.02s/qa]
+💬 Answer Progress:  11%|█▏        | 18/158 [01:15<12:28,  5.35s/qa]WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 3/5)                 
+WARNING     ⏱️  耗时: 16.10s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 9.5s (base=8.1s +            
+         jitter=1.5s, attempt 4/5)...                                          
+
+💬 Answer Progress:  12%|█▏        | 19/158 [01:17<10:03,  4.34s/qa]WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 3/5)                 
+WARNING     ⏱️  耗时: 16.12s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 10.4s (base=8.1s +           
+         jitter=2.4s, attempt 4/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 3/5)                 
+WARNING     ⏱️  耗时: 16.09s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 9.3s (base=8.0s +            
+         jitter=1.3s, attempt 4/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 3/5)                 
+WARNING     ⏱️  耗时: 16.10s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 8.6s (base=8.0s +            
+         jitter=0.6s, attempt 4/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 3/5)                 
+WARNING     ⏱️  耗时: 16.14s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 9.8s (base=8.1s +            
+         jitter=1.8s, attempt 4/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 3/5)                 
+WARNING     ⏱️  耗时: 16.09s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 8.9s (base=8.0s +            
+         jitter=0.8s, attempt 4/5)...                                          
+
+💬 Answer Progress:  13%|█▎        | 20/158 [01:20<09:16,  4.03s/qa]WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 3/5)                 
+WARNING     ⏱️  耗时: 16.11s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 9.5s (base=8.1s +            
+         jitter=1.5s, attempt 4/5)...                                          
+
+💬 Answer Progress:  13%|█▎        | 21/158 [01:23<08:18,  3.64s/qa]
+💬 Answer Progress:  14%|█▍        | 22/158 [01:25<06:55,  3.05s/qa]WARNING  [OpenAI-gpt-4o-mini] 耗时太长: 15.92s - 服务可能繁忙                  
+INFO     [OpenAI-gpt-4o-mini] 虽然成功但耗时过长，退避 9.1s (base=8.0s +       
+         jitter=1.1s)...                                                       
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 3/5)                 
+WARNING     ⏱️  耗时: 16.11s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 8.8s (base=8.1s +            
+         jitter=0.7s, attempt 4/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 14.98s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 15.0s 退避 9.6s (base=7.5s +            
+         jitter=2.1s, attempt 2/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] 耗时太长: 15.77s - 服务可能繁忙                  
+INFO     [OpenAI-gpt-4o-mini] 虽然成功但耗时过长，退避 9.4s (base=7.9s +       
+         jitter=1.5s)...                                                       
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 4/5)                 
+WARNING     ⏱️  耗时: 16.12s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 10.1s (base=8.1s +           
+         jitter=2.1s, attempt 5/5)...                                          
+
+💬 Answer Progress:  15%|█▍        | 23/158 [01:31<09:16,  4.12s/qa]WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 4/5)                 
+WARNING     ⏱️  耗时: 16.18s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.2s 退避 8.7s (base=8.1s +            
+         jitter=0.7s, attempt 5/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 4/5)                 
+WARNING     ⏱️  耗时: 16.18s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.2s 退避 8.3s (base=8.1s +            
+         jitter=0.3s, attempt 5/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 4/5)                 
+WARNING     ⏱️  耗时: 16.13s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 9.8s (base=8.1s +            
+         jitter=1.7s, attempt 5/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 4/5)                 
+WARNING     ⏱️  耗时: 16.14s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 8.6s (base=8.1s +            
+         jitter=0.5s, attempt 5/5)...                                          
+
+💬 Answer Progress:  15%|█▌        | 24/158 [01:35<08:58,  4.02s/qa]
+💬 Answer Progress:  16%|█▌        | 25/158 [01:37<07:22,  3.32s/qa]
+💬 Answer Progress:  16%|█▋        | 26/158 [01:37<05:35,  2.54s/qa]WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 15.00s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 15.0s 退避 9.6s (base=7.5s +            
+         jitter=2.1s, attempt 2/5)...                                          
+
+💬 Answer Progress:  17%|█▋        | 27/158 [01:40<05:44,  2.63s/qa]
+💬 Answer Progress:  18%|█▊        | 28/158 [01:41<04:30,  2.08s/qa]WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 4/5)                 
+WARNING     ⏱️  耗时: 16.11s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 9.4s (base=8.1s +            
+         jitter=1.4s, attempt 5/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 4/5)                 
+WARNING     ⏱️  耗时: 16.14s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 9.6s (base=8.1s +            
+         jitter=1.5s, attempt 5/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 4/5)                 
+WARNING     ⏱️  耗时: 16.17s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.2s 退避 10.0s (base=8.1s +           
+         jitter=1.9s, attempt 5/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 4/5)                 
+WARNING     ⏱️  耗时: 15.21s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 15.2s 退避 9.7s (base=7.6s +            
+         jitter=2.1s, attempt 5/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 4/5)                 
+WARNING     ⏱️  耗时: 16.13s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 9.5s (base=8.1s +            
+         jitter=1.4s, attempt 5/5)...                                          
+
+💬 Answer Progress:  18%|█▊        | 29/158 [01:45<05:59,  2.79s/qa]WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 4/5)                 
+WARNING     ⏱️  耗时: 15.23s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 15.2s 退避 8.1s (base=7.6s +            
+         jitter=0.5s, attempt 5/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 15.21s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 15.2s 退避 9.7s (base=7.6s +            
+         jitter=2.1s, attempt 2/5)...                                          
+
+💬 Answer Progress:  19%|█▉        | 30/158 [01:47<05:19,  2.49s/qa]WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 16.14s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 10.1s (base=8.1s +           
+         jitter=2.0s, attempt 2/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 4/5)                 
+WARNING     ⏱️  耗时: 16.13s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 8.9s (base=8.1s +            
+         jitter=0.8s, attempt 5/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 2/5)                 
+WARNING     ⏱️  耗时: 16.12s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 10.3s (base=8.1s +           
+         jitter=2.2s, attempt 3/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 16.11s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 9.0s (base=8.1s +            
+         jitter=1.0s, attempt 2/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 15.38s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 15.4s 退避 9.3s (base=7.7s +            
+         jitter=1.6s, attempt 2/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 5/5)                 
+WARNING     ⏱️  耗时: 16.10s                                                    
+WARNING     💬 错误: Connection error.                                         
+ERROR    [OpenAI-gpt-4o-mini] 所有 5 次重试均失败                              
+ERROR       ⏱️  最后耗时: 16.10s                                                
+ERROR       💬 最后错误: Connection error.                                     
+WARNING  Answer generation error (attempt 1/5): OpenAI API error after 5       
+         retries: Connection error.                                            
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 5/5)                 
+WARNING     ⏱️  耗时: 16.12s                                                    
+WARNING     💬 错误: Connection error.                                         
+ERROR    [OpenAI-gpt-4o-mini] 所有 5 次重试均失败                              
+ERROR       ⏱️  最后耗时: 16.12s                                                
+ERROR       💬 最后错误: Connection error.                                     
+WARNING  Answer generation error (attempt 1/5): OpenAI API error after 5       
+         retries: Connection error.                                            
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 5/5)                 
+WARNING     ⏱️  耗时: 16.10s                                                    
+WARNING     💬 错误: Connection error.                                         
+ERROR    [OpenAI-gpt-4o-mini] 所有 5 次重试均失败                              
+ERROR       ⏱️  最后耗时: 16.10s                                                
+ERROR       💬 最后错误: Connection error.                                     
+WARNING  Answer generation error (attempt 1/5): OpenAI API error after 5       
+         retries: Connection error.                                            
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 5/5)                 
+WARNING     ⏱️  耗时: 16.10s                                                    
+WARNING     💬 错误: Connection error.                                         
+ERROR    [OpenAI-gpt-4o-mini] 所有 5 次重试均失败                              
+ERROR       ⏱️  最后耗时: 16.10s                                                
+ERROR       💬 最后错误: Connection error.                                     
+WARNING  Answer generation error (attempt 1/5): OpenAI API error after 5       
+         retries: Connection error.                                            
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 5/5)                 
+WARNING     ⏱️  耗时: 16.09s                                                    
+WARNING     💬 错误: Connection error.                                         
+ERROR    [OpenAI-gpt-4o-mini] 所有 5 次重试均失败                              
+ERROR       ⏱️  最后耗时: 16.09s                                                
+ERROR       💬 最后错误: Connection error.                                     
+WARNING  Answer generation error (attempt 1/5): OpenAI API error after 5       
+         retries: Connection error.                                            
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 15.20s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 15.2s 退避 9.2s (base=7.6s +            
+         jitter=1.6s, attempt 2/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 15.01s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 15.0s 退避 8.9s (base=7.5s +            
+         jitter=1.4s, attempt 2/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 2/5)                 
+WARNING     ⏱️  耗时: 16.38s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.4s 退避 9.4s (base=8.2s +            
+         jitter=1.2s, attempt 3/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 5/5)                 
+WARNING     ⏱️  耗时: 16.09s                                                    
+WARNING     💬 错误: Connection error.                                         
+ERROR    [OpenAI-gpt-4o-mini] 所有 5 次重试均失败                              
+ERROR       ⏱️  最后耗时: 16.09s                                                
+ERROR       💬 最后错误: Connection error.                                     
+WARNING  Answer generation error (attempt 1/5): OpenAI API error after 5       
+         retries: Connection error.                                            
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 5/5)                 
+WARNING     ⏱️  耗时: 16.09s                                                    
+WARNING     💬 错误: Connection error.                                         
+ERROR    [OpenAI-gpt-4o-mini] 所有 5 次重试均失败                              
+ERROR       ⏱️  最后耗时: 16.09s                                                
+ERROR       💬 最后错误: Connection error.                                     
+WARNING  Answer generation error (attempt 1/5): OpenAI API error after 5       
+         retries: Connection error.                                            
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 5/5)                 
+WARNING     ⏱️  耗时: 16.13s                                                    
+WARNING     💬 错误: Connection error.                                         
+ERROR    [OpenAI-gpt-4o-mini] 所有 5 次重试均失败                              
+ERROR       ⏱️  最后耗时: 16.13s                                                
+ERROR       💬 最后错误: Connection error.                                     
+WARNING  Answer generation error (attempt 1/5): OpenAI API error after 5       
+         retries: Connection error.                                            
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 5/5)                 
+WARNING     ⏱️  耗时: 16.11s                                                    
+WARNING     💬 错误: Connection error.                                         
+ERROR    [OpenAI-gpt-4o-mini] 所有 5 次重试均失败                              
+ERROR       ⏱️  最后耗时: 16.11s                                                
+ERROR       💬 最后错误: Connection error.                                     
+WARNING  Answer generation error (attempt 1/5): OpenAI API error after 5       
+         retries: Connection error.                                            
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 5/5)                 
+WARNING     ⏱️  耗时: 16.09s                                                    
+WARNING     💬 错误: Connection error.                                         
+ERROR    [OpenAI-gpt-4o-mini] 所有 5 次重试均失败                              
+ERROR       ⏱️  最后耗时: 16.09s                                                
+ERROR       💬 最后错误: Connection error.                                     
+WARNING  Answer generation error (attempt 1/5): OpenAI API error after 5       
+         retries: Connection error.                                            
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 5/5)                 
+WARNING     ⏱️  耗时: 16.11s                                                    
+WARNING     💬 错误: Connection error.                                         
+ERROR    [OpenAI-gpt-4o-mini] 所有 5 次重试均失败                              
+ERROR       ⏱️  最后耗时: 16.11s                                                
+ERROR       💬 最后错误: Connection error.                                     
+WARNING  Answer generation error (attempt 1/5): OpenAI API error after 5       
+         retries: Connection error.                                            
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 2/5)                 
+WARNING     ⏱️  耗时: 16.09s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 8.2s (base=8.0s +            
+         jitter=0.1s, attempt 3/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 16.08s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 9.4s (base=8.0s +            
+         jitter=1.3s, attempt 2/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 16.10s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 8.3s (base=8.1s +            
+         jitter=0.3s, attempt 2/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 16.10s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 9.0s (base=8.0s +            
+         jitter=1.0s, attempt 2/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 16.09s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 10.4s (base=8.0s +           
+         jitter=2.3s, attempt 2/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 16.11s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 8.3s (base=8.1s +            
+         jitter=0.2s, attempt 2/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 2/5)                 
+WARNING     ⏱️  耗时: 16.11s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 8.5s (base=8.1s +            
+         jitter=0.4s, attempt 3/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 5/5)                 
+WARNING     ⏱️  耗时: 16.13s                                                    
+WARNING     💬 错误: Connection error.                                         
+ERROR    [OpenAI-gpt-4o-mini] 所有 5 次重试均失败                              
+ERROR       ⏱️  最后耗时: 16.13s                                                
+ERROR       💬 最后错误: Connection error.                                     
+WARNING  Answer generation error (attempt 1/5): OpenAI API error after 5       
+         retries: Connection error.                                            
+
+💬 Answer Progress:  20%|█▉        | 31/158 [02:21<25:19, 11.97s/qa]WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 2/5)                 
+WARNING     ⏱️  耗时: 16.11s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 10.4s (base=8.1s +           
+         jitter=2.3s, attempt 3/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 2/5)                 
+WARNING     ⏱️  耗时: 16.10s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 9.2s (base=8.0s +            
+         jitter=1.1s, attempt 3/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 3/5)                 
+WARNING     ⏱️  耗时: 16.09s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 8.4s (base=8.0s +            
+         jitter=0.3s, attempt 4/5)...                                          
+
+💬 Answer Progress:  20%|██        | 32/158 [02:24<19:35,  9.33s/qa]
+💬 Answer Progress:  21%|██        | 33/158 [02:25<13:41,  6.57s/qa]WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 16.08s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 9.3s (base=8.0s +            
+         jitter=1.3s, attempt 2/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 2/5)                 
+WARNING     ⏱️  耗时: 16.11s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 8.1s (base=8.1s +            
+         jitter=0.1s, attempt 3/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 16.10s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 8.4s (base=8.1s +            
+         jitter=0.4s, attempt 2/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 16.11s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 8.9s (base=8.1s +            
+         jitter=0.8s, attempt 2/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 2/5)                 
+WARNING     ⏱️  耗时: 16.15s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 10.3s (base=8.1s +           
+         jitter=2.2s, attempt 3/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 3/5)                 
+WARNING     ⏱️  耗时: 16.06s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 10.3s (base=8.0s +           
+         jitter=2.3s, attempt 4/5)...                                          
+
+💬 Answer Progress:  22%|██▏       | 34/158 [02:33<14:33,  7.04s/qa]
+💬 Answer Progress:  22%|██▏       | 35/158 [02:35<11:39,  5.69s/qa]WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 16.13s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 8.9s (base=8.1s +            
+         jitter=0.8s, attempt 2/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 3/5)                 
+WARNING     ⏱️  耗时: 16.10s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 10.1s (base=8.1s +           
+         jitter=2.1s, attempt 4/5)...                                          
+
+💬 Answer Progress:  23%|██▎       | 36/158 [02:37<09:02,  4.45s/qa]WARNING  [OpenAI-gpt-4o-mini] 耗时太长: 15.21s - 服务可能繁忙                  
+INFO     [OpenAI-gpt-4o-mini] 虽然成功但耗时过长，退避 8.7s (base=7.6s +       
+         jitter=1.1s)...                                                       
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 14.99s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 15.0s 退避 8.2s (base=7.5s +            
+         jitter=0.7s, attempt 2/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 15.00s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 15.0s 退避 8.3s (base=7.5s +            
+         jitter=0.8s, attempt 2/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 2/5)                 
+WARNING     ⏱️  耗时: 16.11s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 8.8s (base=8.1s +            
+         jitter=0.8s, attempt 3/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 2/5)                 
+WARNING     ⏱️  耗时: 16.12s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 8.2s (base=8.1s +            
+         jitter=0.1s, attempt 3/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 3/5)                 
+WARNING     ⏱️  耗时: 16.10s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 8.5s (base=8.1s +            
+         jitter=0.4s, attempt 4/5)...                                          
+
+💬 Answer Progress:  23%|██▎       | 37/158 [02:46<11:42,  5.80s/qa]WARNING  [OpenAI-gpt-4o-mini] 耗时太长: 15.36s - 服务可能繁忙                  
+INFO     [OpenAI-gpt-4o-mini] 虽然成功但耗时过长，退避 8.6s (base=7.7s +       
+         jitter=0.9s)...                                                       
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 4/5)                 
+WARNING     ⏱️  耗时: 16.09s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 9.7s (base=8.0s +            
+         jitter=1.7s, attempt 5/5)...                                          
+
+💬 Answer Progress:  24%|██▍       | 38/158 [02:47<08:46,  4.39s/qa]
+💬 Answer Progress:  25%|██▍       | 39/158 [02:47<06:26,  3.25s/qa]WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 3/5)                 
+WARNING     ⏱️  耗时: 16.10s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 10.2s (base=8.0s +           
+         jitter=2.2s, attempt 4/5)...                                          
+
+💬 Answer Progress:  25%|██▌       | 40/158 [02:48<04:59,  2.54s/qa]WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 14.99s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 15.0s 退避 8.5s (base=7.5s +            
+         jitter=1.0s, attempt 2/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 2/5)                 
+WARNING     ⏱️  耗时: 16.11s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 9.1s (base=8.1s +            
+         jitter=1.0s, attempt 3/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 2/5)                 
+WARNING     ⏱️  耗时: 16.10s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 9.1s (base=8.1s +            
+         jitter=1.1s, attempt 3/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 2/5)                 
+WARNING     ⏱️  耗时: 16.10s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 8.3s (base=8.1s +            
+         jitter=0.2s, attempt 3/5)...                                          
+
+💬 Answer Progress:  26%|██▌       | 41/158 [02:52<05:51,  3.00s/qa]
+💬 Answer Progress:  27%|██▋       | 42/158 [02:55<05:29,  2.84s/qa]WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 4/5)                 
+WARNING     ⏱️  耗时: 15.21s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 15.2s 退避 7.9s (base=7.6s +            
+         jitter=0.3s, attempt 5/5)...                                          
+
+💬 Answer Progress:  27%|██▋       | 43/158 [02:58<05:36,  2.92s/qa]
+💬 Answer Progress:  28%|██▊       | 44/158 [02:59<04:24,  2.32s/qa]WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 15.00s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 15.0s 退避 9.2s (base=7.5s +            
+         jitter=1.7s, attempt 2/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 2/5)                 
+WARNING     ⏱️  耗时: 16.11s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 9.5s (base=8.1s +            
+         jitter=1.4s, attempt 3/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 4/5)                 
+WARNING     ⏱️  耗时: 15.21s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 15.2s 退避 9.4s (base=7.6s +            
+         jitter=1.8s, attempt 5/5)...                                          
+
+💬 Answer Progress:  28%|██▊       | 45/158 [03:03<05:22,  2.86s/qa]WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 14.99s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 15.0s 退避 9.3s (base=7.5s +            
+         jitter=1.8s, attempt 2/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 2/5)                 
+WARNING     ⏱️  耗时: 16.17s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.2s 退避 10.4s (base=8.1s +           
+         jitter=2.3s, attempt 3/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 2/5)                 
+WARNING     ⏱️  耗时: 16.10s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 9.1s (base=8.1s +            
+         jitter=1.0s, attempt 3/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 3/5)                 
+WARNING     ⏱️  耗时: 16.10s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 10.4s (base=8.1s +           
+         jitter=2.4s, attempt 4/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 3/5)                 
+WARNING     ⏱️  耗时: 16.07s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 9.3s (base=8.0s +            
+         jitter=1.2s, attempt 4/5)...                                          
+
+💬 Answer Progress:  29%|██▉       | 46/158 [03:06<05:30,  2.95s/qa]
+💬 Answer Progress:  30%|██▉       | 47/158 [03:08<04:49,  2.61s/qa]WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 4/5)                 
+WARNING     ⏱️  耗时: 16.10s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 9.9s (base=8.0s +            
+         jitter=1.9s, attempt 5/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 5/5)                 
+WARNING     ⏱️  耗时: 16.09s                                                    
+WARNING     💬 错误: Connection error.                                         
+ERROR    [OpenAI-gpt-4o-mini] 所有 5 次重试均失败                              
+ERROR       ⏱️  最后耗时: 16.09s                                                
+ERROR       💬 最后错误: Connection error.                                     
+WARNING  Answer generation error (attempt 1/5): OpenAI API error after 5       
+         retries: Connection error.                                            
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 15.01s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 15.0s 退避 7.9s (base=7.5s +            
+         jitter=0.4s, attempt 2/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 4/5)                 
+WARNING     ⏱️  耗时: 16.11s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 8.7s (base=8.1s +            
+         jitter=0.6s, attempt 5/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 2/5)                 
+WARNING     ⏱️  耗时: 16.06s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 9.3s (base=8.0s +            
+         jitter=1.2s, attempt 3/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 3/5)                 
+WARNING     ⏱️  耗时: 16.07s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 8.6s (base=8.0s +            
+         jitter=0.5s, attempt 4/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 3/5)                 
+WARNING     ⏱️  耗时: 16.09s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 10.2s (base=8.0s +           
+         jitter=2.2s, attempt 4/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 3/5)                 
+WARNING     ⏱️  耗时: 16.10s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 8.3s (base=8.1s +            
+         jitter=0.2s, attempt 4/5)...                                          
+
+💬 Answer Progress:  30%|███       | 48/158 [03:16<07:43,  4.21s/qa]WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 15.38s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 15.4s 退避 9.9s (base=7.7s +            
+         jitter=2.2s, attempt 2/5)...                                          
+
+💬 Answer Progress:  31%|███       | 49/158 [03:20<07:48,  4.30s/qa]WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 5/5)                 
+WARNING     ⏱️  耗时: 16.11s                                                    
+WARNING     💬 错误: Connection error.                                         
+ERROR    [OpenAI-gpt-4o-mini] 所有 5 次重试均失败                              
+ERROR       ⏱️  最后耗时: 16.11s                                                
+ERROR       💬 最后错误: Connection error.                                     
+WARNING  Answer generation error (attempt 1/5): OpenAI API error after 5       
+         retries: Connection error.                                            
+WARNING  [OpenAI-gpt-4o-mini] 耗时太长: 15.04s - 服务可能繁忙                  
+INFO     [OpenAI-gpt-4o-mini] 虽然成功但耗时过长，退避 7.9s (base=7.5s +       
+         jitter=0.4s)...                                                       
+
+💬 Answer Progress:  32%|███▏      | 50/158 [03:26<08:23,  4.67s/qa]WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 2/5)                 
+WARNING     ⏱️  耗时: 16.12s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 10.3s (base=8.1s +           
+         jitter=2.3s, attempt 3/5)...                                          
+
+💬 Answer Progress:  32%|███▏      | 51/158 [03:27<06:13,  3.49s/qa]WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 2/5)                 
+WARNING     ⏱️  耗时: 16.11s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 10.0s (base=8.1s +           
+         jitter=2.0s, attempt 3/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 3/5)                 
+WARNING     ⏱️  耗时: 16.13s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 8.1s (base=8.1s +            
+         jitter=0.0s, attempt 4/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 3/5)                 
+WARNING     ⏱️  耗时: 16.08s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 9.3s (base=8.0s +            
+         jitter=1.3s, attempt 4/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 14.99s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 15.0s 退避 7.8s (base=7.5s +            
+         jitter=0.3s, attempt 2/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 4/5)                 
+WARNING     ⏱️  耗时: 16.09s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 8.5s (base=8.0s +            
+         jitter=0.4s, attempt 5/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 4/5)                 
+WARNING     ⏱️  耗时: 16.10s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 8.1s (base=8.1s +            
+         jitter=0.1s, attempt 5/5)...                                          
+
+💬 Answer Progress:  33%|███▎      | 52/158 [03:33<07:49,  4.43s/qa]WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 5/5)                 
+WARNING     ⏱️  耗时: 16.11s                                                    
+WARNING     💬 错误: Connection error.                                         
+ERROR    [OpenAI-gpt-4o-mini] 所有 5 次重试均失败                              
+ERROR       ⏱️  最后耗时: 16.11s                                                
+ERROR       💬 最后错误: Connection error.                                     
+WARNING  Answer generation error (attempt 1/5): OpenAI API error after 5       
+         retries: Connection error.                                            
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 15.36s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 15.4s 退避 8.5s (base=7.7s +            
+         jitter=0.8s, attempt 2/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 16.12s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 8.3s (base=8.1s +            
+         jitter=0.2s, attempt 2/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 2/5)                 
+WARNING     ⏱️  耗时: 16.12s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 10.2s (base=8.1s +           
+         jitter=2.1s, attempt 3/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 5/5)                 
+WARNING     ⏱️  耗时: 16.07s                                                    
+WARNING     💬 错误: Connection error.                                         
+ERROR    [OpenAI-gpt-4o-mini] 所有 5 次重试均失败                              
+ERROR       ⏱️  最后耗时: 16.07s                                                
+ERROR       💬 最后错误: Connection error.                                     
+WARNING  Answer generation error (attempt 1/5): OpenAI API error after 5       
+         retries: Connection error.                                            
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 4/5)                 
+WARNING     ⏱️  耗时: 16.07s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 10.4s (base=8.0s +           
+         jitter=2.3s, attempt 5/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 4/5)                 
+WARNING     ⏱️  耗时: 16.06s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 8.4s (base=8.0s +            
+         jitter=0.4s, attempt 5/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 3/5)                 
+WARNING     ⏱️  耗时: 16.13s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 9.1s (base=8.1s +            
+         jitter=1.0s, attempt 4/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 4/5)                 
+WARNING     ⏱️  耗时: 15.22s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 15.2s 退避 8.2s (base=7.6s +            
+         jitter=0.6s, attempt 5/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 14.99s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 15.0s 退避 8.6s (base=7.5s +            
+         jitter=1.1s, attempt 2/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 15.00s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 15.0s 退避 9.5s (base=7.5s +            
+         jitter=2.0s, attempt 2/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 2/5)                 
+WARNING     ⏱️  耗时: 16.09s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 9.7s (base=8.0s +            
+         jitter=1.6s, attempt 3/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 16.14s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 8.3s (base=8.1s +            
+         jitter=0.2s, attempt 2/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 16.14s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 9.0s (base=8.1s +            
+         jitter=0.9s, attempt 2/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 3/5)                 
+WARNING     ⏱️  耗时: 16.11s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 9.3s (base=8.1s +            
+         jitter=1.2s, attempt 4/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 4/5)                 
+WARNING     ⏱️  耗时: 16.11s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 10.5s (base=8.1s +           
+         jitter=2.4s, attempt 5/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 3/5)                 
+WARNING     ⏱️  耗时: 16.10s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 8.1s (base=8.0s +            
+         jitter=0.1s, attempt 4/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 2/5)                 
+WARNING     ⏱️  耗时: 16.12s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 10.4s (base=8.1s +           
+         jitter=2.3s, attempt 3/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 16.11s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 8.9s (base=8.1s +            
+         jitter=0.8s, attempt 2/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 5/5)                 
+WARNING     ⏱️  耗时: 16.08s                                                    
+WARNING     💬 错误: Connection error.                                         
+ERROR    [OpenAI-gpt-4o-mini] 所有 5 次重试均失败                              
+ERROR       ⏱️  最后耗时: 16.08s                                                
+ERROR       💬 最后错误: Connection error.                                     
+WARNING  Answer generation error (attempt 1/5): OpenAI API error after 5       
+         retries: Connection error.                                            
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 4/5)                 
+WARNING     ⏱️  耗时: 16.13s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 9.5s (base=8.1s +            
+         jitter=1.4s, attempt 5/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 5/5)                 
+WARNING     ⏱️  耗时: 16.09s                                                    
+WARNING     💬 错误: Connection error.                                         
+ERROR    [OpenAI-gpt-4o-mini] 所有 5 次重试均失败                              
+ERROR       ⏱️  最后耗时: 16.09s                                                
+ERROR       💬 最后错误: Connection error.                                     
+WARNING  Answer generation error (attempt 1/5): OpenAI API error after 5       
+         retries: Connection error.                                            
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 2/5)                 
+WARNING     ⏱️  耗时: 16.09s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 8.3s (base=8.0s +            
+         jitter=0.3s, attempt 3/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 2/5)                 
+WARNING     ⏱️  耗时: 16.10s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 8.5s (base=8.0s +            
+         jitter=0.5s, attempt 3/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 3/5)                 
+WARNING     ⏱️  耗时: 16.13s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 8.2s (base=8.1s +            
+         jitter=0.1s, attempt 4/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 5/5)                 
+WARNING     ⏱️  耗时: 16.11s                                                    
+WARNING     💬 错误: Connection error.                                         
+ERROR    [OpenAI-gpt-4o-mini] 所有 5 次重试均失败                              
+ERROR       ⏱️  最后耗时: 16.11s                                                
+ERROR       💬 最后错误: Connection error.                                     
+WARNING  Answer generation error (attempt 1/5): OpenAI API error after 5       
+         retries: Connection error.                                            
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 5/5)                 
+WARNING     ⏱️  耗时: 16.09s                                                    
+WARNING     💬 错误: Connection error.                                         
+ERROR    [OpenAI-gpt-4o-mini] 所有 5 次重试均失败                              
+ERROR       ⏱️  最后耗时: 16.09s                                                
+ERROR       💬 最后错误: Connection error.                                     
+WARNING  Answer generation error (attempt 1/5): OpenAI API error after 5       
+         retries: Connection error.                                            
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 4/5)                 
+WARNING     ⏱️  耗时: 16.09s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 9.1s (base=8.0s +            
+         jitter=1.1s, attempt 5/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 2/5)                 
+WARNING     ⏱️  耗时: 16.12s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 9.9s (base=8.1s +            
+         jitter=1.8s, attempt 3/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 5/5)                 
+WARNING     ⏱️  耗时: 16.08s                                                    
+WARNING     💬 错误: Connection error.                                         
+ERROR    [OpenAI-gpt-4o-mini] 所有 5 次重试均失败                              
+ERROR       ⏱️  最后耗时: 16.08s                                                
+ERROR       💬 最后错误: Connection error.                                     
+WARNING  Answer generation error (attempt 1/5): OpenAI API error after 5       
+         retries: Connection error.                                            
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 2/5)                 
+WARNING     ⏱️  耗时: 16.10s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 9.2s (base=8.1s +            
+         jitter=1.2s, attempt 3/5)...                                          
+
+💬 Answer Progress:  34%|███▎      | 53/158 [04:09<24:23, 13.94s/qa]WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 3/5)                 
+WARNING     ⏱️  耗时: 16.11s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 8.2s (base=8.1s +            
+         jitter=0.2s, attempt 4/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 16.12s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 8.2s (base=8.1s +            
+         jitter=0.1s, attempt 2/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 2/5)                 
+WARNING     ⏱️  耗时: 16.11s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 10.3s (base=8.1s +           
+         jitter=2.2s, attempt 3/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 2/5)                 
+WARNING     ⏱️  耗时: 16.13s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 9.6s (base=8.1s +            
+         jitter=1.5s, attempt 3/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 4/5)                 
+WARNING     ⏱️  耗时: 16.60s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.6s 退避 10.0s (base=8.3s +           
+         jitter=1.7s, attempt 5/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 4/5)                 
+WARNING     ⏱️  耗时: 16.16s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.2s 退避 8.2s (base=8.1s +            
+         jitter=0.2s, attempt 5/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 5/5)                 
+WARNING     ⏱️  耗时: 16.10s                                                    
+WARNING     💬 错误: Connection error.                                         
+ERROR    [OpenAI-gpt-4o-mini] 所有 5 次重试均失败                              
+ERROR       ⏱️  最后耗时: 16.10s                                                
+ERROR       💬 最后错误: Connection error.                                     
+WARNING  Answer generation error (attempt 1/5): OpenAI API error after 5       
+         retries: Connection error.                                            
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 2/5)                 
+WARNING     ⏱️  耗时: 16.08s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 9.5s (base=8.0s +            
+         jitter=1.4s, attempt 3/5)...                                          
+
+💬 Answer Progress:  34%|███▍      | 54/158 [04:20<22:33, 13.01s/qa]WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 16.10s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 9.7s (base=8.1s +            
+         jitter=1.6s, attempt 2/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 5/5)                 
+WARNING     ⏱️  耗时: 16.09s                                                    
+WARNING     💬 错误: Connection error.                                         
+ERROR    [OpenAI-gpt-4o-mini] 所有 5 次重试均失败                              
+ERROR       ⏱️  最后耗时: 16.09s                                                
+ERROR       💬 最后错误: Connection error.                                     
+WARNING  Answer generation error (attempt 1/5): OpenAI API error after 5       
+         retries: Connection error.                                            
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 3/5)                 
+WARNING     ⏱️  耗时: 16.43s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.4s 退避 9.3s (base=8.2s +            
+         jitter=1.1s, attempt 4/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 17.09s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 17.1s 退避 9.2s (base=8.5s +            
+         jitter=0.7s, attempt 2/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 16.09s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 10.3s (base=8.0s +           
+         jitter=2.3s, attempt 2/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 3/5)                 
+WARNING     ⏱️  耗时: 16.14s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 9.3s (base=8.1s +            
+         jitter=1.3s, attempt 4/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 3/5)                 
+WARNING     ⏱️  耗时: 16.11s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 9.3s (base=8.1s +            
+         jitter=1.2s, attempt 4/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 4/5)                 
+WARNING     ⏱️  耗时: 16.12s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 10.3s (base=8.1s +           
+         jitter=2.2s, attempt 5/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 5/5)                 
+WARNING     ⏱️  耗时: 16.14s                                                    
+WARNING     💬 错误: Connection error.                                         
+ERROR    [OpenAI-gpt-4o-mini] 所有 5 次重试均失败                              
+ERROR       ⏱️  最后耗时: 16.14s                                                
+ERROR       💬 最后错误: Connection error.                                     
+WARNING  Answer generation error (attempt 1/5): OpenAI API error after 5       
+         retries: Connection error.                                            
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 3/5)                 
+WARNING     ⏱️  耗时: 16.16s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.2s 退避 8.6s (base=8.1s +            
+         jitter=0.5s, attempt 4/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 3/5)                 
+WARNING     ⏱️  耗时: 16.09s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 8.4s (base=8.0s +            
+         jitter=0.4s, attempt 4/5)...                                          
+
+💬 Answer Progress:  35%|███▍      | 55/158 [04:35<22:56, 13.36s/qa]WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 4/5)                 
+WARNING     ⏱️  耗时: 16.11s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 9.6s (base=8.1s +            
+         jitter=1.6s, attempt 5/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 14.99s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 15.0s 退避 8.7s (base=7.5s +            
+         jitter=1.2s, attempt 2/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 2/5)                 
+WARNING     ⏱️  耗时: 16.09s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 9.1s (base=8.0s +            
+         jitter=1.1s, attempt 3/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 16.05s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 8.4s (base=8.0s +            
+         jitter=0.3s, attempt 2/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 3/5)                 
+WARNING     ⏱️  耗时: 16.06s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 8.5s (base=8.0s +            
+         jitter=0.5s, attempt 4/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 3/5)                 
+WARNING     ⏱️  耗时: 16.09s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 8.6s (base=8.0s +            
+         jitter=0.5s, attempt 4/5)...                                          
+
+💬 Answer Progress:  35%|███▌      | 56/158 [04:42<19:57, 11.74s/qa]WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 5/5)                 
+WARNING     ⏱️  耗时: 16.14s                                                    
+WARNING     💬 错误: Connection error.                                         
+ERROR    [OpenAI-gpt-4o-mini] 所有 5 次重试均失败                              
+ERROR       ⏱️  最后耗时: 16.14s                                                
+ERROR       💬 最后错误: Connection error.                                     
+WARNING  Answer generation error (attempt 1/5): OpenAI API error after 5       
+         retries: Connection error.                                            
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 5/5)                 
+WARNING     ⏱️  耗时: 16.09s                                                    
+WARNING     💬 错误: Connection error.                                         
+ERROR    [OpenAI-gpt-4o-mini] 所有 5 次重试均失败                              
+ERROR       ⏱️  最后耗时: 16.09s                                                
+ERROR       💬 最后错误: Connection error.                                     
+WARNING  Answer generation error (attempt 1/5): OpenAI API error after 5       
+         retries: Connection error.                                            
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 3/5)                 
+WARNING     ⏱️  耗时: 16.12s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 10.2s (base=8.1s +           
+         jitter=2.2s, attempt 4/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 2/5)                 
+WARNING     ⏱️  耗时: 16.33s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.3s 退避 9.0s (base=8.2s +            
+         jitter=0.8s, attempt 3/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 4/5)                 
+WARNING     ⏱️  耗时: 16.10s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 10.3s (base=8.0s +           
+         jitter=2.3s, attempt 5/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 2/5)                 
+WARNING     ⏱️  耗时: 16.08s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 8.2s (base=8.0s +            
+         jitter=0.2s, attempt 3/5)...                                          
+
+💬 Answer Progress:  36%|███▌      | 57/158 [04:48<16:37,  9.88s/qa]WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 2/5)                 
+WARNING     ⏱️  耗时: 16.12s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 10.3s (base=8.1s +           
+         jitter=2.3s, attempt 3/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 4/5)                 
+WARNING     ⏱️  耗时: 16.08s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 9.5s (base=8.0s +            
+         jitter=1.4s, attempt 5/5)...                                          
+
+💬 Answer Progress:  37%|███▋      | 58/158 [04:51<12:59,  7.80s/qa]WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 4/5)                 
+WARNING     ⏱️  耗时: 16.07s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 10.1s (base=8.0s +           
+         jitter=2.1s, attempt 5/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 5/5)                 
+WARNING     ⏱️  耗时: 16.27s                                                    
+WARNING     💬 错误: Connection error.                                         
+ERROR    [OpenAI-gpt-4o-mini] 所有 5 次重试均失败                              
+ERROR       ⏱️  最后耗时: 16.27s                                                
+ERROR       💬 最后错误: Connection error.                                     
+WARNING  Answer generation error (attempt 1/5): OpenAI API error after 5       
+         retries: Connection error.                                            
+
+💬 Answer Progress:  37%|███▋      | 59/158 [04:56<11:33,  7.00s/qa]WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 4/5)                 
+WARNING     ⏱️  耗时: 16.10s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 10.4s (base=8.1s +           
+         jitter=2.4s, attempt 5/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 4/5)                 
+WARNING     ⏱️  耗时: 16.10s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 8.3s (base=8.0s +            
+         jitter=0.3s, attempt 5/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] 耗时太长: 15.71s - 服务可能繁忙                  
+INFO     [OpenAI-gpt-4o-mini] 虽然成功但耗时过长，退避 8.5s (base=7.9s +       
+         jitter=0.6s)...                                                       
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 5/5)                 
+WARNING     ⏱️  耗时: 16.11s                                                    
+WARNING     💬 错误: Connection error.                                         
+ERROR    [OpenAI-gpt-4o-mini] 所有 5 次重试均失败                              
+ERROR       ⏱️  最后耗时: 16.11s                                                
+ERROR       💬 最后错误: Connection error.                                     
+WARNING  Answer generation error (attempt 1/5): OpenAI API error after 5       
+         retries: Connection error.                                            
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 2/5)                 
+WARNING     ⏱️  耗时: 16.35s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.3s 退避 10.1s (base=8.2s +           
+         jitter=1.9s, attempt 3/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 3/5)                 
+WARNING     ⏱️  耗时: 16.13s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 8.5s (base=8.1s +            
+         jitter=0.4s, attempt 4/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 2/5)                 
+WARNING     ⏱️  耗时: 16.14s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 9.1s (base=8.1s +            
+         jitter=1.0s, attempt 3/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 15.38s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 15.4s 退避 8.8s (base=7.7s +            
+         jitter=1.1s, attempt 2/5)...                                          
+
+💬 Answer Progress:  38%|███▊      | 60/158 [05:05<12:17,  7.53s/qa]WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 4/5)                 
+WARNING     ⏱️  耗时: 16.39s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.4s 退避 9.2s (base=8.2s +            
+         jitter=1.0s, attempt 5/5)...                                          
+
+💬 Answer Progress:  39%|███▊      | 61/158 [05:06<08:58,  5.55s/qa]
+💬 Answer Progress:  39%|███▉      | 62/158 [05:09<07:40,  4.79s/qa]WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 15.00s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 15.0s 退避 7.6s (base=7.5s +            
+         jitter=0.1s, attempt 2/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 16.12s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 8.2s (base=8.1s +            
+         jitter=0.2s, attempt 2/5)...                                          
+
+💬 Answer Progress:  40%|███▉      | 63/158 [05:11<06:34,  4.15s/qa]WARNING  [OpenAI-gpt-4o-mini] 耗时太长: 15.98s - 服务可能繁忙                  
+INFO     [OpenAI-gpt-4o-mini] 虽然成功但耗时过长，退避 9.0s (base=8.0s +       
+         jitter=1.0s)...                                                       
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 3/5)                 
+WARNING     ⏱️  耗时: 16.11s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 8.7s (base=8.1s +            
+         jitter=0.6s, attempt 4/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 3/5)                 
+WARNING     ⏱️  耗时: 16.11s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 基于耗时 16.1s 退避 9.2s (base=8.1s +            
+         jitter=1.1s, attempt 4/5)...                                          
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 5/5)                 
+WARNING     ⏱️  耗时: 16.31s                                                    
+WARNING     💬 错误: Connection error.                                         
+ERROR    [OpenAI-gpt-4o-mini] 所有 5 次重试均失败                              
+ERROR       ⏱️  最后耗时: 16.31s                                                
+ERROR       💬 最后错误: Connection error.                                     
+WARNING  Answer generation error (attempt 2/5): OpenAI API error after 5       
+         retries: Connection error.                                            
+
+💬 Answer Progress:  41%|████      | 64/158 [05:14<05:51,  3.74s/qa]WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 5/5)                 
+WARNING     ⏱️  耗时: 16.11s                                                    
+WARNING     💬 错误: Connection error.                                         
+ERROR    [OpenAI-gpt-4o-mini] 所有 5 次重试均失败                              
+ERROR       ⏱️  最后耗时: 16.11s                                                
+ERROR       💬 最后错误: Connection error.                                     
+WARNING  Answer generation error (attempt 2/5): OpenAI API error after 5       
+         retries: Connection error.                                            
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 5/5)                 
+WARNING     ⏱️  耗时: 16.11s                                                    
+WARNING     💬 错误: Connection error.                                         
+ERROR    [OpenAI-gpt-4o-mini] 所有 5 次重试均失败                              
+ERROR       ⏱️  最后耗时: 16.11s                                                
+ERROR       💬 最后错误: Connection error.                                     
+WARNING  Answer generation error (attempt 2/5): OpenAI API error after 5       
+         retries: Connection error.                                            
+

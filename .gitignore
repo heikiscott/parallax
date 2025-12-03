@@ -101,6 +101,10 @@ demo/memcell_outputs/
 ## Evaluation Results
 eval/results/
 
+## Baseline - don't ignore anything in baseline
+!eval/baseline/
+!eval/baseline/**
+
 ## Temp Files
 export_mongodb_data.py
 simple_query_memcell.py

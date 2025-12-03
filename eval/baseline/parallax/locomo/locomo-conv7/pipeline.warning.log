@@ -1,0 +1,5 @@
+2025-12-01 14:43:48,509 - [add-7-mu54] - providers.llm.openai_provider - WARNING - openai_provider.py:355 - 🔌 [OpenAI-gpt-4.1-mini] 连接异常! 重试 1/20: APIConnectionError
+2025-12-01 14:43:48,510 - [add-7-mu54] - providers.llm.openai_provider - WARNING - openai_provider.py:356 -    ⏱️  已耗时: 5.21s, 将等待 5.0-300.0s 后重试
+2025-12-01 14:43:48,510 - [add-7-mu54] - providers.llm.openai_provider - WARNING - openai_provider.py:357 -    💬 错误: Connection error.
+2025-12-01 15:23:20,002 - [search-locomo_7_qa63] - eval.adapters.parallax.stage3_memory_retrivel - WARNING - stage3_memory_retrivel.py:1518 -   ⏱️  Batch at 20 timeout (attempt 1), retrying in 0.8s
+2025-12-01 15:23:20,330 - [search-locomo_7_qa79] - eval.adapters.parallax.stage3_memory_retrivel - WARNING - stage3_memory_retrivel.py:1518 -   ⏱️  Batch at 0 timeout (attempt 1), retrying in 0.8s

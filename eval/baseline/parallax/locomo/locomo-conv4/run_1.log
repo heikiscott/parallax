@@ -1,0 +1,61 @@
+
+Loading configurations...
+  ✅ Loaded dataset config: locomo
+  ✅ Loaded system config: parallax
+
+Loading dataset: locomo
+  📂 Using eval/data/locomo/locomo10.json
+  ✅ Loaded 10 conversations, 1986 QA pairs
+
+Initializing components...
+INFO     Parallax Adapter initialized                                          
+INFO     LLM Model: gpt-4o-mini                                                
+INFO     Output Dir: D:\parallax\eval\results\locomo-conv4                     
+  ✅ Created adapter: Parallax
+  ✅ Created evaluator: LLMJudge
+  ✅ Created LLM provider: gpt-4o-mini
+  ✅ Created pipeline, output: D:\parallax\eval\results\locomo-conv4
+  📋 Filter categories: [5]
+
+============================================================
+🚀 Evaluation Pipeline
+============================================================
+Dataset: locomo
+System: Parallax
+Stages: all
+============================================================
+
+🔍 Selected conversation 4: locomo_4 (242 QA pairs)
+
+🔍 Filtered out 64 questions from categories: 5
+   Remaining questions: 178
+
+INFO     🔄 发现 checkpoint 文件: checkpoint_default.json                      
+INFO        上次运行时间: 2025-11-23T04:01:06.253516                           
+INFO        已完成阶段: evaluate, answer, add, search                          
+INFO        已处理对话数: 178                                                  
+
+⏭️  Skip Add stage (already completed)
+
+⏭️  Skip Search stage (already completed)
+
+⏭️  Skip Answer stage (already completed)
+
+⏭️  Skip Evaluate stage (already completed)
+
+============================================================
+📊 Evaluation Report
+============================================================
+
+System: Parallax
+Time Elapsed: 0.09s
+
+============================================================
+INFO     Report saved to: D:\parallax\eval\results\locomo-conv4\report.txt     
+
+✨ Evaluation completed!
+Results saved to: D:\parallax\eval\results\locomo-conv4
+
+INFO     Initialized DeepInfra Rerank Service with model:                      
+         Qwen/Qwen3-Reranker-4B                                                
+🧹 Cleaned up rerank service resources

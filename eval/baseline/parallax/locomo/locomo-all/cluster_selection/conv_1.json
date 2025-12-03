@@ -1,0 +1,537 @@
+{
+  "qa_count": 81,
+  "questions": [
+    {
+      "query": "When did Jon start to go to the gym?",
+      "question_id": "locomo_1_qa12",
+      "clusters_found": [
+        "gec_001",
+        "gec_016",
+        "gec_005",
+        "gec_015",
+        "gec_002",
+        "gec_004",
+        "gec_003",
+        "gec_008"
+      ],
+      "clusters_selected": [
+        "gec_001"
+      ],
+      "selection_reasoning": "Cluster gec_001 covers Jon's personal journey including his job loss and subsequent activities, which is the most likely to include information about when Jon started going to the gym. Other clusters focus on Gina's business efforts and do not relate to Jon's gym activities.",
+      "cluster_details": {
+        "gec_001": {
+          "topic": "Jon's job loss and business plan discussion",
+          "summary": "They discussed Jon’s job loss and his determined journey to open and grow a dance studio, sharing challenges, successes, and mutual encouragement. Their ongoing support highlighted resilience, entrepreneurial spirit, and a shared passion for dance and business growth.",
+          "member_count": 29,
+          "members_returned": 15
+        }
+      },
+      "members_per_cluster": {
+        "gec_001": 15
+      },
+      "final_count": 25,
+      "truncated": false,
+      "evidence": [
+        "D6:1"
+      ],
+      "evidence_detail": {
+        "D6:1": [
+          "958a742a-aeaa-4384-9c36-5987722f431d",
+          "gec_001"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "958a742a-aeaa-4384-9c36-5987722f431d"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_001"
+      ],
+      "cluster_hit": true,
+      "memunit_hit": true,
+      "memunit_coverage": 1.0,
+      "selected_unit_ids": [
+        "1118d037-fcee-4c88-b2df-9e27949bf846",
+        "a916e4b6-059c-4a83-a04f-2c5f51dbe613",
+        "46a8f959-00fe-45ec-a341-23d8ee25f944",
+        "f420a211-cf5f-4b1e-9f92-321399bdbf65",
+        "6f4c3873-4369-4676-9753-87ad81489fd1",
+        "e6dec56c-5656-4b70-9062-7d25afb74016",
+        "e82f5bc9-7e79-43fb-af80-2177f5e9d85e",
+        "a0c3cbed-d9f7-4da5-b1a9-f45b0ab9aef6",
+        "2e828c61-473c-42f3-8a7c-947143f9ce66",
+        "0b044e4f-161b-45e1-8173-a0915ef65bed",
+        "35ec131a-3402-40d0-a1c7-8def9bb86e82",
+        "2fe55c03-574d-4b21-989e-1993f0ecd9b3",
+        "d1ffd94d-9fd5-4c27-a5c3-d65a30bd0b0f",
+        "2c844fa5-b887-460c-aa3e-6b1504d22956",
+        "958a742a-aeaa-4384-9c36-5987722f431d"
+      ]
+    },
+    {
+      "query": "When did Jon start expanding his studio's social media presence?",
+      "question_id": "locomo_1_qa14",
+      "clusters_found": [
+        "gec_001",
+        "gec_012",
+        "gec_016",
+        "gec_005",
+        "gec_006",
+        "gec_002",
+        "gec_013",
+        "gec_004",
+        "gec_014",
+        "gec_003",
+        "gec_009",
+        "gec_008"
+      ],
+      "clusters_selected": [
+        "gec_001"
+      ],
+      "selection_reasoning": "Cluster gec_001 covers Jon's journey to open and grow his dance studio, including discussions about his business plans and progress, which likely includes when he started expanding the studio's social media presence. Other clusters focus on Gina's clothing store or general encouragement, making gec_001 the most directly relevant.",
+      "cluster_details": {
+        "gec_001": {
+          "topic": "Jon's job loss and business plan discussion",
+          "summary": "They discussed Jon’s job loss and his determined journey to open and grow a dance studio, sharing challenges, successes, and mutual encouragement. Their ongoing support highlighted resilience, entrepreneurial spirit, and a shared passion for dance and business growth.",
+          "member_count": 29,
+          "members_returned": 15
+        }
+      },
+      "members_per_cluster": {
+        "gec_001": 15
+      },
+      "final_count": 25,
+      "truncated": false,
+      "evidence": [
+        "D8:13"
+      ],
+      "evidence_detail": {
+        "D8:13": [
+          "2fe55c03-574d-4b21-989e-1993f0ecd9b3",
+          "gec_008"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "2fe55c03-574d-4b21-989e-1993f0ecd9b3"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_008"
+      ],
+      "cluster_hit": false,
+      "memunit_hit": true,
+      "memunit_coverage": 1.0,
+      "selected_unit_ids": [
+        "1118d037-fcee-4c88-b2df-9e27949bf846",
+        "a916e4b6-059c-4a83-a04f-2c5f51dbe613",
+        "46a8f959-00fe-45ec-a341-23d8ee25f944",
+        "f420a211-cf5f-4b1e-9f92-321399bdbf65",
+        "6f4c3873-4369-4676-9753-87ad81489fd1",
+        "e6dec56c-5656-4b70-9062-7d25afb74016",
+        "e82f5bc9-7e79-43fb-af80-2177f5e9d85e",
+        "a0c3cbed-d9f7-4da5-b1a9-f45b0ab9aef6",
+        "2e828c61-473c-42f3-8a7c-947143f9ce66",
+        "0b044e4f-161b-45e1-8173-a0915ef65bed",
+        "35ec131a-3402-40d0-a1c7-8def9bb86e82",
+        "2fe55c03-574d-4b21-989e-1993f0ecd9b3",
+        "d1ffd94d-9fd5-4c27-a5c3-d65a30bd0b0f",
+        "2c844fa5-b887-460c-aa3e-6b1504d22956",
+        "958a742a-aeaa-4384-9c36-5987722f431d"
+      ]
+    },
+    {
+      "query": "When did Jon go to a fair to get more exposure for his dance studio?",
+      "question_id": "locomo_1_qa16",
+      "clusters_found": [
+        "gec_001",
+        "gec_012",
+        "gec_005",
+        "gec_006",
+        "gec_013",
+        "gec_004",
+        "gec_014",
+        "gec_009",
+        "gec_008"
+      ],
+      "clusters_selected": [
+        "gec_001"
+      ],
+      "selection_reasoning": "Cluster gec_001 covers Jon's journey to open and grow his dance studio, including discussions about his efforts to gain exposure, which likely includes attending events such as fairs.",
+      "cluster_details": {
+        "gec_001": {
+          "topic": "Jon's job loss and business plan discussion",
+          "summary": "They discussed Jon’s job loss and his determined journey to open and grow a dance studio, sharing challenges, successes, and mutual encouragement. Their ongoing support highlighted resilience, entrepreneurial spirit, and a shared passion for dance and business growth.",
+          "member_count": 29,
+          "members_returned": 15
+        }
+      },
+      "members_per_cluster": {
+        "gec_001": 15
+      },
+      "final_count": 24,
+      "truncated": false,
+      "evidence": [
+        "D10:1"
+      ],
+      "evidence_detail": {
+        "D10:1": [
+          "46a8f959-00fe-45ec-a341-23d8ee25f944",
+          "gec_004"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "46a8f959-00fe-45ec-a341-23d8ee25f944"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_004"
+      ],
+      "cluster_hit": false,
+      "memunit_hit": true,
+      "memunit_coverage": 1.0,
+      "selected_unit_ids": [
+        "1118d037-fcee-4c88-b2df-9e27949bf846",
+        "a916e4b6-059c-4a83-a04f-2c5f51dbe613",
+        "46a8f959-00fe-45ec-a341-23d8ee25f944",
+        "f420a211-cf5f-4b1e-9f92-321399bdbf65",
+        "6f4c3873-4369-4676-9753-87ad81489fd1",
+        "e6dec56c-5656-4b70-9062-7d25afb74016",
+        "e82f5bc9-7e79-43fb-af80-2177f5e9d85e",
+        "a0c3cbed-d9f7-4da5-b1a9-f45b0ab9aef6",
+        "2e828c61-473c-42f3-8a7c-947143f9ce66",
+        "0b044e4f-161b-45e1-8173-a0915ef65bed",
+        "35ec131a-3402-40d0-a1c7-8def9bb86e82",
+        "2fe55c03-574d-4b21-989e-1993f0ecd9b3",
+        "d1ffd94d-9fd5-4c27-a5c3-d65a30bd0b0f",
+        "2c844fa5-b887-460c-aa3e-6b1504d22956",
+        "958a742a-aeaa-4384-9c36-5987722f431d"
+      ]
+    },
+    {
+      "query": "When did Jon start reading \"The Lean Startup\"?",
+      "question_id": "locomo_1_qa21",
+      "clusters_found": [
+        "gec_001",
+        "gec_012",
+        "gec_016",
+        "gec_005",
+        "gec_002",
+        "gec_013",
+        "gec_004",
+        "gec_014",
+        "gec_003",
+        "gec_011",
+        "gec_008"
+      ],
+      "clusters_selected": [
+        "gec_011"
+      ],
+      "selection_reasoning": "Cluster gec_011 specifically mentions Jon's use of 'The Lean Startup' book for business development and is dated June 13, 2023, which directly relates to when Jon started reading or applying the book.",
+      "cluster_details": {
+        "gec_011": {
+          "topic": "Jon's use of 'The Lean Startup' book for business development",
+          "summary": "Gina and Jon discussed their respective career pursuits, with Gina entering the fashion industry and Jon developing his business by applying insights from \"The Lean Startup,\" organizing ideas visually, and seeking investors, while they exchanged mutual encouragement and support.",
+          "member_count": 1,
+          "members_returned": 1
+        }
+      },
+      "members_per_cluster": {
+        "gec_011": 1
+      },
+      "final_count": 11,
+      "truncated": false,
+      "evidence": [
+        "D12:6"
+      ],
+      "evidence_detail": {
+        "D12:6": [
+          "1fa24735-aef6-4f28-a7f4-58ec21d55b3e",
+          "gec_011"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "1fa24735-aef6-4f28-a7f4-58ec21d55b3e"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_011"
+      ],
+      "cluster_hit": true,
+      "memunit_hit": true,
+      "memunit_coverage": 1.0,
+      "selected_unit_ids": [
+        "1fa24735-aef6-4f28-a7f4-58ec21d55b3e"
+      ]
+    },
+    {
+      "query": "When did Jon visit networking events for his store?",
+      "question_id": "locomo_1_qa33",
+      "clusters_found": [
+        "gec_001",
+        "gec_012",
+        "gec_016",
+        "gec_015",
+        "gec_005",
+        "gec_006",
+        "gec_002",
+        "gec_013",
+        "gec_004",
+        "gec_014",
+        "gec_010",
+        "gec_003",
+        "gec_011",
+        "gec_008"
+      ],
+      "clusters_selected": [
+        "gec_001"
+      ],
+      "selection_reasoning": "Cluster gec_001 covers Jon's journey to open and grow his dance studio, including discussions about his business plans and related events, which likely include his visits to networking events for his store. Other clusters focus on Gina's clothing store or general encouragement and do not specifically mention Jon's networking events.",
+      "cluster_details": {
+        "gec_001": {
+          "topic": "Jon's job loss and business plan discussion",
+          "summary": "They discussed Jon’s job loss and his determined journey to open and grow a dance studio, sharing challenges, successes, and mutual encouragement. Their ongoing support highlighted resilience, entrepreneurial spirit, and a shared passion for dance and business growth.",
+          "member_count": 29,
+          "members_returned": 15
+        }
+      },
+      "members_per_cluster": {
+        "gec_001": 15
+      },
+      "final_count": 25,
+      "truncated": false,
+      "evidence": [
+        "D16:6"
+      ],
+      "evidence_detail": {
+        "D16:6": [
+          "11f00a3a-088c-43c8-9f1d-4ef53a6603d9",
+          "gec_015"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "11f00a3a-088c-43c8-9f1d-4ef53a6603d9"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_015"
+      ],
+      "cluster_hit": false,
+      "memunit_hit": false,
+      "memunit_coverage": 0.0,
+      "selected_unit_ids": [
+        "1118d037-fcee-4c88-b2df-9e27949bf846",
+        "a916e4b6-059c-4a83-a04f-2c5f51dbe613",
+        "46a8f959-00fe-45ec-a341-23d8ee25f944",
+        "f420a211-cf5f-4b1e-9f92-321399bdbf65",
+        "6f4c3873-4369-4676-9753-87ad81489fd1",
+        "e6dec56c-5656-4b70-9062-7d25afb74016",
+        "e82f5bc9-7e79-43fb-af80-2177f5e9d85e",
+        "a0c3cbed-d9f7-4da5-b1a9-f45b0ab9aef6",
+        "2e828c61-473c-42f3-8a7c-947143f9ce66",
+        "0b044e4f-161b-45e1-8173-a0915ef65bed",
+        "35ec131a-3402-40d0-a1c7-8def9bb86e82",
+        "2fe55c03-574d-4b21-989e-1993f0ecd9b3",
+        "d1ffd94d-9fd5-4c27-a5c3-d65a30bd0b0f",
+        "2c844fa5-b887-460c-aa3e-6b1504d22956",
+        "958a742a-aeaa-4384-9c36-5987722f431d"
+      ]
+    },
+    {
+      "query": "When did Gina start being recognized by fashion editors?",
+      "question_id": "locomo_1_qa34",
+      "clusters_found": [
+        "gec_001",
+        "gec_012",
+        "gec_016",
+        "gec_005",
+        "gec_002",
+        "gec_013",
+        "gec_004",
+        "gec_014",
+        "gec_010",
+        "gec_003",
+        "gec_011",
+        "gec_009",
+        "gec_008"
+      ],
+      "clusters_selected": [
+        "gec_016"
+      ],
+      "selection_reasoning": "Cluster gec_016 specifically mentions Gina's recognition by fashion editors and provides the date of this event (July 9, 2023), directly answering the query about when Gina started being recognized by fashion editors.",
+      "cluster_details": {
+        "gec_016": {
+          "topic": "Gina's recognition by fashion editors",
+          "summary": "On July 9, 2023, Jon and Gina engaged in a supportive conversation where Gina encouraged Jon as he transitioned from job loss to pursuing his dance studio business and mentorship, while Jon congratulated Gina on her recent recognition by fashion editors. Their exchange was marked by mutual encouragement, optimism, and commitment to their respective passions.",
+          "member_count": 1,
+          "members_returned": 1
+        }
+      },
+      "members_per_cluster": {
+        "gec_016": 1
+      },
+      "final_count": 11,
+      "truncated": false,
+      "evidence": [
+        "D17:1"
+      ],
+      "evidence_detail": {
+        "D17:1": [
+          "00b787f9-7459-4b87-861a-209413e9439f",
+          "gec_016"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "00b787f9-7459-4b87-861a-209413e9439f"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_016"
+      ],
+      "cluster_hit": true,
+      "memunit_hit": true,
+      "memunit_coverage": 1.0,
+      "selected_unit_ids": [
+        "00b787f9-7459-4b87-861a-209413e9439f"
+      ]
+    },
+    {
+      "query": "When did Jon start learning marketing and analytics tools?",
+      "question_id": "locomo_1_qa35",
+      "clusters_found": [
+        "gec_001",
+        "gec_012",
+        "gec_016",
+        "gec_005",
+        "gec_002",
+        "gec_013",
+        "gec_004",
+        "gec_014",
+        "gec_010",
+        "gec_003",
+        "gec_011",
+        "gec_009",
+        "gec_008"
+      ],
+      "clusters_selected": [
+        "gec_001",
+        "gec_012",
+        "gec_013",
+        "gec_014"
+      ],
+      "selection_reasoning": "The query asks when Jon started learning marketing and analytics tools. Clusters gec_012, gec_013, and gec_014 (all from June 16, 2023) mention Jon and Gina discussing mentorship experiences and marketing strategies, which likely includes learning marketing and analytics tools. Cluster gec_001 covers Jon's job loss and business plan discussions from January to July 2023, providing broader context on when Jon began his entrepreneurial journey and related skill development.",
+      "cluster_details": {
+        "gec_001": {
+          "topic": "Jon's job loss and business plan discussion",
+          "summary": "They discussed Jon’s job loss and his determined journey to open and grow a dance studio, sharing challenges, successes, and mutual encouragement. Their ongoing support highlighted resilience, entrepreneurial spirit, and a shared passion for dance and business growth.",
+          "member_count": 29,
+          "members_returned": 15
+        },
+        "gec_012": {
+          "topic": "Jon and Gina's mentorship experiences",
+          "summary": "On June 16, 2023, Jon and Gina engaged in a motivational conversation about their entrepreneurial journeys, sharing mentorship experiences, marketing strategies, and the importance of resilience in pursuing their business goals and personal passions.",
+          "member_count": 1,
+          "members_returned": 1
+        },
+        "gec_013": {
+          "topic": "Jon and Gina's marketing strategies",
+          "summary": "On June 16, 2023, Jon and Gina engaged in a motivational conversation about their entrepreneurial journeys, sharing mentorship experiences, marketing strategies, and the importance of resilience in pursuing their business goals and personal passions.",
+          "member_count": 1,
+          "members_returned": 0
+        },
+        "gec_014": {
+          "topic": "Resilience in pursuing business goals and personal passions",
+          "summary": "On June 16, 2023, Jon and Gina engaged in a motivational conversation about their entrepreneurial journeys, sharing mentorship experiences, marketing strategies, and the importance of resilience in pursuing their business goals and personal passions.",
+          "member_count": 1,
+          "members_returned": 0
+        }
+      },
+      "members_per_cluster": {
+        "gec_001": 15,
+        "gec_012": 1,
+        "gec_013": 0,
+        "gec_014": 0
+      },
+      "final_count": 26,
+      "truncated": false,
+      "evidence": [
+        "D17:4"
+      ],
+      "evidence_detail": {
+        "D17:4": [
+          "00b787f9-7459-4b87-861a-209413e9439f",
+          "gec_016"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "00b787f9-7459-4b87-861a-209413e9439f"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_016"
+      ],
+      "cluster_hit": false,
+      "memunit_hit": false,
+      "memunit_coverage": 0.0,
+      "selected_unit_ids": [
+        "1118d037-fcee-4c88-b2df-9e27949bf846",
+        "a916e4b6-059c-4a83-a04f-2c5f51dbe613",
+        "46a8f959-00fe-45ec-a341-23d8ee25f944",
+        "f420a211-cf5f-4b1e-9f92-321399bdbf65",
+        "6f4c3873-4369-4676-9753-87ad81489fd1",
+        "e6dec56c-5656-4b70-9062-7d25afb74016",
+        "e82f5bc9-7e79-43fb-af80-2177f5e9d85e",
+        "a0c3cbed-d9f7-4da5-b1a9-f45b0ab9aef6",
+        "2e828c61-473c-42f3-8a7c-947143f9ce66",
+        "0b044e4f-161b-45e1-8173-a0915ef65bed",
+        "35ec131a-3402-40d0-a1c7-8def9bb86e82",
+        "2fe55c03-574d-4b21-989e-1993f0ecd9b3",
+        "4f2a20bf-27b2-4300-89b9-f508a40d0b15",
+        "d1ffd94d-9fd5-4c27-a5c3-d65a30bd0b0f",
+        "2c844fa5-b887-460c-aa3e-6b1504d22956",
+        "958a742a-aeaa-4384-9c36-5987722f431d"
+      ]
+    },
+    {
+      "query": "When did Gina go to a dance class with a group of friends?",
+      "question_id": "locomo_1_qa38",
+      "clusters_found": [
+        "gec_001",
+        "gec_012",
+        "gec_016",
+        "gec_005",
+        "gec_002",
+        "gec_013",
+        "gec_004",
+        "gec_014",
+        "gec_003",
+        "gec_008"
+      ],
+      "clusters_selected": [],
+      "selection_reasoning": "None of the clusters mention Gina going to a dance class with a group of friends or provide any information about such an event.",
+      "cluster_details": {},
+      "members_per_cluster": {},
+      "final_count": 20,
+      "truncated": false,
+      "evidence": [
+        "D19:6"
+      ],
+      "evidence_detail": {
+        "D19:6": [
+          "18447d6d-f25c-482b-8c3d-d26269b249a9",
+          "gec_005"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "18447d6d-f25c-482b-8c3d-d26269b249a9"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_005"
+      ],
+      "cluster_hit": false,
+      "memunit_hit": false,
+      "memunit_coverage": 0.0,
+      "selected_unit_ids": []
+    }
+  ],
+  "summary": {
+    "total_questions": 8,
+    "cluster_hit_count": 3,
+    "cluster_hit_rate": 0.375,
+    "memunit_hit_count": 5,
+    "memunit_hit_rate": 0.625,
+    "avg_memunit_coverage": 0.625
+  }
+}

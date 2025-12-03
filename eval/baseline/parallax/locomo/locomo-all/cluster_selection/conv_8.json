@@ -1,0 +1,754 @@
+{
+  "qa_count": 156,
+  "questions": [
+    {
+      "query": "Where has Evan been on roadtrips with his family?",
+      "question_id": "locomo_8_qa2",
+      "clusters_found": [
+        "gec_005",
+        "gec_041",
+        "gec_048",
+        "gec_043",
+        "gec_013",
+        "gec_014",
+        "gec_011",
+        "gec_007",
+        "gec_002",
+        "gec_044",
+        "gec_027",
+        "gec_010",
+        "gec_047",
+        "gec_009",
+        "gec_012",
+        "gec_028",
+        "gec_029",
+        "gec_004",
+        "gec_001",
+        "gec_046",
+        "gec_006",
+        "gec_042",
+        "gec_008"
+      ],
+      "clusters_selected": [
+        "gec_001",
+        "gec_011",
+        "gec_002"
+      ],
+      "selection_reasoning": "These clusters contain information about Evan's family road trips and travel experiences, including specific mentions of road trips in his Toyota Prius and a road trip to the Rocky Mountains, which directly address where Evan has been on road trips with his family. The hiking memories cluster also supports context about outdoor family activities related to these trips.",
+      "cluster_details": {
+        "gec_001": {
+          "topic": "Evan's family trip in Toyota Prius",
+          "summary": "They discussed Evan’s family trips and outdoor adventures in his Toyota Prius, sharing scenic experiences and challenges like car breakdowns. Their conversations evolved from joyful trip reflections to mutual support amid health and vehicle setbacks, fostering plans for future hikes together.",
+          "member_count": 11,
+          "members_returned": 9
+        },
+        "gec_011": {
+          "topic": "Evan's road trip to the Rocky Mountains",
+          "summary": "Evan and Sam discussed Evan's recent road trip to the Rocky Mountains, sharing photos and experiences about nature and hiking, which inspired Sam to plan a day trip to a nearby lake and trails recommended by Evan, with intentions to hike together in the future.",
+          "member_count": 1,
+          "members_returned": 0
+        },
+        "gec_002": {
+          "topic": "Sam's childhood hiking memories",
+          "summary": "Evan and Sam discussed their hiking experiences, with Evan sharing recent trail views and Sam reminiscing about a meaningful childhood hike with his father, expressing nostalgia and affection for the activity.",
+          "member_count": 2,
+          "members_returned": 0
+        }
+      },
+      "members_per_cluster": {
+        "gec_001": 9,
+        "gec_011": 0,
+        "gec_002": 0
+      },
+      "final_count": 19,
+      "truncated": false,
+      "evidence": [
+        "D1:2",
+        "D1:4",
+        "D2:1"
+      ],
+      "evidence_detail": {
+        "D1:2": [
+          "06b8e695-c7f6-4552-99f6-3a3d1505652c",
+          "gec_001"
+        ],
+        "D1:4": [
+          "06b8e695-c7f6-4552-99f6-3a3d1505652c",
+          "gec_001"
+        ],
+        "D2:1": [
+          "ae2ad27f-e87c-429f-871f-c6ff610e448e",
+          "gec_001"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "06b8e695-c7f6-4552-99f6-3a3d1505652c",
+        "ae2ad27f-e87c-429f-871f-c6ff610e448e"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_001"
+      ],
+      "cluster_hit": true,
+      "memunit_hit": true,
+      "memunit_coverage": 1.0,
+      "selected_unit_ids": [
+        "904c6224-e1dd-44ab-9aed-da6dafa46f5e",
+        "06b8e695-c7f6-4552-99f6-3a3d1505652c",
+        "8e3faa58-6e02-40e6-9445-dbad4a2f8f8d",
+        "19fbdf4e-66a3-440a-bb66-08a8d10300bf",
+        "559279e4-61b6-4a17-9e11-ac958cdec60c",
+        "956449b8-cef1-415d-b665-3f7dbb84f9be",
+        "ee8256e1-ff25-40d0-8e57-06a9801a0165",
+        "ae2ad27f-e87c-429f-871f-c6ff610e448e",
+        "a57c5ea0-cc3c-422d-91f2-20a139b1f7a5"
+      ]
+    },
+    {
+      "query": "When did Evan go to Jasper with his family?",
+      "question_id": "locomo_8_qa9",
+      "clusters_found": [
+        "gec_025",
+        "gec_005",
+        "gec_043",
+        "gec_041",
+        "gec_024",
+        "gec_013",
+        "gec_014",
+        "gec_011",
+        "gec_007",
+        "gec_002",
+        "gec_044",
+        "gec_027",
+        "gec_010",
+        "gec_009",
+        "gec_012",
+        "gec_019",
+        "gec_028",
+        "gec_029",
+        "gec_004",
+        "gec_001",
+        "gec_018",
+        "gec_006",
+        "gec_023",
+        "gec_003",
+        "gec_020",
+        "gec_042",
+        "gec_008"
+      ],
+      "clusters_selected": [
+        "gec_001"
+      ],
+      "selection_reasoning": "Cluster gec_001 specifically discusses Evan’s family trips and outdoor adventures, including travel in his Toyota Prius. This cluster is the most relevant for identifying when Evan went to Jasper with his family.",
+      "cluster_details": {
+        "gec_001": {
+          "topic": "Evan's family trip in Toyota Prius",
+          "summary": "They discussed Evan’s family trips and outdoor adventures in his Toyota Prius, sharing scenic experiences and challenges like car breakdowns. Their conversations evolved from joyful trip reflections to mutual support amid health and vehicle setbacks, fostering plans for future hikes together.",
+          "member_count": 11,
+          "members_returned": 9
+        }
+      },
+      "members_per_cluster": {
+        "gec_001": 9
+      },
+      "final_count": 19,
+      "truncated": false,
+      "evidence": [
+        "D2:1"
+      ],
+      "evidence_detail": {
+        "D2:1": [
+          "ae2ad27f-e87c-429f-871f-c6ff610e448e",
+          "gec_001"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "ae2ad27f-e87c-429f-871f-c6ff610e448e"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_001"
+      ],
+      "cluster_hit": true,
+      "memunit_hit": true,
+      "memunit_coverage": 1.0,
+      "selected_unit_ids": [
+        "904c6224-e1dd-44ab-9aed-da6dafa46f5e",
+        "06b8e695-c7f6-4552-99f6-3a3d1505652c",
+        "8e3faa58-6e02-40e6-9445-dbad4a2f8f8d",
+        "19fbdf4e-66a3-440a-bb66-08a8d10300bf",
+        "559279e4-61b6-4a17-9e11-ac958cdec60c",
+        "956449b8-cef1-415d-b665-3f7dbb84f9be",
+        "ee8256e1-ff25-40d0-8e57-06a9801a0165",
+        "ae2ad27f-e87c-429f-871f-c6ff610e448e",
+        "a57c5ea0-cc3c-422d-91f2-20a139b1f7a5"
+      ]
+    },
+    {
+      "query": "When did Evan have his sudden heart palpitation incident that really shocked him up?",
+      "question_id": "locomo_8_qa13",
+      "clusters_found": [
+        "gec_005",
+        "gec_041",
+        "gec_014",
+        "gec_049",
+        "gec_032",
+        "gec_007",
+        "gec_033",
+        "gec_027",
+        "gec_022",
+        "gec_016",
+        "gec_028",
+        "gec_017",
+        "gec_029",
+        "gec_026",
+        "gec_004",
+        "gec_001",
+        "gec_021",
+        "gec_006",
+        "gec_042",
+        "gec_008"
+      ],
+      "clusters_selected": [
+        "gec_021"
+      ],
+      "selection_reasoning": "Cluster gec_021 specifically mentions Evan's recent health scare and recovery, which is the most relevant to identifying the timing of Evan's sudden heart palpitation incident that shocked him.",
+      "cluster_details": {
+        "gec_021": {
+          "topic": "Evan's recent health scare and recovery",
+          "summary": "On November 21, 2023, Sam and Evan discussed recent health challenges Evan faced, sharing mutual support and agreeing to focus on appreciating life’s small joys together. Their conversation emphasized the importance of friendship and valuing the present during difficult times.",
+          "member_count": 1,
+          "members_returned": 1
+        }
+      },
+      "members_per_cluster": {
+        "gec_021": 1
+      },
+      "final_count": 11,
+      "truncated": false,
+      "evidence": [
+        "D3:1"
+      ],
+      "evidence_detail": {
+        "D3:1": [
+          "7a02ec7f-41b1-42d1-877f-0e36c0b68d7c",
+          "gec_005"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "7a02ec7f-41b1-42d1-877f-0e36c0b68d7c"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_005"
+      ],
+      "cluster_hit": false,
+      "memunit_hit": false,
+      "memunit_coverage": 0.0,
+      "selected_unit_ids": [
+        "508be4f9-85fa-4b4b-b93c-2465421820a8"
+      ]
+    },
+    {
+      "query": "When did Sam start working out at the gym?",
+      "question_id": "locomo_8_qa23",
+      "clusters_found": [
+        "gec_007",
+        "gec_001",
+        "gec_025",
+        "gec_005",
+        "gec_034",
+        "gec_015",
+        "gec_035",
+        "gec_023",
+        "gec_024",
+        "gec_002",
+        "gec_031",
+        "gec_030",
+        "gec_014",
+        "gec_004",
+        "gec_003",
+        "gec_011"
+      ],
+      "clusters_selected": [
+        "gec_014"
+      ],
+      "selection_reasoning": "Cluster gec_014 specifically mentions that on October 17, 2023, Sam shared a health scare that prompted him to prioritize fitness, indicating the start of his focus on physical activity, which likely includes working out at the gym.",
+      "cluster_details": {
+        "gec_014": {
+          "topic": "Sam's gastritis health scare and recovery",
+          "summary": "On October 17, 2023, Sam shared with Evan his recent health scare from gastritis, prompting him to prioritize fitness, while Evan offered support and motivation, leading them to plan a hiking trip together as a way to stay active and bond. Their conversation highlighted mutual encouragement and a shared commitment to health and well-being.",
+          "member_count": 1,
+          "members_returned": 1
+        }
+      },
+      "members_per_cluster": {
+        "gec_014": 1
+      },
+      "final_count": 11,
+      "truncated": false,
+      "evidence": [
+        "D4:15"
+      ],
+      "evidence_detail": {
+        "D4:15": [
+          "c07b4324-ede3-4a12-9034-5512b66352d7",
+          "gec_005"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "c07b4324-ede3-4a12-9034-5512b66352d7"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_005"
+      ],
+      "cluster_hit": false,
+      "memunit_hit": false,
+      "memunit_coverage": 0.0,
+      "selected_unit_ids": [
+        "19fbdf4e-66a3-440a-bb66-08a8d10300bf"
+      ]
+    },
+    {
+      "query": "When did Evan start taking painting classes?",
+      "question_id": "locomo_8_qa40",
+      "clusters_found": [
+        "gec_007",
+        "gec_001",
+        "gec_012",
+        "gec_037",
+        "gec_005",
+        "gec_006",
+        "gec_034",
+        "gec_035",
+        "gec_038",
+        "gec_002",
+        "gec_031",
+        "gec_030",
+        "gec_013",
+        "gec_004",
+        "gec_003",
+        "gec_011",
+        "gec_036",
+        "gec_008"
+      ],
+      "clusters_selected": [
+        "gec_007",
+        "gec_008"
+      ],
+      "selection_reasoning": "Clusters gec_007 and gec_008 both mention Evan's experience with painting classes, including the timing of discussions on August 19, 2023, which is directly relevant to when Evan started taking painting classes.",
+      "cluster_details": {
+        "gec_007": {
+          "topic": "Evan's painting classes experience",
+          "summary": "On August 19, 2023, Sam shared with Evan their commitment to a healthier lifestyle through diet changes and exchanged healthy recipes, while Evan expressed support and shared their recent experience with painting classes, highlighting mutual encouragement in personal growth.",
+          "member_count": 2,
+          "members_returned": 2
+        },
+        "gec_008": {
+          "topic": "Evan's travel experiences",
+          "summary": "On August 19, 2023, Evan and Sam discussed Evan's recent creative pursuits, including his enjoyment of painting classes focused on watercolor techniques and his travel experiences, with Evan sharing photos of his artwork and trips while expressing enthusiasm for exploring new hobbies. Sam showed admiration for Evan's talents and curiosity about his artistic and travel adventures.",
+          "member_count": 1,
+          "members_returned": 0
+        }
+      },
+      "members_per_cluster": {
+        "gec_007": 2,
+        "gec_008": 0
+      },
+      "final_count": 12,
+      "truncated": false,
+      "evidence": [
+        "D8:12"
+      ],
+      "evidence_detail": {
+        "D8:12": [
+          "a8fcffaa-33f1-4927-b5c0-ddff793802ad",
+          "gec_008"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "a8fcffaa-33f1-4927-b5c0-ddff793802ad"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_008"
+      ],
+      "cluster_hit": true,
+      "memunit_hit": true,
+      "memunit_coverage": 1.0,
+      "selected_unit_ids": [
+        "a8fcffaa-33f1-4927-b5c0-ddff793802ad",
+        "28d174ba-4828-4685-840e-79da181170b9"
+      ]
+    },
+    {
+      "query": "When did Evan go skiing in Banff?",
+      "question_id": "locomo_8_qa47",
+      "clusters_found": [
+        "gec_025",
+        "gec_005",
+        "gec_048",
+        "gec_024",
+        "gec_014",
+        "gec_011",
+        "gec_032",
+        "gec_007",
+        "gec_033",
+        "gec_035",
+        "gec_002",
+        "gec_027",
+        "gec_051",
+        "gec_010",
+        "gec_047",
+        "gec_009",
+        "gec_028",
+        "gec_029",
+        "gec_004",
+        "gec_050",
+        "gec_046",
+        "gec_001",
+        "gec_034",
+        "gec_023",
+        "gec_008"
+      ],
+      "clusters_selected": [
+        "gec_009"
+      ],
+      "selection_reasoning": "Cluster gec_009 specifically mentions Evan's skiing trip to Banff and includes the date 2023-08-19, directly answering when Evan went skiing in Banff.",
+      "cluster_details": {
+        "gec_009": {
+          "topic": "Evan's skiing trip to Banff",
+          "summary": "Evan and Sam discussed their experiences and enthusiasm for winter sports, with Evan sharing his enjoyable skiing trip to Banff and encouraging Sam to try winter activities despite Sam's physical concerns. The conversation ended on a positive note with mutual understanding and hopes for future shared winter adventures.",
+          "member_count": 1,
+          "members_returned": 1
+        }
+      },
+      "members_per_cluster": {
+        "gec_009": 1
+      },
+      "final_count": 11,
+      "truncated": false,
+      "evidence": [
+        "D8:26",
+        "D8:27",
+        "D8:28"
+      ],
+      "evidence_detail": {
+        "D8:26": [
+          "9a770bc2-7b75-4c0a-ab20-8208eba57d6a",
+          "gec_010"
+        ],
+        "D8:27": [
+          "9a770bc2-7b75-4c0a-ab20-8208eba57d6a",
+          "gec_010"
+        ],
+        "D8:28": [
+          "9a770bc2-7b75-4c0a-ab20-8208eba57d6a",
+          "gec_010"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "9a770bc2-7b75-4c0a-ab20-8208eba57d6a"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_010"
+      ],
+      "cluster_hit": false,
+      "memunit_hit": true,
+      "memunit_coverage": 1.0,
+      "selected_unit_ids": [
+        "9a770bc2-7b75-4c0a-ab20-8208eba57d6a"
+      ]
+    },
+    {
+      "query": "When did Evan start lifting weights?",
+      "question_id": "locomo_8_qa58",
+      "clusters_found": [
+        "gec_007",
+        "gec_001",
+        "gec_005",
+        "gec_015",
+        "gec_002",
+        "gec_004",
+        "gec_014",
+        "gec_003",
+        "gec_011",
+        "gec_049",
+        "gec_008"
+      ],
+      "clusters_selected": [
+        "gec_005"
+      ],
+      "selection_reasoning": "The cluster gec_005 covers Sam and Evan's health concerns and lifestyle changes, including discussions about exercise and well-being, which is the most likely place to find information about when Evan started lifting weights.",
+      "cluster_details": {
+        "gec_005": {
+          "topic": "Sam's recent health concerns and lifestyle changes",
+          "summary": "They discussed Sam’s ongoing health concerns and lifestyle changes, sharing support, motivation, and practical advice on diet, exercise, stress relief, and coping with setbacks. Their conversations reflect a continuous, mutual commitment to gradual, sustainable well-being improvements.",
+          "member_count": 23,
+          "members_returned": 15
+        }
+      },
+      "members_per_cluster": {
+        "gec_005": 15
+      },
+      "final_count": 25,
+      "truncated": false,
+      "evidence": [
+        "D12:2"
+      ],
+      "evidence_detail": {
+        "D12:2": [
+          "39062887-f285-4435-9aaf-29a01330f9de",
+          "gec_005"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "39062887-f285-4435-9aaf-29a01330f9de"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_005"
+      ],
+      "cluster_hit": true,
+      "memunit_hit": true,
+      "memunit_coverage": 1.0,
+      "selected_unit_ids": [
+        "aafdfb41-f1cf-424e-ad25-a70860f87b29",
+        "904c6224-e1dd-44ab-9aed-da6dafa46f5e",
+        "c07b4324-ede3-4a12-9034-5512b66352d7",
+        "19fbdf4e-66a3-440a-bb66-08a8d10300bf",
+        "3c817107-ad69-4cf7-9096-1d6a1e8b2cc4",
+        "c90dbd42-81f1-4a2d-9d0c-5c2c8687e43a",
+        "bc879c4e-6313-4d6b-83a9-2dd5904f9aed",
+        "05aab12f-2209-494e-94b2-0d72b6683473",
+        "3c832033-5f54-4833-8f4e-cd1126b29f6b",
+        "9c791b21-98e4-46ba-afea-ec6a6d5c6f91",
+        "2afa0516-b8f8-4562-8fb6-10e1f31ab268",
+        "efb553d0-354b-42d2-add4-baf4a93f5325",
+        "3a046bda-9392-4b76-a7e2-9d18ba85be74",
+        "39062887-f285-4435-9aaf-29a01330f9de",
+        "7a02ec7f-41b1-42d1-877f-0e36c0b68d7c"
+      ]
+    },
+    {
+      "query": "When is Evan planning a big family reunion?",
+      "question_id": "locomo_8_qa73",
+      "clusters_found": [
+        "gec_005",
+        "gec_043",
+        "gec_041",
+        "gec_048",
+        "gec_014",
+        "gec_049",
+        "gec_032",
+        "gec_033",
+        "gec_044",
+        "gec_027",
+        "gec_047",
+        "gec_019",
+        "gec_028",
+        "gec_029",
+        "gec_004",
+        "gec_045",
+        "gec_001",
+        "gec_018",
+        "gec_046",
+        "gec_006",
+        "gec_003",
+        "gec_020",
+        "gec_042"
+      ],
+      "clusters_selected": [
+        "gec_027",
+        "gec_028",
+        "gec_029"
+      ],
+      "selection_reasoning": "These three clusters all describe the same event on December 9, 2023, where Evan shared news of his partner's pregnancy and discussed plans for a large family reunion next summer, directly answering when Evan is planning the reunion.",
+      "cluster_details": {
+        "gec_027": {
+          "topic": "Evan's partner's pregnancy and family expansion",
+          "summary": "On December 9, 2023, Evan shared with Sam the joyful news of his partner's pregnancy and reflected on the significance of family memories, while discussing plans for a large family reunion next summer. The conversation highlighted Evan's excitement about expanding his family and the strong bonds symbolized by cherished family moments.",
+          "member_count": 1,
+          "members_returned": 1
+        },
+        "gec_028": {
+          "topic": "Evan's reflections on family memories",
+          "summary": "On December 9, 2023, Evan shared with Sam the joyful news of his partner's pregnancy and reflected on the significance of family memories, while discussing plans for a large family reunion next summer. The conversation highlighted Evan's excitement about expanding his family and the strong bonds symbolized by cherished family moments.",
+          "member_count": 1,
+          "members_returned": 0
+        },
+        "gec_029": {
+          "topic": "Plans for a large family reunion next summer",
+          "summary": "On December 9, 2023, Evan shared with Sam the joyful news of his partner's pregnancy and reflected on the significance of family memories, while discussing plans for a large family reunion next summer. The conversation highlighted Evan's excitement about expanding his family and the strong bonds symbolized by cherished family moments.",
+          "member_count": 1,
+          "members_returned": 0
+        }
+      },
+      "members_per_cluster": {
+        "gec_027": 1,
+        "gec_028": 0,
+        "gec_029": 0
+      },
+      "final_count": 11,
+      "truncated": false,
+      "evidence": [
+        "D19:11"
+      ],
+      "evidence_detail": {
+        "D19:11": [
+          "158d75b6-cea4-4259-a539-15632c6f68c1",
+          "gec_029"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "158d75b6-cea4-4259-a539-15632c6f68c1"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_029"
+      ],
+      "cluster_hit": true,
+      "memunit_hit": true,
+      "memunit_coverage": 1.0,
+      "selected_unit_ids": [
+        "158d75b6-cea4-4259-a539-15632c6f68c1"
+      ]
+    },
+    {
+      "query": "When did Evan finish the painting that's hanging in the exhibit?",
+      "question_id": "locomo_8_qa76",
+      "clusters_found": [
+        "gec_005",
+        "gec_013",
+        "gec_049",
+        "gec_032",
+        "gec_007",
+        "gec_033",
+        "gec_035",
+        "gec_031",
+        "gec_036",
+        "gec_012",
+        "gec_038",
+        "gec_030",
+        "gec_004",
+        "gec_001",
+        "gec_037",
+        "gec_006",
+        "gec_034",
+        "gec_003",
+        "gec_008"
+      ],
+      "clusters_selected": [
+        "gec_030"
+      ],
+      "selection_reasoning": "Cluster gec_030 specifically mentions Evan's recently completed contemporary figurative painting that is exhibited, which directly relates to when Evan finished the painting hanging in the exhibit.",
+      "cluster_details": {
+        "gec_030": {
+          "topic": "Evan's contemporary figurative painting achievement",
+          "summary": "Evan shared an image of a woman standing before his recently completed contemporary figurative painting, expressing pride in his artistic achievement and the sense of accomplishment from trying something new. Sam engaged by complimenting the artwork and learning that the woman is a close friend who helped Evan get the painting exhibited.",
+          "member_count": 1,
+          "members_returned": 1
+        }
+      },
+      "members_per_cluster": {
+        "gec_030": 1
+      },
+      "final_count": 11,
+      "truncated": false,
+      "evidence": [
+        "D20:13",
+        "D20:15"
+      ],
+      "evidence_detail": {
+        "D20:13": [
+          "0ec0e374-fbd0-4e0b-a131-fd65bcd0b216",
+          "gec_031"
+        ],
+        "D20:15": [
+          "0ec0e374-fbd0-4e0b-a131-fd65bcd0b216",
+          "gec_031"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "0ec0e374-fbd0-4e0b-a131-fd65bcd0b216"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_031"
+      ],
+      "cluster_hit": false,
+      "memunit_hit": true,
+      "memunit_coverage": 1.0,
+      "selected_unit_ids": [
+        "0ec0e374-fbd0-4e0b-a131-fd65bcd0b216"
+      ]
+    },
+    {
+      "query": "When did Evan have a drunken night with his friends?",
+      "question_id": "locomo_8_qa80",
+      "clusters_found": [
+        "gec_025",
+        "gec_005",
+        "gec_024",
+        "gec_013",
+        "gec_014",
+        "gec_049",
+        "gec_032",
+        "gec_007",
+        "gec_033",
+        "gec_031",
+        "gec_022",
+        "gec_012",
+        "gec_016",
+        "gec_017",
+        "gec_030",
+        "gec_004",
+        "gec_001",
+        "gec_021",
+        "gec_006",
+        "gec_023",
+        "gec_003",
+        "gec_008"
+      ],
+      "clusters_selected": [
+        "gec_049"
+      ],
+      "selection_reasoning": "The query asks about when Evan had a drunken night with his friends. Cluster gec_049 directly describes an embarrassing incident involving Evan drinking excessively the previous night, indicating a drunken night with friends, and provides a specific date (2024-01-10). No other clusters mention drinking or social incidents involving alcohol.",
+      "cluster_details": {
+        "gec_049": {
+          "topic": "Evan's embarrassing social incident involving alcohol",
+          "summary": "Evan told Sam about an embarrassing incident the previous night where he had a pee accident near someone's roses after drinking excessively, expressing regret and receiving understanding from those involved. Sam offered support, emphasizing that everyone makes mistakes.",
+          "member_count": 1,
+          "members_returned": 1
+        }
+      },
+      "members_per_cluster": {
+        "gec_049": 1
+      },
+      "final_count": 11,
+      "truncated": false,
+      "evidence": [
+        "D24:3"
+      ],
+      "evidence_detail": {
+        "D24:3": [
+          "10ac13a1-98fc-4aa2-8dcb-68a38e7bfa91",
+          "gec_049"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "10ac13a1-98fc-4aa2-8dcb-68a38e7bfa91"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_049"
+      ],
+      "cluster_hit": true,
+      "memunit_hit": true,
+      "memunit_coverage": 1.0,
+      "selected_unit_ids": [
+        "10ac13a1-98fc-4aa2-8dcb-68a38e7bfa91"
+      ]
+    }
+  ],
+  "summary": {
+    "total_questions": 10,
+    "cluster_hit_count": 6,
+    "cluster_hit_rate": 0.6,
+    "memunit_hit_count": 8,
+    "memunit_hit_rate": 0.8,
+    "avg_memunit_coverage": 0.8
+  }
+}

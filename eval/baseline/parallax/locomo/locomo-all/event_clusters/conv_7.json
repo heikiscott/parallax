@@ -1,0 +1,2224 @@
+{
+  "clusters": {
+    "gec_001": {
+      "cluster_id": "gec_001",
+      "topic": "Deborah's January 2023 greeting to Jolene",
+      "summary": "On January 23, 2023, Deborah and Jolene exchanged greetings and updates, with Jolene sharing that she had just completed a demanding electrical engineering project the previous week, while Deborah expressed friendly interest in Jolene's week.",
+      "members": [
+        {
+          "unit_id": "450ade87-d18e-4a73-a3e0-cbadebd226fc",
+          "timestamp": "2023-01-23T16:06:30+08:00",
+          "summary": "On January 23, 2023, Deborah and Jolene exchanged greetings and updates, with Jolene sharing that she had just completed a demanding electrical engineering project the previous week, while Deborah expressed friendly interest in Jolene's week."
+        }
+      ],
+      "first_timestamp": "2023-01-23T16:06:30+08:00",
+      "last_timestamp": "2023-01-23T16:06:30+08:00",
+      "created_at": "2025-12-03T17:30:34.037484",
+      "updated_at": "2025-12-03T17:30:34.037484"
+    },
+    "gec_002": {
+      "cluster_id": "gec_002",
+      "topic": "Deborah's reflections on her late mother and her mother's house",
+      "summary": "Deborah and Jolene reflected on Deborah’s late mother through memories of her house, meaningful places, and keepsakes. Over time, they explored how art, nature, and mindfulness help preserve her legacy and provide comfort, deepening their emotional connection and appreciation.",
+      "members": [
+        {
+          "unit_id": "d1c2fbff-e719-4c40-82f1-85f4bec5dcd8",
+          "timestamp": "2023-01-23T16:11:00+08:00",
+          "summary": "Deborah and Jolene shared a heartfelt conversation reflecting on their late mothers, reminiscing about meaningful places and keepsakes that help them stay connected to their memories."
+        },
+        {
+          "unit_id": "d9ca8c06-0b58-4ab4-92da-193b8c9ead06",
+          "timestamp": "2023-01-27T09:58:00+08:00",
+          "summary": "On January 27, 2023, Deborah and Jolene discussed family values, Deborah's yoga practice, and memories of her late mother, highlighting the emotional significance of special places connected to her and the lasting influence of her mother's presence. Deborah also shared a heartfelt note from her yoga group that reinforced her passion for yoga."
+        },
+        {
+          "unit_id": "5db6c88a-fc9b-4f8b-9024-afb2ed02f9b6",
+          "timestamp": "2023-04-09T16:32:00+08:00",
+          "summary": "On April 9, 2023, Deborah shared with Jolene her recent experiences of biking and visiting an art show, reflecting on how art helps her connect with the memory of her late mother and find comfort. Jolene acknowledged Deborah's coping process, highlighting the emotional significance of art in preserving her mother's legacy."
+        },
+        {
+          "unit_id": "aab11f4f-1b8a-41fe-a0dc-7b28063c4e80",
+          "timestamp": "2023-04-09T16:34:00+08:00",
+          "summary": "On April 9, 2023, Deborah and Jolene discussed how they find comfort during difficult times, with Deborah emphasizing the solace art provides in preserving memories, while Jolene highlighted the calming presence of her pets and shared activities like playing video games with her partner. Both expressed appreciation for these meaningful ways to find peace and connection."
+        },
+        {
+          "unit_id": "3fb0ce55-f954-43bd-a6b3-decbb7527399",
+          "timestamp": "2023-08-19T01:03:30+08:00",
+          "summary": "On August 19, 2023, Jolene and Deborah engaged in a heartfelt conversation covering topics such as mindfulness, gaming, yoga event organization, balancing studies and hobbies, and cherished personal memories tied to nature and family. They shared experiences, advice, and reflections, highlighting the importance of meaningful moments and relationships."
+        },
+        {
+          "unit_id": "c4f384fc-8d9b-4576-b0b0-b92c31950cc2",
+          "timestamp": "2023-08-21T09:23:30+08:00",
+          "summary": "On August 21, 2023, Jolene and Deborah reconnected through a conversation reflecting on cherished memories, mindfulness, and calming habits like yoga and nature walks, sharing photos and insights about appreciating simple joys and finding inner peace. They emphasized the importance of slowing down to savor meaningful moments and supporting each other's well-being."
+        },
+        {
+          "unit_id": "1c32c895-7c48-430d-b2ed-89fd20233e0e",
+          "timestamp": "2023-08-26T17:39:00+08:00",
+          "summary": "On August 26, 2023, Deborah and Jolene engaged in a reflective conversation about how the values of their loved ones inspire their lives and future goals, with Jolene sharing her ambition to integrate perseverance, resilience, and sustainability into her engineering projects aimed at benefiting communities."
+        },
+        {
+          "unit_id": "4a31ea66-c0bc-4d9d-a728-55e3279ab5d2",
+          "timestamp": "2023-08-30T11:52:30+08:00",
+          "summary": "On August 30, 2023, Deborah and Jolene shared images and personal reflections about meaningful places that help them relax and find emotional peace, discussing Deborah's mother's house and favorite lake spot, and Jolene's nearby pond used for meditation."
+        },
+        {
+          "unit_id": "cf4e44ff-473e-44d4-81bd-2cf1628b8944",
+          "timestamp": "2023-09-15T15:13:00+08:00",
+          "summary": "On September 15, 2023, Deborah shared with Jolene her emotional experience of reconnecting with her mother’s old friends, reminiscing through stories and photos that deepened her appreciation and understanding of her mother. Jolene offered empathetic support as Deborah expressed a mix of sadness, happiness, and gratitude during their conversation."
+        },
+        {
+          "unit_id": "adb4888f-7d1f-4bc9-ac2e-55bcb1f819bf",
+          "timestamp": "2023-09-17T13:31:00+08:00",
+          "summary": "On September 17, 2023, Jolene and Deborah shared personal stories about Jolene's recent scuba diving experience and Deborah's nostalgic memories of her late mother's cooking, exchanging photos and expressing emotions of excitement and warmth. Their conversation centered on meaningful activities and cherished family moments without making any specific plans."
+        },
+        {
+          "unit_id": "a44ad3e7-891c-4b25-8d8f-14e1067a52f8",
+          "timestamp": "2023-09-17T13:40:30+08:00",
+          "summary": "Jolene and Deborah shared personal stories, photos, and reflections about their experiences with music festivals, nature, and yoga retreats, expressing feelings of gratitude, peace, and resilience while planning future outdoor activities for October 2023. Their conversation highlighted emotional connections to nature and the importance of appreciating small moments of beauty and growth."
+        },
+        {
+          "unit_id": "a44ad3e7-891c-4b25-8d8f-14e1067a52f8",
+          "timestamp": "2023-09-17T13:40:30+08:00",
+          "summary": "Jolene and Deborah shared personal stories, photos, and reflections about their experiences with music festivals, nature, and yoga retreats, expressing feelings of gratitude, peace, and resilience while planning future outdoor activities for October 2023. Their conversation highlighted emotional connections to nature and the importance of appreciating small moments of beauty and growth."
+        }
+      ],
+      "first_timestamp": "2023-01-23T16:11:00+08:00",
+      "last_timestamp": "2023-09-17T13:40:30+08:00",
+      "created_at": "2025-12-03T17:30:38.683575",
+      "updated_at": "2025-12-03T17:37:21.680933"
+    },
+    "gec_003": {
+      "cluster_id": "gec_003",
+      "topic": "Jolene's reflections on her late mother and related memories",
+      "summary": "Deborah and Jolene shared a heartfelt conversation reflecting on their late mothers, reminiscing about meaningful places and keepsakes that help them stay connected to their memories.",
+      "members": [
+        {
+          "unit_id": "d1c2fbff-e719-4c40-82f1-85f4bec5dcd8",
+          "timestamp": "2023-01-23T16:11:00+08:00",
+          "summary": "Deborah and Jolene shared a heartfelt conversation reflecting on their late mothers, reminiscing about meaningful places and keepsakes that help them stay connected to their memories."
+        },
+        {
+          "unit_id": "1c32c895-7c48-430d-b2ed-89fd20233e0e",
+          "timestamp": "2023-08-26T17:39:00+08:00",
+          "summary": "On August 26, 2023, Deborah and Jolene engaged in a reflective conversation about how the values of their loved ones inspire their lives and future goals, with Jolene sharing her ambition to integrate perseverance, resilience, and sustainability into her engineering projects aimed at benefiting communities."
+        },
+        {
+          "unit_id": "4a31ea66-c0bc-4d9d-a728-55e3279ab5d2",
+          "timestamp": "2023-08-30T11:52:30+08:00",
+          "summary": "On August 30, 2023, Deborah and Jolene shared images and personal reflections about meaningful places that help them relax and find emotional peace, discussing Deborah's mother's house and favorite lake spot, and Jolene's nearby pond used for meditation."
+        },
+        {
+          "unit_id": "cf4e44ff-473e-44d4-81bd-2cf1628b8944",
+          "timestamp": "2023-09-15T15:13:00+08:00",
+          "summary": "On September 15, 2023, Deborah shared with Jolene her emotional experience of reconnecting with her mother’s old friends, reminiscing through stories and photos that deepened her appreciation and understanding of her mother. Jolene offered empathetic support as Deborah expressed a mix of sadness, happiness, and gratitude during their conversation."
+        },
+        {
+          "unit_id": "a44ad3e7-891c-4b25-8d8f-14e1067a52f8",
+          "timestamp": "2023-09-17T13:40:30+08:00",
+          "summary": "Jolene and Deborah shared personal stories, photos, and reflections about their experiences with music festivals, nature, and yoga retreats, expressing feelings of gratitude, peace, and resilience while planning future outdoor activities for October 2023. Their conversation highlighted emotional connections to nature and the importance of appreciating small moments of beauty and growth."
+        },
+        {
+          "unit_id": "a44ad3e7-891c-4b25-8d8f-14e1067a52f8",
+          "timestamp": "2023-09-17T13:40:30+08:00",
+          "summary": "Jolene and Deborah shared personal stories, photos, and reflections about their experiences with music festivals, nature, and yoga retreats, expressing feelings of gratitude, peace, and resilience while planning future outdoor activities for October 2023. Their conversation highlighted emotional connections to nature and the importance of appreciating small moments of beauty and growth."
+        }
+      ],
+      "first_timestamp": "2023-01-23T16:11:00+08:00",
+      "last_timestamp": "2023-09-17T13:40:30+08:00",
+      "created_at": "2025-12-03T17:30:38.686244",
+      "updated_at": "2025-12-03T17:37:21.680933"
+    },
+    "gec_004": {
+      "cluster_id": "gec_004",
+      "topic": "Deborah's yoga practice and teaching goals",
+      "summary": "Deborah and Jolene consistently shared their passion for yoga as a source of healing, community, and self-care. Their conversations evolved from personal practice and teaching goals to mutual support, mindfulness, retreats, and integrating yoga into daily life and challenges.",
+      "members": [
+        {
+          "unit_id": "cb8cd987-0636-4445-88fd-df6bed7c5ec2",
+          "timestamp": "2023-01-23T16:14:30+08:00",
+          "summary": "Deborah shared with Jolene her passion for yoga as a source of strength and healing, expressing her goal to continue teaching and supporting her community, while Jolene showed admiration and encouragement throughout their conversation."
+        },
+        {
+          "unit_id": "d9ca8c06-0b58-4ab4-92da-193b8c9ead06",
+          "timestamp": "2023-01-27T09:58:00+08:00",
+          "summary": "On January 27, 2023, Deborah and Jolene discussed family values, Deborah's yoga practice, and memories of her late mother, highlighting the emotional significance of special places connected to her and the lasting influence of her mother's presence. Deborah also shared a heartfelt note from her yoga group that reinforced her passion for yoga."
+        },
+        {
+          "unit_id": "f54219ac-0af7-4b4a-8b72-f2fd7231955c",
+          "timestamp": "2023-02-01T19:10:00+08:00",
+          "summary": "On February 1, 2023, Deborah and Jolene discussed the possibility of Jolene resuming yoga, but Jolene shared that she and her partner planned to play console games together instead, with the conversation reflecting a friendly and supportive tone."
+        },
+        {
+          "unit_id": "09fb7cc2-d330-4dd4-ba0c-e2b3102c415b",
+          "timestamp": "2023-02-25T16:53:00+08:00",
+          "summary": "Jolene shared with Deborah how practicing yoga and meditation helped her manage the challenges of balancing engineering school and her partner's gaming habits, noting that her partner had recently joined her in these activities, strengthening their three-year relationship. The conversation was warm and supportive, focusing on Jolene's efforts to find calm and connection."
+        },
+        {
+          "unit_id": "6f1f2d44-4bbf-443c-b4c6-4f52c48b9c87",
+          "timestamp": "2023-02-25T16:57:30+08:00",
+          "summary": "Deborah and Jolene discussed the benefits of yoga, meditation, and breathing exercises for managing stress, with Jolene sharing how these practices help her feel calmer and more capable, while Deborah offered encouragement and support."
+        },
+        {
+          "unit_id": "57ca725b-1e1a-4738-9004-a4a17b89ec94",
+          "timestamp": "2023-02-25T17:01:00+08:00",
+          "summary": "On February 25, 2023, Jolene and Deborah discussed Deborah’s balanced daily routine, which includes meditation, yoga, teaching, jogging, and spending time with loved ones, highlighting the importance of self-care and motivation for maintaining healthy habits."
+        },
+        {
+          "unit_id": "2ae4ad38-c8c4-40d7-b903-dce6f9b15011",
+          "timestamp": "2023-03-02T19:21:00+08:00",
+          "summary": "Deborah and Jolene discussed the importance of self-care and comfort food during stressful times, sharing their favorite dishes—vegan stir-fry and lasagna—and their practices of yoga and meditation to promote relaxation and well-being."
+        },
+        {
+          "unit_id": "987f86b8-01f2-465f-97b3-460d9f69a89b",
+          "timestamp": "2023-03-13T11:28:00+08:00",
+          "summary": "On March 13, 2023, Deborah shared with Jolene her experience of starting a yoga class in her neighborhood, highlighting its positive impact on community building and personal well-being. They discussed the joy of teaching yoga, forming meaningful friendships, and the importance of mutual support."
+        },
+        {
+          "unit_id": "8f272456-afe9-4572-b6f4-95d72298f339",
+          "timestamp": "2023-03-28T16:09:30+08:00",
+          "summary": "Deborah and Jolene discussed ways to enhance their yoga practice by sharing personal preferences and recommendations for props, scents, and calming music, demonstrating mutual support and enthusiasm throughout their conversation."
+        },
+        {
+          "unit_id": "9f5d3bf0-f7db-4fdc-b26a-246c0975b853",
+          "timestamp": "2023-06-06T16:09:00+08:00",
+          "summary": "On June 6, 2023, Jolene and Deborah discussed Jolene's internship experience, focusing on her challenges with work-life balance and how yoga and meditation have helped her manage stress and stay centered. Deborah offered advice on mindful breathing and support for Jolene's well-being throughout their conversation."
+        },
+        {
+          "unit_id": "ba46de21-e598-4538-82ce-24bfc8bff7e5",
+          "timestamp": "2023-06-26T09:18:00+08:00",
+          "summary": "On June 26, 2023, Deborah and Jolene reconnected through a friendly conversation where Deborah shared her preparations for a yoga retreat and her attempts at new poses, while Jolene expressed enthusiasm and noted her busy internship schedule. The exchange highlighted Deborah’s engagement with yoga and Jolene’s openness to taking a break from her hectic routine."
+        },
+        {
+          "unit_id": "0fe30140-aebe-4738-9a49-ac03dd62b1ea",
+          "timestamp": "2023-06-26T09:28:00+08:00",
+          "summary": "Jolene and Deborah discussed Deborah's recent retreat, focusing on a symbolic statue, a new yoga tree pose, and the peaceful, reflective atmosphere of the experience. Both expressed appreciation for the retreat as an ideal place for relaxation and finding inner peace."
+        },
+        {
+          "unit_id": "2a5d5340-e3d1-4bf1-974f-9268a2246bfe",
+          "timestamp": "2023-08-01T09:35:30+08:00",
+          "summary": "Deborah and Jolene discussed Deborah's community cleanup project and Jolene's recent struggles with a lost project, during which they shared support strategies including the comfort Jolene finds in her pet snake Susie and yoga practices recommended by Deborah to help with relaxation and balance."
+        },
+        {
+          "unit_id": "3fb0ce55-f954-43bd-a6b3-decbb7527399",
+          "timestamp": "2023-08-19T01:03:30+08:00",
+          "summary": "On August 19, 2023, Jolene and Deborah engaged in a heartfelt conversation covering topics such as mindfulness, gaming, yoga event organization, balancing studies and hobbies, and cherished personal memories tied to nature and family. They shared experiences, advice, and reflections, highlighting the importance of meaningful moments and relationships."
+        },
+        {
+          "unit_id": "c4f384fc-8d9b-4576-b0b0-b92c31950cc2",
+          "timestamp": "2023-08-21T09:23:30+08:00",
+          "summary": "On August 21, 2023, Jolene and Deborah reconnected through a conversation reflecting on cherished memories, mindfulness, and calming habits like yoga and nature walks, sharing photos and insights about appreciating simple joys and finding inner peace. They emphasized the importance of slowing down to savor meaningful moments and supporting each other's well-being."
+        },
+        {
+          "unit_id": "e9df044f-9bfe-49b0-afa4-2154707f314e",
+          "timestamp": "2023-08-24T09:42:00+08:00",
+          "summary": "On August 24, 2023, Deborah and Jolene discussed Deborah’s transformative yoga retreat and Jolene’s career progress, sharing mutual encouragement focused on personal growth, self-reflection, and professional development."
+        },
+        {
+          "unit_id": "c6e3624d-700b-48ae-bc57-bc9d1ba133fc",
+          "timestamp": "2023-08-26T17:41:30+08:00",
+          "summary": "Deborah and Jolene engaged in a supportive conversation about yoga, self-care, and mindfulness practices, sharing images and discussing strategies to manage challenges and maintain balance, including plans for a meditation retreat. They emphasized the importance of reflection, relaxation, and holistic wellness throughout their exchange."
+        },
+        {
+          "unit_id": "8dc85258-ccd9-4295-a980-4df29e9f764c",
+          "timestamp": "2023-08-30T11:47:00+08:00",
+          "summary": "On August 30, 2023, Jolene shared with Deborah her recent trip to Rio de Janeiro, highlighting attending yoga classes and exploring the local culture, which deepened her appreciation for yoga. Their conversation reflected a friendly exchange about travel, yoga, and personal growth."
+        },
+        {
+          "unit_id": "9ffacc28-7e79-4f71-9b25-ea62a8b1d5d0",
+          "timestamp": "2023-08-30T12:01:30+08:00",
+          "summary": "On August 30, 2023, Deborah and Jolene reflected on their experiences in Rio de Janeiro, sharing photos and personal insights about growth, letting go, and self-care. Their conversation included emotional expressions of loss, mutual encouragement, and the significance of positive influences and fresh starts."
+        },
+        {
+          "unit_id": "a9eb2d0c-77da-476e-ad15-9fd6aabed7e8",
+          "timestamp": "2023-09-15T15:20:00+08:00",
+          "summary": "Deborah and Jolene engaged in a conversation sharing personal memories and wellness practices related to the beach, surfing, yoga, meditation, and creating relaxing environments, emphasizing the emotional connections and importance of peaceful routines for well-being. They exchanged photos and reflections highlighting how these practices and spaces foster relaxation and emotional balance."
+        },
+        {
+          "unit_id": "0f5f7a7a-cf0a-43c2-a006-795aadbd30b0",
+          "timestamp": "2023-09-17T13:40:30+08:00",
+          "summary": "On September 17, 2023, Deborah and Jolene discussed their shared interest in surfing and relaxing beach spaces, expressing enthusiasm about trying surfing together and planning to schedule the activity for the following month."
+        },
+        {
+          "unit_id": "a44ad3e7-891c-4b25-8d8f-14e1067a52f8",
+          "timestamp": "2023-09-17T13:40:30+08:00",
+          "summary": "Jolene and Deborah shared personal stories, photos, and reflections about their experiences with music festivals, nature, and yoga retreats, expressing feelings of gratitude, peace, and resilience while planning future outdoor activities for October 2023. Their conversation highlighted emotional connections to nature and the importance of appreciating small moments of beauty and growth."
+        },
+        {
+          "unit_id": "a44ad3e7-891c-4b25-8d8f-14e1067a52f8",
+          "timestamp": "2023-09-17T13:40:30+08:00",
+          "summary": "Jolene and Deborah shared personal stories, photos, and reflections about their experiences with music festivals, nature, and yoga retreats, expressing feelings of gratitude, peace, and resilience while planning future outdoor activities for October 2023. Their conversation highlighted emotional connections to nature and the importance of appreciating small moments of beauty and growth."
+        }
+      ],
+      "first_timestamp": "2023-01-23T16:14:30+08:00",
+      "last_timestamp": "2023-09-17T13:40:30+08:00",
+      "created_at": "2025-12-03T17:30:42.997480",
+      "updated_at": "2025-12-03T17:37:21.680933"
+    },
+    "gec_005": {
+      "cluster_id": "gec_005",
+      "topic": "Deborah's grief and coping with her father's passing",
+      "summary": "On January 27, 2023, Deborah informed Jolene about her father's sudden passing two days earlier and shared how she was coping with grief by cherishing family memories, including a wedding photo from 1993. The conversation reflected themes of loss, reflection, and the importance of family bonds.",
+      "members": [
+        {
+          "unit_id": "d24359e6-f4f3-4f9a-978f-ae51598e30a5",
+          "timestamp": "2023-01-27T09:51:00+08:00",
+          "summary": "On January 27, 2023, Deborah informed Jolene about her father's sudden passing two days earlier and shared how she was coping with grief by cherishing family memories, including a wedding photo from 1993. The conversation reflected themes of loss, reflection, and the importance of family bonds."
+        }
+      ],
+      "first_timestamp": "2023-01-27T09:51:00+08:00",
+      "last_timestamp": "2023-01-27T09:51:00+08:00",
+      "created_at": "2025-12-03T17:30:48.318789",
+      "updated_at": "2025-12-03T17:30:48.318789"
+    },
+    "gec_006": {
+      "cluster_id": "gec_006",
+      "topic": "Deborah's reflections on family memories and bonds",
+      "summary": "On January 27, 2023, Deborah informed Jolene about her father's sudden passing two days earlier and shared how she was coping with grief by cherishing family memories, including a wedding photo from 1993. The conversation reflected themes of loss, reflection, and the importance of family bonds.",
+      "members": [
+        {
+          "unit_id": "d24359e6-f4f3-4f9a-978f-ae51598e30a5",
+          "timestamp": "2023-01-27T09:51:00+08:00",
+          "summary": "On January 27, 2023, Deborah informed Jolene about her father's sudden passing two days earlier and shared how she was coping with grief by cherishing family memories, including a wedding photo from 1993. The conversation reflected themes of loss, reflection, and the importance of family bonds."
+        }
+      ],
+      "first_timestamp": "2023-01-27T09:51:00+08:00",
+      "last_timestamp": "2023-01-27T09:51:00+08:00",
+      "created_at": "2025-12-03T17:30:48.321081",
+      "updated_at": "2025-12-03T17:30:48.321081"
+    },
+    "gec_007": {
+      "cluster_id": "gec_007",
+      "topic": "Jolene's pet snakes and their calming effect",
+      "summary": "They discussed Jolene's pet snakes, especially Seraphim, highlighting the calming and comforting effect these reptiles bring. Over time, their conversations revealed a deep emotional bond, shared joy in nature, and appreciation for the peace pets provide during challenging moments.",
+      "members": [
+        {
+          "unit_id": "b86b3e62-5f62-4115-9fd2-9c26427a262e",
+          "timestamp": "2023-01-27T10:01:30+08:00",
+          "summary": "Deborah and Jolene discussed their pets and hobbies, with Jolene sharing stories and images of her snakes and gaming experiences, while Deborah expressed warmth and appreciation for how pets bring happiness."
+        },
+        {
+          "unit_id": "4d909492-d78d-43d7-8ed3-6931e42b8453",
+          "timestamp": "2023-03-02T19:23:30+08:00",
+          "summary": "Deborah and Jolene discussed their recent outdoor experiences, with Jolene sharing a photo of a lizard and describing a park visit with her tamed snake, Seraphim, while both expressed appreciation for nature and the joy of spending time outside."
+        },
+        {
+          "unit_id": "aab11f4f-1b8a-41fe-a0dc-7b28063c4e80",
+          "timestamp": "2023-04-09T16:34:00+08:00",
+          "summary": "On April 9, 2023, Deborah and Jolene discussed how they find comfort during difficult times, with Deborah emphasizing the solace art provides in preserving memories, while Jolene highlighted the calming presence of her pets and shared activities like playing video games with her partner. Both expressed appreciation for these meaningful ways to find peace and connection."
+        },
+        {
+          "unit_id": "f7fb1546-bd1f-4845-a344-5dd683f947d6",
+          "timestamp": "2023-06-26T09:20:30+08:00",
+          "summary": "On June 26, 2023, Jolene shared photos of her snake Seraphim in a new aquarium, expressing how the pet brings her peace and comfort, while Deborah showed curiosity about Seraphim's origin and shared her appreciation for animals. The conversation highlighted their mutual admiration for pets and the joy they bring."
+        },
+        {
+          "unit_id": "9aaa5de2-06f2-423a-81ca-6ddf60a14719",
+          "timestamp": "2023-07-09T19:48:30+08:00",
+          "summary": "Deborah and Jolene discussed Jolene's pet snake, highlighting Jolene's fascination with reptiles, the calming experience of caring for the snake, and a memorable event when the snake escaped and was safely found, illustrating their strong emotional bond. The conversation emphasized the joy, love, and gratitude animals bring into people's lives."
+        },
+        {
+          "unit_id": "d8c9b9f5-2ebc-4c7c-822e-5390e42210af",
+          "timestamp": "2023-07-09T19:56:00+08:00",
+          "summary": "Jolene and Deborah discussed their appreciation for animals and nature, sharing personal routines involving pets and outdoor activities, exchanging photos of peaceful natural scenes, and planning to visit a tranquil lakeside spot together."
+        },
+        {
+          "unit_id": "2a5d5340-e3d1-4bf1-974f-9268a2246bfe",
+          "timestamp": "2023-08-01T09:35:30+08:00",
+          "summary": "Deborah and Jolene discussed Deborah's community cleanup project and Jolene's recent struggles with a lost project, during which they shared support strategies including the comfort Jolene finds in her pet snake Susie and yoga practices recommended by Deborah to help with relaxation and balance."
+        },
+        {
+          "unit_id": "260c75ff-8aa4-41c1-849a-d1d9ee12c767",
+          "timestamp": "2023-08-26T17:47:30+08:00",
+          "summary": "On August 26, 2023, Jolene and Deborah discussed the calming presence of their pets, with Deborah sharing stories about her two cats, Max and Luna, and emphasizing the importance of providing loving homes to animals in need. The conversation highlighted their emotional bonds with their pets and mutual appreciation for animal care."
+        },
+        {
+          "unit_id": "da02a8b5-4b27-4877-8c92-b884f3b154ee",
+          "timestamp": "2023-09-15T15:23:30+08:00",
+          "summary": "On September 15, 2023, Deborah and Jolene discussed Jolene's pet snake Susie, highlighting the emotional support and companionship Susie provides. Deborah reflected on the comforting presence of pets, while Jolene described Susie as a great companion who brightens her life."
+        }
+      ],
+      "first_timestamp": "2023-01-27T10:01:30+08:00",
+      "last_timestamp": "2023-09-15T15:23:30+08:00",
+      "created_at": "2025-12-03T17:30:58.547880",
+      "updated_at": "2025-12-03T17:36:55.999205"
+    },
+    "gec_008": {
+      "cluster_id": "gec_008",
+      "topic": "Jolene's gaming experiences and stories",
+      "summary": "They discussed Jolene’s passion for gaming, sharing stories about playing titles like \"Detroit\" and plans for \"Walking Dead,\" alongside how gaming with her partner strengthens their bond. Over time, they also connected gaming with relaxation and coping, highlighting its role in Jolene’s life and relationships.",
+      "members": [
+        {
+          "unit_id": "b86b3e62-5f62-4115-9fd2-9c26427a262e",
+          "timestamp": "2023-01-27T10:01:30+08:00",
+          "summary": "Deborah and Jolene discussed their pets and hobbies, with Jolene sharing stories and images of her snakes and gaming experiences, while Deborah expressed warmth and appreciation for how pets bring happiness."
+        },
+        {
+          "unit_id": "8e1fa71a-1128-4245-8595-6b31abcf427c",
+          "timestamp": "2023-01-27T10:04:30+08:00",
+          "summary": "Jolene and Deborah discussed Jolene's gaming hobby, including her recent experience playing \"Detroit\" with her partner and plans to play \"Walking Dead\" next week, highlighting their shared enthusiasm for gaming. The conversation was friendly and focused on Jolene's passion and upcoming gaming activities."
+        },
+        {
+          "unit_id": "f54219ac-0af7-4b4a-8b72-f2fd7231955c",
+          "timestamp": "2023-02-01T19:10:00+08:00",
+          "summary": "On February 1, 2023, Deborah and Jolene discussed the possibility of Jolene resuming yoga, but Jolene shared that she and her partner planned to play console games together instead, with the conversation reflecting a friendly and supportive tone."
+        },
+        {
+          "unit_id": "09fb7cc2-d330-4dd4-ba0c-e2b3102c415b",
+          "timestamp": "2023-02-25T16:53:00+08:00",
+          "summary": "Jolene shared with Deborah how practicing yoga and meditation helped her manage the challenges of balancing engineering school and her partner's gaming habits, noting that her partner had recently joined her in these activities, strengthening their three-year relationship. The conversation was warm and supportive, focusing on Jolene's efforts to find calm and connection."
+        },
+        {
+          "unit_id": "aab11f4f-1b8a-41fe-a0dc-7b28063c4e80",
+          "timestamp": "2023-04-09T16:34:00+08:00",
+          "summary": "On April 9, 2023, Deborah and Jolene discussed how they find comfort during difficult times, with Deborah emphasizing the solace art provides in preserving memories, while Jolene highlighted the calming presence of her pets and shared activities like playing video games with her partner. Both expressed appreciation for these meaningful ways to find peace and connection."
+        },
+        {
+          "unit_id": "04f062c6-9ca7-4f12-ba8d-5c7eddb4481b",
+          "timestamp": "2023-07-09T19:41:30+08:00",
+          "summary": "On July 9, 2023, Deborah and Jolene discussed the importance of supportive relationships, with Jolene sharing how playing cooperative games like \"It Takes Two\" with her partner helps them bond and overcome challenges together."
+        },
+        {
+          "unit_id": "b3654639-4954-42e0-8026-f8a2f9ebc678",
+          "timestamp": "2023-07-09T19:45:00+08:00",
+          "summary": "On July 9, 2023, Jolene and Deborah discussed their favorite group activities, with Jolene sharing about the cooperative game \"It Takes Two\" and Deborah describing her yoga and mindfulness workshops aimed at fostering community and personal growth. Their conversation highlighted mutual support, shared interests in community-building, and emotional encouragement."
+        },
+        {
+          "unit_id": "3fb0ce55-f954-43bd-a6b3-decbb7527399",
+          "timestamp": "2023-08-19T01:03:30+08:00",
+          "summary": "On August 19, 2023, Jolene and Deborah engaged in a heartfelt conversation covering topics such as mindfulness, gaming, yoga event organization, balancing studies and hobbies, and cherished personal memories tied to nature and family. They shared experiences, advice, and reflections, highlighting the importance of meaningful moments and relationships."
+        },
+        {
+          "unit_id": "76d4ab71-7dab-420f-863a-c4464ac29748",
+          "timestamp": "2023-09-03T14:21:00+08:00",
+          "summary": "Deborah and Jolene discussed their recent experiences and personal lives, emphasizing the importance of relationships and support from loved ones in managing stress, with Deborah sharing about a community event and yoga friends, and Jolene reflecting on her studies, gaming hobbies, and partner’s encouragement."
+        }
+      ],
+      "first_timestamp": "2023-01-27T10:01:30+08:00",
+      "last_timestamp": "2023-09-03T14:21:00+08:00",
+      "created_at": "2025-12-03T17:30:58.549711",
+      "updated_at": "2025-12-03T17:35:58.006017"
+    },
+    "gec_009": {
+      "cluster_id": "gec_009",
+      "topic": "Deborah's appreciation of pets and their role in bringing happiness",
+      "summary": "They discussed their deep appreciation for pets, sharing stories and photos of their animals, including snakes and cats, highlighting the joy, comfort, and emotional bonds pets bring. Over time, their conversations evolved to include nature, pet care, and plans to enjoy peaceful outdoor settings together.",
+      "members": [
+        {
+          "unit_id": "b86b3e62-5f62-4115-9fd2-9c26427a262e",
+          "timestamp": "2023-01-27T10:01:30+08:00",
+          "summary": "Deborah and Jolene discussed their pets and hobbies, with Jolene sharing stories and images of her snakes and gaming experiences, while Deborah expressed warmth and appreciation for how pets bring happiness."
+        },
+        {
+          "unit_id": "f7fb1546-bd1f-4845-a344-5dd683f947d6",
+          "timestamp": "2023-06-26T09:20:30+08:00",
+          "summary": "On June 26, 2023, Jolene shared photos of her snake Seraphim in a new aquarium, expressing how the pet brings her peace and comfort, while Deborah showed curiosity about Seraphim's origin and shared her appreciation for animals. The conversation highlighted their mutual admiration for pets and the joy they bring."
+        },
+        {
+          "unit_id": "9aaa5de2-06f2-423a-81ca-6ddf60a14719",
+          "timestamp": "2023-07-09T19:48:30+08:00",
+          "summary": "Deborah and Jolene discussed Jolene's pet snake, highlighting Jolene's fascination with reptiles, the calming experience of caring for the snake, and a memorable event when the snake escaped and was safely found, illustrating their strong emotional bond. The conversation emphasized the joy, love, and gratitude animals bring into people's lives."
+        },
+        {
+          "unit_id": "d8c9b9f5-2ebc-4c7c-822e-5390e42210af",
+          "timestamp": "2023-07-09T19:56:00+08:00",
+          "summary": "Jolene and Deborah discussed their appreciation for animals and nature, sharing personal routines involving pets and outdoor activities, exchanging photos of peaceful natural scenes, and planning to visit a tranquil lakeside spot together."
+        },
+        {
+          "unit_id": "260c75ff-8aa4-41c1-849a-d1d9ee12c767",
+          "timestamp": "2023-08-26T17:47:30+08:00",
+          "summary": "On August 26, 2023, Jolene and Deborah discussed the calming presence of their pets, with Deborah sharing stories about her two cats, Max and Luna, and emphasizing the importance of providing loving homes to animals in need. The conversation highlighted their emotional bonds with their pets and mutual appreciation for animal care."
+        },
+        {
+          "unit_id": "da02a8b5-4b27-4877-8c92-b884f3b154ee",
+          "timestamp": "2023-09-15T15:23:30+08:00",
+          "summary": "On September 15, 2023, Deborah and Jolene discussed Jolene's pet snake Susie, highlighting the emotional support and companionship Susie provides. Deborah reflected on the comforting presence of pets, while Jolene described Susie as a great companion who brightens her life."
+        }
+      ],
+      "first_timestamp": "2023-01-27T10:01:30+08:00",
+      "last_timestamp": "2023-09-15T15:23:30+08:00",
+      "created_at": "2025-12-03T17:30:58.550851",
+      "updated_at": "2025-12-03T17:36:55.999205"
+    },
+    "gec_010": {
+      "cluster_id": "gec_010",
+      "topic": "Deborah's passion for travel",
+      "summary": "Deborah and Jolene discussed their pets and hobbies, with Jolene sharing stories and images of her snakes and gaming experiences, while Deborah expressed warmth and appreciation for how pets bring happiness.",
+      "members": [
+        {
+          "unit_id": "b86b3e62-5f62-4115-9fd2-9c26427a262e",
+          "timestamp": "2023-01-27T10:01:30+08:00",
+          "summary": "Deborah and Jolene discussed their pets and hobbies, with Jolene sharing stories and images of her snakes and gaming experiences, while Deborah expressed warmth and appreciation for how pets bring happiness."
+        }
+      ],
+      "first_timestamp": "2023-01-27T10:01:30+08:00",
+      "last_timestamp": "2023-01-27T10:01:30+08:00",
+      "created_at": "2025-12-03T17:30:58.552480",
+      "updated_at": "2025-12-03T17:30:58.552480"
+    },
+    "gec_011": {
+      "cluster_id": "gec_011",
+      "topic": "Jolene's robotics project experience",
+      "summary": "They discussed Jolene’s challenging yet rewarding robotics project, highlighting her emotional journey from initial difficulty to breakthrough success. Throughout, Deborah offered consistent encouragement, emphasizing perseverance, balance, and mutual support during demanding academic efforts.",
+      "members": [
+        {
+          "unit_id": "4b8c2eec-1907-4cfe-8fd6-1a1fdb5c6f32",
+          "timestamp": "2023-02-01T19:07:30+08:00",
+          "summary": "Jolene shared her experience working on a challenging but enjoyable robotics project assigned by her engineering professor, while Deborah discussed meeting her new neighbor Anna at yoga in the park and the sense of community it fostered. The conversation highlighted Jolene's emotional reflections on the project and Deborah's recent social connection through shared interests."
+        },
+        {
+          "unit_id": "9e33338a-ef7e-4725-b432-48e0a97d9e14",
+          "timestamp": "2023-03-28T16:03:00+08:00",
+          "summary": "In late March 2023, Jolene expressed gratitude for support and later shared with Deb her excitement and pride after achieving a significant breakthrough in her engineering project."
+        },
+        {
+          "unit_id": "ebdae8e9-2817-4902-967d-f44a7e14bcdc",
+          "timestamp": "2023-04-09T16:37:30+08:00",
+          "summary": "Jolene shared with Deborah her experience working on a challenging but rewarding project, expressing excitement about its outcome, while Deborah offered encouragement and ongoing support throughout their conversation."
+        },
+        {
+          "unit_id": "610ea246-ae8c-47ea-8f84-b595ed4e9653",
+          "timestamp": "2023-06-26T09:23:00+08:00",
+          "summary": "Deborah and Jolene discussed Jolene's recent intense efforts and breakthrough progress on a design project, with Deborah offering support and encouragement to balance hard work and relaxation."
+        },
+        {
+          "unit_id": "c21c71d1-52ff-47d9-b374-a3cc852d5355",
+          "timestamp": "2023-09-06T20:35:30+08:00",
+          "summary": "On September 6, 2023, Jolene and Deborah had a brief supportive conversation about Jolene's challenging academic project, with Deborah offering encouragement and reassurance while Jolene expressed determination and gratitude. The exchange emphasized perseverance, mutual support, and self-care during a demanding study period."
+        },
+        {
+          "unit_id": "58a310c5-5388-4f22-b477-fc7f24e934b8",
+          "timestamp": "2023-09-12T14:23:00+08:00",
+          "summary": "On September 12, 2023, Deborah and Jolene discussed Jolene’s transformative experiences and insights from a meditation retreat in Phuket, focusing on mindfulness, gratitude, and finding balance alongside her engineering studies. Their conversation highlighted Jolene’s emotional growth and the supportive dynamic between them."
+        }
+      ],
+      "first_timestamp": "2023-02-01T19:07:30+08:00",
+      "last_timestamp": "2023-09-12T14:23:00+08:00",
+      "created_at": "2025-12-03T17:31:08.226448",
+      "updated_at": "2025-12-03T17:36:33.656161"
+    },
+    "gec_012": {
+      "cluster_id": "gec_012",
+      "topic": "Deborah's new neighbor Anna and yoga community connection",
+      "summary": "Jolene shared her experience working on a challenging but enjoyable robotics project assigned by her engineering professor, while Deborah discussed meeting her new neighbor Anna at yoga in the park and the sense of community it fostered. The conversation highlighted Jolene's emotional reflections on the project and Deborah's recent social connection through shared interests.",
+      "members": [
+        {
+          "unit_id": "4b8c2eec-1907-4cfe-8fd6-1a1fdb5c6f32",
+          "timestamp": "2023-02-01T19:07:30+08:00",
+          "summary": "Jolene shared her experience working on a challenging but enjoyable robotics project assigned by her engineering professor, while Deborah discussed meeting her new neighbor Anna at yoga in the park and the sense of community it fostered. The conversation highlighted Jolene's emotional reflections on the project and Deborah's recent social connection through shared interests."
+        },
+        {
+          "unit_id": "f3ea1b55-d3f7-471d-bddc-6ae4520f0152",
+          "timestamp": "2023-02-04T09:56:30+08:00",
+          "summary": "On February 4, 2023, Deborah shared a photo and described bonding with Anna during a yoga class where they practiced challenging dance poses like Warrior II, emphasizing both physical benefits and emotional support. She also provided Jolene with a detailed explanation of a modified pose to relax back and shoulder muscles."
+        }
+      ],
+      "first_timestamp": "2023-02-01T19:07:30+08:00",
+      "last_timestamp": "2023-02-04T09:56:30+08:00",
+      "created_at": "2025-12-03T17:31:08.228755",
+      "updated_at": "2025-12-03T17:31:25.506285"
+    },
+    "gec_013": {
+      "cluster_id": "gec_013",
+      "topic": "Jolene's sustainable water purifier engineering project",
+      "summary": "On February 4, 2023, Jolene shared with Deborah her pride and relief after successfully designing and building a sustainable water purifier for a rural community, marking a significant milestone in her engineering career. Their conversation reflected Jolene’s emotional journey from recent challenges to fulfillment and mutual support between the two.",
+      "members": [
+        {
+          "unit_id": "4633d090-e201-4c9a-898e-a4969aabe707",
+          "timestamp": "2023-02-04T09:51:00+08:00",
+          "summary": "On February 4, 2023, Jolene shared with Deborah her pride and relief after successfully designing and building a sustainable water purifier for a rural community, marking a significant milestone in her engineering career. Their conversation reflected Jolene’s emotional journey from recent challenges to fulfillment and mutual support between the two."
+        },
+        {
+          "unit_id": "83815762-529e-46a8-9565-23fc0dee5e12",
+          "timestamp": "2023-02-04T09:53:00+08:00",
+          "summary": "On February 4, 2023, Jolene shared an emotional reflection on witnessing an engineering project provide clean water to a community, reinforcing her commitment to creating sustainable solutions, while Deborah encouraged her to pursue her passions and continue making a positive impact."
+        }
+      ],
+      "first_timestamp": "2023-02-04T09:51:00+08:00",
+      "last_timestamp": "2023-02-04T09:53:00+08:00",
+      "created_at": "2025-12-03T17:31:16.428061",
+      "updated_at": "2025-12-03T17:31:20.619525"
+    },
+    "gec_014": {
+      "cluster_id": "gec_014",
+      "topic": "Deborah's yoga teaching and practice involving dance poses and physical/emotional benefits",
+      "summary": "On February 4, 2023, Deborah shared a photo and described bonding with Anna during a yoga class where they practiced challenging dance poses like Warrior II, emphasizing both physical benefits and emotional support. She also provided Jolene with a detailed explanation of a modified pose to relax back and shoulder muscles.",
+      "members": [
+        {
+          "unit_id": "f3ea1b55-d3f7-471d-bddc-6ae4520f0152",
+          "timestamp": "2023-02-04T09:56:30+08:00",
+          "summary": "On February 4, 2023, Deborah shared a photo and described bonding with Anna during a yoga class where they practiced challenging dance poses like Warrior II, emphasizing both physical benefits and emotional support. She also provided Jolene with a detailed explanation of a modified pose to relax back and shoulder muscles."
+        },
+        {
+          "unit_id": "f6d3e54d-55d6-4df3-a4a7-66a0c3869363",
+          "timestamp": "2023-02-04T09:57:00+08:00",
+          "summary": "On February 4, 2023, Deborah instructed a modified stretch pose involving sitting on a chair and twisting the torso to relieve muscle tension, while Jolene responded with a photo of her bookshelf and commented that the pose sounded difficult."
+        }
+      ],
+      "first_timestamp": "2023-02-04T09:56:30+08:00",
+      "last_timestamp": "2023-02-04T09:57:00+08:00",
+      "created_at": "2025-12-03T17:31:25.506285",
+      "updated_at": "2025-12-03T17:31:29.760277"
+    },
+    "gec_015": {
+      "cluster_id": "gec_015",
+      "topic": "Jolene's recent reading experiences and favorite books",
+      "summary": "On February 4, 2023, Deborah and Jolene discussed their recent reading experiences, with Jolene sharing her enthusiasm for books like \"Sapiens\" and \"Avalanche\" and emphasizing the motivational power of impactful literature. Both expressed appreciation for stories that inspire reflection and perseverance.",
+      "members": [
+        {
+          "unit_id": "4b2ede45-62a6-46d6-af21-ecf81eb0681b",
+          "timestamp": "2023-02-04T10:00:00+08:00",
+          "summary": "On February 4, 2023, Deborah and Jolene discussed their recent reading experiences, with Jolene sharing her enthusiasm for books like \"Sapiens\" and \"Avalanche\" and emphasizing the motivational power of impactful literature. Both expressed appreciation for stories that inspire reflection and perseverance."
+        }
+      ],
+      "first_timestamp": "2023-02-04T10:00:00+08:00",
+      "last_timestamp": "2023-02-04T10:00:00+08:00",
+      "created_at": "2025-12-03T17:31:34.435183",
+      "updated_at": "2025-12-03T17:31:34.435183"
+    },
+    "gec_016": {
+      "cluster_id": "gec_016",
+      "topic": "Deborah's recent reading experiences and favorite books",
+      "summary": "On February 4, 2023, Deborah and Jolene discussed their recent reading experiences, with Jolene sharing her enthusiasm for books like \"Sapiens\" and \"Avalanche\" and emphasizing the motivational power of impactful literature. Both expressed appreciation for stories that inspire reflection and perseverance.",
+      "members": [
+        {
+          "unit_id": "4b2ede45-62a6-46d6-af21-ecf81eb0681b",
+          "timestamp": "2023-02-04T10:00:00+08:00",
+          "summary": "On February 4, 2023, Deborah and Jolene discussed their recent reading experiences, with Jolene sharing her enthusiasm for books like \"Sapiens\" and \"Avalanche\" and emphasizing the motivational power of impactful literature. Both expressed appreciation for stories that inspire reflection and perseverance."
+        }
+      ],
+      "first_timestamp": "2023-02-04T10:00:00+08:00",
+      "last_timestamp": "2023-02-04T10:00:00+08:00",
+      "created_at": "2025-12-03T17:31:34.437386",
+      "updated_at": "2025-12-03T17:31:34.437386"
+    },
+    "gec_017": {
+      "cluster_id": "gec_017",
+      "topic": "Jolene's reflections on inspiration and overcoming challenges",
+      "summary": "On February 4, 2023, Jolene and Deborah discussed inspiration and emotional support, with Jolene sharing a story of overcoming challenges and Deborah reflecting on the meaningful impact of a bouquet of flowers given to her during a difficult time. Their conversation highlighted themes of hope, resilience, and the power of small gestures.",
+      "members": [
+        {
+          "unit_id": "000adf1a-4e71-4e4a-8e29-e3de068a7e58",
+          "timestamp": "2023-02-04T10:02:30+08:00",
+          "summary": "On February 4, 2023, Jolene and Deborah discussed inspiration and emotional support, with Jolene sharing a story of overcoming challenges and Deborah reflecting on the meaningful impact of a bouquet of flowers given to her during a difficult time. Their conversation highlighted themes of hope, resilience, and the power of small gestures."
+        }
+      ],
+      "first_timestamp": "2023-02-04T10:02:30+08:00",
+      "last_timestamp": "2023-02-04T10:02:30+08:00",
+      "created_at": "2025-12-03T17:31:40.268457",
+      "updated_at": "2025-12-03T17:31:40.268457"
+    },
+    "gec_018": {
+      "cluster_id": "gec_018",
+      "topic": "Deborah's reflections on meaningful emotional support and symbolic gestures",
+      "summary": "On February 4, 2023, Jolene and Deborah discussed inspiration and emotional support, with Jolene sharing a story of overcoming challenges and Deborah reflecting on the meaningful impact of a bouquet of flowers given to her during a difficult time. Their conversation highlighted themes of hope, resilience, and the power of small gestures.",
+      "members": [
+        {
+          "unit_id": "000adf1a-4e71-4e4a-8e29-e3de068a7e58",
+          "timestamp": "2023-02-04T10:02:30+08:00",
+          "summary": "On February 4, 2023, Jolene and Deborah discussed inspiration and emotional support, with Jolene sharing a story of overcoming challenges and Deborah reflecting on the meaningful impact of a bouquet of flowers given to her during a difficult time. Their conversation highlighted themes of hope, resilience, and the power of small gestures."
+        }
+      ],
+      "first_timestamp": "2023-02-04T10:02:30+08:00",
+      "last_timestamp": "2023-02-04T10:02:30+08:00",
+      "created_at": "2025-12-03T17:31:40.270678",
+      "updated_at": "2025-12-03T17:31:40.270678"
+    },
+    "gec_019": {
+      "cluster_id": "gec_019",
+      "topic": "Deborah's appreciation of nature's calming effects",
+      "summary": "On February 4, 2023, Deborah and Jolene shared a heartfelt conversation about their appreciation for nature's calming effects and the comfort found in personal mementos that connect them to lost loved ones. They exchanged photos of meaningful nature spots and offered mutual support and encouragement during reflective moments.",
+      "members": [
+        {
+          "unit_id": "1291aed7-3e14-4c3d-9a61-d3c084be9968",
+          "timestamp": "2023-02-04T10:09:30+08:00",
+          "summary": "On February 4, 2023, Deborah and Jolene shared a heartfelt conversation about their appreciation for nature's calming effects and the comfort found in personal mementos that connect them to lost loved ones. They exchanged photos of meaningful nature spots and offered mutual support and encouragement during reflective moments."
+        },
+        {
+          "unit_id": "c4f384fc-8d9b-4576-b0b0-b92c31950cc2",
+          "timestamp": "2023-08-21T09:23:30+08:00",
+          "summary": "On August 21, 2023, Jolene and Deborah reconnected through a conversation reflecting on cherished memories, mindfulness, and calming habits like yoga and nature walks, sharing photos and insights about appreciating simple joys and finding inner peace. They emphasized the importance of slowing down to savor meaningful moments and supporting each other's well-being."
+        }
+      ],
+      "first_timestamp": "2023-02-04T10:09:30+08:00",
+      "last_timestamp": "2023-08-21T09:23:30+08:00",
+      "created_at": "2025-12-03T17:31:46.171493",
+      "updated_at": "2025-12-03T17:35:05.220738"
+    },
+    "gec_020": {
+      "cluster_id": "gec_020",
+      "topic": "Deborah and Jolene's comfort from personal mementos connected to lost loved ones",
+      "summary": "On February 4, 2023, Deborah and Jolene shared a heartfelt conversation about their appreciation for nature's calming effects and the comfort found in personal mementos that connect them to lost loved ones. They exchanged photos of meaningful nature spots and offered mutual support and encouragement during reflective moments.",
+      "members": [
+        {
+          "unit_id": "1291aed7-3e14-4c3d-9a61-d3c084be9968",
+          "timestamp": "2023-02-04T10:09:30+08:00",
+          "summary": "On February 4, 2023, Deborah and Jolene shared a heartfelt conversation about their appreciation for nature's calming effects and the comfort found in personal mementos that connect them to lost loved ones. They exchanged photos of meaningful nature spots and offered mutual support and encouragement during reflective moments."
+        }
+      ],
+      "first_timestamp": "2023-02-04T10:09:30+08:00",
+      "last_timestamp": "2023-02-04T10:09:30+08:00",
+      "created_at": "2025-12-03T17:31:46.173826",
+      "updated_at": "2025-12-03T17:31:46.173826"
+    },
+    "gec_021": {
+      "cluster_id": "gec_021",
+      "topic": "Jolene's mini retreat and personal reflection experience",
+      "summary": "On February 9, 2023, Jolene shared with Deborah the positive outcomes of a recent mini retreat that boosted her confidence and inspired her to develop a volunteer STEM program for underprivileged children, with Deborah offering encouragement and support throughout their conversation.",
+      "members": [
+        {
+          "unit_id": "abfdc143-71c1-477d-91a5-ce1519126e0d",
+          "timestamp": "2023-02-09T21:11:00+08:00",
+          "summary": "On February 9, 2023, Jolene shared with Deborah the positive outcomes of a recent mini retreat that boosted her confidence and inspired her to develop a volunteer STEM program for underprivileged children, with Deborah offering encouragement and support throughout their conversation."
+        }
+      ],
+      "first_timestamp": "2023-02-09T21:11:00+08:00",
+      "last_timestamp": "2023-02-09T21:11:00+08:00",
+      "created_at": "2025-12-03T17:31:50.935081",
+      "updated_at": "2025-12-03T17:31:50.935081"
+    },
+    "gec_022": {
+      "cluster_id": "gec_022",
+      "topic": "Jolene's development of a volunteer STEM program for underprivileged children",
+      "summary": "On February 9, 2023, Jolene shared with Deborah the positive outcomes of a recent mini retreat that boosted her confidence and inspired her to develop a volunteer STEM program for underprivileged children, with Deborah offering encouragement and support throughout their conversation.",
+      "members": [
+        {
+          "unit_id": "abfdc143-71c1-477d-91a5-ce1519126e0d",
+          "timestamp": "2023-02-09T21:11:00+08:00",
+          "summary": "On February 9, 2023, Jolene shared with Deborah the positive outcomes of a recent mini retreat that boosted her confidence and inspired her to develop a volunteer STEM program for underprivileged children, with Deborah offering encouragement and support throughout their conversation."
+        }
+      ],
+      "first_timestamp": "2023-02-09T21:11:00+08:00",
+      "last_timestamp": "2023-02-09T21:11:00+08:00",
+      "created_at": "2025-12-03T17:31:50.937310",
+      "updated_at": "2025-12-03T17:31:50.937310"
+    },
+    "gec_023": {
+      "cluster_id": "gec_023",
+      "topic": "Jolene's joyful night out with friends",
+      "summary": "On February 22, 2023, Jolene and Deborah shared a heartfelt conversation where Jolene recounted a joyful night out while Deborah reflected on coping with the recent loss of a friend through memories and time spent in her garden. Their exchange highlighted the comfort found in friendship and cherished memories during difficult times.",
+      "members": [
+        {
+          "unit_id": "1ef16a8b-c509-4f65-83ee-58ef185f16ec",
+          "timestamp": "2023-02-22T16:15:30+08:00",
+          "summary": "On February 22, 2023, Jolene and Deborah shared a heartfelt conversation where Jolene recounted a joyful night out while Deborah reflected on coping with the recent loss of a friend through memories and time spent in her garden. Their exchange highlighted the comfort found in friendship and cherished memories during difficult times."
+        }
+      ],
+      "first_timestamp": "2023-02-22T16:15:30+08:00",
+      "last_timestamp": "2023-02-22T16:15:30+08:00",
+      "created_at": "2025-12-03T17:31:56.596973",
+      "updated_at": "2025-12-03T17:31:56.596973"
+    },
+    "gec_024": {
+      "cluster_id": "gec_024",
+      "topic": "Deborah's coping with recent friend's loss through garden and memories",
+      "summary": "On February 22, 2023, Jolene and Deborah shared a heartfelt conversation where Jolene recounted a joyful night out while Deborah reflected on coping with the recent loss of a friend through memories and time spent in her garden. Their exchange highlighted the comfort found in friendship and cherished memories during difficult times.",
+      "members": [
+        {
+          "unit_id": "1ef16a8b-c509-4f65-83ee-58ef185f16ec",
+          "timestamp": "2023-02-22T16:15:30+08:00",
+          "summary": "On February 22, 2023, Jolene and Deborah shared a heartfelt conversation where Jolene recounted a joyful night out while Deborah reflected on coping with the recent loss of a friend through memories and time spent in her garden. Their exchange highlighted the comfort found in friendship and cherished memories during difficult times."
+        }
+      ],
+      "first_timestamp": "2023-02-22T16:15:30+08:00",
+      "last_timestamp": "2023-02-22T16:15:30+08:00",
+      "created_at": "2025-12-03T17:31:56.599170",
+      "updated_at": "2025-12-03T17:31:56.599170"
+    },
+    "gec_025": {
+      "cluster_id": "gec_025",
+      "topic": "Comfort found in friendship and cherished memories during difficult times",
+      "summary": "On February 22, 2023, Jolene and Deborah shared a heartfelt conversation where Jolene recounted a joyful night out while Deborah reflected on coping with the recent loss of a friend through memories and time spent in her garden. Their exchange highlighted the comfort found in friendship and cherished memories during difficult times.",
+      "members": [
+        {
+          "unit_id": "1ef16a8b-c509-4f65-83ee-58ef185f16ec",
+          "timestamp": "2023-02-22T16:15:30+08:00",
+          "summary": "On February 22, 2023, Jolene and Deborah shared a heartfelt conversation where Jolene recounted a joyful night out while Deborah reflected on coping with the recent loss of a friend through memories and time spent in her garden. Their exchange highlighted the comfort found in friendship and cherished memories during difficult times."
+        }
+      ],
+      "first_timestamp": "2023-02-22T16:15:30+08:00",
+      "last_timestamp": "2023-02-22T16:15:30+08:00",
+      "created_at": "2025-12-03T17:31:56.601375",
+      "updated_at": "2025-12-03T17:31:56.601375"
+    },
+    "gec_026": {
+      "cluster_id": "gec_026",
+      "topic": "Deborah's cherished travel memories",
+      "summary": "Deborah and Jolene discussed Deborah's cherished travel memories, including a hiking trip with Karlie and her favorite visit to Bali for beach yoga, with Jolene expressing interest in trying yoga there and planning to share her experience.",
+      "members": [
+        {
+          "unit_id": "78e496e8-a98d-427c-b93e-e68a7ed596f2",
+          "timestamp": "2023-02-22T16:19:30+08:00",
+          "summary": "Deborah and Jolene discussed Deborah's cherished travel memories, including a hiking trip with Karlie and her favorite visit to Bali for beach yoga, with Jolene expressing interest in trying yoga there and planning to share her experience."
+        }
+      ],
+      "first_timestamp": "2023-02-22T16:19:30+08:00",
+      "last_timestamp": "2023-02-22T16:19:30+08:00",
+      "created_at": "2025-12-03T17:32:06.583039",
+      "updated_at": "2025-12-03T17:32:06.583039"
+    },
+    "gec_027": {
+      "cluster_id": "gec_027",
+      "topic": "Deborah's hiking trip with Karlie",
+      "summary": "Deborah and Jolene discussed Deborah's cherished travel memories, including a hiking trip with Karlie and her favorite visit to Bali for beach yoga, with Jolene expressing interest in trying yoga there and planning to share her experience.",
+      "members": [
+        {
+          "unit_id": "78e496e8-a98d-427c-b93e-e68a7ed596f2",
+          "timestamp": "2023-02-22T16:19:30+08:00",
+          "summary": "Deborah and Jolene discussed Deborah's cherished travel memories, including a hiking trip with Karlie and her favorite visit to Bali for beach yoga, with Jolene expressing interest in trying yoga there and planning to share her experience."
+        }
+      ],
+      "first_timestamp": "2023-02-22T16:19:30+08:00",
+      "last_timestamp": "2023-02-22T16:19:30+08:00",
+      "created_at": "2025-12-03T17:32:06.586121",
+      "updated_at": "2025-12-03T17:32:06.586121"
+    },
+    "gec_028": {
+      "cluster_id": "gec_028",
+      "topic": "Deborah's favorite visit to Bali for beach yoga",
+      "summary": "Deborah and Jolene discussed Deborah's cherished travel memories, including a hiking trip with Karlie and her favorite visit to Bali for beach yoga, with Jolene expressing interest in trying yoga there and planning to share her experience.",
+      "members": [
+        {
+          "unit_id": "78e496e8-a98d-427c-b93e-e68a7ed596f2",
+          "timestamp": "2023-02-22T16:19:30+08:00",
+          "summary": "Deborah and Jolene discussed Deborah's cherished travel memories, including a hiking trip with Karlie and her favorite visit to Bali for beach yoga, with Jolene expressing interest in trying yoga there and planning to share her experience."
+        }
+      ],
+      "first_timestamp": "2023-02-22T16:19:30+08:00",
+      "last_timestamp": "2023-02-22T16:19:30+08:00",
+      "created_at": "2025-12-03T17:32:06.588632",
+      "updated_at": "2025-12-03T17:32:06.588632"
+    },
+    "gec_029": {
+      "cluster_id": "gec_029",
+      "topic": "Jolene's interest in trying yoga in Bali",
+      "summary": "Deborah and Jolene discussed Deborah's cherished travel memories, including a hiking trip with Karlie and her favorite visit to Bali for beach yoga, with Jolene expressing interest in trying yoga there and planning to share her experience.",
+      "members": [
+        {
+          "unit_id": "78e496e8-a98d-427c-b93e-e68a7ed596f2",
+          "timestamp": "2023-02-22T16:19:30+08:00",
+          "summary": "Deborah and Jolene discussed Deborah's cherished travel memories, including a hiking trip with Karlie and her favorite visit to Bali for beach yoga, with Jolene expressing interest in trying yoga there and planning to share her experience."
+        }
+      ],
+      "first_timestamp": "2023-02-22T16:19:30+08:00",
+      "last_timestamp": "2023-02-22T16:19:30+08:00",
+      "created_at": "2025-12-03T17:32:06.592311",
+      "updated_at": "2025-12-03T17:32:06.592311"
+    },
+    "gec_030": {
+      "cluster_id": "gec_030",
+      "topic": "Jolene's plan to share her yoga experience",
+      "summary": "Deborah and Jolene discussed Deborah's cherished travel memories, including a hiking trip with Karlie and her favorite visit to Bali for beach yoga, with Jolene expressing interest in trying yoga there and planning to share her experience.",
+      "members": [
+        {
+          "unit_id": "78e496e8-a98d-427c-b93e-e68a7ed596f2",
+          "timestamp": "2023-02-22T16:19:30+08:00",
+          "summary": "Deborah and Jolene discussed Deborah's cherished travel memories, including a hiking trip with Karlie and her favorite visit to Bali for beach yoga, with Jolene expressing interest in trying yoga there and planning to share her experience."
+        }
+      ],
+      "first_timestamp": "2023-02-22T16:19:30+08:00",
+      "last_timestamp": "2023-02-22T16:19:30+08:00",
+      "created_at": "2025-12-03T17:32:06.594580",
+      "updated_at": "2025-12-03T17:32:06.594580"
+    },
+    "gec_031": {
+      "cluster_id": "gec_031",
+      "topic": "Jolene's romantic relationship and partnership journey",
+      "summary": "On February 25, 2023, Jolene and Deborah discussed Jolene's three-year romantic relationship, highlighting that although not married, they enjoy their journey together and share a strong bond rooted in their college engineering class friendship and collaborative projects.",
+      "members": [
+        {
+          "unit_id": "e6e83f80-d91c-4da2-99c4-67207f7271fd",
+          "timestamp": "2023-02-25T16:55:00+08:00",
+          "summary": "On February 25, 2023, Jolene and Deborah discussed Jolene's three-year romantic relationship, highlighting that although not married, they enjoy their journey together and share a strong bond rooted in their college engineering class friendship and collaborative projects."
+        }
+      ],
+      "first_timestamp": "2023-02-25T16:55:00+08:00",
+      "last_timestamp": "2023-02-25T16:55:00+08:00",
+      "created_at": "2025-12-03T17:32:17.978004",
+      "updated_at": "2025-12-03T17:32:17.978004"
+    },
+    "gec_032": {
+      "cluster_id": "gec_032",
+      "topic": "Deborah's balanced daily routine including meditation, yoga, teaching, jogging, and family time",
+      "summary": "On February 25, 2023, Jolene and Deborah discussed Deborah’s balanced daily routine, which includes meditation, yoga, teaching, jogging, and spending time with loved ones, highlighting the importance of self-care and motivation for maintaining healthy habits.",
+      "members": [
+        {
+          "unit_id": "57ca725b-1e1a-4738-9004-a4a17b89ec94",
+          "timestamp": "2023-02-25T17:01:00+08:00",
+          "summary": "On February 25, 2023, Jolene and Deborah discussed Deborah’s balanced daily routine, which includes meditation, yoga, teaching, jogging, and spending time with loved ones, highlighting the importance of self-care and motivation for maintaining healthy habits."
+        }
+      ],
+      "first_timestamp": "2023-02-25T17:01:00+08:00",
+      "last_timestamp": "2023-02-25T17:01:00+08:00",
+      "created_at": "2025-12-03T17:32:28.582503",
+      "updated_at": "2025-12-03T17:32:28.582503"
+    },
+    "gec_033": {
+      "cluster_id": "gec_033",
+      "topic": "Deborah's favorite comfort foods",
+      "summary": "Deborah and Jolene discussed the importance of self-care and comfort food during stressful times, sharing their favorite dishes—vegan stir-fry and lasagna—and their practices of yoga and meditation to promote relaxation and well-being.",
+      "members": [
+        {
+          "unit_id": "2ae4ad38-c8c4-40d7-b903-dce6f9b15011",
+          "timestamp": "2023-03-02T19:21:00+08:00",
+          "summary": "Deborah and Jolene discussed the importance of self-care and comfort food during stressful times, sharing their favorite dishes—vegan stir-fry and lasagna—and their practices of yoga and meditation to promote relaxation and well-being."
+        }
+      ],
+      "first_timestamp": "2023-03-02T19:21:00+08:00",
+      "last_timestamp": "2023-03-02T19:21:00+08:00",
+      "created_at": "2025-12-03T17:32:33.626013",
+      "updated_at": "2025-12-03T17:32:33.626013"
+    },
+    "gec_034": {
+      "cluster_id": "gec_034",
+      "topic": "Jolene's favorite comfort foods",
+      "summary": "Deborah and Jolene discussed the importance of self-care and comfort food during stressful times, sharing their favorite dishes—vegan stir-fry and lasagna—and their practices of yoga and meditation to promote relaxation and well-being.",
+      "members": [
+        {
+          "unit_id": "2ae4ad38-c8c4-40d7-b903-dce6f9b15011",
+          "timestamp": "2023-03-02T19:21:00+08:00",
+          "summary": "Deborah and Jolene discussed the importance of self-care and comfort food during stressful times, sharing their favorite dishes—vegan stir-fry and lasagna—and their practices of yoga and meditation to promote relaxation and well-being."
+        }
+      ],
+      "first_timestamp": "2023-03-02T19:21:00+08:00",
+      "last_timestamp": "2023-03-02T19:21:00+08:00",
+      "created_at": "2025-12-03T17:32:33.628271",
+      "updated_at": "2025-12-03T17:32:33.628271"
+    },
+    "gec_035": {
+      "cluster_id": "gec_035",
+      "topic": "Mindfulness and stress management techniques for academic pressures",
+      "summary": "On March 2, 2023, Jolene and Deborah discussed mindfulness, stress management, and study techniques, with Deborah offering emotional support and practical advice to help Jolene cope with academic pressures and prioritize her mental health.",
+      "members": [
+        {
+          "unit_id": "3c7dd41f-c226-4298-ae3c-240f3a918689",
+          "timestamp": "2023-03-02T19:29:00+08:00",
+          "summary": "On March 2, 2023, Jolene and Deborah discussed mindfulness, stress management, and study techniques, with Deborah offering emotional support and practical advice to help Jolene cope with academic pressures and prioritize her mental health."
+        }
+      ],
+      "first_timestamp": "2023-03-02T19:29:00+08:00",
+      "last_timestamp": "2023-03-02T19:29:00+08:00",
+      "created_at": "2025-12-03T17:32:43.285226",
+      "updated_at": "2025-12-03T17:32:43.285226"
+    },
+    "gec_036": {
+      "cluster_id": "gec_036",
+      "topic": "Emotional support for mental health during studies",
+      "summary": "On March 2, 2023, Jolene and Deborah discussed mindfulness, stress management, and study techniques, with Deborah offering emotional support and practical advice to help Jolene cope with academic pressures and prioritize her mental health.",
+      "members": [
+        {
+          "unit_id": "3c7dd41f-c226-4298-ae3c-240f3a918689",
+          "timestamp": "2023-03-02T19:29:00+08:00",
+          "summary": "On March 2, 2023, Jolene and Deborah discussed mindfulness, stress management, and study techniques, with Deborah offering emotional support and practical advice to help Jolene cope with academic pressures and prioritize her mental health."
+        }
+      ],
+      "first_timestamp": "2023-03-02T19:29:00+08:00",
+      "last_timestamp": "2023-03-02T19:29:00+08:00",
+      "created_at": "2025-12-03T17:32:43.289223",
+      "updated_at": "2025-12-03T17:32:43.289223"
+    },
+    "gec_037": {
+      "cluster_id": "gec_037",
+      "topic": "Deborah and Jolene's reconnection after a period of silence and maintaining friendship",
+      "summary": "On March 13, 2023, Deborah and Jolene reconnected after a period of silence, engaging in a warm and friendly conversation that reflected their mutual desire to catch up and maintain their friendship despite life's chaos.",
+      "members": [
+        {
+          "unit_id": "ee8a54a6-1032-4e58-878c-a8849b961c68",
+          "timestamp": "2023-03-13T11:22:30+08:00",
+          "summary": "On March 13, 2023, Deborah and Jolene reconnected after a period of silence, engaging in a warm and friendly conversation that reflected their mutual desire to catch up and maintain their friendship despite life's chaos."
+        }
+      ],
+      "first_timestamp": "2023-03-13T11:22:30+08:00",
+      "last_timestamp": "2023-03-13T11:22:30+08:00",
+      "created_at": "2025-12-03T17:32:47.513181",
+      "updated_at": "2025-12-03T17:32:47.513181"
+    },
+    "gec_038": {
+      "cluster_id": "gec_038",
+      "topic": "Deborah's neighborhood yoga class and community building",
+      "summary": "On March 13, 2023, Deborah shared with Jolene her experience of starting a yoga class in her neighborhood, highlighting its positive impact on community building and personal well-being. They discussed the joy of teaching yoga, forming meaningful friendships, and the importance of mutual support.",
+      "members": [
+        {
+          "unit_id": "987f86b8-01f2-465f-97b3-460d9f69a89b",
+          "timestamp": "2023-03-13T11:28:00+08:00",
+          "summary": "On March 13, 2023, Deborah shared with Jolene her experience of starting a yoga class in her neighborhood, highlighting its positive impact on community building and personal well-being. They discussed the joy of teaching yoga, forming meaningful friendships, and the importance of mutual support."
+        }
+      ],
+      "first_timestamp": "2023-03-13T11:28:00+08:00",
+      "last_timestamp": "2023-03-13T11:28:00+08:00",
+      "created_at": "2025-12-03T17:32:53.260183",
+      "updated_at": "2025-12-03T17:32:53.260183"
+    },
+    "gec_039": {
+      "cluster_id": "gec_039",
+      "topic": "Jolene's struggles with managing Engineering assignments",
+      "summary": "Deborah and Jolene discussed Jolene's struggles with managing her Engineering assignments, agreeing to arrange a time to further talk about time management strategies while Deborah offered support and emphasized self-care.",
+      "members": [
+        {
+          "unit_id": "4c5b5d51-03ab-4814-89ea-23c3e0dbb312",
+          "timestamp": "2023-03-13T11:31:30+08:00",
+          "summary": "Deborah and Jolene discussed Jolene's struggles with managing her Engineering assignments, agreeing to arrange a time to further talk about time management strategies while Deborah offered support and emphasized self-care."
+        }
+      ],
+      "first_timestamp": "2023-03-13T11:31:30+08:00",
+      "last_timestamp": "2023-03-13T11:31:30+08:00",
+      "created_at": "2025-12-03T17:32:57.821493",
+      "updated_at": "2025-12-03T17:32:57.821493"
+    },
+    "gec_040": {
+      "cluster_id": "gec_040",
+      "topic": "Deborah's support and advice on self-care and time management",
+      "summary": "Deborah and Jolene discussed Jolene's struggles with managing her Engineering assignments, agreeing to arrange a time to further talk about time management strategies while Deborah offered support and emphasized self-care.",
+      "members": [
+        {
+          "unit_id": "4c5b5d51-03ab-4814-89ea-23c3e0dbb312",
+          "timestamp": "2023-03-13T11:31:30+08:00",
+          "summary": "Deborah and Jolene discussed Jolene's struggles with managing her Engineering assignments, agreeing to arrange a time to further talk about time management strategies while Deborah offered support and emphasized self-care."
+        }
+      ],
+      "first_timestamp": "2023-03-13T11:31:30+08:00",
+      "last_timestamp": "2023-03-13T11:31:30+08:00",
+      "created_at": "2025-12-03T17:32:57.824168",
+      "updated_at": "2025-12-03T17:32:57.824168"
+    },
+    "gec_041": {
+      "cluster_id": "gec_041",
+      "topic": "Jolene's exam stress and time management challenges",
+      "summary": "On March 22, 2023, Deborah and Jolene discussed Jolene’s exam-related stress and time management challenges, with Deborah sharing organizational tools like daily to-do lists and the Eisenhower Matrix to help Jolene prioritize tasks and reduce overwhelm. Jolene expressed interest in adopting these strategies to improve her productivity.",
+      "members": [
+        {
+          "unit_id": "5031224d-16a2-4da3-9605-460814ec10cc",
+          "timestamp": "2023-03-22T17:42:30+08:00",
+          "summary": "On March 22, 2023, Deborah and Jolene discussed Jolene’s exam-related stress and time management challenges, with Deborah sharing organizational tools like daily to-do lists and the Eisenhower Matrix to help Jolene prioritize tasks and reduce overwhelm. Jolene expressed interest in adopting these strategies to improve her productivity."
+        }
+      ],
+      "first_timestamp": "2023-03-22T17:42:30+08:00",
+      "last_timestamp": "2023-03-22T17:42:30+08:00",
+      "created_at": "2025-12-03T17:33:02.676054",
+      "updated_at": "2025-12-03T17:33:02.676054"
+    },
+    "gec_042": {
+      "cluster_id": "gec_042",
+      "topic": "Deborah's organizational tools and productivity strategies",
+      "summary": "On March 22, 2023, Deborah and Jolene discussed Jolene’s exam-related stress and time management challenges, with Deborah sharing organizational tools like daily to-do lists and the Eisenhower Matrix to help Jolene prioritize tasks and reduce overwhelm. Jolene expressed interest in adopting these strategies to improve her productivity.",
+      "members": [
+        {
+          "unit_id": "5031224d-16a2-4da3-9605-460814ec10cc",
+          "timestamp": "2023-03-22T17:42:30+08:00",
+          "summary": "On March 22, 2023, Deborah and Jolene discussed Jolene’s exam-related stress and time management challenges, with Deborah sharing organizational tools like daily to-do lists and the Eisenhower Matrix to help Jolene prioritize tasks and reduce overwhelm. Jolene expressed interest in adopting these strategies to improve her productivity."
+        }
+      ],
+      "first_timestamp": "2023-03-22T17:42:30+08:00",
+      "last_timestamp": "2023-03-22T17:42:30+08:00",
+      "created_at": "2025-12-03T17:33:02.678846",
+      "updated_at": "2025-12-03T17:33:02.678846"
+    },
+    "gec_043": {
+      "cluster_id": "gec_043",
+      "topic": "Jolene's interest in learning to surf",
+      "summary": "On March 22, 2023, Jolene and Deborah had a supportive conversation about Jolene's interest in learning to surf, during which Deborah encouraged her to pursue her dreams and enjoy the process while Jolene expressed growing enthusiasm and motivation.",
+      "members": [
+        {
+          "unit_id": "2e7d9210-86fb-4b05-8272-2e11c811241e",
+          "timestamp": "2023-03-22T17:46:30+08:00",
+          "summary": "On March 22, 2023, Jolene and Deborah had a supportive conversation about Jolene's interest in learning to surf, during which Deborah encouraged her to pursue her dreams and enjoy the process while Jolene expressed growing enthusiasm and motivation."
+        }
+      ],
+      "first_timestamp": "2023-03-22T17:46:30+08:00",
+      "last_timestamp": "2023-03-22T17:46:30+08:00",
+      "created_at": "2025-12-03T17:33:08.807382",
+      "updated_at": "2025-12-03T17:33:08.807382"
+    },
+    "gec_044": {
+      "cluster_id": "gec_044",
+      "topic": "Deborah's encouragement and support for Jolene's new hobbies",
+      "summary": "On March 22, 2023, Jolene and Deborah had a supportive conversation about Jolene's interest in learning to surf, during which Deborah encouraged her to pursue her dreams and enjoy the process while Jolene expressed growing enthusiasm and motivation.",
+      "members": [
+        {
+          "unit_id": "2e7d9210-86fb-4b05-8272-2e11c811241e",
+          "timestamp": "2023-03-22T17:46:30+08:00",
+          "summary": "On March 22, 2023, Jolene and Deborah had a supportive conversation about Jolene's interest in learning to surf, during which Deborah encouraged her to pursue her dreams and enjoy the process while Jolene expressed growing enthusiasm and motivation."
+        }
+      ],
+      "first_timestamp": "2023-03-22T17:46:30+08:00",
+      "last_timestamp": "2023-03-22T17:46:30+08:00",
+      "created_at": "2025-12-03T17:33:08.809683",
+      "updated_at": "2025-12-03T17:33:08.809683"
+    },
+    "gec_045": {
+      "cluster_id": "gec_045",
+      "topic": "Deborah's experience of watching the sunset by the sea with Anna",
+      "summary": "On March 22, 2023, Jolene and Deborah had a supportive conversation about Jolene's interest in learning to surf, during which Deborah encouraged her to pursue her dreams and enjoy the process while Jolene expressed growing enthusiasm and motivation.",
+      "members": [
+        {
+          "unit_id": "2e7d9210-86fb-4b05-8272-2e11c811241e",
+          "timestamp": "2023-03-22T17:46:30+08:00",
+          "summary": "On March 22, 2023, Jolene and Deborah had a supportive conversation about Jolene's interest in learning to surf, during which Deborah encouraged her to pursue her dreams and enjoy the process while Jolene expressed growing enthusiasm and motivation."
+        }
+      ],
+      "first_timestamp": "2023-03-22T17:46:30+08:00",
+      "last_timestamp": "2023-03-22T17:46:30+08:00",
+      "created_at": "2025-12-03T17:33:08.811314",
+      "updated_at": "2025-12-03T17:33:08.811314"
+    },
+    "gec_046": {
+      "cluster_id": "gec_046",
+      "topic": "Deborah's experiences with biking and outdoor activities",
+      "summary": "On April 9, 2023, Deborah shared with Jolene her recent experiences of biking and visiting an art show, reflecting on how art helps her connect with the memory of her late mother and find comfort. Jolene acknowledged Deborah's coping process, highlighting the emotional significance of art in preserving her mother's legacy.",
+      "members": [
+        {
+          "unit_id": "5db6c88a-fc9b-4f8b-9024-afb2ed02f9b6",
+          "timestamp": "2023-04-09T16:32:00+08:00",
+          "summary": "On April 9, 2023, Deborah shared with Jolene her recent experiences of biking and visiting an art show, reflecting on how art helps her connect with the memory of her late mother and find comfort. Jolene acknowledged Deborah's coping process, highlighting the emotional significance of art in preserving her mother's legacy."
+        }
+      ],
+      "first_timestamp": "2023-04-09T16:32:00+08:00",
+      "last_timestamp": "2023-04-09T16:32:00+08:00",
+      "created_at": "2025-12-03T17:33:23.697012",
+      "updated_at": "2025-12-03T17:33:23.697012"
+    },
+    "gec_047": {
+      "cluster_id": "gec_047",
+      "topic": "Deborah's reflections on art as a connection to her late mother",
+      "summary": "On April 9, 2023, Deborah shared with Jolene her recent experiences of biking and visiting an art show, reflecting on how art helps her connect with the memory of her late mother and find comfort. Jolene acknowledged Deborah's coping process, highlighting the emotional significance of art in preserving her mother's legacy.",
+      "members": [
+        {
+          "unit_id": "5db6c88a-fc9b-4f8b-9024-afb2ed02f9b6",
+          "timestamp": "2023-04-09T16:32:00+08:00",
+          "summary": "On April 9, 2023, Deborah shared with Jolene her recent experiences of biking and visiting an art show, reflecting on how art helps her connect with the memory of her late mother and find comfort. Jolene acknowledged Deborah's coping process, highlighting the emotional significance of art in preserving her mother's legacy."
+        }
+      ],
+      "first_timestamp": "2023-04-09T16:32:00+08:00",
+      "last_timestamp": "2023-04-09T16:32:00+08:00",
+      "created_at": "2025-12-03T17:33:23.698723",
+      "updated_at": "2025-12-03T17:33:23.698723"
+    },
+    "gec_048": {
+      "cluster_id": "gec_048",
+      "topic": "Jolene's solar powered vehicle engineering project",
+      "summary": "On June 6, 2023, Jolene shared with Deborah the successful completion of her challenging solar powered vehicle engineering project, expressing pride in her achievement, while Deborah congratulated her and inquired about her future plans.",
+      "members": [
+        {
+          "unit_id": "d0d7e9d8-e8a1-48e3-b3cf-8fd67d29a896",
+          "timestamp": "2023-06-06T15:57:30+08:00",
+          "summary": "On June 6, 2023, Jolene shared with Deborah the successful completion of her challenging solar powered vehicle engineering project, expressing pride in her achievement, while Deborah congratulated her and inquired about her future plans."
+        }
+      ],
+      "first_timestamp": "2023-06-06T15:57:30+08:00",
+      "last_timestamp": "2023-06-06T15:57:30+08:00",
+      "created_at": "2025-12-03T17:33:38.415516",
+      "updated_at": "2025-12-03T17:33:38.415516"
+    },
+    "gec_049": {
+      "cluster_id": "gec_049",
+      "topic": "Jolene's future plans after engineering project completion",
+      "summary": "On June 6, 2023, Jolene shared with Deborah the successful completion of her challenging solar powered vehicle engineering project, expressing pride in her achievement, while Deborah congratulated her and inquired about her future plans.",
+      "members": [
+        {
+          "unit_id": "d0d7e9d8-e8a1-48e3-b3cf-8fd67d29a896",
+          "timestamp": "2023-06-06T15:57:30+08:00",
+          "summary": "On June 6, 2023, Jolene shared with Deborah the successful completion of her challenging solar powered vehicle engineering project, expressing pride in her achievement, while Deborah congratulated her and inquired about her future plans."
+        }
+      ],
+      "first_timestamp": "2023-06-06T15:57:30+08:00",
+      "last_timestamp": "2023-06-06T15:57:30+08:00",
+      "created_at": "2025-12-03T17:33:38.417410",
+      "updated_at": "2025-12-03T17:33:38.417410"
+    },
+    "gec_050": {
+      "cluster_id": "gec_050",
+      "topic": "Jolene's engineering internship experience",
+      "summary": "Jolene shared with Deborah that her internship at a well-known engineering firm has been a fulfilling experience, allowing her to apply school knowledge to real projects and inspiring her to pursue her engineering goals with dedication. She expressed enthusiasm about working alongside passionate colleagues who motivated her to keep striving for her dreams.",
+      "members": [
+        {
+          "unit_id": "8d783b4b-1067-4c7a-9f8b-bd013691a672",
+          "timestamp": "2023-06-06T16:01:00+08:00",
+          "summary": "Jolene shared with Deborah that her internship at a well-known engineering firm has been a fulfilling experience, allowing her to apply school knowledge to real projects and inspiring her to pursue her engineering goals with dedication. She expressed enthusiasm about working alongside passionate colleagues who motivated her to keep striving for her dreams."
+        }
+      ],
+      "first_timestamp": "2023-06-06T16:01:00+08:00",
+      "last_timestamp": "2023-06-06T16:01:00+08:00",
+      "created_at": "2025-12-03T17:33:43.093960",
+      "updated_at": "2025-12-03T17:33:43.093960"
+    },
+    "gec_051": {
+      "cluster_id": "gec_051",
+      "topic": "Jolene's internship experience and work-life balance",
+      "summary": "On June 6, 2023, Jolene and Deborah discussed Jolene's internship experience, focusing on her challenges with work-life balance and how yoga and meditation have helped her manage stress and stay centered. Deborah offered advice on mindful breathing and support for Jolene's well-being throughout their conversation.",
+      "members": [
+        {
+          "unit_id": "9f5d3bf0-f7db-4fdc-b26a-246c0975b853",
+          "timestamp": "2023-06-06T16:09:00+08:00",
+          "summary": "On June 6, 2023, Jolene and Deborah discussed Jolene's internship experience, focusing on her challenges with work-life balance and how yoga and meditation have helped her manage stress and stay centered. Deborah offered advice on mindful breathing and support for Jolene's well-being throughout their conversation."
+        }
+      ],
+      "first_timestamp": "2023-06-06T16:09:00+08:00",
+      "last_timestamp": "2023-06-06T16:09:00+08:00",
+      "created_at": "2025-12-03T17:33:48.280632",
+      "updated_at": "2025-12-03T17:33:48.280632"
+    },
+    "gec_052": {
+      "cluster_id": "gec_052",
+      "topic": "Deborah's running group with Anna and fitness community",
+      "summary": "On July 9, 2023, Deborah shared with Jolene that she had started a running group with Anna, expressing enthusiasm about the supportive fitness community, while Jolene discussed balancing workouts with her studies and the challenges of staying motivated. Their conversation highlighted mutual encouragement and the importance of having a supportive group in maintaining fitness goals.",
+      "members": [
+        {
+          "unit_id": "85e31dfb-a2bc-4274-af1d-79967966dc63",
+          "timestamp": "2023-07-09T19:39:00+08:00",
+          "summary": "On July 9, 2023, Deborah shared with Jolene that she had started a running group with Anna, expressing enthusiasm about the supportive fitness community, while Jolene discussed balancing workouts with her studies and the challenges of staying motivated. Their conversation highlighted mutual encouragement and the importance of having a supportive group in maintaining fitness goals."
+        }
+      ],
+      "first_timestamp": "2023-07-09T19:39:00+08:00",
+      "last_timestamp": "2023-07-09T19:39:00+08:00",
+      "created_at": "2025-12-03T17:34:13.311508",
+      "updated_at": "2025-12-03T17:34:13.311508"
+    },
+    "gec_053": {
+      "cluster_id": "gec_053",
+      "topic": "Jolene's workout routine and balancing fitness with studies",
+      "summary": "On July 9, 2023, Deborah shared with Jolene that she had started a running group with Anna, expressing enthusiasm about the supportive fitness community, while Jolene discussed balancing workouts with her studies and the challenges of staying motivated. Their conversation highlighted mutual encouragement and the importance of having a supportive group in maintaining fitness goals.",
+      "members": [
+        {
+          "unit_id": "85e31dfb-a2bc-4274-af1d-79967966dc63",
+          "timestamp": "2023-07-09T19:39:00+08:00",
+          "summary": "On July 9, 2023, Deborah shared with Jolene that she had started a running group with Anna, expressing enthusiasm about the supportive fitness community, while Jolene discussed balancing workouts with her studies and the challenges of staying motivated. Their conversation highlighted mutual encouragement and the importance of having a supportive group in maintaining fitness goals."
+        }
+      ],
+      "first_timestamp": "2023-07-09T19:39:00+08:00",
+      "last_timestamp": "2023-07-09T19:39:00+08:00",
+      "created_at": "2025-12-03T17:34:13.313274",
+      "updated_at": "2025-12-03T17:34:13.313274"
+    },
+    "gec_054": {
+      "cluster_id": "gec_054",
+      "topic": "Mutual encouragement and support for fitness goals",
+      "summary": "On July 9, 2023, Deborah shared with Jolene that she had started a running group with Anna, expressing enthusiasm about the supportive fitness community, while Jolene discussed balancing workouts with her studies and the challenges of staying motivated. Their conversation highlighted mutual encouragement and the importance of having a supportive group in maintaining fitness goals.",
+      "members": [
+        {
+          "unit_id": "85e31dfb-a2bc-4274-af1d-79967966dc63",
+          "timestamp": "2023-07-09T19:39:00+08:00",
+          "summary": "On July 9, 2023, Deborah shared with Jolene that she had started a running group with Anna, expressing enthusiasm about the supportive fitness community, while Jolene discussed balancing workouts with her studies and the challenges of staying motivated. Their conversation highlighted mutual encouragement and the importance of having a supportive group in maintaining fitness goals."
+        }
+      ],
+      "first_timestamp": "2023-07-09T19:39:00+08:00",
+      "last_timestamp": "2023-07-09T19:39:00+08:00",
+      "created_at": "2025-12-03T17:34:13.315583",
+      "updated_at": "2025-12-03T17:34:13.315583"
+    },
+    "gec_055": {
+      "cluster_id": "gec_055",
+      "topic": "Deborah's yoga and mindfulness workshops for community and personal growth",
+      "summary": "On July 9, 2023, Jolene and Deborah discussed their favorite group activities, with Jolene sharing about the cooperative game \"It Takes Two\" and Deborah describing her yoga and mindfulness workshops aimed at fostering community and personal growth. Their conversation highlighted mutual support, shared interests in community-building, and emotional encouragement.",
+      "members": [
+        {
+          "unit_id": "b3654639-4954-42e0-8026-f8a2f9ebc678",
+          "timestamp": "2023-07-09T19:45:00+08:00",
+          "summary": "On July 9, 2023, Jolene and Deborah discussed their favorite group activities, with Jolene sharing about the cooperative game \"It Takes Two\" and Deborah describing her yoga and mindfulness workshops aimed at fostering community and personal growth. Their conversation highlighted mutual support, shared interests in community-building, and emotional encouragement."
+        }
+      ],
+      "first_timestamp": "2023-07-09T19:45:00+08:00",
+      "last_timestamp": "2023-07-09T19:45:00+08:00",
+      "created_at": "2025-12-03T17:34:23.156743",
+      "updated_at": "2025-12-03T17:34:23.156743"
+    },
+    "gec_056": {
+      "cluster_id": "gec_056",
+      "topic": "Jolene and Deborah's shared appreciation and activities involving nature and outdoor peaceful spots",
+      "summary": "Jolene and Deborah discussed their appreciation for animals and nature, sharing personal routines involving pets and outdoor activities, exchanging photos of peaceful natural scenes, and planning to visit a tranquil lakeside spot together.",
+      "members": [
+        {
+          "unit_id": "d8c9b9f5-2ebc-4c7c-822e-5390e42210af",
+          "timestamp": "2023-07-09T19:56:00+08:00",
+          "summary": "Jolene and Deborah discussed their appreciation for animals and nature, sharing personal routines involving pets and outdoor activities, exchanging photos of peaceful natural scenes, and planning to visit a tranquil lakeside spot together."
+        }
+      ],
+      "first_timestamp": "2023-07-09T19:56:00+08:00",
+      "last_timestamp": "2023-07-09T19:56:00+08:00",
+      "created_at": "2025-12-03T17:34:32.661100",
+      "updated_at": "2025-12-03T17:34:32.661100"
+    },
+    "gec_057": {
+      "cluster_id": "gec_057",
+      "topic": "Deborah's community cleanup project and fundraising efforts",
+      "summary": "Deborah and Jolene discussed Deborah's community cleanup project and Jolene's recent struggles with a lost project, during which they shared support strategies including the comfort Jolene finds in her pet snake Susie and yoga practices recommended by Deborah to help with relaxation and balance.",
+      "members": [
+        {
+          "unit_id": "2a5d5340-e3d1-4bf1-974f-9268a2246bfe",
+          "timestamp": "2023-08-01T09:35:30+08:00",
+          "summary": "Deborah and Jolene discussed Deborah's community cleanup project and Jolene's recent struggles with a lost project, during which they shared support strategies including the comfort Jolene finds in her pet snake Susie and yoga practices recommended by Deborah to help with relaxation and balance."
+        }
+      ],
+      "first_timestamp": "2023-08-01T09:35:30+08:00",
+      "last_timestamp": "2023-08-01T09:35:30+08:00",
+      "created_at": "2025-12-03T17:34:37.705516",
+      "updated_at": "2025-12-03T17:34:37.705516"
+    },
+    "gec_058": {
+      "cluster_id": "gec_058",
+      "topic": "Jolene's struggles with a lost project",
+      "summary": "Deborah and Jolene discussed Deborah's community cleanup project and Jolene's recent struggles with a lost project, during which they shared support strategies including the comfort Jolene finds in her pet snake Susie and yoga practices recommended by Deborah to help with relaxation and balance.",
+      "members": [
+        {
+          "unit_id": "2a5d5340-e3d1-4bf1-974f-9268a2246bfe",
+          "timestamp": "2023-08-01T09:35:30+08:00",
+          "summary": "Deborah and Jolene discussed Deborah's community cleanup project and Jolene's recent struggles with a lost project, during which they shared support strategies including the comfort Jolene finds in her pet snake Susie and yoga practices recommended by Deborah to help with relaxation and balance."
+        }
+      ],
+      "first_timestamp": "2023-08-01T09:35:30+08:00",
+      "last_timestamp": "2023-08-01T09:35:30+08:00",
+      "created_at": "2025-12-03T17:34:37.707760",
+      "updated_at": "2025-12-03T17:34:37.707760"
+    },
+    "gec_059": {
+      "cluster_id": "gec_059",
+      "topic": "Deborah's meditation guide for yoga retreat",
+      "summary": "Deborah and Jolene engaged in a supportive conversation where Deborah shared her meditation guide for a yoga retreat, and Jolene discussed how meditation helped her cope with work-related stress while also sharing her creative notebook designs inspired by space and engineering. Their exchange highlighted the connection between meditation, creativity, and problem-solving.",
+      "members": [
+        {
+          "unit_id": "8002a609-07a3-48a8-a512-39eb92a09046",
+          "timestamp": "2023-08-12T20:54:00+08:00",
+          "summary": "Deborah and Jolene engaged in a supportive conversation where Deborah shared her meditation guide for a yoga retreat, and Jolene discussed how meditation helped her cope with work-related stress while also sharing her creative notebook designs inspired by space and engineering. Their exchange highlighted the connection between meditation, creativity, and problem-solving."
+        }
+      ],
+      "first_timestamp": "2023-08-12T20:54:00+08:00",
+      "last_timestamp": "2023-08-12T20:54:00+08:00",
+      "created_at": "2025-12-03T17:34:43.219907",
+      "updated_at": "2025-12-03T17:34:43.219907"
+    },
+    "gec_060": {
+      "cluster_id": "gec_060",
+      "topic": "Jolene's use of meditation to cope with work stress",
+      "summary": "Deborah and Jolene engaged in a supportive conversation where Deborah shared her meditation guide for a yoga retreat, and Jolene discussed how meditation helped her cope with work-related stress while also sharing her creative notebook designs inspired by space and engineering. Their exchange highlighted the connection between meditation, creativity, and problem-solving.",
+      "members": [
+        {
+          "unit_id": "8002a609-07a3-48a8-a512-39eb92a09046",
+          "timestamp": "2023-08-12T20:54:00+08:00",
+          "summary": "Deborah and Jolene engaged in a supportive conversation where Deborah shared her meditation guide for a yoga retreat, and Jolene discussed how meditation helped her cope with work-related stress while also sharing her creative notebook designs inspired by space and engineering. Their exchange highlighted the connection between meditation, creativity, and problem-solving."
+        }
+      ],
+      "first_timestamp": "2023-08-12T20:54:00+08:00",
+      "last_timestamp": "2023-08-12T20:54:00+08:00",
+      "created_at": "2025-12-03T17:34:43.221624",
+      "updated_at": "2025-12-03T17:34:43.221624"
+    },
+    "gec_061": {
+      "cluster_id": "gec_061",
+      "topic": "Jolene's creative notebook designs inspired by space and engineering",
+      "summary": "Deborah and Jolene engaged in a supportive conversation where Deborah shared her meditation guide for a yoga retreat, and Jolene discussed how meditation helped her cope with work-related stress while also sharing her creative notebook designs inspired by space and engineering. Their exchange highlighted the connection between meditation, creativity, and problem-solving.",
+      "members": [
+        {
+          "unit_id": "8002a609-07a3-48a8-a512-39eb92a09046",
+          "timestamp": "2023-08-12T20:54:00+08:00",
+          "summary": "Deborah and Jolene engaged in a supportive conversation where Deborah shared her meditation guide for a yoga retreat, and Jolene discussed how meditation helped her cope with work-related stress while also sharing her creative notebook designs inspired by space and engineering. Their exchange highlighted the connection between meditation, creativity, and problem-solving."
+        }
+      ],
+      "first_timestamp": "2023-08-12T20:54:00+08:00",
+      "last_timestamp": "2023-08-12T20:54:00+08:00",
+      "created_at": "2025-12-03T17:34:43.223338",
+      "updated_at": "2025-12-03T17:34:43.223338"
+    },
+    "gec_062": {
+      "cluster_id": "gec_062",
+      "topic": "Jolene's aerial surveillance prototype project",
+      "summary": "On August 12, 2023, Deborah and Jolene discussed Jolene's innovative prototype for an affordable aerial surveillance system aimed at improving emergency response and environmental monitoring, with Deborah offering encouragement and support.",
+      "members": [
+        {
+          "unit_id": "42f76daf-4757-4192-b5fc-6ec688efe7a8",
+          "timestamp": "2023-08-12T20:57:00+08:00",
+          "summary": "On August 12, 2023, Deborah and Jolene discussed Jolene's innovative prototype for an affordable aerial surveillance system aimed at improving emergency response and environmental monitoring, with Deborah offering encouragement and support."
+        }
+      ],
+      "first_timestamp": "2023-08-12T20:57:00+08:00",
+      "last_timestamp": "2023-08-12T20:57:00+08:00",
+      "created_at": "2025-12-03T17:34:47.996522",
+      "updated_at": "2025-12-03T17:34:47.996522"
+    },
+    "gec_063": {
+      "cluster_id": "gec_063",
+      "topic": "Jolene's challenges balancing engineering career, relationship, and personal growth",
+      "summary": "On August 16, 2023, Jolene and Deborah discussed Jolene's challenges in balancing her engineering career, relationship, and personal growth, with Deborah offering support through advice on mindfulness and time management strategies like bullet journaling. The conversation emphasized themes of balance, motivation, and mutual support.",
+      "members": [
+        {
+          "unit_id": "44b5f9e4-77a0-4557-93b8-bfa8b5403fa4",
+          "timestamp": "2023-08-16T15:05:00+08:00",
+          "summary": "On August 16, 2023, Jolene and Deborah discussed Jolene's challenges in balancing her engineering career, relationship, and personal growth, with Deborah offering support through advice on mindfulness and time management strategies like bullet journaling. The conversation emphasized themes of balance, motivation, and mutual support."
+        }
+      ],
+      "first_timestamp": "2023-08-16T15:05:00+08:00",
+      "last_timestamp": "2023-08-16T15:05:00+08:00",
+      "created_at": "2025-12-03T17:34:53.873436",
+      "updated_at": "2025-12-03T17:34:53.873436"
+    },
+    "gec_064": {
+      "cluster_id": "gec_064",
+      "topic": "Deborah's advice on mindfulness and time management strategies like bullet journaling",
+      "summary": "On August 16, 2023, Jolene and Deborah discussed Jolene's challenges in balancing her engineering career, relationship, and personal growth, with Deborah offering support through advice on mindfulness and time management strategies like bullet journaling. The conversation emphasized themes of balance, motivation, and mutual support.",
+      "members": [
+        {
+          "unit_id": "44b5f9e4-77a0-4557-93b8-bfa8b5403fa4",
+          "timestamp": "2023-08-16T15:05:00+08:00",
+          "summary": "On August 16, 2023, Jolene and Deborah discussed Jolene's challenges in balancing her engineering career, relationship, and personal growth, with Deborah offering support through advice on mindfulness and time management strategies like bullet journaling. The conversation emphasized themes of balance, motivation, and mutual support."
+        }
+      ],
+      "first_timestamp": "2023-08-16T15:05:00+08:00",
+      "last_timestamp": "2023-08-16T15:05:00+08:00",
+      "created_at": "2025-12-03T17:34:53.876887",
+      "updated_at": "2025-12-03T17:34:53.876887"
+    },
+    "gec_065": {
+      "cluster_id": "gec_065",
+      "topic": "Mutual support and motivation between Jolene and Deborah",
+      "summary": "On August 16, 2023, Jolene and Deborah discussed Jolene's challenges in balancing her engineering career, relationship, and personal growth, with Deborah offering support through advice on mindfulness and time management strategies like bullet journaling. The conversation emphasized themes of balance, motivation, and mutual support.",
+      "members": [
+        {
+          "unit_id": "44b5f9e4-77a0-4557-93b8-bfa8b5403fa4",
+          "timestamp": "2023-08-16T15:05:00+08:00",
+          "summary": "On August 16, 2023, Jolene and Deborah discussed Jolene's challenges in balancing her engineering career, relationship, and personal growth, with Deborah offering support through advice on mindfulness and time management strategies like bullet journaling. The conversation emphasized themes of balance, motivation, and mutual support."
+        }
+      ],
+      "first_timestamp": "2023-08-16T15:05:00+08:00",
+      "last_timestamp": "2023-08-16T15:05:00+08:00",
+      "created_at": "2025-12-03T17:34:53.878076",
+      "updated_at": "2025-12-03T17:34:53.878076"
+    },
+    "gec_066": {
+      "cluster_id": "gec_066",
+      "topic": "Deborah's storytelling and connection with neighbor Anna",
+      "summary": "On August 19, 2023, Jolene and Deborah engaged in a heartfelt conversation covering topics such as mindfulness, gaming, yoga event organization, balancing studies and hobbies, and cherished personal memories tied to nature and family. They shared experiences, advice, and reflections, highlighting the importance of meaningful moments and relationships.",
+      "members": [
+        {
+          "unit_id": "3fb0ce55-f954-43bd-a6b3-decbb7527399",
+          "timestamp": "2023-08-19T01:03:30+08:00",
+          "summary": "On August 19, 2023, Jolene and Deborah engaged in a heartfelt conversation covering topics such as mindfulness, gaming, yoga event organization, balancing studies and hobbies, and cherished personal memories tied to nature and family. They shared experiences, advice, and reflections, highlighting the importance of meaningful moments and relationships."
+        }
+      ],
+      "first_timestamp": "2023-08-19T01:03:30+08:00",
+      "last_timestamp": "2023-08-19T01:03:30+08:00",
+      "created_at": "2025-12-03T17:35:00.332466",
+      "updated_at": "2025-12-03T17:35:00.332466"
+    },
+    "gec_067": {
+      "cluster_id": "gec_067",
+      "topic": "Jolene's mindfulness workshops",
+      "summary": "On August 19, 2023, Jolene and Deborah engaged in a heartfelt conversation covering topics such as mindfulness, gaming, yoga event organization, balancing studies and hobbies, and cherished personal memories tied to nature and family. They shared experiences, advice, and reflections, highlighting the importance of meaningful moments and relationships.",
+      "members": [
+        {
+          "unit_id": "3fb0ce55-f954-43bd-a6b3-decbb7527399",
+          "timestamp": "2023-08-19T01:03:30+08:00",
+          "summary": "On August 19, 2023, Jolene and Deborah engaged in a heartfelt conversation covering topics such as mindfulness, gaming, yoga event organization, balancing studies and hobbies, and cherished personal memories tied to nature and family. They shared experiences, advice, and reflections, highlighting the importance of meaningful moments and relationships."
+        }
+      ],
+      "first_timestamp": "2023-08-19T01:03:30+08:00",
+      "last_timestamp": "2023-08-19T01:03:30+08:00",
+      "created_at": "2025-12-03T17:35:00.333692",
+      "updated_at": "2025-12-03T17:35:00.333692"
+    },
+    "gec_068": {
+      "cluster_id": "gec_068",
+      "topic": "Balancing studies and hobbies",
+      "summary": "On August 19, 2023, Jolene and Deborah engaged in a heartfelt conversation covering topics such as mindfulness, gaming, yoga event organization, balancing studies and hobbies, and cherished personal memories tied to nature and family. They shared experiences, advice, and reflections, highlighting the importance of meaningful moments and relationships.",
+      "members": [
+        {
+          "unit_id": "3fb0ce55-f954-43bd-a6b3-decbb7527399",
+          "timestamp": "2023-08-19T01:03:30+08:00",
+          "summary": "On August 19, 2023, Jolene and Deborah engaged in a heartfelt conversation covering topics such as mindfulness, gaming, yoga event organization, balancing studies and hobbies, and cherished personal memories tied to nature and family. They shared experiences, advice, and reflections, highlighting the importance of meaningful moments and relationships."
+        }
+      ],
+      "first_timestamp": "2023-08-19T01:03:30+08:00",
+      "last_timestamp": "2023-08-19T01:03:30+08:00",
+      "created_at": "2025-12-03T17:35:00.334804",
+      "updated_at": "2025-12-03T17:35:00.335338"
+    },
+    "gec_069": {
+      "cluster_id": "gec_069",
+      "topic": "Deborah's transformative yoga retreat experience",
+      "summary": "On August 24, 2023, Deborah and Jolene discussed Deborah’s transformative yoga retreat and Jolene’s career progress, sharing mutual encouragement focused on personal growth, self-reflection, and professional development.",
+      "members": [
+        {
+          "unit_id": "e9df044f-9bfe-49b0-afa4-2154707f314e",
+          "timestamp": "2023-08-24T09:42:00+08:00",
+          "summary": "On August 24, 2023, Deborah and Jolene discussed Deborah’s transformative yoga retreat and Jolene’s career progress, sharing mutual encouragement focused on personal growth, self-reflection, and professional development."
+        }
+      ],
+      "first_timestamp": "2023-08-24T09:42:00+08:00",
+      "last_timestamp": "2023-08-24T09:42:00+08:00",
+      "created_at": "2025-12-03T17:35:10.117957",
+      "updated_at": "2025-12-03T17:35:10.117957"
+    },
+    "gec_070": {
+      "cluster_id": "gec_070",
+      "topic": "Jolene's career progress and professional development",
+      "summary": "On August 24, 2023, Deborah and Jolene discussed Deborah’s transformative yoga retreat and Jolene’s career progress, sharing mutual encouragement focused on personal growth, self-reflection, and professional development.",
+      "members": [
+        {
+          "unit_id": "e9df044f-9bfe-49b0-afa4-2154707f314e",
+          "timestamp": "2023-08-24T09:42:00+08:00",
+          "summary": "On August 24, 2023, Deborah and Jolene discussed Deborah’s transformative yoga retreat and Jolene’s career progress, sharing mutual encouragement focused on personal growth, self-reflection, and professional development."
+        }
+      ],
+      "first_timestamp": "2023-08-24T09:42:00+08:00",
+      "last_timestamp": "2023-08-24T09:42:00+08:00",
+      "created_at": "2025-12-03T17:35:10.120168",
+      "updated_at": "2025-12-03T17:35:10.120168"
+    },
+    "gec_071": {
+      "cluster_id": "gec_071",
+      "topic": "Jolene's ambition to integrate perseverance, resilience, and sustainability into engineering projects for community benefit",
+      "summary": "On August 26, 2023, Deborah and Jolene engaged in a reflective conversation about how the values of their loved ones inspire their lives and future goals, with Jolene sharing her ambition to integrate perseverance, resilience, and sustainability into her engineering projects aimed at benefiting communities.",
+      "members": [
+        {
+          "unit_id": "1c32c895-7c48-430d-b2ed-89fd20233e0e",
+          "timestamp": "2023-08-26T17:39:00+08:00",
+          "summary": "On August 26, 2023, Deborah and Jolene engaged in a reflective conversation about how the values of their loved ones inspire their lives and future goals, with Jolene sharing her ambition to integrate perseverance, resilience, and sustainability into her engineering projects aimed at benefiting communities."
+        }
+      ],
+      "first_timestamp": "2023-08-26T17:39:00+08:00",
+      "last_timestamp": "2023-08-26T17:39:00+08:00",
+      "created_at": "2025-12-03T17:35:15.616465",
+      "updated_at": "2025-12-03T17:35:15.616465"
+    },
+    "gec_072": {
+      "cluster_id": "gec_072",
+      "topic": "Jolene's trip to Rio de Janeiro",
+      "summary": "On August 30, 2023, Jolene shared with Deborah her recent trip to Rio de Janeiro, highlighting attending yoga classes and exploring the local culture, which deepened her appreciation for yoga. Their conversation reflected a friendly exchange about travel, yoga, and personal growth.",
+      "members": [
+        {
+          "unit_id": "8dc85258-ccd9-4295-a980-4df29e9f764c",
+          "timestamp": "2023-08-30T11:47:00+08:00",
+          "summary": "On August 30, 2023, Jolene shared with Deborah her recent trip to Rio de Janeiro, highlighting attending yoga classes and exploring the local culture, which deepened her appreciation for yoga. Their conversation reflected a friendly exchange about travel, yoga, and personal growth."
+        }
+      ],
+      "first_timestamp": "2023-08-30T11:47:00+08:00",
+      "last_timestamp": "2023-08-30T11:47:00+08:00",
+      "created_at": "2025-12-03T17:35:28.772226",
+      "updated_at": "2025-12-03T17:35:28.772226"
+    },
+    "gec_073": {
+      "cluster_id": "gec_073",
+      "topic": "Deborah's attendance and reflections on community support events",
+      "summary": "Deborah and Jolene discussed their recent experiences and personal lives, emphasizing the importance of relationships and support from loved ones in managing stress, with Deborah sharing about a community event and yoga friends, and Jolene reflecting on her studies, gaming hobbies, and partner’s encouragement.",
+      "members": [
+        {
+          "unit_id": "76d4ab71-7dab-420f-863a-c4464ac29748",
+          "timestamp": "2023-09-03T14:21:00+08:00",
+          "summary": "Deborah and Jolene discussed their recent experiences and personal lives, emphasizing the importance of relationships and support from loved ones in managing stress, with Deborah sharing about a community event and yoga friends, and Jolene reflecting on her studies, gaming hobbies, and partner’s encouragement."
+        }
+      ],
+      "first_timestamp": "2023-09-03T14:21:00+08:00",
+      "last_timestamp": "2023-09-03T14:21:00+08:00",
+      "created_at": "2025-12-03T17:35:58.001389",
+      "updated_at": "2025-12-03T17:35:58.001389"
+    },
+    "gec_074": {
+      "cluster_id": "gec_074",
+      "topic": "Deborah's social connections with yoga friends",
+      "summary": "Deborah and Jolene discussed their recent experiences and personal lives, emphasizing the importance of relationships and support from loved ones in managing stress, with Deborah sharing about a community event and yoga friends, and Jolene reflecting on her studies, gaming hobbies, and partner’s encouragement.",
+      "members": [
+        {
+          "unit_id": "76d4ab71-7dab-420f-863a-c4464ac29748",
+          "timestamp": "2023-09-03T14:21:00+08:00",
+          "summary": "Deborah and Jolene discussed their recent experiences and personal lives, emphasizing the importance of relationships and support from loved ones in managing stress, with Deborah sharing about a community event and yoga friends, and Jolene reflecting on her studies, gaming hobbies, and partner’s encouragement."
+        }
+      ],
+      "first_timestamp": "2023-09-03T14:21:00+08:00",
+      "last_timestamp": "2023-09-03T14:21:00+08:00",
+      "created_at": "2025-12-03T17:35:58.003720",
+      "updated_at": "2025-12-03T17:35:58.003720"
+    },
+    "gec_075": {
+      "cluster_id": "gec_075",
+      "topic": "Jolene's studies and academic focus",
+      "summary": "Deborah and Jolene discussed their recent experiences and personal lives, emphasizing the importance of relationships and support from loved ones in managing stress, with Deborah sharing about a community event and yoga friends, and Jolene reflecting on her studies, gaming hobbies, and partner’s encouragement.",
+      "members": [
+        {
+          "unit_id": "76d4ab71-7dab-420f-863a-c4464ac29748",
+          "timestamp": "2023-09-03T14:21:00+08:00",
+          "summary": "Deborah and Jolene discussed their recent experiences and personal lives, emphasizing the importance of relationships and support from loved ones in managing stress, with Deborah sharing about a community event and yoga friends, and Jolene reflecting on her studies, gaming hobbies, and partner’s encouragement."
+        }
+      ],
+      "first_timestamp": "2023-09-03T14:21:00+08:00",
+      "last_timestamp": "2023-09-03T14:21:00+08:00",
+      "created_at": "2025-12-03T17:35:58.006017",
+      "updated_at": "2025-12-03T17:35:58.006017"
+    },
+    "gec_076": {
+      "cluster_id": "gec_076",
+      "topic": "Jolene's gaming hobbies and partner's encouragement",
+      "summary": "Deborah and Jolene discussed their recent experiences and personal lives, emphasizing the importance of relationships and support from loved ones in managing stress, with Deborah sharing about a community event and yoga friends, and Jolene reflecting on her studies, gaming hobbies, and partner’s encouragement.",
+      "members": [
+        {
+          "unit_id": "76d4ab71-7dab-420f-863a-c4464ac29748",
+          "timestamp": "2023-09-03T14:21:00+08:00",
+          "summary": "Deborah and Jolene discussed their recent experiences and personal lives, emphasizing the importance of relationships and support from loved ones in managing stress, with Deborah sharing about a community event and yoga friends, and Jolene reflecting on her studies, gaming hobbies, and partner’s encouragement."
+        }
+      ],
+      "first_timestamp": "2023-09-03T14:21:00+08:00",
+      "last_timestamp": "2023-09-03T14:21:00+08:00",
+      "created_at": "2025-12-03T17:35:58.007802",
+      "updated_at": "2025-12-03T17:35:58.007802"
+    },
+    "gec_077": {
+      "cluster_id": "gec_077",
+      "topic": "Jolene's meditation course at a retreat",
+      "summary": "Deborah and Jolene engaged in a supportive conversation about Jolene’s new meditation course at a retreat, sharing their positive experiences and the benefits of meditation for wellness and personal growth.",
+      "members": [
+        {
+          "unit_id": "0fb44333-dd97-4deb-8837-b60435e72e4b",
+          "timestamp": "2023-09-06T20:33:00+08:00",
+          "summary": "Deborah and Jolene engaged in a supportive conversation about Jolene’s new meditation course at a retreat, sharing their positive experiences and the benefits of meditation for wellness and personal growth."
+        }
+      ],
+      "first_timestamp": "2023-09-06T20:33:00+08:00",
+      "last_timestamp": "2023-09-06T20:33:00+08:00",
+      "created_at": "2025-12-03T17:36:02.364554",
+      "updated_at": "2025-12-03T17:36:02.364554"
+    },
+    "gec_078": {
+      "cluster_id": "gec_078",
+      "topic": "Benefits of meditation for wellness and personal growth",
+      "summary": "Deborah and Jolene engaged in a supportive conversation about Jolene’s new meditation course at a retreat, sharing their positive experiences and the benefits of meditation for wellness and personal growth.",
+      "members": [
+        {
+          "unit_id": "0fb44333-dd97-4deb-8837-b60435e72e4b",
+          "timestamp": "2023-09-06T20:33:00+08:00",
+          "summary": "Deborah and Jolene engaged in a supportive conversation about Jolene’s new meditation course at a retreat, sharing their positive experiences and the benefits of meditation for wellness and personal growth."
+        }
+      ],
+      "first_timestamp": "2023-09-06T20:33:00+08:00",
+      "last_timestamp": "2023-09-06T20:33:00+08:00",
+      "created_at": "2025-12-03T17:36:02.364554",
+      "updated_at": "2025-12-03T17:36:02.364554"
+    },
+    "gec_079": {
+      "cluster_id": "gec_079",
+      "topic": "Deborah and Jolene's reflections on peaceful beach experiences and sunrise watching",
+      "summary": "Deborah and Jolene shared a supportive conversation reflecting on peaceful beach experiences and expressed a hopeful plan to watch a sunrise together in the future.",
+      "members": [
+        {
+          "unit_id": "b1772d44-a546-4060-a79c-eb23bbd2cfc5",
+          "timestamp": "2023-09-06T20:40:30+08:00",
+          "summary": "Deborah and Jolene shared a supportive conversation reflecting on peaceful beach experiences and expressed a hopeful plan to watch a sunrise together in the future."
+        }
+      ],
+      "first_timestamp": "2023-09-06T20:40:30+08:00",
+      "last_timestamp": "2023-09-06T20:40:30+08:00",
+      "created_at": "2025-12-03T17:36:10.350462",
+      "updated_at": "2025-12-03T17:36:10.350462"
+    },
+    "gec_080": {
+      "cluster_id": "gec_080",
+      "topic": "Deborah's cancelled yoga getaway due to storm and reflections on gratitude",
+      "summary": "In a conversation on September 8, 2023, Deborah shared with Jolene that a storm forced her to cancel a planned yoga getaway, causing initial disappointment but ultimately leading her to find comfort in work and home, reflecting on gratitude for the little things. Jolene responded with sympathy, and they mutually inquired about each other's well-being.",
+      "members": [
+        {
+          "unit_id": "8e4b4bf0-a781-4bd6-a24b-b3bf3c0e570b",
+          "timestamp": "2023-09-08T19:40:00+08:00",
+          "summary": "In a conversation on September 8, 2023, Deborah shared with Jolene that a storm forced her to cancel a planned yoga getaway, causing initial disappointment but ultimately leading her to find comfort in work and home, reflecting on gratitude for the little things. Jolene responded with sympathy, and they mutually inquired about each other's well-being."
+        }
+      ],
+      "first_timestamp": "2023-09-08T19:40:00+08:00",
+      "last_timestamp": "2023-09-08T19:40:00+08:00",
+      "created_at": "2025-12-03T17:36:16.165298",
+      "updated_at": "2025-12-03T17:36:16.165298"
+    },
+    "gec_081": {
+      "cluster_id": "gec_081",
+      "topic": "Mutual well-being check-ins between Deborah and Jolene",
+      "summary": "In a conversation on September 8, 2023, Deborah shared with Jolene that a storm forced her to cancel a planned yoga getaway, causing initial disappointment but ultimately leading her to find comfort in work and home, reflecting on gratitude for the little things. Jolene responded with sympathy, and they mutually inquired about each other's well-being.",
+      "members": [
+        {
+          "unit_id": "8e4b4bf0-a781-4bd6-a24b-b3bf3c0e570b",
+          "timestamp": "2023-09-08T19:40:00+08:00",
+          "summary": "In a conversation on September 8, 2023, Deborah shared with Jolene that a storm forced her to cancel a planned yoga getaway, causing initial disappointment but ultimately leading her to find comfort in work and home, reflecting on gratitude for the little things. Jolene responded with sympathy, and they mutually inquired about each other's well-being."
+        }
+      ],
+      "first_timestamp": "2023-09-08T19:40:00+08:00",
+      "last_timestamp": "2023-09-08T19:40:00+08:00",
+      "created_at": "2025-12-03T17:36:16.168193",
+      "updated_at": "2025-12-03T17:36:16.168193"
+    },
+    "gec_082": {
+      "cluster_id": "gec_082",
+      "topic": "Jolene's camping trip focused on nature and yoga",
+      "summary": "On September 8, 2023, Jolene shared with Deborah her plans for a camping trip focused on nature and yoga, explaining how maintaining a balanced routine and self-care practices helped her manage a busy schedule, leading Deborah to propose a coffee date to discuss time management techniques further.",
+      "members": [
+        {
+          "unit_id": "782962bf-1c65-49c5-b5a4-8b7d12dbe638",
+          "timestamp": "2023-09-08T19:43:00+08:00",
+          "summary": "On September 8, 2023, Jolene shared with Deborah her plans for a camping trip focused on nature and yoga, explaining how maintaining a balanced routine and self-care practices helped her manage a busy schedule, leading Deborah to propose a coffee date to discuss time management techniques further."
+        }
+      ],
+      "first_timestamp": "2023-09-08T19:43:00+08:00",
+      "last_timestamp": "2023-09-08T19:43:00+08:00",
+      "created_at": "2025-12-03T17:36:23.236864",
+      "updated_at": "2025-12-03T17:36:23.236864"
+    },
+    "gec_083": {
+      "cluster_id": "gec_083",
+      "topic": "Jolene's time management and balanced routine strategies",
+      "summary": "On September 8, 2023, Jolene shared with Deborah her plans for a camping trip focused on nature and yoga, explaining how maintaining a balanced routine and self-care practices helped her manage a busy schedule, leading Deborah to propose a coffee date to discuss time management techniques further.",
+      "members": [
+        {
+          "unit_id": "782962bf-1c65-49c5-b5a4-8b7d12dbe638",
+          "timestamp": "2023-09-08T19:43:00+08:00",
+          "summary": "On September 8, 2023, Jolene shared with Deborah her plans for a camping trip focused on nature and yoga, explaining how maintaining a balanced routine and self-care practices helped her manage a busy schedule, leading Deborah to propose a coffee date to discuss time management techniques further."
+        }
+      ],
+      "first_timestamp": "2023-09-08T19:43:00+08:00",
+      "last_timestamp": "2023-09-08T19:43:00+08:00",
+      "created_at": "2025-12-03T17:36:23.237935",
+      "updated_at": "2025-12-03T17:36:23.237935"
+    },
+    "gec_084": {
+      "cluster_id": "gec_084",
+      "topic": "Deborah's proposal for a coffee date to discuss time management techniques",
+      "summary": "On September 8, 2023, Jolene shared with Deborah her plans for a camping trip focused on nature and yoga, explaining how maintaining a balanced routine and self-care practices helped her manage a busy schedule, leading Deborah to propose a coffee date to discuss time management techniques further.",
+      "members": [
+        {
+          "unit_id": "782962bf-1c65-49c5-b5a4-8b7d12dbe638",
+          "timestamp": "2023-09-08T19:43:00+08:00",
+          "summary": "On September 8, 2023, Jolene shared with Deborah her plans for a camping trip focused on nature and yoga, explaining how maintaining a balanced routine and self-care practices helped her manage a busy schedule, leading Deborah to propose a coffee date to discuss time management techniques further."
+        }
+      ],
+      "first_timestamp": "2023-09-08T19:43:00+08:00",
+      "last_timestamp": "2023-09-08T19:43:00+08:00",
+      "created_at": "2025-12-03T17:36:23.238994",
+      "updated_at": "2025-12-03T17:36:23.238994"
+    },
+    "gec_085": {
+      "cluster_id": "gec_085",
+      "topic": "Deborah and Jolene's coffee date planning",
+      "summary": "Deborah and Jolene planned a coffee date, initially proposing Monday and Wednesday but ultimately agreeing to meet on Friday, September 15, 2023, at 5 PM at a coffee shop Jolene shared, exchanging photos and adjusting plans to accommodate their schedules. Both showed enthusiasm and warmth throughout their conversation.",
+      "members": [
+        {
+          "unit_id": "45bd9d46-0411-4b2f-9d59-62b45b9c4db0",
+          "timestamp": "2023-09-08T19:49:00+08:00",
+          "summary": "Deborah and Jolene planned a coffee date, initially proposing Monday and Wednesday but ultimately agreeing to meet on Friday, September 15, 2023, at 5 PM at a coffee shop Jolene shared, exchanging photos and adjusting plans to accommodate their schedules. Both showed enthusiasm and warmth throughout their conversation."
+        }
+      ],
+      "first_timestamp": "2023-09-08T19:49:00+08:00",
+      "last_timestamp": "2023-09-08T19:49:00+08:00",
+      "created_at": "2025-12-03T17:36:27.776720",
+      "updated_at": "2025-12-03T17:36:27.776720"
+    },
+    "gec_086": {
+      "cluster_id": "gec_086",
+      "topic": "Jolene's meditation retreat experiences and insights",
+      "summary": "On September 12, 2023, Deborah and Jolene discussed Jolene’s transformative experiences and insights from a meditation retreat in Phuket, focusing on mindfulness, gratitude, and finding balance alongside her engineering studies. Their conversation highlighted Jolene’s emotional growth and the supportive dynamic between them.",
+      "members": [
+        {
+          "unit_id": "58a310c5-5388-4f22-b477-fc7f24e934b8",
+          "timestamp": "2023-09-12T14:23:00+08:00",
+          "summary": "On September 12, 2023, Deborah and Jolene discussed Jolene’s transformative experiences and insights from a meditation retreat in Phuket, focusing on mindfulness, gratitude, and finding balance alongside her engineering studies. Their conversation highlighted Jolene’s emotional growth and the supportive dynamic between them."
+        }
+      ],
+      "first_timestamp": "2023-09-12T14:23:00+08:00",
+      "last_timestamp": "2023-09-12T14:23:00+08:00",
+      "created_at": "2025-12-03T17:36:33.651278",
+      "updated_at": "2025-12-03T17:36:33.651278"
+    },
+    "gec_087": {
+      "cluster_id": "gec_087",
+      "topic": "Jolene's mindfulness and gratitude reflections",
+      "summary": "On September 12, 2023, Deborah and Jolene discussed Jolene’s transformative experiences and insights from a meditation retreat in Phuket, focusing on mindfulness, gratitude, and finding balance alongside her engineering studies. Their conversation highlighted Jolene’s emotional growth and the supportive dynamic between them.",
+      "members": [
+        {
+          "unit_id": "58a310c5-5388-4f22-b477-fc7f24e934b8",
+          "timestamp": "2023-09-12T14:23:00+08:00",
+          "summary": "On September 12, 2023, Deborah and Jolene discussed Jolene’s transformative experiences and insights from a meditation retreat in Phuket, focusing on mindfulness, gratitude, and finding balance alongside her engineering studies. Their conversation highlighted Jolene’s emotional growth and the supportive dynamic between them."
+        }
+      ],
+      "first_timestamp": "2023-09-12T14:23:00+08:00",
+      "last_timestamp": "2023-09-12T14:23:00+08:00",
+      "created_at": "2025-12-03T17:36:33.653524",
+      "updated_at": "2025-12-03T17:36:33.653524"
+    },
+    "gec_088": {
+      "cluster_id": "gec_088",
+      "topic": "Jolene and Deborah's mutual appreciation for supportive collaboration",
+      "summary": "On September 12, 2023, Jolene and Deborah expressed mutual appreciation for their supportive collaboration and planned to play a cat-themed card game together in the future. Their conversation highlighted encouragement and the value of a supportive community.",
+      "members": [
+        {
+          "unit_id": "ad26da2c-6029-467e-afe0-77f5b3ed0f4d",
+          "timestamp": "2023-09-12T14:24:00+08:00",
+          "summary": "On September 12, 2023, Jolene and Deborah expressed mutual appreciation for their supportive collaboration and planned to play a cat-themed card game together in the future. Their conversation highlighted encouragement and the value of a supportive community."
+        }
+      ],
+      "first_timestamp": "2023-09-12T14:24:00+08:00",
+      "last_timestamp": "2023-09-12T14:24:00+08:00",
+      "created_at": "2025-12-03T17:36:39.232400",
+      "updated_at": "2025-12-03T17:36:39.232400"
+    },
+    "gec_089": {
+      "cluster_id": "gec_089",
+      "topic": "Jolene and Deborah's plans to play a cat-themed card game together",
+      "summary": "On September 12, 2023, Jolene and Deborah expressed mutual appreciation for their supportive collaboration and planned to play a cat-themed card game together in the future. Their conversation highlighted encouragement and the value of a supportive community.",
+      "members": [
+        {
+          "unit_id": "ad26da2c-6029-467e-afe0-77f5b3ed0f4d",
+          "timestamp": "2023-09-12T14:24:00+08:00",
+          "summary": "On September 12, 2023, Jolene and Deborah expressed mutual appreciation for their supportive collaboration and planned to play a cat-themed card game together in the future. Their conversation highlighted encouragement and the value of a supportive community."
+        }
+      ],
+      "first_timestamp": "2023-09-12T14:24:00+08:00",
+      "last_timestamp": "2023-09-12T14:24:00+08:00",
+      "created_at": "2025-12-03T17:36:39.235906",
+      "updated_at": "2025-12-03T17:36:39.235906"
+    },
+    "gec_090": {
+      "cluster_id": "gec_090",
+      "topic": "The value of supportive community in Jolene and Deborah's relationship",
+      "summary": "On September 12, 2023, Jolene and Deborah expressed mutual appreciation for their supportive collaboration and planned to play a cat-themed card game together in the future. Their conversation highlighted encouragement and the value of a supportive community.",
+      "members": [
+        {
+          "unit_id": "ad26da2c-6029-467e-afe0-77f5b3ed0f4d",
+          "timestamp": "2023-09-12T14:24:00+08:00",
+          "summary": "On September 12, 2023, Jolene and Deborah expressed mutual appreciation for their supportive collaboration and planned to play a cat-themed card game together in the future. Their conversation highlighted encouragement and the value of a supportive community."
+        }
+      ],
+      "first_timestamp": "2023-09-12T14:24:00+08:00",
+      "last_timestamp": "2023-09-12T14:24:00+08:00",
+      "created_at": "2025-12-03T17:36:39.237008",
+      "updated_at": "2025-12-03T17:36:39.237008"
+    },
+    "gec_091": {
+      "cluster_id": "gec_091",
+      "topic": "Deborah and Jolene's personal memories related to the beach and surfing",
+      "summary": "Deborah and Jolene engaged in a conversation sharing personal memories and wellness practices related to the beach, surfing, yoga, meditation, and creating relaxing environments, emphasizing the emotional connections and importance of peaceful routines for well-being. They exchanged photos and reflections highlighting how these practices and spaces foster relaxation and emotional balance.",
+      "members": [
+        {
+          "unit_id": "a9eb2d0c-77da-476e-ad15-9fd6aabed7e8",
+          "timestamp": "2023-09-15T15:20:00+08:00",
+          "summary": "Deborah and Jolene engaged in a conversation sharing personal memories and wellness practices related to the beach, surfing, yoga, meditation, and creating relaxing environments, emphasizing the emotional connections and importance of peaceful routines for well-being. They exchanged photos and reflections highlighting how these practices and spaces foster relaxation and emotional balance."
+        }
+      ],
+      "first_timestamp": "2023-09-15T15:20:00+08:00",
+      "last_timestamp": "2023-09-15T15:20:00+08:00",
+      "created_at": "2025-12-03T17:36:50.862817",
+      "updated_at": "2025-12-03T17:36:50.862817"
+    },
+    "gec_092": {
+      "cluster_id": "gec_092",
+      "topic": "Deborah and Jolene's wellness practices involving meditation and creating relaxing environments",
+      "summary": "Deborah and Jolene engaged in a conversation sharing personal memories and wellness practices related to the beach, surfing, yoga, meditation, and creating relaxing environments, emphasizing the emotional connections and importance of peaceful routines for well-being. They exchanged photos and reflections highlighting how these practices and spaces foster relaxation and emotional balance.",
+      "members": [
+        {
+          "unit_id": "a9eb2d0c-77da-476e-ad15-9fd6aabed7e8",
+          "timestamp": "2023-09-15T15:20:00+08:00",
+          "summary": "Deborah and Jolene engaged in a conversation sharing personal memories and wellness practices related to the beach, surfing, yoga, meditation, and creating relaxing environments, emphasizing the emotional connections and importance of peaceful routines for well-being. They exchanged photos and reflections highlighting how these practices and spaces foster relaxation and emotional balance."
+        }
+      ],
+      "first_timestamp": "2023-09-15T15:20:00+08:00",
+      "last_timestamp": "2023-09-15T15:20:00+08:00",
+      "created_at": "2025-12-03T17:36:50.866377",
+      "updated_at": "2025-12-03T17:36:50.866377"
+    },
+    "gec_093": {
+      "cluster_id": "gec_093",
+      "topic": "Deborah's community gardening class organization and participation",
+      "summary": "On September 17, 2023, Deborah shared with Jolene that she and her neighbor had organized a free gardening class for their community the previous day, highlighting the event's positive impact and their shared enthusiasm for gardening and community engagement.",
+      "members": [
+        {
+          "unit_id": "36e21853-bfab-4f6d-80b3-65378f8fa457",
+          "timestamp": "2023-09-17T13:25:00+08:00",
+          "summary": "On September 17, 2023, Deborah shared with Jolene that she and her neighbor had organized a free gardening class for their community the previous day, highlighting the event's positive impact and their shared enthusiasm for gardening and community engagement."
+        }
+      ],
+      "first_timestamp": "2023-09-17T13:25:00+08:00",
+      "last_timestamp": "2023-09-17T13:25:00+08:00",
+      "created_at": "2025-12-03T17:37:00.670646",
+      "updated_at": "2025-12-03T17:37:00.670646"
+    },
+    "gec_094": {
+      "cluster_id": "gec_094",
+      "topic": "Jolene's scuba diving experience",
+      "summary": "On September 17, 2023, Jolene and Deborah shared personal stories about Jolene's recent scuba diving experience and Deborah's nostalgic memories of her late mother's cooking, exchanging photos and expressing emotions of excitement and warmth. Their conversation centered on meaningful activities and cherished family moments without making any specific plans.",
+      "members": [
+        {
+          "unit_id": "adb4888f-7d1f-4bc9-ac2e-55bcb1f819bf",
+          "timestamp": "2023-09-17T13:31:00+08:00",
+          "summary": "On September 17, 2023, Jolene and Deborah shared personal stories about Jolene's recent scuba diving experience and Deborah's nostalgic memories of her late mother's cooking, exchanging photos and expressing emotions of excitement and warmth. Their conversation centered on meaningful activities and cherished family moments without making any specific plans."
+        }
+      ],
+      "first_timestamp": "2023-09-17T13:31:00+08:00",
+      "last_timestamp": "2023-09-17T13:31:00+08:00",
+      "created_at": "2025-12-03T17:37:06.663020",
+      "updated_at": "2025-12-03T17:37:06.663020"
+    },
+    "gec_095": {
+      "cluster_id": "gec_095",
+      "topic": "Deborah and Jolene's emotional connections to books and reading",
+      "summary": "Deborah and Jolene engaged in a conversation about their emotional connections to books and the personal spaces they create for reading and relaxation, sharing photos and reflections on how literature serves as a means of escape and self-discovery.",
+      "members": [
+        {
+          "unit_id": "90f3b6e7-44e4-4706-acdd-dd7dd5de622a",
+          "timestamp": "2023-09-17T13:35:00+08:00",
+          "summary": "Deborah and Jolene engaged in a conversation about their emotional connections to books and the personal spaces they create for reading and relaxation, sharing photos and reflections on how literature serves as a means of escape and self-discovery."
+        }
+      ],
+      "first_timestamp": "2023-09-17T13:35:00+08:00",
+      "last_timestamp": "2023-09-17T13:35:00+08:00",
+      "created_at": "2025-12-03T17:37:11.123917",
+      "updated_at": "2025-12-03T17:37:11.123917"
+    },
+    "gec_096": {
+      "cluster_id": "gec_096",
+      "topic": "Deborah and Jolene's creation of personal spaces for reading and relaxation",
+      "summary": "Deborah and Jolene engaged in a conversation about their emotional connections to books and the personal spaces they create for reading and relaxation, sharing photos and reflections on how literature serves as a means of escape and self-discovery.",
+      "members": [
+        {
+          "unit_id": "90f3b6e7-44e4-4706-acdd-dd7dd5de622a",
+          "timestamp": "2023-09-17T13:35:00+08:00",
+          "summary": "Deborah and Jolene engaged in a conversation about their emotional connections to books and the personal spaces they create for reading and relaxation, sharing photos and reflections on how literature serves as a means of escape and self-discovery."
+        }
+      ],
+      "first_timestamp": "2023-09-17T13:35:00+08:00",
+      "last_timestamp": "2023-09-17T13:35:00+08:00",
+      "created_at": "2025-12-03T17:37:11.126874",
+      "updated_at": "2025-12-03T17:37:11.126874"
+    },
+    "gec_097": {
+      "cluster_id": "gec_097",
+      "topic": "Deborah's experience at music festivals",
+      "summary": "Jolene and Deborah shared personal stories, photos, and reflections about their experiences with music festivals, nature, and yoga retreats, expressing feelings of gratitude, peace, and resilience while planning future outdoor activities for October 2023. Their conversation highlighted emotional connections to nature and the importance of appreciating small moments of beauty and growth.",
+      "members": [
+        {
+          "unit_id": "a44ad3e7-891c-4b25-8d8f-14e1067a52f8",
+          "timestamp": "2023-09-17T13:40:30+08:00",
+          "summary": "Jolene and Deborah shared personal stories, photos, and reflections about their experiences with music festivals, nature, and yoga retreats, expressing feelings of gratitude, peace, and resilience while planning future outdoor activities for October 2023. Their conversation highlighted emotional connections to nature and the importance of appreciating small moments of beauty and growth."
+        }
+      ],
+      "first_timestamp": "2023-09-17T13:40:30+08:00",
+      "last_timestamp": "2023-09-17T13:40:30+08:00",
+      "created_at": "2025-12-03T17:37:21.680933",
+      "updated_at": "2025-12-03T17:37:21.680933"
+    }
+  },
+  "unit_to_clusters": {
+    "450ade87-d18e-4a73-a3e0-cbadebd226fc": [
+      "gec_001"
+    ],
+    "d1c2fbff-e719-4c40-82f1-85f4bec5dcd8": [
+      "gec_002",
+      "gec_003"
+    ],
+    "cb8cd987-0636-4445-88fd-df6bed7c5ec2": [
+      "gec_004"
+    ],
+    "d24359e6-f4f3-4f9a-978f-ae51598e30a5": [
+      "gec_005",
+      "gec_006"
+    ],
+    "d9ca8c06-0b58-4ab4-92da-193b8c9ead06": [
+      "gec_002",
+      "gec_004"
+    ],
+    "b86b3e62-5f62-4115-9fd2-9c26427a262e": [
+      "gec_007",
+      "gec_008",
+      "gec_009",
+      "gec_010"
+    ],
+    "8e1fa71a-1128-4245-8595-6b31abcf427c": [
+      "gec_008"
+    ],
+    "4b8c2eec-1907-4cfe-8fd6-1a1fdb5c6f32": [
+      "gec_011",
+      "gec_012"
+    ],
+    "f54219ac-0af7-4b4a-8b72-f2fd7231955c": [
+      "gec_004",
+      "gec_008"
+    ],
+    "4633d090-e201-4c9a-898e-a4969aabe707": [
+      "gec_013"
+    ],
+    "83815762-529e-46a8-9565-23fc0dee5e12": [
+      "gec_013"
+    ],
+    "f3ea1b55-d3f7-471d-bddc-6ae4520f0152": [
+      "gec_012",
+      "gec_014"
+    ],
+    "f6d3e54d-55d6-4df3-a4a7-66a0c3869363": [
+      "gec_014"
+    ],
+    "4b2ede45-62a6-46d6-af21-ecf81eb0681b": [
+      "gec_015",
+      "gec_016"
+    ],
+    "000adf1a-4e71-4e4a-8e29-e3de068a7e58": [
+      "gec_017",
+      "gec_018"
+    ],
+    "1291aed7-3e14-4c3d-9a61-d3c084be9968": [
+      "gec_019",
+      "gec_020"
+    ],
+    "abfdc143-71c1-477d-91a5-ce1519126e0d": [
+      "gec_021",
+      "gec_022"
+    ],
+    "1ef16a8b-c509-4f65-83ee-58ef185f16ec": [
+      "gec_023",
+      "gec_024",
+      "gec_025"
+    ],
+    "78e496e8-a98d-427c-b93e-e68a7ed596f2": [
+      "gec_026",
+      "gec_027",
+      "gec_028",
+      "gec_029",
+      "gec_030"
+    ],
+    "09fb7cc2-d330-4dd4-ba0c-e2b3102c415b": [
+      "gec_004",
+      "gec_008"
+    ],
+    "e6e83f80-d91c-4da2-99c4-67207f7271fd": [
+      "gec_031"
+    ],
+    "6f1f2d44-4bbf-443c-b4c6-4f52c48b9c87": [
+      "gec_004"
+    ],
+    "57ca725b-1e1a-4738-9004-a4a17b89ec94": [
+      "gec_032",
+      "gec_004"
+    ],
+    "2ae4ad38-c8c4-40d7-b903-dce6f9b15011": [
+      "gec_033",
+      "gec_034",
+      "gec_004"
+    ],
+    "4d909492-d78d-43d7-8ed3-6931e42b8453": [
+      "gec_007"
+    ],
+    "3c7dd41f-c226-4298-ae3c-240f3a918689": [
+      "gec_035",
+      "gec_036"
+    ],
+    "ee8a54a6-1032-4e58-878c-a8849b961c68": [
+      "gec_037"
+    ],
+    "987f86b8-01f2-465f-97b3-460d9f69a89b": [
+      "gec_004",
+      "gec_038"
+    ],
+    "4c5b5d51-03ab-4814-89ea-23c3e0dbb312": [
+      "gec_039",
+      "gec_040"
+    ],
+    "5031224d-16a2-4da3-9605-460814ec10cc": [
+      "gec_041",
+      "gec_042"
+    ],
+    "2e7d9210-86fb-4b05-8272-2e11c811241e": [
+      "gec_043",
+      "gec_044",
+      "gec_045"
+    ],
+    "9e33338a-ef7e-4725-b432-48e0a97d9e14": [
+      "gec_011"
+    ],
+    "8f272456-afe9-4572-b6f4-95d72298f339": [
+      "gec_004"
+    ],
+    "5db6c88a-fc9b-4f8b-9024-afb2ed02f9b6": [
+      "gec_002",
+      "gec_046",
+      "gec_047"
+    ],
+    "aab11f4f-1b8a-41fe-a0dc-7b28063c4e80": [
+      "gec_002",
+      "gec_007",
+      "gec_008"
+    ],
+    "ebdae8e9-2817-4902-967d-f44a7e14bcdc": [
+      "gec_011"
+    ],
+    "d0d7e9d8-e8a1-48e3-b3cf-8fd67d29a896": [
+      "gec_048",
+      "gec_049"
+    ],
+    "8d783b4b-1067-4c7a-9f8b-bd013691a672": [
+      "gec_050"
+    ],
+    "9f5d3bf0-f7db-4fdc-b26a-246c0975b853": [
+      "gec_051",
+      "gec_004"
+    ],
+    "ba46de21-e598-4538-82ce-24bfc8bff7e5": [
+      "gec_004"
+    ],
+    "f7fb1546-bd1f-4845-a344-5dd683f947d6": [
+      "gec_007",
+      "gec_009"
+    ],
+    "610ea246-ae8c-47ea-8f84-b595ed4e9653": [
+      "gec_011"
+    ],
+    "0fe30140-aebe-4738-9a49-ac03dd62b1ea": [
+      "gec_004"
+    ],
+    "85e31dfb-a2bc-4274-af1d-79967966dc63": [
+      "gec_052",
+      "gec_053",
+      "gec_054"
+    ],
+    "04f062c6-9ca7-4f12-ba8d-5c7eddb4481b": [
+      "gec_008"
+    ],
+    "b3654639-4954-42e0-8026-f8a2f9ebc678": [
+      "gec_008",
+      "gec_055"
+    ],
+    "9aaa5de2-06f2-423a-81ca-6ddf60a14719": [
+      "gec_007",
+      "gec_009"
+    ],
+    "d8c9b9f5-2ebc-4c7c-822e-5390e42210af": [
+      "gec_007",
+      "gec_009",
+      "gec_056"
+    ],
+    "2a5d5340-e3d1-4bf1-974f-9268a2246bfe": [
+      "gec_057",
+      "gec_058",
+      "gec_007",
+      "gec_004"
+    ],
+    "8002a609-07a3-48a8-a512-39eb92a09046": [
+      "gec_059",
+      "gec_060",
+      "gec_061"
+    ],
+    "42f76daf-4757-4192-b5fc-6ec688efe7a8": [
+      "gec_062"
+    ],
+    "44b5f9e4-77a0-4557-93b8-bfa8b5403fa4": [
+      "gec_063",
+      "gec_064",
+      "gec_065"
+    ],
+    "3fb0ce55-f954-43bd-a6b3-decbb7527399": [
+      "gec_004",
+      "gec_008",
+      "gec_002",
+      "gec_066",
+      "gec_067",
+      "gec_068"
+    ],
+    "c4f384fc-8d9b-4576-b0b0-b92c31950cc2": [
+      "gec_004",
+      "gec_019",
+      "gec_002"
+    ],
+    "e9df044f-9bfe-49b0-afa4-2154707f314e": [
+      "gec_004",
+      "gec_069",
+      "gec_070"
+    ],
+    "1c32c895-7c48-430d-b2ed-89fd20233e0e": [
+      "gec_002",
+      "gec_003",
+      "gec_071"
+    ],
+    "c6e3624d-700b-48ae-bc57-bc9d1ba133fc": [
+      "gec_004"
+    ],
+    "260c75ff-8aa4-41c1-849a-d1d9ee12c767": [
+      "gec_007",
+      "gec_009"
+    ],
+    "8dc85258-ccd9-4295-a980-4df29e9f764c": [
+      "gec_072",
+      "gec_004"
+    ],
+    "4a31ea66-c0bc-4d9d-a728-55e3279ab5d2": [
+      "gec_002",
+      "gec_003"
+    ],
+    "9ffacc28-7e79-4f71-9b25-ea62a8b1d5d0": [
+      "gec_004"
+    ],
+    "76d4ab71-7dab-420f-863a-c4464ac29748": [
+      "gec_073",
+      "gec_074",
+      "gec_008",
+      "gec_075",
+      "gec_076"
+    ],
+    "0fb44333-dd97-4deb-8837-b60435e72e4b": [
+      "gec_077",
+      "gec_078"
+    ],
+    "c21c71d1-52ff-47d9-b374-a3cc852d5355": [
+      "gec_011"
+    ],
+    "b1772d44-a546-4060-a79c-eb23bbd2cfc5": [
+      "gec_079"
+    ],
+    "8e4b4bf0-a781-4bd6-a24b-b3bf3c0e570b": [
+      "gec_080",
+      "gec_081"
+    ],
+    "782962bf-1c65-49c5-b5a4-8b7d12dbe638": [
+      "gec_082",
+      "gec_083",
+      "gec_084"
+    ],
+    "45bd9d46-0411-4b2f-9d59-62b45b9c4db0": [
+      "gec_085"
+    ],
+    "58a310c5-5388-4f22-b477-fc7f24e934b8": [
+      "gec_086",
+      "gec_087",
+      "gec_011"
+    ],
+    "ad26da2c-6029-467e-afe0-77f5b3ed0f4d": [
+      "gec_088",
+      "gec_089",
+      "gec_090"
+    ],
+    "cf4e44ff-473e-44d4-81bd-2cf1628b8944": [
+      "gec_002",
+      "gec_003"
+    ],
+    "a9eb2d0c-77da-476e-ad15-9fd6aabed7e8": [
+      "gec_091",
+      "gec_004",
+      "gec_092"
+    ],
+    "da02a8b5-4b27-4877-8c92-b884f3b154ee": [
+      "gec_007",
+      "gec_009"
+    ],
+    "36e21853-bfab-4f6d-80b3-65378f8fa457": [
+      "gec_093"
+    ],
+    "adb4888f-7d1f-4bc9-ac2e-55bcb1f819bf": [
+      "gec_094",
+      "gec_002"
+    ],
+    "90f3b6e7-44e4-4706-acdd-dd7dd5de622a": [
+      "gec_095",
+      "gec_096"
+    ],
+    "0f5f7a7a-cf0a-43c2-a006-795aadbd30b0": [
+      "gec_004"
+    ],
+    "a44ad3e7-891c-4b25-8d8f-14e1067a52f8": [
+      "gec_004",
+      "gec_002",
+      "gec_003",
+      "gec_097"
+    ]
+  },
+  "metadata": {
+    "conversation_id": "conv_7",
+    "total_units": 78,
+    "total_clusters": 97,
+    "created_at": "2025-12-03T17:30:30.504506",
+    "updated_at": "2025-12-03T17:37:21.680933",
+    "llm_model": "gpt-4.1-mini"
+  }
+}

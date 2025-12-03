@@ -1,0 +1,1061 @@
+
+Loading configurations...
+  ✅ Loaded dataset config: locomo
+  ✅ Loaded system config: parallax
+
+Loading dataset: locomo
+  📂 Using eval/data/locomo/locomo10.json
+  ✅ Loaded 10 conversations, 1986 QA pairs
+
+Initializing components...
+INFO     Parallax Adapter initialized                                          
+INFO     LLM Model: gpt-4o-mini                                                
+INFO     Output Dir: D:\parallax\eval\results\locomo-conv9                     
+  ✅ Created adapter: Parallax
+  ✅ Created evaluator: LLMJudge
+  ✅ Created LLM provider: gpt-4o-mini
+  ✅ Created pipeline, output: D:\parallax\eval\results\locomo-conv9
+  📋 Filter categories: [5]
+
+============================================================
+🚀 Evaluation Pipeline
+============================================================
+Dataset: locomo
+System: Parallax
+Stages: all
+============================================================
+
+🔍 Selected conversation 9: locomo_9 (204 QA pairs)
+
+🔍 Filtered out 46 questions from categories: 5
+   Remaining questions: 158
+
+INFO     🔄 发现 checkpoint 文件: checkpoint_default.json                      
+INFO        上次运行时间: 2025-11-23T00:27:35.315412                           
+INFO        已完成阶段: add, search                                            
+INFO        已处理对话数: 158                                                  
+
+⏭️  Skip Add stage (already completed)
+
+⏭️  Skip Search stage (already completed)
+INFO     Starting Stage 3: Answer                                              
+INFO                                                                           
+         ============================================================          
+INFO     Stage 3/4: Answer                                                     
+INFO     ============================================================          
+INFO     🆕 No answer checkpoint found, starting from scratch                  
+INFO     Total questions: 158                                                  
+
+💬 Answer Progress:   0%|          | 0/158 [00:00<?, ?qa/s]
+💬 Answer Progress:   1%|          | 1/158 [00:11<30:52, 11.80s/qa]
+💬 Answer Progress:   1%|▏         | 2/158 [00:14<16:36,  6.39s/qa]WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 16.15s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 4.8s                                    
+INFO        重试退避: 5.0s [2^0]                                               
+INFO        随机抖动: -0.2s                                                    
+INFO        下次尝试: attempt 2/5                                              
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 16.16s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 6.4s                                    
+INFO        重试退避: 5.0s [2^0]                                               
+INFO        随机抖动: +1.4s                                                    
+INFO        下次尝试: attempt 2/5                                              
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 16.16s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 5.7s                                    
+INFO        重试退避: 5.0s [2^0]                                               
+INFO        随机抖动: +0.7s                                                    
+INFO        下次尝试: attempt 2/5                                              
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 16.19s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 5.4s                                    
+INFO        重试退避: 5.0s [2^0]                                               
+INFO        随机抖动: +0.4s                                                    
+INFO        下次尝试: attempt 2/5                                              
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 16.19s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 4.9s                                    
+INFO        重试退避: 5.0s [2^0]                                               
+INFO        随机抖动: -0.1s                                                    
+INFO        下次尝试: attempt 2/5                                              
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 16.52s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 5.3s                                    
+INFO        重试退避: 5.0s [2^0]                                               
+INFO        随机抖动: +0.3s                                                    
+INFO        下次尝试: attempt 2/5                                              
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 16.21s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 5.9s                                    
+INFO        重试退避: 5.0s [2^0]                                               
+INFO        随机抖动: +0.9s                                                    
+INFO        下次尝试: attempt 2/5                                              
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 16.22s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 6.4s                                    
+INFO        重试退避: 5.0s [2^0]                                               
+INFO        随机抖动: +1.4s                                                    
+INFO        下次尝试: attempt 2/5                                              
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 16.23s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 5.1s                                    
+INFO        重试退避: 5.0s [2^0]                                               
+INFO        随机抖动: +0.1s                                                    
+INFO        下次尝试: attempt 2/5                                              
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 16.24s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 3.8s                                    
+INFO        重试退避: 5.0s [2^0]                                               
+INFO        随机抖动: -1.2s                                                    
+INFO        下次尝试: attempt 2/5                                              
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 16.25s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 4.0s                                    
+INFO        重试退避: 5.0s [2^0]                                               
+INFO        随机抖动: -1.0s                                                    
+INFO        下次尝试: attempt 2/5                                              
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 16.25s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 6.1s                                    
+INFO        重试退避: 5.0s [2^0]                                               
+INFO        随机抖动: +1.1s                                                    
+INFO        下次尝试: attempt 2/5                                              
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 16.27s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 5.4s                                    
+INFO        重试退避: 5.0s [2^0]                                               
+INFO        随机抖动: +0.4s                                                    
+INFO        下次尝试: attempt 2/5                                              
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 16.27s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 5.7s                                    
+INFO        重试退避: 5.0s [2^0]                                               
+INFO        随机抖动: +0.7s                                                    
+INFO        下次尝试: attempt 2/5                                              
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 16.27s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 6.3s                                    
+INFO        重试退避: 5.0s [2^0]                                               
+INFO        随机抖动: +1.3s                                                    
+INFO        下次尝试: attempt 2/5                                              
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 16.28s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 5.7s                                    
+INFO        重试退避: 5.0s [2^0]                                               
+INFO        随机抖动: +0.7s                                                    
+INFO        下次尝试: attempt 2/5                                              
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 16.30s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 5.7s                                    
+INFO        重试退避: 5.0s [2^0]                                               
+INFO        随机抖动: +0.7s                                                    
+INFO        下次尝试: attempt 2/5                                              
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 16.32s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 5.3s                                    
+INFO        重试退避: 5.0s [2^0]                                               
+INFO        随机抖动: +0.3s                                                    
+INFO        下次尝试: attempt 2/5                                              
+
+💬 Answer Progress:   2%|▏         | 3/158 [00:21<17:06,  6.62s/qa]
+💬 Answer Progress:   3%|▎         | 4/158 [00:24<13:19,  5.19s/qa]WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 15.22s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 5.3s                                    
+INFO        重试退避: 5.0s [2^0]                                               
+INFO        随机抖动: +0.3s                                                    
+INFO        下次尝试: attempt 2/5                                              
+
+💬 Answer Progress:   3%|▎         | 5/158 [00:28<11:55,  4.68s/qa]
+💬 Answer Progress:   4%|▍         | 6/158 [00:29<08:57,  3.53s/qa]WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 15.22s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 4.4s                                    
+INFO        重试退避: 5.0s [2^0]                                               
+INFO        随机抖动: -0.6s                                                    
+INFO        下次尝试: attempt 2/5                                              
+
+💬 Answer Progress:   4%|▍         | 7/158 [00:31<07:47,  3.09s/qa]WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 16.15s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 4.3s                                    
+INFO        重试退避: 5.0s [2^0]                                               
+INFO        随机抖动: -0.7s                                                    
+INFO        下次尝试: attempt 2/5                                              
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 16.13s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 4.8s                                    
+INFO        重试退避: 5.0s [2^0]                                               
+INFO        随机抖动: -0.2s                                                    
+INFO        下次尝试: attempt 2/5                                              
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 16.15s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 6.0s                                    
+INFO        重试退避: 5.0s [2^0]                                               
+INFO        随机抖动: +1.0s                                                    
+INFO        下次尝试: attempt 2/5                                              
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 16.19s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 4.4s                                    
+INFO        重试退避: 5.0s [2^0]                                               
+INFO        随机抖动: -0.6s                                                    
+INFO        下次尝试: attempt 2/5                                              
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 16.20s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 4.1s                                    
+INFO        重试退避: 5.0s [2^0]                                               
+INFO        随机抖动: -0.9s                                                    
+INFO        下次尝试: attempt 2/5                                              
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 16.16s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 4.6s                                    
+INFO        重试退避: 5.0s [2^0]                                               
+INFO        随机抖动: -0.4s                                                    
+INFO        下次尝试: attempt 2/5                                              
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 16.16s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 3.9s                                    
+INFO        重试退避: 5.0s [2^0]                                               
+INFO        随机抖动: -1.1s                                                    
+INFO        下次尝试: attempt 2/5                                              
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 16.20s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 5.3s                                    
+INFO        重试退避: 5.0s [2^0]                                               
+INFO        随机抖动: +0.3s                                                    
+INFO        下次尝试: attempt 2/5                                              
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 16.25s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 6.3s                                    
+INFO        重试退避: 5.0s [2^0]                                               
+INFO        随机抖动: +1.3s                                                    
+INFO        下次尝试: attempt 2/5                                              
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 16.21s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 6.0s                                    
+INFO        重试退避: 5.0s [2^0]                                               
+INFO        随机抖动: +1.0s                                                    
+INFO        下次尝试: attempt 2/5                                              
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 16.21s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 5.5s                                    
+INFO        重试退避: 5.0s [2^0]                                               
+INFO        随机抖动: +0.5s                                                    
+INFO        下次尝试: attempt 2/5                                              
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 16.32s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 5.1s                                    
+INFO        重试退避: 5.0s [2^0]                                               
+INFO        随机抖动: +0.1s                                                    
+INFO        下次尝试: attempt 2/5                                              
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 16.37s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 5.6s                                    
+INFO        重试退避: 5.0s [2^0]                                               
+INFO        随机抖动: +0.6s                                                    
+INFO        下次尝试: attempt 2/5                                              
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 15.22s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 3.7s                                    
+INFO        重试退避: 5.0s [2^0]                                               
+INFO        随机抖动: -1.3s                                                    
+INFO        下次尝试: attempt 2/5                                              
+
+💬 Answer Progress:   5%|▌         | 8/158 [00:38<11:01,  4.41s/qa]
+💬 Answer Progress:   6%|▌         | 9/158 [00:39<07:47,  3.14s/qa]
+💬 Answer Progress:   7%|▋         | 11/158 [00:39<04:09,  1.70s/qa]WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 15.22s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 4.9s                                    
+INFO        重试退避: 5.0s [2^0]                                               
+INFO        随机抖动: -0.1s                                                    
+INFO        下次尝试: attempt 2/5                                              
+
+💬 Answer Progress:   8%|▊         | 12/158 [00:41<04:13,  1.73s/qa]
+💬 Answer Progress:   8%|▊         | 13/158 [00:42<04:13,  1.75s/qa]WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 16.11s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 4.6s                                    
+INFO        重试退避: 5.0s [2^0]                                               
+INFO        随机抖动: -0.4s                                                    
+INFO        下次尝试: attempt 2/5                                              
+
+💬 Answer Progress:   9%|▉         | 14/158 [00:44<04:19,  1.80s/qa]WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 16.09s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 3.6s                                    
+INFO        重试退避: 5.0s [2^0]                                               
+INFO        随机抖动: -1.4s                                                    
+INFO        下次尝试: attempt 2/5                                              
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 15.22s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 6.0s                                    
+INFO        重试退避: 5.0s [2^0]                                               
+INFO        随机抖动: +1.0s                                                    
+INFO        下次尝试: attempt 2/5                                              
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 16.13s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 4.1s                                    
+INFO        重试退避: 5.0s [2^0]                                               
+INFO        随机抖动: -0.9s                                                    
+INFO        下次尝试: attempt 2/5                                              
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 16.13s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 6.1s                                    
+INFO        重试退避: 5.0s [2^0]                                               
+INFO        随机抖动: +1.1s                                                    
+INFO        下次尝试: attempt 2/5                                              
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 16.13s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 4.0s                                    
+INFO        重试退避: 5.0s [2^0]                                               
+INFO        随机抖动: -1.0s                                                    
+INFO        下次尝试: attempt 2/5                                              
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 16.16s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 4.2s                                    
+INFO        重试退避: 5.0s [2^0]                                               
+INFO        随机抖动: -0.8s                                                    
+INFO        下次尝试: attempt 2/5                                              
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 2/5)                 
+WARNING     ⏱️  耗时: 16.16s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 7.3s                                    
+INFO        重试退避: 10.0s [2^1]                                              
+INFO        随机抖动: -2.7s                                                    
+INFO        下次尝试: attempt 3/5                                              
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 2/5)                 
+WARNING     ⏱️  耗时: 16.14s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 12.5s                                   
+INFO        重试退避: 10.0s [2^1]                                              
+INFO        随机抖动: +2.5s                                                    
+INFO        下次尝试: attempt 3/5                                              
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 2/5)                 
+WARNING     ⏱️  耗时: 16.11s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 13.0s                                   
+INFO        重试退避: 10.0s [2^1]                                              
+INFO        随机抖动: +3.0s                                                    
+INFO        下次尝试: attempt 3/5                                              
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 2/5)                 
+WARNING     ⏱️  耗时: 16.21s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 7.5s                                    
+INFO        重试退避: 10.0s [2^1]                                              
+INFO        随机抖动: -2.5s                                                    
+INFO        下次尝试: attempt 3/5                                              
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 2/5)                 
+WARNING     ⏱️  耗时: 16.15s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 7.8s                                    
+INFO        重试退避: 10.0s [2^1]                                              
+INFO        随机抖动: -2.2s                                                    
+INFO        下次尝试: attempt 3/5                                              
+
+💬 Answer Progress:   9%|▉         | 15/158 [00:51<07:23,  3.10s/qa]WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 2/5)                 
+WARNING     ⏱️  耗时: 15.22s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 8.6s                                    
+INFO        重试退避: 10.0s [2^1]                                              
+INFO        随机抖动: -1.4s                                                    
+INFO        下次尝试: attempt 3/5                                              
+
+💬 Answer Progress:  10%|█         | 16/158 [00:54<07:12,  3.05s/qa]WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 2/5)                 
+WARNING     ⏱️  耗时: 15.21s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 9.1s                                    
+INFO        重试退避: 10.0s [2^1]                                              
+INFO        随机抖动: -0.9s                                                    
+INFO        下次尝试: attempt 3/5                                              
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 2/5)                 
+WARNING     ⏱️  耗时: 15.21s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 10.9s                                   
+INFO        重试退避: 10.0s [2^1]                                              
+INFO        随机抖动: +0.9s                                                    
+INFO        下次尝试: attempt 3/5                                              
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 2/5)                 
+WARNING     ⏱️  耗时: 15.22s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 10.5s                                   
+INFO        重试退避: 10.0s [2^1]                                              
+INFO        随机抖动: +0.5s                                                    
+INFO        下次尝试: attempt 3/5                                              
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 2/5)                 
+WARNING     ⏱️  耗时: 16.10s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 11.9s                                   
+INFO        重试退避: 10.0s [2^1]                                              
+INFO        随机抖动: +1.9s                                                    
+INFO        下次尝试: attempt 3/5                                              
+
+💬 Answer Progress:  11%|█         | 17/158 [00:55<06:16,  2.67s/qa]WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 2/5)                 
+WARNING     ⏱️  耗时: 15.22s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 8.9s                                    
+INFO        重试退避: 10.0s [2^1]                                              
+INFO        随机抖动: -1.1s                                                    
+INFO        下次尝试: attempt 3/5                                              
+
+💬 Answer Progress:  11%|█▏        | 18/158 [00:56<04:59,  2.14s/qa]
+💬 Answer Progress:  12%|█▏        | 19/158 [00:57<03:39,  1.58s/qa]
+💬 Answer Progress:  13%|█▎        | 21/158 [00:57<02:18,  1.01s/qa]WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 2/5)                 
+WARNING     ⏱️  耗时: 16.11s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 10.9s                                   
+INFO        重试退避: 10.0s [2^1]                                              
+INFO        随机抖动: +0.9s                                                    
+INFO        下次尝试: attempt 3/5                                              
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 2/5)                 
+WARNING     ⏱️  耗时: 15.22s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 12.6s                                   
+INFO        重试退避: 10.0s [2^1]                                              
+INFO        随机抖动: +2.6s                                                    
+INFO        下次尝试: attempt 3/5                                              
+
+💬 Answer Progress:  14%|█▍        | 22/158 [01:00<03:18,  1.46s/qa]
+💬 Answer Progress:  15%|█▍        | 23/158 [01:02<03:23,  1.51s/qa]
+💬 Answer Progress:  15%|█▌        | 24/158 [01:02<02:41,  1.20s/qa]
+💬 Answer Progress:  16%|█▋        | 26/158 [01:02<01:32,  1.42qa/s]
+💬 Answer Progress:  17%|█▋        | 27/158 [01:04<01:54,  1.14qa/s]WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 16.12s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 5.9s                                    
+INFO        重试退避: 5.0s [2^0]                                               
+INFO        随机抖动: +0.9s                                                    
+INFO        下次尝试: attempt 2/5                                              
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 16.16s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 4.6s                                    
+INFO        重试退避: 5.0s [2^0]                                               
+INFO        随机抖动: -0.4s                                                    
+INFO        下次尝试: attempt 2/5                                              
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 2/5)                 
+WARNING     ⏱️  耗时: 16.10s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 12.5s                                   
+INFO        重试退避: 10.0s [2^1]                                              
+INFO        随机抖动: +2.5s                                                    
+INFO        下次尝试: attempt 3/5                                              
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 2/5)                 
+WARNING     ⏱️  耗时: 16.17s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 11.7s                                   
+INFO        重试退避: 10.0s [2^1]                                              
+INFO        随机抖动: +1.7s                                                    
+INFO        下次尝试: attempt 3/5                                              
+
+💬 Answer Progress:  18%|█▊        | 28/158 [01:06<02:31,  1.17s/qa]WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 2/5)                 
+WARNING     ⏱️  耗时: 15.22s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 11.5s                                   
+INFO        重试退避: 10.0s [2^1]                                              
+INFO        随机抖动: +1.5s                                                    
+INFO        下次尝试: attempt 3/5                                              
+
+💬 Answer Progress:  18%|█▊        | 29/158 [01:07<02:30,  1.17s/qa]
+💬 Answer Progress:  19%|█▉        | 30/158 [01:08<02:29,  1.17s/qa]
+💬 Answer Progress:  20%|█▉        | 31/158 [01:08<01:52,  1.13qa/s]WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 2/5)                 
+WARNING     ⏱️  耗时: 15.22s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 10.6s                                   
+INFO        重试退避: 10.0s [2^1]                                              
+INFO        随机抖动: +0.6s                                                    
+INFO        下次尝试: attempt 3/5                                              
+
+💬 Answer Progress:  20%|██        | 32/158 [01:10<02:09,  1.03s/qa]WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 2/5)                 
+WARNING     ⏱️  耗时: 16.09s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 9.2s                                    
+INFO        重试退避: 10.0s [2^1]                                              
+INFO        随机抖动: -0.8s                                                    
+INFO        下次尝试: attempt 3/5                                              
+
+💬 Answer Progress:  21%|██        | 33/158 [01:12<02:43,  1.31s/qa]WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 15.21s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 6.0s                                    
+INFO        重试退避: 5.0s [2^0]                                               
+INFO        随机抖动: +1.0s                                                    
+INFO        下次尝试: attempt 2/5                                              
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 15.23s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 4.7s                                    
+INFO        重试退避: 5.0s [2^0]                                               
+INFO        随机抖动: -0.3s                                                    
+INFO        下次尝试: attempt 2/5                                              
+
+💬 Answer Progress:  22%|██▏       | 34/158 [01:12<02:16,  1.10s/qa]
+💬 Answer Progress:  22%|██▏       | 35/158 [01:12<01:40,  1.22qa/s]WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 15.22s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 6.3s                                    
+INFO        重试退避: 5.0s [2^0]                                               
+INFO        随机抖动: +1.3s                                                    
+INFO        下次尝试: attempt 2/5                                              
+
+💬 Answer Progress:  23%|██▎       | 36/158 [01:13<01:20,  1.52qa/s]
+💬 Answer Progress:  23%|██▎       | 37/158 [01:14<01:54,  1.05qa/s]WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 2/5)                 
+WARNING     ⏱️  耗时: 15.21s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 9.3s                                    
+INFO        重试退避: 10.0s [2^1]                                              
+INFO        随机抖动: -0.7s                                                    
+INFO        下次尝试: attempt 3/5                                              
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 15.22s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 5.3s                                    
+INFO        重试退避: 5.0s [2^0]                                               
+INFO        随机抖动: +0.3s                                                    
+INFO        下次尝试: attempt 2/5                                              
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 2/5)                 
+WARNING     ⏱️  耗时: 15.21s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 10.5s                                   
+INFO        重试退避: 10.0s [2^1]                                              
+INFO        随机抖动: +0.5s                                                    
+INFO        下次尝试: attempt 3/5                                              
+
+💬 Answer Progress:  24%|██▍       | 38/158 [01:18<03:44,  1.87s/qa]
+💬 Answer Progress:  25%|██▌       | 40/158 [01:19<02:29,  1.27s/qa]
+💬 Answer Progress:  26%|██▌       | 41/158 [01:20<01:55,  1.01qa/s]
+💬 Answer Progress:  27%|██▋       | 42/158 [01:20<01:33,  1.25qa/s]
+💬 Answer Progress:  27%|██▋       | 43/158 [01:20<01:17,  1.48qa/s]
+💬 Answer Progress:  28%|██▊       | 44/158 [01:20<01:06,  1.73qa/s]WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 2/5)                 
+WARNING     ⏱️  耗时: 16.10s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 13.0s                                   
+INFO        重试退避: 10.0s [2^1]                                              
+INFO        随机抖动: +3.0s                                                    
+INFO        下次尝试: attempt 3/5                                              
+
+💬 Answer Progress:  28%|██▊       | 45/158 [01:22<01:26,  1.31qa/s]
+💬 Answer Progress:  30%|██▉       | 47/158 [01:22<00:49,  2.23qa/s]
+💬 Answer Progress:  30%|███       | 48/158 [01:22<00:42,  2.60qa/s]WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 15.23s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 5.3s                                    
+INFO        重试退避: 5.0s [2^0]                                               
+INFO        随机抖动: +0.3s                                                    
+INFO        下次尝试: attempt 2/5                                              
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 2/5)                 
+WARNING     ⏱️  耗时: 16.09s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 12.6s                                   
+INFO        重试退避: 10.0s [2^1]                                              
+INFO        随机抖动: +2.6s                                                    
+INFO        下次尝试: attempt 3/5                                              
+
+💬 Answer Progress:  31%|███       | 49/158 [01:23<00:59,  1.84qa/s]WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 3/5)                 
+WARNING     ⏱️  耗时: 15.21s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 17.2s                                   
+INFO        重试退避: 20.0s [2^2]                                              
+INFO        随机抖动: -2.8s                                                    
+INFO        下次尝试: attempt 4/5                                              
+
+💬 Answer Progress:  32%|███▏      | 50/158 [01:24<01:14,  1.45qa/s]
+💬 Answer Progress:  32%|███▏      | 51/158 [01:25<01:12,  1.48qa/s]WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 3/5)                 
+WARNING     ⏱️  耗时: 15.21s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 23.2s                                   
+INFO        重试退避: 20.0s [2^2]                                              
+INFO        随机抖动: +3.2s                                                    
+INFO        下次尝试: attempt 4/5                                              
+
+💬 Answer Progress:  33%|███▎      | 52/158 [01:25<01:12,  1.47qa/s]WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 16.13s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 4.5s                                    
+INFO        重试退避: 5.0s [2^0]                                               
+INFO        随机抖动: -0.5s                                                    
+INFO        下次尝试: attempt 2/5                                              
+
+💬 Answer Progress:  34%|███▎      | 53/158 [01:27<01:40,  1.05qa/s]
+💬 Answer Progress:  34%|███▍      | 54/158 [01:28<01:50,  1.06s/qa]
+💬 Answer Progress:  35%|███▍      | 55/158 [01:29<01:46,  1.04s/qa]
+💬 Answer Progress:  35%|███▌      | 56/158 [01:30<01:26,  1.18qa/s]
+💬 Answer Progress:  36%|███▌      | 57/158 [01:31<01:50,  1.09s/qa]
+💬 Answer Progress:  37%|███▋      | 59/158 [01:32<01:05,  1.51qa/s]
+💬 Answer Progress:  38%|███▊      | 60/158 [01:32<01:01,  1.60qa/s]
+💬 Answer Progress:  39%|███▊      | 61/158 [01:33<01:12,  1.34qa/s]WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 3/5)                 
+WARNING     ⏱️  耗时: 16.07s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 23.6s                                   
+INFO        重试退避: 20.0s [2^2]                                              
+INFO        随机抖动: +3.6s                                                    
+INFO        下次尝试: attempt 4/5                                              
+
+💬 Answer Progress:  39%|███▉      | 62/158 [01:34<01:01,  1.56qa/s]
+💬 Answer Progress:  40%|███▉      | 63/158 [01:34<00:49,  1.93qa/s]WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 3/5)                 
+WARNING     ⏱️  耗时: 15.21s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 14.3s                                   
+INFO        重试退避: 20.0s [2^2]                                              
+INFO        随机抖动: -5.7s                                                    
+INFO        下次尝试: attempt 4/5                                              
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 3/5)                 
+WARNING     ⏱️  耗时: 15.21s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 14.2s                                   
+INFO        重试退避: 20.0s [2^2]                                              
+INFO        随机抖动: -5.8s                                                    
+INFO        下次尝试: attempt 4/5                                              
+
+💬 Answer Progress:  41%|████      | 64/158 [01:35<01:06,  1.42qa/s]
+💬 Answer Progress:  41%|████      | 65/158 [01:36<01:00,  1.52qa/s]
+💬 Answer Progress:  42%|████▏     | 66/158 [01:37<01:16,  1.20qa/s]WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 2/5)                 
+WARNING     ⏱️  耗时: 15.22s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 11.9s                                   
+INFO        重试退避: 10.0s [2^1]                                              
+INFO        随机抖动: +1.9s                                                    
+INFO        下次尝试: attempt 3/5                                              
+
+💬 Answer Progress:  42%|████▏     | 67/158 [01:37<01:06,  1.37qa/s]
+💬 Answer Progress:  43%|████▎     | 68/158 [01:38<00:52,  1.73qa/s]
+💬 Answer Progress:  44%|████▎     | 69/158 [01:38<00:52,  1.70qa/s]WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 15.21s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 5.6s                                    
+INFO        重试退避: 5.0s [2^0]                                               
+INFO        随机抖动: +0.6s                                                    
+INFO        下次尝试: attempt 2/5                                              
+
+💬 Answer Progress:  44%|████▍     | 70/158 [01:39<00:45,  1.94qa/s]WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 3/5)                 
+WARNING     ⏱️  耗时: 16.03s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 18.3s                                   
+INFO        重试退避: 20.0s [2^2]                                              
+INFO        随机抖动: -1.7s                                                    
+INFO        下次尝试: attempt 4/5                                              
+
+💬 Answer Progress:  45%|████▍     | 71/158 [01:40<01:09,  1.26qa/s]
+💬 Answer Progress:  46%|████▌     | 72/158 [01:41<01:04,  1.33qa/s]
+💬 Answer Progress:  46%|████▌     | 73/158 [01:42<01:07,  1.26qa/s]
+💬 Answer Progress:  47%|████▋     | 74/158 [01:42<00:49,  1.68qa/s]
+💬 Answer Progress:  47%|████▋     | 75/158 [01:42<00:45,  1.83qa/s]WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 3/5)                 
+WARNING     ⏱️  耗时: 15.22s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 25.3s                                   
+INFO        重试退避: 20.0s [2^2]                                              
+INFO        随机抖动: +5.3s                                                    
+INFO        下次尝试: attempt 4/5                                              
+
+💬 Answer Progress:  48%|████▊     | 76/158 [01:43<00:47,  1.74qa/s]
+💬 Answer Progress:  49%|████▊     | 77/158 [01:45<01:24,  1.04s/qa]
+💬 Answer Progress:  49%|████▉     | 78/158 [01:45<01:05,  1.22qa/s]
+💬 Answer Progress:  50%|█████     | 79/158 [01:47<01:33,  1.18s/qa]WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 15.21s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 5.1s                                    
+INFO        重试退避: 5.0s [2^0]                                               
+INFO        随机抖动: +0.1s                                                    
+INFO        下次尝试: attempt 2/5                                              
+
+💬 Answer Progress:  51%|█████     | 80/158 [01:48<01:13,  1.05qa/s]
+💬 Answer Progress:  51%|█████▏    | 81/158 [01:48<00:54,  1.42qa/s]
+💬 Answer Progress:  53%|█████▎    | 83/158 [01:48<00:40,  1.85qa/s]
+💬 Answer Progress:  54%|█████▍    | 85/158 [01:49<00:36,  1.98qa/s]
+💬 Answer Progress:  55%|█████▌    | 87/158 [01:49<00:24,  2.89qa/s]WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 16.11s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 6.1s                                    
+INFO        重试退避: 5.0s [2^0]                                               
+INFO        随机抖动: +1.1s                                                    
+INFO        下次尝试: attempt 2/5                                              
+
+💬 Answer Progress:  56%|█████▌    | 88/158 [01:52<00:57,  1.21qa/s]
+💬 Answer Progress:  56%|█████▋    | 89/158 [01:52<00:48,  1.44qa/s]WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 2/5)                 
+WARNING     ⏱️  耗时: 16.09s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 12.0s                                   
+INFO        重试退避: 10.0s [2^1]                                              
+INFO        随机抖动: +2.0s                                                    
+INFO        下次尝试: attempt 3/5                                              
+
+💬 Answer Progress:  57%|█████▋    | 90/158 [01:53<00:46,  1.46qa/s]WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 15.21s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 3.7s                                    
+INFO        重试退避: 5.0s [2^0]                                               
+INFO        随机抖动: -1.3s                                                    
+INFO        下次尝试: attempt 2/5                                              
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 3/5)                 
+WARNING     ⏱️  耗时: 15.22s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 21.0s                                   
+INFO        重试退避: 20.0s [2^2]                                              
+INFO        随机抖动: +1.0s                                                    
+INFO        下次尝试: attempt 4/5                                              
+
+💬 Answer Progress:  58%|█████▊    | 91/158 [01:55<01:05,  1.03qa/s]
+💬 Answer Progress:  59%|█████▉    | 93/158 [01:56<00:57,  1.12qa/s]
+💬 Answer Progress:  59%|█████▉    | 94/158 [01:58<01:01,  1.05qa/s]
+💬 Answer Progress:  60%|██████    | 95/158 [01:58<00:47,  1.31qa/s]
+💬 Answer Progress:  61%|██████▏   | 97/158 [01:58<00:30,  2.03qa/s]
+💬 Answer Progress:  62%|██████▏   | 98/158 [01:58<00:24,  2.41qa/s]WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 2/5)                 
+WARNING     ⏱️  耗时: 16.08s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 9.6s                                    
+INFO        重试退避: 10.0s [2^1]                                              
+INFO        随机抖动: -0.4s                                                    
+INFO        下次尝试: attempt 3/5                                              
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 15.22s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 4.8s                                    
+INFO        重试退避: 5.0s [2^0]                                               
+INFO        随机抖动: -0.2s                                                    
+INFO        下次尝试: attempt 2/5                                              
+
+💬 Answer Progress:  63%|██████▎   | 99/158 [02:02<01:18,  1.33s/qa]
+💬 Answer Progress:  64%|██████▍   | 101/158 [02:03<00:49,  1.15qa/s]WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 15.21s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 4.8s                                    
+INFO        重试退避: 5.0s [2^0]                                               
+INFO        随机抖动: -0.2s                                                    
+INFO        下次尝试: attempt 2/5                                              
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 16.09s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 5.9s                                    
+INFO        重试退避: 5.0s [2^0]                                               
+INFO        随机抖动: +0.9s                                                    
+INFO        下次尝试: attempt 2/5                                              
+
+💬 Answer Progress:  65%|██████▍   | 102/158 [02:04<00:50,  1.10qa/s]
+💬 Answer Progress:  65%|██████▌   | 103/158 [02:04<00:43,  1.27qa/s]
+💬 Answer Progress:  66%|██████▌   | 104/158 [02:05<00:42,  1.28qa/s]
+💬 Answer Progress:  67%|██████▋   | 106/158 [02:05<00:29,  1.73qa/s]
+💬 Answer Progress:  68%|██████▊   | 107/158 [02:06<00:29,  1.72qa/s]WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 16.10s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 4.5s                                    
+INFO        重试退避: 5.0s [2^0]                                               
+INFO        随机抖动: -0.5s                                                    
+INFO        下次尝试: attempt 2/5                                              
+
+💬 Answer Progress:  68%|██████▊   | 108/158 [02:07<00:31,  1.61qa/s]WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 15.21s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 4.7s                                    
+INFO        重试退避: 5.0s [2^0]                                               
+INFO        随机抖动: -0.3s                                                    
+INFO        下次尝试: attempt 2/5                                              
+
+💬 Answer Progress:  69%|██████▉   | 109/158 [02:09<00:51,  1.05s/qa]WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 16.11s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 3.7s                                    
+INFO        重试退避: 5.0s [2^0]                                               
+INFO        随机抖动: -1.3s                                                    
+INFO        下次尝试: attempt 2/5                                              
+
+💬 Answer Progress:  70%|██████▉   | 110/158 [02:10<00:46,  1.02qa/s]
+💬 Answer Progress:  70%|███████   | 111/158 [02:10<00:38,  1.22qa/s]
+💬 Answer Progress:  71%|███████   | 112/158 [02:11<00:41,  1.12qa/s]
+💬 Answer Progress:  72%|███████▏  | 113/158 [02:12<00:34,  1.32qa/s]
+💬 Answer Progress:  72%|███████▏  | 114/158 [02:12<00:25,  1.73qa/s]
+💬 Answer Progress:  73%|███████▎  | 115/158 [02:13<00:28,  1.53qa/s]
+💬 Answer Progress:  73%|███████▎  | 116/158 [02:13<00:24,  1.73qa/s]
+💬 Answer Progress:  74%|███████▍  | 117/158 [02:14<00:30,  1.34qa/s]WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 16.09s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 3.6s                                    
+INFO        重试退避: 5.0s [2^0]                                               
+INFO        随机抖动: -1.4s                                                    
+INFO        下次尝试: attempt 2/5                                              
+
+💬 Answer Progress:  75%|███████▍  | 118/158 [02:15<00:25,  1.55qa/s]
+💬 Answer Progress:  76%|███████▌  | 120/158 [02:16<00:20,  1.87qa/s]
+💬 Answer Progress:  77%|███████▋  | 121/158 [02:16<00:21,  1.70qa/s]
+💬 Answer Progress:  77%|███████▋  | 122/158 [02:17<00:21,  1.66qa/s]
+💬 Answer Progress:  78%|███████▊  | 123/158 [02:19<00:34,  1.02qa/s]WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 3/5)                 
+WARNING     ⏱️  耗时: 16.11s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 22.8s                                   
+INFO        重试退避: 20.0s [2^2]                                              
+INFO        随机抖动: +2.8s                                                    
+INFO        下次尝试: attempt 4/5                                              
+WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 15.22s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 4.3s                                    
+INFO        重试退避: 5.0s [2^0]                                               
+INFO        随机抖动: -0.7s                                                    
+INFO        下次尝试: attempt 2/5                                              
+
+💬 Answer Progress:  78%|███████▊  | 124/158 [02:20<00:33,  1.02qa/s]
+💬 Answer Progress:  79%|███████▉  | 125/158 [02:22<00:40,  1.24s/qa]WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 2/5)                 
+WARNING     ⏱️  耗时: 15.21s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 11.3s                                   
+INFO        重试退避: 10.0s [2^1]                                              
+INFO        随机抖动: +1.3s                                                    
+INFO        下次尝试: attempt 3/5                                              
+
+💬 Answer Progress:  80%|████████  | 127/158 [02:22<00:24,  1.29qa/s]
+💬 Answer Progress:  81%|████████  | 128/158 [02:22<00:18,  1.59qa/s]
+💬 Answer Progress:  82%|████████▏ | 130/158 [02:24<00:18,  1.55qa/s]
+💬 Answer Progress:  83%|████████▎ | 131/158 [02:24<00:14,  1.83qa/s]
+💬 Answer Progress:  84%|████████▎ | 132/158 [02:24<00:11,  2.24qa/s]
+💬 Answer Progress:  84%|████████▍ | 133/158 [02:25<00:12,  1.98qa/s]WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 2/5)                 
+WARNING     ⏱️  耗时: 15.22s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 10.0s                                   
+INFO        重试退避: 10.0s [2^1]                                              
+INFO        随机抖动: -0.0s                                                    
+INFO        下次尝试: attempt 3/5                                              
+
+💬 Answer Progress:  85%|████████▍ | 134/158 [02:25<00:11,  2.10qa/s]
+💬 Answer Progress:  85%|████████▌ | 135/158 [02:25<00:08,  2.66qa/s]
+💬 Answer Progress:  86%|████████▌ | 136/158 [02:27<00:16,  1.30qa/s]
+💬 Answer Progress:  87%|████████▋ | 137/158 [02:27<00:13,  1.50qa/s]
+💬 Answer Progress:  87%|████████▋ | 138/158 [02:28<00:15,  1.29qa/s]
+💬 Answer Progress:  88%|████████▊ | 139/158 [02:29<00:12,  1.47qa/s]
+💬 Answer Progress:  89%|████████▊ | 140/158 [02:30<00:13,  1.34qa/s]
+💬 Answer Progress:  89%|████████▉ | 141/158 [02:30<00:12,  1.37qa/s]
+💬 Answer Progress:  90%|████████▉ | 142/158 [02:32<00:14,  1.14qa/s]
+💬 Answer Progress:  91%|█████████ | 143/158 [02:33<00:15,  1.02s/qa]
+💬 Answer Progress:  92%|█████████▏| 145/158 [02:34<00:08,  1.49qa/s]
+💬 Answer Progress:  92%|█████████▏| 146/158 [02:34<00:06,  1.76qa/s]
+💬 Answer Progress:  93%|█████████▎| 147/158 [02:34<00:05,  2.10qa/s]WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 15.22s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 5.5s                                    
+INFO        重试退避: 5.0s [2^0]                                               
+INFO        随机抖动: +0.5s                                                    
+INFO        下次尝试: attempt 2/5                                              
+
+💬 Answer Progress:  94%|█████████▍| 149/158 [02:34<00:02,  3.18qa/s]
+💬 Answer Progress:  95%|█████████▍| 150/158 [02:36<00:05,  1.36qa/s]
+💬 Answer Progress:  96%|█████████▌| 151/158 [02:37<00:04,  1.67qa/s]WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 4/5)                 
+WARNING     ⏱️  耗时: 15.21s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 44.8s                                   
+INFO        重试退避: 40.0s [2^3]                                              
+INFO        随机抖动: +4.8s                                                    
+INFO        下次尝试: attempt 5/5                                              
+
+💬 Answer Progress:  96%|█████████▌| 152/158 [02:38<00:04,  1.44qa/s]WARNING  [OpenAI-gpt-4o-mini] APIConnectionError (attempt 1/5)                 
+WARNING     ⏱️  耗时: 16.08s                                                    
+WARNING     💬 错误: Connection error.                                         
+INFO     [OpenAI-gpt-4o-mini] 综合退避 4.6s                                    
+INFO        重试退避: 5.0s [2^0]                                               
+INFO        随机抖动: -0.4s                                                    
+INFO        下次尝试: attempt 2/5                                              
+
+💬 Answer Progress:  97%|█████████▋| 153/158 [02:45<00:13,  2.61s/qa]
+💬 Answer Progress:  97%|█████████▋| 154/158 [02:47<00:08,  2.24s/qa]
+💬 Answer Progress:  98%|█████████▊| 155/158 [02:48<00:06,  2.01s/qa]
+💬 Answer Progress:  99%|█████████▊| 156/158 [02:53<00:05,  2.78s/qa]
+💬 Answer Progress:  99%|█████████▉| 157/158 [02:54<00:02,  2.45s/qa]
+💬 Answer Progress: 100%|██████████| 158/158 [03:34<00:00, 13.48s/qa]INFO     Progress: 158/158 (100.0%) | Speed: 0.7 qa/s | Failed: 0 | ETA: 0.0   
+         min                                                                   
+INFO     💾 Answer checkpoint saved: responses_checkpoint_158.json             
+
+💬 Answer Progress: 100%|██████████| 158/158 [03:34<00:00,  1.36s/qa]
+INFO                                                                           
+         ============================================================          
+INFO     ✅ All responses generated!                                           
+INFO        - Total questions: 158                                             
+INFO        - Successful: 158                                                  
+INFO        - Failed: 0                                                        
+INFO        - Success rate: 100.0%                                             
+INFO        - Time elapsed: 3.6 minutes (215s)                                 
+INFO        - Average speed: 0.7 qa/s                                          
+INFO     ============================================================          
+                                                                               
+INFO     🗑️ Removed answer checkpoint: responses_checkpoint_158.json            
+INFO     ✅ Stage 3 completed                                                  
+INFO     💾 Checkpoint 已保存: checkpoint_default.json                         
+INFO     Starting Stage 4: Evaluate                                            
+INFO                                                                           
+         ============================================================          
+INFO     Evaluation: LLM Judge (model=gpt-4o-mini, runs=3)                     
+INFO     ============================================================          
+
+⚖️  Evaluate Progress:   0%|          | 0/158 [00:00<?, ?qa/s]
+⚖️  Evaluate Progress:   1%|          | 1/158 [00:02<07:14,  2.77s/qa]
+⚖️  Evaluate Progress:   3%|▎         | 4/158 [00:02<01:25,  1.81qa/s]
+⚖️  Evaluate Progress:   4%|▍         | 6/158 [00:03<00:55,  2.73qa/s]
+⚖️  Evaluate Progress:   5%|▌         | 8/158 [00:03<00:41,  3.61qa/s]
+⚖️  Evaluate Progress:   7%|▋         | 11/158 [00:04<00:57,  2.57qa/s]
+⚖️  Evaluate Progress:   8%|▊         | 12/158 [00:05<00:51,  2.82qa/s]
+⚖️  Evaluate Progress:   9%|▉         | 14/158 [00:05<00:36,  3.93qa/s]
+⚖️  Evaluate Progress:  11%|█         | 17/158 [00:05<00:26,  5.40qa/s]
+⚖️  Evaluate Progress:  12%|█▏        | 19/158 [00:05<00:23,  5.80qa/s]
+⚖️  Evaluate Progress:  13%|█▎        | 20/158 [00:05<00:23,  5.94qa/s]
+⚖️  Evaluate Progress:  13%|█▎        | 21/158 [00:07<00:58,  2.35qa/s]
+⚖️  Evaluate Progress:  15%|█▌        | 24/158 [00:07<00:35,  3.82qa/s]
+⚖️  Evaluate Progress:  16%|█▋        | 26/158 [00:07<00:27,  4.74qa/s]
+⚖️  Evaluate Progress:  18%|█▊        | 28/158 [00:08<00:22,  5.76qa/s]
+⚖️  Evaluate Progress:  19%|█▉        | 30/158 [00:08<00:24,  5.16qa/s]
+⚖️  Evaluate Progress:  20%|█▉        | 31/158 [00:09<00:48,  2.63qa/s]
+⚖️  Evaluate Progress:  21%|██        | 33/158 [00:09<00:34,  3.59qa/s]
+⚖️  Evaluate Progress:  22%|██▏       | 35/158 [00:10<00:27,  4.46qa/s]
+⚖️  Evaluate Progress:  23%|██▎       | 36/158 [00:10<00:26,  4.56qa/s]
+⚖️  Evaluate Progress:  25%|██▍       | 39/158 [00:10<00:17,  6.86qa/s]
+⚖️  Evaluate Progress:  26%|██▌       | 41/158 [00:11<00:35,  3.26qa/s]
+⚖️  Evaluate Progress:  27%|██▋       | 42/158 [00:12<00:32,  3.52qa/s]
+⚖️  Evaluate Progress:  27%|██▋       | 43/158 [00:12<00:32,  3.53qa/s]
+⚖️  Evaluate Progress:  28%|██▊       | 44/158 [00:12<00:29,  3.91qa/s]
+⚖️  Evaluate Progress:  28%|██▊       | 45/158 [00:12<00:30,  3.72qa/s]
+⚖️  Evaluate Progress:  30%|███       | 48/158 [00:12<00:18,  6.03qa/s]
+⚖️  Evaluate Progress:  31%|███       | 49/158 [00:13<00:25,  4.22qa/s]
+⚖️  Evaluate Progress:  32%|███▏      | 50/158 [00:13<00:24,  4.42qa/s]
+⚖️  Evaluate Progress:  33%|███▎      | 52/158 [00:14<00:24,  4.39qa/s]
+⚖️  Evaluate Progress:  34%|███▎      | 53/158 [00:14<00:26,  4.01qa/s]
+⚖️  Evaluate Progress:  35%|███▍      | 55/158 [00:14<00:23,  4.33qa/s]
+⚖️  Evaluate Progress:  36%|███▌      | 57/158 [00:15<00:18,  5.36qa/s]
+⚖️  Evaluate Progress:  37%|███▋      | 59/158 [00:15<00:21,  4.52qa/s]
+⚖️  Evaluate Progress:  38%|███▊      | 60/158 [00:15<00:22,  4.41qa/s]
+⚖️  Evaluate Progress:  39%|███▉      | 62/158 [00:16<00:19,  5.02qa/s]
+⚖️  Evaluate Progress:  40%|███▉      | 63/158 [00:16<00:19,  4.90qa/s]
+⚖️  Evaluate Progress:  41%|████      | 65/158 [00:17<00:24,  3.76qa/s]
+⚖️  Evaluate Progress:  42%|████▏     | 67/158 [00:17<00:19,  4.78qa/s]
+⚖️  Evaluate Progress:  43%|████▎     | 68/158 [00:17<00:21,  4.19qa/s]
+⚖️  Evaluate Progress:  44%|████▍     | 70/158 [00:18<00:24,  3.54qa/s]
+⚖️  Evaluate Progress:  45%|████▍     | 71/158 [00:18<00:24,  3.60qa/s]
+⚖️  Evaluate Progress:  46%|████▌     | 72/158 [00:18<00:20,  4.16qa/s]
+⚖️  Evaluate Progress:  47%|████▋     | 75/158 [00:19<00:22,  3.68qa/s]
+⚖️  Evaluate Progress:  48%|████▊     | 76/158 [00:19<00:19,  4.13qa/s]
+⚖️  Evaluate Progress:  49%|████▊     | 77/158 [00:19<00:17,  4.71qa/s]
+⚖️  Evaluate Progress:  50%|█████     | 79/158 [00:20<00:14,  5.57qa/s]
+⚖️  Evaluate Progress:  51%|█████     | 80/158 [00:20<00:21,  3.55qa/s]
+⚖️  Evaluate Progress:  51%|█████▏    | 81/158 [00:21<00:20,  3.67qa/s]
+⚖️  Evaluate Progress:  52%|█████▏    | 82/158 [00:21<00:19,  3.85qa/s]
+⚖️  Evaluate Progress:  53%|█████▎    | 84/158 [00:21<00:13,  5.45qa/s]
+⚖️  Evaluate Progress:  54%|█████▍    | 85/158 [00:21<00:16,  4.48qa/s]
+⚖️  Evaluate Progress:  54%|█████▍    | 86/158 [00:22<00:19,  3.71qa/s]
+⚖️  Evaluate Progress:  56%|█████▌    | 88/158 [00:22<00:12,  5.54qa/s]
+⚖️  Evaluate Progress:  57%|█████▋    | 90/158 [00:23<00:17,  3.79qa/s]
+⚖️  Evaluate Progress:  58%|█████▊    | 91/158 [00:23<00:16,  4.09qa/s]
+⚖️  Evaluate Progress:  58%|█████▊    | 92/158 [00:23<00:20,  3.30qa/s]
+⚖️  Evaluate Progress:  59%|█████▉    | 94/158 [00:24<00:14,  4.49qa/s]
+⚖️  Evaluate Progress:  61%|██████    | 96/158 [00:24<00:12,  5.10qa/s]
+⚖️  Evaluate Progress:  62%|██████▏   | 98/158 [00:24<00:12,  4.77qa/s]
+⚖️  Evaluate Progress:  63%|██████▎   | 99/158 [00:25<00:13,  4.47qa/s]
+⚖️  Evaluate Progress:  63%|██████▎   | 100/158 [00:25<00:13,  4.45qa/s]
+⚖️  Evaluate Progress:  64%|██████▍   | 101/158 [00:25<00:16,  3.56qa/s]
+⚖️  Evaluate Progress:  65%|██████▍   | 102/158 [00:26<00:16,  3.35qa/s]
+⚖️  Evaluate Progress:  66%|██████▌   | 104/158 [00:26<00:10,  4.94qa/s]
+⚖️  Evaluate Progress:  66%|██████▋   | 105/158 [00:26<00:10,  5.26qa/s]
+⚖️  Evaluate Progress:  68%|██████▊   | 107/158 [00:26<00:07,  6.84qa/s]
+⚖️  Evaluate Progress:  68%|██████▊   | 108/158 [00:27<00:13,  3.67qa/s]
+⚖️  Evaluate Progress:  70%|██████▉   | 110/158 [00:27<00:09,  4.80qa/s]
+⚖️  Evaluate Progress:  70%|███████   | 111/158 [00:27<00:11,  4.00qa/s]
+⚖️  Evaluate Progress:  71%|███████   | 112/158 [00:28<00:14,  3.12qa/s]
+⚖️  Evaluate Progress:  72%|███████▏  | 114/158 [00:28<00:10,  4.32qa/s]
+⚖️  Evaluate Progress:  73%|███████▎  | 115/158 [00:28<00:09,  4.52qa/s]
+⚖️  Evaluate Progress:  74%|███████▍  | 117/158 [00:29<00:07,  5.18qa/s]
+⚖️  Evaluate Progress:  75%|███████▍  | 118/158 [00:29<00:07,  5.37qa/s]
+⚖️  Evaluate Progress:  75%|███████▌  | 119/158 [00:29<00:08,  4.49qa/s]
+⚖️  Evaluate Progress:  76%|███████▌  | 120/158 [00:29<00:08,  4.62qa/s]
+⚖️  Evaluate Progress:  77%|███████▋  | 121/158 [00:30<00:12,  2.88qa/s]
+⚖️  Evaluate Progress:  78%|███████▊  | 123/158 [00:30<00:09,  3.67qa/s]
+⚖️  Evaluate Progress:  80%|███████▉  | 126/158 [00:31<00:05,  5.45qa/s]
+⚖️  Evaluate Progress:  80%|████████  | 127/158 [00:31<00:06,  4.58qa/s]
+⚖️  Evaluate Progress:  81%|████████  | 128/158 [00:31<00:06,  4.60qa/s]
+⚖️  Evaluate Progress:  82%|████████▏ | 129/158 [00:32<00:06,  4.33qa/s]
+⚖️  Evaluate Progress:  82%|████████▏ | 130/158 [00:32<00:08,  3.46qa/s]
+⚖️  Evaluate Progress:  84%|████████▎ | 132/158 [00:32<00:05,  5.19qa/s]
+⚖️  Evaluate Progress:  84%|████████▍ | 133/158 [00:33<00:07,  3.29qa/s]
+⚖️  Evaluate Progress:  85%|████████▍ | 134/158 [00:33<00:06,  3.78qa/s]
+⚖️  Evaluate Progress:  86%|████████▌ | 136/158 [00:33<00:04,  4.99qa/s]
+⚖️  Evaluate Progress:  87%|████████▋ | 137/158 [00:34<00:05,  3.52qa/s]
+⚖️  Evaluate Progress:  87%|████████▋ | 138/158 [00:34<00:05,  3.79qa/s]
+⚖️  Evaluate Progress:  89%|████████▊ | 140/158 [00:34<00:03,  5.49qa/s]
+⚖️  Evaluate Progress:  89%|████████▉ | 141/158 [00:34<00:03,  4.30qa/s]
+⚖️  Evaluate Progress:  90%|████████▉ | 142/158 [00:35<00:03,  4.95qa/s]
+⚖️  Evaluate Progress:  91%|█████████ | 143/158 [00:35<00:03,  4.58qa/s]
+⚖️  Evaluate Progress:  91%|█████████ | 144/158 [00:35<00:03,  3.70qa/s]
+⚖️  Evaluate Progress:  92%|█████████▏| 145/158 [00:36<00:03,  3.30qa/s]
+⚖️  Evaluate Progress:  92%|█████████▏| 146/158 [00:36<00:03,  3.62qa/s]
+⚖️  Evaluate Progress:  93%|█████████▎| 147/158 [00:36<00:02,  3.83qa/s]
+⚖️  Evaluate Progress:  94%|█████████▎| 148/158 [00:36<00:02,  3.40qa/s]
+⚖️  Evaluate Progress:  94%|█████████▍| 149/158 [00:37<00:02,  4.16qa/s]
+⚖️  Evaluate Progress:  96%|█████████▌| 151/158 [00:37<00:01,  5.78qa/s]
+⚖️  Evaluate Progress:  96%|█████████▌| 152/158 [00:37<00:01,  4.33qa/s]
+⚖️  Evaluate Progress:  97%|█████████▋| 153/158 [00:37<00:01,  4.40qa/s]
+⚖️  Evaluate Progress:  98%|█████████▊| 155/158 [00:38<00:00,  3.98qa/s]
+⚖️  Evaluate Progress:  99%|█████████▉| 157/158 [00:39<00:00,  2.88qa/s]
+⚖️  Evaluate Progress: 100%|██████████| 158/158 [00:39<00:00,  4.00qa/s]
+INFO                                                                           
+         ✅ 评估完成:                                                          
+INFO        - 总问题数: 158                                                    
+INFO        - 平均准确率: 0.9093 (90.93%)                                      
+INFO        - 标准差: 0.0030                                                   
+INFO        - 各次 run 准确率: ['0.9114', '0.9114', '0.9051']                  
+INFO                                                                           
+         📊 按 Category 统计:                                                  
+INFO        Category 1: 0.9271 ± 0.0147 (n=32)                                 
+INFO        Category 2: 0.8750 ± 0.0000 (n=32)                                 
+INFO        Category 3: 0.4286 ± 0.0000 (n=7)                                  
+INFO        Category 4: 0.9540 ± 0.0000 (n=87)                                 
+INFO     ✅ Stage 4 completed                                                  
+INFO     💾 Checkpoint 已保存: checkpoint_default.json                         
+
+============================================================
+📊 Evaluation Report
+============================================================
+
+System: Parallax
+Time Elapsed: 254.43s
+
+Total Questions: 158
+Correct: 143
+Accuracy: 90.93%
+
+============================================================
+INFO     Report saved to: D:\parallax\eval\results\locomo-conv9\report_3.txt   
+
+✨ Evaluation completed!
+Results saved to: D:\parallax\eval\results\locomo-conv9
+
+INFO     Initialized DeepInfra Rerank Service with model:                      
+         Qwen/Qwen3-Reranker-4B                                                
+🧹 Cleaned up rerank service resources

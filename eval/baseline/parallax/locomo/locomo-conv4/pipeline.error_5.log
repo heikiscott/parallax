@@ -1,0 +1,133 @@
+2025-11-23 05:29:59,594 - providers.llm.openai_provider - ERROR - openai_provider.py:171 - OpenAI APIError: Connection error.
+2025-11-23 05:29:59,598 - providers.llm.openai_provider - ERROR - openai_provider.py:172 -    ⏱️  耗时: 108.46s
+2025-11-23 05:29:59,600 - providers.llm.openai_provider - ERROR - openai_provider.py:173 -    💬 错误信息: Connection error.
+2025-11-23 05:30:00,081 - providers.llm.openai_provider - ERROR - openai_provider.py:171 - OpenAI APIError: Connection error.
+2025-11-23 05:30:00,084 - providers.llm.openai_provider - ERROR - openai_provider.py:172 -    ⏱️  耗时: 108.93s
+2025-11-23 05:30:00,094 - providers.llm.openai_provider - ERROR - openai_provider.py:173 -    💬 错误信息: Connection error.
+2025-11-23 05:30:00,661 - providers.llm.openai_provider - ERROR - openai_provider.py:171 - OpenAI APIError: Connection error.
+2025-11-23 05:30:00,664 - providers.llm.openai_provider - ERROR - openai_provider.py:172 -    ⏱️  耗时: 109.53s
+2025-11-23 05:30:00,667 - providers.llm.openai_provider - ERROR - openai_provider.py:173 -    💬 错误信息: Connection error.
+2025-11-23 05:30:00,703 - providers.llm.openai_provider - ERROR - openai_provider.py:171 - OpenAI APIError: Connection error.
+2025-11-23 05:30:00,704 - providers.llm.openai_provider - ERROR - openai_provider.py:172 -    ⏱️  耗时: 109.55s
+2025-11-23 05:30:00,706 - providers.llm.openai_provider - ERROR - openai_provider.py:173 -    💬 错误信息: Connection error.
+2025-11-23 05:30:00,817 - providers.llm.openai_provider - ERROR - openai_provider.py:171 - OpenAI APIError: Connection error.
+2025-11-23 05:30:00,820 - providers.llm.openai_provider - ERROR - openai_provider.py:172 -    ⏱️  耗时: 109.66s
+2025-11-23 05:30:00,822 - providers.llm.openai_provider - ERROR - openai_provider.py:173 -    💬 错误信息: Connection error.
+2025-11-23 05:30:01,184 - providers.llm.openai_provider - ERROR - openai_provider.py:171 - OpenAI APIError: Connection error.
+2025-11-23 05:30:01,187 - providers.llm.openai_provider - ERROR - openai_provider.py:172 -    ⏱️  耗时: 110.03s
+2025-11-23 05:30:01,188 - providers.llm.openai_provider - ERROR - openai_provider.py:173 -    💬 错误信息: Connection error.
+2025-11-23 05:30:01,738 - providers.llm.openai_provider - ERROR - openai_provider.py:171 - OpenAI APIError: Connection error.
+2025-11-23 05:30:01,740 - providers.llm.openai_provider - ERROR - openai_provider.py:172 -    ⏱️  耗时: 110.59s
+2025-11-23 05:30:01,742 - providers.llm.openai_provider - ERROR - openai_provider.py:173 -    💬 错误信息: Connection error.
+2025-11-23 05:30:02,732 - providers.llm.openai_provider - ERROR - openai_provider.py:171 - OpenAI APIError: Connection error.
+2025-11-23 05:30:02,735 - providers.llm.openai_provider - ERROR - openai_provider.py:172 -    ⏱️  耗时: 111.88s
+2025-11-23 05:30:02,738 - providers.llm.openai_provider - ERROR - openai_provider.py:173 -    💬 错误信息: Connection error.
+2025-11-23 05:30:02,751 - providers.llm.openai_provider - ERROR - openai_provider.py:171 - OpenAI APIError: Connection error.
+2025-11-23 05:30:02,755 - providers.llm.openai_provider - ERROR - openai_provider.py:172 -    ⏱️  耗时: 111.61s
+2025-11-23 05:30:02,756 - providers.llm.openai_provider - ERROR - openai_provider.py:173 -    💬 错误信息: Connection error.
+2025-11-23 05:30:10,170 - providers.llm.openai_provider - ERROR - openai_provider.py:171 - OpenAI APIError: Connection error.
+2025-11-23 05:30:10,173 - providers.llm.openai_provider - ERROR - openai_provider.py:172 -    ⏱️  耗时: 108.67s
+2025-11-23 05:30:10,176 - providers.llm.openai_provider - ERROR - openai_provider.py:173 -    💬 错误信息: Connection error.
+2025-11-23 05:30:12,594 - providers.llm.openai_provider - ERROR - openai_provider.py:171 - OpenAI APIError: Connection error.
+2025-11-23 05:30:12,595 - providers.llm.openai_provider - ERROR - openai_provider.py:172 -    ⏱️  耗时: 108.34s
+2025-11-23 05:30:12,595 - providers.llm.openai_provider - ERROR - openai_provider.py:173 -    💬 错误信息: Connection error.
+2025-11-23 05:30:22,923 - providers.llm.openai_provider - ERROR - openai_provider.py:171 - OpenAI APIError: Connection error.
+2025-11-23 05:30:22,926 - providers.llm.openai_provider - ERROR - openai_provider.py:172 -    ⏱️  耗时: 106.50s
+2025-11-23 05:30:22,928 - providers.llm.openai_provider - ERROR - openai_provider.py:173 -    💬 错误信息: Connection error.
+2025-11-23 05:30:46,822 - providers.llm.openai_provider - ERROR - openai_provider.py:171 - OpenAI APIError: Connection error.
+2025-11-23 05:30:46,823 - providers.llm.openai_provider - ERROR - openai_provider.py:172 -    ⏱️  耗时: 106.79s
+2025-11-23 05:30:46,824 - providers.llm.openai_provider - ERROR - openai_provider.py:173 -    💬 错误信息: Connection error.
+2025-11-23 05:30:48,501 - providers.llm.openai_provider - ERROR - openai_provider.py:171 - OpenAI APIError: Connection error.
+2025-11-23 05:30:48,504 - providers.llm.openai_provider - ERROR - openai_provider.py:172 -    ⏱️  耗时: 107.74s
+2025-11-23 05:30:48,507 - providers.llm.openai_provider - ERROR - openai_provider.py:173 -    💬 错误信息: Connection error.
+2025-11-23 05:30:48,674 - providers.llm.openai_provider - ERROR - openai_provider.py:171 - OpenAI APIError: Connection error.
+2025-11-23 05:30:48,677 - providers.llm.openai_provider - ERROR - openai_provider.py:172 -    ⏱️  耗时: 108.40s
+2025-11-23 05:30:48,679 - providers.llm.openai_provider - ERROR - openai_provider.py:173 -    💬 错误信息: Connection error.
+2025-11-23 05:30:59,397 - providers.llm.openai_provider - ERROR - openai_provider.py:171 - OpenAI APIError: Connection error.
+2025-11-23 05:30:59,398 - providers.llm.openai_provider - ERROR - openai_provider.py:172 -    ⏱️  耗时: 106.21s
+2025-11-23 05:30:59,398 - providers.llm.openai_provider - ERROR - openai_provider.py:173 -    💬 错误信息: Connection error.
+2025-11-23 05:31:49,533 - providers.llm.openai_provider - ERROR - openai_provider.py:171 - OpenAI APIError: Connection error.
+2025-11-23 05:31:49,534 - providers.llm.openai_provider - ERROR - openai_provider.py:172 -    ⏱️  耗时: 109.93s
+2025-11-23 05:31:49,535 - providers.llm.openai_provider - ERROR - openai_provider.py:173 -    💬 错误信息: Connection error.
+2025-11-23 05:31:50,347 - providers.llm.openai_provider - ERROR - openai_provider.py:171 - OpenAI APIError: Connection error.
+2025-11-23 05:31:50,349 - providers.llm.openai_provider - ERROR - openai_provider.py:172 -    ⏱️  耗时: 110.25s
+2025-11-23 05:31:50,351 - providers.llm.openai_provider - ERROR - openai_provider.py:173 -    💬 错误信息: Connection error.
+2025-11-23 05:31:50,410 - providers.llm.openai_provider - ERROR - openai_provider.py:171 - OpenAI APIError: Connection error.
+2025-11-23 05:31:50,412 - providers.llm.openai_provider - ERROR - openai_provider.py:172 -    ⏱️  耗时: 109.70s
+2025-11-23 05:31:50,413 - providers.llm.openai_provider - ERROR - openai_provider.py:173 -    💬 错误信息: Connection error.
+2025-11-23 05:31:50,820 - providers.llm.openai_provider - ERROR - openai_provider.py:171 - OpenAI APIError: Connection error.
+2025-11-23 05:31:50,823 - providers.llm.openai_provider - ERROR - openai_provider.py:172 -    ⏱️  耗时: 109.63s
+2025-11-23 05:31:50,825 - providers.llm.openai_provider - ERROR - openai_provider.py:173 -    💬 错误信息: Connection error.
+2025-11-23 05:31:50,984 - providers.llm.openai_provider - ERROR - openai_provider.py:171 - OpenAI APIError: Connection error.
+2025-11-23 05:31:50,989 - providers.llm.openai_provider - ERROR - openai_provider.py:172 -    ⏱️  耗时: 110.16s
+2025-11-23 05:31:50,991 - providers.llm.openai_provider - ERROR - openai_provider.py:173 -    💬 错误信息: Connection error.
+2025-11-23 05:31:51,986 - providers.llm.openai_provider - ERROR - openai_provider.py:171 - OpenAI APIError: Connection error.
+2025-11-23 05:31:51,990 - providers.llm.openai_provider - ERROR - openai_provider.py:172 -    ⏱️  耗时: 109.24s
+2025-11-23 05:31:51,993 - providers.llm.openai_provider - ERROR - openai_provider.py:173 -    💬 错误信息: Connection error.
+2025-11-23 05:31:53,013 - providers.llm.openai_provider - ERROR - openai_provider.py:171 - OpenAI APIError: Connection error.
+2025-11-23 05:31:53,016 - providers.llm.openai_provider - ERROR - openai_provider.py:172 -    ⏱️  耗时: 110.25s
+2025-11-23 05:31:53,018 - providers.llm.openai_provider - ERROR - openai_provider.py:173 -    💬 错误信息: Connection error.
+2025-11-23 05:31:53,164 - providers.llm.openai_provider - ERROR - openai_provider.py:171 - OpenAI APIError: Connection error.
+2025-11-23 05:31:53,166 - providers.llm.openai_provider - ERROR - openai_provider.py:172 -    ⏱️  耗时: 111.42s
+2025-11-23 05:31:53,167 - providers.llm.openai_provider - ERROR - openai_provider.py:173 -    💬 错误信息: Connection error.
+2025-11-23 05:32:00,916 - providers.llm.openai_provider - ERROR - openai_provider.py:171 - OpenAI APIError: Connection error.
+2025-11-23 05:32:00,919 - providers.llm.openai_provider - ERROR - openai_provider.py:172 -    ⏱️  耗时: 110.73s
+2025-11-23 05:32:00,922 - providers.llm.openai_provider - ERROR - openai_provider.py:173 -    💬 错误信息: Connection error.
+2025-11-23 05:32:04,329 - providers.llm.openai_provider - ERROR - openai_provider.py:171 - OpenAI APIError: Connection error.
+2025-11-23 05:32:04,332 - providers.llm.openai_provider - ERROR - openai_provider.py:172 -    ⏱️  耗时: 111.73s
+2025-11-23 05:32:04,335 - providers.llm.openai_provider - ERROR - openai_provider.py:173 -    💬 错误信息: Connection error.
+2025-11-23 05:32:12,521 - providers.llm.openai_provider - ERROR - openai_provider.py:171 - OpenAI APIError: Connection error.
+2025-11-23 05:32:12,521 - providers.llm.openai_provider - ERROR - openai_provider.py:172 -    ⏱️  耗时: 109.59s
+2025-11-23 05:32:12,522 - providers.llm.openai_provider - ERROR - openai_provider.py:173 -    💬 错误信息: Connection error.
+2025-11-23 05:32:39,192 - providers.llm.openai_provider - ERROR - openai_provider.py:171 - OpenAI APIError: Connection error.
+2025-11-23 05:32:39,194 - providers.llm.openai_provider - ERROR - openai_provider.py:172 -    ⏱️  耗时: 110.68s
+2025-11-23 05:32:39,195 - providers.llm.openai_provider - ERROR - openai_provider.py:173 -    💬 错误信息: Connection error.
+2025-11-23 05:33:38,906 - providers.llm.openai_provider - ERROR - openai_provider.py:171 - OpenAI APIError: Connection error.
+2025-11-23 05:33:38,909 - providers.llm.openai_provider - ERROR - openai_provider.py:172 -    ⏱️  耗时: 108.55s
+2025-11-23 05:33:38,910 - providers.llm.openai_provider - ERROR - openai_provider.py:173 -    💬 错误信息: Connection error.
+2025-11-23 05:33:39,826 - providers.llm.openai_provider - ERROR - openai_provider.py:171 - OpenAI APIError: Connection error.
+2025-11-23 05:33:39,829 - providers.llm.openai_provider - ERROR - openai_provider.py:172 -    ⏱️  耗时: 108.83s
+2025-11-23 05:33:39,829 - providers.llm.openai_provider - ERROR - openai_provider.py:173 -    💬 错误信息: Connection error.
+2025-11-23 05:33:40,293 - providers.llm.openai_provider - ERROR - openai_provider.py:171 - OpenAI APIError: Connection error.
+2025-11-23 05:33:40,295 - providers.llm.openai_provider - ERROR - openai_provider.py:172 -    ⏱️  耗时: 109.88s
+2025-11-23 05:33:40,295 - providers.llm.openai_provider - ERROR - openai_provider.py:173 -    💬 错误信息: Connection error.
+2025-11-23 05:33:42,205 - providers.llm.openai_provider - ERROR - openai_provider.py:171 - OpenAI APIError: Connection error.
+2025-11-23 05:33:42,206 - providers.llm.openai_provider - ERROR - openai_provider.py:172 -    ⏱️  耗时: 110.21s
+2025-11-23 05:33:42,207 - providers.llm.openai_provider - ERROR - openai_provider.py:173 -    💬 错误信息: Connection error.
+2025-11-23 05:33:53,553 - providers.llm.openai_provider - ERROR - openai_provider.py:171 - OpenAI APIError: Connection error.
+2025-11-23 05:33:53,556 - providers.llm.openai_provider - ERROR - openai_provider.py:172 -    ⏱️  耗时: 109.21s
+2025-11-23 05:33:53,558 - providers.llm.openai_provider - ERROR - openai_provider.py:173 -    💬 错误信息: Connection error.
+2025-11-23 05:34:02,749 - providers.llm.openai_provider - ERROR - openai_provider.py:171 - OpenAI APIError: Connection error.
+2025-11-23 05:34:02,751 - providers.llm.openai_provider - ERROR - openai_provider.py:172 -    ⏱️  耗时: 110.22s
+2025-11-23 05:34:02,753 - providers.llm.openai_provider - ERROR - openai_provider.py:173 -    💬 错误信息: Connection error.
+2025-11-23 05:35:26,992 - providers.llm.openai_provider - ERROR - openai_provider.py:171 - OpenAI APIError: Connection error.
+2025-11-23 05:35:26,993 - providers.llm.openai_provider - ERROR - openai_provider.py:172 -    ⏱️  耗时: 108.08s
+2025-11-23 05:35:26,994 - providers.llm.openai_provider - ERROR - openai_provider.py:173 -    💬 错误信息: Connection error.
+2025-11-23 05:35:29,741 - providers.llm.openai_provider - ERROR - openai_provider.py:171 - OpenAI APIError: Connection error.
+2025-11-23 05:35:29,743 - providers.llm.openai_provider - ERROR - openai_provider.py:172 -    ⏱️  耗时: 109.91s
+2025-11-23 05:35:29,744 - providers.llm.openai_provider - ERROR - openai_provider.py:173 -    💬 错误信息: Connection error.
+2025-11-23 05:35:32,925 - providers.llm.openai_provider - ERROR - openai_provider.py:171 - OpenAI APIError: Connection error.
+2025-11-23 05:35:32,927 - providers.llm.openai_provider - ERROR - openai_provider.py:172 -    ⏱️  耗时: 110.72s
+2025-11-23 05:35:32,929 - providers.llm.openai_provider - ERROR - openai_provider.py:173 -    💬 错误信息: Connection error.
+2025-11-23 05:35:44,225 - providers.llm.openai_provider - ERROR - openai_provider.py:171 - OpenAI APIError: Connection error.
+2025-11-23 05:35:44,226 - providers.llm.openai_provider - ERROR - openai_provider.py:172 -    ⏱️  耗时: 110.66s
+2025-11-23 05:35:44,226 - providers.llm.openai_provider - ERROR - openai_provider.py:173 -    💬 错误信息: Connection error.
+2025-11-23 05:35:51,909 - providers.llm.openai_provider - ERROR - openai_provider.py:171 - OpenAI APIError: Connection error.
+2025-11-23 05:35:51,911 - providers.llm.openai_provider - ERROR - openai_provider.py:172 -    ⏱️  耗时: 109.15s
+2025-11-23 05:35:51,914 - providers.llm.openai_provider - ERROR - openai_provider.py:173 -    💬 错误信息: Connection error.
+2025-11-23 05:37:16,389 - providers.llm.openai_provider - ERROR - openai_provider.py:171 - OpenAI APIError: Connection error.
+2025-11-23 05:37:16,392 - providers.llm.openai_provider - ERROR - openai_provider.py:172 -    ⏱️  耗时: 109.39s
+2025-11-23 05:37:16,394 - providers.llm.openai_provider - ERROR - openai_provider.py:173 -    💬 错误信息: Connection error.
+2025-11-23 05:37:16,399 - eval.adapters.parallax.stage4_response - ERROR - stage4_response.py:165 - All 5 retries failed. Returning empty answer.
+2025-11-23 05:37:21,269 - providers.llm.openai_provider - ERROR - openai_provider.py:171 - OpenAI APIError: Connection error.
+2025-11-23 05:37:21,273 - providers.llm.openai_provider - ERROR - openai_provider.py:172 -    ⏱️  耗时: 111.52s
+2025-11-23 05:37:21,276 - providers.llm.openai_provider - ERROR - openai_provider.py:173 -    💬 错误信息: Connection error.
+2025-11-23 05:37:21,280 - eval.adapters.parallax.stage4_response - ERROR - stage4_response.py:165 - All 5 retries failed. Returning empty answer.
+2025-11-23 05:37:22,852 - providers.llm.openai_provider - ERROR - openai_provider.py:171 - OpenAI APIError: Connection error.
+2025-11-23 05:37:22,855 - providers.llm.openai_provider - ERROR - openai_provider.py:172 -    ⏱️  耗时: 109.92s
+2025-11-23 05:37:22,858 - providers.llm.openai_provider - ERROR - openai_provider.py:173 -    💬 错误信息: Connection error.
+2025-11-23 05:37:22,862 - eval.adapters.parallax.stage4_response - ERROR - stage4_response.py:165 - All 5 retries failed. Returning empty answer.
+2025-11-23 05:37:34,179 - providers.llm.openai_provider - ERROR - openai_provider.py:171 - OpenAI APIError: Connection error.
+2025-11-23 05:37:34,182 - providers.llm.openai_provider - ERROR - openai_provider.py:172 -    ⏱️  耗时: 109.95s
+2025-11-23 05:37:34,182 - providers.llm.openai_provider - ERROR - openai_provider.py:173 -    💬 错误信息: Connection error.
+2025-11-23 05:37:34,183 - eval.adapters.parallax.stage4_response - ERROR - stage4_response.py:165 - All 5 retries failed. Returning empty answer.

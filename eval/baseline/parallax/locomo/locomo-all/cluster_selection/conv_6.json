@@ -1,0 +1,466 @@
+{
+  "qa_count": 150,
+  "questions": [
+    {
+      "query": "When did James visit Italy?",
+      "question_id": "locomo_6_qa13",
+      "clusters_found": [
+        "gec_086",
+        "gec_013",
+        "gec_078",
+        "gec_011",
+        "gec_031",
+        "gec_044",
+        "gec_051",
+        "gec_055",
+        "gec_054",
+        "gec_096",
+        "gec_012",
+        "gec_019",
+        "gec_068",
+        "gec_056",
+        "gec_030",
+        "gec_085",
+        "gec_052",
+        "gec_045",
+        "gec_067",
+        "gec_076",
+        "gec_001",
+        "gec_018",
+        "gec_099",
+        "gec_046",
+        "gec_037",
+        "gec_095",
+        "gec_063",
+        "gec_020",
+        "gec_057",
+        "gec_077",
+        "gec_053"
+      ],
+      "clusters_selected": [],
+      "selection_reasoning": "None of the clusters mention James visiting Italy or provide information about a trip to Italy.",
+      "cluster_details": {},
+      "members_per_cluster": {},
+      "final_count": 20,
+      "truncated": false,
+      "evidence": [
+        "D6:12"
+      ],
+      "evidence_detail": {
+        "D6:12": [
+          "5b5ae990-66ea-46a7-a163-5b8a51f0c5ec",
+          "gec_018"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "5b5ae990-66ea-46a7-a163-5b8a51f0c5ec"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_018"
+      ],
+      "cluster_hit": false,
+      "memunit_hit": false,
+      "memunit_coverage": 0.0,
+      "selected_unit_ids": []
+    },
+    {
+      "query": "When did James start playing Civilization VI?",
+      "question_id": "locomo_6_qa15",
+      "clusters_found": [
+        "gec_104",
+        "gec_013",
+        "gec_083",
+        "gec_105",
+        "gec_106",
+        "gec_082",
+        "gec_002",
+        "gec_044",
+        "gec_027",
+        "gec_028",
+        "gec_015",
+        "gec_016",
+        "gec_017",
+        "gec_026",
+        "gec_004",
+        "gec_045",
+        "gec_001",
+        "gec_046",
+        "gec_072",
+        "gec_099",
+        "gec_006",
+        "gec_084",
+        "gec_003",
+        "gec_008"
+      ],
+      "clusters_selected": [
+        "gec_001"
+      ],
+      "selection_reasoning": "Cluster gec_001 involves John and James's conversations about video games, including mentions of specific games and gaming progress, which is the most likely source to contain information about when James started playing Civilization VI.",
+      "cluster_details": {
+        "gec_001": {
+          "topic": "John's conversation about James's video game mo...",
+          "summary": "John and James shared a deep passion for video games, discussing favorites like The Witcher 3 and Apex Legends, gaming as motivation and social connection, collaborative game development, and mutual support through challenges, reflecting a growing friendship centered on gaming and creativity.",
+          "member_count": 27,
+          "members_returned": 15
+        }
+      },
+      "members_per_cluster": {
+        "gec_001": 15
+      },
+      "final_count": 25,
+      "truncated": false,
+      "evidence": [
+        "D8:29"
+      ],
+      "evidence_detail": {
+        "D8:29": [
+          "055554f9-21db-41b6-9c7b-0df6e4f32316",
+          "gec_028"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "055554f9-21db-41b6-9c7b-0df6e4f32316"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_028"
+      ],
+      "cluster_hit": false,
+      "memunit_hit": false,
+      "memunit_coverage": 0.0,
+      "selected_unit_ids": [
+        "0887db84-70fd-4188-99df-fcba2411f4cd",
+        "4b718d31-1a91-4055-876d-3e84f3463edf",
+        "b94c022d-8289-49d4-8e6f-b93a1df70ab3",
+        "a3cc5f65-3f0f-4a82-bf6c-f4716ae691e0",
+        "e5bf6147-21b9-4565-bc7d-4ce34cb6cc95",
+        "614562da-0204-4f00-8fc2-3560f8d7f976",
+        "d5314ae0-8691-4008-a9ef-8217eed5d7ab",
+        "db562aa7-354e-4564-aa5f-b3244996fecf",
+        "a69d1a5d-2fcc-4601-9649-1c3319164148",
+        "d47b1c3b-1e85-47d3-b6e0-05b466869775",
+        "81dad942-6593-4811-9c9e-58b5d6a3889c",
+        "77db52af-a3ea-4739-b5d1-887e3f8e15f4",
+        "5b5ae990-66ea-46a7-a163-5b8a51f0c5ec",
+        "dfe54375-d2e8-4e20-932e-69c842341d14",
+        "ea93f0ba-1122-445e-a72a-3cacf8bad6de"
+      ]
+    },
+    {
+      "query": "When did John start his job in IT?",
+      "question_id": "locomo_6_qa39",
+      "clusters_found": [
+        "gec_041",
+        "gec_043",
+        "gec_024",
+        "gec_069",
+        "gec_013",
+        "gec_083",
+        "gec_058",
+        "gec_107",
+        "gec_082",
+        "gec_047",
+        "gec_096",
+        "gec_065",
+        "gec_016",
+        "gec_015",
+        "gec_029",
+        "gec_108",
+        "gec_059",
+        "gec_088",
+        "gec_087",
+        "gec_001",
+        "gec_018",
+        "gec_099",
+        "gec_091",
+        "gec_023",
+        "gec_066",
+        "gec_084",
+        "gec_095",
+        "gec_064",
+        "gec_042"
+      ],
+      "clusters_selected": [
+        "gec_041",
+        "gec_064"
+      ],
+      "selection_reasoning": "Cluster gec_041 mentions John's excitement about his new dream job in IT dated June 13, 2022, indicating when he started or was newly engaged in IT work. Cluster gec_064 provides information that John left his IT job after three years by August 6, 2022, which helps infer the start date by referencing the duration of his IT employment.",
+      "cluster_details": {
+        "gec_041": {
+          "topic": "John's new dream job and career transition",
+          "summary": "On June 13, 2022, John and James reunited after a long time, sharing John's excitement about his new dream job and James's enthusiasm for a gaming and programming course, while engaging in a friendly football rivalry between their favorite teams, Liverpool and Manchester City. Their conversation highlighted personal achievements, mutual encouragement, and shared interests.",
+          "member_count": 1,
+          "members_returned": 1
+        },
+        "gec_064": {
+          "topic": "John's career change from IT to organizing computer game tournaments",
+          "summary": "John shared with James his decision to leave his IT job after three years to pursue a new career organizing computer game tournaments, expressing initial fear but ultimate excitement and satisfaction with this meaningful change.",
+          "member_count": 1,
+          "members_returned": 1
+        }
+      },
+      "members_per_cluster": {
+        "gec_041": 1,
+        "gec_064": 1
+      },
+      "final_count": 12,
+      "truncated": false,
+      "evidence": [
+        "D18:1"
+      ],
+      "evidence_detail": {
+        "D18:1": [
+          "124fe3c3-bef6-40cf-b930-4627c1cd6379",
+          "gec_064"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "124fe3c3-bef6-40cf-b930-4627c1cd6379"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_064"
+      ],
+      "cluster_hit": true,
+      "memunit_hit": true,
+      "memunit_coverage": 1.0,
+      "selected_unit_ids": [
+        "124fe3c3-bef6-40cf-b930-4627c1cd6379",
+        "48113c7d-5182-4856-8862-9956f8f7cb2e"
+      ]
+    },
+    {
+      "query": "When did James meet Samantha?",
+      "question_id": "locomo_6_qa41",
+      "clusters_found": [
+        "gec_098",
+        "gec_041",
+        "gec_043",
+        "gec_013",
+        "gec_078",
+        "gec_039",
+        "gec_040",
+        "gec_071",
+        "gec_058",
+        "gec_089",
+        "gec_068",
+        "gec_029",
+        "gec_059",
+        "gec_076",
+        "gec_001",
+        "gec_018",
+        "gec_099",
+        "gec_037",
+        "gec_090",
+        "gec_097",
+        "gec_042",
+        "gec_057",
+        "gec_077"
+      ],
+      "clusters_selected": [
+        "gec_068"
+      ],
+      "selection_reasoning": "The cluster gec_068 specifically mentions when James met Samantha—on August 9, 2022, during a beach outing where he met her and planned to call her the next day.",
+      "cluster_details": {
+        "gec_068": {
+          "topic": "James's new romantic interest in Samantha",
+          "summary": "On August 9, 2022, James took his three dogs to a beach outing where he enjoyed bonding with other dogkeepers and met a girl named Samantha, whose phone number he planned to call the next day to ask her out. John encouraged James, sharing in his excitement about the potential new romantic connection.",
+          "member_count": 1,
+          "members_returned": 1
+        }
+      },
+      "members_per_cluster": {
+        "gec_068": 1
+      },
+      "final_count": 11,
+      "truncated": false,
+      "evidence": [
+        "D19:12"
+      ],
+      "evidence_detail": {
+        "D19:12": [
+          "eba70b0e-f6d4-4bba-a544-5d3dec48d585",
+          "gec_068"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "eba70b0e-f6d4-4bba-a544-5d3dec48d585"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_068"
+      ],
+      "cluster_hit": true,
+      "memunit_hit": true,
+      "memunit_coverage": 1.0,
+      "selected_unit_ids": [
+        "eba70b0e-f6d4-4bba-a544-5d3dec48d585"
+      ]
+    },
+    {
+      "query": "When did James start taking cooking classes?",
+      "question_id": "locomo_6_qa50",
+      "clusters_found": [
+        "gec_041",
+        "gec_043",
+        "gec_024",
+        "gec_013",
+        "gec_083",
+        "gec_039",
+        "gec_040",
+        "gec_058",
+        "gec_107",
+        "gec_082",
+        "gec_002",
+        "gec_051",
+        "gec_055",
+        "gec_054",
+        "gec_016",
+        "gec_015",
+        "gec_056",
+        "gec_108",
+        "gec_059",
+        "gec_004",
+        "gec_052",
+        "gec_067",
+        "gec_001",
+        "gec_099",
+        "gec_006",
+        "gec_023",
+        "gec_084",
+        "gec_081",
+        "gec_003",
+        "gec_042",
+        "gec_057",
+        "gec_053"
+      ],
+      "clusters_selected": [
+        "gec_081"
+      ],
+      "selection_reasoning": "Cluster gec_081 specifically discusses James's recent decision to join a cooking class, including timing and details about his experience, directly answering when James started taking cooking classes.",
+      "cluster_details": {
+        "gec_081": {
+          "topic": "James's cooking class enrollment and experience",
+          "summary": "John and James discussed James’s recent decision to join a cooking class despite previously disliking cooking, where he successfully made an omelette and learned other dishes, with John expressing support and encouragement for James’s new hobby.",
+          "member_count": 1,
+          "members_returned": 1
+        }
+      },
+      "members_per_cluster": {
+        "gec_081": 1
+      },
+      "final_count": 11,
+      "truncated": false,
+      "evidence": [
+        "D23:13"
+      ],
+      "evidence_detail": {
+        "D23:13": [
+          "e2f0e836-4ba4-485f-b0e1-61093728e115",
+          "gec_081"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "e2f0e836-4ba4-485f-b0e1-61093728e115"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_081"
+      ],
+      "cluster_hit": true,
+      "memunit_hit": true,
+      "memunit_coverage": 1.0,
+      "selected_unit_ids": [
+        "e2f0e836-4ba4-485f-b0e1-61093728e115"
+      ]
+    },
+    {
+      "query": "When did John start working on his 2D Adventure mobile game?",
+      "question_id": "locomo_6_qa52",
+      "clusters_found": [
+        "gec_092",
+        "gec_005",
+        "gec_041",
+        "gec_043",
+        "gec_083",
+        "gec_058",
+        "gec_107",
+        "gec_082",
+        "gec_002",
+        "gec_089",
+        "gec_010",
+        "gec_047",
+        "gec_065",
+        "gec_017",
+        "gec_029",
+        "gec_108",
+        "gec_059",
+        "gec_004",
+        "gec_001",
+        "gec_018",
+        "gec_006",
+        "gec_090",
+        "gec_066",
+        "gec_084",
+        "gec_003",
+        "gec_042"
+      ],
+      "clusters_selected": [
+        "gec_001"
+      ],
+      "selection_reasoning": "Cluster gec_001 covers John's conversations about video game development with James, including discussions about game projects and development progress, which is the most likely source to contain information about when John started working on his 2D Adventure mobile game.",
+      "cluster_details": {
+        "gec_001": {
+          "topic": "John's conversation about James's video game mo...",
+          "summary": "John and James shared a deep passion for video games, discussing favorites like The Witcher 3 and Apex Legends, gaming as motivation and social connection, collaborative game development, and mutual support through challenges, reflecting a growing friendship centered on gaming and creativity.",
+          "member_count": 27,
+          "members_returned": 15
+        }
+      },
+      "members_per_cluster": {
+        "gec_001": 15
+      },
+      "final_count": 25,
+      "truncated": false,
+      "evidence": [
+        "D25:9"
+      ],
+      "evidence_detail": {
+        "D25:9": [
+          "b1083d43-99ec-494e-965c-c9cfbc34d144",
+          "gec_001"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "b1083d43-99ec-494e-965c-c9cfbc34d144"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_001"
+      ],
+      "cluster_hit": true,
+      "memunit_hit": false,
+      "memunit_coverage": 0.0,
+      "selected_unit_ids": [
+        "0887db84-70fd-4188-99df-fcba2411f4cd",
+        "4b718d31-1a91-4055-876d-3e84f3463edf",
+        "b94c022d-8289-49d4-8e6f-b93a1df70ab3",
+        "a3cc5f65-3f0f-4a82-bf6c-f4716ae691e0",
+        "e5bf6147-21b9-4565-bc7d-4ce34cb6cc95",
+        "614562da-0204-4f00-8fc2-3560f8d7f976",
+        "d5314ae0-8691-4008-a9ef-8217eed5d7ab",
+        "db562aa7-354e-4564-aa5f-b3244996fecf",
+        "a69d1a5d-2fcc-4601-9649-1c3319164148",
+        "d47b1c3b-1e85-47d3-b6e0-05b466869775",
+        "81dad942-6593-4811-9c9e-58b5d6a3889c",
+        "77db52af-a3ea-4739-b5d1-887e3f8e15f4",
+        "5b5ae990-66ea-46a7-a163-5b8a51f0c5ec",
+        "dfe54375-d2e8-4e20-932e-69c842341d14",
+        "ea93f0ba-1122-445e-a72a-3cacf8bad6de"
+      ]
+    }
+  ],
+  "summary": {
+    "total_questions": 6,
+    "cluster_hit_count": 4,
+    "cluster_hit_rate": 0.6666666666666666,
+    "memunit_hit_count": 3,
+    "memunit_hit_rate": 0.5,
+    "avg_memunit_coverage": 0.5
+  }
+}

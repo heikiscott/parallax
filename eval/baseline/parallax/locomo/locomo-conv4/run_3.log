@@ -1,0 +1,568 @@
+
+Loading configurations...
+  ✅ Loaded dataset config: locomo
+  ✅ Loaded system config: parallax
+
+Loading dataset: locomo
+  📂 Using eval/data/locomo/locomo10.json
+  ✅ Loaded 10 conversations, 1986 QA pairs
+
+Initializing components...
+INFO     Parallax Adapter initialized                                          
+INFO     LLM Model: gpt-4o-mini                                                
+INFO     Output Dir: D:\parallax\eval\results\locomo-conv4                     
+  ✅ Created adapter: Parallax
+  ✅ Created evaluator: LLMJudge
+  ✅ Created LLM provider: gpt-4o-mini
+  ✅ Created pipeline, output: D:\parallax\eval\results\locomo-conv4
+  📋 Filter categories: [5]
+
+============================================================
+🚀 Evaluation Pipeline
+============================================================
+Dataset: locomo
+System: Parallax
+Stages: all
+============================================================
+
+🔍 Selected conversation 4: locomo_4 (242 QA pairs)
+
+🔍 Filtered out 64 questions from categories: 5
+   Remaining questions: 178
+
+INFO     🔄 发现 checkpoint 文件: checkpoint_default.json                      
+INFO        上次运行时间: 2025-11-23T04:01:06.253516                           
+INFO        已完成阶段: evaluate, add, search                                  
+INFO        已处理对话数: 178                                                  
+
+⏭️  Skip Add stage (already completed)
+
+⏭️  Skip Search stage (already completed)
+INFO     Starting Stage 3: Answer                                              
+INFO                                                                           
+         ============================================================          
+INFO     Stage 3/4: Answer                                                     
+INFO     ============================================================          
+INFO     🆕 No answer checkpoint found, starting from scratch                  
+INFO     Total questions: 178                                                  
+
+💬 Answer Progress:   0%|          | 0/178 [00:00<?, ?qa/s]
+💬 Answer Progress:   1%|          | 1/178 [00:08<25:35,  8.68s/qa]
+💬 Answer Progress:   1%|          | 2/178 [00:08<10:57,  3.74s/qa]
+💬 Answer Progress:   2%|▏         | 3/178 [00:09<06:21,  2.18s/qa]
+💬 Answer Progress:   2%|▏         | 4/178 [00:09<03:59,  1.38s/qa]
+💬 Answer Progress:   3%|▎         | 5/178 [00:09<02:48,  1.03qa/s]
+💬 Answer Progress:   4%|▍         | 7/178 [00:09<01:32,  1.85qa/s]
+💬 Answer Progress:   4%|▍         | 8/178 [00:10<01:16,  2.23qa/s]
+💬 Answer Progress:   5%|▌         | 9/178 [00:10<01:10,  2.39qa/s]
+💬 Answer Progress:   6%|▌         | 10/178 [00:10<01:04,  2.61qa/s]
+💬 Answer Progress:   6%|▌         | 11/178 [00:10<00:52,  3.20qa/s]
+💬 Answer Progress:   7%|▋         | 12/178 [00:11<01:07,  2.46qa/s]
+💬 Answer Progress:   8%|▊         | 14/178 [00:11<00:42,  3.84qa/s]
+💬 Answer Progress:   8%|▊         | 15/178 [00:11<00:38,  4.23qa/s]
+💬 Answer Progress:  10%|▉         | 17/178 [00:12<00:29,  5.45qa/s]
+💬 Answer Progress:  10%|█         | 18/178 [00:12<00:39,  4.06qa/s]
+💬 Answer Progress:  11%|█         | 19/178 [00:12<00:46,  3.40qa/s]
+💬 Answer Progress:  11%|█         | 20/178 [00:13<00:39,  4.03qa/s]
+💬 Answer Progress:  12%|█▏        | 21/178 [00:13<00:34,  4.59qa/s]
+💬 Answer Progress:  12%|█▏        | 22/178 [00:13<00:29,  5.25qa/s]
+💬 Answer Progress:  13%|█▎        | 24/178 [00:13<00:23,  6.44qa/s]
+💬 Answer Progress:  14%|█▍        | 25/178 [00:14<00:44,  3.41qa/s]
+💬 Answer Progress:  15%|█▍        | 26/178 [00:14<00:40,  3.79qa/s]
+💬 Answer Progress:  16%|█▌        | 28/178 [00:14<00:26,  5.63qa/s]
+💬 Answer Progress:  17%|█▋        | 31/178 [00:14<00:20,  7.08qa/s]
+💬 Answer Progress:  19%|█▊        | 33/178 [00:15<00:32,  4.47qa/s]
+💬 Answer Progress:  20%|██        | 36/178 [00:16<00:26,  5.28qa/s]ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 16.11s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 0                                                          
+ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 16.13s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 0                                                          
+ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 16.07s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 0                                                          
+ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 16.14s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 0                                                          
+ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 16.08s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 0                                                          
+ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 16.09s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 0                                                          
+ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 16.09s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 0                                                          
+ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 16.10s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 0                                                          
+ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 16.10s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 0                                                          
+ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 16.12s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 0                                                          
+ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 16.12s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 0                                                          
+ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 16.12s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 0                                                          
+ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 16.18s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 0                                                          
+ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 16.18s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 0                                                          
+
+💬 Answer Progress:  21%|██        | 37/178 [00:21<02:21,  1.00s/qa]
+💬 Answer Progress:  21%|██▏       | 38/178 [00:22<02:34,  1.10s/qa]
+💬 Answer Progress:  22%|██▏       | 39/178 [00:23<02:15,  1.03qa/s]
+💬 Answer Progress:  22%|██▏       | 40/178 [00:23<01:51,  1.24qa/s]
+💬 Answer Progress:  23%|██▎       | 41/178 [00:23<01:29,  1.53qa/s]
+💬 Answer Progress:  24%|██▍       | 43/178 [00:24<01:02,  2.15qa/s]
+💬 Answer Progress:  25%|██▍       | 44/178 [00:24<00:53,  2.50qa/s]ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 16.11s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 0                                                          
+
+💬 Answer Progress:  25%|██▌       | 45/178 [00:24<00:54,  2.45qa/s]
+💬 Answer Progress:  26%|██▋       | 47/178 [00:25<00:37,  3.50qa/s]ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 16.15s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 0                                                          
+
+💬 Answer Progress:  28%|██▊       | 49/178 [00:25<00:29,  4.30qa/s]ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 16.11s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 0                                                          
+ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 16.14s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 0                                                          
+
+💬 Answer Progress:  29%|██▊       | 51/178 [00:27<00:57,  2.22qa/s]
+💬 Answer Progress:  29%|██▉       | 52/178 [00:27<00:53,  2.38qa/s]ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 16.12s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 0                                                          
+
+💬 Answer Progress:  30%|██▉       | 53/178 [00:27<00:49,  2.53qa/s]
+💬 Answer Progress:  30%|███       | 54/178 [00:27<00:41,  3.02qa/s]ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 16.15s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 0                                                          
+ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 16.16s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 0                                                          
+ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 16.12s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 0                                                          
+ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 16.12s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 0                                                          
+
+💬 Answer Progress:  31%|███▏      | 56/178 [00:29<01:06,  1.85qa/s]
+💬 Answer Progress:  32%|███▏      | 57/178 [00:29<00:53,  2.26qa/s]WARNING  [OpenAI-gpt-4o-mini] 耗时太长: 30.51s                                 
+
+💬 Answer Progress:  33%|███▎      | 58/178 [00:30<01:08,  1.76qa/s]ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 16.16s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 0                                                          
+ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 16.16s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 0                                                          
+ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 16.15s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 0                                                          
+
+💬 Answer Progress:  33%|███▎      | 59/178 [00:31<01:08,  1.75qa/s]
+💬 Answer Progress:  34%|███▎      | 60/178 [00:31<00:58,  2.02qa/s]ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 16.15s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 0                                                          
+ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 32.19s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 1                                                          
+ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 32.26s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 1                                                          
+ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 32.27s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 1                                                          
+ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 32.23s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 1                                                          
+ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 32.24s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 1                                                          
+ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 32.30s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 1                                                          
+ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 32.25s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 1                                                          
+ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 32.26s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 1                                                          
+ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 32.32s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 1                                                          
+ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 32.26s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 1                                                          
+ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 32.27s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 1                                                          
+ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 32.27s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 1                                                          
+ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 32.34s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 1                                                          
+
+💬 Answer Progress:  34%|███▍      | 61/178 [00:33<01:58,  1.01s/qa]
+💬 Answer Progress:  35%|███▍      | 62/178 [00:36<03:03,  1.58s/qa]
+💬 Answer Progress:  35%|███▌      | 63/178 [00:37<02:31,  1.32s/qa]
+💬 Answer Progress:  37%|███▋      | 65/178 [00:37<01:33,  1.20qa/s]
+💬 Answer Progress:  37%|███▋      | 66/178 [00:38<01:19,  1.41qa/s]ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 16.17s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 0                                                          
+
+💬 Answer Progress:  38%|███▊      | 68/178 [00:39<01:04,  1.71qa/s]ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 16.13s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 0                                                          
+
+💬 Answer Progress:  39%|███▉      | 69/178 [00:39<01:07,  1.61qa/s]ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 16.13s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 0                                                          
+
+💬 Answer Progress:  39%|███▉      | 70/178 [00:40<00:58,  1.85qa/s]
+💬 Answer Progress:  40%|███▉      | 71/178 [00:40<00:53,  1.99qa/s]ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 32.22s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 1                                                          
+ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 16.14s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 0                                                          
+
+💬 Answer Progress:  40%|████      | 72/178 [00:41<00:57,  1.85qa/s]ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 16.16s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 0                                                          
+ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 16.14s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 0                                                          
+ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 32.24s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 1                                                          
+ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 32.31s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 1                                                          
+
+💬 Answer Progress:  41%|████      | 73/178 [00:42<01:33,  1.13qa/s]
+💬 Answer Progress:  42%|████▏     | 74/178 [00:43<01:11,  1.46qa/s]ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 16.10s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 0                                                          
+ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 32.27s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 1                                                          
+ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 16.18s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 0                                                          
+WARNING  [OpenAI-gpt-4o-mini] 耗时太长: 30.87s                                 
+
+💬 Answer Progress:  42%|████▏     | 75/178 [00:44<01:18,  1.32qa/s]ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 32.34s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 1                                                          
+
+💬 Answer Progress:  43%|████▎     | 76/178 [00:44<00:58,  1.75qa/s]ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 32.34s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 1                                                          
+ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 32.25s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 1                                                          
+
+💬 Answer Progress:  43%|████▎     | 77/178 [00:45<01:08,  1.48qa/s]
+💬 Answer Progress:  44%|████▍     | 78/178 [00:46<01:16,  1.32qa/s]ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 32.31s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 1                                                          
+ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 32.31s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 1                                                          
+ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 32.32s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 1                                                          
+ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 16.12s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 0                                                          
+
+💬 Answer Progress:  44%|████▍     | 79/178 [00:47<01:48,  1.10s/qa]ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 48.33s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 2                                                          
+ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 48.38s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 2                                                          
+ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 48.37s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 2                                                          
+ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 48.38s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 2                                                          
+ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 48.40s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 2                                                          
+ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 48.39s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 2                                                          
+ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 48.40s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 2                                                          
+ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 48.41s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 2                                                          
+ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 48.41s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 2                                                          
+ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 48.48s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 2                                                          
+ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 48.43s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 2                                                          
+ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 48.48s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 2                                                          
+ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 48.51s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 2                                                          
+
+💬 Answer Progress:  45%|████▍     | 80/178 [00:49<01:57,  1.20s/qa]ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 16.16s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 0                                                          
+
+💬 Answer Progress:  46%|████▌     | 81/178 [00:50<02:05,  1.29s/qa]
+💬 Answer Progress:  46%|████▌     | 82/178 [00:53<02:33,  1.60s/qa]
+💬 Answer Progress:  47%|████▋     | 83/178 [00:53<02:03,  1.30s/qa]
+💬 Answer Progress:  48%|████▊     | 85/178 [00:54<01:08,  1.35qa/s]WARNING  [OpenAI-gpt-4o-mini] 耗时太长: 30.59s                                 
+
+💬 Answer Progress:  48%|████▊     | 86/178 [00:54<01:00,  1.52qa/s]ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 16.15s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 0                                                          
+ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 16.17s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 0                                                          
+ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 32.35s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 1                                                          
+ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 32.27s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 1                                                          
+ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 16.16s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 0                                                          
+
+💬 Answer Progress:  49%|████▉     | 87/178 [00:56<01:35,  1.05s/qa]ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 16.16s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 0                                                          
+ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 48.34s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 2                                                          
+WARNING  [OpenAI-gpt-4o-mini] 耗时太长: 31.66s                                 
+
+💬 Answer Progress:  49%|████▉     | 88/178 [00:57<01:19,  1.14qa/s]ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 16.14s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 0                                                          
+ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 32.31s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 1                                                          
+
+💬 Answer Progress:  50%|█████     | 89/178 [00:57<01:08,  1.29qa/s]ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 48.39s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 2                                                          
+ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 48.46s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 2                                                          
+
+💬 Answer Progress:  51%|█████     | 90/178 [00:57<00:59,  1.49qa/s]ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 16.13s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 0                                                          
+ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 16.13s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 0                                                          
+ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 32.23s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 1                                                          
+
+💬 Answer Progress:  51%|█████     | 91/178 [00:59<01:25,  1.02qa/s]ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 48.44s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 2                                                          
+ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 32.30s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 1                                                          
+ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 48.49s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 2                                                          
+ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 48.46s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 2                                                          
+ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 48.38s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 2                                                          
+WARNING  [OpenAI-gpt-4o-mini] 耗时太长: 46.98s                                 
+
+💬 Answer Progress:  52%|█████▏    | 92/178 [01:01<01:49,  1.27s/qa]ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 48.47s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 2                                                          
+ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 48.45s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 2                                                          
+
+💬 Answer Progress:  52%|█████▏    | 93/178 [01:03<01:54,  1.35s/qa]ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 32.26s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 1                                                          
+WARNING  [OpenAI-gpt-4o-mini] 耗时太长: 63.47s                                 
+
+💬 Answer Progress:  53%|█████▎    | 94/178 [01:03<01:27,  1.05s/qa]ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 64.46s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 3                                                          
+ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 64.51s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 3                                                          
+ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 64.51s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 3                                                          
+ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 64.52s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 3                                                          
+ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 64.53s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 3                                                          
+ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 64.59s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 3                                                          
+ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 64.54s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 3                                                          
+ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 64.55s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 3                                                          
+ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 64.57s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 3                                                          
+ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 64.63s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 3                                                          
+ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 64.57s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 3                                                          
+ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 64.66s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 3                                                          
+ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 16.12s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 0                                                          
+ERROR    aiohttp.ClientError: Server disconnected                              
+ERROR       ⏱️  耗时: 32.27s                                                    
+ERROR       💬 错误信息: Server disconnected                                   
+ERROR    retry_num: 1                                                          
+
+💬 Answer Progress:  53%|█████▎    | 95/178 [01:06<02:05,  1.52s/qa]

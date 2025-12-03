@@ -1,0 +1,235 @@
+2025-11-23 02:52:27,051 - eval.adapters.parallax_adapter - INFO - parallax_adapter.py:91 - Parallax Adapter initialized
+2025-11-23 02:52:27,052 - eval.adapters.parallax_adapter - INFO - parallax_adapter.py:92 - LLM Model: gpt-4o-mini
+2025-11-23 02:52:27,053 - eval.adapters.parallax_adapter - INFO - parallax_adapter.py:93 - Output Dir: D:\parallax\eval\results\locomo-conv4
+2025-11-23 02:52:27,116 - root - INFO - pipeline.py:179 - Starting Stage 1: Add
+2025-11-23 02:52:27,120 - evaluation - INFO - checkpoint.py:206 - 🔍 Checking for completed conversations in: D:\parallax\eval\results\locomo-conv4\memunits
+2025-11-23 02:52:27,125 - memory.memory_extractor.semantic_memory_extractor - INFO - semantic_memory_extractor.py:52 - 语义记忆提取器已初始化（联想预测模式）
+2025-11-23 02:52:27,125 - memory.memory_extractor.semantic_memory_extractor - INFO - semantic_memory_extractor.py:52 - 语义记忆提取器已初始化（联想预测模式）
+2025-11-23 02:53:05,412 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 02:53:05,414 - agents.vectorize_service - INFO - vectorize_service.py:176 - DeepInfra config source: DI bean 'deepinfra_config'
+2025-11-23 02:53:05,415 - agents.vectorize_service - INFO - vectorize_service.py:209 - Initialized DeepInfra Vectorize Service | model=Qwen/Qwen3-Embedding-4B | base_url=https://api.deepinfra.com/v1/openai
+2025-11-23 02:53:31,749 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 02:53:39,969 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 02:54:07,092 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 02:54:32,984 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 02:54:52,743 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 02:55:00,499 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 02:55:17,736 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 02:55:52,034 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 02:56:21,367 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 02:56:43,757 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 02:57:04,606 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 02:57:18,703 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 02:57:43,410 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 02:57:53,972 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 02:58:07,863 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 02:58:15,588 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 02:58:55,215 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 02:59:29,353 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 02:59:38,070 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 02:59:58,591 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 03:00:14,248 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 03:00:42,790 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 03:01:18,928 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 03:01:46,189 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 03:01:59,465 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 03:02:44,341 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 03:02:57,410 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 03:03:48,589 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 03:04:23,210 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 03:04:59,546 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 03:05:54,288 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 03:06:29,264 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 03:07:06,822 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 03:07:17,410 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 03:07:32,282 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 03:07:52,654 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 03:08:09,676 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 03:08:27,468 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 03:08:43,036 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 03:09:25,471 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 03:10:02,102 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 03:10:29,487 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 03:10:38,706 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 03:11:21,586 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 03:11:34,683 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 03:12:11,850 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 03:12:21,034 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 03:13:10,076 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 03:13:37,059 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 03:14:16,292 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 03:14:46,231 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 03:15:03,282 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 03:15:44,867 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 03:16:37,305 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 03:17:17,902 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 03:17:28,904 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 03:17:53,892 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 03:18:21,437 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 03:18:39,762 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 03:18:49,084 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 03:19:07,916 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 03:19:44,300 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 03:19:54,749 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 03:20:42,545 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 03:21:29,873 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 03:22:02,211 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 03:22:10,520 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 03:22:55,714 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 03:23:32,104 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 03:24:28,426 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 03:24:59,715 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 03:25:25,908 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 03:25:42,952 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 03:26:08,370 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 03:26:44,327 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 03:26:54,011 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 03:27:03,449 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 03:27:46,275 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 03:27:56,455 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 03:28:19,867 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 03:28:27,925 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 03:29:02,352 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 03:29:37,998 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 03:30:00,930 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 03:30:09,779 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 03:30:27,550 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 03:30:35,920 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 03:31:06,369 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 03:31:31,526 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 03:31:53,325 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 03:32:21,430 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 03:32:43,599 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 03:32:50,959 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 03:33:08,014 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 03:33:36,726 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 03:33:47,094 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 03:34:05,947 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 03:34:49,381 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 03:35:08,231 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 03:35:25,771 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 03:36:00,396 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 03:36:31,219 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 03:37:02,249 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 03:37:10,774 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 03:37:52,895 - memory.memunit_extractor.conv_memunit_extractor - INFO - conv_memunit_extractor.py:403 - ✅ 成功生成情景记忆并存储到 MemUnit 中
+2025-11-23 03:47:03,608 - root - INFO - add_stage.py:47 - ✅ Stage 1 completed
+2025-11-23 03:47:03,613 - evaluation - INFO - checkpoint.py:112 - 💾 Checkpoint 已保存: checkpoint_default.json
+2025-11-23 03:47:03,616 - root - INFO - pipeline.py:240 - Starting Stage 2: Search
+2025-11-23 03:47:03,618 - root - INFO - search_stage.py:40 - 
+============================================================
+2025-11-23 03:47:03,620 - root - INFO - search_stage.py:41 - Stage 2/4: Search
+2025-11-23 03:47:03,620 - root - INFO - search_stage.py:42 - ============================================================
+2025-11-23 03:47:03,622 - evaluation - INFO - checkpoint.py:252 - 🆕 No search checkpoint found, starting from scratch
+2025-11-23 03:47:03,623 - root - INFO - search_stage.py:61 - Total conversations: 1
+2025-11-23 03:47:03,624 - root - INFO - search_stage.py:62 - Total questions: 178
+2025-11-23 03:47:03,628 - root - INFO - search_stage.py:98 - Processing Conversation ID: locomo_4 (1/1) - 178 questions
+2025-11-23 03:47:11,215 - agents.rerank_service - INFO - rerank_service.py:132 - Initialized DeepInfra Rerank Service with model: Qwen/Qwen3-Reranker-4B
+2025-11-23 03:52:38,985 - evaluation - INFO - checkpoint.py:239 - 💾 Search checkpoint saved: 1 conversations
+2025-11-23 03:52:38,990 - evaluation - INFO - checkpoint.py:275 - 🗑️ Search checkpoint file removed (task completed)
+2025-11-23 03:52:38,990 - root - INFO - search_stage.py:141 - 
+============================================================
+2025-11-23 03:52:38,995 - root - INFO - search_stage.py:142 - 🎉 All conversations processed!
+2025-11-23 03:52:38,996 - root - INFO - search_stage.py:143 - ============================================================
+2025-11-23 03:52:38,997 - root - INFO - search_stage.py:144 - ✅ Search completed: 178 results
+
+2025-11-23 03:52:39,132 - root - INFO - pipeline.py:256 - ✅ Stage 2 completed
+2025-11-23 03:52:39,258 - evaluation - INFO - checkpoint.py:112 - 💾 Checkpoint 已保存: checkpoint_default.json
+2025-11-23 03:52:39,261 - root - INFO - pipeline.py:292 - Starting Stage 3: Answer
+2025-11-23 03:52:39,262 - root - INFO - answer_stage.py:76 - 
+============================================================
+2025-11-23 03:52:39,263 - root - INFO - answer_stage.py:77 - Stage 3/4: Answer
+2025-11-23 03:52:39,263 - root - INFO - answer_stage.py:78 - ============================================================
+2025-11-23 03:52:39,264 - evaluation - INFO - checkpoint.py:309 - 🆕 No answer checkpoint found, starting from scratch
+2025-11-23 03:52:39,265 - root - INFO - answer_stage.py:94 - Total questions: 178
+2025-11-23 04:00:12,404 - root - INFO - answer_stage.py:205 - Progress: 178/178 (100.0%) | Speed: 0.4 qa/s | Failed: 6 | ETA: 0.0 min
+2025-11-23 04:00:12,437 - evaluation - INFO - checkpoint.py:293 - 💾 Answer checkpoint saved: responses_checkpoint_178.json
+2025-11-23 04:00:12,438 - root - INFO - answer_stage.py:228 - 
+============================================================
+2025-11-23 04:00:12,438 - root - INFO - answer_stage.py:229 - ✅ All responses generated!
+2025-11-23 04:00:12,438 - root - INFO - answer_stage.py:230 -    - Total questions: 178
+2025-11-23 04:00:12,440 - root - INFO - answer_stage.py:231 -    - Successful: 172
+2025-11-23 04:00:12,440 - root - INFO - answer_stage.py:232 -    - Failed: 6
+2025-11-23 04:00:12,440 - root - INFO - answer_stage.py:233 -    - Success rate: 96.6%
+2025-11-23 04:00:12,440 - root - INFO - answer_stage.py:234 -    - Time elapsed: 7.6 minutes (453s)
+2025-11-23 04:00:12,442 - root - INFO - answer_stage.py:235 -    - Average speed: 0.4 qa/s
+2025-11-23 04:00:12,442 - root - INFO - answer_stage.py:236 - ============================================================
+
+2025-11-23 04:00:12,446 - evaluation - INFO - checkpoint.py:336 - 🗑️ Removed answer checkpoint: responses_checkpoint_178.json
+2025-11-23 04:00:12,478 - root - INFO - pipeline.py:307 - ✅ Stage 3 completed
+2025-11-23 04:00:12,599 - evaluation - INFO - checkpoint.py:112 - 💾 Checkpoint 已保存: checkpoint_default.json
+2025-11-23 04:00:12,601 - root - INFO - evaluate_stage.py:32 - Starting Stage 4: Evaluate
+2025-11-23 04:00:12,601 - eval.evaluators.llm_judge - INFO - llm_judge.py:57 - 
+============================================================
+2025-11-23 04:00:12,601 - eval.evaluators.llm_judge - INFO - llm_judge.py:58 - Evaluation: LLM Judge (model=gpt-4o-mini, runs=3)
+2025-11-23 04:00:12,606 - eval.evaluators.llm_judge - INFO - llm_judge.py:59 - ============================================================
+2025-11-23 04:01:06,237 - eval.evaluators.llm_judge - INFO - llm_judge.py:134 - 
+✅ 评估完成:
+2025-11-23 04:01:06,239 - eval.evaluators.llm_judge - INFO - llm_judge.py:135 -    - 总问题数: 178
+2025-11-23 04:01:06,241 - eval.evaluators.llm_judge - INFO - llm_judge.py:136 -    - 平均准确率: 0.8146 (81.46%)
+2025-11-23 04:01:06,242 - eval.evaluators.llm_judge - INFO - llm_judge.py:137 -    - 标准差: 0.0000
+2025-11-23 04:01:06,242 - eval.evaluators.llm_judge - INFO - llm_judge.py:138 -    - 各次 run 准确率: ['0.8146', '0.8146', '0.8146']
+2025-11-23 04:01:06,243 - eval.evaluators.llm_judge - INFO - llm_judge.py:141 - 
+📊 按 Category 统计:
+2025-11-23 04:01:06,244 - eval.evaluators.llm_judge - INFO - llm_judge.py:143 -    Category 1: 0.6774 ± 0.0000 (n=31)
+2025-11-23 04:01:06,244 - eval.evaluators.llm_judge - INFO - llm_judge.py:143 -    Category 2: 0.7308 ± 0.0000 (n=26)
+2025-11-23 04:01:06,245 - eval.evaluators.llm_judge - INFO - llm_judge.py:143 -    Category 3: 0.5000 ± 0.0000 (n=14)
+2025-11-23 04:01:06,246 - eval.evaluators.llm_judge - INFO - llm_judge.py:143 -    Category 4: 0.9159 ± 0.0000 (n=107)
+2025-11-23 04:01:06,247 - root - INFO - evaluate_stage.py:36 - ✅ Stage 4 completed
+2025-11-23 04:01:06,377 - evaluation - INFO - checkpoint.py:112 - 💾 Checkpoint 已保存: checkpoint_default.json
+2025-11-23 04:01:06,384 - root - INFO - pipeline.py:408 - Report saved to: D:\parallax\eval\results\locomo-conv4\report.txt
+2025-11-23 04:57:11,652 - eval.adapters.parallax_adapter - INFO - parallax_adapter.py:91 - Parallax Adapter initialized
+2025-11-23 04:57:11,652 - eval.adapters.parallax_adapter - INFO - parallax_adapter.py:92 - LLM Model: gpt-4o-mini
+2025-11-23 04:57:11,652 - eval.adapters.parallax_adapter - INFO - parallax_adapter.py:93 - Output Dir: D:\parallax\eval\results\locomo-conv4
+2025-11-23 04:57:11,808 - evaluation - INFO - checkpoint.py:57 - 🔄 发现 checkpoint 文件: checkpoint_default.json
+2025-11-23 04:57:11,808 - evaluation - INFO - checkpoint.py:58 -    上次运行时间: 2025-11-23T04:01:06.253516
+2025-11-23 04:57:11,809 - evaluation - INFO - checkpoint.py:59 -    已完成阶段: evaluate, answer, add, search
+2025-11-23 04:57:11,810 - evaluation - INFO - checkpoint.py:63 -    已处理对话数: 178
+2025-11-23 04:57:11,812 - root - INFO - pipeline.py:408 - Report saved to: D:\parallax\eval\results\locomo-conv4\report.txt
+2025-11-23 04:57:11,814 - agents.rerank_service - INFO - rerank_service.py:132 - Initialized DeepInfra Rerank Service with model: Qwen/Qwen3-Reranker-4B
+2025-11-23 04:59:00,499 - eval.adapters.parallax_adapter - INFO - parallax_adapter.py:91 - Parallax Adapter initialized
+2025-11-23 04:59:00,500 - eval.adapters.parallax_adapter - INFO - parallax_adapter.py:92 - LLM Model: gpt-4o-mini
+2025-11-23 04:59:00,501 - eval.adapters.parallax_adapter - INFO - parallax_adapter.py:93 - Output Dir: D:\parallax\eval\results\locomo-conv4
+2025-11-23 04:59:00,634 - evaluation - INFO - checkpoint.py:57 - 🔄 发现 checkpoint 文件: checkpoint_default.json
+2025-11-23 04:59:00,634 - evaluation - INFO - checkpoint.py:58 -    上次运行时间: 2025-11-23T04:01:06.253516
+2025-11-23 04:59:00,636 - evaluation - INFO - checkpoint.py:59 -    已完成阶段: evaluate, add, search
+2025-11-23 04:59:00,636 - evaluation - INFO - checkpoint.py:63 -    已处理对话数: 178
+2025-11-23 04:59:00,638 - root - INFO - pipeline.py:292 - Starting Stage 3: Answer
+2025-11-23 04:59:00,638 - root - INFO - answer_stage.py:76 - 
+============================================================
+2025-11-23 04:59:00,638 - root - INFO - answer_stage.py:77 - Stage 3/4: Answer
+2025-11-23 04:59:00,638 - root - INFO - answer_stage.py:78 - ============================================================
+2025-11-23 04:59:00,640 - evaluation - INFO - checkpoint.py:309 - 🆕 No answer checkpoint found, starting from scratch
+2025-11-23 04:59:00,640 - root - INFO - answer_stage.py:94 - Total questions: 178
+2025-11-23 04:59:49,349 - eval.adapters.parallax_adapter - INFO - parallax_adapter.py:91 - Parallax Adapter initialized
+2025-11-23 04:59:49,350 - eval.adapters.parallax_adapter - INFO - parallax_adapter.py:92 - LLM Model: gpt-4o-mini
+2025-11-23 04:59:49,350 - eval.adapters.parallax_adapter - INFO - parallax_adapter.py:93 - Output Dir: D:\parallax\eval\results\locomo-conv4
+2025-11-23 04:59:49,463 - evaluation - INFO - checkpoint.py:57 - 🔄 发现 checkpoint 文件: checkpoint_default.json
+2025-11-23 04:59:49,463 - evaluation - INFO - checkpoint.py:58 -    上次运行时间: 2025-11-23T04:01:06.253516
+2025-11-23 04:59:49,463 - evaluation - INFO - checkpoint.py:59 -    已完成阶段: evaluate, add, search
+2025-11-23 04:59:49,463 - evaluation - INFO - checkpoint.py:63 -    已处理对话数: 178
+2025-11-23 04:59:49,463 - root - INFO - pipeline.py:292 - Starting Stage 3: Answer
+2025-11-23 04:59:49,463 - root - INFO - answer_stage.py:76 - 
+============================================================
+2025-11-23 04:59:49,463 - root - INFO - answer_stage.py:77 - Stage 3/4: Answer
+2025-11-23 04:59:49,463 - root - INFO - answer_stage.py:78 - ============================================================
+2025-11-23 04:59:49,463 - evaluation - INFO - checkpoint.py:309 - 🆕 No answer checkpoint found, starting from scratch
+2025-11-23 04:59:49,463 - root - INFO - answer_stage.py:94 - Total questions: 178
+2025-11-23 05:28:10,714 - eval.adapters.parallax_adapter - INFO - parallax_adapter.py:91 - Parallax Adapter initialized
+2025-11-23 05:28:10,714 - eval.adapters.parallax_adapter - INFO - parallax_adapter.py:92 - LLM Model: gpt-4o-mini
+2025-11-23 05:28:10,714 - eval.adapters.parallax_adapter - INFO - parallax_adapter.py:93 - Output Dir: D:\parallax\eval\results\locomo-conv4
+2025-11-23 05:42:07,153 - eval.adapters.parallax_adapter - INFO - parallax_adapter.py:91 - Parallax Adapter initialized
+2025-11-23 05:42:07,153 - eval.adapters.parallax_adapter - INFO - parallax_adapter.py:92 - LLM Model: gpt-4o-mini
+2025-11-23 05:42:07,155 - eval.adapters.parallax_adapter - INFO - parallax_adapter.py:93 - Output Dir: D:\parallax\eval\results\locomo-conv4
+2025-11-23 05:44:05,581 - eval.adapters.parallax_adapter - INFO - parallax_adapter.py:91 - Parallax Adapter initialized
+2025-11-23 05:44:05,583 - eval.adapters.parallax_adapter - INFO - parallax_adapter.py:92 - LLM Model: gpt-4o-mini
+2025-11-23 05:44:05,583 - eval.adapters.parallax_adapter - INFO - parallax_adapter.py:93 - Output Dir: D:\parallax\eval\results\locomo-conv4
+2025-11-23 05:44:13,805 - eval.adapters.parallax_adapter - INFO - parallax_adapter.py:91 - Parallax Adapter initialized
+2025-11-23 05:44:13,805 - eval.adapters.parallax_adapter - INFO - parallax_adapter.py:92 - LLM Model: gpt-4o-mini
+2025-11-23 05:44:13,805 - eval.adapters.parallax_adapter - INFO - parallax_adapter.py:93 - Output Dir: D:\parallax\eval\results\locomo-conv4
+2025-11-23 05:44:33,926 - eval.adapters.parallax_adapter - INFO - parallax_adapter.py:91 - Parallax Adapter initialized
+2025-11-23 05:44:33,927 - eval.adapters.parallax_adapter - INFO - parallax_adapter.py:92 - LLM Model: gpt-4o-mini
+2025-11-23 05:44:33,927 - eval.adapters.parallax_adapter - INFO - parallax_adapter.py:93 - Output Dir: D:\parallax\eval\results\locomo-conv4
+2025-11-23 05:46:21,904 - eval.adapters.parallax_adapter - INFO - parallax_adapter.py:91 - Parallax Adapter initialized
+2025-11-23 05:46:21,904 - eval.adapters.parallax_adapter - INFO - parallax_adapter.py:92 - LLM Model: gpt-4o-mini
+2025-11-23 05:46:21,904 - eval.adapters.parallax_adapter - INFO - parallax_adapter.py:93 - Output Dir: D:\parallax\eval\results\locomo-conv4

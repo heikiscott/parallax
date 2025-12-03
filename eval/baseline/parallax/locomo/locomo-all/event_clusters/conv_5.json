@@ -1,0 +1,1165 @@
+{
+  "clusters": {
+    "gec_001": {
+      "cluster_id": "gec_001",
+      "topic": "Andrew's new Financial Analyst job update",
+      "summary": "On March 27, 2023, Audrey and Andrew engaged in a friendly conversation where Andrew shared that he had started a new job as a Financial Analyst the previous week, marking a significant career change. Audrey expressed happiness to see him and showed interest in his update.",
+      "members": [
+        {
+          "unit_id": "bce3dfed-eb7c-404e-8950-39e76b90a266",
+          "timestamp": "2023-03-27T13:10:30+08:00",
+          "summary": "On March 27, 2023, Audrey and Andrew engaged in a friendly conversation where Andrew shared that he had started a new job as a Financial Analyst the previous week, marking a significant career change. Audrey expressed happiness to see him and showed interest in his update."
+        },
+        {
+          "unit_id": "6ef2fc64-8d16-497d-b925-d6ecab9951c7",
+          "timestamp": "2023-03-27T13:16:00+08:00",
+          "summary": "On March 27, 2023, Audrey and Andrew engaged in a friendly conversation about Audrey’s three city dogs—Pepper, Precious, and Panda—and their frequent adventures in parks and trails, with Andrew expressing admiration and interest in pets despite not currently owning any."
+        }
+      ],
+      "first_timestamp": "2023-03-27T13:10:30+08:00",
+      "last_timestamp": "2023-03-27T13:16:00+08:00",
+      "created_at": "2025-12-03T17:19:31.202312",
+      "updated_at": "2025-12-03T17:19:35.618394"
+    },
+    "gec_002": {
+      "cluster_id": "gec_002",
+      "topic": "Audrey's city dogs and their adventures",
+      "summary": "They shared ongoing conversations about their deep bond with Audrey’s city dogs, exploring adventures, training, and outdoor activities. Over time, their discussions evolved to include dog care challenges, joint hikes, and mutual support, highlighting their shared love for pets and nature.",
+      "members": [
+        {
+          "unit_id": "6ef2fc64-8d16-497d-b925-d6ecab9951c7",
+          "timestamp": "2023-03-27T13:16:00+08:00",
+          "summary": "On March 27, 2023, Audrey and Andrew engaged in a friendly conversation about Audrey’s three city dogs—Pepper, Precious, and Panda—and their frequent adventures in parks and trails, with Andrew expressing admiration and interest in pets despite not currently owning any."
+        },
+        {
+          "unit_id": "3a55f88b-4521-4cb1-b3d4-70078ee44587",
+          "timestamp": "2023-04-02T14:54:30+08:00",
+          "summary": "On April 2, 2023, Audrey and Andrew discussed Audrey’s recent adoption of a puppy named Pixie, their experiences integrating dogs into the household, and the challenges of finding dog-friendly housing, while sharing enthusiasm for hiking and bonding with their dogs. The conversation was warm and supportive, highlighting their shared love for dogs and outdoor activities."
+        },
+        {
+          "unit_id": "06426019-6fa8-45d7-a336-43147ceb01f1",
+          "timestamp": "2023-04-16T16:31:30+08:00",
+          "summary": "Andrew and Audrey discussed their shared appreciation for nature and city life, bonding over Andrew's recent cafe visit and their mutual love for pastries and dogs, culminating in plans for a pastry party with Audrey's dogs."
+        },
+        {
+          "unit_id": "94e1cb63-9d78-4311-b325-5fb56de9fe33",
+          "timestamp": "2023-05-03T17:55:30+08:00",
+          "summary": "On May 3, 2023, Andrew and Audrey discussed Audrey’s dogs and their outdoor activities, focusing on their safety, socialization, and enjoyment during hikes and playdates at a local dog park. Audrey shared photos and emphasized her commitment to her dogs’ well-being, while Andrew expressed interest and appreciation for her care routines."
+        },
+        {
+          "unit_id": "cb2c43de-e26e-44b9-a56b-3462c28eee4b",
+          "timestamp": "2023-05-06T10:57:30+08:00",
+          "summary": "Audrey and Andrew discussed road trips with dogs, with Audrey sharing a recent trip to a national park and encouraging Andrew in his search for a dog companion, while both expressed excitement and support throughout their conversation."
+        },
+        {
+          "unit_id": "a0cbcccd-a74a-4486-a98d-f7a559010d27",
+          "timestamp": "2023-05-11T14:10:30+08:00",
+          "summary": "On May 11, 2023, Andrew and Audrey exchanged a friendly conversation about Andrew's recent hike and Audrey's enthusiasm for an upcoming positive reinforcement pet training workshop, discussing their shared interest in dog care and training."
+        },
+        {
+          "unit_id": "9fcd99f7-b1ea-46ec-ab46-eac532203065",
+          "timestamp": "2023-06-02T11:29:30+08:00",
+          "summary": "Audrey shared with Andrew her recent joyful outdoor experiences with her dogs, including an off-leash park visit and a memorable hiking trip at a national park featuring a stunning sunset, highlighting her deep connection to nature and her pets. Andrew responded with enthusiasm and appreciation, engaging in a heartfelt conversation about these special moments."
+        },
+        {
+          "unit_id": "301798ea-4ac9-421d-ad2a-bb38753ce6c5",
+          "timestamp": "2023-06-13T17:36:30+08:00",
+          "summary": "Andrew and Audrey discussed their shared love for outdoor activities and nature, with Andrew sharing his recent rock climbing experience and Audrey inviting him to join her and her dogs for a walk in a nearby park. They reflected on the joy and emotional benefits nature brings to both people and pets, strengthening their connection through these shared experiences."
+        },
+        {
+          "unit_id": "8d8c2855-a63d-4a5b-b4c9-0bb9fcfc2c8c",
+          "timestamp": "2023-06-26T13:58:00+08:00",
+          "summary": "On June 26, 2023, Audrey and Andrew discussed Audrey’s new home with a larger backyard and doggy play area, sharing their mutual love for dogs and exchanging recommendations for dog-friendly places. They expressed joy in seeing their pets happy and emphasized the importance of treating animals like family."
+        },
+        {
+          "unit_id": "2e3760f4-bd9a-4f48-96ab-87e39694c920",
+          "timestamp": "2023-06-26T13:59:00+08:00",
+          "summary": "On June 26, 2023, Audrey and Andrew engaged in a friendly conversation where Audrey expressed her disapproval of mistreating pets and shared that she was unpacking after moving to a new house, while Andrew highlighted the beauty of a local flower bed and inquired about her recent life events."
+        },
+        {
+          "unit_id": "296a921c-a41d-4e93-89f6-39274276a136",
+          "timestamp": "2023-07-03T20:37:00+08:00",
+          "summary": "On July 3, 2023, Audrey and Andrew reconnected, discussing Audrey’s challenging but rewarding dog training course and her dogs’ progress, while Andrew shared his difficulties finding dog-friendly rentals and missing nature trails. They exchanged photos and details about Audrey’s four mixed-breed dogs, highlighting their playful nature and close bond."
+        },
+        {
+          "unit_id": "19f4b8b6-7239-40bd-a62a-c35d116103ff",
+          "timestamp": "2023-07-08T10:06:30+08:00",
+          "summary": "Andrew and Audrey discussed their shared love for outdoor activities and dogs, exchanging photos and planning a future hike where their dogs could run freely while emphasizing safety. They also reflected on the beauty and peacefulness of nature, appreciating moments that bring joy and gratitude."
+        },
+        {
+          "unit_id": "3c31c50c-8e9a-44cf-9e90-eb944b544fc2",
+          "timestamp": "2023-07-11T10:13:00+08:00",
+          "summary": "On July 11, 2023, Andrew and Audrey discussed Andrew's new puppy Toby, shared their stress and love for hiking, and made plans for a joint hiking trip with their dogs the following month. They also exchanged photos and sentiments reflecting their care and affection for their pets."
+        },
+        {
+          "unit_id": "db1ba79e-8074-4773-b5c8-42e6eb10afb1",
+          "timestamp": "2023-07-27T15:59:30+08:00",
+          "summary": "On July 27, 2023, Andrew and Audrey shared personal stories and photos about their dogs, expressing mutual appreciation for the joy pets bring and discussing Andrew's rewarding experience volunteering at a pet shelter. They reflected on the special bonds pets create and the comfort and love they provide."
+        },
+        {
+          "unit_id": "44bc60c2-02ff-4739-9a3d-5c0f6bb1d5e2",
+          "timestamp": "2023-08-04T11:18:00+08:00",
+          "summary": "On August 4, 2023, Andrew and Audrey shared a conversation about their mutual love for nature, dogs, and outdoor activities, discussing their experiences with hiking, dog agility training, and the special bonds formed with their pets. They exchanged photos and advice, highlighting the joy and challenges of spending time outdoors with their dogs, particularly Andrew’s German Shepherd, Toby."
+        },
+        {
+          "unit_id": "44bc60c2-02ff-4739-9a3d-5c0f6bb1d5e2",
+          "timestamp": "2023-08-04T11:18:00+08:00",
+          "summary": "On August 4, 2023, Andrew and Audrey shared a conversation about their mutual love for nature, dogs, and outdoor activities, discussing their experiences with hiking, dog agility training, and the special bonds formed with their pets. They exchanged photos and advice, highlighting the joy and challenges of spending time outdoors with their dogs, particularly Andrew’s German Shepherd, Toby."
+        },
+        {
+          "unit_id": "aeecc317-0699-447e-b377-9ba74b6086ce",
+          "timestamp": "2023-08-16T22:07:00+08:00",
+          "summary": "Audrey and Andrew shared a warm conversation about their pets, with Audrey revealing a new tattoo of her four dogs and both exchanging photos and stories that highlighted the close bonds and joy their dogs bring to their lives. They discussed pet care, favorite resting spots, and cherished memories, emphasizing the deep companionship between them and their dogs."
+        },
+        {
+          "unit_id": "eba18699-48ba-4549-a1e7-8944d7f1233a",
+          "timestamp": "2023-08-19T21:28:00+08:00",
+          "summary": "On August 19, 2023, Audrey and Andrew discussed their weekend plans involving outdoor activities, with Audrey planning to walk her dogs in the park and Andrew preparing to visit a nature reserve, while sharing mutual enthusiasm for photography and nature."
+        },
+        {
+          "unit_id": "fabe7b07-baf3-43e1-924a-cd8caa60f86d",
+          "timestamp": "2023-08-24T00:34:00+08:00",
+          "summary": "Andrew and Audrey discussed their outdoor experiences and pet care routines, sharing photos and emotions about bonding with their dogs, while Audrey offered advice to help Andrew strengthen his relationship with his dog, Toby."
+        },
+        {
+          "unit_id": "f3f65168-4889-4610-aae1-7f25429dd227",
+          "timestamp": "2023-09-06T19:55:30+08:00",
+          "summary": "On September 6, 2023, Andrew and Audrey discussed self-care and Audrey's recent experiences with her dogs, including organizing a doggy playdate and purchasing cozy new beds that brought joy and comfort to her pets. Their conversation highlighted the emotional satisfaction derived from simple, caring actions toward oneself and animals."
+        },
+        {
+          "unit_id": "1ee54d5b-201c-4e5a-b4fb-f043f86e135a",
+          "timestamp": "2023-09-06T19:57:00+08:00",
+          "summary": "On September 6, 2023, Audrey and Andrew discussed their pets' comfort and outdoor activities, with Audrey sharing how their animals love a cozy spot and Andrew recounting a recent hiking trip and his plans to hike with his young dog, Toby, in the future."
+        },
+        {
+          "unit_id": "94fad91a-5195-4287-8445-0ef728bb7ef9",
+          "timestamp": "2023-09-24T17:59:30+08:00",
+          "summary": "Andrew and Audrey discussed Audrey’s recent experience with her dogs, including a broken leash incident and how she calms and bonds with them through patience, training, and frequent walks. They also shared photos and advice about building trust and the breeds of Audrey’s dogs."
+        },
+        {
+          "unit_id": "e8429c97-ae64-4438-ad53-3e428b6c2cde",
+          "timestamp": "2023-09-24T18:07:30+08:00",
+          "summary": "On September 24, 2023, Audrey and Andrew shared a conversation expressing their mutual appreciation for pets and gardening, exchanging photos and discussing how these activities bring them joy and fulfillment. They highlighted the strong bond Audrey has with her dogs and the relaxing, rewarding nature of caring for plants."
+        },
+        {
+          "unit_id": "c7817823-b083-4854-8f78-4100f8dd1ebe",
+          "timestamp": "2023-10-04T16:26:30+08:00",
+          "summary": "Andrew and Audrey reconnected after some time, discussing Audrey's recent beach outing with her dogs and Andrew's longing for nature despite urban challenges, with Audrey offering supportive advice on bringing nature indoors."
+        },
+        {
+          "unit_id": "5d66eba0-3be3-466d-9234-36b7ce62f7c9",
+          "timestamp": "2023-10-06T21:42:00+08:00",
+          "summary": "On October 6, 2023, Audrey shared with Andrew a photo of her dogs running happily after recovering from a knee injury that had prevented her from walking them, highlighting the emotional joy and appreciation they both felt for the simple pleasures dogs bring to life."
+        },
+        {
+          "unit_id": "6f5eb552-0dc1-4a05-b10a-a5e8ac6aad8b",
+          "timestamp": "2023-10-13T16:32:30+08:00",
+          "summary": "On October 13, 2023, Andrew and Audrey exchanged photos and stories about their dogs, favorite local spots, and shared experiences with board games and outdoor activities, highlighting the joy their pets bring to their lives. They also discussed Audrey's dog-themed tattoo and their mutual appreciation for nature and dog-friendly places."
+        },
+        {
+          "unit_id": "091aa0c6-f949-4cc0-8b5d-0b3ce421ccec",
+          "timestamp": "2023-10-13T16:35:30+08:00",
+          "summary": "On October 13, 2023, Audrey and Andrew shared a brief conversation appreciating the joy and therapeutic benefits of spending time outdoors with animals, expressing mutual encouragement for future hiking adventures with pets."
+        },
+        {
+          "unit_id": "c5ed017a-9f9d-4001-b62e-9f8a873f2092",
+          "timestamp": "2023-10-19T18:22:30+08:00",
+          "summary": "Audrey and Andrew shared a conversation about their love for dogs and hiking, exchanging photos and stories about their pets while planning a future hiking trip together with their dogs. They expressed excitement and collaborated on finding the perfect outdoor location for their upcoming adventure."
+        },
+        {
+          "unit_id": "7be55e4f-7a86-4e7d-96d1-668f441996f3",
+          "timestamp": "2023-10-28T14:59:00+08:00",
+          "summary": "On October 28, 2023, Audrey and Andrew planned a dog-friendly hiking trip for the upcoming Saturday, sharing photos and expressing excitement about spending time outdoors with their dogs while hoping for the recovery of Audrey’s unwell pets. Their conversation highlighted mutual care for their dogs and enthusiasm for nature and friendship."
+        },
+        {
+          "unit_id": "95deabfc-bf1c-429b-b58b-54177ff8b1b8",
+          "timestamp": "2023-11-04T20:07:30+08:00",
+          "summary": "On November 4, 2023, Andrew and Audrey discussed their recent outdoor activities with dogs, exchanging advice on managing multiple pets, socialization, and mental stimulation while sharing photos and offering mutual support for responsible dog ownership in an urban environment."
+        }
+      ],
+      "first_timestamp": "2023-03-27T13:16:00+08:00",
+      "last_timestamp": "2023-11-04T20:07:30+08:00",
+      "created_at": "2025-12-03T17:19:35.618394",
+      "updated_at": "2025-12-03T17:23:29.179137"
+    },
+    "gec_003": {
+      "cluster_id": "gec_003",
+      "topic": "Audrey and Andrew's shared enthusiasm for birds and birdwatching",
+      "summary": "Audrey and Andrew consistently shared a deep enthusiasm for birds, hiking, and nature, bonding over outdoor activities, their dogs, and the tranquility these experiences bring. Their connection grew through shared plans and reflections on nature’s joy and peace.",
+      "members": [
+        {
+          "unit_id": "800ba673-c233-4d45-a757-6d3bac09c729",
+          "timestamp": "2023-03-27T13:21:30+08:00",
+          "summary": "On March 27, 2023, Audrey and Andrew discussed their shared enthusiasm for birds and hiking, with Andrew recommending the Fox Hollow trail, which Audrey planned to try. They expressed mutual appreciation for nature, particularly eagles, and exchanged positive wishes."
+        },
+        {
+          "unit_id": "06426019-6fa8-45d7-a336-43147ceb01f1",
+          "timestamp": "2023-04-16T16:31:30+08:00",
+          "summary": "Andrew and Audrey discussed their shared appreciation for nature and city life, bonding over Andrew's recent cafe visit and their mutual love for pastries and dogs, culminating in plans for a pastry party with Audrey's dogs."
+        },
+        {
+          "unit_id": "b4695f31-e89b-4233-9ee5-885284aa0b23",
+          "timestamp": "2023-05-03T17:47:30+08:00",
+          "summary": "Andrew and Audrey shared a conversation appreciating nature and hiking, highlighting Andrew’s new weekend hiking routine as a source of peace and their mutual belief in spreading tranquility through sharing outdoor experiences."
+        },
+        {
+          "unit_id": "301798ea-4ac9-421d-ad2a-bb38753ce6c5",
+          "timestamp": "2023-06-13T17:36:30+08:00",
+          "summary": "Andrew and Audrey discussed their shared love for outdoor activities and nature, with Andrew sharing his recent rock climbing experience and Audrey inviting him to join her and her dogs for a walk in a nearby park. They reflected on the joy and emotional benefits nature brings to both people and pets, strengthening their connection through these shared experiences."
+        },
+        {
+          "unit_id": "19f4b8b6-7239-40bd-a62a-c35d116103ff",
+          "timestamp": "2023-07-08T10:06:30+08:00",
+          "summary": "Andrew and Audrey discussed their shared love for outdoor activities and dogs, exchanging photos and planning a future hike where their dogs could run freely while emphasizing safety. They also reflected on the beauty and peacefulness of nature, appreciating moments that bring joy and gratitude."
+        },
+        {
+          "unit_id": "3e2a327c-f8a4-4302-93a7-849dce6dd96d",
+          "timestamp": "2023-10-04T16:18:00+08:00",
+          "summary": "Andrew and Audrey reconnected to share their mutual love for nature, discussing upcoming plans for a beach trip, a hike with their dogs, birdwatching, and biking while emphasizing environmental responsibility and personal well-being. Their conversation reflected excitement, appreciation for nature, and intentions to engage in outdoor activities together."
+        },
+        {
+          "unit_id": "c7817823-b083-4854-8f78-4100f8dd1ebe",
+          "timestamp": "2023-10-04T16:26:30+08:00",
+          "summary": "Andrew and Audrey reconnected after some time, discussing Audrey's recent beach outing with her dogs and Andrew's longing for nature despite urban challenges, with Audrey offering supportive advice on bringing nature indoors."
+        },
+        {
+          "unit_id": "091aa0c6-f949-4cc0-8b5d-0b3ce421ccec",
+          "timestamp": "2023-10-13T16:35:30+08:00",
+          "summary": "On October 13, 2023, Audrey and Andrew shared a brief conversation appreciating the joy and therapeutic benefits of spending time outdoors with animals, expressing mutual encouragement for future hiking adventures with pets."
+        }
+      ],
+      "first_timestamp": "2023-03-27T13:21:30+08:00",
+      "last_timestamp": "2023-10-13T16:35:30+08:00",
+      "created_at": "2025-12-03T17:19:39.963029",
+      "updated_at": "2025-12-03T17:22:54.713684"
+    },
+    "gec_004": {
+      "cluster_id": "gec_004",
+      "topic": "Audrey and Andrew's hiking and trail recommendations",
+      "summary": "Audrey and Andrew shared a deep passion for hiking, nature, and dogs, exchanging trail recommendations, pet care tips, and outdoor experiences. Over time, their bond grew through planning joint hikes, discussing pet training, and supporting each other’s love for peaceful, nature-filled moments.",
+      "members": [
+        {
+          "unit_id": "800ba673-c233-4d45-a757-6d3bac09c729",
+          "timestamp": "2023-03-27T13:21:30+08:00",
+          "summary": "On March 27, 2023, Audrey and Andrew discussed their shared enthusiasm for birds and hiking, with Andrew recommending the Fox Hollow trail, which Audrey planned to try. They expressed mutual appreciation for nature, particularly eagles, and exchanged positive wishes."
+        },
+        {
+          "unit_id": "3a55f88b-4521-4cb1-b3d4-70078ee44587",
+          "timestamp": "2023-04-02T14:54:30+08:00",
+          "summary": "On April 2, 2023, Audrey and Andrew discussed Audrey’s recent adoption of a puppy named Pixie, their experiences integrating dogs into the household, and the challenges of finding dog-friendly housing, while sharing enthusiasm for hiking and bonding with their dogs. The conversation was warm and supportive, highlighting their shared love for dogs and outdoor activities."
+        },
+        {
+          "unit_id": "b4695f31-e89b-4233-9ee5-885284aa0b23",
+          "timestamp": "2023-05-03T17:47:30+08:00",
+          "summary": "Andrew and Audrey shared a conversation appreciating nature and hiking, highlighting Andrew’s new weekend hiking routine as a source of peace and their mutual belief in spreading tranquility through sharing outdoor experiences."
+        },
+        {
+          "unit_id": "a0cbcccd-a74a-4486-a98d-f7a559010d27",
+          "timestamp": "2023-05-11T14:10:30+08:00",
+          "summary": "On May 11, 2023, Andrew and Audrey exchanged a friendly conversation about Andrew's recent hike and Audrey's enthusiasm for an upcoming positive reinforcement pet training workshop, discussing their shared interest in dog care and training."
+        },
+        {
+          "unit_id": "9fcd99f7-b1ea-46ec-ab46-eac532203065",
+          "timestamp": "2023-06-02T11:29:30+08:00",
+          "summary": "Audrey shared with Andrew her recent joyful outdoor experiences with her dogs, including an off-leash park visit and a memorable hiking trip at a national park featuring a stunning sunset, highlighting her deep connection to nature and her pets. Andrew responded with enthusiasm and appreciation, engaging in a heartfelt conversation about these special moments."
+        },
+        {
+          "unit_id": "3373b7c4-74ef-4ed3-b5cc-e4383d55ebdf",
+          "timestamp": "2023-06-02T11:33:00+08:00",
+          "summary": "Andrew and Audrey discussed a beautiful sunset and Andrew's challenging search for a pet-friendly living space in the city, with Audrey offering support and assistance to help him find the right place for his future dog."
+        },
+        {
+          "unit_id": "68e775d9-596e-4901-bce9-238a144be0ce",
+          "timestamp": "2023-06-26T14:04:00+08:00",
+          "summary": "On June 26, 2023, Andrew and Audrey shared and reflected on their recent and past hiking experiences, expressing a mutual appreciation for nature’s calming and restorative effects through personal stories and images. They discussed the emotional connection to the outdoors and encouraged each other to continue valuing and exploring such peaceful moments."
+        },
+        {
+          "unit_id": "19f4b8b6-7239-40bd-a62a-c35d116103ff",
+          "timestamp": "2023-07-08T10:06:30+08:00",
+          "summary": "Andrew and Audrey discussed their shared love for outdoor activities and dogs, exchanging photos and planning a future hike where their dogs could run freely while emphasizing safety. They also reflected on the beauty and peacefulness of nature, appreciating moments that bring joy and gratitude."
+        },
+        {
+          "unit_id": "3c31c50c-8e9a-44cf-9e90-eb944b544fc2",
+          "timestamp": "2023-07-11T10:13:00+08:00",
+          "summary": "On July 11, 2023, Andrew and Audrey discussed Andrew's new puppy Toby, shared their stress and love for hiking, and made plans for a joint hiking trip with their dogs the following month. They also exchanged photos and sentiments reflecting their care and affection for their pets."
+        },
+        {
+          "unit_id": "44bc60c2-02ff-4739-9a3d-5c0f6bb1d5e2",
+          "timestamp": "2023-08-04T11:18:00+08:00",
+          "summary": "On August 4, 2023, Andrew and Audrey shared a conversation about their mutual love for nature, dogs, and outdoor activities, discussing their experiences with hiking, dog agility training, and the special bonds formed with their pets. They exchanged photos and advice, highlighting the joy and challenges of spending time outdoors with their dogs, particularly Andrew’s German Shepherd, Toby."
+        },
+        {
+          "unit_id": "44bc60c2-02ff-4739-9a3d-5c0f6bb1d5e2",
+          "timestamp": "2023-08-04T11:18:00+08:00",
+          "summary": "On August 4, 2023, Andrew and Audrey shared a conversation about their mutual love for nature, dogs, and outdoor activities, discussing their experiences with hiking, dog agility training, and the special bonds formed with their pets. They exchanged photos and advice, highlighting the joy and challenges of spending time outdoors with their dogs, particularly Andrew’s German Shepherd, Toby."
+        },
+        {
+          "unit_id": "eba18699-48ba-4549-a1e7-8944d7f1233a",
+          "timestamp": "2023-08-19T21:28:00+08:00",
+          "summary": "On August 19, 2023, Audrey and Andrew discussed their weekend plans involving outdoor activities, with Audrey planning to walk her dogs in the park and Andrew preparing to visit a nature reserve, while sharing mutual enthusiasm for photography and nature."
+        },
+        {
+          "unit_id": "1ee54d5b-201c-4e5a-b4fb-f043f86e135a",
+          "timestamp": "2023-09-06T19:57:00+08:00",
+          "summary": "On September 6, 2023, Audrey and Andrew discussed their pets' comfort and outdoor activities, with Audrey sharing how their animals love a cozy spot and Andrew recounting a recent hiking trip and his plans to hike with his young dog, Toby, in the future."
+        },
+        {
+          "unit_id": "3e2a327c-f8a4-4302-93a7-849dce6dd96d",
+          "timestamp": "2023-10-04T16:18:00+08:00",
+          "summary": "Andrew and Audrey reconnected to share their mutual love for nature, discussing upcoming plans for a beach trip, a hike with their dogs, birdwatching, and biking while emphasizing environmental responsibility and personal well-being. Their conversation reflected excitement, appreciation for nature, and intentions to engage in outdoor activities together."
+        },
+        {
+          "unit_id": "c7817823-b083-4854-8f78-4100f8dd1ebe",
+          "timestamp": "2023-10-04T16:26:30+08:00",
+          "summary": "Andrew and Audrey reconnected after some time, discussing Audrey's recent beach outing with her dogs and Andrew's longing for nature despite urban challenges, with Audrey offering supportive advice on bringing nature indoors."
+        },
+        {
+          "unit_id": "091aa0c6-f949-4cc0-8b5d-0b3ce421ccec",
+          "timestamp": "2023-10-13T16:35:30+08:00",
+          "summary": "On October 13, 2023, Audrey and Andrew shared a brief conversation appreciating the joy and therapeutic benefits of spending time outdoors with animals, expressing mutual encouragement for future hiking adventures with pets."
+        },
+        {
+          "unit_id": "c5ed017a-9f9d-4001-b62e-9f8a873f2092",
+          "timestamp": "2023-10-19T18:22:30+08:00",
+          "summary": "Audrey and Andrew shared a conversation about their love for dogs and hiking, exchanging photos and stories about their pets while planning a future hiking trip together with their dogs. They expressed excitement and collaborated on finding the perfect outdoor location for their upcoming adventure."
+        },
+        {
+          "unit_id": "7be55e4f-7a86-4e7d-96d1-668f441996f3",
+          "timestamp": "2023-10-28T14:59:00+08:00",
+          "summary": "On October 28, 2023, Audrey and Andrew planned a dog-friendly hiking trip for the upcoming Saturday, sharing photos and expressing excitement about spending time outdoors with their dogs while hoping for the recovery of Audrey’s unwell pets. Their conversation highlighted mutual care for their dogs and enthusiasm for nature and friendship."
+        },
+        {
+          "unit_id": "95deabfc-bf1c-429b-b58b-54177ff8b1b8",
+          "timestamp": "2023-11-04T20:07:30+08:00",
+          "summary": "On November 4, 2023, Andrew and Audrey discussed their recent outdoor activities with dogs, exchanging advice on managing multiple pets, socialization, and mental stimulation while sharing photos and offering mutual support for responsible dog ownership in an urban environment."
+        }
+      ],
+      "first_timestamp": "2023-03-27T13:21:30+08:00",
+      "last_timestamp": "2023-11-04T20:07:30+08:00",
+      "created_at": "2025-12-03T17:19:39.965957",
+      "updated_at": "2025-12-03T17:23:27.129084"
+    },
+    "gec_005": {
+      "cluster_id": "gec_005",
+      "topic": "Audrey's recent puppy adoption and integration experiences",
+      "summary": "They discussed Audrey’s journey adopting and training multiple dogs, the challenges of finding dog-friendly housing, and their shared passion for hiking and outdoor activities with their pets. Over time, their bond deepened through exchanging experiences, photos, and plans for joint hikes.",
+      "members": [
+        {
+          "unit_id": "3a55f88b-4521-4cb1-b3d4-70078ee44587",
+          "timestamp": "2023-04-02T14:54:30+08:00",
+          "summary": "On April 2, 2023, Audrey and Andrew discussed Audrey’s recent adoption of a puppy named Pixie, their experiences integrating dogs into the household, and the challenges of finding dog-friendly housing, while sharing enthusiasm for hiking and bonding with their dogs. The conversation was warm and supportive, highlighting their shared love for dogs and outdoor activities."
+        },
+        {
+          "unit_id": "296a921c-a41d-4e93-89f6-39274276a136",
+          "timestamp": "2023-07-03T20:37:00+08:00",
+          "summary": "On July 3, 2023, Audrey and Andrew reconnected, discussing Audrey’s challenging but rewarding dog training course and her dogs’ progress, while Andrew shared his difficulties finding dog-friendly rentals and missing nature trails. They exchanged photos and details about Audrey’s four mixed-breed dogs, highlighting their playful nature and close bond."
+        },
+        {
+          "unit_id": "3c31c50c-8e9a-44cf-9e90-eb944b544fc2",
+          "timestamp": "2023-07-11T10:13:00+08:00",
+          "summary": "On July 11, 2023, Andrew and Audrey discussed Andrew's new puppy Toby, shared their stress and love for hiking, and made plans for a joint hiking trip with their dogs the following month. They also exchanged photos and sentiments reflecting their care and affection for their pets."
+        },
+        {
+          "unit_id": "44bc60c2-02ff-4739-9a3d-5c0f6bb1d5e2",
+          "timestamp": "2023-08-04T11:18:00+08:00",
+          "summary": "On August 4, 2023, Andrew and Audrey shared a conversation about their mutual love for nature, dogs, and outdoor activities, discussing their experiences with hiking, dog agility training, and the special bonds formed with their pets. They exchanged photos and advice, highlighting the joy and challenges of spending time outdoors with their dogs, particularly Andrew’s German Shepherd, Toby."
+        },
+        {
+          "unit_id": "44bc60c2-02ff-4739-9a3d-5c0f6bb1d5e2",
+          "timestamp": "2023-08-04T11:18:00+08:00",
+          "summary": "On August 4, 2023, Andrew and Audrey shared a conversation about their mutual love for nature, dogs, and outdoor activities, discussing their experiences with hiking, dog agility training, and the special bonds formed with their pets. They exchanged photos and advice, highlighting the joy and challenges of spending time outdoors with their dogs, particularly Andrew’s German Shepherd, Toby."
+        },
+        {
+          "unit_id": "c5ed017a-9f9d-4001-b62e-9f8a873f2092",
+          "timestamp": "2023-10-19T18:22:30+08:00",
+          "summary": "Audrey and Andrew shared a conversation about their love for dogs and hiking, exchanging photos and stories about their pets while planning a future hiking trip together with their dogs. They expressed excitement and collaborated on finding the perfect outdoor location for their upcoming adventure."
+        }
+      ],
+      "first_timestamp": "2023-04-02T14:54:30+08:00",
+      "last_timestamp": "2023-10-19T18:22:30+08:00",
+      "created_at": "2025-12-03T17:19:46.304169",
+      "updated_at": "2025-12-03T17:23:01.303572"
+    },
+    "gec_006": {
+      "cluster_id": "gec_006",
+      "topic": "Challenges of finding dog-friendly housing",
+      "summary": "On April 2, 2023, Audrey and Andrew discussed Audrey’s recent adoption of a puppy named Pixie, their experiences integrating dogs into the household, and the challenges of finding dog-friendly housing, while sharing enthusiasm for hiking and bonding with their dogs. The conversation was warm and supportive, highlighting their shared love for dogs and outdoor activities.",
+      "members": [
+        {
+          "unit_id": "3a55f88b-4521-4cb1-b3d4-70078ee44587",
+          "timestamp": "2023-04-02T14:54:30+08:00",
+          "summary": "On April 2, 2023, Audrey and Andrew discussed Audrey’s recent adoption of a puppy named Pixie, their experiences integrating dogs into the household, and the challenges of finding dog-friendly housing, while sharing enthusiasm for hiking and bonding with their dogs. The conversation was warm and supportive, highlighting their shared love for dogs and outdoor activities."
+        },
+        {
+          "unit_id": "296a921c-a41d-4e93-89f6-39274276a136",
+          "timestamp": "2023-07-03T20:37:00+08:00",
+          "summary": "On July 3, 2023, Audrey and Andrew reconnected, discussing Audrey’s challenging but rewarding dog training course and her dogs’ progress, while Andrew shared his difficulties finding dog-friendly rentals and missing nature trails. They exchanged photos and details about Audrey’s four mixed-breed dogs, highlighting their playful nature and close bond."
+        }
+      ],
+      "first_timestamp": "2023-04-02T14:54:30+08:00",
+      "last_timestamp": "2023-07-03T20:37:00+08:00",
+      "created_at": "2025-12-03T17:19:46.306435",
+      "updated_at": "2025-12-03T17:20:59.237266"
+    },
+    "gec_007": {
+      "cluster_id": "gec_007",
+      "topic": "Andrew's recent cafe visit experience",
+      "summary": "Andrew and Audrey discussed their shared appreciation for nature and city life, bonding over Andrew's recent cafe visit and their mutual love for pastries and dogs, culminating in plans for a pastry party with Audrey's dogs.",
+      "members": [
+        {
+          "unit_id": "06426019-6fa8-45d7-a336-43147ceb01f1",
+          "timestamp": "2023-04-16T16:31:30+08:00",
+          "summary": "Andrew and Audrey discussed their shared appreciation for nature and city life, bonding over Andrew's recent cafe visit and their mutual love for pastries and dogs, culminating in plans for a pastry party with Audrey's dogs."
+        },
+        {
+          "unit_id": "ea9b9630-afb0-4eab-bd58-69b7bb8cef2c",
+          "timestamp": "2023-08-19T21:19:00+08:00",
+          "summary": "On August 19, 2023, Andrew shared a photo of a serene mountain sunset with Audrey, describing his refreshing break from work to visit a new cafe and reconnecting by asking about her month, while Audrey had recently expressed gratitude for life’s cherished moments. The exchange emphasized Andrew’s focus on rest and nature for mental well-being and his intent to engage meaningfully with Audrey."
+        }
+      ],
+      "first_timestamp": "2023-04-16T16:31:30+08:00",
+      "last_timestamp": "2023-08-19T21:19:00+08:00",
+      "created_at": "2025-12-03T17:19:51.403834",
+      "updated_at": "2025-12-03T17:21:36.734680"
+    },
+    "gec_008": {
+      "cluster_id": "gec_008",
+      "topic": "Plans for a pastry party with Audrey's dogs",
+      "summary": "Andrew and Audrey discussed their shared appreciation for nature and city life, bonding over Andrew's recent cafe visit and their mutual love for pastries and dogs, culminating in plans for a pastry party with Audrey's dogs.",
+      "members": [
+        {
+          "unit_id": "06426019-6fa8-45d7-a336-43147ceb01f1",
+          "timestamp": "2023-04-16T16:31:30+08:00",
+          "summary": "Andrew and Audrey discussed their shared appreciation for nature and city life, bonding over Andrew's recent cafe visit and their mutual love for pastries and dogs, culminating in plans for a pastry party with Audrey's dogs."
+        }
+      ],
+      "first_timestamp": "2023-04-16T16:31:30+08:00",
+      "last_timestamp": "2023-04-16T16:31:30+08:00",
+      "created_at": "2025-12-03T17:19:51.406206",
+      "updated_at": "2025-12-03T17:19:51.406206"
+    },
+    "gec_009": {
+      "cluster_id": "gec_009",
+      "topic": "Audrey's tattoos and their personal meanings",
+      "summary": "On April 16, 2023, Audrey and Andrew discussed Audrey's tattoos, with Audrey explaining that her tattoo of a dog and sunflowers symbolized her deep love for her dogs and nature, while Andrew expressed admiration and support for her meaningful body art.",
+      "members": [
+        {
+          "unit_id": "824be99b-46c1-46a3-9077-d4e4d672f75f",
+          "timestamp": "2023-04-16T16:34:00+08:00",
+          "summary": "On April 16, 2023, Audrey and Andrew discussed Audrey's tattoos, with Audrey explaining that her tattoo of a dog and sunflowers symbolized her deep love for her dogs and nature, while Andrew expressed admiration and support for her meaningful body art."
+        },
+        {
+          "unit_id": "aeecc317-0699-447e-b377-9ba74b6086ce",
+          "timestamp": "2023-08-16T22:07:00+08:00",
+          "summary": "Audrey and Andrew shared a warm conversation about their pets, with Audrey revealing a new tattoo of her four dogs and both exchanging photos and stories that highlighted the close bonds and joy their dogs bring to their lives. They discussed pet care, favorite resting spots, and cherished memories, emphasizing the deep companionship between them and their dogs."
+        },
+        {
+          "unit_id": "6f5eb552-0dc1-4a05-b10a-a5e8ac6aad8b",
+          "timestamp": "2023-10-13T16:32:30+08:00",
+          "summary": "On October 13, 2023, Andrew and Audrey exchanged photos and stories about their dogs, favorite local spots, and shared experiences with board games and outdoor activities, highlighting the joy their pets bring to their lives. They also discussed Audrey's dog-themed tattoo and their mutual appreciation for nature and dog-friendly places."
+        }
+      ],
+      "first_timestamp": "2023-04-16T16:34:00+08:00",
+      "last_timestamp": "2023-10-13T16:32:30+08:00",
+      "created_at": "2025-12-03T17:19:55.511919",
+      "updated_at": "2025-12-03T17:22:49.855953"
+    },
+    "gec_010": {
+      "cluster_id": "gec_010",
+      "topic": "Andrew's efforts to adopt a dog",
+      "summary": "On May 6, 2023, Andrew and Audrey discussed Andrew's ongoing efforts to adopt a dog, including his search for pet-friendly housing near natural spaces, while sharing experiences and considerations about dog adoption and outdoor activities.",
+      "members": [
+        {
+          "unit_id": "725be540-1c2b-498e-aa41-a5b5999cb550",
+          "timestamp": "2023-05-06T10:50:30+08:00",
+          "summary": "On May 6, 2023, Andrew and Audrey discussed Andrew's ongoing efforts to adopt a dog, including his search for pet-friendly housing near natural spaces, while sharing experiences and considerations about dog adoption and outdoor activities."
+        },
+        {
+          "unit_id": "cb2c43de-e26e-44b9-a56b-3462c28eee4b",
+          "timestamp": "2023-05-06T10:57:30+08:00",
+          "summary": "Audrey and Andrew discussed road trips with dogs, with Audrey sharing a recent trip to a national park and encouraging Andrew in his search for a dog companion, while both expressed excitement and support throughout their conversation."
+        },
+        {
+          "unit_id": "1afacf27-d6d1-4695-bc3a-ce5328f70bca",
+          "timestamp": "2023-11-04T20:07:30+08:00",
+          "summary": "Audrey and Andrew reconnected to share updates about their dogs, including Andrew's recent adoption of a new dog named Scout, and discussed their experiences with grooming, introducing Scout to new environments, and the joy their pets bring to their lives."
+        }
+      ],
+      "first_timestamp": "2023-05-06T10:50:30+08:00",
+      "last_timestamp": "2023-11-04T20:07:30+08:00",
+      "created_at": "2025-12-03T17:20:08.927559",
+      "updated_at": "2025-12-03T17:23:32.353767"
+    },
+    "gec_011": {
+      "cluster_id": "gec_011",
+      "topic": "Andrew's search for pet-friendly housing near natural spaces",
+      "summary": "On May 6, 2023, Andrew and Audrey discussed Andrew's ongoing efforts to adopt a dog, including his search for pet-friendly housing near natural spaces, while sharing experiences and considerations about dog adoption and outdoor activities.",
+      "members": [
+        {
+          "unit_id": "725be540-1c2b-498e-aa41-a5b5999cb550",
+          "timestamp": "2023-05-06T10:50:30+08:00",
+          "summary": "On May 6, 2023, Andrew and Audrey discussed Andrew's ongoing efforts to adopt a dog, including his search for pet-friendly housing near natural spaces, while sharing experiences and considerations about dog adoption and outdoor activities."
+        },
+        {
+          "unit_id": "3373b7c4-74ef-4ed3-b5cc-e4383d55ebdf",
+          "timestamp": "2023-06-02T11:33:00+08:00",
+          "summary": "Andrew and Audrey discussed a beautiful sunset and Andrew's challenging search for a pet-friendly living space in the city, with Audrey offering support and assistance to help him find the right place for his future dog."
+        },
+        {
+          "unit_id": "296a921c-a41d-4e93-89f6-39274276a136",
+          "timestamp": "2023-07-03T20:37:00+08:00",
+          "summary": "On July 3, 2023, Audrey and Andrew reconnected, discussing Audrey’s challenging but rewarding dog training course and her dogs’ progress, while Andrew shared his difficulties finding dog-friendly rentals and missing nature trails. They exchanged photos and details about Audrey’s four mixed-breed dogs, highlighting their playful nature and close bond."
+        },
+        {
+          "unit_id": "c772a0a6-299b-4748-a3d9-0a92145d4c73",
+          "timestamp": "2023-09-06T19:59:30+08:00",
+          "summary": "On September 6, 2023, Audrey and Andrew discussed Andrew's ongoing search for a dog-friendly place to live, with Audrey offering encouragement and Andrew expressing determination and gratitude."
+        }
+      ],
+      "first_timestamp": "2023-05-06T10:50:30+08:00",
+      "last_timestamp": "2023-09-06T19:59:30+08:00",
+      "created_at": "2025-12-03T17:20:08.929269",
+      "updated_at": "2025-12-03T17:22:11.343340"
+    },
+    "gec_012": {
+      "cluster_id": "gec_012",
+      "topic": "Andrew and Audrey's shared experiences and considerations about dog adoption and outdoor activities",
+      "summary": "Andrew and Audrey shared ongoing conversations about dog adoption, pet-friendly housing, and outdoor activities. They exchanged experiences, support, and advice on road trips, hiking, and managing multiple dogs, highlighting their mutual enthusiasm for nature and responsible pet ownership.",
+      "members": [
+        {
+          "unit_id": "725be540-1c2b-498e-aa41-a5b5999cb550",
+          "timestamp": "2023-05-06T10:50:30+08:00",
+          "summary": "On May 6, 2023, Andrew and Audrey discussed Andrew's ongoing efforts to adopt a dog, including his search for pet-friendly housing near natural spaces, while sharing experiences and considerations about dog adoption and outdoor activities."
+        },
+        {
+          "unit_id": "cb2c43de-e26e-44b9-a56b-3462c28eee4b",
+          "timestamp": "2023-05-06T10:57:30+08:00",
+          "summary": "Audrey and Andrew discussed road trips with dogs, with Audrey sharing a recent trip to a national park and encouraging Andrew in his search for a dog companion, while both expressed excitement and support throughout their conversation."
+        },
+        {
+          "unit_id": "9fcd99f7-b1ea-46ec-ab46-eac532203065",
+          "timestamp": "2023-06-02T11:29:30+08:00",
+          "summary": "Audrey shared with Andrew her recent joyful outdoor experiences with her dogs, including an off-leash park visit and a memorable hiking trip at a national park featuring a stunning sunset, highlighting her deep connection to nature and her pets. Andrew responded with enthusiasm and appreciation, engaging in a heartfelt conversation about these special moments."
+        },
+        {
+          "unit_id": "3373b7c4-74ef-4ed3-b5cc-e4383d55ebdf",
+          "timestamp": "2023-06-02T11:33:00+08:00",
+          "summary": "Andrew and Audrey discussed a beautiful sunset and Andrew's challenging search for a pet-friendly living space in the city, with Audrey offering support and assistance to help him find the right place for his future dog."
+        },
+        {
+          "unit_id": "95deabfc-bf1c-429b-b58b-54177ff8b1b8",
+          "timestamp": "2023-11-04T20:07:30+08:00",
+          "summary": "On November 4, 2023, Andrew and Audrey discussed their recent outdoor activities with dogs, exchanging advice on managing multiple pets, socialization, and mental stimulation while sharing photos and offering mutual support for responsible dog ownership in an urban environment."
+        }
+      ],
+      "first_timestamp": "2023-05-06T10:50:30+08:00",
+      "last_timestamp": "2023-11-04T20:07:30+08:00",
+      "created_at": "2025-12-03T17:20:08.937961",
+      "updated_at": "2025-12-03T17:23:29.160766"
+    },
+    "gec_013": {
+      "cluster_id": "gec_013",
+      "topic": "Audrey's enthusiasm for positive reinforcement pet training workshop",
+      "summary": "On May 11, 2023, Andrew and Audrey exchanged a friendly conversation about Andrew's recent hike and Audrey's enthusiasm for an upcoming positive reinforcement pet training workshop, discussing their shared interest in dog care and training.",
+      "members": [
+        {
+          "unit_id": "a0cbcccd-a74a-4486-a98d-f7a559010d27",
+          "timestamp": "2023-05-11T14:10:30+08:00",
+          "summary": "On May 11, 2023, Andrew and Audrey exchanged a friendly conversation about Andrew's recent hike and Audrey's enthusiasm for an upcoming positive reinforcement pet training workshop, discussing their shared interest in dog care and training."
+        }
+      ],
+      "first_timestamp": "2023-05-11T14:10:30+08:00",
+      "last_timestamp": "2023-05-11T14:10:30+08:00",
+      "created_at": "2025-12-03T17:20:18.358447",
+      "updated_at": "2025-12-03T17:20:18.358447"
+    },
+    "gec_014": {
+      "cluster_id": "gec_014",
+      "topic": "Andrew's rock climbing class experience",
+      "summary": "On June 13, 2023, Andrew shared with Audrey his positive experience of a rock climbing class he took on June 11, expressing pride in reaching the top and enthusiasm for pursuing more outdoor activities, while Audrey responded with encouragement and interest.",
+      "members": [
+        {
+          "unit_id": "0008f0a7-c845-403a-8ed4-a58ffa0af436",
+          "timestamp": "2023-06-13T17:26:00+08:00",
+          "summary": "On June 13, 2023, Andrew shared with Audrey his positive experience of a rock climbing class he took on June 11, expressing pride in reaching the top and enthusiasm for pursuing more outdoor activities, while Audrey responded with encouragement and interest."
+        },
+        {
+          "unit_id": "301798ea-4ac9-421d-ad2a-bb38753ce6c5",
+          "timestamp": "2023-06-13T17:36:30+08:00",
+          "summary": "Andrew and Audrey discussed their shared love for outdoor activities and nature, with Andrew sharing his recent rock climbing experience and Audrey inviting him to join her and her dogs for a walk in a nearby park. They reflected on the joy and emotional benefits nature brings to both people and pets, strengthening their connection through these shared experiences."
+        }
+      ],
+      "first_timestamp": "2023-06-13T17:26:00+08:00",
+      "last_timestamp": "2023-06-13T17:36:30+08:00",
+      "created_at": "2025-12-03T17:20:33.040638",
+      "updated_at": "2025-12-03T17:20:38.857456"
+    },
+    "gec_015": {
+      "cluster_id": "gec_015",
+      "topic": "Andrew's enthusiasm for pursuing new outdoor activities",
+      "summary": "On June 13, 2023, Andrew shared with Audrey his positive experience of a rock climbing class he took on June 11, expressing pride in reaching the top and enthusiasm for pursuing more outdoor activities, while Audrey responded with encouragement and interest.",
+      "members": [
+        {
+          "unit_id": "0008f0a7-c845-403a-8ed4-a58ffa0af436",
+          "timestamp": "2023-06-13T17:26:00+08:00",
+          "summary": "On June 13, 2023, Andrew shared with Audrey his positive experience of a rock climbing class he took on June 11, expressing pride in reaching the top and enthusiasm for pursuing more outdoor activities, while Audrey responded with encouragement and interest."
+        },
+        {
+          "unit_id": "301798ea-4ac9-421d-ad2a-bb38753ce6c5",
+          "timestamp": "2023-06-13T17:36:30+08:00",
+          "summary": "Andrew and Audrey discussed their shared love for outdoor activities and nature, with Andrew sharing his recent rock climbing experience and Audrey inviting him to join her and her dogs for a walk in a nearby park. They reflected on the joy and emotional benefits nature brings to both people and pets, strengthening their connection through these shared experiences."
+        }
+      ],
+      "first_timestamp": "2023-06-13T17:26:00+08:00",
+      "last_timestamp": "2023-06-13T17:36:30+08:00",
+      "created_at": "2025-12-03T17:20:33.044220",
+      "updated_at": "2025-12-03T17:20:38.858036"
+    },
+    "gec_016": {
+      "cluster_id": "gec_016",
+      "topic": "Audrey and Andrew's shared interest in cooking and recipe exchange",
+      "summary": "On July 3, 2023, Audrey and Andrew discussed their shared interest in cooking, exchanging family recipes and expressing how cooking serves as a creative and therapeutic escape for both. They bonded over favorite dishes like Chicken Pot Pie and Roasted Chicken, planning to share recipes and try new meals together.",
+      "members": [
+        {
+          "unit_id": "bab17716-7c7a-4ba3-8f93-e47aff435f2a",
+          "timestamp": "2023-07-03T20:46:00+08:00",
+          "summary": "On July 3, 2023, Audrey and Andrew discussed their shared interest in cooking, exchanging family recipes and expressing how cooking serves as a creative and therapeutic escape for both. They bonded over favorite dishes like Chicken Pot Pie and Roasted Chicken, planning to share recipes and try new meals together."
+        }
+      ],
+      "first_timestamp": "2023-07-03T20:46:00+08:00",
+      "last_timestamp": "2023-07-03T20:46:00+08:00",
+      "created_at": "2025-12-03T17:21:03.939251",
+      "updated_at": "2025-12-03T17:21:03.939251"
+    },
+    "gec_017": {
+      "cluster_id": "gec_017",
+      "topic": "Andrew's experience volunteering at a pet shelter",
+      "summary": "On July 27, 2023, Andrew and Audrey shared personal stories and photos about their dogs, expressing mutual appreciation for the joy pets bring and discussing Andrew's rewarding experience volunteering at a pet shelter. They reflected on the special bonds pets create and the comfort and love they provide.",
+      "members": [
+        {
+          "unit_id": "db1ba79e-8074-4773-b5c8-42e6eb10afb1",
+          "timestamp": "2023-07-27T15:59:30+08:00",
+          "summary": "On July 27, 2023, Andrew and Audrey shared personal stories and photos about their dogs, expressing mutual appreciation for the joy pets bring and discussing Andrew's rewarding experience volunteering at a pet shelter. They reflected on the special bonds pets create and the comfort and love they provide."
+        }
+      ],
+      "first_timestamp": "2023-07-27T15:59:30+08:00",
+      "last_timestamp": "2023-07-27T15:59:30+08:00",
+      "created_at": "2025-12-03T17:21:20.400830",
+      "updated_at": "2025-12-03T17:21:20.400830"
+    },
+    "gec_018": {
+      "cluster_id": "gec_018",
+      "topic": "Mutual appreciation of the joy pets bring",
+      "summary": "On July 27, 2023, Andrew and Audrey shared personal stories and photos about their dogs, expressing mutual appreciation for the joy pets bring and discussing Andrew's rewarding experience volunteering at a pet shelter. They reflected on the special bonds pets create and the comfort and love they provide.",
+      "members": [
+        {
+          "unit_id": "db1ba79e-8074-4773-b5c8-42e6eb10afb1",
+          "timestamp": "2023-07-27T15:59:30+08:00",
+          "summary": "On July 27, 2023, Andrew and Audrey shared personal stories and photos about their dogs, expressing mutual appreciation for the joy pets bring and discussing Andrew's rewarding experience volunteering at a pet shelter. They reflected on the special bonds pets create and the comfort and love they provide."
+        },
+        {
+          "unit_id": "1afacf27-d6d1-4695-bc3a-ce5328f70bca",
+          "timestamp": "2023-11-04T20:07:30+08:00",
+          "summary": "Audrey and Andrew reconnected to share updates about their dogs, including Andrew's recent adoption of a new dog named Scout, and discussed their experiences with grooming, introducing Scout to new environments, and the joy their pets bring to their lives."
+        }
+      ],
+      "first_timestamp": "2023-07-27T15:59:30+08:00",
+      "last_timestamp": "2023-11-04T20:07:30+08:00",
+      "created_at": "2025-12-03T17:21:20.403062",
+      "updated_at": "2025-12-03T17:23:32.354330"
+    },
+    "gec_019": {
+      "cluster_id": "gec_019",
+      "topic": "Andrew's German Shepherd Toby and his activities",
+      "summary": "On August 4, 2023, Andrew and Audrey shared a conversation about their mutual love for nature, dogs, and outdoor activities, discussing their experiences with hiking, dog agility training, and the special bonds formed with their pets. They exchanged photos and advice, highlighting the joy and challenges of spending time outdoors with their dogs, particularly Andrew’s German Shepherd, Toby.",
+      "members": [
+        {
+          "unit_id": "44bc60c2-02ff-4739-9a3d-5c0f6bb1d5e2",
+          "timestamp": "2023-08-04T11:18:00+08:00",
+          "summary": "On August 4, 2023, Andrew and Audrey shared a conversation about their mutual love for nature, dogs, and outdoor activities, discussing their experiences with hiking, dog agility training, and the special bonds formed with their pets. They exchanged photos and advice, highlighting the joy and challenges of spending time outdoors with their dogs, particularly Andrew’s German Shepherd, Toby."
+        },
+        {
+          "unit_id": "fabe7b07-baf3-43e1-924a-cd8caa60f86d",
+          "timestamp": "2023-08-24T00:34:00+08:00",
+          "summary": "Andrew and Audrey discussed their outdoor experiences and pet care routines, sharing photos and emotions about bonding with their dogs, while Audrey offered advice to help Andrew strengthen his relationship with his dog, Toby."
+        },
+        {
+          "unit_id": "1ee54d5b-201c-4e5a-b4fb-f043f86e135a",
+          "timestamp": "2023-09-06T19:57:00+08:00",
+          "summary": "On September 6, 2023, Audrey and Andrew discussed their pets' comfort and outdoor activities, with Audrey sharing how their animals love a cozy spot and Andrew recounting a recent hiking trip and his plans to hike with his young dog, Toby, in the future."
+        },
+        {
+          "unit_id": "3e2a327c-f8a4-4302-93a7-849dce6dd96d",
+          "timestamp": "2023-10-04T16:18:00+08:00",
+          "summary": "Andrew and Audrey reconnected to share their mutual love for nature, discussing upcoming plans for a beach trip, a hike with their dogs, birdwatching, and biking while emphasizing environmental responsibility and personal well-being. Their conversation reflected excitement, appreciation for nature, and intentions to engage in outdoor activities together."
+        }
+      ],
+      "first_timestamp": "2023-08-04T11:18:00+08:00",
+      "last_timestamp": "2023-10-04T16:18:00+08:00",
+      "created_at": "2025-12-03T17:21:26.778798",
+      "updated_at": "2025-12-03T17:22:29.643770"
+    },
+    "gec_020": {
+      "cluster_id": "gec_020",
+      "topic": "Audrey's experience learning dog grooming",
+      "summary": "On August 19, 2023, Audrey shared with Andrew her recent experience learning dog grooming, describing how it brought her closer to her dogs and offering him tips on the process, which Andrew appreciated and showed interest in trying himself.",
+      "members": [
+        {
+          "unit_id": "c47e1b12-8f78-450a-ba88-6081a9143153",
+          "timestamp": "2023-08-19T21:23:30+08:00",
+          "summary": "On August 19, 2023, Audrey shared with Andrew her recent experience learning dog grooming, describing how it brought her closer to her dogs and offering him tips on the process, which Andrew appreciated and showed interest in trying himself."
+        },
+        {
+          "unit_id": "1afacf27-d6d1-4695-bc3a-ce5328f70bca",
+          "timestamp": "2023-11-04T20:07:30+08:00",
+          "summary": "Audrey and Andrew reconnected to share updates about their dogs, including Andrew's recent adoption of a new dog named Scout, and discussed their experiences with grooming, introducing Scout to new environments, and the joy their pets bring to their lives."
+        }
+      ],
+      "first_timestamp": "2023-08-19T21:23:30+08:00",
+      "last_timestamp": "2023-11-04T20:07:30+08:00",
+      "created_at": "2025-12-03T17:21:41.206563",
+      "updated_at": "2025-12-03T17:23:32.354330"
+    },
+    "gec_021": {
+      "cluster_id": "gec_021",
+      "topic": "Andrew's work-related stress and challenges balancing personal time",
+      "summary": "On September 6, 2023, Andrew shared with Audrey his struggles with work-related stress and difficulty balancing personal time, while Audrey offered empathetic support and advice on incorporating daily self-care activities, which Andrew began adopting to help manage his stress.",
+      "members": [
+        {
+          "unit_id": "65a9a570-1556-4830-adf4-3b893bae00f0",
+          "timestamp": "2023-09-06T19:51:00+08:00",
+          "summary": "On September 6, 2023, Andrew shared with Audrey his struggles with work-related stress and difficulty balancing personal time, while Audrey offered empathetic support and advice on incorporating daily self-care activities, which Andrew began adopting to help manage his stress."
+        }
+      ],
+      "first_timestamp": "2023-09-06T19:51:00+08:00",
+      "last_timestamp": "2023-09-06T19:51:00+08:00",
+      "created_at": "2025-12-03T17:21:56.177282",
+      "updated_at": "2025-12-03T17:21:56.177282"
+    },
+    "gec_022": {
+      "cluster_id": "gec_022",
+      "topic": "Audrey's support and advice on self-care for stress management",
+      "summary": "On September 6, 2023, Andrew shared with Audrey his struggles with work-related stress and difficulty balancing personal time, while Audrey offered empathetic support and advice on incorporating daily self-care activities, which Andrew began adopting to help manage his stress.",
+      "members": [
+        {
+          "unit_id": "65a9a570-1556-4830-adf4-3b893bae00f0",
+          "timestamp": "2023-09-06T19:51:00+08:00",
+          "summary": "On September 6, 2023, Andrew shared with Audrey his struggles with work-related stress and difficulty balancing personal time, while Audrey offered empathetic support and advice on incorporating daily self-care activities, which Andrew began adopting to help manage his stress."
+        }
+      ],
+      "first_timestamp": "2023-09-06T19:51:00+08:00",
+      "last_timestamp": "2023-09-06T19:51:00+08:00",
+      "created_at": "2025-12-03T17:21:56.182223",
+      "updated_at": "2025-12-03T17:21:56.182223"
+    },
+    "gec_023": {
+      "cluster_id": "gec_023",
+      "topic": "Andrew's self-care routines",
+      "summary": "On September 6, 2023, Andrew and Audrey discussed self-care and Audrey's recent experiences with her dogs, including organizing a doggy playdate and purchasing cozy new beds that brought joy and comfort to her pets. Their conversation highlighted the emotional satisfaction derived from simple, caring actions toward oneself and animals.",
+      "members": [
+        {
+          "unit_id": "f3f65168-4889-4610-aae1-7f25429dd227",
+          "timestamp": "2023-09-06T19:55:30+08:00",
+          "summary": "On September 6, 2023, Andrew and Audrey discussed self-care and Audrey's recent experiences with her dogs, including organizing a doggy playdate and purchasing cozy new beds that brought joy and comfort to her pets. Their conversation highlighted the emotional satisfaction derived from simple, caring actions toward oneself and animals."
+        }
+      ],
+      "first_timestamp": "2023-09-06T19:55:30+08:00",
+      "last_timestamp": "2023-09-06T19:55:30+08:00",
+      "created_at": "2025-12-03T17:22:01.994592",
+      "updated_at": "2025-12-03T17:22:01.994592"
+    },
+    "gec_024": {
+      "cluster_id": "gec_024",
+      "topic": "Audrey's doggy playdate organization",
+      "summary": "On September 6, 2023, Andrew and Audrey discussed self-care and Audrey's recent experiences with her dogs, including organizing a doggy playdate and purchasing cozy new beds that brought joy and comfort to her pets. Their conversation highlighted the emotional satisfaction derived from simple, caring actions toward oneself and animals.",
+      "members": [
+        {
+          "unit_id": "f3f65168-4889-4610-aae1-7f25429dd227",
+          "timestamp": "2023-09-06T19:55:30+08:00",
+          "summary": "On September 6, 2023, Andrew and Audrey discussed self-care and Audrey's recent experiences with her dogs, including organizing a doggy playdate and purchasing cozy new beds that brought joy and comfort to her pets. Their conversation highlighted the emotional satisfaction derived from simple, caring actions toward oneself and animals."
+        }
+      ],
+      "first_timestamp": "2023-09-06T19:55:30+08:00",
+      "last_timestamp": "2023-09-06T19:55:30+08:00",
+      "created_at": "2025-12-03T17:22:01.996194",
+      "updated_at": "2025-12-03T17:22:01.996194"
+    },
+    "gec_025": {
+      "cluster_id": "gec_025",
+      "topic": "Audrey's purchase of cozy dog beds",
+      "summary": "On September 6, 2023, Andrew and Audrey discussed self-care and Audrey's recent experiences with her dogs, including organizing a doggy playdate and purchasing cozy new beds that brought joy and comfort to her pets. Their conversation highlighted the emotional satisfaction derived from simple, caring actions toward oneself and animals.",
+      "members": [
+        {
+          "unit_id": "f3f65168-4889-4610-aae1-7f25429dd227",
+          "timestamp": "2023-09-06T19:55:30+08:00",
+          "summary": "On September 6, 2023, Andrew and Audrey discussed self-care and Audrey's recent experiences with her dogs, including organizing a doggy playdate and purchasing cozy new beds that brought joy and comfort to her pets. Their conversation highlighted the emotional satisfaction derived from simple, caring actions toward oneself and animals."
+        }
+      ],
+      "first_timestamp": "2023-09-06T19:55:30+08:00",
+      "last_timestamp": "2023-09-06T19:55:30+08:00",
+      "created_at": "2025-12-03T17:22:01.997828",
+      "updated_at": "2025-12-03T17:22:01.997828"
+    },
+    "gec_026": {
+      "cluster_id": "gec_026",
+      "topic": "Audrey's experience with broken dog leash and managing dog behavior",
+      "summary": "Andrew and Audrey discussed Audrey’s recent experience with her dogs, including a broken leash incident and how she calms and bonds with them through patience, training, and frequent walks. They also shared photos and advice about building trust and the breeds of Audrey’s dogs.",
+      "members": [
+        {
+          "unit_id": "94fad91a-5195-4287-8445-0ef728bb7ef9",
+          "timestamp": "2023-09-24T17:59:30+08:00",
+          "summary": "Andrew and Audrey discussed Audrey’s recent experience with her dogs, including a broken leash incident and how she calms and bonds with them through patience, training, and frequent walks. They also shared photos and advice about building trust and the breeds of Audrey’s dogs."
+        }
+      ],
+      "first_timestamp": "2023-09-24T17:59:30+08:00",
+      "last_timestamp": "2023-09-24T17:59:30+08:00",
+      "created_at": "2025-12-03T17:22:18.795703",
+      "updated_at": "2025-12-03T17:22:18.795703"
+    },
+    "gec_027": {
+      "cluster_id": "gec_027",
+      "topic": "Audrey's sustainable jewelry hobby and sales",
+      "summary": "On October 6, 2023, Andrew and Audrey discussed Audrey's hobby of making sustainable jewelry from recycled materials, her transition to selling her creations, and her charitable donations to an animal shelter, highlighting her creative passion and adaptive approach to making a positive impact.",
+      "members": [
+        {
+          "unit_id": "db395826-6990-4eaa-a864-5863c96bfca3",
+          "timestamp": "2023-10-06T21:47:00+08:00",
+          "summary": "On October 6, 2023, Andrew and Audrey discussed Audrey's hobby of making sustainable jewelry from recycled materials, her transition to selling her creations, and her charitable donations to an animal shelter, highlighting her creative passion and adaptive approach to making a positive impact."
+        }
+      ],
+      "first_timestamp": "2023-10-06T21:47:00+08:00",
+      "last_timestamp": "2023-10-06T21:47:00+08:00",
+      "created_at": "2025-12-03T17:22:44.626598",
+      "updated_at": "2025-12-03T17:22:44.626598"
+    },
+    "gec_028": {
+      "cluster_id": "gec_028",
+      "topic": "Audrey's charitable donations to animal shelters",
+      "summary": "On October 6, 2023, Andrew and Audrey discussed Audrey's hobby of making sustainable jewelry from recycled materials, her transition to selling her creations, and her charitable donations to an animal shelter, highlighting her creative passion and adaptive approach to making a positive impact.",
+      "members": [
+        {
+          "unit_id": "db395826-6990-4eaa-a864-5863c96bfca3",
+          "timestamp": "2023-10-06T21:47:00+08:00",
+          "summary": "On October 6, 2023, Andrew and Audrey discussed Audrey's hobby of making sustainable jewelry from recycled materials, her transition to selling her creations, and her charitable donations to an animal shelter, highlighting her creative passion and adaptive approach to making a positive impact."
+        }
+      ],
+      "first_timestamp": "2023-10-06T21:47:00+08:00",
+      "last_timestamp": "2023-10-06T21:47:00+08:00",
+      "created_at": "2025-12-03T17:22:44.629510",
+      "updated_at": "2025-12-03T17:22:44.629510"
+    },
+    "gec_029": {
+      "cluster_id": "gec_029",
+      "topic": "Andrew's and Audrey's shared experiences with board games",
+      "summary": "On October 13, 2023, Andrew and Audrey exchanged photos and stories about their dogs, favorite local spots, and shared experiences with board games and outdoor activities, highlighting the joy their pets bring to their lives. They also discussed Audrey's dog-themed tattoo and their mutual appreciation for nature and dog-friendly places.",
+      "members": [
+        {
+          "unit_id": "6f5eb552-0dc1-4a05-b10a-a5e8ac6aad8b",
+          "timestamp": "2023-10-13T16:32:30+08:00",
+          "summary": "On October 13, 2023, Andrew and Audrey exchanged photos and stories about their dogs, favorite local spots, and shared experiences with board games and outdoor activities, highlighting the joy their pets bring to their lives. They also discussed Audrey's dog-themed tattoo and their mutual appreciation for nature and dog-friendly places."
+        }
+      ],
+      "first_timestamp": "2023-10-13T16:32:30+08:00",
+      "last_timestamp": "2023-10-13T16:32:30+08:00",
+      "created_at": "2025-12-03T17:22:49.856526",
+      "updated_at": "2025-12-03T17:22:49.856526"
+    },
+    "gec_030": {
+      "cluster_id": "gec_030",
+      "topic": "Andrew's wine tasting experience",
+      "summary": "On October 24, 2023, Andrew shared with Audrey his positive experience attending a wine tasting event with his girlfriend, highlighting how much he enjoyed trying unique wines and stepping out of his comfort zone.",
+      "members": [
+        {
+          "unit_id": "908f7781-c369-4b4d-953c-33b2b1052b2f",
+          "timestamp": "2023-10-24T10:14:00+08:00",
+          "summary": "On October 24, 2023, Andrew shared with Audrey his positive experience attending a wine tasting event with his girlfriend, highlighting how much he enjoyed trying unique wines and stepping out of his comfort zone."
+        }
+      ],
+      "first_timestamp": "2023-10-24T10:14:00+08:00",
+      "last_timestamp": "2023-10-24T10:14:00+08:00",
+      "created_at": "2025-12-03T17:23:05.718093",
+      "updated_at": "2025-12-03T17:23:05.718093"
+    },
+    "gec_031": {
+      "cluster_id": "gec_031",
+      "topic": "Audrey's arm injury and challenges managing her pups",
+      "summary": "Audrey and Andrew discussed Audrey’s recent arm injury and her challenges managing her pups, while sharing a mutual interest in sushi, with Andrew expressing excitement to try it for the first time based on Audrey’s recommendations.",
+      "members": [
+        {
+          "unit_id": "4a10ef0d-ec81-469e-8708-b6ab8b85085c",
+          "timestamp": "2023-10-24T10:21:30+08:00",
+          "summary": "Audrey and Andrew discussed Audrey’s recent arm injury and her challenges managing her pups, while sharing a mutual interest in sushi, with Andrew expressing excitement to try it for the first time based on Audrey’s recommendations."
+        }
+      ],
+      "first_timestamp": "2023-10-24T10:21:30+08:00",
+      "last_timestamp": "2023-10-24T10:21:30+08:00",
+      "created_at": "2025-12-03T17:23:11.074580",
+      "updated_at": "2025-12-03T17:23:11.074580"
+    },
+    "gec_032": {
+      "cluster_id": "gec_032",
+      "topic": "Audrey and Andrew's mutual interest in sushi",
+      "summary": "Audrey and Andrew discussed Audrey’s recent arm injury and her challenges managing her pups, while sharing a mutual interest in sushi, with Andrew expressing excitement to try it for the first time based on Audrey’s recommendations.",
+      "members": [
+        {
+          "unit_id": "4a10ef0d-ec81-469e-8708-b6ab8b85085c",
+          "timestamp": "2023-10-24T10:21:30+08:00",
+          "summary": "Audrey and Andrew discussed Audrey’s recent arm injury and her challenges managing her pups, while sharing a mutual interest in sushi, with Andrew expressing excitement to try it for the first time based on Audrey’s recommendations."
+        }
+      ],
+      "first_timestamp": "2023-10-24T10:21:30+08:00",
+      "last_timestamp": "2023-10-24T10:21:30+08:00",
+      "created_at": "2025-12-03T17:23:11.078107",
+      "updated_at": "2025-12-03T17:23:11.078107"
+    },
+    "gec_033": {
+      "cluster_id": "gec_033",
+      "topic": "Audrey's dogs' unusual behavior and animal behaviorist appointment",
+      "summary": "On October 28, 2023, Audrey updated Andrew about her dogs' unusual behavior and a recent appointment with an animal behaviorist who recommended positive reinforcement techniques, with Audrey expressing hope for their recovery. Andrew offered support and encouragement as they discussed the dogs' progress and shared a happy photo of them.",
+      "members": [
+        {
+          "unit_id": "05473506-5613-4d4c-8942-4ef3a696cb82",
+          "timestamp": "2023-10-28T14:42:00+08:00",
+          "summary": "On October 28, 2023, Audrey updated Andrew about her dogs' unusual behavior and a recent appointment with an animal behaviorist who recommended positive reinforcement techniques, with Audrey expressing hope for their recovery. Andrew offered support and encouragement as they discussed the dogs' progress and shared a happy photo of them."
+        }
+      ],
+      "first_timestamp": "2023-10-28T14:42:00+08:00",
+      "last_timestamp": "2023-10-28T14:42:00+08:00",
+      "created_at": "2025-12-03T17:23:15.840269",
+      "updated_at": "2025-12-03T17:23:15.840269"
+    },
+    "gec_034": {
+      "cluster_id": "gec_034",
+      "topic": "Use of positive reinforcement techniques for dog behavior",
+      "summary": "On October 28, 2023, Audrey updated Andrew about her dogs' unusual behavior and a recent appointment with an animal behaviorist who recommended positive reinforcement techniques, with Audrey expressing hope for their recovery. Andrew offered support and encouragement as they discussed the dogs' progress and shared a happy photo of them.",
+      "members": [
+        {
+          "unit_id": "05473506-5613-4d4c-8942-4ef3a696cb82",
+          "timestamp": "2023-10-28T14:42:00+08:00",
+          "summary": "On October 28, 2023, Audrey updated Andrew about her dogs' unusual behavior and a recent appointment with an animal behaviorist who recommended positive reinforcement techniques, with Audrey expressing hope for their recovery. Andrew offered support and encouragement as they discussed the dogs' progress and shared a happy photo of them."
+        }
+      ],
+      "first_timestamp": "2023-10-28T14:42:00+08:00",
+      "last_timestamp": "2023-10-28T14:42:00+08:00",
+      "created_at": "2025-12-03T17:23:15.842469",
+      "updated_at": "2025-12-03T17:23:15.842469"
+    }
+  },
+  "unit_to_clusters": {
+    "bce3dfed-eb7c-404e-8950-39e76b90a266": [
+      "gec_001"
+    ],
+    "6ef2fc64-8d16-497d-b925-d6ecab9951c7": [
+      "gec_001",
+      "gec_002"
+    ],
+    "800ba673-c233-4d45-a757-6d3bac09c729": [
+      "gec_003",
+      "gec_004"
+    ],
+    "3a55f88b-4521-4cb1-b3d4-70078ee44587": [
+      "gec_002",
+      "gec_004",
+      "gec_005",
+      "gec_006"
+    ],
+    "06426019-6fa8-45d7-a336-43147ceb01f1": [
+      "gec_002",
+      "gec_007",
+      "gec_008",
+      "gec_003"
+    ],
+    "824be99b-46c1-46a3-9077-d4e4d672f75f": [
+      "gec_009"
+    ],
+    "b4695f31-e89b-4233-9ee5-885284aa0b23": [
+      "gec_003",
+      "gec_004"
+    ],
+    "94e1cb63-9d78-4311-b325-5fb56de9fe33": [
+      "gec_002"
+    ],
+    "725be540-1c2b-498e-aa41-a5b5999cb550": [
+      "gec_010",
+      "gec_011",
+      "gec_012"
+    ],
+    "cb2c43de-e26e-44b9-a56b-3462c28eee4b": [
+      "gec_002",
+      "gec_010",
+      "gec_012"
+    ],
+    "a0cbcccd-a74a-4486-a98d-f7a559010d27": [
+      "gec_004",
+      "gec_013",
+      "gec_002"
+    ],
+    "9fcd99f7-b1ea-46ec-ab46-eac532203065": [
+      "gec_002",
+      "gec_004",
+      "gec_012"
+    ],
+    "3373b7c4-74ef-4ed3-b5cc-e4383d55ebdf": [
+      "gec_011",
+      "gec_012",
+      "gec_004"
+    ],
+    "0008f0a7-c845-403a-8ed4-a58ffa0af436": [
+      "gec_014",
+      "gec_015"
+    ],
+    "301798ea-4ac9-421d-ad2a-bb38753ce6c5": [
+      "gec_014",
+      "gec_015",
+      "gec_003",
+      "gec_002"
+    ],
+    "8d8c2855-a63d-4a5b-b4c9-0bb9fcfc2c8c": [
+      "gec_002"
+    ],
+    "2e3760f4-bd9a-4f48-96ab-87e39694c920": [
+      "gec_002"
+    ],
+    "68e775d9-596e-4901-bce9-238a144be0ce": [
+      "gec_004"
+    ],
+    "296a921c-a41d-4e93-89f6-39274276a136": [
+      "gec_005",
+      "gec_006",
+      "gec_011",
+      "gec_002"
+    ],
+    "bab17716-7c7a-4ba3-8f93-e47aff435f2a": [
+      "gec_016"
+    ],
+    "19f4b8b6-7239-40bd-a62a-c35d116103ff": [
+      "gec_002",
+      "gec_003",
+      "gec_004"
+    ],
+    "3c31c50c-8e9a-44cf-9e90-eb944b544fc2": [
+      "gec_005",
+      "gec_002",
+      "gec_004"
+    ],
+    "db1ba79e-8074-4773-b5c8-42e6eb10afb1": [
+      "gec_002",
+      "gec_017",
+      "gec_018"
+    ],
+    "44bc60c2-02ff-4739-9a3d-5c0f6bb1d5e2": [
+      "gec_002",
+      "gec_004",
+      "gec_005",
+      "gec_019"
+    ],
+    "aeecc317-0699-447e-b377-9ba74b6086ce": [
+      "gec_002",
+      "gec_009"
+    ],
+    "ea9b9630-afb0-4eab-bd58-69b7bb8cef2c": [
+      "gec_007"
+    ],
+    "c47e1b12-8f78-450a-ba88-6081a9143153": [
+      "gec_020"
+    ],
+    "eba18699-48ba-4549-a1e7-8944d7f1233a": [
+      "gec_002",
+      "gec_004"
+    ],
+    "fabe7b07-baf3-43e1-924a-cd8caa60f86d": [
+      "gec_002",
+      "gec_019"
+    ],
+    "65a9a570-1556-4830-adf4-3b893bae00f0": [
+      "gec_021",
+      "gec_022"
+    ],
+    "f3f65168-4889-4610-aae1-7f25429dd227": [
+      "gec_023",
+      "gec_002",
+      "gec_024",
+      "gec_025"
+    ],
+    "1ee54d5b-201c-4e5a-b4fb-f043f86e135a": [
+      "gec_002",
+      "gec_019",
+      "gec_004"
+    ],
+    "c772a0a6-299b-4748-a3d9-0a92145d4c73": [
+      "gec_011"
+    ],
+    "94fad91a-5195-4287-8445-0ef728bb7ef9": [
+      "gec_002",
+      "gec_026"
+    ],
+    "e8429c97-ae64-4438-ad53-3e428b6c2cde": [
+      "gec_002"
+    ],
+    "3e2a327c-f8a4-4302-93a7-849dce6dd96d": [
+      "gec_003",
+      "gec_004",
+      "gec_019"
+    ],
+    "c7817823-b083-4854-8f78-4100f8dd1ebe": [
+      "gec_003",
+      "gec_004",
+      "gec_002"
+    ],
+    "5d66eba0-3be3-466d-9234-36b7ce62f7c9": [
+      "gec_002"
+    ],
+    "db395826-6990-4eaa-a864-5863c96bfca3": [
+      "gec_027",
+      "gec_028"
+    ],
+    "6f5eb552-0dc1-4a05-b10a-a5e8ac6aad8b": [
+      "gec_002",
+      "gec_009",
+      "gec_029"
+    ],
+    "091aa0c6-f949-4cc0-8b5d-0b3ce421ccec": [
+      "gec_002",
+      "gec_003",
+      "gec_004"
+    ],
+    "c5ed017a-9f9d-4001-b62e-9f8a873f2092": [
+      "gec_002",
+      "gec_004",
+      "gec_005"
+    ],
+    "908f7781-c369-4b4d-953c-33b2b1052b2f": [
+      "gec_030"
+    ],
+    "4a10ef0d-ec81-469e-8708-b6ab8b85085c": [
+      "gec_031",
+      "gec_032"
+    ],
+    "05473506-5613-4d4c-8942-4ef3a696cb82": [
+      "gec_033",
+      "gec_034"
+    ],
+    "7be55e4f-7a86-4e7d-96d1-668f441996f3": [
+      "gec_002",
+      "gec_004"
+    ],
+    "95deabfc-bf1c-429b-b58b-54177ff8b1b8": [
+      "gec_002",
+      "gec_004",
+      "gec_012"
+    ],
+    "1afacf27-d6d1-4695-bc3a-ce5328f70bca": [
+      "gec_010",
+      "gec_020",
+      "gec_018"
+    ]
+  },
+  "metadata": {
+    "conversation_id": "conv_5",
+    "total_units": 48,
+    "total_clusters": 34,
+    "created_at": "2025-12-03T17:19:27.662210",
+    "updated_at": "2025-12-03T17:23:32.354330",
+    "llm_model": "gpt-4.1-mini"
+  }
+}

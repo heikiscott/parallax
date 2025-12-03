@@ -1,0 +1,2293 @@
+{
+  "clusters": {
+    "gec_001": {
+      "cluster_id": "gec_001",
+      "topic": "John's conversation about James's video game mo...",
+      "summary": "John and James shared a deep passion for video games, discussing favorites like The Witcher 3 and Apex Legends, gaming as motivation and social connection, collaborative game development, and mutual support through challenges, reflecting a growing friendship centered on gaming and creativity.",
+      "members": [
+        {
+          "unit_id": "dfe54375-d2e8-4e20-932e-69c842341d14",
+          "timestamp": "2022-03-17T15:48:30+08:00",
+          "summary": "On March 17, 2022, John and James discussed their shared enthusiasm for video games, with James highlighting The Witcher 3 as his current favorite and both expressing how gaming motivates and relaxes them."
+        },
+        {
+          "unit_id": "a69d1a5d-2fcc-4601-9649-1c3319164148",
+          "timestamp": "2022-03-17T15:52:00+08:00",
+          "summary": "John and James discussed their programming experiences and gaming interests, sharing past projects and expressing enthusiasm for potentially collaborating on mobile app development in the future."
+        },
+        {
+          "unit_id": "db562aa7-354e-4564-aa5f-b3244996fecf",
+          "timestamp": "2022-03-20T21:30:00+08:00",
+          "summary": "On March 20, 2022, James shared with John his positive experience of creating a game avatar and joining a new gaming platform, highlighting how gaming served as both a social community and a therapeutic escape during tough times. John responded empathetically, and they discussed the value of gaming as a shared passion and emotional outlet."
+        },
+        {
+          "unit_id": "b94c022d-8289-49d4-8e6f-b93a1df70ab3",
+          "timestamp": "2022-03-27T00:40:00+08:00",
+          "summary": "In March 2022, James offered support to John, who later shared with James his excitement about advancing to the next level in a game, marking a significant personal achievement and boosting his confidence."
+        },
+        {
+          "unit_id": "77db52af-a3ea-4739-b5d1-887e3f8e15f4",
+          "timestamp": "2022-03-27T00:43:00+08:00",
+          "summary": "James and John exchanged photos of their drum kits and discussed their early experiences learning to play drums, sharing challenges, progress, and mutual encouragement."
+        },
+        {
+          "unit_id": "614562da-0204-4f00-8fc2-3560f8d7f976",
+          "timestamp": "2022-03-27T00:43:30+08:00",
+          "summary": "John complimented James on his recent efforts and asked for recommendations, to which James responded by sharing his excitement about a new cutting-edge gaming system that enhances his relaxation and social connections through gaming."
+        },
+        {
+          "unit_id": "a3cc5f65-3f0f-4a82-bf6c-f4716ae691e0",
+          "timestamp": "2022-03-27T00:46:30+08:00",
+          "summary": "John shared with James his enthusiastic experience attending a gaming convention where he played in a CS:GO tournament and admired skilled players, inspiring him to improve his own gaming abilities."
+        },
+        {
+          "unit_id": "e5bf6147-21b9-4565-bc7d-4ce34cb6cc95",
+          "timestamp": "2022-03-27T00:51:00+08:00",
+          "summary": "James and John discussed their gaming motivation and the exploration of new game genres, with James sharing his excitement about trying role-playing and strategy games while both encouraged each other's progress."
+        },
+        {
+          "unit_id": "d47b1c3b-1e85-47d3-b6e0-05b466869775",
+          "timestamp": "2022-04-04T14:25:00+08:00",
+          "summary": "On April 4, 2022, John and James reconnected to discuss James's recent participation in an intense online gaming tournament where he reached the semifinals, shared experiences about teamwork and communication, and talked about his favorite game, Apex Legends, as well as his interest in trying new game genres. The conversation was friendly and enthusiastic, with John expressing support and curiosity about James's gaming activities."
+        },
+        {
+          "unit_id": "ea93f0ba-1122-445e-a72a-3cacf8bad6de",
+          "timestamp": "2022-04-12T09:59:30+08:00",
+          "summary": "James shared about adopting a puppy named Ned and discussed gaming progress with John, who described playing a new RPG game despite some technical issues. They exchanged photos and plans to try the game, ending with mutual encouragement and well-wishes."
+        },
+        {
+          "unit_id": "5b5ae990-66ea-46a7-a163-5b8a51f0c5ec",
+          "timestamp": "2022-04-23T11:04:00+08:00",
+          "summary": "John and James discussed their recent creative projects, travel experiences, and future plans, sharing images and mutual inspiration while expressing enthusiasm for programming, gaming, nature, and traveling together. Their conversation highlighted a strong friendship and shared interests."
+        },
+        {
+          "unit_id": "5b5ae990-66ea-46a7-a163-5b8a51f0c5ec",
+          "timestamp": "2022-04-23T11:04:00+08:00",
+          "summary": "John and James discussed their recent creative projects, travel experiences, and future plans, sharing images and mutual inspiration while expressing enthusiasm for programming, gaming, nature, and traveling together. Their conversation highlighted a strong friendship and shared interests."
+        },
+        {
+          "unit_id": "d5314ae0-8691-4008-a9ef-8217eed5d7ab",
+          "timestamp": "2022-04-29T14:50:00+08:00",
+          "summary": "John and James engaged in a conversation about their gaming experiences, including strategy games and Assassin's Creed Valhalla, while also sharing affection for James's pet dogs, particularly Daisy. Their exchange highlighted enthusiasm for gaming and the comfort their pets provided during play."
+        },
+        {
+          "unit_id": "81dad942-6593-4811-9c9e-58b5d6a3889c",
+          "timestamp": "2022-07-09T17:14:00+08:00",
+          "summary": "On July 9, 2022, James shared with John his excitement about winning an online gaming tournament the previous week, expressing how fulfilling and motivating the victory was, to which John responded with congratulations and mutual encouragement."
+        },
+        {
+          "unit_id": "4b718d31-1a91-4055-876d-3e84f3463edf",
+          "timestamp": "2022-08-10T09:20:00+08:00",
+          "summary": "On August 10, 2022, John and James discussed John's exploration of new game genres like strategy and RPGs, with John expressing enthusiasm for \"The Witcher 3\" and plans to organize competitions, while James encouraged his evolving gaming interests."
+        },
+        {
+          "unit_id": "0887db84-70fd-4188-99df-fcba2411f4cd",
+          "timestamp": "2022-08-10T09:21:00+08:00",
+          "summary": "On August 10, 2022, John shared a photo of his organized gaming room showcasing his computer and gaming chair, which James complimented for its wall lighting, leading to a brief, positive exchange between the two."
+        },
+        {
+          "unit_id": "64a13c62-e584-477e-a636-cb5080ce47eb",
+          "timestamp": "2022-08-21T16:07:30+08:00",
+          "summary": "On August 21, 2022, James and John discussed their gaming setups, the importance of teamwork, and shared memories of family gaming marathons, with John planning an upcoming gaming night with his siblings. They exchanged images and expressed how gaming serves as a social and motivational activity in their lives."
+        },
+        {
+          "unit_id": "a0456824-e9d4-489f-b357-8bfb081d59b5",
+          "timestamp": "2022-08-26T21:22:30+08:00",
+          "summary": "On August 26, 2022, James and John discussed their coding projects, with John collaborating with his siblings on a text-based adventure game to teach coding, while James shared his ambition to develop a complex strategy game. Both expressed enthusiasm and mutual encouragement about their game development efforts and family collaboration."
+        },
+        {
+          "unit_id": "037a0acc-e0a1-4d5e-9d6a-f43f6921c4bc",
+          "timestamp": "2022-09-01T18:57:30+08:00",
+          "summary": "James shared with John the completion of his Unity strategy game inspired by Civilization and Total War, expressing pride and gratitude for John's support, while they discussed the challenges and learning experiences involved in its development. John congratulated James, praised the game, and shared his own fulfillment in teaching coding to his siblings."
+        },
+        {
+          "unit_id": "de01f2fa-372a-4a57-8814-bb3060f06e15",
+          "timestamp": "2022-09-01T19:01:00+08:00",
+          "summary": "On September 1, 2022, John shared with James his fulfilling experience teaching his siblings coding, noting their progress in creating basic games and stories, while both expressed pride and optimism about their future potential."
+        },
+        {
+          "unit_id": "b1083d43-99ec-494e-965c-c9cfbc34d144",
+          "timestamp": "2022-09-20T21:05:00+08:00",
+          "summary": "John informed James about completing his first mobile game, a 2D adventure set to launch soon, and they discussed game development resources and plans for future testing collaboration. Both expressed enthusiasm and mutual support throughout their conversation."
+        },
+        {
+          "unit_id": "00e6c18d-5e7a-44f8-b926-789e61370ce8",
+          "timestamp": "2022-10-03T09:27:00+08:00",
+          "summary": "John and James discussed their career aspirations and video gaming, focusing on James’s new video card and the game Cyberpunk 2077, with both expressing mutual support and enthusiasm."
+        },
+        {
+          "unit_id": "9bf71d1e-2bfb-412f-8c53-25058f2ca84f",
+          "timestamp": "2022-10-13T14:14:00+08:00",
+          "summary": "John wished James well and later shared an image of his desk setup while recounting a fun online programming competition he organized with friends, expressing enthusiasm and inquiring about James's recent activities."
+        },
+        {
+          "unit_id": "5d102dbb-e909-453c-bb0f-52bd688b94ff",
+          "timestamp": "2022-10-13T14:20:30+08:00",
+          "summary": "James shared his excitement with John about releasing his first video game, inspired by The Witcher 3, and expressed his fulfillment and plans to develop more games, while John offered encouragement and support throughout their conversation."
+        },
+        {
+          "unit_id": "3ee25b4d-09a0-4c55-997a-eaeff4a5bc55",
+          "timestamp": "2022-10-21T19:38:00+08:00",
+          "summary": "On October 21, 2022, James reconnected with John to share his frustration over a recent power outage that caused him to lose game progress, highlighting their supportive friendship."
+        },
+        {
+          "unit_id": "a10b5ad8-06e6-4975-bbaa-2290d53fb0e4",
+          "timestamp": "2022-10-21T19:38:30+08:00",
+          "summary": "On October 21, 2022, James expressed frustration over losing progress due to not saving his work, while John acknowledged the lesson and shared that he had organized a programming seminar the previous week."
+        },
+        {
+          "unit_id": "1cd75361-3eb9-4d36-a842-5d3d915eefe5",
+          "timestamp": "2022-10-21T19:53:00+08:00",
+          "summary": "John and James discussed resources John had shared, while James recounted his mother's recent visit with her retired army friend and their shared military stories, also offering to share a photo from his youth."
+        }
+      ],
+      "first_timestamp": "2022-03-17T15:48:30+08:00",
+      "last_timestamp": "2022-10-21T19:53:00+08:00",
+      "created_at": "2025-12-03T17:23:37.043298",
+      "updated_at": "2025-12-03T17:29:45.402051"
+    },
+    "gec_002": {
+      "cluster_id": "gec_002",
+      "topic": "John's programming class enrollment and experience",
+      "summary": "John and James discussed their programming experiences and gaming interests, sharing past projects and expressing enthusiasm for potentially collaborating on mobile app development in the future.",
+      "members": [
+        {
+          "unit_id": "a69d1a5d-2fcc-4601-9649-1c3319164148",
+          "timestamp": "2022-03-17T15:52:00+08:00",
+          "summary": "John and James discussed their programming experiences and gaming interests, sharing past projects and expressing enthusiasm for potentially collaborating on mobile app development in the future."
+        }
+      ],
+      "first_timestamp": "2022-03-17T15:52:00+08:00",
+      "last_timestamp": "2022-03-17T15:52:00+08:00",
+      "created_at": "2025-12-03T17:23:42.013224",
+      "updated_at": "2025-12-03T17:23:42.013224"
+    },
+    "gec_003": {
+      "cluster_id": "gec_003",
+      "topic": "James's programming experience and skills",
+      "summary": "John and James discussed their programming experiences and gaming interests, sharing past projects and expressing enthusiasm for potentially collaborating on mobile app development in the future.",
+      "members": [
+        {
+          "unit_id": "a69d1a5d-2fcc-4601-9649-1c3319164148",
+          "timestamp": "2022-03-17T15:52:00+08:00",
+          "summary": "John and James discussed their programming experiences and gaming interests, sharing past projects and expressing enthusiasm for potentially collaborating on mobile app development in the future."
+        }
+      ],
+      "first_timestamp": "2022-03-17T15:52:00+08:00",
+      "last_timestamp": "2022-03-17T15:52:00+08:00",
+      "created_at": "2025-12-03T17:23:42.016227",
+      "updated_at": "2025-12-03T17:23:42.016227"
+    },
+    "gec_004": {
+      "cluster_id": "gec_004",
+      "topic": "John and James's potential mobile app development collaboration",
+      "summary": "John and James discussed their programming experiences and gaming interests, sharing past projects and expressing enthusiasm for potentially collaborating on mobile app development in the future.",
+      "members": [
+        {
+          "unit_id": "a69d1a5d-2fcc-4601-9649-1c3319164148",
+          "timestamp": "2022-03-17T15:52:00+08:00",
+          "summary": "John and James discussed their programming experiences and gaming interests, sharing past projects and expressing enthusiasm for potentially collaborating on mobile app development in the future."
+        },
+        {
+          "unit_id": "e7947d84-5acb-4cbe-b604-8653aaeab4f7",
+          "timestamp": "2022-03-17T15:56:00+08:00",
+          "summary": "John and James discussed collaborating on a mobile app focused on dog walking and pet care, with James envisioning a customizable platform tailored to individual pets. Both expressed enthusiasm about the project and shared personal motivations related to programming and pet ownership."
+        },
+        {
+          "unit_id": "c2279b72-4f73-42b4-b6b4-8a97963ac3ac",
+          "timestamp": "2022-03-17T15:59:00+08:00",
+          "summary": "John and James discussed James's childhood-inspired project of turning his comic character into a computer game, with James expressing excitement and proposing collaboration with John, who responded enthusiastically."
+        }
+      ],
+      "first_timestamp": "2022-03-17T15:52:00+08:00",
+      "last_timestamp": "2022-03-17T15:59:00+08:00",
+      "created_at": "2025-12-03T17:23:42.018576",
+      "updated_at": "2025-12-03T17:23:51.285502"
+    },
+    "gec_005": {
+      "cluster_id": "gec_005",
+      "topic": "John and James's mobile app idea focused on dog walking and pet care",
+      "summary": "John and James discussed collaborating on a mobile app focused on dog walking and pet care, with James envisioning a customizable platform tailored to individual pets. Both expressed enthusiasm about the project and shared personal motivations related to programming and pet ownership.",
+      "members": [
+        {
+          "unit_id": "e7947d84-5acb-4cbe-b604-8653aaeab4f7",
+          "timestamp": "2022-03-17T15:56:00+08:00",
+          "summary": "John and James discussed collaborating on a mobile app focused on dog walking and pet care, with James envisioning a customizable platform tailored to individual pets. Both expressed enthusiasm about the project and shared personal motivations related to programming and pet ownership."
+        }
+      ],
+      "first_timestamp": "2022-03-17T15:56:00+08:00",
+      "last_timestamp": "2022-03-17T15:56:00+08:00",
+      "created_at": "2025-12-03T17:23:46.276647",
+      "updated_at": "2025-12-03T17:23:46.276647"
+    },
+    "gec_006": {
+      "cluster_id": "gec_006",
+      "topic": "James's childhood comic character game project",
+      "summary": "John and James discussed James's childhood-inspired project of turning his comic character into a computer game, with James expressing excitement and proposing collaboration with John, who responded enthusiastically.",
+      "members": [
+        {
+          "unit_id": "c2279b72-4f73-42b4-b6b4-8a97963ac3ac",
+          "timestamp": "2022-03-17T15:59:00+08:00",
+          "summary": "John and James discussed James's childhood-inspired project of turning his comic character into a computer game, with James expressing excitement and proposing collaboration with John, who responded enthusiastically."
+        }
+      ],
+      "first_timestamp": "2022-03-17T15:59:00+08:00",
+      "last_timestamp": "2022-03-17T15:59:00+08:00",
+      "created_at": "2025-12-03T17:23:51.284304",
+      "updated_at": "2025-12-03T17:23:51.284304"
+    },
+    "gec_007": {
+      "cluster_id": "gec_007",
+      "topic": "James's interest in bowling",
+      "summary": "On March 17, 2022, John and James discussed their differing interests in bowling, with James sharing his enthusiasm for the sport and John expressing a preference for other activities like slot machines and arcade games, while also mentioning his intention to start morning runs. Despite their differing hobbies, they showed mutual interest in finding shared leisure activities.",
+      "members": [
+        {
+          "unit_id": "6a0e7e40-2c4f-41c4-a944-f25caf3841cb",
+          "timestamp": "2022-03-17T16:01:00+08:00",
+          "summary": "On March 17, 2022, John and James discussed their differing interests in bowling, with James sharing his enthusiasm for the sport and John expressing a preference for other activities like slot machines and arcade games, while also mentioning his intention to start morning runs. Despite their differing hobbies, they showed mutual interest in finding shared leisure activities."
+        }
+      ],
+      "first_timestamp": "2022-03-17T16:01:00+08:00",
+      "last_timestamp": "2022-03-17T16:01:00+08:00",
+      "created_at": "2025-12-03T17:23:56.328315",
+      "updated_at": "2025-12-03T17:23:56.328315"
+    },
+    "gec_008": {
+      "cluster_id": "gec_008",
+      "topic": "John's preference for slot machines and arcade games",
+      "summary": "On March 17, 2022, John and James discussed their differing interests in bowling, with James sharing his enthusiasm for the sport and John expressing a preference for other activities like slot machines and arcade games, while also mentioning his intention to start morning runs. Despite their differing hobbies, they showed mutual interest in finding shared leisure activities.",
+      "members": [
+        {
+          "unit_id": "6a0e7e40-2c4f-41c4-a944-f25caf3841cb",
+          "timestamp": "2022-03-17T16:01:00+08:00",
+          "summary": "On March 17, 2022, John and James discussed their differing interests in bowling, with James sharing his enthusiasm for the sport and John expressing a preference for other activities like slot machines and arcade games, while also mentioning his intention to start morning runs. Despite their differing hobbies, they showed mutual interest in finding shared leisure activities."
+        },
+        {
+          "unit_id": "c17a3d95-3efb-4924-8d9e-0af08fe9f130",
+          "timestamp": "2022-03-17T16:02:30+08:00",
+          "summary": "On March 17, 2022, James shared a regretful experience of losing his wallet while playing slot machines, prompting John to offer sympathy and reassurance by promising to watch over James's belongings, after which James suggested trying a different activity."
+        }
+      ],
+      "first_timestamp": "2022-03-17T16:01:00+08:00",
+      "last_timestamp": "2022-03-17T16:02:30+08:00",
+      "created_at": "2025-12-03T17:23:56.329955",
+      "updated_at": "2025-12-03T17:24:00.517222"
+    },
+    "gec_009": {
+      "cluster_id": "gec_009",
+      "topic": "John's intention to start morning runs",
+      "summary": "On March 17, 2022, John and James discussed their differing interests in bowling, with James sharing his enthusiasm for the sport and John expressing a preference for other activities like slot machines and arcade games, while also mentioning his intention to start morning runs. Despite their differing hobbies, they showed mutual interest in finding shared leisure activities.",
+      "members": [
+        {
+          "unit_id": "6a0e7e40-2c4f-41c4-a944-f25caf3841cb",
+          "timestamp": "2022-03-17T16:01:00+08:00",
+          "summary": "On March 17, 2022, John and James discussed their differing interests in bowling, with James sharing his enthusiasm for the sport and John expressing a preference for other activities like slot machines and arcade games, while also mentioning his intention to start morning runs. Despite their differing hobbies, they showed mutual interest in finding shared leisure activities."
+        }
+      ],
+      "first_timestamp": "2022-03-17T16:01:00+08:00",
+      "last_timestamp": "2022-03-17T16:01:00+08:00",
+      "created_at": "2025-12-03T17:23:56.331045",
+      "updated_at": "2025-12-03T17:23:56.331045"
+    },
+    "gec_010": {
+      "cluster_id": "gec_010",
+      "topic": "John and James's enthusiasm for VR gaming and planned VR gaming session",
+      "summary": "On March 17, 2022, John and James discussed their enthusiasm for VR gaming, shared personal experiences, and agreed to schedule a VR gaming session together on March 26, 2022.",
+      "members": [
+        {
+          "unit_id": "42e40c49-84f1-43bb-8881-19afe1ed20bd",
+          "timestamp": "2022-03-17T16:05:00+08:00",
+          "summary": "On March 17, 2022, John and James discussed their enthusiasm for VR gaming, shared personal experiences, and agreed to schedule a VR gaming session together on March 26, 2022."
+        }
+      ],
+      "first_timestamp": "2022-03-17T16:05:00+08:00",
+      "last_timestamp": "2022-03-17T16:05:00+08:00",
+      "created_at": "2025-12-03T17:24:04.287976",
+      "updated_at": "2025-12-03T17:24:04.287976"
+    },
+    "gec_011": {
+      "cluster_id": "gec_011",
+      "topic": "James's exploration of different art styles",
+      "summary": "On March 20, 2022, James and John discussed their recent hobbies, with James exploring different art styles and John taking up metal detecting, sharing his finds including a gold ring. The conversation reflected a friendly exchange about their personal interests and new activities.",
+      "members": [
+        {
+          "unit_id": "85b21656-8e9d-485d-aaad-70a1ab68b4f2",
+          "timestamp": "2022-03-20T21:32:30+08:00",
+          "summary": "On March 20, 2022, James and John discussed their recent hobbies, with James exploring different art styles and John taking up metal detecting, sharing his finds including a gold ring. The conversation reflected a friendly exchange about their personal interests and new activities."
+        }
+      ],
+      "first_timestamp": "2022-03-20T21:32:30+08:00",
+      "last_timestamp": "2022-03-20T21:32:30+08:00",
+      "created_at": "2025-12-03T17:24:13.874147",
+      "updated_at": "2025-12-03T17:24:13.874147"
+    },
+    "gec_012": {
+      "cluster_id": "gec_012",
+      "topic": "John's metal detecting hobby and discoveries",
+      "summary": "On March 20, 2022, James and John discussed their recent hobbies, with James exploring different art styles and John taking up metal detecting, sharing his finds including a gold ring. The conversation reflected a friendly exchange about their personal interests and new activities.",
+      "members": [
+        {
+          "unit_id": "85b21656-8e9d-485d-aaad-70a1ab68b4f2",
+          "timestamp": "2022-03-20T21:32:30+08:00",
+          "summary": "On March 20, 2022, James and John discussed their recent hobbies, with James exploring different art styles and John taking up metal detecting, sharing his finds including a gold ring. The conversation reflected a friendly exchange about their personal interests and new activities."
+        }
+      ],
+      "first_timestamp": "2022-03-20T21:32:30+08:00",
+      "last_timestamp": "2022-03-20T21:32:30+08:00",
+      "created_at": "2025-12-03T17:24:13.878940",
+      "updated_at": "2025-12-03T17:24:13.878940"
+    },
+    "gec_013": {
+      "cluster_id": "gec_013",
+      "topic": "James's dogs and their companionship",
+      "summary": "They discussed James’s dogs and their companionship, sharing stories, photos, and experiences from hikes, playtime, and pet care. Over time, their conversations reflected growing bonds between the dogs, James’s responsible care, and the joy pets bring to their friendship and well-being.",
+      "members": [
+        {
+          "unit_id": "79848642-edbd-40b5-96b9-95f5194462f1",
+          "timestamp": "2022-03-20T21:36:00+08:00",
+          "summary": "John and James engaged in a friendly conversation where James shared photos and stories about his dogs, highlighting their tricks and companionship, while encouraging John’s interest in future pet ownership."
+        },
+        {
+          "unit_id": "9568885f-caa0-4854-96aa-df043eb1d6c7",
+          "timestamp": "2022-04-23T11:08:00+08:00",
+          "summary": "On April 23, 2022, John and James discussed James's recent hiking adventure with his dogs, highlighting the enjoyable trails, beautiful views, and the relaxing experience of spending time in nature. Both expressed appreciation for the peacefulness and the joy of outdoor activities amid their busy lives."
+        },
+        {
+          "unit_id": "d5314ae0-8691-4008-a9ef-8217eed5d7ab",
+          "timestamp": "2022-04-29T14:50:00+08:00",
+          "summary": "John and James engaged in a conversation about their gaming experiences, including strategy games and Assassin's Creed Valhalla, while also sharing affection for James's pet dogs, particularly Daisy. Their exchange highlighted enthusiasm for gaming and the comfort their pets provided during play."
+        },
+        {
+          "unit_id": "db02fc81-2aa9-45db-9afe-236f3ae1d149",
+          "timestamp": "2022-05-04T19:08:30+08:00",
+          "summary": "On May 4, 2022, James and John discussed their sources of happiness, including James's pets and John's socializing with friends, and planned for James to join John’s group in the future. Their conversation highlighted friendship, relaxation, and shared personal joys."
+        },
+        {
+          "unit_id": "2b5e1519-1db6-44d8-a9ad-b6abf6766c18",
+          "timestamp": "2022-05-04T19:13:00+08:00",
+          "summary": "On May 4, 2022, James and John engaged in a friendly conversation about their favorite types of pizza, with James favoring pepperoni and prosciutto pizzas and John preferring Hawaiian, exchanging recommendations and expressing enthusiasm for different flavors."
+        },
+        {
+          "unit_id": "762e54c8-84f7-4a05-af66-90125ba4c582",
+          "timestamp": "2022-06-16T17:23:30+08:00",
+          "summary": "On June 16, 2022, James and John engaged in a conversation about James's dog Max, sharing photos and discussing Max's playful nature, swimming skills, and their nature walks, while also exchanging book recommendations and reflecting on the joy pets and reading bring to their well-being."
+        },
+        {
+          "unit_id": "d6904ee6-de68-4fd2-b47b-f6378adfc285",
+          "timestamp": "2022-06-19T22:00:00+08:00",
+          "summary": "On June 19, 2022, James updated John about introducing his new puppy Ned to his existing dogs Max and Daisy, describing the initial challenges and the dogs gradually bonding, which John warmly appreciated. James also shared a recent photo of the three dogs together, highlighting their growing connection."
+        },
+        {
+          "unit_id": "d36a1d7f-1dc2-4fac-b96e-4054e0f5c23d",
+          "timestamp": "2022-07-22T10:01:30+08:00",
+          "summary": "On July 22, 2022, James and John discussed their shared love for pets and James's recent trip to Nuuk, with James sharing souvenirs for John and his partner Jill while John expressed his intention to get a pet someday."
+        },
+        {
+          "unit_id": "c7365f1f-dd17-42ac-8a31-65db1670f483",
+          "timestamp": "2022-07-22T10:07:00+08:00",
+          "summary": "On July 22, 2022, James and John discussed joyful moments James shared with his sister and dogs, including photos of their time together and a sunset by the ocean, highlighting themes of family closeness, gratitude, and mutual support."
+        },
+        {
+          "unit_id": "912fe045-0359-432d-b0d8-52d6e61f17a5",
+          "timestamp": "2022-08-06T13:54:30+08:00",
+          "summary": "John and James discussed James's recent visit to the clinic with his puppy, where James reassured John that the visit was a routine vaccination, highlighting James's responsible pet care and their supportive friendship."
+        },
+        {
+          "unit_id": "eba70b0e-f6d4-4bba-a544-5d3dec48d585",
+          "timestamp": "2022-08-10T09:24:00+08:00",
+          "summary": "On August 9, 2022, James took his three dogs to a beach outing where he enjoyed bonding with other dogkeepers and met a girl named Samantha, whose phone number he planned to call the next day to ask her out. John encouraged James, sharing in his excitement about the potential new romantic connection."
+        },
+        {
+          "unit_id": "cfa6faf4-c706-4dd9-90b3-d7decc514bae",
+          "timestamp": "2022-08-26T21:18:00+08:00",
+          "summary": "On August 26, 2022, James shared a joyful moment with his dog and initiated a conversation with John to catch up, reflecting a friendly and affectionate interaction. Earlier, on August 21, James had sent a relaxed and friendly message wishing someone a good night."
+        },
+        {
+          "unit_id": "ee6b119a-9fc4-4877-ac2b-a7631cce9e68",
+          "timestamp": "2022-11-05T17:20:00+08:00",
+          "summary": "In early November 2022, James shared with John his enjoyment of a road trip he began on November 4, highlighting quality time with his family and dogs while expressing gratitude for prior support."
+        },
+        {
+          "unit_id": "efd7465b-8807-42b6-ab6f-e8bbd17bcbb4",
+          "timestamp": "2022-11-07T20:57:00+08:00",
+          "summary": "In early November 2022, James demonstrated enthusiasm for physical training and shared moments from a family road trip during which they visited friends Josh and Mark, enjoying positive social interactions."
+        },
+        {
+          "unit_id": "0baca7d7-665f-45df-92ad-335addf9961b",
+          "timestamp": "2022-11-07T21:01:00+08:00",
+          "summary": "On November 7, 2022, James and John discussed their shared love for dogs during a conversation where James described visiting an animal sanctuary with rescue dogs, and both reflected on the joy and companionship dogs bring to their lives. They exchanged images of dogs and expressed affection for their furry friends before ending the chat."
+        }
+      ],
+      "first_timestamp": "2022-03-20T21:36:00+08:00",
+      "last_timestamp": "2022-11-07T21:01:00+08:00",
+      "created_at": "2025-12-03T17:24:18.392963",
+      "updated_at": "2025-12-03T17:30:29.743114"
+    },
+    "gec_014": {
+      "cluster_id": "gec_014",
+      "topic": "James encouraging John's interest in future pet ownership",
+      "summary": "John and James engaged in a friendly conversation where James shared photos and stories about his dogs, highlighting their tricks and companionship, while encouraging John’s interest in future pet ownership.",
+      "members": [
+        {
+          "unit_id": "79848642-edbd-40b5-96b9-95f5194462f1",
+          "timestamp": "2022-03-20T21:36:00+08:00",
+          "summary": "John and James engaged in a friendly conversation where James shared photos and stories about his dogs, highlighting their tricks and companionship, while encouraging John’s interest in future pet ownership."
+        }
+      ],
+      "first_timestamp": "2022-03-20T21:36:00+08:00",
+      "last_timestamp": "2022-03-20T21:36:00+08:00",
+      "created_at": "2025-12-03T17:24:18.395885",
+      "updated_at": "2025-12-03T17:24:18.395885"
+    },
+    "gec_015": {
+      "cluster_id": "gec_015",
+      "topic": "James's drum playing experience",
+      "summary": "James and John exchanged photos of their drum kits and discussed their early experiences learning to play drums, sharing challenges, progress, and mutual encouragement.",
+      "members": [
+        {
+          "unit_id": "77db52af-a3ea-4739-b5d1-887e3f8e15f4",
+          "timestamp": "2022-03-27T00:43:00+08:00",
+          "summary": "James and John exchanged photos of their drum kits and discussed their early experiences learning to play drums, sharing challenges, progress, and mutual encouragement."
+        }
+      ],
+      "first_timestamp": "2022-03-27T00:43:00+08:00",
+      "last_timestamp": "2022-03-27T00:43:00+08:00",
+      "created_at": "2025-12-03T17:24:27.898953",
+      "updated_at": "2025-12-03T17:24:27.898953"
+    },
+    "gec_016": {
+      "cluster_id": "gec_016",
+      "topic": "John's drum playing experience",
+      "summary": "James and John exchanged photos of their drum kits and discussed their early experiences learning to play drums, sharing challenges, progress, and mutual encouragement.",
+      "members": [
+        {
+          "unit_id": "77db52af-a3ea-4739-b5d1-887e3f8e15f4",
+          "timestamp": "2022-03-27T00:43:00+08:00",
+          "summary": "James and John exchanged photos of their drum kits and discussed their early experiences learning to play drums, sharing challenges, progress, and mutual encouragement."
+        }
+      ],
+      "first_timestamp": "2022-03-27T00:43:00+08:00",
+      "last_timestamp": "2022-03-27T00:43:00+08:00",
+      "created_at": "2025-12-03T17:24:27.901843",
+      "updated_at": "2025-12-03T17:24:27.901843"
+    },
+    "gec_017": {
+      "cluster_id": "gec_017",
+      "topic": "James's adoption of puppy Ned",
+      "summary": "James shared about adopting a puppy named Ned and discussed gaming progress with John, who described playing a new RPG game despite some technical issues. They exchanged photos and plans to try the game, ending with mutual encouragement and well-wishes.",
+      "members": [
+        {
+          "unit_id": "ea93f0ba-1122-445e-a72a-3cacf8bad6de",
+          "timestamp": "2022-04-12T09:59:30+08:00",
+          "summary": "James shared about adopting a puppy named Ned and discussed gaming progress with John, who described playing a new RPG game despite some technical issues. They exchanged photos and plans to try the game, ending with mutual encouragement and well-wishes."
+        },
+        {
+          "unit_id": "d6904ee6-de68-4fd2-b47b-f6378adfc285",
+          "timestamp": "2022-06-19T22:00:00+08:00",
+          "summary": "On June 19, 2022, James updated John about introducing his new puppy Ned to his existing dogs Max and Daisy, describing the initial challenges and the dogs gradually bonding, which John warmly appreciated. James also shared a recent photo of the three dogs together, highlighting their growing connection."
+        },
+        {
+          "unit_id": "34508d03-366e-4e0c-b900-e552c81f3705",
+          "timestamp": "2022-08-26T21:19:30+08:00",
+          "summary": "John and James discussed James's dog Ned, with James expressing strong affection for him, while John shared his enthusiasm about helping his younger siblings with programming. Both conveyed positive feelings about the dog and the siblings' engagement in programming."
+        }
+      ],
+      "first_timestamp": "2022-04-12T09:59:30+08:00",
+      "last_timestamp": "2022-08-26T21:19:30+08:00",
+      "created_at": "2025-12-03T17:24:50.109715",
+      "updated_at": "2025-12-03T17:27:59.683749"
+    },
+    "gec_018": {
+      "cluster_id": "gec_018",
+      "topic": "John's programming course social experiences",
+      "summary": "John and James discussed their recent creative projects, travel experiences, and future plans, sharing images and mutual inspiration while expressing enthusiasm for programming, gaming, nature, and traveling together. Their conversation highlighted a strong friendship and shared interests.",
+      "members": [
+        {
+          "unit_id": "5b5ae990-66ea-46a7-a163-5b8a51f0c5ec",
+          "timestamp": "2022-04-23T11:04:00+08:00",
+          "summary": "John and James discussed their recent creative projects, travel experiences, and future plans, sharing images and mutual inspiration while expressing enthusiasm for programming, gaming, nature, and traveling together. Their conversation highlighted a strong friendship and shared interests."
+        }
+      ],
+      "first_timestamp": "2022-04-23T11:04:00+08:00",
+      "last_timestamp": "2022-04-23T11:04:00+08:00",
+      "created_at": "2025-12-03T17:24:56.798299",
+      "updated_at": "2025-12-03T17:24:56.798299"
+    },
+    "gec_019": {
+      "cluster_id": "gec_019",
+      "topic": "James's hiking adventures with his dogs",
+      "summary": "On April 23, 2022, John and James discussed James's recent hiking adventure with his dogs, highlighting the enjoyable trails, beautiful views, and the relaxing experience of spending time in nature. Both expressed appreciation for the peacefulness and the joy of outdoor activities amid their busy lives.",
+      "members": [
+        {
+          "unit_id": "9568885f-caa0-4854-96aa-df043eb1d6c7",
+          "timestamp": "2022-04-23T11:08:00+08:00",
+          "summary": "On April 23, 2022, John and James discussed James's recent hiking adventure with his dogs, highlighting the enjoyable trails, beautiful views, and the relaxing experience of spending time in nature. Both expressed appreciation for the peacefulness and the joy of outdoor activities amid their busy lives."
+        }
+      ],
+      "first_timestamp": "2022-04-23T11:08:00+08:00",
+      "last_timestamp": "2022-04-23T11:08:00+08:00",
+      "created_at": "2025-12-03T17:25:01.767453",
+      "updated_at": "2025-12-03T17:25:01.767453"
+    },
+    "gec_020": {
+      "cluster_id": "gec_020",
+      "topic": "John and James's appreciation for outdoor activities and nature",
+      "summary": "On April 23, 2022, John and James discussed James's recent hiking adventure with his dogs, highlighting the enjoyable trails, beautiful views, and the relaxing experience of spending time in nature. Both expressed appreciation for the peacefulness and the joy of outdoor activities amid their busy lives.",
+      "members": [
+        {
+          "unit_id": "9568885f-caa0-4854-96aa-df043eb1d6c7",
+          "timestamp": "2022-04-23T11:08:00+08:00",
+          "summary": "On April 23, 2022, John and James discussed James's recent hiking adventure with his dogs, highlighting the enjoyable trails, beautiful views, and the relaxing experience of spending time in nature. Both expressed appreciation for the peacefulness and the joy of outdoor activities amid their busy lives."
+        }
+      ],
+      "first_timestamp": "2022-04-23T11:08:00+08:00",
+      "last_timestamp": "2022-04-23T11:08:00+08:00",
+      "created_at": "2025-12-03T17:25:01.768580",
+      "updated_at": "2025-12-03T17:25:01.768580"
+    },
+    "gec_021": {
+      "cluster_id": "gec_021",
+      "topic": "John's stress and frustration over difficult coding projects",
+      "summary": "John shared with James his stress and frustration over a difficult coding project, and James offered emotional support and practical advice to help him break down the problem and stay motivated.",
+      "members": [
+        {
+          "unit_id": "c709a810-43b2-47d2-8e9c-774159add93d",
+          "timestamp": "2022-04-23T11:14:00+08:00",
+          "summary": "John shared with James his stress and frustration over a difficult coding project, and James offered emotional support and practical advice to help him break down the problem and stay motivated."
+        }
+      ],
+      "first_timestamp": "2022-04-23T11:14:00+08:00",
+      "last_timestamp": "2022-04-23T11:14:00+08:00",
+      "created_at": "2025-12-03T17:25:06.746678",
+      "updated_at": "2025-12-03T17:25:06.746678"
+    },
+    "gec_022": {
+      "cluster_id": "gec_022",
+      "topic": "James's emotional support and practical advice for John's work stress",
+      "summary": "John shared with James his stress and frustration over a difficult coding project, and James offered emotional support and practical advice to help him break down the problem and stay motivated.",
+      "members": [
+        {
+          "unit_id": "c709a810-43b2-47d2-8e9c-774159add93d",
+          "timestamp": "2022-04-23T11:14:00+08:00",
+          "summary": "John shared with James his stress and frustration over a difficult coding project, and James offered emotional support and practical advice to help him break down the problem and stay motivated."
+        }
+      ],
+      "first_timestamp": "2022-04-23T11:14:00+08:00",
+      "last_timestamp": "2022-04-23T11:14:00+08:00",
+      "created_at": "2025-12-03T17:25:06.748297",
+      "updated_at": "2025-12-03T17:25:06.748297"
+    },
+    "gec_023": {
+      "cluster_id": "gec_023",
+      "topic": "John's freelance programming work",
+      "summary": "John discussed his challenges and progress in freelance programming, particularly working on a website for a local business, while James offered encouragement and shared a personal interest in fantasy literature.",
+      "members": [
+        {
+          "unit_id": "bdd3d3cf-58a0-45a0-9bd8-f78655e106f8",
+          "timestamp": "2022-04-29T14:41:00+08:00",
+          "summary": "John discussed his challenges and progress in freelance programming, particularly working on a website for a local business, while James offered encouragement and shared a personal interest in fantasy literature."
+        }
+      ],
+      "first_timestamp": "2022-04-29T14:41:00+08:00",
+      "last_timestamp": "2022-04-29T14:41:00+08:00",
+      "created_at": "2025-12-03T17:25:11.406556",
+      "updated_at": "2025-12-03T17:25:11.406556"
+    },
+    "gec_024": {
+      "cluster_id": "gec_024",
+      "topic": "James's interest in fantasy literature",
+      "summary": "John discussed his challenges and progress in freelance programming, particularly working on a website for a local business, while James offered encouragement and shared a personal interest in fantasy literature.",
+      "members": [
+        {
+          "unit_id": "bdd3d3cf-58a0-45a0-9bd8-f78655e106f8",
+          "timestamp": "2022-04-29T14:41:00+08:00",
+          "summary": "John discussed his challenges and progress in freelance programming, particularly working on a website for a local business, while James offered encouragement and shared a personal interest in fantasy literature."
+        }
+      ],
+      "first_timestamp": "2022-04-29T14:41:00+08:00",
+      "last_timestamp": "2022-04-29T14:41:00+08:00",
+      "created_at": "2025-12-03T17:25:11.410293",
+      "updated_at": "2025-12-03T17:25:11.410293"
+    },
+    "gec_025": {
+      "cluster_id": "gec_025",
+      "topic": "James and John's shared enthusiasm for fantasy books and adventure novels",
+      "summary": "James and John discussed their shared enthusiasm for fantasy books and adventure novels, with John recommending \"The Name of the Wind\" to James, who expressed interest in exploring the suggestion.",
+      "members": [
+        {
+          "unit_id": "a801243e-21f8-4bcd-b300-5f55179edd13",
+          "timestamp": "2022-04-29T14:43:30+08:00",
+          "summary": "James and John discussed their shared enthusiasm for fantasy books and adventure novels, with John recommending \"The Name of the Wind\" to James, who expressed interest in exploring the suggestion."
+        }
+      ],
+      "first_timestamp": "2022-04-29T14:43:30+08:00",
+      "last_timestamp": "2022-04-29T14:43:30+08:00",
+      "created_at": "2025-12-03T17:25:15.504643",
+      "updated_at": "2025-12-03T17:25:15.504643"
+    },
+    "gec_026": {
+      "cluster_id": "gec_026",
+      "topic": "James and John's strategy board game experiences and preferences",
+      "summary": "On April 29, 2022, James and John discussed their experiences and preferences with strategy and social board games, sharing enthusiasm for games that challenge strategic thinking and promote social fun, with James expressing interest in trying a popular impostor game recommended by John.",
+      "members": [
+        {
+          "unit_id": "055554f9-21db-41b6-9c7b-0df6e4f32316",
+          "timestamp": "2022-04-29T14:55:30+08:00",
+          "summary": "On April 29, 2022, James and John discussed their experiences and preferences with strategy and social board games, sharing enthusiasm for games that challenge strategic thinking and promote social fun, with James expressing interest in trying a popular impostor game recommended by John."
+        }
+      ],
+      "first_timestamp": "2022-04-29T14:55:30+08:00",
+      "last_timestamp": "2022-04-29T14:55:30+08:00",
+      "created_at": "2025-12-03T17:25:25.974397",
+      "updated_at": "2025-12-03T17:25:25.974397"
+    },
+    "gec_027": {
+      "cluster_id": "gec_027",
+      "topic": "James and John's social board game experiences and preferences",
+      "summary": "On April 29, 2022, James and John discussed their experiences and preferences with strategy and social board games, sharing enthusiasm for games that challenge strategic thinking and promote social fun, with James expressing interest in trying a popular impostor game recommended by John.",
+      "members": [
+        {
+          "unit_id": "055554f9-21db-41b6-9c7b-0df6e4f32316",
+          "timestamp": "2022-04-29T14:55:30+08:00",
+          "summary": "On April 29, 2022, James and John discussed their experiences and preferences with strategy and social board games, sharing enthusiasm for games that challenge strategic thinking and promote social fun, with James expressing interest in trying a popular impostor game recommended by John."
+        }
+      ],
+      "first_timestamp": "2022-04-29T14:55:30+08:00",
+      "last_timestamp": "2022-04-29T14:55:30+08:00",
+      "created_at": "2025-12-03T17:25:25.977274",
+      "updated_at": "2025-12-03T17:25:25.977274"
+    },
+    "gec_028": {
+      "cluster_id": "gec_028",
+      "topic": "James's interest in trying a popular impostor game recommended by John",
+      "summary": "On April 29, 2022, James and John discussed their experiences and preferences with strategy and social board games, sharing enthusiasm for games that challenge strategic thinking and promote social fun, with James expressing interest in trying a popular impostor game recommended by John.",
+      "members": [
+        {
+          "unit_id": "055554f9-21db-41b6-9c7b-0df6e4f32316",
+          "timestamp": "2022-04-29T14:55:30+08:00",
+          "summary": "On April 29, 2022, James and John discussed their experiences and preferences with strategy and social board games, sharing enthusiasm for games that challenge strategic thinking and promote social fun, with James expressing interest in trying a popular impostor game recommended by John."
+        }
+      ],
+      "first_timestamp": "2022-04-29T14:55:30+08:00",
+      "last_timestamp": "2022-04-29T14:55:30+08:00",
+      "created_at": "2025-12-03T17:25:25.980486",
+      "updated_at": "2025-12-03T17:25:25.980486"
+    },
+    "gec_029": {
+      "cluster_id": "gec_029",
+      "topic": "James's experience resolving a challenging bug in his project through teamwork",
+      "summary": "John and James discussed a challenging bug James encountered in his project, which he ultimately resolved through collaboration with a supportive team, highlighting the importance of teamwork in problem-solving.",
+      "members": [
+        {
+          "unit_id": "c64cfbf4-02d0-4922-8b3f-8a52df446ae3",
+          "timestamp": "2022-05-04T19:04:30+08:00",
+          "summary": "John and James discussed a challenging bug James encountered in his project, which he ultimately resolved through collaboration with a supportive team, highlighting the importance of teamwork in problem-solving."
+        }
+      ],
+      "first_timestamp": "2022-05-04T19:04:30+08:00",
+      "last_timestamp": "2022-05-04T19:04:30+08:00",
+      "created_at": "2025-12-03T17:25:29.612894",
+      "updated_at": "2025-12-03T17:25:29.612894"
+    },
+    "gec_030": {
+      "cluster_id": "gec_030",
+      "topic": "John's socializing with friends and hosting activities",
+      "summary": "On May 4, 2022, James and John discussed their sources of happiness, including James's pets and John's socializing with friends, and planned for James to join John’s group in the future. Their conversation highlighted friendship, relaxation, and shared personal joys.",
+      "members": [
+        {
+          "unit_id": "db02fc81-2aa9-45db-9afe-236f3ae1d149",
+          "timestamp": "2022-05-04T19:08:30+08:00",
+          "summary": "On May 4, 2022, James and John discussed their sources of happiness, including James's pets and John's socializing with friends, and planned for James to join John’s group in the future. Their conversation highlighted friendship, relaxation, and shared personal joys."
+        }
+      ],
+      "first_timestamp": "2022-05-04T19:08:30+08:00",
+      "last_timestamp": "2022-05-04T19:08:30+08:00",
+      "created_at": "2025-12-03T17:25:34.841029",
+      "updated_at": "2025-12-03T17:25:34.841029"
+    },
+    "gec_031": {
+      "cluster_id": "gec_031",
+      "topic": "James joining John's social group",
+      "summary": "On May 4, 2022, James and John discussed their sources of happiness, including James's pets and John's socializing with friends, and planned for James to join John’s group in the future. Their conversation highlighted friendship, relaxation, and shared personal joys.",
+      "members": [
+        {
+          "unit_id": "db02fc81-2aa9-45db-9afe-236f3ae1d149",
+          "timestamp": "2022-05-04T19:08:30+08:00",
+          "summary": "On May 4, 2022, James and John discussed their sources of happiness, including James's pets and John's socializing with friends, and planned for James to join John’s group in the future. Their conversation highlighted friendship, relaxation, and shared personal joys."
+        }
+      ],
+      "first_timestamp": "2022-05-04T19:08:30+08:00",
+      "last_timestamp": "2022-05-04T19:08:30+08:00",
+      "created_at": "2025-12-03T17:25:34.844609",
+      "updated_at": "2025-12-03T17:25:34.844609"
+    },
+    "gec_032": {
+      "cluster_id": "gec_032",
+      "topic": "John's organization of a CS:GO charity tournament",
+      "summary": "On May 7, 2022, John organized a CS:GO tournament with friends to raise money for a local dog shelter and support homeless individuals, which he discussed with James, who praised the charitable gaming event and encouraged future efforts.",
+      "members": [
+        {
+          "unit_id": "94531b61-8927-411a-b27e-572460988b01",
+          "timestamp": "2022-05-08T00:52:00+08:00",
+          "summary": "On May 7, 2022, John organized a CS:GO tournament with friends to raise money for a local dog shelter and support homeless individuals, which he discussed with James, who praised the charitable gaming event and encouraged future efforts."
+        }
+      ],
+      "first_timestamp": "2022-05-08T00:52:00+08:00",
+      "last_timestamp": "2022-05-08T00:52:00+08:00",
+      "created_at": "2025-12-03T17:25:46.068862",
+      "updated_at": "2025-12-03T17:25:46.068862"
+    },
+    "gec_033": {
+      "cluster_id": "gec_033",
+      "topic": "Charitable gaming events supporting dog shelters",
+      "summary": "On May 7, 2022, John organized a CS:GO tournament with friends to raise money for a local dog shelter and support homeless individuals, which he discussed with James, who praised the charitable gaming event and encouraged future efforts.",
+      "members": [
+        {
+          "unit_id": "94531b61-8927-411a-b27e-572460988b01",
+          "timestamp": "2022-05-08T00:52:00+08:00",
+          "summary": "On May 7, 2022, John organized a CS:GO tournament with friends to raise money for a local dog shelter and support homeless individuals, which he discussed with James, who praised the charitable gaming event and encouraged future efforts."
+        }
+      ],
+      "first_timestamp": "2022-05-08T00:52:00+08:00",
+      "last_timestamp": "2022-05-08T00:52:00+08:00",
+      "created_at": "2025-12-03T17:25:46.070572",
+      "updated_at": "2025-12-03T17:25:46.070572"
+    },
+    "gec_034": {
+      "cluster_id": "gec_034",
+      "topic": "Support for homeless individuals through gaming events",
+      "summary": "On May 7, 2022, John organized a CS:GO tournament with friends to raise money for a local dog shelter and support homeless individuals, which he discussed with James, who praised the charitable gaming event and encouraged future efforts.",
+      "members": [
+        {
+          "unit_id": "94531b61-8927-411a-b27e-572460988b01",
+          "timestamp": "2022-05-08T00:52:00+08:00",
+          "summary": "On May 7, 2022, John organized a CS:GO tournament with friends to raise money for a local dog shelter and support homeless individuals, which he discussed with James, who praised the charitable gaming event and encouraged future efforts."
+        }
+      ],
+      "first_timestamp": "2022-05-08T00:52:00+08:00",
+      "last_timestamp": "2022-05-08T00:52:00+08:00",
+      "created_at": "2025-12-03T17:25:46.072217",
+      "updated_at": "2025-12-03T17:25:46.072217"
+    },
+    "gec_035": {
+      "cluster_id": "gec_035",
+      "topic": "John's volunteer programming work for charitable foundation",
+      "summary": "On May 11, 2022, John shared with James his experience volunteering to develop a smartphone app that streamlined inventory management for a charitable foundation, expressing pride and a newfound sense of purpose in using his programming skills for social good. James responded with enthusiasm and encouragement, supporting John's aspirations to pursue further volunteer roles and a potential career in the non-profit sector.",
+      "members": [
+        {
+          "unit_id": "c45c5025-6e70-4708-9849-5d466f3450bb",
+          "timestamp": "2022-05-11T17:09:00+08:00",
+          "summary": "On May 11, 2022, John shared with James his experience volunteering to develop a smartphone app that streamlined inventory management for a charitable foundation, expressing pride and a newfound sense of purpose in using his programming skills for social good. James responded with enthusiasm and encouragement, supporting John's aspirations to pursue further volunteer roles and a potential career in the non-profit sector."
+        }
+      ],
+      "first_timestamp": "2022-05-11T17:09:00+08:00",
+      "last_timestamp": "2022-05-11T17:09:00+08:00",
+      "created_at": "2025-12-03T17:25:51.089006",
+      "updated_at": "2025-12-03T17:25:51.089006"
+    },
+    "gec_036": {
+      "cluster_id": "gec_036",
+      "topic": "John's aspirations for career in non-profit sector",
+      "summary": "On May 11, 2022, John shared with James his experience volunteering to develop a smartphone app that streamlined inventory management for a charitable foundation, expressing pride and a newfound sense of purpose in using his programming skills for social good. James responded with enthusiasm and encouragement, supporting John's aspirations to pursue further volunteer roles and a potential career in the non-profit sector.",
+      "members": [
+        {
+          "unit_id": "c45c5025-6e70-4708-9849-5d466f3450bb",
+          "timestamp": "2022-05-11T17:09:00+08:00",
+          "summary": "On May 11, 2022, John shared with James his experience volunteering to develop a smartphone app that streamlined inventory management for a charitable foundation, expressing pride and a newfound sense of purpose in using his programming skills for social good. James responded with enthusiasm and encouragement, supporting John's aspirations to pursue further volunteer roles and a potential career in the non-profit sector."
+        }
+      ],
+      "first_timestamp": "2022-05-11T17:09:00+08:00",
+      "last_timestamp": "2022-05-11T17:09:00+08:00",
+      "created_at": "2025-12-03T17:25:51.090116",
+      "updated_at": "2025-12-03T17:25:51.090116"
+    },
+    "gec_037": {
+      "cluster_id": "gec_037",
+      "topic": "James's amusement park visit and roller coaster experience",
+      "summary": "On May 23, 2022, James shared with John his enjoyable experience at an amusement park the previous weekend, highlighting thrilling roller coasters and other rides, while John responded with enthusiasm and interest in the details. Their conversation reflected positive emotions and ongoing friendly communication.",
+      "members": [
+        {
+          "unit_id": "79ea9533-ecae-4704-909c-8d8df4c64822",
+          "timestamp": "2022-05-23T19:34:00+08:00",
+          "summary": "On May 23, 2022, James shared with John his enjoyable experience at an amusement park the previous weekend, highlighting thrilling roller coasters and other rides, while John responded with enthusiasm and interest in the details. Their conversation reflected positive emotions and ongoing friendly communication."
+        }
+      ],
+      "first_timestamp": "2022-05-23T19:34:00+08:00",
+      "last_timestamp": "2022-05-23T19:34:00+08:00",
+      "created_at": "2025-12-03T17:25:56.949161",
+      "updated_at": "2025-12-03T17:25:56.949161"
+    },
+    "gec_038": {
+      "cluster_id": "gec_038",
+      "topic": "John's participation and achievement in local tournaments",
+      "summary": "John shared with James that he had placed second in a local tournament on May 20, 2022, expressing excitement about his achievement and the monetary prize he received, while James offered congratulations and encouragement.",
+      "members": [
+        {
+          "unit_id": "1d19ec68-e440-4220-b49c-7c5f4181b1ee",
+          "timestamp": "2022-05-23T19:36:30+08:00",
+          "summary": "John shared with James that he had placed second in a local tournament on May 20, 2022, expressing excitement about his achievement and the monetary prize he received, while James offered congratulations and encouragement."
+        }
+      ],
+      "first_timestamp": "2022-05-23T19:36:30+08:00",
+      "last_timestamp": "2022-05-23T19:36:30+08:00",
+      "created_at": "2025-12-03T17:26:00.869140",
+      "updated_at": "2025-12-03T17:26:00.869140"
+    },
+    "gec_039": {
+      "cluster_id": "gec_039",
+      "topic": "James's achievement in learning a new programming language",
+      "summary": "James shared with John his recent achievement of completing a challenging project that involved learning a new programming language, and they exchanged congratulations and encouragement regarding their accomplishments and future goals.",
+      "members": [
+        {
+          "unit_id": "a1ff09a0-bedb-496f-a6b0-3048fa501bc6",
+          "timestamp": "2022-05-23T19:39:30+08:00",
+          "summary": "James shared with John his recent achievement of completing a challenging project that involved learning a new programming language, and they exchanged congratulations and encouragement regarding their accomplishments and future goals."
+        }
+      ],
+      "first_timestamp": "2022-05-23T19:39:30+08:00",
+      "last_timestamp": "2022-05-23T19:39:30+08:00",
+      "created_at": "2025-12-03T17:26:04.918938",
+      "updated_at": "2025-12-03T17:26:04.918938"
+    },
+    "gec_040": {
+      "cluster_id": "gec_040",
+      "topic": "Mutual congratulations and encouragement on personal accomplishments and future goals",
+      "summary": "James shared with John his recent achievement of completing a challenging project that involved learning a new programming language, and they exchanged congratulations and encouragement regarding their accomplishments and future goals.",
+      "members": [
+        {
+          "unit_id": "a1ff09a0-bedb-496f-a6b0-3048fa501bc6",
+          "timestamp": "2022-05-23T19:39:30+08:00",
+          "summary": "James shared with John his recent achievement of completing a challenging project that involved learning a new programming language, and they exchanged congratulations and encouragement regarding their accomplishments and future goals."
+        }
+      ],
+      "first_timestamp": "2022-05-23T19:39:30+08:00",
+      "last_timestamp": "2022-05-23T19:39:30+08:00",
+      "created_at": "2025-12-03T17:26:04.920686",
+      "updated_at": "2025-12-03T17:26:04.920686"
+    },
+    "gec_041": {
+      "cluster_id": "gec_041",
+      "topic": "John's new dream job and career transition",
+      "summary": "On June 13, 2022, John and James reunited after a long time, sharing John's excitement about his new dream job and James's enthusiasm for a gaming and programming course, while engaging in a friendly football rivalry between their favorite teams, Liverpool and Manchester City. Their conversation highlighted personal achievements, mutual encouragement, and shared interests.",
+      "members": [
+        {
+          "unit_id": "48113c7d-5182-4856-8862-9956f8f7cb2e",
+          "timestamp": "2022-06-13T16:39:30+08:00",
+          "summary": "On June 13, 2022, John and James reunited after a long time, sharing John's excitement about his new dream job and James's enthusiasm for a gaming and programming course, while engaging in a friendly football rivalry between their favorite teams, Liverpool and Manchester City. Their conversation highlighted personal achievements, mutual encouragement, and shared interests."
+        }
+      ],
+      "first_timestamp": "2022-06-13T16:39:30+08:00",
+      "last_timestamp": "2022-06-13T16:39:30+08:00",
+      "created_at": "2025-12-03T17:26:10.134958",
+      "updated_at": "2025-12-03T17:26:10.134958"
+    },
+    "gec_042": {
+      "cluster_id": "gec_042",
+      "topic": "James's gaming and programming course enrollment",
+      "summary": "On June 13, 2022, John and James reunited after a long time, sharing John's excitement about his new dream job and James's enthusiasm for a gaming and programming course, while engaging in a friendly football rivalry between their favorite teams, Liverpool and Manchester City. Their conversation highlighted personal achievements, mutual encouragement, and shared interests.",
+      "members": [
+        {
+          "unit_id": "48113c7d-5182-4856-8862-9956f8f7cb2e",
+          "timestamp": "2022-06-13T16:39:30+08:00",
+          "summary": "On June 13, 2022, John and James reunited after a long time, sharing John's excitement about his new dream job and James's enthusiasm for a gaming and programming course, while engaging in a friendly football rivalry between their favorite teams, Liverpool and Manchester City. Their conversation highlighted personal achievements, mutual encouragement, and shared interests."
+        }
+      ],
+      "first_timestamp": "2022-06-13T16:39:30+08:00",
+      "last_timestamp": "2022-06-13T16:39:30+08:00",
+      "created_at": "2025-12-03T17:26:10.136084",
+      "updated_at": "2025-12-03T17:26:10.136084"
+    },
+    "gec_043": {
+      "cluster_id": "gec_043",
+      "topic": "John and James's football rivalry between Liverpool and Manchester City",
+      "summary": "On June 13, 2022, John and James reunited after a long time, sharing John's excitement about his new dream job and James's enthusiasm for a gaming and programming course, while engaging in a friendly football rivalry between their favorite teams, Liverpool and Manchester City. Their conversation highlighted personal achievements, mutual encouragement, and shared interests.",
+      "members": [
+        {
+          "unit_id": "48113c7d-5182-4856-8862-9956f8f7cb2e",
+          "timestamp": "2022-06-13T16:39:30+08:00",
+          "summary": "On June 13, 2022, John and James reunited after a long time, sharing John's excitement about his new dream job and James's enthusiasm for a gaming and programming course, while engaging in a friendly football rivalry between their favorite teams, Liverpool and Manchester City. Their conversation highlighted personal achievements, mutual encouragement, and shared interests."
+        }
+      ],
+      "first_timestamp": "2022-06-13T16:39:30+08:00",
+      "last_timestamp": "2022-06-13T16:39:30+08:00",
+      "created_at": "2025-12-03T17:26:10.136615",
+      "updated_at": "2025-12-03T17:26:10.136615"
+    },
+    "gec_044": {
+      "cluster_id": "gec_044",
+      "topic": "James's recent life experiences and gratitude for support",
+      "summary": "On June 16, 2022, James opened up to John about recent mixed experiences in his life and expressed gratitude for his support system, while also inquiring about John's current situation. Earlier, on June 13, James had briefly agreed to assist John.",
+      "members": [
+        {
+          "unit_id": "8f0a5985-8f06-445c-99bb-03935b7bcf5b",
+          "timestamp": "2022-06-16T17:07:00+08:00",
+          "summary": "On June 16, 2022, James opened up to John about recent mixed experiences in his life and expressed gratitude for his support system, while also inquiring about John's current situation. Earlier, on June 13, James had briefly agreed to assist John."
+        }
+      ],
+      "first_timestamp": "2022-06-16T17:07:00+08:00",
+      "last_timestamp": "2022-06-16T17:07:00+08:00",
+      "created_at": "2025-12-03T17:26:15.325274",
+      "updated_at": "2025-12-03T17:26:15.325274"
+    },
+    "gec_045": {
+      "cluster_id": "gec_045",
+      "topic": "James's inquiry about John's current situation",
+      "summary": "On June 16, 2022, James opened up to John about recent mixed experiences in his life and expressed gratitude for his support system, while also inquiring about John's current situation. Earlier, on June 13, James had briefly agreed to assist John.",
+      "members": [
+        {
+          "unit_id": "8f0a5985-8f06-445c-99bb-03935b7bcf5b",
+          "timestamp": "2022-06-16T17:07:00+08:00",
+          "summary": "On June 16, 2022, James opened up to John about recent mixed experiences in his life and expressed gratitude for his support system, while also inquiring about John's current situation. Earlier, on June 13, James had briefly agreed to assist John."
+        }
+      ],
+      "first_timestamp": "2022-06-16T17:07:00+08:00",
+      "last_timestamp": "2022-06-16T17:07:00+08:00",
+      "created_at": "2025-12-03T17:26:15.327637",
+      "updated_at": "2025-12-03T17:26:15.327637"
+    },
+    "gec_046": {
+      "cluster_id": "gec_046",
+      "topic": "James's agreement to assist John",
+      "summary": "On June 16, 2022, James opened up to John about recent mixed experiences in his life and expressed gratitude for his support system, while also inquiring about John's current situation. Earlier, on June 13, James had briefly agreed to assist John.",
+      "members": [
+        {
+          "unit_id": "8f0a5985-8f06-445c-99bb-03935b7bcf5b",
+          "timestamp": "2022-06-16T17:07:00+08:00",
+          "summary": "On June 16, 2022, James opened up to John about recent mixed experiences in his life and expressed gratitude for his support system, while also inquiring about John's current situation. Earlier, on June 13, James had briefly agreed to assist John."
+        }
+      ],
+      "first_timestamp": "2022-06-16T17:07:00+08:00",
+      "last_timestamp": "2022-06-16T17:07:00+08:00",
+      "created_at": "2025-12-03T17:26:15.330128",
+      "updated_at": "2025-12-03T17:26:15.330128"
+    },
+    "gec_047": {
+      "cluster_id": "gec_047",
+      "topic": "John's coding blog journey",
+      "summary": "On June 16, 2022, John shared with James his experiences starting a coding blog, describing it as an exciting yet emotional journey, while James offered supportive encouragement and curiosity about John's progress.",
+      "members": [
+        {
+          "unit_id": "c593645f-c151-4f70-be3a-e8580042bc6a",
+          "timestamp": "2022-06-16T17:09:00+08:00",
+          "summary": "On June 16, 2022, John shared with James his experiences starting a coding blog, describing it as an exciting yet emotional journey, while James offered supportive encouragement and curiosity about John's progress."
+        }
+      ],
+      "first_timestamp": "2022-06-16T17:09:00+08:00",
+      "last_timestamp": "2022-06-16T17:09:00+08:00",
+      "created_at": "2025-12-03T17:26:20.023104",
+      "updated_at": "2025-12-03T17:26:20.023104"
+    },
+    "gec_048": {
+      "cluster_id": "gec_048",
+      "topic": "John's science fiction and fantasy book purchases and reading preferences",
+      "summary": "On June 16, 2022, John and James discussed John's recent book purchases, with John sharing his enthusiasm for science fiction and fantasy genres, particularly recommending series like \"The Stormlight Archive,\" \"Kingkiller Chronicle,\" and \"The Expanse.\" James showed interest in John's reading preferences and expressed intent to explore the recommended books.",
+      "members": [
+        {
+          "unit_id": "383b2e42-dd94-4ef2-9bab-e5cd3eb09ed4",
+          "timestamp": "2022-06-16T17:12:00+08:00",
+          "summary": "On June 16, 2022, John and James discussed John's recent book purchases, with John sharing his enthusiasm for science fiction and fantasy genres, particularly recommending series like \"The Stormlight Archive,\" \"Kingkiller Chronicle,\" and \"The Expanse.\" James showed interest in John's reading preferences and expressed intent to explore the recommended books."
+        }
+      ],
+      "first_timestamp": "2022-06-16T17:12:00+08:00",
+      "last_timestamp": "2022-06-16T17:12:00+08:00",
+      "created_at": "2025-12-03T17:26:24.786842",
+      "updated_at": "2025-12-03T17:26:24.786842"
+    },
+    "gec_049": {
+      "cluster_id": "gec_049",
+      "topic": "James's dog Max and his activities",
+      "summary": "On June 16, 2022, James and John engaged in a conversation about James's dog Max, sharing photos and discussing Max's playful nature, swimming skills, and their nature walks, while also exchanging book recommendations and reflecting on the joy pets and reading bring to their well-being.",
+      "members": [
+        {
+          "unit_id": "762e54c8-84f7-4a05-af66-90125ba4c582",
+          "timestamp": "2022-06-16T17:23:30+08:00",
+          "summary": "On June 16, 2022, James and John engaged in a conversation about James's dog Max, sharing photos and discussing Max's playful nature, swimming skills, and their nature walks, while also exchanging book recommendations and reflecting on the joy pets and reading bring to their well-being."
+        }
+      ],
+      "first_timestamp": "2022-06-16T17:23:30+08:00",
+      "last_timestamp": "2022-06-16T17:23:30+08:00",
+      "created_at": "2025-12-03T17:26:30.504201",
+      "updated_at": "2025-12-03T17:26:30.504201"
+    },
+    "gec_050": {
+      "cluster_id": "gec_050",
+      "topic": "John and James's book recommendations and reading interests",
+      "summary": "On June 16, 2022, James and John engaged in a conversation about James's dog Max, sharing photos and discussing Max's playful nature, swimming skills, and their nature walks, while also exchanging book recommendations and reflecting on the joy pets and reading bring to their well-being.",
+      "members": [
+        {
+          "unit_id": "762e54c8-84f7-4a05-af66-90125ba4c582",
+          "timestamp": "2022-06-16T17:23:30+08:00",
+          "summary": "On June 16, 2022, James and John engaged in a conversation about James's dog Max, sharing photos and discussing Max's playful nature, swimming skills, and their nature walks, while also exchanging book recommendations and reflecting on the joy pets and reading bring to their well-being."
+        }
+      ],
+      "first_timestamp": "2022-06-16T17:23:30+08:00",
+      "last_timestamp": "2022-06-16T17:23:30+08:00",
+      "created_at": "2025-12-03T17:26:30.506584",
+      "updated_at": "2025-12-03T17:26:30.506584"
+    },
+    "gec_051": {
+      "cluster_id": "gec_051",
+      "topic": "John's reflections on his future and career aspirations",
+      "summary": "On June 19, 2022, John and James discussed John's reflections on his future and his interest in volunteering, leading to a plan for John to visit the volunteer organization with James the following weekend. James encouraged John’s desire to make a positive impact, offering support and sharing his own rewarding volunteer experience.",
+      "members": [
+        {
+          "unit_id": "76c05882-66f8-4ce2-b812-21e8dea51453",
+          "timestamp": "2022-06-19T22:08:00+08:00",
+          "summary": "On June 19, 2022, John and James discussed John's reflections on his future and his interest in volunteering, leading to a plan for John to visit the volunteer organization with James the following weekend. James encouraged John’s desire to make a positive impact, offering support and sharing his own rewarding volunteer experience."
+        }
+      ],
+      "first_timestamp": "2022-06-19T22:08:00+08:00",
+      "last_timestamp": "2022-06-19T22:08:00+08:00",
+      "created_at": "2025-12-03T17:26:40.838086",
+      "updated_at": "2025-12-03T17:26:40.838086"
+    },
+    "gec_052": {
+      "cluster_id": "gec_052",
+      "topic": "John's interest in volunteering and plans to visit a volunteer organization",
+      "summary": "On June 19, 2022, John and James discussed John's reflections on his future and his interest in volunteering, leading to a plan for John to visit the volunteer organization with James the following weekend. James encouraged John’s desire to make a positive impact, offering support and sharing his own rewarding volunteer experience.",
+      "members": [
+        {
+          "unit_id": "76c05882-66f8-4ce2-b812-21e8dea51453",
+          "timestamp": "2022-06-19T22:08:00+08:00",
+          "summary": "On June 19, 2022, John and James discussed John's reflections on his future and his interest in volunteering, leading to a plan for John to visit the volunteer organization with James the following weekend. James encouraged John’s desire to make a positive impact, offering support and sharing his own rewarding volunteer experience."
+        }
+      ],
+      "first_timestamp": "2022-06-19T22:08:00+08:00",
+      "last_timestamp": "2022-06-19T22:08:00+08:00",
+      "created_at": "2025-12-03T17:26:40.840301",
+      "updated_at": "2025-12-03T17:26:40.840301"
+    },
+    "gec_053": {
+      "cluster_id": "gec_053",
+      "topic": "James's volunteer experience and encouragement",
+      "summary": "On June 19, 2022, John and James discussed John's reflections on his future and his interest in volunteering, leading to a plan for John to visit the volunteer organization with James the following weekend. James encouraged John’s desire to make a positive impact, offering support and sharing his own rewarding volunteer experience.",
+      "members": [
+        {
+          "unit_id": "76c05882-66f8-4ce2-b812-21e8dea51453",
+          "timestamp": "2022-06-19T22:08:00+08:00",
+          "summary": "On June 19, 2022, John and James discussed John's reflections on his future and his interest in volunteering, leading to a plan for John to visit the volunteer organization with James the following weekend. James encouraged John’s desire to make a positive impact, offering support and sharing his own rewarding volunteer experience."
+        }
+      ],
+      "first_timestamp": "2022-06-19T22:08:00+08:00",
+      "last_timestamp": "2022-06-19T22:08:00+08:00",
+      "created_at": "2025-12-03T17:26:40.841371",
+      "updated_at": "2025-12-03T17:26:40.841371"
+    },
+    "gec_054": {
+      "cluster_id": "gec_054",
+      "topic": "John's struggle to balance personal and professional life",
+      "summary": "On July 9, 2022, John and James discussed their emotional states, hobbies, and upcoming plans, with John sharing his struggle to balance personal and professional life and James describing his recent interest in extreme sports and upcoming trip to Toronto. Both expressed feelings of stress, relaxation, excitement, and anticipation while exchanging personal interests.",
+      "members": [
+        {
+          "unit_id": "9d28f306-eee5-46dc-bbae-c1bec008d42d",
+          "timestamp": "2022-07-09T17:17:00+08:00",
+          "summary": "On July 9, 2022, John and James discussed their emotional states, hobbies, and upcoming plans, with John sharing his struggle to balance personal and professional life and James describing his recent interest in extreme sports and upcoming trip to Toronto. Both expressed feelings of stress, relaxation, excitement, and anticipation while exchanging personal interests."
+        }
+      ],
+      "first_timestamp": "2022-07-09T17:17:00+08:00",
+      "last_timestamp": "2022-07-09T17:17:00+08:00",
+      "created_at": "2025-12-03T17:26:51.015273",
+      "updated_at": "2025-12-03T17:26:51.015273"
+    },
+    "gec_055": {
+      "cluster_id": "gec_055",
+      "topic": "James's interest in extreme sports",
+      "summary": "On July 9, 2022, John and James discussed their emotional states, hobbies, and upcoming plans, with John sharing his struggle to balance personal and professional life and James describing his recent interest in extreme sports and upcoming trip to Toronto. Both expressed feelings of stress, relaxation, excitement, and anticipation while exchanging personal interests.",
+      "members": [
+        {
+          "unit_id": "9d28f306-eee5-46dc-bbae-c1bec008d42d",
+          "timestamp": "2022-07-09T17:17:00+08:00",
+          "summary": "On July 9, 2022, John and James discussed their emotional states, hobbies, and upcoming plans, with John sharing his struggle to balance personal and professional life and James describing his recent interest in extreme sports and upcoming trip to Toronto. Both expressed feelings of stress, relaxation, excitement, and anticipation while exchanging personal interests."
+        }
+      ],
+      "first_timestamp": "2022-07-09T17:17:00+08:00",
+      "last_timestamp": "2022-07-09T17:17:00+08:00",
+      "created_at": "2025-12-03T17:26:51.018872",
+      "updated_at": "2025-12-03T17:26:51.018872"
+    },
+    "gec_056": {
+      "cluster_id": "gec_056",
+      "topic": "James's upcoming trip to Toronto",
+      "summary": "On July 9, 2022, John and James discussed their emotional states, hobbies, and upcoming plans, with John sharing his struggle to balance personal and professional life and James describing his recent interest in extreme sports and upcoming trip to Toronto. Both expressed feelings of stress, relaxation, excitement, and anticipation while exchanging personal interests.",
+      "members": [
+        {
+          "unit_id": "9d28f306-eee5-46dc-bbae-c1bec008d42d",
+          "timestamp": "2022-07-09T17:17:00+08:00",
+          "summary": "On July 9, 2022, John and James discussed their emotional states, hobbies, and upcoming plans, with John sharing his struggle to balance personal and professional life and James describing his recent interest in extreme sports and upcoming trip to Toronto. Both expressed feelings of stress, relaxation, excitement, and anticipation while exchanging personal interests."
+        }
+      ],
+      "first_timestamp": "2022-07-09T17:17:00+08:00",
+      "last_timestamp": "2022-07-09T17:17:00+08:00",
+      "created_at": "2025-12-03T17:26:51.020657",
+      "updated_at": "2025-12-03T17:26:51.020657"
+    },
+    "gec_057": {
+      "cluster_id": "gec_057",
+      "topic": "James's upcoming trip to Canada",
+      "summary": "James informed John about his upcoming trip to Canada, including visits to Toronto and Vancouver from July 11 to July 20, 2022, and John expressed interest and well-wishes for his journey.",
+      "members": [
+        {
+          "unit_id": "094b8657-cdae-4d83-9cd6-5c0a0e120f97",
+          "timestamp": "2022-07-09T17:20:30+08:00",
+          "summary": "James informed John about his upcoming trip to Canada, including visits to Toronto and Vancouver from July 11 to July 20, 2022, and John expressed interest and well-wishes for his journey."
+        }
+      ],
+      "first_timestamp": "2022-07-09T17:20:30+08:00",
+      "last_timestamp": "2022-07-09T17:20:30+08:00",
+      "created_at": "2025-12-03T17:26:54.929662",
+      "updated_at": "2025-12-03T17:26:54.929662"
+    },
+    "gec_058": {
+      "cluster_id": "gec_058",
+      "topic": "John's interest in playing chess to improve strategic thinking",
+      "summary": "On July 22, 2022, John shared with James his enthusiasm for playing chess to improve strategic thinking, and James responded supportively by offering advice and encouragement.",
+      "members": [
+        {
+          "unit_id": "2aacfd67-86f1-4216-a091-ca08dd13952f",
+          "timestamp": "2022-07-22T09:54:30+08:00",
+          "summary": "On July 22, 2022, John shared with James his enthusiasm for playing chess to improve strategic thinking, and James responded supportively by offering advice and encouragement."
+        }
+      ],
+      "first_timestamp": "2022-07-22T09:54:30+08:00",
+      "last_timestamp": "2022-07-22T09:54:30+08:00",
+      "created_at": "2025-12-03T17:26:59.175707",
+      "updated_at": "2025-12-03T17:26:59.175707"
+    },
+    "gec_059": {
+      "cluster_id": "gec_059",
+      "topic": "James's experience and views on playing chess",
+      "summary": "On July 22, 2022, John shared with James his enthusiasm for playing chess to improve strategic thinking, and James responded supportively by offering advice and encouragement.",
+      "members": [
+        {
+          "unit_id": "2aacfd67-86f1-4216-a091-ca08dd13952f",
+          "timestamp": "2022-07-22T09:54:30+08:00",
+          "summary": "On July 22, 2022, John shared with James his enthusiasm for playing chess to improve strategic thinking, and James responded supportively by offering advice and encouragement."
+        }
+      ],
+      "first_timestamp": "2022-07-22T09:54:30+08:00",
+      "last_timestamp": "2022-07-22T09:54:30+08:00",
+      "created_at": "2025-12-03T17:26:59.179326",
+      "updated_at": "2025-12-03T17:26:59.179326"
+    },
+    "gec_060": {
+      "cluster_id": "gec_060",
+      "topic": "James and John's childhood skateboarding experiences",
+      "summary": "On July 22, 2022, James and John reminisced about their childhood skateboarding experiences and current activities involving skateboards, sharing photos and reflecting on the importance of friendship and staying active, including James teaching his dogs to skateboard. Their conversation highlighted themes of gratitude, enjoyment, and bonding.",
+      "members": [
+        {
+          "unit_id": "1d92c80f-abfd-431d-aab8-1cf806ce7efc",
+          "timestamp": "2022-07-22T09:58:30+08:00",
+          "summary": "On July 22, 2022, James and John reminisced about their childhood skateboarding experiences and current activities involving skateboards, sharing photos and reflecting on the importance of friendship and staying active, including James teaching his dogs to skateboard. Their conversation highlighted themes of gratitude, enjoyment, and bonding."
+        }
+      ],
+      "first_timestamp": "2022-07-22T09:58:30+08:00",
+      "last_timestamp": "2022-07-22T09:58:30+08:00",
+      "created_at": "2025-12-03T17:27:04.948743",
+      "updated_at": "2025-12-03T17:27:04.948743"
+    },
+    "gec_061": {
+      "cluster_id": "gec_061",
+      "topic": "James teaching his dogs to skateboard",
+      "summary": "On July 22, 2022, James and John reminisced about their childhood skateboarding experiences and current activities involving skateboards, sharing photos and reflecting on the importance of friendship and staying active, including James teaching his dogs to skateboard. Their conversation highlighted themes of gratitude, enjoyment, and bonding.",
+      "members": [
+        {
+          "unit_id": "1d92c80f-abfd-431d-aab8-1cf806ce7efc",
+          "timestamp": "2022-07-22T09:58:30+08:00",
+          "summary": "On July 22, 2022, James and John reminisced about their childhood skateboarding experiences and current activities involving skateboards, sharing photos and reflecting on the importance of friendship and staying active, including James teaching his dogs to skateboard. Their conversation highlighted themes of gratitude, enjoyment, and bonding."
+        }
+      ],
+      "first_timestamp": "2022-07-22T09:58:30+08:00",
+      "last_timestamp": "2022-07-22T09:58:30+08:00",
+      "created_at": "2025-12-03T17:27:04.952258",
+      "updated_at": "2025-12-03T17:27:04.952258"
+    },
+    "gec_062": {
+      "cluster_id": "gec_062",
+      "topic": "Friendship and bonding through skateboarding activities",
+      "summary": "On July 22, 2022, James and John reminisced about their childhood skateboarding experiences and current activities involving skateboards, sharing photos and reflecting on the importance of friendship and staying active, including James teaching his dogs to skateboard. Their conversation highlighted themes of gratitude, enjoyment, and bonding.",
+      "members": [
+        {
+          "unit_id": "1d92c80f-abfd-431d-aab8-1cf806ce7efc",
+          "timestamp": "2022-07-22T09:58:30+08:00",
+          "summary": "On July 22, 2022, James and John reminisced about their childhood skateboarding experiences and current activities involving skateboards, sharing photos and reflecting on the importance of friendship and staying active, including James teaching his dogs to skateboard. Their conversation highlighted themes of gratitude, enjoyment, and bonding."
+        }
+      ],
+      "first_timestamp": "2022-07-22T09:58:30+08:00",
+      "last_timestamp": "2022-07-22T09:58:30+08:00",
+      "created_at": "2025-12-03T17:27:04.954559",
+      "updated_at": "2025-12-03T17:27:04.954559"
+    },
+    "gec_063": {
+      "cluster_id": "gec_063",
+      "topic": "James's trip to Nuuk and souvenir sharing",
+      "summary": "On July 22, 2022, James and John discussed their shared love for pets and James's recent trip to Nuuk, with James sharing souvenirs for John and his partner Jill while John expressed his intention to get a pet someday.",
+      "members": [
+        {
+          "unit_id": "d36a1d7f-1dc2-4fac-b96e-4054e0f5c23d",
+          "timestamp": "2022-07-22T10:01:30+08:00",
+          "summary": "On July 22, 2022, James and John discussed their shared love for pets and James's recent trip to Nuuk, with James sharing souvenirs for John and his partner Jill while John expressed his intention to get a pet someday."
+        }
+      ],
+      "first_timestamp": "2022-07-22T10:01:30+08:00",
+      "last_timestamp": "2022-07-22T10:01:30+08:00",
+      "created_at": "2025-12-03T17:27:09.372947",
+      "updated_at": "2025-12-03T17:27:09.372947"
+    },
+    "gec_064": {
+      "cluster_id": "gec_064",
+      "topic": "John's career change from IT to organizing computer game tournaments",
+      "summary": "John shared with James his decision to leave his IT job after three years to pursue a new career organizing computer game tournaments, expressing initial fear but ultimate excitement and satisfaction with this meaningful change.",
+      "members": [
+        {
+          "unit_id": "124fe3c3-bef6-40cf-b930-4627c1cd6379",
+          "timestamp": "2022-08-06T13:48:00+08:00",
+          "summary": "John shared with James his decision to leave his IT job after three years to pursue a new career organizing computer game tournaments, expressing initial fear but ultimate excitement and satisfaction with this meaningful change."
+        }
+      ],
+      "first_timestamp": "2022-08-06T13:48:00+08:00",
+      "last_timestamp": "2022-08-06T13:48:00+08:00",
+      "created_at": "2025-12-03T17:27:19.237850",
+      "updated_at": "2025-12-03T17:27:19.237850"
+    },
+    "gec_065": {
+      "cluster_id": "gec_065",
+      "topic": "John's career plans to organize computer game tournaments",
+      "summary": "On August 6, 2022, John shared with James his plan to pursue a career organizing computer game tournaments, including CS:GO and Fortnite, expressing enthusiasm and determination, while James offered encouragement and support.",
+      "members": [
+        {
+          "unit_id": "e9e3fedd-c6b3-476c-b55e-b11c9d5c93f6",
+          "timestamp": "2022-08-06T13:51:00+08:00",
+          "summary": "On August 6, 2022, John shared with James his plan to pursue a career organizing computer game tournaments, including CS:GO and Fortnite, expressing enthusiasm and determination, while James offered encouragement and support."
+        }
+      ],
+      "first_timestamp": "2022-08-06T13:51:00+08:00",
+      "last_timestamp": "2022-08-06T13:51:00+08:00",
+      "created_at": "2025-12-03T17:27:23.743290",
+      "updated_at": "2025-12-03T17:27:23.743290"
+    },
+    "gec_066": {
+      "cluster_id": "gec_066",
+      "topic": "John's enthusiasm for CS:GO and Fortnite gaming events",
+      "summary": "On August 6, 2022, John shared with James his plan to pursue a career organizing computer game tournaments, including CS:GO and Fortnite, expressing enthusiasm and determination, while James offered encouragement and support.",
+      "members": [
+        {
+          "unit_id": "e9e3fedd-c6b3-476c-b55e-b11c9d5c93f6",
+          "timestamp": "2022-08-06T13:51:00+08:00",
+          "summary": "On August 6, 2022, John shared with James his plan to pursue a career organizing computer game tournaments, including CS:GO and Fortnite, expressing enthusiasm and determination, while James offered encouragement and support."
+        }
+      ],
+      "first_timestamp": "2022-08-06T13:51:00+08:00",
+      "last_timestamp": "2022-08-06T13:51:00+08:00",
+      "created_at": "2025-12-03T17:27:23.745586",
+      "updated_at": "2025-12-03T17:27:23.745586"
+    },
+    "gec_067": {
+      "cluster_id": "gec_067",
+      "topic": "James's responsible pet care including puppy clinic visits and vaccinations",
+      "summary": "John and James discussed James's recent visit to the clinic with his puppy, where James reassured John that the visit was a routine vaccination, highlighting James's responsible pet care and their supportive friendship.",
+      "members": [
+        {
+          "unit_id": "912fe045-0359-432d-b0d8-52d6e61f17a5",
+          "timestamp": "2022-08-06T13:54:30+08:00",
+          "summary": "John and James discussed James's recent visit to the clinic with his puppy, where James reassured John that the visit was a routine vaccination, highlighting James's responsible pet care and their supportive friendship."
+        }
+      ],
+      "first_timestamp": "2022-08-06T13:54:30+08:00",
+      "last_timestamp": "2022-08-06T13:54:30+08:00",
+      "created_at": "2025-12-03T17:27:28.571254",
+      "updated_at": "2025-12-03T17:27:28.571254"
+    },
+    "gec_068": {
+      "cluster_id": "gec_068",
+      "topic": "James's new romantic interest in Samantha",
+      "summary": "On August 9, 2022, James took his three dogs to a beach outing where he enjoyed bonding with other dogkeepers and met a girl named Samantha, whose phone number he planned to call the next day to ask her out. John encouraged James, sharing in his excitement about the potential new romantic connection.",
+      "members": [
+        {
+          "unit_id": "eba70b0e-f6d4-4bba-a544-5d3dec48d585",
+          "timestamp": "2022-08-10T09:24:00+08:00",
+          "summary": "On August 9, 2022, James took his three dogs to a beach outing where he enjoyed bonding with other dogkeepers and met a girl named Samantha, whose phone number he planned to call the next day to ask her out. John encouraged James, sharing in his excitement about the potential new romantic connection."
+        }
+      ],
+      "first_timestamp": "2022-08-10T09:24:00+08:00",
+      "last_timestamp": "2022-08-10T09:24:00+08:00",
+      "created_at": "2025-12-03T17:27:41.642881",
+      "updated_at": "2025-12-03T17:27:41.642881"
+    },
+    "gec_069": {
+      "cluster_id": "gec_069",
+      "topic": "John's involvement in an online programming group and community collaboration",
+      "summary": "On August 21, 2022, John shared with James his positive experience joining an online programming group, highlighting his collaboration on projects and the valuable connections he made within the community. Both expressed enthusiasm about the teamwork and John's renewed engagement with coding activities.",
+      "members": [
+        {
+          "unit_id": "dc570da8-b2f8-4409-9e92-9c6f5c0ebe63",
+          "timestamp": "2022-08-21T15:59:30+08:00",
+          "summary": "On August 21, 2022, John shared with James his positive experience joining an online programming group, highlighting his collaboration on projects and the valuable connections he made within the community. Both expressed enthusiasm about the teamwork and John's renewed engagement with coding activities."
+        }
+      ],
+      "first_timestamp": "2022-08-21T15:59:30+08:00",
+      "last_timestamp": "2022-08-21T15:59:30+08:00",
+      "created_at": "2025-12-03T17:27:45.666948",
+      "updated_at": "2025-12-03T17:27:45.666948"
+    },
+    "gec_070": {
+      "cluster_id": "gec_070",
+      "topic": "John helping his younger siblings with programming",
+      "summary": "John and James discussed James's dog Ned, with James expressing strong affection for him, while John shared his enthusiasm about helping his younger siblings with programming. Both conveyed positive feelings about the dog and the siblings' engagement in programming.",
+      "members": [
+        {
+          "unit_id": "34508d03-366e-4e0c-b900-e552c81f3705",
+          "timestamp": "2022-08-26T21:19:30+08:00",
+          "summary": "John and James discussed James's dog Ned, with James expressing strong affection for him, while John shared his enthusiasm about helping his younger siblings with programming. Both conveyed positive feelings about the dog and the siblings' engagement in programming."
+        }
+      ],
+      "first_timestamp": "2022-08-26T21:19:30+08:00",
+      "last_timestamp": "2022-08-26T21:19:30+08:00",
+      "created_at": "2025-12-03T17:27:59.684310",
+      "updated_at": "2025-12-03T17:27:59.684310"
+    },
+    "gec_071": {
+      "cluster_id": "gec_071",
+      "topic": "John and James's social plans at McGee’s Pub",
+      "summary": "John and James planned to meet at McGee’s Pub on August 27, 2022, with James accommodating John’s preference for light beer over stout. Their conversation reflected mutual enthusiasm and flexibility for socializing on John’s day off.",
+      "members": [
+        {
+          "unit_id": "5b6fb40d-81f8-4f02-a02f-0004a7932deb",
+          "timestamp": "2022-08-26T21:27:00+08:00",
+          "summary": "John and James planned to meet at McGee’s Pub on August 27, 2022, with James accommodating John’s preference for light beer over stout. Their conversation reflected mutual enthusiasm and flexibility for socializing on John’s day off."
+        }
+      ],
+      "first_timestamp": "2022-08-26T21:27:00+08:00",
+      "last_timestamp": "2022-08-26T21:27:00+08:00",
+      "created_at": "2025-12-03T17:28:08.541493",
+      "updated_at": "2025-12-03T17:28:08.541493"
+    },
+    "gec_072": {
+      "cluster_id": "gec_072",
+      "topic": "John's experience teaching coding to his siblings",
+      "summary": "James shared with John the completion of his Unity strategy game inspired by Civilization and Total War, expressing pride and gratitude for John's support, while they discussed the challenges and learning experiences involved in its development. John congratulated James, praised the game, and shared his own fulfillment in teaching coding to his siblings.",
+      "members": [
+        {
+          "unit_id": "037a0acc-e0a1-4d5e-9d6a-f43f6921c4bc",
+          "timestamp": "2022-09-01T18:57:30+08:00",
+          "summary": "James shared with John the completion of his Unity strategy game inspired by Civilization and Total War, expressing pride and gratitude for John's support, while they discussed the challenges and learning experiences involved in its development. John congratulated James, praised the game, and shared his own fulfillment in teaching coding to his siblings."
+        }
+      ],
+      "first_timestamp": "2022-09-01T18:57:30+08:00",
+      "last_timestamp": "2022-09-01T18:57:30+08:00",
+      "created_at": "2025-12-03T17:28:13.889621",
+      "updated_at": "2025-12-03T17:28:13.889621"
+    },
+    "gec_073": {
+      "cluster_id": "gec_073",
+      "topic": "James's emotional support to John during difficult times",
+      "summary": "On September 1, 2022, James offered emotional support to John, who was going through difficult times, emphasizing the value of their friendship and his availability to listen whenever needed.",
+      "members": [
+        {
+          "unit_id": "ec996e0e-ab18-4837-8e38-b1453ca02fbb",
+          "timestamp": "2022-09-01T19:02:00+08:00",
+          "summary": "On September 1, 2022, James offered emotional support to John, who was going through difficult times, emphasizing the value of their friendship and his availability to listen whenever needed."
+        }
+      ],
+      "first_timestamp": "2022-09-01T19:02:00+08:00",
+      "last_timestamp": "2022-09-01T19:02:00+08:00",
+      "created_at": "2025-12-03T17:28:22.970809",
+      "updated_at": "2025-12-03T17:28:22.970809"
+    },
+    "gec_074": {
+      "cluster_id": "gec_074",
+      "topic": "John's difficult times and need for emotional support",
+      "summary": "On September 1, 2022, James offered emotional support to John, who was going through difficult times, emphasizing the value of their friendship and his availability to listen whenever needed.",
+      "members": [
+        {
+          "unit_id": "ec996e0e-ab18-4837-8e38-b1453ca02fbb",
+          "timestamp": "2022-09-01T19:02:00+08:00",
+          "summary": "On September 1, 2022, James offered emotional support to John, who was going through difficult times, emphasizing the value of their friendship and his availability to listen whenever needed."
+        }
+      ],
+      "first_timestamp": "2022-09-01T19:02:00+08:00",
+      "last_timestamp": "2022-09-01T19:02:00+08:00",
+      "created_at": "2025-12-03T17:28:22.974417",
+      "updated_at": "2025-12-03T17:28:22.974417"
+    },
+    "gec_075": {
+      "cluster_id": "gec_075",
+      "topic": "Value of James and John's friendship",
+      "summary": "On September 1, 2022, James offered emotional support to John, who was going through difficult times, emphasizing the value of their friendship and his availability to listen whenever needed.",
+      "members": [
+        {
+          "unit_id": "ec996e0e-ab18-4837-8e38-b1453ca02fbb",
+          "timestamp": "2022-09-01T19:02:00+08:00",
+          "summary": "On September 1, 2022, James offered emotional support to John, who was going through difficult times, emphasizing the value of their friendship and his availability to listen whenever needed."
+        }
+      ],
+      "first_timestamp": "2022-09-01T19:02:00+08:00",
+      "last_timestamp": "2022-09-01T19:02:00+08:00",
+      "created_at": "2025-12-03T17:28:22.976786",
+      "updated_at": "2025-12-03T17:28:22.976786"
+    },
+    "gec_076": {
+      "cluster_id": "gec_076",
+      "topic": "James's relationship with Samantha",
+      "summary": "James shared with John that he recently became Samantha's boyfriend after a theater outing, while John recounted teaching his parents coding, and they planned to meet at a baseball game the following Sunday.",
+      "members": [
+        {
+          "unit_id": "e314b2c4-efce-4729-b2ef-b5900e85a06a",
+          "timestamp": "2022-09-04T21:26:00+08:00",
+          "summary": "James shared with John that he recently became Samantha's boyfriend after a theater outing, while John recounted teaching his parents coding, and they planned to meet at a baseball game the following Sunday."
+        }
+      ],
+      "first_timestamp": "2022-09-04T21:26:00+08:00",
+      "last_timestamp": "2022-09-04T21:26:00+08:00",
+      "created_at": "2025-12-03T17:28:28.352373",
+      "updated_at": "2025-12-03T17:28:28.352373"
+    },
+    "gec_077": {
+      "cluster_id": "gec_077",
+      "topic": "John teaching his parents coding",
+      "summary": "James shared with John that he recently became Samantha's boyfriend after a theater outing, while John recounted teaching his parents coding, and they planned to meet at a baseball game the following Sunday.",
+      "members": [
+        {
+          "unit_id": "e314b2c4-efce-4729-b2ef-b5900e85a06a",
+          "timestamp": "2022-09-04T21:26:00+08:00",
+          "summary": "James shared with John that he recently became Samantha's boyfriend after a theater outing, while John recounted teaching his parents coding, and they planned to meet at a baseball game the following Sunday."
+        }
+      ],
+      "first_timestamp": "2022-09-04T21:26:00+08:00",
+      "last_timestamp": "2022-09-04T21:26:00+08:00",
+      "created_at": "2025-12-03T17:28:28.355252",
+      "updated_at": "2025-12-03T17:28:28.355252"
+    },
+    "gec_078": {
+      "cluster_id": "gec_078",
+      "topic": "John and James planning to attend a baseball game together",
+      "summary": "James shared with John that he recently became Samantha's boyfriend after a theater outing, while John recounted teaching his parents coding, and they planned to meet at a baseball game the following Sunday.",
+      "members": [
+        {
+          "unit_id": "e314b2c4-efce-4729-b2ef-b5900e85a06a",
+          "timestamp": "2022-09-04T21:26:00+08:00",
+          "summary": "James shared with John that he recently became Samantha's boyfriend after a theater outing, while John recounted teaching his parents coding, and they planned to meet at a baseball game the following Sunday."
+        }
+      ],
+      "first_timestamp": "2022-09-04T21:26:00+08:00",
+      "last_timestamp": "2022-09-04T21:26:00+08:00",
+      "created_at": "2025-12-03T17:28:28.357608",
+      "updated_at": "2025-12-03T17:28:28.357608"
+    },
+    "gec_079": {
+      "cluster_id": "gec_079",
+      "topic": "John's purchase of gaming equipment",
+      "summary": "James and John discussed John's recent purchase of gaming equipment, including Sennheiser headphones and a Logitech mouse, aimed at enhancing his gaming skills. Both expressed optimism about the positive impact of the new devices on John's performance.",
+      "members": [
+        {
+          "unit_id": "634f6edd-c826-483d-a202-1dfbe575d5e4",
+          "timestamp": "2022-09-04T21:28:00+08:00",
+          "summary": "James and John discussed John's recent purchase of gaming equipment, including Sennheiser headphones and a Logitech mouse, aimed at enhancing his gaming skills. Both expressed optimism about the positive impact of the new devices on John's performance."
+        }
+      ],
+      "first_timestamp": "2022-09-04T21:28:00+08:00",
+      "last_timestamp": "2022-09-04T21:28:00+08:00",
+      "created_at": "2025-12-03T17:28:32.478954",
+      "updated_at": "2025-12-03T17:28:32.478954"
+    },
+    "gec_080": {
+      "cluster_id": "gec_080",
+      "topic": "John's use of Sennheiser headphones for gaming",
+      "summary": "James and John discussed John's recent purchase of gaming equipment, including Sennheiser headphones and a Logitech mouse, aimed at enhancing his gaming skills. Both expressed optimism about the positive impact of the new devices on John's performance.",
+      "members": [
+        {
+          "unit_id": "634f6edd-c826-483d-a202-1dfbe575d5e4",
+          "timestamp": "2022-09-04T21:28:00+08:00",
+          "summary": "James and John discussed John's recent purchase of gaming equipment, including Sennheiser headphones and a Logitech mouse, aimed at enhancing his gaming skills. Both expressed optimism about the positive impact of the new devices on John's performance."
+        }
+      ],
+      "first_timestamp": "2022-09-04T21:28:00+08:00",
+      "last_timestamp": "2022-09-04T21:28:00+08:00",
+      "created_at": "2025-12-03T17:28:32.480966",
+      "updated_at": "2025-12-03T17:28:32.480966"
+    },
+    "gec_081": {
+      "cluster_id": "gec_081",
+      "topic": "James's cooking class enrollment and experience",
+      "summary": "John and James discussed James’s recent decision to join a cooking class despite previously disliking cooking, where he successfully made an omelette and learned other dishes, with John expressing support and encouragement for James’s new hobby.",
+      "members": [
+        {
+          "unit_id": "e2f0e836-4ba4-485f-b0e1-61093728e115",
+          "timestamp": "2022-09-04T21:33:00+08:00",
+          "summary": "John and James discussed James’s recent decision to join a cooking class despite previously disliking cooking, where he successfully made an omelette and learned other dishes, with John expressing support and encouragement for James’s new hobby."
+        }
+      ],
+      "first_timestamp": "2022-09-04T21:33:00+08:00",
+      "last_timestamp": "2022-09-04T21:33:00+08:00",
+      "created_at": "2025-12-03T17:28:38.198098",
+      "updated_at": "2025-12-03T17:28:38.198098"
+    },
+    "gec_082": {
+      "cluster_id": "gec_082",
+      "topic": "John's new enthusiasm for board games",
+      "summary": "On September 18, 2022, John and James reconnected and shared their personal interests, with John discussing his new enthusiasm for board games and James explaining his task organization through a notebook and his dream-inspired creative process involving sketches. Their conversation highlighted a renewed connection and mutual curiosity about each other's hobbies and inspirations.",
+      "members": [
+        {
+          "unit_id": "15fab8f5-7ece-4563-bfc4-bbe5b1e3d57e",
+          "timestamp": "2022-09-18T18:07:00+08:00",
+          "summary": "On September 18, 2022, John and James reconnected and shared their personal interests, with John discussing his new enthusiasm for board games and James explaining his task organization through a notebook and his dream-inspired creative process involving sketches. Their conversation highlighted a renewed connection and mutual curiosity about each other's hobbies and inspirations."
+        }
+      ],
+      "first_timestamp": "2022-09-18T18:07:00+08:00",
+      "last_timestamp": "2022-09-18T18:07:00+08:00",
+      "created_at": "2025-12-03T17:28:43.285759",
+      "updated_at": "2025-12-03T17:28:43.285759"
+    },
+    "gec_083": {
+      "cluster_id": "gec_083",
+      "topic": "James's task organization using a notebook",
+      "summary": "On September 18, 2022, John and James reconnected and shared their personal interests, with John discussing his new enthusiasm for board games and James explaining his task organization through a notebook and his dream-inspired creative process involving sketches. Their conversation highlighted a renewed connection and mutual curiosity about each other's hobbies and inspirations.",
+      "members": [
+        {
+          "unit_id": "15fab8f5-7ece-4563-bfc4-bbe5b1e3d57e",
+          "timestamp": "2022-09-18T18:07:00+08:00",
+          "summary": "On September 18, 2022, John and James reconnected and shared their personal interests, with John discussing his new enthusiasm for board games and James explaining his task organization through a notebook and his dream-inspired creative process involving sketches. Their conversation highlighted a renewed connection and mutual curiosity about each other's hobbies and inspirations."
+        }
+      ],
+      "first_timestamp": "2022-09-18T18:07:00+08:00",
+      "last_timestamp": "2022-09-18T18:07:00+08:00",
+      "created_at": "2025-12-03T17:28:43.287979",
+      "updated_at": "2025-12-03T17:28:43.287979"
+    },
+    "gec_084": {
+      "cluster_id": "gec_084",
+      "topic": "James's dream-inspired creative process involving sketches",
+      "summary": "On September 18, 2022, John and James reconnected and shared their personal interests, with John discussing his new enthusiasm for board games and James explaining his task organization through a notebook and his dream-inspired creative process involving sketches. Their conversation highlighted a renewed connection and mutual curiosity about each other's hobbies and inspirations.",
+      "members": [
+        {
+          "unit_id": "15fab8f5-7ece-4563-bfc4-bbe5b1e3d57e",
+          "timestamp": "2022-09-18T18:07:00+08:00",
+          "summary": "On September 18, 2022, John and James reconnected and shared their personal interests, with John discussing his new enthusiasm for board games and James explaining his task organization through a notebook and his dream-inspired creative process involving sketches. Their conversation highlighted a renewed connection and mutual curiosity about each other's hobbies and inspirations."
+        }
+      ],
+      "first_timestamp": "2022-09-18T18:07:00+08:00",
+      "last_timestamp": "2022-09-18T18:07:00+08:00",
+      "created_at": "2025-12-03T17:28:43.290504",
+      "updated_at": "2025-12-03T17:28:43.290504"
+    },
+    "gec_085": {
+      "cluster_id": "gec_085",
+      "topic": "John and James's shared interest in music and instrument playing",
+      "summary": "On September 18, 2022, John and James discussed their shared interest in music, exchanging experiences about playing instruments and jamming with friends, while James also mentioned starting a game streaming venture that John supported.",
+      "members": [
+        {
+          "unit_id": "732d0755-e196-4d43-8d84-882d99fa8cf9",
+          "timestamp": "2022-09-18T18:12:00+08:00",
+          "summary": "On September 18, 2022, John and James discussed their shared interest in music, exchanging experiences about playing instruments and jamming with friends, while James also mentioned starting a game streaming venture that John supported."
+        }
+      ],
+      "first_timestamp": "2022-09-18T18:12:00+08:00",
+      "last_timestamp": "2022-09-18T18:12:00+08:00",
+      "created_at": "2025-12-03T17:28:49.686162",
+      "updated_at": "2025-12-03T17:28:49.686162"
+    },
+    "gec_086": {
+      "cluster_id": "gec_086",
+      "topic": "James's game streaming venture supported by John",
+      "summary": "On September 18, 2022, John and James discussed their shared interest in music, exchanging experiences about playing instruments and jamming with friends, while James also mentioned starting a game streaming venture that John supported.",
+      "members": [
+        {
+          "unit_id": "732d0755-e196-4d43-8d84-882d99fa8cf9",
+          "timestamp": "2022-09-18T18:12:00+08:00",
+          "summary": "On September 18, 2022, John and James discussed their shared interest in music, exchanging experiences about playing instruments and jamming with friends, while James also mentioned starting a game streaming venture that John supported."
+        }
+      ],
+      "first_timestamp": "2022-09-18T18:12:00+08:00",
+      "last_timestamp": "2022-09-18T18:12:00+08:00",
+      "created_at": "2025-12-03T17:28:49.692516",
+      "updated_at": "2025-12-03T17:28:49.692516"
+    },
+    "gec_087": {
+      "cluster_id": "gec_087",
+      "topic": "John's personal life changes and sharing",
+      "summary": "Between September 18 and 20, 2022, John and James engaged in a supportive conversation where John shared personal life changes and James expressed interest, reflecting their friendly and encouraging relationship.",
+      "members": [
+        {
+          "unit_id": "99d606ba-229a-4790-ba89-b474f50b4067",
+          "timestamp": "2022-09-20T20:56:30+08:00",
+          "summary": "Between September 18 and 20, 2022, John and James engaged in a supportive conversation where John shared personal life changes and James expressed interest, reflecting their friendly and encouraging relationship."
+        }
+      ],
+      "first_timestamp": "2022-09-20T20:56:30+08:00",
+      "last_timestamp": "2022-09-20T20:56:30+08:00",
+      "created_at": "2025-12-03T17:28:53.929738",
+      "updated_at": "2025-12-03T17:28:53.929738"
+    },
+    "gec_088": {
+      "cluster_id": "gec_088",
+      "topic": "James's interest in John's personal updates and supportive friendship",
+      "summary": "Between September 18 and 20, 2022, John and James engaged in a supportive conversation where John shared personal life changes and James expressed interest, reflecting their friendly and encouraging relationship.",
+      "members": [
+        {
+          "unit_id": "99d606ba-229a-4790-ba89-b474f50b4067",
+          "timestamp": "2022-09-20T20:56:30+08:00",
+          "summary": "Between September 18 and 20, 2022, John and James engaged in a supportive conversation where John shared personal life changes and James expressed interest, reflecting their friendly and encouraging relationship."
+        }
+      ],
+      "first_timestamp": "2022-09-20T20:56:30+08:00",
+      "last_timestamp": "2022-09-20T20:56:30+08:00",
+      "created_at": "2025-12-03T17:28:53.930910",
+      "updated_at": "2025-12-03T17:28:53.930910"
+    },
+    "gec_089": {
+      "cluster_id": "gec_089",
+      "topic": "John's startup focused on portable smokers",
+      "summary": "On September 20, 2022, John shared with James his new startup focused on portable smokers and sought feedback, while James recounted his recent positive experience streaming a game, leading to mutual encouragement between the two.",
+      "members": [
+        {
+          "unit_id": "2ef9458a-60b7-4a23-a1fe-913a3da4eb89",
+          "timestamp": "2022-09-20T20:58:30+08:00",
+          "summary": "On September 20, 2022, John shared with James his new startup focused on portable smokers and sought feedback, while James recounted his recent positive experience streaming a game, leading to mutual encouragement between the two."
+        }
+      ],
+      "first_timestamp": "2022-09-20T20:58:30+08:00",
+      "last_timestamp": "2022-09-20T20:58:30+08:00",
+      "created_at": "2025-12-03T17:28:58.152004",
+      "updated_at": "2025-12-03T17:28:58.152004"
+    },
+    "gec_090": {
+      "cluster_id": "gec_090",
+      "topic": "James's recent positive experience streaming a game",
+      "summary": "On September 20, 2022, John shared with James his new startup focused on portable smokers and sought feedback, while James recounted his recent positive experience streaming a game, leading to mutual encouragement between the two.",
+      "members": [
+        {
+          "unit_id": "2ef9458a-60b7-4a23-a1fe-913a3da4eb89",
+          "timestamp": "2022-09-20T20:58:30+08:00",
+          "summary": "On September 20, 2022, John shared with James his new startup focused on portable smokers and sought feedback, while James recounted his recent positive experience streaming a game, leading to mutual encouragement between the two."
+        }
+      ],
+      "first_timestamp": "2022-09-20T20:58:30+08:00",
+      "last_timestamp": "2022-09-20T20:58:30+08:00",
+      "created_at": "2025-12-03T17:28:58.154035",
+      "updated_at": "2025-12-03T17:28:58.154035"
+    },
+    "gec_091": {
+      "cluster_id": "gec_091",
+      "topic": "John and James's discussion on work-life balance and personal well-being",
+      "summary": "On September 20, 2022, John and James discussed work-life balance and personal well-being, with James encouraging John to practice self-care amid a chaotic week, leading to mutual appreciation and support.",
+      "members": [
+        {
+          "unit_id": "4aedfca2-80bd-4462-a5ed-5fe1f3d77263",
+          "timestamp": "2022-09-20T21:08:00+08:00",
+          "summary": "On September 20, 2022, John and James discussed work-life balance and personal well-being, with James encouraging John to practice self-care amid a chaotic week, leading to mutual appreciation and support."
+        }
+      ],
+      "first_timestamp": "2022-09-20T21:08:00+08:00",
+      "last_timestamp": "2022-09-20T21:08:00+08:00",
+      "created_at": "2025-12-03T17:29:06.447897",
+      "updated_at": "2025-12-03T17:29:06.447897"
+    },
+    "gec_092": {
+      "cluster_id": "gec_092",
+      "topic": "John's volunteer role as programming mentor at game development non-profit",
+      "summary": "On October 3, 2022, John shared with James his excitement about a new volunteer role as a programming mentor at a game development non-profit, where he would teach coding and support passionate gamers, viewing it as a meaningful step toward combining his interests in gaming and helping others. James encouraged John, who expressed gratitude and hope that the opportunity would advance his career.",
+      "members": [
+        {
+          "unit_id": "61802777-2c13-4fb3-894f-20b9e89795c0",
+          "timestamp": "2022-10-03T09:23:00+08:00",
+          "summary": "On October 3, 2022, John shared with James his excitement about a new volunteer role as a programming mentor at a game development non-profit, where he would teach coding and support passionate gamers, viewing it as a meaningful step toward combining his interests in gaming and helping others. James encouraged John, who expressed gratitude and hope that the opportunity would advance his career."
+        }
+      ],
+      "first_timestamp": "2022-10-03T09:23:00+08:00",
+      "last_timestamp": "2022-10-03T09:23:00+08:00",
+      "created_at": "2025-12-03T17:29:11.762162",
+      "updated_at": "2025-12-03T17:29:11.762162"
+    },
+    "gec_093": {
+      "cluster_id": "gec_093",
+      "topic": "John's programming seminar attendance and insights",
+      "summary": "On October 21, 2022, James and John discussed a recent seminar John attended, where he gained new programming insights and planned to explore and share these techniques with James, reflecting their mutual enthusiasm for learning and professional growth.",
+      "members": [
+        {
+          "unit_id": "0d3d2d27-d500-4825-8283-184ac3621bca",
+          "timestamp": "2022-10-21T19:44:30+08:00",
+          "summary": "On October 21, 2022, James and John discussed a recent seminar John attended, where he gained new programming insights and planned to explore and share these techniques with James, reflecting their mutual enthusiasm for learning and professional growth."
+        }
+      ],
+      "first_timestamp": "2022-10-21T19:44:30+08:00",
+      "last_timestamp": "2022-10-21T19:44:30+08:00",
+      "created_at": "2025-12-03T17:29:40.065324",
+      "updated_at": "2025-12-03T17:29:40.065324"
+    },
+    "gec_094": {
+      "cluster_id": "gec_094",
+      "topic": "John and James's mutual enthusiasm for programming learning and professional growth",
+      "summary": "On October 21, 2022, James and John discussed a recent seminar John attended, where he gained new programming insights and planned to explore and share these techniques with James, reflecting their mutual enthusiasm for learning and professional growth.",
+      "members": [
+        {
+          "unit_id": "0d3d2d27-d500-4825-8283-184ac3621bca",
+          "timestamp": "2022-10-21T19:44:30+08:00",
+          "summary": "On October 21, 2022, James and John discussed a recent seminar John attended, where he gained new programming insights and planned to explore and share these techniques with James, reflecting their mutual enthusiasm for learning and professional growth."
+        }
+      ],
+      "first_timestamp": "2022-10-21T19:44:30+08:00",
+      "last_timestamp": "2022-10-21T19:44:30+08:00",
+      "created_at": "2025-12-03T17:29:40.066999",
+      "updated_at": "2025-12-03T17:29:40.066999"
+    },
+    "gec_095": {
+      "cluster_id": "gec_095",
+      "topic": "John's gaming tournament organization",
+      "summary": "John shared with James the successful gaming tournament he organized with friends to raise funds for a children's hospital, highlighting the positive atmosphere and charitable impact of the event.",
+      "members": [
+        {
+          "unit_id": "2c53c66d-56cc-47d3-a85b-d0151681b75c",
+          "timestamp": "2022-10-31T00:40:00+08:00",
+          "summary": "John shared with James the successful gaming tournament he organized with friends to raise funds for a children's hospital, highlighting the positive atmosphere and charitable impact of the event."
+        }
+      ],
+      "first_timestamp": "2022-10-31T00:40:00+08:00",
+      "last_timestamp": "2022-10-31T00:40:00+08:00",
+      "created_at": "2025-12-03T17:29:49.706036",
+      "updated_at": "2025-12-03T17:29:49.706036"
+    },
+    "gec_096": {
+      "cluster_id": "gec_096",
+      "topic": "Charitable gaming events for children's hospitals",
+      "summary": "John shared with James the successful gaming tournament he organized with friends to raise funds for a children's hospital, highlighting the positive atmosphere and charitable impact of the event.",
+      "members": [
+        {
+          "unit_id": "2c53c66d-56cc-47d3-a85b-d0151681b75c",
+          "timestamp": "2022-10-31T00:40:00+08:00",
+          "summary": "John shared with James the successful gaming tournament he organized with friends to raise funds for a children's hospital, highlighting the positive atmosphere and charitable impact of the event."
+        }
+      ],
+      "first_timestamp": "2022-10-31T00:40:00+08:00",
+      "last_timestamp": "2022-10-31T00:40:00+08:00",
+      "created_at": "2025-12-03T17:29:49.707129",
+      "updated_at": "2025-12-03T17:29:49.707129"
+    },
+    "gec_097": {
+      "cluster_id": "gec_097",
+      "topic": "James and Samantha's decision to move in together",
+      "summary": "John and James discussed James and Samantha's decision to move in together, highlighting their choice of an apartment near McGee's bar and expressing mutual support and well-wishes for this new chapter.",
+      "members": [
+        {
+          "unit_id": "5797e661-a6ee-429a-a6ac-95ae37447f48",
+          "timestamp": "2022-10-31T00:44:30+08:00",
+          "summary": "John and James discussed James and Samantha's decision to move in together, highlighting their choice of an apartment near McGee's bar and expressing mutual support and well-wishes for this new chapter."
+        }
+      ],
+      "first_timestamp": "2022-10-31T00:44:30+08:00",
+      "last_timestamp": "2022-10-31T00:44:30+08:00",
+      "created_at": "2025-12-03T17:29:54.372499",
+      "updated_at": "2025-12-03T17:29:54.372499"
+    },
+    "gec_098": {
+      "cluster_id": "gec_098",
+      "topic": "James and Samantha's choice of apartment near McGee's bar",
+      "summary": "John and James discussed James and Samantha's decision to move in together, highlighting their choice of an apartment near McGee's bar and expressing mutual support and well-wishes for this new chapter.",
+      "members": [
+        {
+          "unit_id": "5797e661-a6ee-429a-a6ac-95ae37447f48",
+          "timestamp": "2022-10-31T00:44:30+08:00",
+          "summary": "John and James discussed James and Samantha's decision to move in together, highlighting their choice of an apartment near McGee's bar and expressing mutual support and well-wishes for this new chapter."
+        }
+      ],
+      "first_timestamp": "2022-10-31T00:44:30+08:00",
+      "last_timestamp": "2022-10-31T00:44:30+08:00",
+      "created_at": "2025-12-03T17:29:54.376685",
+      "updated_at": "2025-12-03T17:29:54.376685"
+    },
+    "gec_099": {
+      "cluster_id": "gec_099",
+      "topic": "James's road trip with family and dogs",
+      "summary": "In early November 2022, James shared with John his enjoyment of a road trip he began on November 4, highlighting quality time with his family and dogs while expressing gratitude for prior support.",
+      "members": [
+        {
+          "unit_id": "ee6b119a-9fc4-4877-ac2b-a7631cce9e68",
+          "timestamp": "2022-11-05T17:20:00+08:00",
+          "summary": "In early November 2022, James shared with John his enjoyment of a road trip he began on November 4, highlighting quality time with his family and dogs while expressing gratitude for prior support."
+        }
+      ],
+      "first_timestamp": "2022-11-05T17:20:00+08:00",
+      "last_timestamp": "2022-11-05T17:20:00+08:00",
+      "created_at": "2025-12-03T17:29:58.422377",
+      "updated_at": "2025-12-03T17:29:58.422377"
+    },
+    "gec_100": {
+      "cluster_id": "gec_100",
+      "topic": "John's regional chess tournament victory and preparation strategies",
+      "summary": "On November 5, 2022, John shared with James his recent victory in the regional chess tournament, discussing his preparation strategies and offering James resources to improve his chess skills. The conversation highlighted John's pride and confidence from the win and James's enthusiasm and curiosity.",
+      "members": [
+        {
+          "unit_id": "84dab57f-1b06-4f25-a3cf-fe78a7209f9b",
+          "timestamp": "2022-11-05T17:25:30+08:00",
+          "summary": "On November 5, 2022, John shared with James his recent victory in the regional chess tournament, discussing his preparation strategies and offering James resources to improve his chess skills. The conversation highlighted John's pride and confidence from the win and James's enthusiasm and curiosity."
+        }
+      ],
+      "first_timestamp": "2022-11-05T17:25:30+08:00",
+      "last_timestamp": "2022-11-05T17:25:30+08:00",
+      "created_at": "2025-12-03T17:30:03.444596",
+      "updated_at": "2025-12-03T17:30:03.444596"
+    },
+    "gec_101": {
+      "cluster_id": "gec_101",
+      "topic": "James's interest in improving chess skills",
+      "summary": "On November 5, 2022, John shared with James his recent victory in the regional chess tournament, discussing his preparation strategies and offering James resources to improve his chess skills. The conversation highlighted John's pride and confidence from the win and James's enthusiasm and curiosity.",
+      "members": [
+        {
+          "unit_id": "84dab57f-1b06-4f25-a3cf-fe78a7209f9b",
+          "timestamp": "2022-11-05T17:25:30+08:00",
+          "summary": "On November 5, 2022, John shared with James his recent victory in the regional chess tournament, discussing his preparation strategies and offering James resources to improve his chess skills. The conversation highlighted John's pride and confidence from the win and James's enthusiasm and curiosity."
+        }
+      ],
+      "first_timestamp": "2022-11-05T17:25:30+08:00",
+      "last_timestamp": "2022-11-05T17:25:30+08:00",
+      "created_at": "2025-12-03T17:30:03.446987",
+      "updated_at": "2025-12-03T17:30:03.446987"
+    },
+    "gec_102": {
+      "cluster_id": "gec_102",
+      "topic": "John's sharing of chess resources and game recommendations",
+      "summary": "On November 5, 2022, John shared a photo of a book listing chess games as a resource for openings, and James responded with thanks and interest in the games John was currently playing, leading to a friendly exchange focused on chess.",
+      "members": [
+        {
+          "unit_id": "245b7453-e310-4811-ba31-982a4fdf5f94",
+          "timestamp": "2022-11-05T17:26:00+08:00",
+          "summary": "On November 5, 2022, John shared a photo of a book listing chess games as a resource for openings, and James responded with thanks and interest in the games John was currently playing, leading to a friendly exchange focused on chess."
+        }
+      ],
+      "first_timestamp": "2022-11-05T17:26:00+08:00",
+      "last_timestamp": "2022-11-05T17:26:00+08:00",
+      "created_at": "2025-12-03T17:30:08.231802",
+      "updated_at": "2025-12-03T17:30:08.231802"
+    },
+    "gec_103": {
+      "cluster_id": "gec_103",
+      "topic": "James's interest in chess games and openings",
+      "summary": "On November 5, 2022, John shared a photo of a book listing chess games as a resource for openings, and James responded with thanks and interest in the games John was currently playing, leading to a friendly exchange focused on chess.",
+      "members": [
+        {
+          "unit_id": "245b7453-e310-4811-ba31-982a4fdf5f94",
+          "timestamp": "2022-11-05T17:26:00+08:00",
+          "summary": "On November 5, 2022, John shared a photo of a book listing chess games as a resource for openings, and James responded with thanks and interest in the games John was currently playing, leading to a friendly exchange focused on chess."
+        }
+      ],
+      "first_timestamp": "2022-11-05T17:26:00+08:00",
+      "last_timestamp": "2022-11-05T17:26:00+08:00",
+      "created_at": "2025-12-03T17:30:08.233567",
+      "updated_at": "2025-12-03T17:30:08.233567"
+    },
+    "gec_104": {
+      "cluster_id": "gec_104",
+      "topic": "John's enthusiasm for FIFA 23 video game",
+      "summary": "John shared his enthusiasm for FIFA 23 with James, who expressed interest in trying the game and agreed to practice before playing together online. Both showed eagerness to engage with the game and play collaboratively.",
+      "members": [
+        {
+          "unit_id": "2aeff8d1-6214-4001-8879-bcbd0aa99d67",
+          "timestamp": "2022-11-05T17:29:00+08:00",
+          "summary": "John shared his enthusiasm for FIFA 23 with James, who expressed interest in trying the game and agreed to practice before playing together online. Both showed eagerness to engage with the game and play collaboratively."
+        }
+      ],
+      "first_timestamp": "2022-11-05T17:29:00+08:00",
+      "last_timestamp": "2022-11-05T17:29:00+08:00",
+      "created_at": "2025-12-03T17:30:14.835010",
+      "updated_at": "2025-12-03T17:30:14.835010"
+    },
+    "gec_105": {
+      "cluster_id": "gec_105",
+      "topic": "James's interest in trying sports video games",
+      "summary": "John shared his enthusiasm for FIFA 23 with James, who expressed interest in trying the game and agreed to practice before playing together online. Both showed eagerness to engage with the game and play collaboratively.",
+      "members": [
+        {
+          "unit_id": "2aeff8d1-6214-4001-8879-bcbd0aa99d67",
+          "timestamp": "2022-11-05T17:29:00+08:00",
+          "summary": "John shared his enthusiasm for FIFA 23 with James, who expressed interest in trying the game and agreed to practice before playing together online. Both showed eagerness to engage with the game and play collaboratively."
+        }
+      ],
+      "first_timestamp": "2022-11-05T17:29:00+08:00",
+      "last_timestamp": "2022-11-05T17:29:00+08:00",
+      "created_at": "2025-12-03T17:30:14.838174",
+      "updated_at": "2025-12-03T17:30:14.838174"
+    },
+    "gec_106": {
+      "cluster_id": "gec_106",
+      "topic": "John and James's plans to play FIFA 23 online together",
+      "summary": "John shared his enthusiasm for FIFA 23 with James, who expressed interest in trying the game and agreed to practice before playing together online. Both showed eagerness to engage with the game and play collaboratively.",
+      "members": [
+        {
+          "unit_id": "2aeff8d1-6214-4001-8879-bcbd0aa99d67",
+          "timestamp": "2022-11-05T17:29:00+08:00",
+          "summary": "John shared his enthusiasm for FIFA 23 with James, who expressed interest in trying the game and agreed to practice before playing together online. Both showed eagerness to engage with the game and play collaboratively."
+        }
+      ],
+      "first_timestamp": "2022-11-05T17:29:00+08:00",
+      "last_timestamp": "2022-11-05T17:29:00+08:00",
+      "created_at": "2025-12-03T17:30:14.839913",
+      "updated_at": "2025-12-03T17:30:14.839913"
+    },
+    "gec_107": {
+      "cluster_id": "gec_107",
+      "topic": "John's collaboration with a game developer on an online board game",
+      "summary": "John shared with James his excitement about collaborating with a game developer to create an online board game, and they discussed the upcoming demo release and James's interest in providing feedback.",
+      "members": [
+        {
+          "unit_id": "a15920cf-9f3e-47d0-a9a7-a314b38bbbcb",
+          "timestamp": "2022-11-07T21:01:00+08:00",
+          "summary": "John shared with James his excitement about collaborating with a game developer to create an online board game, and they discussed the upcoming demo release and James's interest in providing feedback."
+        }
+      ],
+      "first_timestamp": "2022-11-07T21:01:00+08:00",
+      "last_timestamp": "2022-11-07T21:01:00+08:00",
+      "created_at": "2025-12-03T17:30:24.571546",
+      "updated_at": "2025-12-03T17:30:24.571546"
+    },
+    "gec_108": {
+      "cluster_id": "gec_108",
+      "topic": "James's interest in providing feedback on game demos",
+      "summary": "John shared with James his excitement about collaborating with a game developer to create an online board game, and they discussed the upcoming demo release and James's interest in providing feedback.",
+      "members": [
+        {
+          "unit_id": "a15920cf-9f3e-47d0-a9a7-a314b38bbbcb",
+          "timestamp": "2022-11-07T21:01:00+08:00",
+          "summary": "John shared with James his excitement about collaborating with a game developer to create an online board game, and they discussed the upcoming demo release and James's interest in providing feedback."
+        }
+      ],
+      "first_timestamp": "2022-11-07T21:01:00+08:00",
+      "last_timestamp": "2022-11-07T21:01:00+08:00",
+      "created_at": "2025-12-03T17:30:24.573809",
+      "updated_at": "2025-12-03T17:30:24.573809"
+    }
+  },
+  "unit_to_clusters": {
+    "dfe54375-d2e8-4e20-932e-69c842341d14": [
+      "gec_001"
+    ],
+    "a69d1a5d-2fcc-4601-9649-1c3319164148": [
+      "gec_001",
+      "gec_002",
+      "gec_003",
+      "gec_004"
+    ],
+    "e7947d84-5acb-4cbe-b604-8653aaeab4f7": [
+      "gec_004",
+      "gec_005"
+    ],
+    "c2279b72-4f73-42b4-b6b4-8a97963ac3ac": [
+      "gec_006",
+      "gec_004"
+    ],
+    "6a0e7e40-2c4f-41c4-a944-f25caf3841cb": [
+      "gec_007",
+      "gec_008",
+      "gec_009"
+    ],
+    "c17a3d95-3efb-4924-8d9e-0af08fe9f130": [
+      "gec_008"
+    ],
+    "42e40c49-84f1-43bb-8881-19afe1ed20bd": [
+      "gec_010"
+    ],
+    "db562aa7-354e-4564-aa5f-b3244996fecf": [
+      "gec_001"
+    ],
+    "85b21656-8e9d-485d-aaad-70a1ab68b4f2": [
+      "gec_011",
+      "gec_012"
+    ],
+    "79848642-edbd-40b5-96b9-95f5194462f1": [
+      "gec_013",
+      "gec_014"
+    ],
+    "b94c022d-8289-49d4-8e6f-b93a1df70ab3": [
+      "gec_001"
+    ],
+    "77db52af-a3ea-4739-b5d1-887e3f8e15f4": [
+      "gec_015",
+      "gec_016",
+      "gec_001"
+    ],
+    "614562da-0204-4f00-8fc2-3560f8d7f976": [
+      "gec_001"
+    ],
+    "a3cc5f65-3f0f-4a82-bf6c-f4716ae691e0": [
+      "gec_001"
+    ],
+    "e5bf6147-21b9-4565-bc7d-4ce34cb6cc95": [
+      "gec_001"
+    ],
+    "d47b1c3b-1e85-47d3-b6e0-05b466869775": [
+      "gec_001"
+    ],
+    "ea93f0ba-1122-445e-a72a-3cacf8bad6de": [
+      "gec_017",
+      "gec_001"
+    ],
+    "5b5ae990-66ea-46a7-a163-5b8a51f0c5ec": [
+      "gec_001",
+      "gec_018"
+    ],
+    "9568885f-caa0-4854-96aa-df043eb1d6c7": [
+      "gec_013",
+      "gec_019",
+      "gec_020"
+    ],
+    "c709a810-43b2-47d2-8e9c-774159add93d": [
+      "gec_021",
+      "gec_022"
+    ],
+    "bdd3d3cf-58a0-45a0-9bd8-f78655e106f8": [
+      "gec_023",
+      "gec_024"
+    ],
+    "a801243e-21f8-4bcd-b300-5f55179edd13": [
+      "gec_025"
+    ],
+    "d5314ae0-8691-4008-a9ef-8217eed5d7ab": [
+      "gec_001",
+      "gec_013"
+    ],
+    "055554f9-21db-41b6-9c7b-0df6e4f32316": [
+      "gec_026",
+      "gec_027",
+      "gec_028"
+    ],
+    "c64cfbf4-02d0-4922-8b3f-8a52df446ae3": [
+      "gec_029"
+    ],
+    "db02fc81-2aa9-45db-9afe-236f3ae1d149": [
+      "gec_013",
+      "gec_030",
+      "gec_031"
+    ],
+    "2b5e1519-1db6-44d8-a9ad-b6abf6766c18": [
+      "gec_013"
+    ],
+    "94531b61-8927-411a-b27e-572460988b01": [
+      "gec_032",
+      "gec_033",
+      "gec_034"
+    ],
+    "c45c5025-6e70-4708-9849-5d466f3450bb": [
+      "gec_035",
+      "gec_036"
+    ],
+    "79ea9533-ecae-4704-909c-8d8df4c64822": [
+      "gec_037"
+    ],
+    "1d19ec68-e440-4220-b49c-7c5f4181b1ee": [
+      "gec_038"
+    ],
+    "a1ff09a0-bedb-496f-a6b0-3048fa501bc6": [
+      "gec_039",
+      "gec_040"
+    ],
+    "48113c7d-5182-4856-8862-9956f8f7cb2e": [
+      "gec_041",
+      "gec_042",
+      "gec_043"
+    ],
+    "8f0a5985-8f06-445c-99bb-03935b7bcf5b": [
+      "gec_044",
+      "gec_045",
+      "gec_046"
+    ],
+    "c593645f-c151-4f70-be3a-e8580042bc6a": [
+      "gec_047"
+    ],
+    "383b2e42-dd94-4ef2-9bab-e5cd3eb09ed4": [
+      "gec_048"
+    ],
+    "762e54c8-84f7-4a05-af66-90125ba4c582": [
+      "gec_013",
+      "gec_049",
+      "gec_050"
+    ],
+    "d6904ee6-de68-4fd2-b47b-f6378adfc285": [
+      "gec_017",
+      "gec_013"
+    ],
+    "76c05882-66f8-4ce2-b812-21e8dea51453": [
+      "gec_051",
+      "gec_052",
+      "gec_053"
+    ],
+    "81dad942-6593-4811-9c9e-58b5d6a3889c": [
+      "gec_001"
+    ],
+    "9d28f306-eee5-46dc-bbae-c1bec008d42d": [
+      "gec_054",
+      "gec_055",
+      "gec_056"
+    ],
+    "094b8657-cdae-4d83-9cd6-5c0a0e120f97": [
+      "gec_057"
+    ],
+    "2aacfd67-86f1-4216-a091-ca08dd13952f": [
+      "gec_058",
+      "gec_059"
+    ],
+    "1d92c80f-abfd-431d-aab8-1cf806ce7efc": [
+      "gec_060",
+      "gec_061",
+      "gec_062"
+    ],
+    "d36a1d7f-1dc2-4fac-b96e-4054e0f5c23d": [
+      "gec_013",
+      "gec_063"
+    ],
+    "c7365f1f-dd17-42ac-8a31-65db1670f483": [
+      "gec_013"
+    ],
+    "124fe3c3-bef6-40cf-b930-4627c1cd6379": [
+      "gec_064"
+    ],
+    "e9e3fedd-c6b3-476c-b55e-b11c9d5c93f6": [
+      "gec_065",
+      "gec_066"
+    ],
+    "912fe045-0359-432d-b0d8-52d6e61f17a5": [
+      "gec_013",
+      "gec_067"
+    ],
+    "4b718d31-1a91-4055-876d-3e84f3463edf": [
+      "gec_001"
+    ],
+    "0887db84-70fd-4188-99df-fcba2411f4cd": [
+      "gec_001"
+    ],
+    "eba70b0e-f6d4-4bba-a544-5d3dec48d585": [
+      "gec_013",
+      "gec_068"
+    ],
+    "dc570da8-b2f8-4409-9e92-9c6f5c0ebe63": [
+      "gec_069"
+    ],
+    "64a13c62-e584-477e-a636-cb5080ce47eb": [
+      "gec_001"
+    ],
+    "cfa6faf4-c706-4dd9-90b3-d7decc514bae": [
+      "gec_013"
+    ],
+    "34508d03-366e-4e0c-b900-e552c81f3705": [
+      "gec_017",
+      "gec_070"
+    ],
+    "a0456824-e9d4-489f-b357-8bfb081d59b5": [
+      "gec_001"
+    ],
+    "5b6fb40d-81f8-4f02-a02f-0004a7932deb": [
+      "gec_071"
+    ],
+    "037a0acc-e0a1-4d5e-9d6a-f43f6921c4bc": [
+      "gec_001",
+      "gec_072"
+    ],
+    "de01f2fa-372a-4a57-8814-bb3060f06e15": [
+      "gec_001"
+    ],
+    "ec996e0e-ab18-4837-8e38-b1453ca02fbb": [
+      "gec_073",
+      "gec_074",
+      "gec_075"
+    ],
+    "e314b2c4-efce-4729-b2ef-b5900e85a06a": [
+      "gec_076",
+      "gec_077",
+      "gec_078"
+    ],
+    "634f6edd-c826-483d-a202-1dfbe575d5e4": [
+      "gec_079",
+      "gec_080"
+    ],
+    "e2f0e836-4ba4-485f-b0e1-61093728e115": [
+      "gec_081"
+    ],
+    "15fab8f5-7ece-4563-bfc4-bbe5b1e3d57e": [
+      "gec_082",
+      "gec_083",
+      "gec_084"
+    ],
+    "732d0755-e196-4d43-8d84-882d99fa8cf9": [
+      "gec_085",
+      "gec_086"
+    ],
+    "99d606ba-229a-4790-ba89-b474f50b4067": [
+      "gec_087",
+      "gec_088"
+    ],
+    "2ef9458a-60b7-4a23-a1fe-913a3da4eb89": [
+      "gec_089",
+      "gec_090"
+    ],
+    "b1083d43-99ec-494e-965c-c9cfbc34d144": [
+      "gec_001"
+    ],
+    "4aedfca2-80bd-4462-a5ed-5fe1f3d77263": [
+      "gec_091"
+    ],
+    "61802777-2c13-4fb3-894f-20b9e89795c0": [
+      "gec_092"
+    ],
+    "00e6c18d-5e7a-44f8-b926-789e61370ce8": [
+      "gec_001"
+    ],
+    "9bf71d1e-2bfb-412f-8c53-25058f2ca84f": [
+      "gec_001"
+    ],
+    "5d102dbb-e909-453c-bb0f-52bd688b94ff": [
+      "gec_001"
+    ],
+    "3ee25b4d-09a0-4c55-997a-eaeff4a5bc55": [
+      "gec_001"
+    ],
+    "a10b5ad8-06e6-4975-bbaa-2290d53fb0e4": [
+      "gec_001"
+    ],
+    "0d3d2d27-d500-4825-8283-184ac3621bca": [
+      "gec_093",
+      "gec_094"
+    ],
+    "1cd75361-3eb9-4d36-a842-5d3d915eefe5": [
+      "gec_001"
+    ],
+    "2c53c66d-56cc-47d3-a85b-d0151681b75c": [
+      "gec_095",
+      "gec_096"
+    ],
+    "5797e661-a6ee-429a-a6ac-95ae37447f48": [
+      "gec_097",
+      "gec_098"
+    ],
+    "ee6b119a-9fc4-4877-ac2b-a7631cce9e68": [
+      "gec_099",
+      "gec_013"
+    ],
+    "84dab57f-1b06-4f25-a3cf-fe78a7209f9b": [
+      "gec_100",
+      "gec_101"
+    ],
+    "245b7453-e310-4811-ba31-982a4fdf5f94": [
+      "gec_102",
+      "gec_103"
+    ],
+    "2aeff8d1-6214-4001-8879-bcbd0aa99d67": [
+      "gec_104",
+      "gec_105",
+      "gec_106"
+    ],
+    "efd7465b-8807-42b6-ab6f-e8bbd17bcbb4": [
+      "gec_013"
+    ],
+    "a15920cf-9f3e-47d0-a9a7-a314b38bbbcb": [
+      "gec_107",
+      "gec_108"
+    ],
+    "0baca7d7-665f-45df-92ad-335addf9961b": [
+      "gec_013"
+    ]
+  },
+  "metadata": {
+    "conversation_id": "conv_6",
+    "total_units": 87,
+    "total_clusters": 108,
+    "created_at": "2025-12-03T17:23:33.057831",
+    "updated_at": "2025-12-03T17:30:29.743114",
+    "llm_model": "gpt-4.1-mini"
+  }
+}

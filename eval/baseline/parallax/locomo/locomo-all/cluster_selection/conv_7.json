@@ -1,0 +1,1035 @@
+{
+  "qa_count": 191,
+  "questions": [
+    {
+      "query": "How many times has Jolene been to France?",
+      "question_id": "locomo_7_qa19",
+      "clusters_found": [
+        "gec_025",
+        "gec_024",
+        "gec_013",
+        "gec_060",
+        "gec_083",
+        "gec_032",
+        "gec_007",
+        "gec_082",
+        "gec_002",
+        "gec_031",
+        "gec_027",
+        "gec_051",
+        "gec_010",
+        "gec_061",
+        "gec_009",
+        "gec_019",
+        "gec_028",
+        "gec_056",
+        "gec_029",
+        "gec_030",
+        "gec_059",
+        "gec_004",
+        "gec_026",
+        "gec_072",
+        "gec_023",
+        "gec_094",
+        "gec_084",
+        "gec_003",
+        "gec_020",
+        "gec_008"
+      ],
+      "clusters_selected": [],
+      "selection_reasoning": "None of the clusters contain relevant information about Jolene's visits to France or travel to France.",
+      "cluster_details": {},
+      "members_per_cluster": {},
+      "final_count": 20,
+      "truncated": false,
+      "evidence": [
+        "D2:24",
+        "D1:8"
+      ],
+      "evidence_detail": {
+        "D2:24": [
+          "b86b3e62-5f62-4115-9fd2-9c26427a262e",
+          "gec_010"
+        ],
+        "D1:8": [
+          "d1c2fbff-e719-4c40-82f1-85f4bec5dcd8",
+          "gec_003"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "b86b3e62-5f62-4115-9fd2-9c26427a262e",
+        "d1c2fbff-e719-4c40-82f1-85f4bec5dcd8"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_010",
+        "gec_003"
+      ],
+      "cluster_hit": false,
+      "memunit_hit": false,
+      "memunit_coverage": 0.0,
+      "selected_unit_ids": []
+    },
+    {
+      "query": "When did Deborah meet Anna?",
+      "question_id": "locomo_7_qa22",
+      "clusters_found": [
+        "gec_025",
+        "gec_043",
+        "gec_053",
+        "gec_024",
+        "gec_074",
+        "gec_014",
+        "gec_039",
+        "gec_040",
+        "gec_011",
+        "gec_033",
+        "gec_075",
+        "gec_002",
+        "gec_044",
+        "gec_027",
+        "gec_047",
+        "gec_054",
+        "gec_012",
+        "gec_019",
+        "gec_068",
+        "gec_038",
+        "gec_028",
+        "gec_029",
+        "gec_085",
+        "gec_026",
+        "gec_004",
+        "gec_052",
+        "gec_030",
+        "gec_045",
+        "gec_067",
+        "gec_076",
+        "gec_046",
+        "gec_001",
+        "gec_080",
+        "gec_034",
+        "gec_023",
+        "gec_066",
+        "gec_081",
+        "gec_003",
+        "gec_020",
+        "gec_073",
+        "gec_008"
+      ],
+      "clusters_selected": [
+        "gec_012",
+        "gec_014"
+      ],
+      "selection_reasoning": "These clusters contain direct information about Deborah meeting Anna, specifically around early February 2023, including Deborah sharing a photo and describing bonding with Anna during a yoga class on February 4, 2023.",
+      "cluster_details": {
+        "gec_012": {
+          "topic": "Deborah's new neighbor Anna and yoga community connection",
+          "summary": "Jolene shared her experience working on a challenging but enjoyable robotics project assigned by her engineering professor, while Deborah discussed meeting her new neighbor Anna at yoga in the park and the sense of community it fostered. The conversation highlighted Jolene's emotional reflections on the project and Deborah's recent social connection through shared interests.",
+          "member_count": 2,
+          "members_returned": 2
+        },
+        "gec_014": {
+          "topic": "Deborah's yoga teaching and practice involving dance poses and physical/emotional benefits",
+          "summary": "On February 4, 2023, Deborah shared a photo and described bonding with Anna during a yoga class where they practiced challenging dance poses like Warrior II, emphasizing both physical benefits and emotional support. She also provided Jolene with a detailed explanation of a modified pose to relax back and shoulder muscles.",
+          "member_count": 2,
+          "members_returned": 1
+        }
+      },
+      "members_per_cluster": {
+        "gec_012": 2,
+        "gec_014": 1
+      },
+      "final_count": 13,
+      "truncated": false,
+      "evidence": [
+        "D3:4"
+      ],
+      "evidence_detail": {
+        "D3:4": [
+          "4b8c2eec-1907-4cfe-8fd6-1a1fdb5c6f32",
+          "gec_012"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "4b8c2eec-1907-4cfe-8fd6-1a1fdb5c6f32"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_012"
+      ],
+      "cluster_hit": true,
+      "memunit_hit": true,
+      "memunit_coverage": 1.0,
+      "selected_unit_ids": [
+        "f3ea1b55-d3f7-471d-bddc-6ae4520f0152",
+        "4b8c2eec-1907-4cfe-8fd6-1a1fdb5c6f32",
+        "f6d3e54d-55d6-4df3-a4a7-66a0c3869363"
+      ]
+    },
+    {
+      "query": "When did Jolene have a mini-retreat to reflect on her career?",
+      "question_id": "locomo_7_qa29",
+      "clusters_found": [
+        "gec_086",
+        "gec_069",
+        "gec_053",
+        "gec_013",
+        "gec_074",
+        "gec_060",
+        "gec_011",
+        "gec_079",
+        "gec_032",
+        "gec_007",
+        "gec_033",
+        "gec_064",
+        "gec_075",
+        "gec_002",
+        "gec_051",
+        "gec_061",
+        "gec_022",
+        "gec_054",
+        "gec_065",
+        "gec_059",
+        "gec_004",
+        "gec_052",
+        "gec_087",
+        "gec_076",
+        "gec_021",
+        "gec_070",
+        "gec_034",
+        "gec_097",
+        "gec_063",
+        "gec_003",
+        "gec_073",
+        "gec_008"
+      ],
+      "clusters_selected": [
+        "gec_021"
+      ],
+      "selection_reasoning": "Cluster gec_021 specifically mentions Jolene's mini retreat and personal reflection experience, including the timing of the event, which directly answers the query about when Jolene had a mini-retreat to reflect on her career.",
+      "cluster_details": {
+        "gec_021": {
+          "topic": "Jolene's mini retreat and personal reflection experience",
+          "summary": "On February 9, 2023, Jolene shared with Deborah the positive outcomes of a recent mini retreat that boosted her confidence and inspired her to develop a volunteer STEM program for underprivileged children, with Deborah offering encouragement and support throughout their conversation.",
+          "member_count": 1,
+          "members_returned": 1
+        }
+      },
+      "members_per_cluster": {
+        "gec_021": 1
+      },
+      "final_count": 11,
+      "truncated": false,
+      "evidence": [
+        "D5:1"
+      ],
+      "evidence_detail": {
+        "D5:1": [
+          "abfdc143-71c1-477d-91a5-ce1519126e0d",
+          "gec_022"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "abfdc143-71c1-477d-91a5-ce1519126e0d"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_022"
+      ],
+      "cluster_hit": false,
+      "memunit_hit": true,
+      "memunit_coverage": 1.0,
+      "selected_unit_ids": [
+        "abfdc143-71c1-477d-91a5-ce1519126e0d"
+      ]
+    },
+    {
+      "query": "When did Jolene have a dinner and drinks with her friends?",
+      "question_id": "locomo_7_qa30",
+      "clusters_found": [
+        "gec_025",
+        "gec_048",
+        "gec_024",
+        "gec_003",
+        "gec_074",
+        "gec_013",
+        "gec_011",
+        "gec_049",
+        "gec_007",
+        "gec_033",
+        "gec_075",
+        "gec_002",
+        "gec_031",
+        "gec_051",
+        "gec_047",
+        "gec_022",
+        "gec_009",
+        "gec_065",
+        "gec_017",
+        "gec_085",
+        "gec_004",
+        "gec_076",
+        "gec_046",
+        "gec_018",
+        "gec_021",
+        "gec_034",
+        "gec_023",
+        "gec_097",
+        "gec_063",
+        "gec_064",
+        "gec_073",
+        "gec_008"
+      ],
+      "clusters_selected": [
+        "gec_023"
+      ],
+      "selection_reasoning": "Cluster gec_023 specifically mentions Jolene recounting a joyful night out with friends, which likely includes dinner and drinks, and provides the date of February 22, 2023, directly addressing the query about when Jolene had dinner and drinks with her friends.",
+      "cluster_details": {
+        "gec_023": {
+          "topic": "Jolene's joyful night out with friends",
+          "summary": "On February 22, 2023, Jolene and Deborah shared a heartfelt conversation where Jolene recounted a joyful night out while Deborah reflected on coping with the recent loss of a friend through memories and time spent in her garden. Their exchange highlighted the comfort found in friendship and cherished memories during difficult times.",
+          "member_count": 1,
+          "members_returned": 1
+        }
+      },
+      "members_per_cluster": {
+        "gec_023": 1
+      },
+      "final_count": 11,
+      "truncated": false,
+      "evidence": [
+        "D6:1"
+      ],
+      "evidence_detail": {
+        "D6:1": [
+          "1ef16a8b-c509-4f65-83ee-58ef185f16ec",
+          "gec_025"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "1ef16a8b-c509-4f65-83ee-58ef185f16ec"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_025"
+      ],
+      "cluster_hit": false,
+      "memunit_hit": true,
+      "memunit_coverage": 1.0,
+      "selected_unit_ids": [
+        "1ef16a8b-c509-4f65-83ee-58ef185f16ec"
+      ]
+    },
+    {
+      "query": "When did Deborah go for her first morning jog in a nearby park?",
+      "question_id": "locomo_7_qa35",
+      "clusters_found": [
+        "gec_008",
+        "gec_025",
+        "gec_043",
+        "gec_024",
+        "gec_013",
+        "gec_074",
+        "gec_011",
+        "gec_032",
+        "gec_007",
+        "gec_033",
+        "gec_075",
+        "gec_002",
+        "gec_044",
+        "gec_027",
+        "gec_047",
+        "gec_009",
+        "gec_055",
+        "gec_054",
+        "gec_012",
+        "gec_019",
+        "gec_068",
+        "gec_038",
+        "gec_028",
+        "gec_056",
+        "gec_029",
+        "gec_030",
+        "gec_026",
+        "gec_004",
+        "gec_052",
+        "gec_045",
+        "gec_067",
+        "gec_076",
+        "gec_046",
+        "gec_001",
+        "gec_034",
+        "gec_023",
+        "gec_066",
+        "gec_003",
+        "gec_020",
+        "gec_073",
+        "gec_053"
+      ],
+      "clusters_selected": [
+        "gec_032"
+      ],
+      "selection_reasoning": "Cluster gec_032 specifically mentions Deborah's balanced daily routine including jogging, which is directly relevant to identifying when Deborah went for her first morning jog in a nearby park.",
+      "cluster_details": {
+        "gec_032": {
+          "topic": "Deborah's balanced daily routine including meditation, yoga, teaching, jogging, and family time",
+          "summary": "On February 25, 2023, Jolene and Deborah discussed Deborah’s balanced daily routine, which includes meditation, yoga, teaching, jogging, and spending time with loved ones, highlighting the importance of self-care and motivation for maintaining healthy habits.",
+          "member_count": 1,
+          "members_returned": 1
+        }
+      },
+      "members_per_cluster": {
+        "gec_032": 1
+      },
+      "final_count": 11,
+      "truncated": false,
+      "evidence": [
+        "D7:18"
+      ],
+      "evidence_detail": {
+        "D7:18": [
+          "57ca725b-1e1a-4738-9004-a4a17b89ec94",
+          "gec_032"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "57ca725b-1e1a-4738-9004-a4a17b89ec94"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_032"
+      ],
+      "cluster_hit": true,
+      "memunit_hit": true,
+      "memunit_coverage": 1.0,
+      "selected_unit_ids": [
+        "57ca725b-1e1a-4738-9004-a4a17b89ec94"
+      ]
+    },
+    {
+      "query": "When did Deborah start the yoga class in the neighborhood?",
+      "question_id": "locomo_7_qa38",
+      "clusters_found": [
+        "gec_092",
+        "gec_074",
+        "gec_014",
+        "gec_011",
+        "gec_032",
+        "gec_007",
+        "gec_058",
+        "gec_075",
+        "gec_002",
+        "gec_027",
+        "gec_055",
+        "gec_012",
+        "gec_065",
+        "gec_068",
+        "gec_038",
+        "gec_093",
+        "gec_028",
+        "gec_029",
+        "gec_030",
+        "gec_026",
+        "gec_004",
+        "gec_067",
+        "gec_076",
+        "gec_072",
+        "gec_091",
+        "gec_066",
+        "gec_063",
+        "gec_064",
+        "gec_073",
+        "gec_057",
+        "gec_008"
+      ],
+      "clusters_selected": [
+        "gec_038"
+      ],
+      "selection_reasoning": "The query asks specifically about when Deborah started the yoga class in the neighborhood. Cluster gec_038 directly addresses Deborah sharing her experience of starting a neighborhood yoga class on March 13, 2023, providing the exact timing and context needed to answer the query.",
+      "cluster_details": {
+        "gec_038": {
+          "topic": "Deborah's neighborhood yoga class and community building",
+          "summary": "On March 13, 2023, Deborah shared with Jolene her experience of starting a yoga class in her neighborhood, highlighting its positive impact on community building and personal well-being. They discussed the joy of teaching yoga, forming meaningful friendships, and the importance of mutual support.",
+          "member_count": 1,
+          "members_returned": 1
+        }
+      },
+      "members_per_cluster": {
+        "gec_038": 1
+      },
+      "final_count": 11,
+      "truncated": false,
+      "evidence": [
+        "D9:5"
+      ],
+      "evidence_detail": {
+        "D9:5": [
+          "987f86b8-01f2-465f-97b3-460d9f69a89b",
+          "gec_038"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "987f86b8-01f2-465f-97b3-460d9f69a89b"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_038"
+      ],
+      "cluster_hit": true,
+      "memunit_hit": true,
+      "memunit_coverage": 1.0,
+      "selected_unit_ids": [
+        "987f86b8-01f2-465f-97b3-460d9f69a89b"
+      ]
+    },
+    {
+      "query": "When did Deborah go for a bicycle ride with Anna?",
+      "question_id": "locomo_7_qa43",
+      "clusters_found": [
+        "gec_025",
+        "gec_043",
+        "gec_053",
+        "gec_069",
+        "gec_024",
+        "gec_074",
+        "gec_014",
+        "gec_011",
+        "gec_032",
+        "gec_007",
+        "gec_058",
+        "gec_075",
+        "gec_002",
+        "gec_044",
+        "gec_027",
+        "gec_047",
+        "gec_009",
+        "gec_054",
+        "gec_012",
+        "gec_093",
+        "gec_068",
+        "gec_028",
+        "gec_056",
+        "gec_029",
+        "gec_030",
+        "gec_026",
+        "gec_004",
+        "gec_052",
+        "gec_045",
+        "gec_067",
+        "gec_076",
+        "gec_046",
+        "gec_070",
+        "gec_023",
+        "gec_066",
+        "gec_094",
+        "gec_003",
+        "gec_073",
+        "gec_057",
+        "gec_008"
+      ],
+      "clusters_selected": [
+        "gec_046"
+      ],
+      "selection_reasoning": "Cluster gec_046 specifically mentions Deborah's recent experiences of biking, which is directly relevant to the query about when Deborah went for a bicycle ride with Anna. No other cluster explicitly references a bicycle ride event involving Deborah and Anna.",
+      "cluster_details": {
+        "gec_046": {
+          "topic": "Deborah's experiences with biking and outdoor activities",
+          "summary": "On April 9, 2023, Deborah shared with Jolene her recent experiences of biking and visiting an art show, reflecting on how art helps her connect with the memory of her late mother and find comfort. Jolene acknowledged Deborah's coping process, highlighting the emotional significance of art in preserving her mother's legacy.",
+          "member_count": 1,
+          "members_returned": 1
+        }
+      },
+      "members_per_cluster": {
+        "gec_046": 1
+      },
+      "final_count": 11,
+      "truncated": false,
+      "evidence": [
+        "D12:1"
+      ],
+      "evidence_detail": {
+        "D12:1": [
+          "5db6c88a-fc9b-4f8b-9024-afb2ed02f9b6",
+          "gec_047"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "5db6c88a-fc9b-4f8b-9024-afb2ed02f9b6"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_047"
+      ],
+      "cluster_hit": false,
+      "memunit_hit": true,
+      "memunit_coverage": 1.0,
+      "selected_unit_ids": [
+        "5db6c88a-fc9b-4f8b-9024-afb2ed02f9b6"
+      ]
+    },
+    {
+      "query": "When did Deborah go to an art show with Anna?",
+      "question_id": "locomo_7_qa44",
+      "clusters_found": [
+        "gec_043",
+        "gec_053",
+        "gec_074",
+        "gec_060",
+        "gec_014",
+        "gec_011",
+        "gec_007",
+        "gec_033",
+        "gec_062",
+        "gec_075",
+        "gec_002",
+        "gec_044",
+        "gec_027",
+        "gec_047",
+        "gec_061",
+        "gec_054",
+        "gec_012",
+        "gec_019",
+        "gec_068",
+        "gec_028",
+        "gec_029",
+        "gec_085",
+        "gec_059",
+        "gec_004",
+        "gec_052",
+        "gec_026",
+        "gec_030",
+        "gec_045",
+        "gec_067",
+        "gec_076",
+        "gec_046",
+        "gec_001",
+        "gec_034",
+        "gec_066",
+        "gec_097",
+        "gec_003",
+        "gec_020",
+        "gec_073",
+        "gec_008"
+      ],
+      "clusters_selected": [
+        "gec_046",
+        "gec_047"
+      ],
+      "selection_reasoning": "Both clusters describe Deborah's experience of visiting an art show, which is directly relevant to the query about when Deborah went to an art show with Anna. They share the same event dated April 9, 2023.",
+      "cluster_details": {
+        "gec_046": {
+          "topic": "Deborah's experiences with biking and outdoor activities",
+          "summary": "On April 9, 2023, Deborah shared with Jolene her recent experiences of biking and visiting an art show, reflecting on how art helps her connect with the memory of her late mother and find comfort. Jolene acknowledged Deborah's coping process, highlighting the emotional significance of art in preserving her mother's legacy.",
+          "member_count": 1,
+          "members_returned": 1
+        },
+        "gec_047": {
+          "topic": "Deborah's reflections on art as a connection to her late mother",
+          "summary": "On April 9, 2023, Deborah shared with Jolene her recent experiences of biking and visiting an art show, reflecting on how art helps her connect with the memory of her late mother and find comfort. Jolene acknowledged Deborah's coping process, highlighting the emotional significance of art in preserving her mother's legacy.",
+          "member_count": 1,
+          "members_returned": 0
+        }
+      },
+      "members_per_cluster": {
+        "gec_046": 1,
+        "gec_047": 0
+      },
+      "final_count": 11,
+      "truncated": false,
+      "evidence": [
+        "D12:1"
+      ],
+      "evidence_detail": {
+        "D12:1": [
+          "5db6c88a-fc9b-4f8b-9024-afb2ed02f9b6",
+          "gec_047"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "5db6c88a-fc9b-4f8b-9024-afb2ed02f9b6"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_047"
+      ],
+      "cluster_hit": true,
+      "memunit_hit": true,
+      "memunit_coverage": 1.0,
+      "selected_unit_ids": [
+        "5db6c88a-fc9b-4f8b-9024-afb2ed02f9b6"
+      ]
+    },
+    {
+      "query": "When did Jolene finish her robotics project?",
+      "question_id": "locomo_7_qa45",
+      "clusters_found": [
+        "gec_086",
+        "gec_048",
+        "gec_069",
+        "gec_013",
+        "gec_074",
+        "gec_011",
+        "gec_071",
+        "gec_049",
+        "gec_007",
+        "gec_058",
+        "gec_062",
+        "gec_075",
+        "gec_002",
+        "gec_031",
+        "gec_051",
+        "gec_022",
+        "gec_012",
+        "gec_004",
+        "gec_087",
+        "gec_076",
+        "gec_001",
+        "gec_050",
+        "gec_021",
+        "gec_070",
+        "gec_097",
+        "gec_003",
+        "gec_073",
+        "gec_057",
+        "gec_008"
+      ],
+      "clusters_selected": [
+        "gec_011"
+      ],
+      "selection_reasoning": "Cluster gec_011 specifically covers Jolene's robotics project experience over a period from February to September 2023, including discussions of her progress and challenges, which is directly relevant to determining when she finished her robotics project.",
+      "cluster_details": {
+        "gec_011": {
+          "topic": "Jolene's robotics project experience",
+          "summary": "They discussed Jolene’s challenging yet rewarding robotics project, highlighting her emotional journey from initial difficulty to breakthrough success. Throughout, Deborah offered consistent encouragement, emphasizing perseverance, balance, and mutual support during demanding academic efforts.",
+          "member_count": 6,
+          "members_returned": 6
+        }
+      },
+      "members_per_cluster": {
+        "gec_011": 6
+      },
+      "final_count": 16,
+      "truncated": false,
+      "evidence": [
+        "D13:1"
+      ],
+      "evidence_detail": {
+        "D13:1": [
+          "d0d7e9d8-e8a1-48e3-b3cf-8fd67d29a896",
+          "gec_049"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "d0d7e9d8-e8a1-48e3-b3cf-8fd67d29a896"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_049"
+      ],
+      "cluster_hit": false,
+      "memunit_hit": false,
+      "memunit_coverage": 0.0,
+      "selected_unit_ids": [
+        "4b8c2eec-1907-4cfe-8fd6-1a1fdb5c6f32",
+        "610ea246-ae8c-47ea-8f84-b595ed4e9653",
+        "ebdae8e9-2817-4902-967d-f44a7e14bcdc",
+        "58a310c5-5388-4f22-b477-fc7f24e934b8",
+        "c21c71d1-52ff-47d9-b374-a3cc852d5355",
+        "9e33338a-ef7e-4725-b432-48e0a97d9e14"
+      ]
+    },
+    {
+      "query": "When did Jolene do yoga at Talkeetna?",
+      "question_id": "locomo_7_qa47",
+      "clusters_found": [
+        "gec_086",
+        "gec_078",
+        "gec_011",
+        "gec_033",
+        "gec_002",
+        "gec_027",
+        "gec_051",
+        "gec_022",
+        "gec_012",
+        "gec_019",
+        "gec_028",
+        "gec_038",
+        "gec_029",
+        "gec_030",
+        "gec_026",
+        "gec_004",
+        "gec_087",
+        "gec_072",
+        "gec_021",
+        "gec_034",
+        "gec_097",
+        "gec_003",
+        "gec_077",
+        "gec_008"
+      ],
+      "clusters_selected": [
+        "gec_051"
+      ],
+      "selection_reasoning": "The query asks specifically when Jolene did yoga at Talkeetna. The only cluster mentioning Jolene doing yoga with a specific date is gec_051, which references June 6, 2023, in the context of Jolene's internship and yoga practice helping her manage stress. No other clusters mention Talkeetna or a specific yoga event for Jolene.",
+      "cluster_details": {
+        "gec_051": {
+          "topic": "Jolene's internship experience and work-life balance",
+          "summary": "On June 6, 2023, Jolene and Deborah discussed Jolene's internship experience, focusing on her challenges with work-life balance and how yoga and meditation have helped her manage stress and stay centered. Deborah offered advice on mindful breathing and support for Jolene's well-being throughout their conversation.",
+          "member_count": 1,
+          "members_returned": 1
+        }
+      },
+      "members_per_cluster": {
+        "gec_051": 1
+      },
+      "final_count": 11,
+      "truncated": false,
+      "evidence": [
+        "D13:15"
+      ],
+      "evidence_detail": {
+        "D13:15": [
+          "9f5d3bf0-f7db-4fdc-b26a-246c0975b853",
+          "gec_051"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "9f5d3bf0-f7db-4fdc-b26a-246c0975b853"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_051"
+      ],
+      "cluster_hit": true,
+      "memunit_hit": true,
+      "memunit_coverage": 1.0,
+      "selected_unit_ids": [
+        "9f5d3bf0-f7db-4fdc-b26a-246c0975b853"
+      ]
+    },
+    {
+      "query": "When did Deborah go to a yoga retreat near her mom's place?",
+      "question_id": "locomo_7_qa60",
+      "clusters_found": [
+        "gec_086",
+        "gec_092",
+        "gec_069",
+        "gec_074",
+        "gec_060",
+        "gec_078",
+        "gec_011",
+        "gec_007",
+        "gec_033",
+        "gec_058",
+        "gec_075",
+        "gec_002",
+        "gec_027",
+        "gec_061",
+        "gec_022",
+        "gec_068",
+        "gec_038",
+        "gec_028",
+        "gec_029",
+        "gec_030",
+        "gec_059",
+        "gec_004",
+        "gec_026",
+        "gec_067",
+        "gec_087",
+        "gec_076",
+        "gec_070",
+        "gec_021",
+        "gec_091",
+        "gec_034",
+        "gec_066",
+        "gec_097",
+        "gec_003",
+        "gec_073",
+        "gec_057",
+        "gec_077",
+        "gec_008"
+      ],
+      "clusters_selected": [
+        "gec_069"
+      ],
+      "selection_reasoning": "Cluster gec_069 specifically references Deborah's transformative yoga retreat experience discussed on August 24, 2023, which is directly relevant to the query about when Deborah went to a yoga retreat near her mom's place.",
+      "cluster_details": {
+        "gec_069": {
+          "topic": "Deborah's transformative yoga retreat experience",
+          "summary": "On August 24, 2023, Deborah and Jolene discussed Deborah’s transformative yoga retreat and Jolene’s career progress, sharing mutual encouragement focused on personal growth, self-reflection, and professional development.",
+          "member_count": 1,
+          "members_returned": 1
+        }
+      },
+      "members_per_cluster": {
+        "gec_069": 1
+      },
+      "final_count": 11,
+      "truncated": false,
+      "evidence": [
+        "D21:1"
+      ],
+      "evidence_detail": {
+        "D21:1": [
+          "e9df044f-9bfe-49b0-afa4-2154707f314e",
+          "gec_070"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "e9df044f-9bfe-49b0-afa4-2154707f314e"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_070"
+      ],
+      "cluster_hit": false,
+      "memunit_hit": true,
+      "memunit_coverage": 1.0,
+      "selected_unit_ids": [
+        "e9df044f-9bfe-49b0-afa4-2154707f314e"
+      ]
+    },
+    {
+      "query": "When did Deborah visit Brazil?",
+      "question_id": "locomo_7_qa68",
+      "clusters_found": [
+        "gec_025",
+        "gec_069",
+        "gec_024",
+        "gec_074",
+        "gec_007",
+        "gec_075",
+        "gec_002",
+        "gec_027",
+        "gec_047",
+        "gec_019",
+        "gec_028",
+        "gec_068",
+        "gec_038",
+        "gec_029",
+        "gec_030",
+        "gec_026",
+        "gec_004",
+        "gec_085",
+        "gec_067",
+        "gec_076",
+        "gec_046",
+        "gec_072",
+        "gec_070",
+        "gec_080",
+        "gec_023",
+        "gec_094",
+        "gec_066",
+        "gec_081",
+        "gec_097",
+        "gec_003",
+        "gec_020",
+        "gec_073",
+        "gec_008"
+      ],
+      "clusters_selected": [],
+      "selection_reasoning": "None of the clusters contain relevant information about Deborah visiting Brazil.",
+      "cluster_details": {},
+      "members_per_cluster": {},
+      "final_count": 20,
+      "truncated": false,
+      "evidence": [
+        "D23:18"
+      ],
+      "evidence_detail": {
+        "D23:18": [
+          "9ffacc28-7e79-4f71-9b25-ea62a8b1d5d0",
+          "gec_004"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "9ffacc28-7e79-4f71-9b25-ea62a8b1d5d0"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_004"
+      ],
+      "cluster_hit": false,
+      "memunit_hit": false,
+      "memunit_coverage": 0.0,
+      "selected_unit_ids": []
+    },
+    {
+      "query": "When did Deborah go to a community meetup?",
+      "question_id": "locomo_7_qa71",
+      "clusters_found": [
+        "gec_013",
+        "gec_074",
+        "gec_039",
+        "gec_040",
+        "gec_011",
+        "gec_007",
+        "gec_033",
+        "gec_058",
+        "gec_075",
+        "gec_002",
+        "gec_089",
+        "gec_027",
+        "gec_022",
+        "gec_055",
+        "gec_068",
+        "gec_038",
+        "gec_093",
+        "gec_028",
+        "gec_029",
+        "gec_085",
+        "gec_026",
+        "gec_004",
+        "gec_030",
+        "gec_088",
+        "gec_067",
+        "gec_076",
+        "gec_001",
+        "gec_021",
+        "gec_037",
+        "gec_034",
+        "gec_090",
+        "gec_066",
+        "gec_097",
+        "gec_003",
+        "gec_073",
+        "gec_057",
+        "gec_008"
+      ],
+      "clusters_selected": [
+        "gec_073"
+      ],
+      "selection_reasoning": "Cluster gec_073 specifically mentions Deborah sharing about a community event, which is directly relevant to when Deborah went to a community meetup.",
+      "cluster_details": {
+        "gec_073": {
+          "topic": "Deborah's attendance and reflections on community support events",
+          "summary": "Deborah and Jolene discussed their recent experiences and personal lives, emphasizing the importance of relationships and support from loved ones in managing stress, with Deborah sharing about a community event and yoga friends, and Jolene reflecting on her studies, gaming hobbies, and partner’s encouragement.",
+          "member_count": 1,
+          "members_returned": 1
+        }
+      },
+      "members_per_cluster": {
+        "gec_073": 1
+      },
+      "final_count": 11,
+      "truncated": false,
+      "evidence": [
+        "D24:1"
+      ],
+      "evidence_detail": {
+        "D24:1": [
+          "76d4ab71-7dab-420f-863a-c4464ac29748",
+          "gec_076"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "76d4ab71-7dab-420f-863a-c4464ac29748"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_076"
+      ],
+      "cluster_hit": false,
+      "memunit_hit": true,
+      "memunit_coverage": 1.0,
+      "selected_unit_ids": [
+        "76d4ab71-7dab-420f-863a-c4464ac29748"
+      ]
+    }
+  ],
+  "summary": {
+    "total_questions": 13,
+    "cluster_hit_count": 5,
+    "cluster_hit_rate": 0.38461538461538464,
+    "memunit_hit_count": 10,
+    "memunit_hit_rate": 0.7692307692307693,
+    "avg_memunit_coverage": 0.7692307692307693
+  }
+}

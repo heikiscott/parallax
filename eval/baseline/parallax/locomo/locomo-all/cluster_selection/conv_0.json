@@ -1,0 +1,2823 @@
+{
+  "qa_count": 152,
+  "questions": [
+    {
+      "query": "When did Caroline go to the LGBTQ support group?",
+      "question_id": "locomo_0_qa0",
+      "clusters_found": [
+        "gec_048",
+        "gec_013",
+        "gec_011",
+        "gec_049",
+        "gec_032",
+        "gec_033",
+        "gec_058",
+        "gec_002",
+        "gec_031",
+        "gec_010",
+        "gec_047",
+        "gec_022",
+        "gec_009",
+        "gec_012",
+        "gec_019",
+        "gec_056",
+        "gec_029",
+        "gec_030",
+        "gec_004",
+        "gec_001",
+        "gec_046",
+        "gec_018",
+        "gec_021",
+        "gec_034",
+        "gec_003",
+        "gec_020",
+        "gec_057"
+      ],
+      "clusters_selected": [
+        "gec_001",
+        "gec_002"
+      ],
+      "selection_reasoning": "Cluster gec_001 mentions Caroline sharing her experience attending an LGBTQ support group on May 8, 2023, which directly relates to when she went to the group. Cluster gec_002 covers Caroline's LGBTQ support group experience over time, providing additional context and details about her involvement and journey from May to October 2023.",
+      "cluster_details": {
+        "gec_001": {
+          "topic": "Caroline's greeting to Melanie on May 8, 2023",
+          "summary": "On May 8, 2023, Caroline and Melanie exchanged brief personal updates, with Caroline expressing happiness to reconnect and Melanie sharing that she was overwhelmed with her children and work commitments.",
+          "member_count": 2,
+          "members_returned": 2
+        },
+        "gec_002": {
+          "topic": "Caroline's LGBTQ support group experience",
+          "summary": "Caroline shared with Melanie her journey of LGBTQ support, expressing how art, community, and acceptance empower her trans identity. They discussed themes of unity, advocacy, and healing, highlighting ongoing mutual support and the impact of creative expression and volunteering.",
+          "member_count": 9,
+          "members_returned": 8
+        }
+      },
+      "members_per_cluster": {
+        "gec_001": 2,
+        "gec_002": 8
+      },
+      "final_count": 20,
+      "truncated": false,
+      "evidence": [
+        "D1:3"
+      ],
+      "evidence_detail": {
+        "D1:3": [
+          "429692d8-4710-433a-9296-147e2250413c",
+          "gec_002"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "429692d8-4710-433a-9296-147e2250413c"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_002"
+      ],
+      "cluster_hit": true,
+      "memunit_hit": true,
+      "memunit_coverage": 1.0,
+      "selected_unit_ids": [
+        "5f4b27e0-51f2-44ea-8e56-c807b68d25f5",
+        "843ae6f5-441c-45ce-9272-07a2808c7bce",
+        "870a1165-252e-4724-abc3-83976922768e",
+        "bb804fec-f435-4867-9e4c-518239c9795b",
+        "1bdae576-a6d5-48d0-b233-b1791ef46837",
+        "e6a26a67-9aca-4e0e-a2a1-1a68b552ef8d",
+        "33e802db-a858-4b72-86ec-133855a2dd6f",
+        "429692d8-4710-433a-9296-147e2250413c",
+        "0100f651-d3da-4113-877d-6f683b1c1896",
+        "ebe39614-d272-415a-a78e-923eb0683eeb"
+      ]
+    },
+    {
+      "query": "When did Melanie paint a sunrise?",
+      "question_id": "locomo_0_qa1",
+      "clusters_found": [
+        "gec_048",
+        "gec_041",
+        "gec_069",
+        "gec_043",
+        "gec_024",
+        "gec_014",
+        "gec_039",
+        "gec_040",
+        "gec_011",
+        "gec_071",
+        "gec_007",
+        "gec_062",
+        "gec_035",
+        "gec_002",
+        "gec_044",
+        "gec_010",
+        "gec_047",
+        "gec_061",
+        "gec_036",
+        "gec_009",
+        "gec_012",
+        "gec_068",
+        "gec_038",
+        "gec_016",
+        "gec_017",
+        "gec_029",
+        "gec_030",
+        "gec_004",
+        "gec_045",
+        "gec_067",
+        "gec_001",
+        "gec_070",
+        "gec_037",
+        "gec_023",
+        "gec_066",
+        "gec_003",
+        "gec_042"
+      ],
+      "clusters_selected": [
+        "gec_004"
+      ],
+      "selection_reasoning": "The query asks when Melanie painted a sunrise, which is a specific event related to her painting hobby. Cluster gec_004 focuses on Melanie's painting hobby and related artistic activities, making it the most relevant cluster to answer the question.",
+      "cluster_details": {
+        "gec_004": {
+          "topic": "Melanie's painting hobby",
+          "summary": "They discussed how Melanie’s painting and pottery serve as calming, therapeutic outlets, supporting emotional balance and self-expression. Over time, their conversations deepened to include art’s role in healing, identity, and coping with challenges.",
+          "member_count": 5,
+          "members_returned": 5
+        }
+      },
+      "members_per_cluster": {
+        "gec_004": 5
+      },
+      "final_count": 15,
+      "truncated": false,
+      "evidence": [
+        "D1:12"
+      ],
+      "evidence_detail": {
+        "D1:12": [
+          "24b127c4-1eed-4903-a38a-0f41cad1a2eb",
+          "gec_004"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "24b127c4-1eed-4903-a38a-0f41cad1a2eb"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_004"
+      ],
+      "cluster_hit": true,
+      "memunit_hit": true,
+      "memunit_coverage": 1.0,
+      "selected_unit_ids": [
+        "24b127c4-1eed-4903-a38a-0f41cad1a2eb",
+        "a5328004-579f-46bd-bfa5-71d514fb9d06",
+        "1bdae576-a6d5-48d0-b233-b1791ef46837",
+        "7776a816-14f8-4bf4-9bcf-b87dbc24a3a3",
+        "ebe39614-d272-415a-a78e-923eb0683eeb"
+      ]
+    },
+    {
+      "query": "When did Melanie run a charity race?",
+      "question_id": "locomo_0_qa5",
+      "clusters_found": [
+        "gec_025",
+        "gec_005",
+        "gec_069",
+        "gec_043",
+        "gec_041",
+        "gec_039",
+        "gec_040",
+        "gec_071",
+        "gec_011",
+        "gec_032",
+        "gec_007",
+        "gec_033",
+        "gec_058",
+        "gec_035",
+        "gec_064",
+        "gec_002",
+        "gec_031",
+        "gec_044",
+        "gec_027",
+        "gec_010",
+        "gec_036",
+        "gec_022",
+        "gec_009",
+        "gec_012",
+        "gec_065",
+        "gec_016",
+        "gec_028",
+        "gec_038",
+        "gec_056",
+        "gec_026",
+        "gec_004",
+        "gec_045",
+        "gec_046",
+        "gec_021",
+        "gec_070",
+        "gec_037",
+        "gec_006",
+        "gec_034",
+        "gec_063",
+        "gec_003",
+        "gec_042",
+        "gec_057",
+        "gec_008"
+      ],
+      "clusters_selected": [
+        "gec_005"
+      ],
+      "selection_reasoning": "Cluster gec_005 specifically mentions Melanie's participation in a mental health charity race and provides the date of discussion (May 25, 2023), directly answering when Melanie ran a charity race.",
+      "cluster_details": {
+        "gec_005": {
+          "topic": "Melanie's participation in mental health charity race",
+          "summary": "On May 25, 2023, Melanie and Caroline discussed Melanie’s recent participation in a mental health charity race and her ongoing self-care journey, emphasizing the importance of balancing personal well-being with family responsibilities. They also touched on upcoming summer plans, including potential family camping.",
+          "member_count": 1,
+          "members_returned": 1
+        }
+      },
+      "members_per_cluster": {
+        "gec_005": 1
+      },
+      "final_count": 11,
+      "truncated": false,
+      "evidence": [
+        "D2:1"
+      ],
+      "evidence_detail": {
+        "D2:1": [
+          "11c7f993-e584-4a9d-90f5-cf31e0efabd5",
+          "gec_009"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "11c7f993-e584-4a9d-90f5-cf31e0efabd5"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_009"
+      ],
+      "cluster_hit": false,
+      "memunit_hit": true,
+      "memunit_coverage": 1.0,
+      "selected_unit_ids": [
+        "11c7f993-e584-4a9d-90f5-cf31e0efabd5"
+      ]
+    },
+    {
+      "query": "When is Melanie planning on going camping?",
+      "question_id": "locomo_0_qa6",
+      "clusters_found": [
+        "gec_005",
+        "gec_069",
+        "gec_048",
+        "gec_024",
+        "gec_013",
+        "gec_060",
+        "gec_014",
+        "gec_071",
+        "gec_011",
+        "gec_032",
+        "gec_007",
+        "gec_033",
+        "gec_002",
+        "gec_031",
+        "gec_010",
+        "gec_047",
+        "gec_009",
+        "gec_012",
+        "gec_016",
+        "gec_017",
+        "gec_029",
+        "gec_030",
+        "gec_059",
+        "gec_004",
+        "gec_067",
+        "gec_046",
+        "gec_070",
+        "gec_006",
+        "gec_034",
+        "gec_023",
+        "gec_066",
+        "gec_003",
+        "gec_008"
+      ],
+      "clusters_selected": [
+        "gec_009",
+        "gec_016",
+        "gec_046",
+        "gec_010"
+      ],
+      "selection_reasoning": "These clusters contain direct references to Melanie's family camping plans and trips, including timing and context. gec_009 focuses on ongoing family camping plans and seasonal traditions, gec_016 includes a memorable family camping trip in the mountains with dates, gec_046 mentions a recent family camping trip, and gec_010 references Melanie's family camping plans for the summer. Together, they provide the most relevant information about when Melanie is planning on going camping.",
+      "cluster_details": {
+        "gec_009": {
+          "topic": "Melanie's potential family camping plans",
+          "summary": "They discussed Melanie’s ongoing family camping plans, sharing memories of past trips and seasonal traditions. Over time, their conversations highlighted the importance of family bonding, outdoor activities, and creating cherished moments together.",
+          "member_count": 11,
+          "members_returned": 11
+        },
+        "gec_016": {
+          "topic": "Melanie's memorable family camping trip in the mountains",
+          "summary": "On June 27, 2023, Caroline and Melanie discussed the sentimental value of personal items and shared meaningful family experiences, with Caroline highlighting a hand-painted bowl from her 18th birthday and Melanie recounting a memorable family camping trip in the mountains. Both emphasized the importance of cherished memories and quality time with loved ones.",
+          "member_count": 3,
+          "members_returned": 0
+        },
+        "gec_046": {
+          "topic": "Caroline's mentorship of LGBTQ youth",
+          "summary": "Melanie and Caroline discussed their recent activities, with Melanie sharing about a family camping trip and Caroline describing her rewarding experience mentoring LGBTQ youth, including attending a pride event with a transgender teenager mentee. Their conversation highlighted Caroline's commitment to advocacy and the positive impact of community support.",
+          "member_count": 1,
+          "members_returned": 0
+        },
+        "gec_010": {
+          "topic": "Caroline's adoption journey",
+          "summary": "On May 25, 2023, Melanie and Caroline discussed their personal plans, with Caroline sharing her aspiration to adopt children through an LGBTQ+-friendly agency and Melanie expressing support and admiration for her commitment. The conversation highlighted Caroline’s hope and determination to provide a loving home, alongside Melanie’s family camping plans for the summer.",
+          "member_count": 5,
+          "members_returned": 4
+        }
+      },
+      "members_per_cluster": {
+        "gec_009": 11,
+        "gec_016": 0,
+        "gec_046": 0,
+        "gec_010": 4
+      },
+      "final_count": 24,
+      "truncated": false,
+      "evidence": [
+        "D2:7"
+      ],
+      "evidence_detail": {
+        "D2:7": [
+          "f2102527-cb36-4da8-be11-0bd3542f820a",
+          "gec_010"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "f2102527-cb36-4da8-be11-0bd3542f820a"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_010"
+      ],
+      "cluster_hit": true,
+      "memunit_hit": true,
+      "memunit_coverage": 1.0,
+      "selected_unit_ids": [
+        "d81d584f-305d-445f-969e-3b4b4b307c72",
+        "3ee82bbf-060e-46e9-ac23-dff6059fef54",
+        "179f39c7-5a13-430d-8797-d1427eda5d7d",
+        "fa4b82ee-e4ac-41b8-8d73-a2139b8cb78b",
+        "9c736f20-e112-4d72-a6a4-44815baca2b3",
+        "7a948684-b465-4cea-be39-5cfc58ed4c6a",
+        "ff1087c8-13cd-4b5c-a15f-1f8ee9f9b76c",
+        "83117782-4164-4d09-84e3-70fb68626302",
+        "f2102527-cb36-4da8-be11-0bd3542f820a",
+        "11c7f993-e584-4a9d-90f5-cf31e0efabd5",
+        "8f2324d5-b57b-4e3f-a3e7-2390e3993e05",
+        "d9a0c09e-e328-4fc5-a0b6-f795f901e283",
+        "33e802db-a858-4b72-86ec-133855a2dd6f",
+        "bc23c858-9625-481b-a1e6-280827295bec",
+        "ef687aa0-23ee-4839-ac22-c34359ffe919"
+      ]
+    },
+    {
+      "query": "When did Caroline give a speech at a school?",
+      "question_id": "locomo_0_qa8",
+      "clusters_found": [
+        "gec_043",
+        "gec_069",
+        "gec_013",
+        "gec_011",
+        "gec_071",
+        "gec_049",
+        "gec_032",
+        "gec_033",
+        "gec_058",
+        "gec_064",
+        "gec_002",
+        "gec_031",
+        "gec_044",
+        "gec_010",
+        "gec_022",
+        "gec_009",
+        "gec_012",
+        "gec_065",
+        "gec_019",
+        "gec_056",
+        "gec_004",
+        "gec_045",
+        "gec_046",
+        "gec_018",
+        "gec_001",
+        "gec_021",
+        "gec_070",
+        "gec_034",
+        "gec_063",
+        "gec_003",
+        "gec_020",
+        "gec_042",
+        "gec_057"
+      ],
+      "clusters_selected": [
+        "gec_011",
+        "gec_013"
+      ],
+      "selection_reasoning": "Clusters gec_011 and gec_013 both mention Caroline's recent school event where she gave a speech sharing her transgender journey, directly addressing when Caroline gave a speech at a school.",
+      "cluster_details": {
+        "gec_011": {
+          "topic": "Caroline's transgender journey and school advocacy",
+          "summary": "On June 9, 2023, Caroline and Melanie reflected on Caroline’s recent school event where she shared her transgender journey to promote LGBTQ community involvement, expressing mutual admiration for their advocacy and the importance of support systems and family in fostering acceptance and hope.",
+          "member_count": 4,
+          "members_returned": 4
+        },
+        "gec_013": {
+          "topic": "Importance of family in fostering acceptance and hope",
+          "summary": "On June 9, 2023, Caroline and Melanie reflected on Caroline’s recent school event where she shared her transgender journey to promote LGBTQ community involvement, expressing mutual admiration for their advocacy and the importance of support systems and family in fostering acceptance and hope.",
+          "member_count": 1,
+          "members_returned": 0
+        }
+      },
+      "members_per_cluster": {
+        "gec_011": 4,
+        "gec_013": 0
+      },
+      "final_count": 14,
+      "truncated": false,
+      "evidence": [
+        "D3:1"
+      ],
+      "evidence_detail": {
+        "D3:1": [
+          "b57b09fe-224e-4b2a-8c7f-2c8b1cddc25b",
+          "gec_013"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "b57b09fe-224e-4b2a-8c7f-2c8b1cddc25b"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_013"
+      ],
+      "cluster_hit": true,
+      "memunit_hit": true,
+      "memunit_coverage": 1.0,
+      "selected_unit_ids": [
+        "b57b09fe-224e-4b2a-8c7f-2c8b1cddc25b",
+        "b4edd12c-e426-4ed2-981e-fb284e34b67e",
+        "0100f651-d3da-4113-877d-6f683b1c1896",
+        "843ae6f5-441c-45ce-9272-07a2808c7bce"
+      ]
+    },
+    {
+      "query": "When did Caroline meet up with her friends, family, and mentors?",
+      "question_id": "locomo_0_qa9",
+      "clusters_found": [
+        "gec_024",
+        "gec_013",
+        "gec_014",
+        "gec_011",
+        "gec_049",
+        "gec_032",
+        "gec_007",
+        "gec_033",
+        "gec_058",
+        "gec_002",
+        "gec_031",
+        "gec_010",
+        "gec_009",
+        "gec_055",
+        "gec_054",
+        "gec_012",
+        "gec_019",
+        "gec_068",
+        "gec_015",
+        "gec_016",
+        "gec_017",
+        "gec_056",
+        "gec_029",
+        "gec_030",
+        "gec_004",
+        "gec_052",
+        "gec_067",
+        "gec_001",
+        "gec_018",
+        "gec_046",
+        "gec_034",
+        "gec_023",
+        "gec_066",
+        "gec_003",
+        "gec_020",
+        "gec_057",
+        "gec_053"
+      ],
+      "clusters_selected": [
+        "gec_029",
+        "gec_030",
+        "gec_046",
+        "gec_011",
+        "gec_012",
+        "gec_014",
+        "gec_052"
+      ],
+      "selection_reasoning": "The query asks when Caroline met up with her friends, family, and mentors, which involves multiple related events and contexts. Clusters gec_029 and gec_030 discuss the importance of friendship, compassion, and family support during personal transitions including specific meetups like picnics and camping trips. Gec_046 highlights Caroline's mentorship activities with LGBTQ youth. Gec_011 and gec_012 cover Caroline's advocacy and community involvement, including interactions with friends and mentors. Gec_014 includes meaningful family keepsakes shared during meetups, indicating family connections. Gec_052 reflects family bonding moments and social events. Together, these clusters provide a comprehensive view of Caroline's meetings with friends, family, and mentors over time.",
+      "cluster_details": {
+        "gec_029": {
+          "topic": "Importance of friendship and compassion during personal transitions",
+          "summary": "On July 6, 2023, Melanie and Caroline discussed the importance of friendship, compassion, and family support during personal transitions, with Caroline sharing how her support network has been essential to her growth. They reflected on recent meaningful moments, including a picnic and a family camping trip, emphasizing love and gratitude.",
+          "member_count": 1,
+          "members_returned": 1
+        },
+        "gec_030": {
+          "topic": "Family support during personal growth and life transitions",
+          "summary": "On July 6, 2023, Melanie and Caroline discussed the importance of friendship, compassion, and family support during personal transitions, with Caroline sharing how her support network has been essential to her growth. They reflected on recent meaningful moments, including a picnic and a family camping trip, emphasizing love and gratitude.",
+          "member_count": 1,
+          "members_returned": 0
+        },
+        "gec_046": {
+          "topic": "Caroline's mentorship of LGBTQ youth",
+          "summary": "Melanie and Caroline discussed their recent activities, with Melanie sharing about a family camping trip and Caroline describing her rewarding experience mentoring LGBTQ youth, including attending a pride event with a transgender teenager mentee. Their conversation highlighted Caroline's commitment to advocacy and the positive impact of community support.",
+          "member_count": 1,
+          "members_returned": 1
+        },
+        "gec_011": {
+          "topic": "Caroline's transgender journey and school advocacy",
+          "summary": "On June 9, 2023, Caroline and Melanie reflected on Caroline’s recent school event where she shared her transgender journey to promote LGBTQ community involvement, expressing mutual admiration for their advocacy and the importance of support systems and family in fostering acceptance and hope.",
+          "member_count": 4,
+          "members_returned": 4
+        },
+        "gec_012": {
+          "topic": "LGBTQ community involvement and support systems",
+          "summary": "Caroline and Melanie consistently discussed LGBTQ community involvement, emphasizing advocacy, support systems, and mental health. Their conversations evolved from personal journeys to active mentorship, artistic expression, and engagement in activist groups, highlighting ongoing commitment and mutual encouragement.",
+          "member_count": 9,
+          "members_returned": 7
+        },
+        "gec_014": {
+          "topic": "Caroline's meaningful family keepsakes",
+          "summary": "On June 27, 2023, Caroline reconnected with Melanie by sharing a photo of a meaningful necklace gifted by her grandmother, symbolizing love, faith, and strength, and also discussed a treasured hand-painted bowl from a friend, highlighting her appreciation for keepsakes tied to family and friendship.",
+          "member_count": 2,
+          "members_returned": 2
+        },
+        "gec_052": {
+          "topic": "Melanie's daughter's birthday celebration",
+          "summary": "On August 14, 2023, Melanie shared with Caroline her joy and gratitude for celebrating her daughter's birthday the previous night with a concert featuring Matt Patterson, highlighting the happiness of family bonding, while Caroline reciprocated by discussing her own uplifting experience at an advocacy event. Both expressed appreciation for meaningful social moments and family connections.",
+          "member_count": 1,
+          "members_returned": 1
+        }
+      },
+      "members_per_cluster": {
+        "gec_029": 1,
+        "gec_030": 0,
+        "gec_046": 1,
+        "gec_011": 4,
+        "gec_012": 7,
+        "gec_014": 2,
+        "gec_052": 1
+      },
+      "final_count": 26,
+      "truncated": false,
+      "evidence": [
+        "D3:11"
+      ],
+      "evidence_detail": {
+        "D3:11": [
+          "b57b09fe-224e-4b2a-8c7f-2c8b1cddc25b",
+          "gec_013"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "b57b09fe-224e-4b2a-8c7f-2c8b1cddc25b"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_013"
+      ],
+      "cluster_hit": false,
+      "memunit_hit": true,
+      "memunit_coverage": 1.0,
+      "selected_unit_ids": [
+        "b57b09fe-224e-4b2a-8c7f-2c8b1cddc25b",
+        "86571bd1-e2a0-4829-b77f-9195a4a083a8",
+        "5f4b27e0-51f2-44ea-8e56-c807b68d25f5",
+        "9c736f20-e112-4d72-a6a4-44815baca2b3",
+        "843ae6f5-441c-45ce-9272-07a2808c7bce",
+        "7a948684-b465-4cea-be39-5cfc58ed4c6a",
+        "870a1165-252e-4724-abc3-83976922768e",
+        "ff1087c8-13cd-4b5c-a15f-1f8ee9f9b76c",
+        "83117782-4164-4d09-84e3-70fb68626302",
+        "eb9120c0-46b2-476d-8adc-b5f8e9dccb03",
+        "b4edd12c-e426-4ed2-981e-fb284e34b67e",
+        "8f2324d5-b57b-4e3f-a3e7-2390e3993e05",
+        "6e68e824-6518-484d-b566-19e016dabc65",
+        "c9cfc2cb-4fee-47f3-948f-00e687f789bc",
+        "bc23c858-9625-481b-a1e6-280827295bec",
+        "0100f651-d3da-4113-877d-6f683b1c1896"
+      ]
+    },
+    {
+      "query": "What activities does Melanie partake in?",
+      "question_id": "locomo_0_qa15",
+      "clusters_found": [
+        "gec_008",
+        "gec_005",
+        "gec_069",
+        "gec_024",
+        "gec_014",
+        "gec_011",
+        "gec_071",
+        "gec_007",
+        "gec_058",
+        "gec_062",
+        "gec_035",
+        "gec_064",
+        "gec_002",
+        "gec_010",
+        "gec_061",
+        "gec_036",
+        "gec_022",
+        "gec_009",
+        "gec_055",
+        "gec_054",
+        "gec_012",
+        "gec_065",
+        "gec_019",
+        "gec_016",
+        "gec_017",
+        "gec_056",
+        "gec_004",
+        "gec_052",
+        "gec_001",
+        "gec_018",
+        "gec_021",
+        "gec_070",
+        "gec_006",
+        "gec_023",
+        "gec_063",
+        "gec_003",
+        "gec_020",
+        "gec_057",
+        "gec_053"
+      ],
+      "clusters_selected": [
+        "gec_004",
+        "gec_007",
+        "gec_009",
+        "gec_016",
+        "gec_035",
+        "gec_036",
+        "gec_061",
+        "gec_022",
+        "gec_023",
+        "gec_064"
+      ],
+      "selection_reasoning": "The query asks about activities Melanie partakes in, which include family camping (gec_009, gec_016), artistic pursuits like painting and pottery (gec_004, gec_035, gec_036, gec_061, gec_022, gec_023), participation in a mental health charity race and self-care (gec_007), and musical involvement (clarinet) (gec_064). These clusters directly describe Melanie's activities and hobbies.",
+      "cluster_details": {
+        "gec_004": {
+          "topic": "Melanie's painting hobby",
+          "summary": "They discussed how Melanie’s painting and pottery serve as calming, therapeutic outlets, supporting emotional balance and self-expression. Over time, their conversations deepened to include art’s role in healing, identity, and coping with challenges.",
+          "member_count": 5,
+          "members_returned": 5
+        },
+        "gec_007": {
+          "topic": "Balancing personal well-being with family responsibilities",
+          "summary": "On May 25, 2023, Melanie and Caroline discussed Melanie’s recent participation in a mental health charity race and her ongoing self-care journey, emphasizing the importance of balancing personal well-being with family responsibilities. They also touched on upcoming summer plans, including potential family camping.",
+          "member_count": 3,
+          "members_returned": 3
+        },
+        "gec_009": {
+          "topic": "Melanie's potential family camping plans",
+          "summary": "They discussed Melanie’s ongoing family camping plans, sharing memories of past trips and seasonal traditions. Over time, their conversations highlighted the importance of family bonding, outdoor activities, and creating cherished moments together.",
+          "member_count": 11,
+          "members_returned": 9
+        },
+        "gec_016": {
+          "topic": "Melanie's memorable family camping trip in the mountains",
+          "summary": "On June 27, 2023, Caroline and Melanie discussed the sentimental value of personal items and shared meaningful family experiences, with Caroline highlighting a hand-painted bowl from her 18th birthday and Melanie recounting a memorable family camping trip in the mountains. Both emphasized the importance of cherished memories and quality time with loved ones.",
+          "member_count": 3,
+          "members_returned": 0
+        },
+        "gec_035": {
+          "topic": "Melanie's pottery workshop with children",
+          "summary": "Caroline and Melanie discussed Melanie's recent creative family activities, including a pottery workshop and collaborative nature-inspired painting with her children, highlighting the joy and bonding these artistic experiences brought.",
+          "member_count": 1,
+          "members_returned": 1
+        },
+        "gec_036": {
+          "topic": "Melanie's collaborative nature-inspired painting with children",
+          "summary": "Caroline and Melanie discussed Melanie's recent creative family activities, including a pottery workshop and collaborative nature-inspired painting with her children, highlighting the joy and bonding these artistic experiences brought.",
+          "member_count": 1,
+          "members_returned": 0
+        },
+        "gec_061": {
+          "topic": "Melanie's pottery class",
+          "summary": "On August 25, 2023, Melanie and Caroline discussed their recent artistic activities, with Melanie sharing her enjoyment of pottery and Caroline showcasing a sunset painting inspired by a beach visit, highlighting the emotional connection and appreciation they found in each other's creative work.",
+          "member_count": 1,
+          "members_returned": 0
+        },
+        "gec_022": {
+          "topic": "Melanie's therapeutic pottery class",
+          "summary": "On July 3, 2023, Caroline and Melanie discussed their recent personal growth, with Caroline sharing her inspiring experience at an LGBTQ+ pride parade and her interest in counseling, while Melanie talked about her therapeutic pottery class and creative pursuits. They exchanged supportive encouragement about their aspirations and creative activities.",
+          "member_count": 1,
+          "members_returned": 1
+        },
+        "gec_023": {
+          "topic": "Melanie's pottery exploration",
+          "summary": "On July 3, 2023, Melanie and Caroline discussed their upcoming activities, with Melanie excited about exploring pottery and Caroline looking forward to attending a transgender conference, sharing mutual support and enthusiasm.",
+          "member_count": 1,
+          "members_returned": 0
+        },
+        "gec_064": {
+          "topic": "Melanie's clarinet experience",
+          "summary": "On August 28, 2023, Melanie and Caroline discussed Caroline's role in organizing a children's talent show, sharing their mutual passion for music and its emotional significance, including Caroline's acoustic guitar playing and Melanie's clarinet experience. They also exchanged thoughts on meaningful songs and the upcoming event aimed at celebrating children's talents.",
+          "member_count": 1,
+          "members_returned": 1
+        }
+      },
+      "members_per_cluster": {
+        "gec_004": 5,
+        "gec_007": 3,
+        "gec_009": 9,
+        "gec_016": 0,
+        "gec_035": 1,
+        "gec_036": 0,
+        "gec_061": 0,
+        "gec_022": 1,
+        "gec_023": 0,
+        "gec_064": 1
+      },
+      "final_count": 28,
+      "truncated": false,
+      "evidence": [
+        "D5:4",
+        "D9:1",
+        "D1:12",
+        "D1:18"
+      ],
+      "evidence_detail": {
+        "D5:4": [
+          "63ea8fd2-f47b-4dc2-bec0-6bd583fae32f",
+          "gec_022"
+        ],
+        "D9:1": [
+          "8f2324d5-b57b-4e3f-a3e7-2390e3993e05",
+          "gec_046"
+        ],
+        "D1:12": [
+          "24b127c4-1eed-4903-a38a-0f41cad1a2eb",
+          "gec_004"
+        ],
+        "D1:18": [
+          "11c7f993-e584-4a9d-90f5-cf31e0efabd5",
+          "gec_009"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "63ea8fd2-f47b-4dc2-bec0-6bd583fae32f",
+        "8f2324d5-b57b-4e3f-a3e7-2390e3993e05",
+        "24b127c4-1eed-4903-a38a-0f41cad1a2eb",
+        "11c7f993-e584-4a9d-90f5-cf31e0efabd5"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_046",
+        "gec_004",
+        "gec_022",
+        "gec_009"
+      ],
+      "cluster_hit": true,
+      "memunit_hit": true,
+      "memunit_coverage": 1.0,
+      "selected_unit_ids": [
+        "fa4b82ee-e4ac-41b8-8d73-a2139b8cb78b",
+        "24b127c4-1eed-4903-a38a-0f41cad1a2eb",
+        "7a948684-b465-4cea-be39-5cfc58ed4c6a",
+        "9c736f20-e112-4d72-a6a4-44815baca2b3",
+        "8da1992a-9156-4130-9b39-fbf648089a83",
+        "83117782-4164-4d09-84e3-70fb68626302",
+        "d9a0c09e-e328-4fc5-a0b6-f795f901e283",
+        "d81d584f-305d-445f-969e-3b4b4b307c72",
+        "ff1087c8-13cd-4b5c-a15f-1f8ee9f9b76c",
+        "1bdae576-a6d5-48d0-b233-b1791ef46837",
+        "8f2324d5-b57b-4e3f-a3e7-2390e3993e05",
+        "bc23c858-9625-481b-a1e6-280827295bec",
+        "63ea8fd2-f47b-4dc2-bec0-6bd583fae32f",
+        "a5328004-579f-46bd-bfa5-71d514fb9d06",
+        "7776a816-14f8-4bf4-9bcf-b87dbc24a3a3",
+        "264ee6ea-6787-498c-8809-b356a21619f5",
+        "253f4be6-9345-4d30-b07d-d51f47e73ca9",
+        "ebe39614-d272-415a-a78e-923eb0683eeb",
+        "f2102527-cb36-4da8-be11-0bd3542f820a",
+        "11c7f993-e584-4a9d-90f5-cf31e0efabd5"
+      ]
+    },
+    {
+      "query": "When did Melanie sign up for a pottery class?",
+      "question_id": "locomo_0_qa16",
+      "clusters_found": [
+        "gec_043",
+        "gec_041",
+        "gec_024",
+        "gec_048",
+        "gec_060",
+        "gec_039",
+        "gec_040",
+        "gec_011",
+        "gec_007",
+        "gec_058",
+        "gec_062",
+        "gec_035",
+        "gec_002",
+        "gec_044",
+        "gec_010",
+        "gec_047",
+        "gec_061",
+        "gec_036",
+        "gec_022",
+        "gec_009",
+        "gec_012",
+        "gec_068",
+        "gec_038",
+        "gec_056",
+        "gec_059",
+        "gec_004",
+        "gec_045",
+        "gec_046",
+        "gec_021",
+        "gec_037",
+        "gec_023",
+        "gec_003",
+        "gec_042",
+        "gec_057"
+      ],
+      "clusters_selected": [
+        "gec_023"
+      ],
+      "selection_reasoning": "Cluster gec_023 specifically mentions Melanie discussing her excitement about exploring pottery, indicating when she signed up or planned to start a pottery class, which directly answers the query about when Melanie signed up for a pottery class.",
+      "cluster_details": {
+        "gec_023": {
+          "topic": "Melanie's pottery exploration",
+          "summary": "On July 3, 2023, Melanie and Caroline discussed their upcoming activities, with Melanie excited about exploring pottery and Caroline looking forward to attending a transgender conference, sharing mutual support and enthusiasm.",
+          "member_count": 1,
+          "members_returned": 1
+        }
+      },
+      "members_per_cluster": {
+        "gec_023": 1
+      },
+      "final_count": 11,
+      "truncated": false,
+      "evidence": [
+        "D5:4"
+      ],
+      "evidence_detail": {
+        "D5:4": [
+          "63ea8fd2-f47b-4dc2-bec0-6bd583fae32f",
+          "gec_022"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "63ea8fd2-f47b-4dc2-bec0-6bd583fae32f"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_022"
+      ],
+      "cluster_hit": false,
+      "memunit_hit": false,
+      "memunit_coverage": 0.0,
+      "selected_unit_ids": [
+        "253f4be6-9345-4d30-b07d-d51f47e73ca9"
+      ]
+    },
+    {
+      "query": "When is Caroline going to the transgender conference?",
+      "question_id": "locomo_0_qa17",
+      "clusters_found": [
+        "gec_048",
+        "gec_043",
+        "gec_024",
+        "gec_013",
+        "gec_011",
+        "gec_032",
+        "gec_007",
+        "gec_033",
+        "gec_058",
+        "gec_002",
+        "gec_031",
+        "gec_044",
+        "gec_010",
+        "gec_047",
+        "gec_022",
+        "gec_009",
+        "gec_055",
+        "gec_054",
+        "gec_012",
+        "gec_019",
+        "gec_068",
+        "gec_056",
+        "gec_004",
+        "gec_052",
+        "gec_045",
+        "gec_001",
+        "gec_018",
+        "gec_046",
+        "gec_021",
+        "gec_034",
+        "gec_023",
+        "gec_003",
+        "gec_020",
+        "gec_042",
+        "gec_057",
+        "gec_053"
+      ],
+      "clusters_selected": [
+        "gec_023",
+        "gec_024"
+      ],
+      "selection_reasoning": "Clusters gec_023 and gec_024 both specifically mention Caroline looking forward to attending a transgender conference and discuss the timing of this event on July 3, 2023, directly addressing when Caroline is going to the transgender conference.",
+      "cluster_details": {
+        "gec_023": {
+          "topic": "Melanie's pottery exploration",
+          "summary": "On July 3, 2023, Melanie and Caroline discussed their upcoming activities, with Melanie excited about exploring pottery and Caroline looking forward to attending a transgender conference, sharing mutual support and enthusiasm.",
+          "member_count": 1,
+          "members_returned": 1
+        },
+        "gec_024": {
+          "topic": "Caroline's attendance at transgender conference",
+          "summary": "On July 3, 2023, Melanie and Caroline discussed their upcoming activities, with Melanie excited about exploring pottery and Caroline looking forward to attending a transgender conference, sharing mutual support and enthusiasm.",
+          "member_count": 1,
+          "members_returned": 0
+        }
+      },
+      "members_per_cluster": {
+        "gec_023": 1,
+        "gec_024": 0
+      },
+      "final_count": 11,
+      "truncated": false,
+      "evidence": [
+        "D5:13"
+      ],
+      "evidence_detail": {
+        "D5:13": [
+          "253f4be6-9345-4d30-b07d-d51f47e73ca9",
+          "gec_024"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "253f4be6-9345-4d30-b07d-d51f47e73ca9"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_024"
+      ],
+      "cluster_hit": true,
+      "memunit_hit": true,
+      "memunit_coverage": 1.0,
+      "selected_unit_ids": [
+        "253f4be6-9345-4d30-b07d-d51f47e73ca9"
+      ]
+    },
+    {
+      "query": "Where has Melanie camped?",
+      "question_id": "locomo_0_qa18",
+      "clusters_found": [
+        "gec_005",
+        "gec_069",
+        "gec_043",
+        "gec_013",
+        "gec_014",
+        "gec_071",
+        "gec_011",
+        "gec_032",
+        "gec_007",
+        "gec_033",
+        "gec_058",
+        "gec_031",
+        "gec_044",
+        "gec_051",
+        "gec_010",
+        "gec_009",
+        "gec_012",
+        "gec_016",
+        "gec_017",
+        "gec_056",
+        "gec_029",
+        "gec_030",
+        "gec_004",
+        "gec_045",
+        "gec_067",
+        "gec_050",
+        "gec_046",
+        "gec_070",
+        "gec_006",
+        "gec_034",
+        "gec_066",
+        "gec_003",
+        "gec_042",
+        "gec_057",
+        "gec_008"
+      ],
+      "clusters_selected": [
+        "gec_009",
+        "gec_016",
+        "gec_046"
+      ],
+      "selection_reasoning": "Clusters gec_009, gec_016, and gec_046 contain direct information about Melanie's family camping plans and specific camping trips, including a memorable family camping trip in the mountains and recent family camping shared with Caroline. These clusters provide the relevant details needed to answer where Melanie has camped.",
+      "cluster_details": {
+        "gec_009": {
+          "topic": "Melanie's potential family camping plans",
+          "summary": "They discussed Melanie’s ongoing family camping plans, sharing memories of past trips and seasonal traditions. Over time, their conversations highlighted the importance of family bonding, outdoor activities, and creating cherished moments together.",
+          "member_count": 11,
+          "members_returned": 11
+        },
+        "gec_016": {
+          "topic": "Melanie's memorable family camping trip in the mountains",
+          "summary": "On June 27, 2023, Caroline and Melanie discussed the sentimental value of personal items and shared meaningful family experiences, with Caroline highlighting a hand-painted bowl from her 18th birthday and Melanie recounting a memorable family camping trip in the mountains. Both emphasized the importance of cherished memories and quality time with loved ones.",
+          "member_count": 3,
+          "members_returned": 0
+        },
+        "gec_046": {
+          "topic": "Caroline's mentorship of LGBTQ youth",
+          "summary": "Melanie and Caroline discussed their recent activities, with Melanie sharing about a family camping trip and Caroline describing her rewarding experience mentoring LGBTQ youth, including attending a pride event with a transgender teenager mentee. Their conversation highlighted Caroline's commitment to advocacy and the positive impact of community support.",
+          "member_count": 1,
+          "members_returned": 0
+        }
+      },
+      "members_per_cluster": {
+        "gec_009": 11,
+        "gec_016": 0,
+        "gec_046": 0
+      },
+      "final_count": 21,
+      "truncated": false,
+      "evidence": [
+        "D6:16",
+        "D4:6",
+        "D8:32"
+      ],
+      "evidence_detail": {
+        "D6:16": [
+          "86571bd1-e2a0-4829-b77f-9195a4a083a8",
+          "gec_034"
+        ],
+        "D4:6": [
+          "7a948684-b465-4cea-be39-5cfc58ed4c6a",
+          "gec_017"
+        ],
+        "D8:32": [
+          "d81d584f-305d-445f-969e-3b4b4b307c72",
+          "gec_016"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "86571bd1-e2a0-4829-b77f-9195a4a083a8",
+        "7a948684-b465-4cea-be39-5cfc58ed4c6a",
+        "d81d584f-305d-445f-969e-3b4b4b307c72"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_034",
+        "gec_017",
+        "gec_016"
+      ],
+      "cluster_hit": true,
+      "memunit_hit": true,
+      "memunit_coverage": 0.6666666666666666,
+      "selected_unit_ids": [
+        "d81d584f-305d-445f-969e-3b4b4b307c72",
+        "fa4b82ee-e4ac-41b8-8d73-a2139b8cb78b",
+        "9c736f20-e112-4d72-a6a4-44815baca2b3",
+        "7a948684-b465-4cea-be39-5cfc58ed4c6a",
+        "ff1087c8-13cd-4b5c-a15f-1f8ee9f9b76c",
+        "83117782-4164-4d09-84e3-70fb68626302",
+        "f2102527-cb36-4da8-be11-0bd3542f820a",
+        "11c7f993-e584-4a9d-90f5-cf31e0efabd5",
+        "8f2324d5-b57b-4e3f-a3e7-2390e3993e05",
+        "d9a0c09e-e328-4fc5-a0b6-f795f901e283",
+        "bc23c858-9625-481b-a1e6-280827295bec"
+      ]
+    },
+    {
+      "query": "When did Melanie go to the museum?",
+      "question_id": "locomo_0_qa20",
+      "clusters_found": [
+        "gec_025",
+        "gec_005",
+        "gec_048",
+        "gec_043",
+        "gec_003",
+        "gec_011",
+        "gec_007",
+        "gec_058",
+        "gec_062",
+        "gec_035",
+        "gec_002",
+        "gec_044",
+        "gec_027",
+        "gec_010",
+        "gec_047",
+        "gec_061",
+        "gec_036",
+        "gec_022",
+        "gec_009",
+        "gec_065",
+        "gec_012",
+        "gec_028",
+        "gec_056",
+        "gec_026",
+        "gec_004",
+        "gec_045",
+        "gec_067",
+        "gec_046",
+        "gec_021",
+        "gec_006",
+        "gec_066",
+        "gec_063",
+        "gec_064",
+        "gec_042",
+        "gec_057",
+        "gec_008"
+      ],
+      "clusters_selected": [
+        "gec_025",
+        "gec_026",
+        "gec_027",
+        "gec_028"
+      ],
+      "selection_reasoning": "These clusters all describe the event where Melanie visited a museum with her children, dated July 6, 2023, directly answering the query about when Melanie went to the museum.",
+      "cluster_details": {
+        "gec_025": {
+          "topic": "Parenting experiences",
+          "summary": "On July 6, 2023, Melanie and Caroline discussed their parenting experiences and childhood memories, sharing photographs and stories about their children’s learning and love for books. They expressed joy in motherhood, highlighting Melanie’s visit to a museum with her children and Caroline’s project of creating a library for her future children.",
+          "member_count": 1,
+          "members_returned": 1
+        },
+        "gec_026": {
+          "topic": "Children's love for books and learning",
+          "summary": "On July 6, 2023, Melanie and Caroline discussed their parenting experiences and childhood memories, sharing photographs and stories about their children’s learning and love for books. They expressed joy in motherhood, highlighting Melanie’s visit to a museum with her children and Caroline’s project of creating a library for her future children.",
+          "member_count": 1,
+          "members_returned": 0
+        },
+        "gec_027": {
+          "topic": "Melanie's museum visit with children",
+          "summary": "On July 6, 2023, Melanie and Caroline discussed their parenting experiences and childhood memories, sharing photographs and stories about their children’s learning and love for books. They expressed joy in motherhood, highlighting Melanie’s visit to a museum with her children and Caroline’s project of creating a library for her future children.",
+          "member_count": 1,
+          "members_returned": 0
+        },
+        "gec_028": {
+          "topic": "Caroline's project to create a library for future children",
+          "summary": "On July 6, 2023, Melanie and Caroline discussed their parenting experiences and childhood memories, sharing photographs and stories about their children’s learning and love for books. They expressed joy in motherhood, highlighting Melanie’s visit to a museum with her children and Caroline’s project of creating a library for her future children.",
+          "member_count": 1,
+          "members_returned": 0
+        }
+      },
+      "members_per_cluster": {
+        "gec_025": 1,
+        "gec_026": 0,
+        "gec_027": 0,
+        "gec_028": 0
+      },
+      "final_count": 11,
+      "truncated": false,
+      "evidence": [
+        "D6:4"
+      ],
+      "evidence_detail": {
+        "D6:4": [
+          "fb049db1-4bfc-4321-9bbe-49bc82426c22",
+          "gec_028"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "fb049db1-4bfc-4321-9bbe-49bc82426c22"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_028"
+      ],
+      "cluster_hit": true,
+      "memunit_hit": true,
+      "memunit_coverage": 1.0,
+      "selected_unit_ids": [
+        "fb049db1-4bfc-4321-9bbe-49bc82426c22"
+      ]
+    },
+    {
+      "query": "When did Caroline have a picnic?",
+      "question_id": "locomo_0_qa21",
+      "clusters_found": [
+        "gec_069",
+        "gec_024",
+        "gec_013",
+        "gec_060",
+        "gec_014",
+        "gec_011",
+        "gec_071",
+        "gec_032",
+        "gec_007",
+        "gec_033",
+        "gec_058",
+        "gec_002",
+        "gec_031",
+        "gec_010",
+        "gec_022",
+        "gec_009",
+        "gec_012",
+        "gec_016",
+        "gec_017",
+        "gec_056",
+        "gec_029",
+        "gec_030",
+        "gec_059",
+        "gec_004",
+        "gec_067",
+        "gec_001",
+        "gec_070",
+        "gec_021",
+        "gec_034",
+        "gec_023",
+        "gec_066",
+        "gec_003",
+        "gec_057"
+      ],
+      "clusters_selected": [
+        "gec_029",
+        "gec_030"
+      ],
+      "selection_reasoning": "Clusters gec_029 and gec_030 both mention a picnic involving Caroline and Melanie on July 6, 2023, directly addressing when Caroline had a picnic.",
+      "cluster_details": {
+        "gec_029": {
+          "topic": "Importance of friendship and compassion during personal transitions",
+          "summary": "On July 6, 2023, Melanie and Caroline discussed the importance of friendship, compassion, and family support during personal transitions, with Caroline sharing how her support network has been essential to her growth. They reflected on recent meaningful moments, including a picnic and a family camping trip, emphasizing love and gratitude.",
+          "member_count": 1,
+          "members_returned": 1
+        },
+        "gec_030": {
+          "topic": "Family support during personal growth and life transitions",
+          "summary": "On July 6, 2023, Melanie and Caroline discussed the importance of friendship, compassion, and family support during personal transitions, with Caroline sharing how her support network has been essential to her growth. They reflected on recent meaningful moments, including a picnic and a family camping trip, emphasizing love and gratitude.",
+          "member_count": 1,
+          "members_returned": 0
+        }
+      },
+      "members_per_cluster": {
+        "gec_029": 1,
+        "gec_030": 0
+      },
+      "final_count": 11,
+      "truncated": false,
+      "evidence": [
+        "D6:11"
+      ],
+      "evidence_detail": {
+        "D6:11": [
+          "83117782-4164-4d09-84e3-70fb68626302",
+          "gec_030"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "83117782-4164-4d09-84e3-70fb68626302"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_030"
+      ],
+      "cluster_hit": true,
+      "memunit_hit": true,
+      "memunit_coverage": 1.0,
+      "selected_unit_ids": [
+        "83117782-4164-4d09-84e3-70fb68626302"
+      ]
+    },
+    {
+      "query": "What books has Melanie read?",
+      "question_id": "locomo_0_qa23",
+      "clusters_found": [
+        "gec_025",
+        "gec_005",
+        "gec_069",
+        "gec_053",
+        "gec_024",
+        "gec_013",
+        "gec_011",
+        "gec_071",
+        "gec_032",
+        "gec_007",
+        "gec_033",
+        "gec_058",
+        "gec_062",
+        "gec_064",
+        "gec_002",
+        "gec_031",
+        "gec_027",
+        "gec_010",
+        "gec_061",
+        "gec_009",
+        "gec_055",
+        "gec_054",
+        "gec_012",
+        "gec_065",
+        "gec_019",
+        "gec_028",
+        "gec_056",
+        "gec_029",
+        "gec_030",
+        "gec_026",
+        "gec_004",
+        "gec_052",
+        "gec_067",
+        "gec_018",
+        "gec_070",
+        "gec_034",
+        "gec_006",
+        "gec_023",
+        "gec_066",
+        "gec_063",
+        "gec_003",
+        "gec_020",
+        "gec_057",
+        "gec_008"
+      ],
+      "clusters_selected": [
+        "gec_025",
+        "gec_026",
+        "gec_027",
+        "gec_028"
+      ],
+      "selection_reasoning": "These clusters specifically mention discussions about Melanie's parenting experiences and childhood memories, including stories about their children’s learning and love for books, which is the closest available information related to what books Melanie has read.",
+      "cluster_details": {
+        "gec_025": {
+          "topic": "Parenting experiences",
+          "summary": "On July 6, 2023, Melanie and Caroline discussed their parenting experiences and childhood memories, sharing photographs and stories about their children’s learning and love for books. They expressed joy in motherhood, highlighting Melanie’s visit to a museum with her children and Caroline’s project of creating a library for her future children.",
+          "member_count": 1,
+          "members_returned": 1
+        },
+        "gec_026": {
+          "topic": "Children's love for books and learning",
+          "summary": "On July 6, 2023, Melanie and Caroline discussed their parenting experiences and childhood memories, sharing photographs and stories about their children’s learning and love for books. They expressed joy in motherhood, highlighting Melanie’s visit to a museum with her children and Caroline’s project of creating a library for her future children.",
+          "member_count": 1,
+          "members_returned": 0
+        },
+        "gec_027": {
+          "topic": "Melanie's museum visit with children",
+          "summary": "On July 6, 2023, Melanie and Caroline discussed their parenting experiences and childhood memories, sharing photographs and stories about their children’s learning and love for books. They expressed joy in motherhood, highlighting Melanie’s visit to a museum with her children and Caroline’s project of creating a library for her future children.",
+          "member_count": 1,
+          "members_returned": 0
+        },
+        "gec_028": {
+          "topic": "Caroline's project to create a library for future children",
+          "summary": "On July 6, 2023, Melanie and Caroline discussed their parenting experiences and childhood memories, sharing photographs and stories about their children’s learning and love for books. They expressed joy in motherhood, highlighting Melanie’s visit to a museum with her children and Caroline’s project of creating a library for her future children.",
+          "member_count": 1,
+          "members_returned": 0
+        }
+      },
+      "members_per_cluster": {
+        "gec_025": 1,
+        "gec_026": 0,
+        "gec_027": 0,
+        "gec_028": 0
+      },
+      "final_count": 11,
+      "truncated": false,
+      "evidence": [
+        "D7:8",
+        "D6:10"
+      ],
+      "evidence_detail": {
+        "D7:8": [
+          "86571bd1-e2a0-4829-b77f-9195a4a083a8",
+          "gec_034"
+        ],
+        "D6:10": [
+          "83117782-4164-4d09-84e3-70fb68626302",
+          "gec_030"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "86571bd1-e2a0-4829-b77f-9195a4a083a8",
+        "83117782-4164-4d09-84e3-70fb68626302"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_030",
+        "gec_034"
+      ],
+      "cluster_hit": false,
+      "memunit_hit": false,
+      "memunit_coverage": 0.0,
+      "selected_unit_ids": [
+        "fb049db1-4bfc-4321-9bbe-49bc82426c22"
+      ]
+    },
+    {
+      "query": "What does Melanie do to destress?",
+      "question_id": "locomo_0_qa24",
+      "clusters_found": [
+        "gec_005",
+        "gec_069",
+        "gec_043",
+        "gec_013",
+        "gec_071",
+        "gec_011",
+        "gec_032",
+        "gec_007",
+        "gec_033",
+        "gec_058",
+        "gec_062",
+        "gec_064",
+        "gec_002",
+        "gec_031",
+        "gec_044",
+        "gec_051",
+        "gec_010",
+        "gec_061",
+        "gec_022",
+        "gec_009",
+        "gec_012",
+        "gec_065",
+        "gec_019",
+        "gec_068",
+        "gec_056",
+        "gec_004",
+        "gec_045",
+        "gec_067",
+        "gec_050",
+        "gec_046",
+        "gec_018",
+        "gec_021",
+        "gec_070",
+        "gec_034",
+        "gec_006",
+        "gec_066",
+        "gec_063",
+        "gec_003",
+        "gec_020",
+        "gec_042",
+        "gec_057",
+        "gec_008"
+      ],
+      "clusters_selected": [
+        "gec_004",
+        "gec_022",
+        "gec_032",
+        "gec_033",
+        "gec_034"
+      ],
+      "selection_reasoning": "These clusters describe Melanie's activities related to destressing, including her painting hobby, therapeutic pottery class, running routine, and the positive impact of pets and physical activity on her well-being, which directly answer what Melanie does to destress.",
+      "cluster_details": {
+        "gec_004": {
+          "topic": "Melanie's painting hobby",
+          "summary": "They discussed how Melanie’s painting and pottery serve as calming, therapeutic outlets, supporting emotional balance and self-expression. Over time, their conversations deepened to include art’s role in healing, identity, and coping with challenges.",
+          "member_count": 5,
+          "members_returned": 5
+        },
+        "gec_022": {
+          "topic": "Melanie's therapeutic pottery class",
+          "summary": "On July 3, 2023, Caroline and Melanie discussed their recent personal growth, with Caroline sharing her inspiring experience at an LGBTQ+ pride parade and her interest in counseling, while Melanie talked about her therapeutic pottery class and creative pursuits. They exchanged supportive encouragement about their aspirations and creative activities.",
+          "member_count": 1,
+          "members_returned": 1
+        },
+        "gec_032": {
+          "topic": "Melanie's running routine",
+          "summary": "On July 12, 2023, Caroline and Melanie discussed themes of LGBTQ community support, mental health advocacy, personal growth through literature, and the positive impact of pets and physical activity on well-being, sharing personal experiences and images to enrich their conversation. Caroline reflected on attending an LGBTQ conference and her aspirations in counseling, while Melanie shared her running routine and pet companionship as sources of comfort.",
+          "member_count": 1,
+          "members_returned": 1
+        },
+        "gec_033": {
+          "topic": "Positive impact of pets on well-being",
+          "summary": "On July 12, 2023, Caroline and Melanie discussed themes of LGBTQ community support, mental health advocacy, personal growth through literature, and the positive impact of pets and physical activity on well-being, sharing personal experiences and images to enrich their conversation. Caroline reflected on attending an LGBTQ conference and her aspirations in counseling, while Melanie shared her running routine and pet companionship as sources of comfort.",
+          "member_count": 1,
+          "members_returned": 0
+        },
+        "gec_034": {
+          "topic": "Physical activity and mental health",
+          "summary": "On July 12, 2023, Caroline and Melanie discussed themes of LGBTQ community support, mental health advocacy, personal growth through literature, and the positive impact of pets and physical activity on well-being, sharing personal experiences and images to enrich their conversation. Caroline reflected on attending an LGBTQ conference and her aspirations in counseling, while Melanie shared her running routine and pet companionship as sources of comfort.",
+          "member_count": 1,
+          "members_returned": 0
+        }
+      },
+      "members_per_cluster": {
+        "gec_004": 5,
+        "gec_022": 1,
+        "gec_032": 1,
+        "gec_033": 0,
+        "gec_034": 0
+      },
+      "final_count": 17,
+      "truncated": false,
+      "evidence": [
+        "D7:22",
+        "D5:4"
+      ],
+      "evidence_detail": {
+        "D7:22": [
+          "86571bd1-e2a0-4829-b77f-9195a4a083a8",
+          "gec_034"
+        ],
+        "D5:4": [
+          "63ea8fd2-f47b-4dc2-bec0-6bd583fae32f",
+          "gec_022"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "86571bd1-e2a0-4829-b77f-9195a4a083a8",
+        "63ea8fd2-f47b-4dc2-bec0-6bd583fae32f"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_034",
+        "gec_022"
+      ],
+      "cluster_hit": true,
+      "memunit_hit": true,
+      "memunit_coverage": 1.0,
+      "selected_unit_ids": [
+        "86571bd1-e2a0-4829-b77f-9195a4a083a8",
+        "24b127c4-1eed-4903-a38a-0f41cad1a2eb",
+        "a5328004-579f-46bd-bfa5-71d514fb9d06",
+        "1bdae576-a6d5-48d0-b233-b1791ef46837",
+        "7776a816-14f8-4bf4-9bcf-b87dbc24a3a3",
+        "63ea8fd2-f47b-4dc2-bec0-6bd583fae32f",
+        "ebe39614-d272-415a-a78e-923eb0683eeb"
+      ]
+    },
+    {
+      "query": "When did Caroline go to the LGBTQ conference?",
+      "question_id": "locomo_0_qa25",
+      "clusters_found": [
+        "gec_005",
+        "gec_048",
+        "gec_024",
+        "gec_013",
+        "gec_011",
+        "gec_049",
+        "gec_032",
+        "gec_007",
+        "gec_033",
+        "gec_058",
+        "gec_002",
+        "gec_031",
+        "gec_010",
+        "gec_047",
+        "gec_022",
+        "gec_009",
+        "gec_012",
+        "gec_019",
+        "gec_056",
+        "gec_004",
+        "gec_046",
+        "gec_018",
+        "gec_001",
+        "gec_021",
+        "gec_034",
+        "gec_006",
+        "gec_023",
+        "gec_003",
+        "gec_020",
+        "gec_057",
+        "gec_008"
+      ],
+      "clusters_selected": [
+        "gec_031"
+      ],
+      "selection_reasoning": "Cluster gec_031 specifically mentions Caroline reflecting on attending an LGBTQ conference on July 12, 2023, directly answering the query about when Caroline went to the LGBTQ conference.",
+      "cluster_details": {
+        "gec_031": {
+          "topic": "Caroline's attendance at LGBTQ conferences",
+          "summary": "On July 12, 2023, Caroline and Melanie discussed themes of LGBTQ community support, mental health advocacy, personal growth through literature, and the positive impact of pets and physical activity on well-being, sharing personal experiences and images to enrich their conversation. Caroline reflected on attending an LGBTQ conference and her aspirations in counseling, while Melanie shared her running routine and pet companionship as sources of comfort.",
+          "member_count": 1,
+          "members_returned": 1
+        }
+      },
+      "members_per_cluster": {
+        "gec_031": 1
+      },
+      "final_count": 11,
+      "truncated": false,
+      "evidence": [
+        "D7:1"
+      ],
+      "evidence_detail": {
+        "D7:1": [
+          "86571bd1-e2a0-4829-b77f-9195a4a083a8",
+          "gec_034"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "86571bd1-e2a0-4829-b77f-9195a4a083a8"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_034"
+      ],
+      "cluster_hit": false,
+      "memunit_hit": true,
+      "memunit_coverage": 1.0,
+      "selected_unit_ids": [
+        "86571bd1-e2a0-4829-b77f-9195a4a083a8"
+      ]
+    },
+    {
+      "query": "When did Melanie read the book \"nothing is impossible\"?",
+      "question_id": "locomo_0_qa26",
+      "clusters_found": [
+        "gec_025",
+        "gec_005",
+        "gec_043",
+        "gec_053",
+        "gec_024",
+        "gec_013",
+        "gec_014",
+        "gec_011",
+        "gec_032",
+        "gec_007",
+        "gec_033",
+        "gec_002",
+        "gec_031",
+        "gec_044",
+        "gec_027",
+        "gec_051",
+        "gec_010",
+        "gec_009",
+        "gec_055",
+        "gec_054",
+        "gec_012",
+        "gec_028",
+        "gec_016",
+        "gec_017",
+        "gec_029",
+        "gec_030",
+        "gec_026",
+        "gec_004",
+        "gec_052",
+        "gec_045",
+        "gec_067",
+        "gec_050",
+        "gec_001",
+        "gec_034",
+        "gec_006",
+        "gec_023",
+        "gec_066",
+        "gec_003",
+        "gec_042",
+        "gec_008"
+      ],
+      "clusters_selected": [],
+      "selection_reasoning": "None of the clusters mention Melanie reading the book 'nothing is impossible' or provide information about when she read it.",
+      "cluster_details": {},
+      "members_per_cluster": {},
+      "final_count": 20,
+      "truncated": false,
+      "evidence": [
+        "D7:8"
+      ],
+      "evidence_detail": {
+        "D7:8": [
+          "86571bd1-e2a0-4829-b77f-9195a4a083a8",
+          "gec_034"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "86571bd1-e2a0-4829-b77f-9195a4a083a8"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_034"
+      ],
+      "cluster_hit": false,
+      "memunit_hit": false,
+      "memunit_coverage": 0.0,
+      "selected_unit_ids": []
+    },
+    {
+      "query": "When did Caroline go to the adoption meeting?",
+      "question_id": "locomo_0_qa28",
+      "clusters_found": [
+        "gec_025",
+        "gec_041",
+        "gec_024",
+        "gec_060",
+        "gec_040",
+        "gec_039",
+        "gec_011",
+        "gec_032",
+        "gec_007",
+        "gec_033",
+        "gec_058",
+        "gec_002",
+        "gec_031",
+        "gec_027",
+        "gec_010",
+        "gec_022",
+        "gec_009",
+        "gec_055",
+        "gec_054",
+        "gec_012",
+        "gec_019",
+        "gec_028",
+        "gec_038",
+        "gec_056",
+        "gec_059",
+        "gec_004",
+        "gec_026",
+        "gec_052",
+        "gec_001",
+        "gec_018",
+        "gec_021",
+        "gec_037",
+        "gec_034",
+        "gec_023",
+        "gec_003",
+        "gec_020",
+        "gec_057",
+        "gec_053"
+      ],
+      "clusters_selected": [
+        "gec_038"
+      ],
+      "selection_reasoning": "Cluster gec_038 specifically references Caroline's recent adoption meeting and provides the date of the conversation about it, which directly answers when Caroline went to the adoption meeting.",
+      "cluster_details": {
+        "gec_038": {
+          "topic": "Caroline's recent adoption meeting",
+          "summary": "On July 15, 2023, Melanie and Caroline shared a heartfelt conversation about nature, flowers, and personal memories, including Melanie’s wedding and Caroline’s recent inspiring adoption meeting, expressing gratitude, joy, and love throughout.",
+          "member_count": 1,
+          "members_returned": 1
+        }
+      },
+      "members_per_cluster": {
+        "gec_038": 1
+      },
+      "final_count": 11,
+      "truncated": false,
+      "evidence": [
+        "D8:9"
+      ],
+      "evidence_detail": {
+        "D8:9": [
+          "292ce9a8-cf69-4186-88d8-0bf0be984eac",
+          "gec_041"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "292ce9a8-cf69-4186-88d8-0bf0be984eac"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_041"
+      ],
+      "cluster_hit": false,
+      "memunit_hit": true,
+      "memunit_coverage": 1.0,
+      "selected_unit_ids": [
+        "292ce9a8-cf69-4186-88d8-0bf0be984eac"
+      ]
+    },
+    {
+      "query": "When did Melanie go to the pottery workshop?",
+      "question_id": "locomo_0_qa29",
+      "clusters_found": [
+        "gec_025",
+        "gec_005",
+        "gec_043",
+        "gec_024",
+        "gec_060",
+        "gec_011",
+        "gec_007",
+        "gec_058",
+        "gec_062",
+        "gec_035",
+        "gec_002",
+        "gec_044",
+        "gec_027",
+        "gec_010",
+        "gec_061",
+        "gec_036",
+        "gec_022",
+        "gec_009",
+        "gec_012",
+        "gec_019",
+        "gec_068",
+        "gec_028",
+        "gec_016",
+        "gec_056",
+        "gec_026",
+        "gec_004",
+        "gec_059",
+        "gec_045",
+        "gec_046",
+        "gec_018",
+        "gec_021",
+        "gec_006",
+        "gec_023",
+        "gec_003",
+        "gec_020",
+        "gec_042",
+        "gec_057",
+        "gec_008"
+      ],
+      "clusters_selected": [
+        "gec_021",
+        "gec_022",
+        "gec_023",
+        "gec_035"
+      ],
+      "selection_reasoning": "These clusters specifically mention Melanie's pottery workshop or therapeutic pottery class and include dates around early to mid July 2023, which directly answer when Melanie went to the pottery workshop.",
+      "cluster_details": {
+        "gec_021": {
+          "topic": "Caroline's experience at LGBTQ+ pride parade",
+          "summary": "On July 3, 2023, Caroline and Melanie discussed their recent personal growth, with Caroline sharing her inspiring experience at an LGBTQ+ pride parade and her interest in counseling, while Melanie talked about her therapeutic pottery class and creative pursuits. They exchanged supportive encouragement about their aspirations and creative activities.",
+          "member_count": 1,
+          "members_returned": 1
+        },
+        "gec_022": {
+          "topic": "Melanie's therapeutic pottery class",
+          "summary": "On July 3, 2023, Caroline and Melanie discussed their recent personal growth, with Caroline sharing her inspiring experience at an LGBTQ+ pride parade and her interest in counseling, while Melanie talked about her therapeutic pottery class and creative pursuits. They exchanged supportive encouragement about their aspirations and creative activities.",
+          "member_count": 1,
+          "members_returned": 0
+        },
+        "gec_023": {
+          "topic": "Melanie's pottery exploration",
+          "summary": "On July 3, 2023, Melanie and Caroline discussed their upcoming activities, with Melanie excited about exploring pottery and Caroline looking forward to attending a transgender conference, sharing mutual support and enthusiasm.",
+          "member_count": 1,
+          "members_returned": 1
+        },
+        "gec_035": {
+          "topic": "Melanie's pottery workshop with children",
+          "summary": "Caroline and Melanie discussed Melanie's recent creative family activities, including a pottery workshop and collaborative nature-inspired painting with her children, highlighting the joy and bonding these artistic experiences brought.",
+          "member_count": 1,
+          "members_returned": 1
+        }
+      },
+      "members_per_cluster": {
+        "gec_021": 1,
+        "gec_022": 0,
+        "gec_023": 1,
+        "gec_035": 1
+      },
+      "final_count": 13,
+      "truncated": false,
+      "evidence": [
+        "D8:2"
+      ],
+      "evidence_detail": {
+        "D8:2": [
+          "8da1992a-9156-4130-9b39-fbf648089a83",
+          "gec_036"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "8da1992a-9156-4130-9b39-fbf648089a83"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_036"
+      ],
+      "cluster_hit": false,
+      "memunit_hit": true,
+      "memunit_coverage": 1.0,
+      "selected_unit_ids": [
+        "8da1992a-9156-4130-9b39-fbf648089a83",
+        "63ea8fd2-f47b-4dc2-bec0-6bd583fae32f",
+        "253f4be6-9345-4d30-b07d-d51f47e73ca9"
+      ]
+    },
+    {
+      "query": "When did Melanie go camping in June?",
+      "question_id": "locomo_0_qa31",
+      "clusters_found": [
+        "gec_025",
+        "gec_005",
+        "gec_069",
+        "gec_043",
+        "gec_024",
+        "gec_013",
+        "gec_060",
+        "gec_014",
+        "gec_071",
+        "gec_011",
+        "gec_032",
+        "gec_007",
+        "gec_033",
+        "gec_031",
+        "gec_044",
+        "gec_027",
+        "gec_051",
+        "gec_010",
+        "gec_022",
+        "gec_009",
+        "gec_012",
+        "gec_019",
+        "gec_016",
+        "gec_028",
+        "gec_017",
+        "gec_029",
+        "gec_030",
+        "gec_059",
+        "gec_026",
+        "gec_045",
+        "gec_067",
+        "gec_050",
+        "gec_046",
+        "gec_018",
+        "gec_070",
+        "gec_021",
+        "gec_006",
+        "gec_034",
+        "gec_023",
+        "gec_066",
+        "gec_003",
+        "gec_020",
+        "gec_042",
+        "gec_008"
+      ],
+      "clusters_selected": [
+        "gec_016"
+      ],
+      "selection_reasoning": "Cluster gec_016 specifically mentions Melanie recounting a memorable family camping trip in the mountains on June 27, 2023, directly addressing when Melanie went camping in June.",
+      "cluster_details": {
+        "gec_016": {
+          "topic": "Melanie's memorable family camping trip in the mountains",
+          "summary": "On June 27, 2023, Caroline and Melanie discussed the sentimental value of personal items and shared meaningful family experiences, with Caroline highlighting a hand-painted bowl from her 18th birthday and Melanie recounting a memorable family camping trip in the mountains. Both emphasized the importance of cherished memories and quality time with loved ones.",
+          "member_count": 3,
+          "members_returned": 3
+        }
+      },
+      "members_per_cluster": {
+        "gec_016": 3
+      },
+      "final_count": 13,
+      "truncated": false,
+      "evidence": [
+        "D4:8"
+      ],
+      "evidence_detail": {
+        "D4:8": [
+          "7a948684-b465-4cea-be39-5cfc58ed4c6a",
+          "gec_017"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "7a948684-b465-4cea-be39-5cfc58ed4c6a"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_017"
+      ],
+      "cluster_hit": false,
+      "memunit_hit": true,
+      "memunit_coverage": 1.0,
+      "selected_unit_ids": [
+        "d81d584f-305d-445f-969e-3b4b4b307c72",
+        "fa4b82ee-e4ac-41b8-8d73-a2139b8cb78b",
+        "7a948684-b465-4cea-be39-5cfc58ed4c6a"
+      ]
+    },
+    {
+      "query": "When did Caroline go to a pride parade during the summer?",
+      "question_id": "locomo_0_qa33",
+      "clusters_found": [
+        "gec_005",
+        "gec_043",
+        "gec_053",
+        "gec_024",
+        "gec_013",
+        "gec_060",
+        "gec_011",
+        "gec_049",
+        "gec_032",
+        "gec_007",
+        "gec_033",
+        "gec_058",
+        "gec_064",
+        "gec_002",
+        "gec_031",
+        "gec_044",
+        "gec_010",
+        "gec_022",
+        "gec_009",
+        "gec_055",
+        "gec_054",
+        "gec_012",
+        "gec_065",
+        "gec_056",
+        "gec_059",
+        "gec_052",
+        "gec_045",
+        "gec_046",
+        "gec_021",
+        "gec_006",
+        "gec_034",
+        "gec_023",
+        "gec_063",
+        "gec_003",
+        "gec_042",
+        "gec_057",
+        "gec_008"
+      ],
+      "clusters_selected": [
+        "gec_042",
+        "gec_043",
+        "gec_021"
+      ],
+      "selection_reasoning": "Clusters gec_042 and gec_043 explicitly mention Caroline's participation in a pride parade on July 15, 2023, which is during summer. Cluster gec_021 also references Caroline's experience at a pride parade on July 3, 2023, providing additional relevant timing information about her attendance at a summer pride event.",
+      "cluster_details": {
+        "gec_042": {
+          "topic": "Melanie's marriage",
+          "summary": "On July 15, 2023, Melanie and Caroline shared personal milestones and meaningful experiences, including Melanie’s marriage and Caroline’s participation in a pride parade, reflecting on themes of pride, acceptance, courage, and finding peace through community support. Their conversation highlighted mutual encouragement and the importance of authenticity and love.",
+          "member_count": 1,
+          "members_returned": 1
+        },
+        "gec_043": {
+          "topic": "Caroline's participation in pride parade",
+          "summary": "On July 15, 2023, Melanie and Caroline shared personal milestones and meaningful experiences, including Melanie’s marriage and Caroline’s participation in a pride parade, reflecting on themes of pride, acceptance, courage, and finding peace through community support. Their conversation highlighted mutual encouragement and the importance of authenticity and love.",
+          "member_count": 1,
+          "members_returned": 0
+        },
+        "gec_021": {
+          "topic": "Caroline's experience at LGBTQ+ pride parade",
+          "summary": "On July 3, 2023, Caroline and Melanie discussed their recent personal growth, with Caroline sharing her inspiring experience at an LGBTQ+ pride parade and her interest in counseling, while Melanie talked about her therapeutic pottery class and creative pursuits. They exchanged supportive encouragement about their aspirations and creative activities.",
+          "member_count": 1,
+          "members_returned": 1
+        }
+      },
+      "members_per_cluster": {
+        "gec_042": 1,
+        "gec_043": 0,
+        "gec_021": 1
+      },
+      "final_count": 12,
+      "truncated": false,
+      "evidence": [
+        "D5:1"
+      ],
+      "evidence_detail": {
+        "D5:1": [
+          "63ea8fd2-f47b-4dc2-bec0-6bd583fae32f",
+          "gec_022"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "63ea8fd2-f47b-4dc2-bec0-6bd583fae32f"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_022"
+      ],
+      "cluster_hit": false,
+      "memunit_hit": true,
+      "memunit_coverage": 1.0,
+      "selected_unit_ids": [
+        "b20a1550-9137-459e-9032-ac1c31abb264",
+        "63ea8fd2-f47b-4dc2-bec0-6bd583fae32f"
+      ]
+    },
+    {
+      "query": "What events has Caroline participated in to help children?",
+      "question_id": "locomo_0_qa34",
+      "clusters_found": [
+        "gec_025",
+        "gec_005",
+        "gec_041",
+        "gec_069",
+        "gec_003",
+        "gec_013",
+        "gec_039",
+        "gec_040",
+        "gec_011",
+        "gec_071",
+        "gec_007",
+        "gec_002",
+        "gec_027",
+        "gec_010",
+        "gec_022",
+        "gec_009",
+        "gec_012",
+        "gec_065",
+        "gec_019",
+        "gec_028",
+        "gec_038",
+        "gec_068",
+        "gec_026",
+        "gec_004",
+        "gec_067",
+        "gec_046",
+        "gec_001",
+        "gec_018",
+        "gec_021",
+        "gec_070",
+        "gec_037",
+        "gec_006",
+        "gec_066",
+        "gec_063",
+        "gec_064",
+        "gec_020",
+        "gec_008"
+      ],
+      "clusters_selected": [
+        "gec_063",
+        "gec_028",
+        "gec_046",
+        "gec_025"
+      ],
+      "selection_reasoning": "Cluster gec_063 describes Caroline organizing a children's talent show, directly showing her participation in an event to help children. Cluster gec_028 mentions Caroline's project to create a library for future children, indicating another effort to support children's learning. Cluster gec_046 highlights Caroline mentoring LGBTQ youth, which involves helping young people. Cluster gec_025 covers discussions about parenting experiences and children's learning, providing additional context on Caroline's involvement with children.",
+      "cluster_details": {
+        "gec_063": {
+          "topic": "Caroline's organization of children's talent show",
+          "summary": "On August 28, 2023, Melanie and Caroline discussed Caroline's role in organizing a children's talent show, sharing their mutual passion for music and its emotional significance, including Caroline's acoustic guitar playing and Melanie's clarinet experience. They also exchanged thoughts on meaningful songs and the upcoming event aimed at celebrating children's talents.",
+          "member_count": 1,
+          "members_returned": 1
+        },
+        "gec_028": {
+          "topic": "Caroline's project to create a library for future children",
+          "summary": "On July 6, 2023, Melanie and Caroline discussed their parenting experiences and childhood memories, sharing photographs and stories about their children’s learning and love for books. They expressed joy in motherhood, highlighting Melanie’s visit to a museum with her children and Caroline’s project of creating a library for her future children.",
+          "member_count": 1,
+          "members_returned": 1
+        },
+        "gec_046": {
+          "topic": "Caroline's mentorship of LGBTQ youth",
+          "summary": "Melanie and Caroline discussed their recent activities, with Melanie sharing about a family camping trip and Caroline describing her rewarding experience mentoring LGBTQ youth, including attending a pride event with a transgender teenager mentee. Their conversation highlighted Caroline's commitment to advocacy and the positive impact of community support.",
+          "member_count": 1,
+          "members_returned": 1
+        },
+        "gec_025": {
+          "topic": "Parenting experiences",
+          "summary": "On July 6, 2023, Melanie and Caroline discussed their parenting experiences and childhood memories, sharing photographs and stories about their children’s learning and love for books. They expressed joy in motherhood, highlighting Melanie’s visit to a museum with her children and Caroline’s project of creating a library for her future children.",
+          "member_count": 1,
+          "members_returned": 0
+        }
+      },
+      "members_per_cluster": {
+        "gec_063": 1,
+        "gec_028": 1,
+        "gec_046": 1,
+        "gec_025": 0
+      },
+      "final_count": 13,
+      "truncated": false,
+      "evidence": [
+        "D9:2",
+        "D3:3"
+      ],
+      "evidence_detail": {
+        "D9:2": [
+          "8f2324d5-b57b-4e3f-a3e7-2390e3993e05",
+          "gec_046"
+        ],
+        "D3:3": [
+          "b57b09fe-224e-4b2a-8c7f-2c8b1cddc25b",
+          "gec_013"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "8f2324d5-b57b-4e3f-a3e7-2390e3993e05",
+        "b57b09fe-224e-4b2a-8c7f-2c8b1cddc25b"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_046",
+        "gec_013"
+      ],
+      "cluster_hit": true,
+      "memunit_hit": true,
+      "memunit_coverage": 0.5,
+      "selected_unit_ids": [
+        "fb049db1-4bfc-4321-9bbe-49bc82426c22",
+        "8f2324d5-b57b-4e3f-a3e7-2390e3993e05",
+        "264ee6ea-6787-498c-8809-b356a21619f5"
+      ]
+    },
+    {
+      "query": "When did Melanie go camping in July?",
+      "question_id": "locomo_0_qa35",
+      "clusters_found": [
+        "gec_025",
+        "gec_005",
+        "gec_069",
+        "gec_043",
+        "gec_048",
+        "gec_014",
+        "gec_071",
+        "gec_049",
+        "gec_007",
+        "gec_035",
+        "gec_002",
+        "gec_044",
+        "gec_027",
+        "gec_010",
+        "gec_047",
+        "gec_036",
+        "gec_022",
+        "gec_009",
+        "gec_012",
+        "gec_016",
+        "gec_028",
+        "gec_017",
+        "gec_029",
+        "gec_030",
+        "gec_026",
+        "gec_004",
+        "gec_045",
+        "gec_067",
+        "gec_046",
+        "gec_070",
+        "gec_021",
+        "gec_006",
+        "gec_066",
+        "gec_003",
+        "gec_042",
+        "gec_008"
+      ],
+      "clusters_selected": [
+        "gec_046",
+        "gec_016",
+        "gec_009"
+      ],
+      "selection_reasoning": "The query asks when Melanie went camping in July. Cluster gec_046 specifically mentions Melanie sharing about a family camping trip on July 17, 2023. Cluster gec_016 includes discussion of a memorable family camping trip in the mountains around late June to mid-July, providing relevant context. Cluster gec_009 covers Melanie's ongoing family camping plans and seasonal traditions spanning May to September, which may include July camping details.",
+      "cluster_details": {
+        "gec_046": {
+          "topic": "Caroline's mentorship of LGBTQ youth",
+          "summary": "Melanie and Caroline discussed their recent activities, with Melanie sharing about a family camping trip and Caroline describing her rewarding experience mentoring LGBTQ youth, including attending a pride event with a transgender teenager mentee. Their conversation highlighted Caroline's commitment to advocacy and the positive impact of community support.",
+          "member_count": 1,
+          "members_returned": 1
+        },
+        "gec_016": {
+          "topic": "Melanie's memorable family camping trip in the mountains",
+          "summary": "On June 27, 2023, Caroline and Melanie discussed the sentimental value of personal items and shared meaningful family experiences, with Caroline highlighting a hand-painted bowl from her 18th birthday and Melanie recounting a memorable family camping trip in the mountains. Both emphasized the importance of cherished memories and quality time with loved ones.",
+          "member_count": 3,
+          "members_returned": 3
+        },
+        "gec_009": {
+          "topic": "Melanie's potential family camping plans",
+          "summary": "They discussed Melanie’s ongoing family camping plans, sharing memories of past trips and seasonal traditions. Over time, their conversations highlighted the importance of family bonding, outdoor activities, and creating cherished moments together.",
+          "member_count": 11,
+          "members_returned": 7
+        }
+      },
+      "members_per_cluster": {
+        "gec_046": 1,
+        "gec_016": 3,
+        "gec_009": 7
+      },
+      "final_count": 21,
+      "truncated": false,
+      "evidence": [
+        "D9:1"
+      ],
+      "evidence_detail": {
+        "D9:1": [
+          "8f2324d5-b57b-4e3f-a3e7-2390e3993e05",
+          "gec_046"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "8f2324d5-b57b-4e3f-a3e7-2390e3993e05"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_046"
+      ],
+      "cluster_hit": true,
+      "memunit_hit": true,
+      "memunit_coverage": 1.0,
+      "selected_unit_ids": [
+        "d81d584f-305d-445f-969e-3b4b4b307c72",
+        "fa4b82ee-e4ac-41b8-8d73-a2139b8cb78b",
+        "9c736f20-e112-4d72-a6a4-44815baca2b3",
+        "7a948684-b465-4cea-be39-5cfc58ed4c6a",
+        "ff1087c8-13cd-4b5c-a15f-1f8ee9f9b76c",
+        "83117782-4164-4d09-84e3-70fb68626302",
+        "f2102527-cb36-4da8-be11-0bd3542f820a",
+        "11c7f993-e584-4a9d-90f5-cf31e0efabd5",
+        "8f2324d5-b57b-4e3f-a3e7-2390e3993e05",
+        "d9a0c09e-e328-4fc5-a0b6-f795f901e283",
+        "bc23c858-9625-481b-a1e6-280827295bec"
+      ]
+    },
+    {
+      "query": "How many times has Melanie gone to the beach in 2023?",
+      "question_id": "locomo_0_qa40",
+      "clusters_found": [
+        "gec_005",
+        "gec_043",
+        "gec_069",
+        "gec_048",
+        "gec_024",
+        "gec_013",
+        "gec_014",
+        "gec_071",
+        "gec_011",
+        "gec_049",
+        "gec_032",
+        "gec_007",
+        "gec_033",
+        "gec_062",
+        "gec_002",
+        "gec_031",
+        "gec_044",
+        "gec_051",
+        "gec_010",
+        "gec_047",
+        "gec_061",
+        "gec_009",
+        "gec_012",
+        "gec_016",
+        "gec_017",
+        "gec_029",
+        "gec_030",
+        "gec_004",
+        "gec_045",
+        "gec_067",
+        "gec_050",
+        "gec_070",
+        "gec_006",
+        "gec_034",
+        "gec_023",
+        "gec_066",
+        "gec_003",
+        "gec_042",
+        "gec_008"
+      ],
+      "clusters_selected": [
+        "gec_009"
+      ],
+      "selection_reasoning": "Cluster gec_009 focuses on Melanie's family camping plans and outdoor activities, which is the most likely source to contain information about Melanie's visits to the beach in 2023. Other clusters do not mention beach visits or related outdoor family activities.",
+      "cluster_details": {
+        "gec_009": {
+          "topic": "Melanie's potential family camping plans",
+          "summary": "They discussed Melanie’s ongoing family camping plans, sharing memories of past trips and seasonal traditions. Over time, their conversations highlighted the importance of family bonding, outdoor activities, and creating cherished moments together.",
+          "member_count": 11,
+          "members_returned": 11
+        }
+      },
+      "members_per_cluster": {
+        "gec_009": 11
+      },
+      "final_count": 21,
+      "truncated": false,
+      "evidence": [
+        "D10:8",
+        "D6:16"
+      ],
+      "evidence_detail": {
+        "D10:8": [
+          "9c736f20-e112-4d72-a6a4-44815baca2b3",
+          "gec_012"
+        ],
+        "D6:16": [
+          "86571bd1-e2a0-4829-b77f-9195a4a083a8",
+          "gec_034"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "9c736f20-e112-4d72-a6a4-44815baca2b3",
+        "86571bd1-e2a0-4829-b77f-9195a4a083a8"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_034",
+        "gec_012"
+      ],
+      "cluster_hit": false,
+      "memunit_hit": true,
+      "memunit_coverage": 0.5,
+      "selected_unit_ids": [
+        "d81d584f-305d-445f-969e-3b4b4b307c72",
+        "fa4b82ee-e4ac-41b8-8d73-a2139b8cb78b",
+        "9c736f20-e112-4d72-a6a4-44815baca2b3",
+        "7a948684-b465-4cea-be39-5cfc58ed4c6a",
+        "ff1087c8-13cd-4b5c-a15f-1f8ee9f9b76c",
+        "83117782-4164-4d09-84e3-70fb68626302",
+        "f2102527-cb36-4da8-be11-0bd3542f820a",
+        "11c7f993-e584-4a9d-90f5-cf31e0efabd5",
+        "8f2324d5-b57b-4e3f-a3e7-2390e3993e05",
+        "d9a0c09e-e328-4fc5-a0b6-f795f901e283",
+        "bc23c858-9625-481b-a1e6-280827295bec"
+      ]
+    },
+    {
+      "query": "When did Caroline attend a pride parade in August?",
+      "question_id": "locomo_0_qa45",
+      "clusters_found": [
+        "gec_043",
+        "gec_024",
+        "gec_013",
+        "gec_060",
+        "gec_011",
+        "gec_049",
+        "gec_032",
+        "gec_007",
+        "gec_033",
+        "gec_058",
+        "gec_064",
+        "gec_002",
+        "gec_031",
+        "gec_044",
+        "gec_010",
+        "gec_022",
+        "gec_009",
+        "gec_012",
+        "gec_065",
+        "gec_056",
+        "gec_059",
+        "gec_004",
+        "gec_045",
+        "gec_046",
+        "gec_001",
+        "gec_021",
+        "gec_034",
+        "gec_023",
+        "gec_063",
+        "gec_003",
+        "gec_042",
+        "gec_057"
+      ],
+      "clusters_selected": [
+        "gec_012"
+      ],
+      "selection_reasoning": "Cluster gec_012 contains a direct mention of Caroline discussing her recent experiences with LGBTQ+ pride, including an event on August 14, 2023, which aligns with attending a pride parade in August.",
+      "cluster_details": {
+        "gec_012": {
+          "topic": "LGBTQ community involvement and support systems",
+          "summary": "Caroline and Melanie consistently discussed LGBTQ community involvement, emphasizing advocacy, support systems, and mental health. Their conversations evolved from personal journeys to active mentorship, artistic expression, and engagement in activist groups, highlighting ongoing commitment and mutual encouragement.",
+          "member_count": 9,
+          "members_returned": 9
+        }
+      },
+      "members_per_cluster": {
+        "gec_012": 9
+      },
+      "final_count": 19,
+      "truncated": false,
+      "evidence": [
+        "D11:4"
+      ],
+      "evidence_detail": {
+        "D11:4": [
+          "870a1165-252e-4724-abc3-83976922768e",
+          "gec_012"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "870a1165-252e-4724-abc3-83976922768e"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_012"
+      ],
+      "cluster_hit": true,
+      "memunit_hit": true,
+      "memunit_coverage": 1.0,
+      "selected_unit_ids": [
+        "b57b09fe-224e-4b2a-8c7f-2c8b1cddc25b",
+        "5f4b27e0-51f2-44ea-8e56-c807b68d25f5",
+        "86571bd1-e2a0-4829-b77f-9195a4a083a8",
+        "9c736f20-e112-4d72-a6a4-44815baca2b3",
+        "870a1165-252e-4724-abc3-83976922768e",
+        "ff1087c8-13cd-4b5c-a15f-1f8ee9f9b76c",
+        "eb9120c0-46b2-476d-8adc-b5f8e9dccb03",
+        "8f2324d5-b57b-4e3f-a3e7-2390e3993e05",
+        "bc23c858-9625-481b-a1e6-280827295bec"
+      ]
+    },
+    {
+      "query": "When did Melanie make a plate in pottery class?",
+      "question_id": "locomo_0_qa58",
+      "clusters_found": [
+        "gec_025",
+        "gec_041",
+        "gec_024",
+        "gec_060",
+        "gec_039",
+        "gec_040",
+        "gec_011",
+        "gec_049",
+        "gec_007",
+        "gec_058",
+        "gec_062",
+        "gec_035",
+        "gec_064",
+        "gec_002",
+        "gec_027",
+        "gec_010",
+        "gec_061",
+        "gec_036",
+        "gec_022",
+        "gec_009",
+        "gec_012",
+        "gec_065",
+        "gec_068",
+        "gec_028",
+        "gec_038",
+        "gec_056",
+        "gec_059",
+        "gec_004",
+        "gec_026",
+        "gec_021",
+        "gec_037",
+        "gec_023",
+        "gec_063",
+        "gec_003",
+        "gec_057"
+      ],
+      "clusters_selected": [
+        "gec_061"
+      ],
+      "selection_reasoning": "The query asks for when Melanie made a plate in pottery class, which is a specific event related to her pottery activities. Cluster gec_061 specifically covers Melanie's pottery class discussion on August 25, 2023, which is the most directly relevant cluster for this information.",
+      "cluster_details": {
+        "gec_061": {
+          "topic": "Melanie's pottery class",
+          "summary": "On August 25, 2023, Melanie and Caroline discussed their recent artistic activities, with Melanie sharing her enjoyment of pottery and Caroline showcasing a sunset painting inspired by a beach visit, highlighting the emotional connection and appreciation they found in each other's creative work.",
+          "member_count": 1,
+          "members_returned": 1
+        }
+      },
+      "members_per_cluster": {
+        "gec_061": 1
+      },
+      "final_count": 11,
+      "truncated": false,
+      "evidence": [
+        "D14:4"
+      ],
+      "evidence_detail": {
+        "D14:4": [
+          "a5328004-579f-46bd-bfa5-71d514fb9d06",
+          "gec_062"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "a5328004-579f-46bd-bfa5-71d514fb9d06"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_062"
+      ],
+      "cluster_hit": false,
+      "memunit_hit": true,
+      "memunit_coverage": 1.0,
+      "selected_unit_ids": [
+        "a5328004-579f-46bd-bfa5-71d514fb9d06"
+      ]
+    },
+    {
+      "query": "When did Melanie go to the park?",
+      "question_id": "locomo_0_qa62",
+      "clusters_found": [
+        "gec_025",
+        "gec_005",
+        "gec_043",
+        "gec_003",
+        "gec_011",
+        "gec_007",
+        "gec_058",
+        "gec_002",
+        "gec_044",
+        "gec_027",
+        "gec_010",
+        "gec_022",
+        "gec_009",
+        "gec_012",
+        "gec_065",
+        "gec_028",
+        "gec_016",
+        "gec_056",
+        "gec_029",
+        "gec_030",
+        "gec_026",
+        "gec_004",
+        "gec_045",
+        "gec_067",
+        "gec_046",
+        "gec_021",
+        "gec_006",
+        "gec_066",
+        "gec_063",
+        "gec_064",
+        "gec_042",
+        "gec_057",
+        "gec_008"
+      ],
+      "clusters_selected": [
+        "gec_012",
+        "gec_009"
+      ],
+      "selection_reasoning": "Clusters gec_012 and gec_009 both mention Melanie taking her kids to a park, providing direct information about when Melanie went to the park.",
+      "cluster_details": {
+        "gec_012": {
+          "topic": "LGBTQ community involvement and support systems",
+          "summary": "Caroline and Melanie consistently discussed LGBTQ community involvement, emphasizing advocacy, support systems, and mental health. Their conversations evolved from personal journeys to active mentorship, artistic expression, and engagement in activist groups, highlighting ongoing commitment and mutual encouragement.",
+          "member_count": 9,
+          "members_returned": 9
+        },
+        "gec_009": {
+          "topic": "Melanie's potential family camping plans",
+          "summary": "They discussed Melanie’s ongoing family camping plans, sharing memories of past trips and seasonal traditions. Over time, their conversations highlighted the importance of family bonding, outdoor activities, and creating cherished moments together.",
+          "member_count": 11,
+          "members_returned": 7
+        }
+      },
+      "members_per_cluster": {
+        "gec_012": 9,
+        "gec_009": 7
+      },
+      "final_count": 26,
+      "truncated": false,
+      "evidence": [
+        "D15:2"
+      ],
+      "evidence_detail": {
+        "D15:2": [
+          "bc23c858-9625-481b-a1e6-280827295bec",
+          "gec_012"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "bc23c858-9625-481b-a1e6-280827295bec"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_012"
+      ],
+      "cluster_hit": true,
+      "memunit_hit": true,
+      "memunit_coverage": 1.0,
+      "selected_unit_ids": [
+        "b57b09fe-224e-4b2a-8c7f-2c8b1cddc25b",
+        "5f4b27e0-51f2-44ea-8e56-c807b68d25f5",
+        "86571bd1-e2a0-4829-b77f-9195a4a083a8",
+        "d81d584f-305d-445f-969e-3b4b4b307c72",
+        "fa4b82ee-e4ac-41b8-8d73-a2139b8cb78b",
+        "9c736f20-e112-4d72-a6a4-44815baca2b3",
+        "7a948684-b465-4cea-be39-5cfc58ed4c6a",
+        "870a1165-252e-4724-abc3-83976922768e",
+        "ff1087c8-13cd-4b5c-a15f-1f8ee9f9b76c",
+        "83117782-4164-4d09-84e3-70fb68626302",
+        "eb9120c0-46b2-476d-8adc-b5f8e9dccb03",
+        "f2102527-cb36-4da8-be11-0bd3542f820a",
+        "8f2324d5-b57b-4e3f-a3e7-2390e3993e05",
+        "11c7f993-e584-4a9d-90f5-cf31e0efabd5",
+        "d9a0c09e-e328-4fc5-a0b6-f795f901e283",
+        "bc23c858-9625-481b-a1e6-280827295bec"
+      ]
+    },
+    {
+      "query": "When did Caroline go biking with friends?",
+      "question_id": "locomo_0_qa67",
+      "clusters_found": [
+        "gec_005",
+        "gec_043",
+        "gec_013",
+        "gec_060",
+        "gec_011",
+        "gec_007",
+        "gec_058",
+        "gec_002",
+        "gec_044",
+        "gec_010",
+        "gec_022",
+        "gec_009",
+        "gec_012",
+        "gec_056",
+        "gec_029",
+        "gec_030",
+        "gec_059",
+        "gec_004",
+        "gec_045",
+        "gec_067",
+        "gec_046",
+        "gec_001",
+        "gec_021",
+        "gec_006",
+        "gec_066",
+        "gec_003",
+        "gec_042",
+        "gec_057",
+        "gec_008"
+      ],
+      "clusters_selected": [
+        "gec_066",
+        "gec_067"
+      ],
+      "selection_reasoning": "Clusters gec_066 and gec_067 specifically mention Caroline's recent outdoor activities including biking with friends, which directly addresses the query about when Caroline went biking with friends.",
+      "cluster_details": {
+        "gec_066": {
+          "topic": "Caroline's recent biking outing",
+          "summary": "Caroline and Melanie reconnected through a warm conversation sharing photos and experiences of recent outdoor activities, including biking and camping with family, highlighting their appreciation for nature, simple moments, and personal inspiration.",
+          "member_count": 1,
+          "members_returned": 1
+        },
+        "gec_067": {
+          "topic": "Appreciation of nature and simple moments",
+          "summary": "Caroline and Melanie reconnected through a warm conversation sharing photos and experiences of recent outdoor activities, including biking and camping with family, highlighting their appreciation for nature, simple moments, and personal inspiration.",
+          "member_count": 1,
+          "members_returned": 0
+        }
+      },
+      "members_per_cluster": {
+        "gec_066": 1,
+        "gec_067": 0
+      },
+      "final_count": 11,
+      "truncated": false,
+      "evidence": [
+        "D16:1"
+      ],
+      "evidence_detail": {
+        "D16:1": [
+          "d9a0c09e-e328-4fc5-a0b6-f795f901e283",
+          "gec_067"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "d9a0c09e-e328-4fc5-a0b6-f795f901e283"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_067"
+      ],
+      "cluster_hit": true,
+      "memunit_hit": true,
+      "memunit_coverage": 1.0,
+      "selected_unit_ids": [
+        "d9a0c09e-e328-4fc5-a0b6-f795f901e283"
+      ]
+    },
+    {
+      "query": "When did Melanie go on a hike after the roadtrip?",
+      "question_id": "locomo_0_qa76",
+      "clusters_found": [
+        "gec_005",
+        "gec_069",
+        "gec_048",
+        "gec_053",
+        "gec_013",
+        "gec_060",
+        "gec_014",
+        "gec_071",
+        "gec_011",
+        "gec_007",
+        "gec_058",
+        "gec_062",
+        "gec_002",
+        "gec_010",
+        "gec_047",
+        "gec_061",
+        "gec_009",
+        "gec_055",
+        "gec_054",
+        "gec_012",
+        "gec_016",
+        "gec_017",
+        "gec_056",
+        "gec_029",
+        "gec_030",
+        "gec_059",
+        "gec_004",
+        "gec_052",
+        "gec_067",
+        "gec_046",
+        "gec_070",
+        "gec_006",
+        "gec_066",
+        "gec_003",
+        "gec_057",
+        "gec_008"
+      ],
+      "clusters_selected": [
+        "gec_069",
+        "gec_070",
+        "gec_071"
+      ],
+      "selection_reasoning": "These clusters discuss Melanie's son's recent car accident during a family road trip and include reflections on nature and quality time after the trip, implying a hike or outdoor activity following the roadtrip event.",
+      "cluster_details": {
+        "gec_069": {
+          "topic": "Melanie's son's car accident",
+          "summary": "Melanie shared with Caroline the harrowing experience of her son's recent car accident during a family road trip, emphasizing the importance of family resilience and cherishing life, while also reflecting on the peace and strength they find in nature and quality time together. Caroline responded with sympathy and appreciation for the family's bond and the healing power of their shared moments.",
+          "member_count": 1,
+          "members_returned": 1
+        },
+        "gec_070": {
+          "topic": "Family resilience and cherishing life",
+          "summary": "Melanie shared with Caroline the harrowing experience of her son's recent car accident during a family road trip, emphasizing the importance of family resilience and cherishing life, while also reflecting on the peace and strength they find in nature and quality time together. Caroline responded with sympathy and appreciation for the family's bond and the healing power of their shared moments.",
+          "member_count": 1,
+          "members_returned": 0
+        },
+        "gec_071": {
+          "topic": "Healing power of nature and quality family time",
+          "summary": "Melanie shared with Caroline the harrowing experience of her son's recent car accident during a family road trip, emphasizing the importance of family resilience and cherishing life, while also reflecting on the peace and strength they find in nature and quality time together. Caroline responded with sympathy and appreciation for the family's bond and the healing power of their shared moments.",
+          "member_count": 1,
+          "members_returned": 0
+        }
+      },
+      "members_per_cluster": {
+        "gec_069": 1,
+        "gec_070": 0,
+        "gec_071": 0
+      },
+      "final_count": 11,
+      "truncated": false,
+      "evidence": [
+        "D18:17"
+      ],
+      "evidence_detail": {
+        "D18:17": [
+          "c041a6a5-89bd-4e59-9989-bb960e157588",
+          "gec_071"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "c041a6a5-89bd-4e59-9989-bb960e157588"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_071"
+      ],
+      "cluster_hit": true,
+      "memunit_hit": true,
+      "memunit_coverage": 1.0,
+      "selected_unit_ids": [
+        "c041a6a5-89bd-4e59-9989-bb960e157588"
+      ]
+    }
+  ],
+  "summary": {
+    "total_questions": 28,
+    "cluster_hit_count": 16,
+    "cluster_hit_rate": 0.5714285714285714,
+    "memunit_hit_count": 25,
+    "memunit_hit_rate": 0.8928571428571429,
+    "avg_memunit_coverage": 0.8452380952380952
+  }
+}

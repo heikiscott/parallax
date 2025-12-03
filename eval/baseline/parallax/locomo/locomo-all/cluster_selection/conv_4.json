@@ -1,0 +1,806 @@
+{
+  "qa_count": 178,
+  "questions": [
+    {
+      "query": "What books has Tim read?",
+      "question_id": "locomo_4_qa4",
+      "clusters_found": [
+        "gec_007",
+        "gec_001",
+        "gec_033",
+        "gec_068",
+        "gec_015",
+        "gec_016",
+        "gec_034",
+        "gec_035",
+        "gec_002",
+        "gec_010",
+        "gec_003",
+        "gec_036",
+        "gec_009",
+        "gec_032",
+        "gec_008"
+      ],
+      "clusters_selected": [
+        "gec_001",
+        "gec_003",
+        "gec_008",
+        "gec_009"
+      ],
+      "selection_reasoning": "These clusters contain detailed discussions about Tim's reading habits, favorite books (notably fantasy novels like Harry Potter and Game of Thrones), his book collection, and his writing about fantasy novels. They provide the most direct information about what books Tim has read.",
+      "cluster_details": {
+        "gec_001": {
+          "topic": "John's inquiry about Tim's Harry Potter fan pro...",
+          "summary": "They shared a deep passion for Harry Potter and fantasy literature, exchanging updates on projects, book collections, and events. Over time, their conversations evolved to include mutual encouragement, personal growth, and the meaningful role of fandom and friendship in their lives.",
+          "member_count": 26,
+          "members_returned": 15
+        },
+        "gec_003": {
+          "topic": "Tim's participation in fantasy literature forum discussions",
+          "summary": "They discussed their shared passion for fantasy literature, exchanging book recommendations, writing experiences, and personal reflections. Over time, their conversations deepened to include emotional support, creativity, and the role of fantasy as both inspiration and mental escape.",
+          "member_count": 17,
+          "members_returned": 12
+        },
+        "gec_008": {
+          "topic": "Tim's passion for reading and literary escape",
+          "summary": "They shared a lasting passion for reading and fantasy literature as a form of mental escape and joy, exchanging reflections, photos, and favorite titles over time. Their mutual appreciation deepened their friendship and supported their well-being through imaginative adventures.",
+          "member_count": 7,
+          "members_returned": 3
+        },
+        "gec_009": {
+          "topic": "Tim's writing articles about fantasy novels for an online magazine",
+          "summary": "On August 2, 2023, Tim shared with John that he had started writing rewarding articles about fantasy novels for an online magazine, focusing on analyses of characters, themes, and recommendations, while John recounted a humorous Harry Potter trivia contest experience. Both expressed enthusiasm for fantasy literature, highlighting Tim's passion for \"Harry Potter\" and \"Game of Thrones.\"",
+          "member_count": 4,
+          "members_returned": 0
+        }
+      },
+      "members_per_cluster": {
+        "gec_001": 15,
+        "gec_003": 12,
+        "gec_008": 3
+      },
+      "final_count": 33,
+      "truncated": false,
+      "evidence": [
+        "D1:14",
+        "D2:7",
+        "D6:8",
+        "D11:26",
+        "D20:21",
+        "D26:36",
+        "D22:13"
+      ],
+      "evidence_detail": {
+        "D1:14": [
+          "797faacf-69b9-4e21-9362-1bf537c8173a",
+          "gec_002"
+        ],
+        "D2:7": [
+          "a4590e27-dac9-43d3-923a-9f6215458ea8",
+          "gec_001"
+        ],
+        "D6:8": [
+          "8eaa27d4-d342-49cd-83ea-fd511cee701a",
+          "gec_009"
+        ],
+        "D11:26": [
+          "a7189da0-1bea-40af-ab92-d31d81865066",
+          "gec_003"
+        ],
+        "D20:21": [
+          "09b46281-db6d-4c4c-b60b-e494e58ff403",
+          "gec_008"
+        ],
+        "D26:36": [
+          "e9510c77-a629-4f33-b6ca-745014550405",
+          "gec_008"
+        ],
+        "D22:13": [
+          "2ae09afd-41a6-451a-8c86-4a6c3049c127",
+          "gec_003"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "797faacf-69b9-4e21-9362-1bf537c8173a",
+        "a4590e27-dac9-43d3-923a-9f6215458ea8",
+        "8eaa27d4-d342-49cd-83ea-fd511cee701a",
+        "a7189da0-1bea-40af-ab92-d31d81865066",
+        "09b46281-db6d-4c4c-b60b-e494e58ff403",
+        "e9510c77-a629-4f33-b6ca-745014550405",
+        "2ae09afd-41a6-451a-8c86-4a6c3049c127"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_001",
+        "gec_002",
+        "gec_003",
+        "gec_009",
+        "gec_008"
+      ],
+      "cluster_hit": true,
+      "memunit_hit": true,
+      "memunit_coverage": 1.0,
+      "selected_unit_ids": [
+        "797faacf-69b9-4e21-9362-1bf537c8173a",
+        "463e719e-0bbb-4f4f-8c34-2e4752169aba",
+        "32b807dd-a7e8-4ad1-8a41-d55c4417f825",
+        "88433e22-880f-4639-b1e5-221d725484f0",
+        "23bf4420-4a67-4047-b138-aa152b373fc0",
+        "276af443-8504-4f5c-8ada-fe1cfb5edf0e",
+        "7a981219-55de-4949-b499-ce71ed3cffc7",
+        "aa3a8db0-9877-49af-ab5d-b1b861e3c832",
+        "23a48d2d-79bf-4c69-9a71-05e86c5e9e9a",
+        "a4590e27-dac9-43d3-923a-9f6215458ea8",
+        "f3e330da-099b-44d8-8a73-a91725d530ae",
+        "a6010b76-802c-4fd8-bb18-9e0a45737bd9",
+        "2ae09afd-41a6-451a-8c86-4a6c3049c127",
+        "28eba859-bcf1-402e-8851-749211df93b0",
+        "09b46281-db6d-4c4c-b60b-e494e58ff403",
+        "edda997c-6356-4bb9-aba0-6ab782a51483",
+        "9e9d3e75-b197-4d0f-976e-433619028555",
+        "a07e0b8e-70bd-4520-b32e-483494b9c37b",
+        "84770152-3bfb-4365-b18d-ea7ce52d29b0",
+        "4b33fe13-2532-4170-9a48-36a8f7814d3d",
+        "e9510c77-a629-4f33-b6ca-745014550405",
+        "8eaa27d4-d342-49cd-83ea-fd511cee701a",
+        "512ea4e3-8775-4332-92ae-dec1ad26e86d",
+        "f46fc775-5039-409b-8b29-3047ba22d6d6",
+        "87a4904e-be41-48b0-94df-7214bd615ca1",
+        "308169f1-6bca-4bbc-8701-c8d9ed3a2452",
+        "0859a09f-27ab-4c9c-8c42-78a291d74da3",
+        "a7189da0-1bea-40af-ab92-d31d81865066",
+        "e0c2f362-2944-4847-abc7-fea2027416bb",
+        "f3e0e4dc-5b17-46dc-b6ec-d375aac3fde4"
+      ]
+    },
+    {
+      "query": "When did John meet with his teammates after returning from Chicago?",
+      "question_id": "locomo_4_qa22",
+      "clusters_found": [
+        "gec_013",
+        "gec_078",
+        "gec_062",
+        "gec_002",
+        "gec_061",
+        "gec_009",
+        "gec_065",
+        "gec_012",
+        "gec_038",
+        "gec_004",
+        "gec_076",
+        "gec_001",
+        "gec_021",
+        "gec_037",
+        "gec_063",
+        "gec_003",
+        "gec_020",
+        "gec_057",
+        "gec_077"
+      ],
+      "clusters_selected": [
+        "gec_061",
+        "gec_062",
+        "gec_063"
+      ],
+      "selection_reasoning": "Clusters gec_061, gec_062, and gec_063 all relate to John discussing achievement, team motivation, and inspiring teammates on December 6, 2023, which likely corresponds to when John met with his teammates after returning from Chicago.",
+      "cluster_details": {
+        "gec_061": {
+          "topic": "John's achievement in winning a trophy",
+          "summary": "On December 6, 2023, John and Tim discussed achievement and team motivation, with John sharing his success in winning a trophy and outlining strategies to inspire teammates, while Tim contributed additional ideas and expressed appreciation for John's support. Their conversation emphasized mutual respect, encouragement, and the importance of teamwork.",
+          "member_count": 1,
+          "members_returned": 1
+        },
+        "gec_062": {
+          "topic": "Strategies for team motivation and inspiring teammates",
+          "summary": "On December 6, 2023, John and Tim discussed achievement and team motivation, with John sharing his success in winning a trophy and outlining strategies to inspire teammates, while Tim contributed additional ideas and expressed appreciation for John's support. Their conversation emphasized mutual respect, encouragement, and the importance of teamwork.",
+          "member_count": 1,
+          "members_returned": 0
+        },
+        "gec_063": {
+          "topic": "Mutual respect and encouragement in teamwork",
+          "summary": "On December 6, 2023, John and Tim discussed achievement and team motivation, with John sharing his success in winning a trophy and outlining strategies to inspire teammates, while Tim contributed additional ideas and expressed appreciation for John's support. Their conversation emphasized mutual respect, encouragement, and the importance of teamwork.",
+          "member_count": 1,
+          "members_returned": 0
+        }
+      },
+      "members_per_cluster": {
+        "gec_061": 1,
+        "gec_062": 0,
+        "gec_063": 0
+      },
+      "final_count": 11,
+      "truncated": false,
+      "evidence": [
+        "D7:1"
+      ],
+      "evidence_detail": {
+        "D7:1": [
+          "8ef232f6-21c2-4fe1-af57-0190a60f7330",
+          "gec_002"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "8ef232f6-21c2-4fe1-af57-0190a60f7330"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_002"
+      ],
+      "cluster_hit": false,
+      "memunit_hit": false,
+      "memunit_coverage": 0.0,
+      "selected_unit_ids": [
+        "d007ef89-549b-48ff-9e12-4b160b238419"
+      ]
+    },
+    {
+      "query": "How many times has John injured his ankle?",
+      "question_id": "locomo_4_qa49",
+      "clusters_found": [
+        "gec_001",
+        "gec_012",
+        "gec_070",
+        "gec_016",
+        "gec_015",
+        "gec_048",
+        "gec_069",
+        "gec_002",
+        "gec_013",
+        "gec_066",
+        "gec_029",
+        "gec_004",
+        "gec_051",
+        "gec_049",
+        "gec_067",
+        "gec_050"
+      ],
+      "clusters_selected": [
+        "gec_012",
+        "gec_048",
+        "gec_050"
+      ],
+      "selection_reasoning": "These clusters specifically mention John's ankle and leg injuries and his recovery progress, which are directly relevant to determining how many times John has injured his ankle.",
+      "cluster_details": {
+        "gec_012": {
+          "topic": "John's lucky basketball sneakers and their symbolic meaning of resilience and personal growth",
+          "summary": "On August 11, 2023, John shared a photo of his lucky basketball sneakers and expressed their symbolic meaning of resilience and personal growth, while Tim acknowledged their significance and invited John to share their stories.",
+          "member_count": 4,
+          "members_returned": 4
+        },
+        "gec_048": {
+          "topic": "John's leg injury and recovery",
+          "summary": "On November 16, 2023, John and Tim exchanged supportive messages about John's leg injury and Tim's exam preparations, sharing their challenges and motivation strategies while encouraging each other.",
+          "member_count": 1,
+          "members_returned": 1
+        },
+        "gec_050": {
+          "topic": "John's injury recovery and health updates",
+          "summary": "On November 21, 2023, Tim reached out to John to check on his injury recovery, prompting John to share his challenging but positive progress and reciprocate the inquiry, marking a brief but meaningful reconnection focused on mutual well-being.",
+          "member_count": 1,
+          "members_returned": 1
+        }
+      },
+      "members_per_cluster": {
+        "gec_012": 4,
+        "gec_048": 1,
+        "gec_050": 1
+      },
+      "final_count": 16,
+      "truncated": false,
+      "evidence": [
+        "D18:2",
+        "D19:6"
+      ],
+      "evidence_detail": {
+        "D18:2": [
+          "93622d00-3bbe-4341-8f76-786e2d4be7d8",
+          "gec_049"
+        ],
+        "D19:6": [
+          "7ae1212d-6c73-4665-9abf-cc63b3b0ea26",
+          "gec_012"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "93622d00-3bbe-4341-8f76-786e2d4be7d8",
+        "7ae1212d-6c73-4665-9abf-cc63b3b0ea26"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_012",
+        "gec_049"
+      ],
+      "cluster_hit": true,
+      "memunit_hit": true,
+      "memunit_coverage": 1.0,
+      "selected_unit_ids": [
+        "2c7c18b4-4ae9-4d15-9c8c-9bdfcd1e8922",
+        "bef2d238-133e-49b3-a6ff-7b68c5b87d22",
+        "25b8f873-764e-4395-841e-1093901c53c5",
+        "7ae1212d-6c73-4665-9abf-cc63b3b0ea26",
+        "93622d00-3bbe-4341-8f76-786e2d4be7d8",
+        "0cf8804a-9496-4821-b19e-2fc4286f32e4"
+      ]
+    },
+    {
+      "query": "When did John start playing professionally?",
+      "question_id": "locomo_4_qa55",
+      "clusters_found": [
+        "gec_013",
+        "gec_060",
+        "gec_014",
+        "gec_058",
+        "gec_002",
+        "gec_012",
+        "gec_016",
+        "gec_015",
+        "gec_059",
+        "gec_004",
+        "gec_067",
+        "gec_001",
+        "gec_072",
+        "gec_021",
+        "gec_006",
+        "gec_066",
+        "gec_003",
+        "gec_020",
+        "gec_073",
+        "gec_057"
+      ],
+      "clusters_selected": [
+        "gec_002",
+        "gec_013"
+      ],
+      "selection_reasoning": "Cluster gec_002 covers John's basketball career with the Minnesota Wolves, likely including when he started playing professionally. Cluster gec_013 discusses John's professional basketball goals and journey, providing context on his career start and development.",
+      "cluster_details": {
+        "gec_002": {
+          "topic": "John's basketball career with Minnesota Wolves",
+          "summary": "They discussed John's basketball career with the Minnesota Wolves, highlighting his achievements, challenges, team camaraderie, and aspirations for growth and charity work. Their ongoing support reflected mutual motivation, resilience, and shared passion for sports and personal development.",
+          "member_count": 38,
+          "members_returned": 15
+        },
+        "gec_013": {
+          "topic": "John's aspirations to support disadvantaged children through charity work",
+          "summary": "On August 11, 2023, Tim and John discussed John's basketball journey, his achievements, and his aspirations to win a championship and support disadvantaged children through charity work. The conversation highlighted John's dedication, passion, and plans to make a positive impact both on and off the court.",
+          "member_count": 4,
+          "members_returned": 3
+        }
+      },
+      "members_per_cluster": {
+        "gec_002": 15,
+        "gec_013": 3
+      },
+      "final_count": 28,
+      "truncated": false,
+      "evidence": [
+        "D1:3",
+        "D21:4"
+      ],
+      "evidence_detail": {
+        "D1:3": [
+          "0bdbeaa7-a27f-43c4-98c2-2d9ea3546cfe",
+          "gec_002"
+        ],
+        "D21:4": [
+          "07dfb71e-5013-4111-8a4d-9a2ca9846927",
+          "gec_057"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "0bdbeaa7-a27f-43c4-98c2-2d9ea3546cfe",
+        "07dfb71e-5013-4111-8a4d-9a2ca9846927"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_057",
+        "gec_002"
+      ],
+      "cluster_hit": true,
+      "memunit_hit": true,
+      "memunit_coverage": 0.5,
+      "selected_unit_ids": [
+        "aa3a8db0-9877-49af-ab5d-b1b861e3c832",
+        "6e6fb6ff-b6a6-460e-86e9-fc88b3095f78",
+        "9b8d9cd5-8614-48c7-b3a9-351330a281c4",
+        "eebbdcb7-f5ce-41cb-9922-f920327e2877",
+        "797faacf-69b9-4e21-9362-1bf537c8173a",
+        "512ea4e3-8775-4332-92ae-dec1ad26e86d",
+        "f3e330da-099b-44d8-8a73-a91725d530ae",
+        "25b8f873-764e-4395-841e-1093901c53c5",
+        "0bdbeaa7-a27f-43c4-98c2-2d9ea3546cfe",
+        "0cf8804a-9496-4821-b19e-2fc4286f32e4",
+        "8ef232f6-21c2-4fe1-af57-0190a60f7330",
+        "c42934ab-cbe1-44d1-8647-2def7a453cce",
+        "e75d78e9-adf3-41a8-a2f1-06e0f5c189db",
+        "14f23254-3a1b-4735-9212-5323e747bf74",
+        "70068a6e-cd82-45bd-a72a-d46a966617bf",
+        "3a1dfc67-b9f9-4d88-83bd-c6d916d5d05b",
+        "94b18c04-8d3a-4256-a81b-29ca23f5295e",
+        "a07e0b8e-70bd-4520-b32e-483494b9c37b"
+      ]
+    },
+    {
+      "query": "When did Tim start playing the violin?",
+      "question_id": "locomo_4_qa56",
+      "clusters_found": [
+        "gec_048",
+        "gec_013",
+        "gec_060",
+        "gec_014",
+        "gec_078",
+        "gec_071",
+        "gec_049",
+        "gec_032",
+        "gec_033",
+        "gec_058",
+        "gec_062",
+        "gec_002",
+        "gec_061",
+        "gec_009",
+        "gec_012",
+        "gec_065",
+        "gec_016",
+        "gec_015",
+        "gec_029",
+        "gec_059",
+        "gec_076",
+        "gec_001",
+        "gec_006",
+        "gec_034",
+        "gec_063",
+        "gec_003",
+        "gec_020",
+        "gec_057",
+        "gec_077"
+      ],
+      "clusters_selected": [
+        "gec_058",
+        "gec_059",
+        "gec_060"
+      ],
+      "selection_reasoning": "These clusters all contain information about Tim starting to learn to play the violin, including the timing (noted as recent on 2023-12-06) and his enthusiasm for it. They directly address when Tim started playing the violin.",
+      "cluster_details": {
+        "gec_058": {
+          "topic": "Tim's travel club membership",
+          "summary": "Tim shared with John that he had recently joined a travel club, was studying, and had started learning to play the violin, expressing enthusiasm for classical music and creativity. John responded positively, encouraging Tim and discussing the rewarding experience of learning new skills.",
+          "member_count": 1,
+          "members_returned": 1
+        },
+        "gec_059": {
+          "topic": "Tim's violin learning progress",
+          "summary": "Tim shared with John that he had recently joined a travel club, was studying, and had started learning to play the violin, expressing enthusiasm for classical music and creativity. John responded positively, encouraging Tim and discussing the rewarding experience of learning new skills.",
+          "member_count": 1,
+          "members_returned": 0
+        },
+        "gec_060": {
+          "topic": "Tim's academic studies",
+          "summary": "Tim shared with John that he had recently joined a travel club, was studying, and had started learning to play the violin, expressing enthusiasm for classical music and creativity. John responded positively, encouraging Tim and discussing the rewarding experience of learning new skills.",
+          "member_count": 1,
+          "members_returned": 0
+        }
+      },
+      "members_per_cluster": {
+        "gec_058": 1,
+        "gec_059": 0,
+        "gec_060": 0
+      },
+      "final_count": 11,
+      "truncated": false,
+      "evidence": [
+        "D21:13"
+      ],
+      "evidence_detail": {
+        "D21:13": [
+          "dd194db8-136d-4441-be4f-c75744b7e0ab",
+          "gec_060"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "dd194db8-136d-4441-be4f-c75744b7e0ab"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_060"
+      ],
+      "cluster_hit": true,
+      "memunit_hit": true,
+      "memunit_coverage": 1.0,
+      "selected_unit_ids": [
+        "dd194db8-136d-4441-be4f-c75744b7e0ab"
+      ]
+    },
+    {
+      "query": "When did John attend the Harry Potter trivia?",
+      "question_id": "locomo_4_qa58",
+      "clusters_found": [
+        "gec_007",
+        "gec_001",
+        "gec_025",
+        "gec_070",
+        "gec_016",
+        "gec_015",
+        "gec_069",
+        "gec_024",
+        "gec_002",
+        "gec_026",
+        "gec_003",
+        "gec_009",
+        "gec_008"
+      ],
+      "clusters_selected": [
+        "gec_009"
+      ],
+      "selection_reasoning": "Cluster gec_009 mentions John recounting a humorous Harry Potter trivia contest experience, which directly relates to the query about when John attended the Harry Potter trivia.",
+      "cluster_details": {
+        "gec_009": {
+          "topic": "Tim's writing articles about fantasy novels for an online magazine",
+          "summary": "On August 2, 2023, Tim shared with John that he had started writing rewarding articles about fantasy novels for an online magazine, focusing on analyses of characters, themes, and recommendations, while John recounted a humorous Harry Potter trivia contest experience. Both expressed enthusiasm for fantasy literature, highlighting Tim's passion for \"Harry Potter\" and \"Game of Thrones.\"",
+          "member_count": 4,
+          "members_returned": 4
+        }
+      },
+      "members_per_cluster": {
+        "gec_009": 4
+      },
+      "final_count": 14,
+      "truncated": false,
+      "evidence": [
+        "D4:8",
+        "D22:2"
+      ],
+      "evidence_detail": {
+        "D4:8": [
+          "463e719e-0bbb-4f4f-8c34-2e4752169aba",
+          "gec_009"
+        ],
+        "D22:2": [
+          "2ae09afd-41a6-451a-8c86-4a6c3049c127",
+          "gec_003"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "463e719e-0bbb-4f4f-8c34-2e4752169aba",
+        "2ae09afd-41a6-451a-8c86-4a6c3049c127"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_009",
+        "gec_003"
+      ],
+      "cluster_hit": true,
+      "memunit_hit": true,
+      "memunit_coverage": 0.5,
+      "selected_unit_ids": [
+        "463e719e-0bbb-4f4f-8c34-2e4752169aba",
+        "6e6fb6ff-b6a6-460e-86e9-fc88b3095f78",
+        "8eaa27d4-d342-49cd-83ea-fd511cee701a",
+        "cdd9ca9e-89a0-4212-b8fd-952047c4182a"
+      ]
+    },
+    {
+      "query": "What books has John read?",
+      "question_id": "locomo_4_qa61",
+      "clusters_found": [
+        "gec_007",
+        "gec_001",
+        "gec_021",
+        "gec_016",
+        "gec_015",
+        "gec_068",
+        "gec_035",
+        "gec_002",
+        "gec_020",
+        "gec_010",
+        "gec_003",
+        "gec_011",
+        "gec_036",
+        "gec_009",
+        "gec_008"
+      ],
+      "clusters_selected": [
+        "gec_001",
+        "gec_003",
+        "gec_008",
+        "gec_010"
+      ],
+      "selection_reasoning": "These clusters contain discussions between John and Tim about their shared passion for reading, fantasy literature, and specific mentions of books John has read, including Harry Potter and other fantasy works. They provide direct information about John's reading habits and preferences.",
+      "cluster_details": {
+        "gec_001": {
+          "topic": "John's inquiry about Tim's Harry Potter fan pro...",
+          "summary": "They shared a deep passion for Harry Potter and fantasy literature, exchanging updates on projects, book collections, and events. Over time, their conversations evolved to include mutual encouragement, personal growth, and the meaningful role of fandom and friendship in their lives.",
+          "member_count": 26,
+          "members_returned": 15
+        },
+        "gec_003": {
+          "topic": "Tim's participation in fantasy literature forum discussions",
+          "summary": "They discussed their shared passion for fantasy literature, exchanging book recommendations, writing experiences, and personal reflections. Over time, their conversations deepened to include emotional support, creativity, and the role of fantasy as both inspiration and mental escape.",
+          "member_count": 17,
+          "members_returned": 12
+        },
+        "gec_008": {
+          "topic": "Tim's passion for reading and literary escape",
+          "summary": "They shared a lasting passion for reading and fantasy literature as a form of mental escape and joy, exchanging reflections, photos, and favorite titles over time. Their mutual appreciation deepened their friendship and supported their well-being through imaginative adventures.",
+          "member_count": 7,
+          "members_returned": 3
+        },
+        "gec_010": {
+          "topic": "Tim and John's personal growth through reading",
+          "summary": "Tim and John engaged in a supportive conversation about personal growth through reading and writing, sharing motivation and encouragement for pursuing their dreams and creative goals.",
+          "member_count": 3,
+          "members_returned": 0
+        }
+      },
+      "members_per_cluster": {
+        "gec_001": 15,
+        "gec_003": 12,
+        "gec_008": 3
+      },
+      "final_count": 33,
+      "truncated": false,
+      "evidence": [
+        "D4:10",
+        "D11:26",
+        "D17:9",
+        "D19:16",
+        "D19:20",
+        "D22:12"
+      ],
+      "evidence_detail": {
+        "D4:10": [
+          "4cb83097-c7c8-4cab-8d7b-063a707e9e6d",
+          "gec_011"
+        ],
+        "D11:26": [
+          "a7189da0-1bea-40af-ab92-d31d81865066",
+          "gec_003"
+        ],
+        "D17:9": [
+          "f3e0e4dc-5b17-46dc-b6ec-d375aac3fde4",
+          "gec_008"
+        ],
+        "D19:16": [
+          "28eba859-bcf1-402e-8851-749211df93b0",
+          "gec_010"
+        ],
+        "D19:20": [
+          "28eba859-bcf1-402e-8851-749211df93b0",
+          "gec_010"
+        ],
+        "D22:12": [
+          "2ae09afd-41a6-451a-8c86-4a6c3049c127",
+          "gec_003"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "4cb83097-c7c8-4cab-8d7b-063a707e9e6d",
+        "a7189da0-1bea-40af-ab92-d31d81865066",
+        "f3e0e4dc-5b17-46dc-b6ec-d375aac3fde4",
+        "28eba859-bcf1-402e-8851-749211df93b0",
+        "2ae09afd-41a6-451a-8c86-4a6c3049c127"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_011",
+        "gec_008",
+        "gec_010",
+        "gec_003"
+      ],
+      "cluster_hit": true,
+      "memunit_hit": true,
+      "memunit_coverage": 0.8,
+      "selected_unit_ids": [
+        "797faacf-69b9-4e21-9362-1bf537c8173a",
+        "463e719e-0bbb-4f4f-8c34-2e4752169aba",
+        "32b807dd-a7e8-4ad1-8a41-d55c4417f825",
+        "88433e22-880f-4639-b1e5-221d725484f0",
+        "23bf4420-4a67-4047-b138-aa152b373fc0",
+        "276af443-8504-4f5c-8ada-fe1cfb5edf0e",
+        "7a981219-55de-4949-b499-ce71ed3cffc7",
+        "aa3a8db0-9877-49af-ab5d-b1b861e3c832",
+        "23a48d2d-79bf-4c69-9a71-05e86c5e9e9a",
+        "a4590e27-dac9-43d3-923a-9f6215458ea8",
+        "f3e330da-099b-44d8-8a73-a91725d530ae",
+        "a6010b76-802c-4fd8-bb18-9e0a45737bd9",
+        "2ae09afd-41a6-451a-8c86-4a6c3049c127",
+        "28eba859-bcf1-402e-8851-749211df93b0",
+        "09b46281-db6d-4c4c-b60b-e494e58ff403",
+        "edda997c-6356-4bb9-aba0-6ab782a51483",
+        "9e9d3e75-b197-4d0f-976e-433619028555",
+        "a07e0b8e-70bd-4520-b32e-483494b9c37b",
+        "84770152-3bfb-4365-b18d-ea7ce52d29b0",
+        "4b33fe13-2532-4170-9a48-36a8f7814d3d",
+        "e9510c77-a629-4f33-b6ca-745014550405",
+        "8eaa27d4-d342-49cd-83ea-fd511cee701a",
+        "512ea4e3-8775-4332-92ae-dec1ad26e86d",
+        "f46fc775-5039-409b-8b29-3047ba22d6d6",
+        "87a4904e-be41-48b0-94df-7214bd615ca1",
+        "308169f1-6bca-4bbc-8701-c8d9ed3a2452",
+        "0859a09f-27ab-4c9c-8c42-78a291d74da3",
+        "a7189da0-1bea-40af-ab92-d31d81865066",
+        "e0c2f362-2944-4847-abc7-fea2027416bb",
+        "f3e0e4dc-5b17-46dc-b6ec-d375aac3fde4"
+      ]
+    },
+    {
+      "query": "When did John meet back up with his teammates after his trip in August 2023?",
+      "question_id": "locomo_4_qa91",
+      "clusters_found": [
+        "gec_005",
+        "gec_043",
+        "gec_078",
+        "gec_071",
+        "gec_002",
+        "gec_022",
+        "gec_009",
+        "gec_055",
+        "gec_038",
+        "gec_056",
+        "gec_029",
+        "gec_076",
+        "gec_001",
+        "gec_021",
+        "gec_037",
+        "gec_006",
+        "gec_023",
+        "gec_003",
+        "gec_020",
+        "gec_042",
+        "gec_057",
+        "gec_077"
+      ],
+      "clusters_selected": [
+        "gec_002"
+      ],
+      "selection_reasoning": "The query asks when John met back up with his teammates after his trip in August 2023. Cluster gec_002 focuses on John's basketball career with the Minnesota Wolves, including team-related events and timelines, making it the most relevant cluster to find information about John reuniting with his teammates after his trip.",
+      "cluster_details": {
+        "gec_002": {
+          "topic": "John's basketball career with Minnesota Wolves",
+          "summary": "They discussed John's basketball career with the Minnesota Wolves, highlighting his achievements, challenges, team camaraderie, and aspirations for growth and charity work. Their ongoing support reflected mutual motivation, resilience, and shared passion for sports and personal development.",
+          "member_count": 38,
+          "members_returned": 15
+        }
+      },
+      "members_per_cluster": {
+        "gec_002": 15
+      },
+      "final_count": 25,
+      "truncated": false,
+      "evidence": [
+        "D7:1"
+      ],
+      "evidence_detail": {
+        "D7:1": [
+          "8ef232f6-21c2-4fe1-af57-0190a60f7330",
+          "gec_002"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "8ef232f6-21c2-4fe1-af57-0190a60f7330"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_002"
+      ],
+      "cluster_hit": true,
+      "memunit_hit": true,
+      "memunit_coverage": 1.0,
+      "selected_unit_ids": [
+        "aa3a8db0-9877-49af-ab5d-b1b861e3c832",
+        "6e6fb6ff-b6a6-460e-86e9-fc88b3095f78",
+        "eebbdcb7-f5ce-41cb-9922-f920327e2877",
+        "797faacf-69b9-4e21-9362-1bf537c8173a",
+        "512ea4e3-8775-4332-92ae-dec1ad26e86d",
+        "f3e330da-099b-44d8-8a73-a91725d530ae",
+        "25b8f873-764e-4395-841e-1093901c53c5",
+        "0bdbeaa7-a27f-43c4-98c2-2d9ea3546cfe",
+        "0cf8804a-9496-4821-b19e-2fc4286f32e4",
+        "8ef232f6-21c2-4fe1-af57-0190a60f7330",
+        "c42934ab-cbe1-44d1-8647-2def7a453cce",
+        "14f23254-3a1b-4735-9212-5323e747bf74",
+        "70068a6e-cd82-45bd-a72a-d46a966617bf",
+        "3a1dfc67-b9f9-4d88-83bd-c6d916d5d05b",
+        "a07e0b8e-70bd-4520-b32e-483494b9c37b"
+      ]
+    }
+  ],
+  "summary": {
+    "total_questions": 8,
+    "cluster_hit_count": 7,
+    "cluster_hit_rate": 0.875,
+    "memunit_hit_count": 7,
+    "memunit_hit_rate": 0.875,
+    "avg_memunit_coverage": 0.725
+  }
+}

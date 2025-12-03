@@ -1,0 +1,1862 @@
+{
+  "total_questions": 150,
+  "correct": 139,
+  "accuracy": 0.9333333333333332,
+  "detailed_results": {
+    "locomo_exp_user_6": [
+      {
+        "question_id": "locomo_6_qa0",
+        "question": "What are John's suspected health problems?",
+        "golden_answer": "Obesity",
+        "generated_answer": "John’s suspected health problems are primarily related to mental and emotional health, including stress, feelings of being overwhelmed, emotional vulnerability, and difficult times emotionally. There is no evidence of physical health issues mentioned in the memories.",
+        "llm_judgments": {
+          "judgment_1": false,
+          "judgment_2": false,
+          "judgment_3": false
+        },
+        "category": "3"
+      },
+      {
+        "question_id": "locomo_6_qa1",
+        "question": "Which recreational activity was James pursuing on March 16, 2022?",
+        "golden_answer": "bowling",
+        "generated_answer": "On March 16, 2022, James was pursuing bowling as a recreational activity, during which he achieved 2 strikes and expressed his love for the sport.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "2"
+      },
+      {
+        "question_id": "locomo_6_qa2",
+        "question": "Which places or events have John and James planned to meet at?",
+        "golden_answer": "VR Club, McGee's, baseball game",
+        "generated_answer": "James and John have planned to meet at McGee's Pub on August 27, 2022, which is John's day off. They considered Starbucks but chose McGee's Pub because it offers both stout and light beers, accommodating their preferences. Beyond this, they have planned a joint trip together for the following year (2023), with James intending to visit Toronto and Vancouver among other destinations. Additionally, John is organizing a family gaming night with his siblings for next month (September 2022), which James supports, indicating ongoing plans to meet and socialize through gaming events.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "1"
+      },
+      {
+        "question_id": "locomo_6_qa3",
+        "question": "Do both James and John have pets?",
+        "golden_answer": "No",
+        "generated_answer": "James owns multiple pets, including three dogs named Max, Daisy, and Ned, as well as a cat. He actively cares for and spends time with them. John does not currently have any pets but has expressed a desire to get one someday and supports animal-related causes. Therefore, only James has pets at this time; John does not.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "1"
+      },
+      {
+        "question_id": "locomo_6_qa4",
+        "question": "When did John resume playing drums in his adulthood?",
+        "golden_answer": "February 2022",
+        "generated_answer": "John resumed playing drums in his adulthood around late February 2022, as evidenced by his statement on March 27, 2022, that he had been playing drums for one month at that time.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "2"
+      },
+      {
+        "question_id": "locomo_6_qa5",
+        "question": "What are John and James' favorite games?",
+        "golden_answer": "John's favorite game is CS:GO, and James's is Apex Legends.",
+        "generated_answer": "James’s favorite game is Apex Legends, noted for its intensity, fast-paced gameplay, and impressive graphics. He is also deeply engaged with The Witcher 3, which inspired his own game development, and shows strong interest in RPGs such as Cyberpunk 2077. Additionally, James enjoys strategy games like Civilization VI and has completed a Unity strategy game inspired by Civilization and Total War. From childhood, he fondly remembers Nintendo games including Super Mario and The Legend of Zelda.\n\nJohn’s favorite games include Assassin's Creed Valhalla, which he is actively playing, and FIFA 23, which he enjoys for its online multiplayer features. He has recently started playing chess to enhance his strategic skills and is involved in organizing competitive gaming tournaments for CS:GO and Fortnite. John also appreciates RPGs like Cyberpunk 2077 and enjoys immersive VR gaming experiences.",
+        "llm_judgments": {
+          "judgment_1": false,
+          "judgment_2": false,
+          "judgment_3": false
+        },
+        "category": "1"
+      },
+      {
+        "question_id": "locomo_6_qa6",
+        "question": "Does James live in Connecticut?",
+        "golden_answer": "Likely yes",
+        "generated_answer": "There is no information in the memories indicating that James lives in Connecticut. The exact location of James’s residence is not specified, only that he and Samantha moved into an apartment near McGee's bar, but the geographic location of McGee's bar is not provided. Therefore, it cannot be confirmed that James lives in Connecticut.",
+        "llm_judgments": {
+          "judgment_1": false,
+          "judgment_2": false,
+          "judgment_3": false
+        },
+        "category": "3"
+      },
+      {
+        "question_id": "locomo_6_qa7",
+        "question": "In which state is the shelter from which James adopted the puppy?",
+        "golden_answer": "Connecticut.",
+        "generated_answer": "James adopted the puppy Ned from a shelter located in Stamford, Connecticut.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "3"
+      },
+      {
+        "question_id": "locomo_6_qa8",
+        "question": "How many pets does James have?",
+        "golden_answer": "Three dogs.",
+        "generated_answer": "James has three dogs named Max, Daisy, and Ned. Ned was adopted from a shelter in Stamford between March 28 and April 3, 2022. Daisy is a Labrador, and the other two dogs are shepherds. James took Ned to the vet for a routine vaccination on August 5, 2022. He has expressed that having more than three dogs would be too much, confirming his total pet count as three.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "1"
+      },
+      {
+        "question_id": "locomo_6_qa9",
+        "question": "What are the names of James's dogs?",
+        "golden_answer": "Ned, Daisy, Max",
+        "generated_answer": "James's dogs are named Max, Daisy, and Ned. Max and Daisy were his original two dogs, and Ned is a puppy he adopted from a shelter in Stamford around late March to early April 2022. By June 19, 2022, Ned had been introduced and bonded with Max and Daisy, making a total of three dogs. Daisy is a Labrador, and the other dogs include shepherd breeds.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "1"
+      },
+      {
+        "question_id": "locomo_6_qa10",
+        "question": "When did James adopt Ned?",
+        "golden_answer": "first week of April 2022",
+        "generated_answer": "James adopted his puppy Ned from a shelter in Stamford during the week of March 28 to April 3, 2022.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "2"
+      },
+      {
+        "question_id": "locomo_6_qa11",
+        "question": "How was John feeling on April 10, 2022?",
+        "golden_answer": "seeking solitude",
+        "generated_answer": "On April 10, 2022, John was feeling stressed and frustrated due to a busy work schedule and difficulties with a new RPG game that was laggy and buggy, which limited his gaming progress. Despite these challenges, he found gaming to be a joyful escape from stress, indicating a positive outlet. Around this time, John was also on the verge of expanding his social circle by meeting new friends in his programming course (which happened on April 12), suggesting he was motivated and hopeful despite the pressures he faced.",
+        "llm_judgments": {
+          "judgment_1": false,
+          "judgment_2": false,
+          "judgment_3": false
+        },
+        "category": "2"
+      },
+      {
+        "question_id": "locomo_6_qa12",
+        "question": "Did James have a girlfriend during April 2022?",
+        "golden_answer": "Presumably not",
+        "generated_answer": "No, James did not have a girlfriend during April 2022. He met Samantha, who later became his girlfriend, only on August 9, 2022, and they officially started their relationship on September 3, 2022.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "3"
+      },
+      {
+        "question_id": "locomo_6_qa13",
+        "question": "When did James visit Italy?",
+        "golden_answer": "In 2021",
+        "generated_answer": "James visited Italy in 2021.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "2"
+      },
+      {
+        "question_id": "locomo_6_qa14",
+        "question": "When did James buy himself a new adventure book?",
+        "golden_answer": "April 26, 2022",
+        "generated_answer": "James bought himself a new adventure book containing fantasy novels and cool artwork on April 26, 2022.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "2"
+      },
+      {
+        "question_id": "locomo_6_qa15",
+        "question": "When did James start playing Civilization VI?",
+        "golden_answer": "March 2022",
+        "generated_answer": "James started playing Civilization VI around March 29, 2022, as he had been playing the game for one month by April 29, 2022.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "2"
+      },
+      {
+        "question_id": "locomo_6_qa16",
+        "question": "What is the game with different colored cards that was John talking about with James?",
+        "golden_answer": "UNO",
+        "generated_answer": "The game with different colored cards that John was talking about with James is most likely \"Uno,\" a card game featuring multi-colored numbered cards and gameplay mechanics including matching colors or numbers, trading cards, drawing extra cards, and skipping turns.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "3"
+      },
+      {
+        "question_id": "locomo_6_qa17",
+        "question": "What is the board game where you have to find the imposter that John mentions to James?",
+        "golden_answer": "Mafia",
+        "generated_answer": "The board game John mentions to James where you have to find the impostor is a social deduction game described on May 4, 2022, but John does not specify its name. He only explains that it involves figuring out who the impostors are and recommends playing it with a large group for more fun. Other board games John discusses, such as \"Dungeons of the Dragon\" and the wooden board game demo project, are different and unrelated to the impostor game.",
+        "llm_judgments": {
+          "judgment_1": false,
+          "judgment_2": false,
+          "judgment_3": false
+        },
+        "category": "3"
+      },
+      {
+        "question_id": "locomo_6_qa18",
+        "question": "Which books has John recommended to James?",
+        "golden_answer": "The Name of the Wind, Stormlight Archive, Kingkiller Chronicles, Expanse",
+        "generated_answer": "John has recommended the following books and series to James:\n\n- \"The Name of the Wind,\" described as a great novel with excellent writing and part of a trilogy (recommended on April 29, 2022).\n- The \"Kingkiller Chronicle\" series, which includes \"The Name of the Wind\" (recommended on June 16, 2022).\n- \"The Stormlight Archive\" fantasy series (recommended on June 16, 2022).\n- \"The Expanse\" science fiction series, described as epic (recommended on June 16, 2022).",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "1"
+      },
+      {
+        "question_id": "locomo_6_qa19",
+        "question": "Was James feeling lonely before meeting Samantha?",
+        "golden_answer": "Most likely yes, because he mentioned that the only creatures that gave him joy are dogs and he was actively trying to date.",
+        "generated_answer": "Yes, before meeting Samantha on August 9, 2022, James was experiencing a period of mixed and overwhelming emotions that included some emotional struggles, which reasonably suggests he was feeling lonely or unfulfilled in a romantic sense. Despite having support from friends and his three dogs, James’s excitement and happiness after starting his relationship with Samantha on September 3, 2022, indicate that meeting her helped alleviate his prior loneliness.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "3"
+      },
+      {
+        "question_id": "locomo_6_qa20",
+        "question": "How many charity tournaments has John organized till date?",
+        "golden_answer": "two",
+        "generated_answer": "John has organized two charity gaming tournaments to date: the first on May 7, 2022, a CS:GO tournament raising funds for a local dog shelter and homeless people, and the second on October 30, 2022, a multi-game tournament featuring Fortnite, Overwatch, and Apex Legends to raise money for a children’s hospital.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "1"
+      },
+      {
+        "question_id": "locomo_6_qa21",
+        "question": "When did John first organize a charity tournament with his friends?",
+        "golden_answer": "May 7, 2022",
+        "generated_answer": "John first organized a charity tournament with his friends on May 7, 2022. This tournament was for their favorite game, CS:GO, and successfully raised money for a local dog shelter near John's residence, with remaining funds used to help homeless people.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "2"
+      },
+      {
+        "question_id": "locomo_6_qa22",
+        "question": "Who or which organizations have been the beneficiaries of John's charity tournaments?",
+        "golden_answer": "animal shelter, homeless, children's hospital",
+        "generated_answer": "John’s charity tournaments have benefited multiple organizations and groups: the CS:GO tournament on May 7, 2022, raised money primarily for a local dog shelter near John’s residence and also supported homeless people by providing groceries and food; the gaming tournament on October 30, 2022, raised funds for a children’s hospital. Additionally, John volunteered programming skills for a charitable foundation helping children, reflecting his ongoing support for children’s causes.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "1"
+      },
+      {
+        "question_id": "locomo_6_qa23",
+        "question": "When will John start his new job?",
+        "golden_answer": "In July, 2022",
+        "generated_answer": "John will start his new job in July 2022.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "2"
+      },
+      {
+        "question_id": "locomo_6_qa24",
+        "question": "What kind of games has James tried to develop?",
+        "golden_answer": "football simulator, virtual world inspired by Witcher 3",
+        "generated_answer": "James has developed a variety of games including his first released game inspired by The Witcher 3, which likely features RPG elements; a Unity strategy game completed by September 1, 2022, motivated by Civilization and Total War; and he has a childhood dream project to create a comic-based computer game combining storytelling and gaming. Additionally, James has experience creating game mods using Python and C++. He is eager to develop more games across different genres and experiment with new ideas, demonstrating a diverse and evolving game development portfolio.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "1"
+      },
+      {
+        "question_id": "locomo_6_qa25",
+        "question": "Are John and James fans of the same football team?",
+        "golden_answer": "No, James is a Liverpool fan and John is a Manchester City fan.",
+        "generated_answer": "No, John and James are not fans of the same football team. James is a passionate Liverpool fan who never misses a match and hopes for Liverpool's championship success, while John supports Manchester City and predicts a championship battle between Manchester City and Liverpool, confidently backing Manchester City. Their conversation on June 13, 2022, reflects a friendly rivalry between supporters of these two different football clubs.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "3"
+      },
+      {
+        "question_id": "locomo_6_qa26",
+        "question": "Which countries has James visited?",
+        "golden_answer": "Italy, Mexico, Turkey, Canada, Greenland",
+        "generated_answer": "James has visited the following countries: Italy (in 2021), Turkey, Mexico, Canada (specifically Toronto and Vancouver in July 2022), and Greenland (Nuuk, visited before July 22, 2022).",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "1"
+      },
+      {
+        "question_id": "locomo_6_qa27",
+        "question": "What kind of classes has James joined?",
+        "golden_answer": "game design course, cooking classes",
+        "generated_answer": "James has joined a cooking class starting on September 2, 2022, which costs $10 per session. In his first lesson, he prepared dishes including an omelette, meringue, and dough. Besides cooking, James has prior programming experience and is actively involved in programming projects, though he has not recently joined a formal programming class. Additionally, James is learning to play drums, practicing daily since late March 2022, but this is a personal hobby rather than a class.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "1"
+      },
+      {
+        "question_id": "locomo_6_qa28",
+        "question": "When did James volunteer at an organization?",
+        "golden_answer": "May 2022",
+        "generated_answer": "James volunteered at an organization that provides necessary items to less fortunate people shortly before June 19, 2022. During their conversation on the evening of June 19, 2022, James shared a photo from this volunteering experience and described it as rewarding. The organization focuses on distributing essential items to those in need, and no formal interview was required—only friendliness, politeness, and a strong desire to help. John was motivated by James's experience and planned to volunteer there the weekend following June 19, 2022.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "2"
+      },
+      {
+        "question_id": "locomo_6_qa29",
+        "question": "When did James depart for his trip to Canada?",
+        "golden_answer": "July 11, 2022",
+        "generated_answer": "James departed for his trip to Canada on the evening of July 11, 2022.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "2"
+      },
+      {
+        "question_id": "locomo_6_qa30",
+        "question": "Which country did James book tickets for in July 2022?",
+        "golden_answer": "Canada",
+        "generated_answer": "James booked air tickets to Canada in July 2022, specifically to Toronto, with a departure date of July 11, 2022. He planned to visit Toronto and Vancouver during this summer trip and intended to return on July 20, 2022.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "3"
+      },
+      {
+        "question_id": "locomo_6_qa31",
+        "question": "How many days did James plan to spend on his trip in Canada?",
+        "golden_answer": "19 days",
+        "generated_answer": "James planned to spend 9 full days on his trip in Canada, departing on the evening of July 11, 2022, and returning on July 20, 2022.",
+        "llm_judgments": {
+          "judgment_1": false,
+          "judgment_2": false,
+          "judgment_3": false
+        },
+        "category": "2"
+      },
+      {
+        "question_id": "locomo_6_qa32",
+        "question": "Where was James at on July 12, 2022?",
+        "golden_answer": "Toronto, Canada",
+        "generated_answer": "On July 12, 2022, James was in Toronto or traveling between Toronto and Vancouver as part of his summer trip that began with his departure to Toronto on the evening of July 11, 2022.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "2"
+      },
+      {
+        "question_id": "locomo_6_qa33",
+        "question": "Did John and James study together?",
+        "golden_answer": "Yes",
+        "generated_answer": "John and James did not study together. While John signed up for a programming class and they frequently discussed programming and shared resources, there is no evidence that they attended the same class or studied together formally. Their collaboration and conversations reflect mutual support and knowledge sharing rather than joint study.",
+        "llm_judgments": {
+          "judgment_1": false,
+          "judgment_2": false,
+          "judgment_3": false
+        },
+        "category": "3"
+      },
+      {
+        "question_id": "locomo_6_qa34",
+        "question": "Which countries did James visit in July 2022?",
+        "golden_answer": "Canada, Greenland",
+        "generated_answer": "In July 2022, James visited two countries: Canada—specifically the cities of Toronto and Vancouver—and Greenland, where he visited the city of Nuuk. His trip started on July 11, 2022, and he returned on July 20, 2022.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "1"
+      },
+      {
+        "question_id": "locomo_6_qa35",
+        "question": "What additional country did James visit during his trip to Canada?",
+        "golden_answer": "Greenland",
+        "generated_answer": "During his trip to Canada from July 11 to July 20, 2022, James additionally visited Greenland, specifically the city of Nuuk.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "3"
+      },
+      {
+        "question_id": "locomo_6_qa36",
+        "question": "Who is Jill?",
+        "golden_answer": "Most likely John's partner.",
+        "generated_answer": "Jill is John's partner, as mentioned by John during the conversation on July 22, 2022, when James brought souvenirs for both John and Jill.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "3"
+      },
+      {
+        "question_id": "locomo_6_qa37",
+        "question": "When did John spend time with his sister and dogs?",
+        "golden_answer": "July 21, 2022",
+        "generated_answer": "John did not spend time with his sister and dogs according to the available memories. However, James spent time with his sister and his dogs on July 21, 2022, as he shared photos and described their relaxing together during a conversation with John on July 22, 2022.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "2"
+      },
+      {
+        "question_id": "locomo_6_qa38",
+        "question": "What happened to John's job situation in 2022?",
+        "golden_answer": "quit his IT Job, secured his dream job, aspires to become an eSports competition organizer",
+        "generated_answer": "In 2022, John was employed in an IT job for three years and, as of June 13, 2022, had secured a dream job starting in July 2022. However, by August 6, 2022, John had left his IT job after three years to pursue a career more aligned with his values and passions. He transitioned to organizing computer game tournaments within their state, specifically for games like CS:GO and Fortnite. Later that year, on September 20, 2022, John also launched a startup focused on portable smokers, sharing his first welded prototype. Despite these career changes, John remained actively engaged in programming through freelance projects, attending seminars, and organizing programming competitions throughout 2022.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "1"
+      },
+      {
+        "question_id": "locomo_6_qa39",
+        "question": "When did John start his job in IT?",
+        "golden_answer": "2019",
+        "generated_answer": "John started his job in IT around June 2019 and left it approximately in June 2022 after working there for three years.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "2"
+      },
+      {
+        "question_id": "locomo_6_qa40",
+        "question": "What kind of tricks do James's pets know?",
+        "golden_answer": "swimming, catching frisbees, balancing on a skateboard, sit, stay, paw, and rollover",
+        "generated_answer": "James’s dogs know the basic tricks sit, stay, paw, and rollover. Max, one of the dogs, has a special talent for catching frisbees mid-air without missing. Additionally, James has taught his dogs to balance on skateboards and enjoy skateboarding by chasing and running with the skateboard.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "1"
+      },
+      {
+        "question_id": "locomo_6_qa41",
+        "question": "When did James meet Samantha?",
+        "golden_answer": "August 9, 2022",
+        "generated_answer": "James met Samantha on August 9, 2022, at a beach outing where he took his three dogs.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "2"
+      },
+      {
+        "question_id": "locomo_6_qa42",
+        "question": "When did James take his 3 dogs to the beach?",
+        "golden_answer": "August 9, 2022",
+        "generated_answer": "James took his three dogs—Max, Daisy, and Ned—to the beach on August 9, 2022.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "2"
+      },
+      {
+        "question_id": "locomo_6_qa43",
+        "question": "When did John plan his next meeting with his siblings?",
+        "golden_answer": "In September, 2022",
+        "generated_answer": "John planned his next meeting with his siblings as a gaming night scheduled for September 2022, as confirmed in his conversation with James on August 21, 2022.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "2"
+      },
+      {
+        "question_id": "locomo_6_qa44",
+        "question": "Why didn't John want to go to Starbucks?",
+        "golden_answer": "Possibly because he likes to drink beer on his days off.",
+        "generated_answer": "John did not want to go to Starbucks because he preferred having a beer instead of coffee and suggested meeting somewhere to have a beer. When James proposed Starbucks for coffee, John questioned that choice and expressed a preference for beer, which led them to agree on meeting at McGee's Pub instead.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "3"
+      },
+      {
+        "question_id": "locomo_6_qa45",
+        "question": "What kind of beer does McGee's bar serve?",
+        "golden_answer": "Stout, lager",
+        "generated_answer": "McGee's bar serves a variety of beers including a great stout, light beers, and specifically lager beer, which Samantha discovered she liked during a visit there.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "1"
+      },
+      {
+        "question_id": "locomo_6_qa46",
+        "question": "When did John and James meet at McGee's bar?",
+        "golden_answer": "August 27, 2022",
+        "generated_answer": "John and James met at McGee's Pub on August 27, 2022 (Saturday), which was John's day off. This meeting was planned on August 26, 2022, when James proposed McGee's Pub and John agreed to meet there the next day.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "2"
+      },
+      {
+        "question_id": "locomo_6_qa47",
+        "question": "When did James ask Samantha to be his girlfriend?",
+        "golden_answer": "September 3, 2022",
+        "generated_answer": "James asked Samantha to be his girlfriend on September 3, 2022, at a theater.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "2"
+      },
+      {
+        "question_id": "locomo_6_qa48",
+        "question": "When did James, Samantha and John go to the baseball game together?",
+        "golden_answer": "September 11, 2022",
+        "generated_answer": "James, Samantha, and John went to the baseball game together on Sunday, September 11, 2022.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "2"
+      },
+      {
+        "question_id": "locomo_6_qa49",
+        "question": "What gaming equipments did John buy or refurbish?",
+        "golden_answer": "Sennheiser headphones, Logitech mouse, gaming desk",
+        "generated_answer": "John refurbished his gaming desk and upgraded his gaming setup by August 21, 2022, which included a gaming PC with a powerful graphics card, a gaming chair, keyboard, and headset. Later, on September 4, 2022, he purchased new gaming equipment consisting of Sennheiser headphones and a Logitech mouse to improve his gaming skills.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "1"
+      },
+      {
+        "question_id": "locomo_6_qa50",
+        "question": "When did James start taking cooking classes?",
+        "golden_answer": "September 2, 2022",
+        "generated_answer": "James started taking cooking classes on September 2, 2022.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "2"
+      },
+      {
+        "question_id": "locomo_6_qa51",
+        "question": "Which new games did John start play during the course of the conversation with James?",
+        "golden_answer": "AC Valhalla, Witcher 3, FIFA 23, Dungeons of the Dragons, futuristic dystopian game",
+        "generated_answer": "During the course of the conversation with James, John started playing several new games and game types: VR gaming (planned for March 26, 2022), a new RPG with a futuristic dystopia setting (discussed April 12, 2022), Assassin's Creed Valhalla (April 29, 2022), a social deduction game involving impostors (likely Among Us) (April 29 and May 4, 2022), CS:GO (organized a charity tournament on May 7, 2022), chess (started July 22, 2022), The Witcher 3 RPG (August 10, 2022), Cyberpunk 2077 (October 3 and 21, 2022), and FIFA 23 online (November 5, 2022). This progression reflects John’s expanding interest in diverse gaming genres including VR, RPGs, strategy, shooters, social deduction, and sports games.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "1"
+      },
+      {
+        "question_id": "locomo_6_qa52",
+        "question": "When did John start working on his 2D Adventure mobile game?",
+        "golden_answer": "approximately summer of 2022",
+        "generated_answer": "John started working on his 2D adventure mobile game approximately in June or July 2022, as he stated on September 20, 2022, that he had been working on it for several months by that date.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "2"
+      },
+      {
+        "question_id": "locomo_6_qa53",
+        "question": "How long did it take for James to complete his Witcher-inspired game?",
+        "golden_answer": "six months",
+        "generated_answer": "James took several months to complete his Witcher-inspired game, beginning work at least by early 2022, completing the main project by April 2022 after several months of effort, and officially releasing the game on October 13, 2022—indicating a total development period of approximately 6 to 7 months or longer.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "2"
+      },
+      {
+        "question_id": "locomo_6_qa54",
+        "question": "What kind of programming-related events has John hosted?",
+        "golden_answer": "online programming competition, programming seminar",
+        "generated_answer": "John has hosted several programming-related events including an online programming competition during October 6-12, 2022, and a programming seminar during October 14-20, 2022. He also volunteers as a programming mentor at a game development non-profit and teaches coding to his younger siblings. In addition to programming events, John organizes gaming tournaments such as a charity gaming tournament on October 30, 2022, featuring Fortnite, Overwatch, and Apex Legends to raise funds for a children's hospital. Earlier, in August 2022, he planned to organize gaming tournaments for CS:GO and Fortnite. These events highlight John's active role in programming education, community engagement, and gaming event organization.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "1"
+      },
+      {
+        "question_id": "locomo_6_qa55",
+        "question": "When did John and his programming friends host an online programming competition?",
+        "golden_answer": "Last week before 13 October 2022.",
+        "generated_answer": "John and his programmer friends hosted an online programming competition during the week of October 6 to October 12, 2022.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "2"
+      },
+      {
+        "question_id": "locomo_6_qa56",
+        "question": "Which of James's family members have visited him in the last year?",
+        "golden_answer": "mother, sister",
+        "generated_answer": "Within the last year, James's mother visited him on October 19, 2022, accompanied by her retired army friend. James's sister also visited him on July 21, 2022, spending time together with his dogs. Furthermore, James went on a family road trip starting November 4, 2022, indicating that multiple family members were with him during that time.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "1"
+      },
+      {
+        "question_id": "locomo_6_qa57",
+        "question": "When did James' mother and her friend visit him?",
+        "golden_answer": "October 19, 2022",
+        "generated_answer": "James's mother and her army friend visited him on October 19, 2022.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "2"
+      },
+      {
+        "question_id": "locomo_6_qa58",
+        "question": "When did James try Cyberpunk 2077 game?",
+        "golden_answer": "October 20, 2022",
+        "generated_answer": "James tried playing Cyberpunk 2077 for the first time on October 20, 2022.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "2"
+      },
+      {
+        "question_id": "locomo_6_qa59",
+        "question": "When did John and his gaming friends organize the charity tournament?",
+        "golden_answer": "On the night of October 30 to 31, 2022",
+        "generated_answer": "John and his gaming friends organized charity tournaments on May 7, 2022 (a CS:GO tournament benefiting a local dog shelter and homeless people) and on October 30, 2022 (a tournament featuring Fortnite, Overwatch, and Apex Legends to raise funds for a children's hospital).",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "2"
+      },
+      {
+        "question_id": "locomo_6_qa60",
+        "question": "What games has John played with his friends at charity tournaments?",
+        "golden_answer": "CS:GO, Fortnite, Overwatch and Apex Legends",
+        "generated_answer": "John has played the following games with his friends at charity tournaments: Counter-Strike: Global Offensive (CS:GO) on May 7, 2022, to raise money for a local dog shelter and homeless people; and Fortnite, Overwatch, and Apex Legends on October 30, 2022, to raise funds for a children’s hospital.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "1"
+      },
+      {
+        "question_id": "locomo_6_qa61",
+        "question": "What was James' big moment with Samantha in October 2023?",
+        "golden_answer": "They decided to live together and rented an apartment not far from McGee's bar.",
+        "generated_answer": "There is no information in the available memories about any big moment involving James and Samantha in October 2023. The latest significant event recorded is that on October 31, 2022, James and Samantha mutually decided to move in together, renting an apartment near McGee's bar, a location they both enjoy.",
+        "llm_judgments": {
+          "judgment_1": false,
+          "judgment_2": false,
+          "judgment_3": false
+        },
+        "category": "2"
+      },
+      {
+        "question_id": "locomo_6_qa62",
+        "question": "How long did James and Samantha date for before deciding to move in together?",
+        "golden_answer": "nearly three months",
+        "generated_answer": "James and Samantha dated officially for approximately 1 month and 28 days—from September 3, 2022, when James asked Samantha to be his girlfriend, until October 31, 2022, when they decided to move in together near McGee's bar.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "2"
+      },
+      {
+        "question_id": "locomo_6_qa63",
+        "question": "When did James, his family and his dogs start on a road trip together?",
+        "golden_answer": "November 4, 2022",
+        "generated_answer": "James, his family, and his three dogs started their road trip together on November 4, 2022.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "2"
+      },
+      {
+        "question_id": "locomo_6_qa64",
+        "question": "How long did John practice chess for before winning the chess tournament?",
+        "golden_answer": "nearly four months",
+        "generated_answer": "John practiced chess for about three and a half months before winning the regional chess tournament on November 1, 2022, having started playing recently around mid to late July 2022.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "2"
+      },
+      {
+        "question_id": "locomo_6_qa65",
+        "question": "When did James and his family visit Mark and Josh?",
+        "golden_answer": "November 7, 2022",
+        "generated_answer": "James and his family visited Mark and Josh during their road trip that started on November 4, 2022, with the visit having taken place by November 7, 2022.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "2"
+      },
+      {
+        "question_id": "locomo_6_qa66",
+        "question": "When did John work with a game developer on a project?",
+        "golden_answer": "November 5-6, 2022",
+        "generated_answer": "John worked with a game developer on a project involving an online board game demo, which he discussed with James on November 7, 2022 (Monday) at 9:00 PM UTC. The project featured a wooden board game with four wooden pieces and four colored balls, and John described the experience as incredible and fun, expressing eagerness to release the demo soon and receive feedback.",
+        "llm_judgments": {
+          "judgment_1": false,
+          "judgment_2": false,
+          "judgment_3": false
+        },
+        "category": "2"
+      },
+      {
+        "question_id": "locomo_6_qa67",
+        "question": "What programming languages has James worked with?",
+        "golden_answer": "Python and C++",
+        "generated_answer": "James has worked with the programming languages Python and C++ as of March 17, 2022, having built a website and developed game modifications using these languages. He has also been involved with HTML in his game development projects, collaborating with John on HTML aspects. By September 1, 2022, James completed a Unity strategy game, indicating he has experience with C#, the primary language used in Unity development. Thus, James’s programming languages include Python, C++, HTML (collaboratively), and C#.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "4"
+      },
+      {
+        "question_id": "locomo_6_qa68",
+        "question": "What type of mobile application does James plan to build with John?",
+        "golden_answer": "An app for dog walking and pet care",
+        "generated_answer": "James plans to build a personalized dog care mobile application with John that connects pet owners with reliable dog walkers and offers helpful pet care information. The app’s unique feature is its personal touch, allowing users to customize it based on their dog’s preferences and needs, making it uniquely tailored for each owner and pet. The dogs Max and Daisy, James’s pets, inspired this idea.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "4"
+      },
+      {
+        "question_id": "locomo_6_qa69",
+        "question": "How does James plan to make his dog-sitting app unique?",
+        "golden_answer": "By allowing users to customize their pup's preferences/needs",
+        "generated_answer": "James plans to make his dog-sitting app unique by including a personal touch that enables users to customize the app based on their dog’s specific preferences and needs. This customization makes the app distinct from existing ones by providing a tailored experience for each dog and owner, enhancing the connection between pet owners and reliable dog walkers while offering helpful pet care information.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "4"
+      },
+      {
+        "question_id": "locomo_6_qa70",
+        "question": "What has John mostly found with the metal detector so far?",
+        "golden_answer": "bottle caps",
+        "generated_answer": "John has mostly found bottle caps with his metal detector so far while walking along beaches. Occasionally, he has discovered coins, and once he found a gold ring.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "4"
+      },
+      {
+        "question_id": "locomo_6_qa71",
+        "question": "What did James offer to do for John regarding pets?",
+        "golden_answer": "help find the perfect pet",
+        "generated_answer": "On March 20, 2022, James offered to help John find the perfect pet by providing support and guidance based on his own experience with his dogs Max and Daisy. He encouraged John to reach out whenever he needed assistance, expressing confidence that John would be a great pet parent and emphasizing the love and companionship pets bring to life.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "4"
+      },
+      {
+        "question_id": "locomo_6_qa72",
+        "question": "What instrument is John learning to play as of 27 March, 2022?",
+        "golden_answer": "Drums",
+        "generated_answer": "As of March 27, 2022, John is learning to play the drums and has been playing for one month.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "4"
+      },
+      {
+        "question_id": "locomo_6_qa73",
+        "question": "How long has John been playing the drums as of 27 March, 2022?",
+        "golden_answer": "One month",
+        "generated_answer": "As of March 27, 2022, John has been playing the drums for one month, indicating he began around late February 2022.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "4"
+      },
+      {
+        "question_id": "locomo_6_qa74",
+        "question": "What game did John play in an intense tournament at the gaming convention in March 2022?",
+        "golden_answer": "CS:GO",
+        "generated_answer": "John played in an intense Counter-Strike: Global Offensive (CS:GO) tournament at the gaming convention in March 2022.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "4"
+      },
+      {
+        "question_id": "locomo_6_qa75",
+        "question": "What game was James playing in the online gaming tournament in April 2022?",
+        "golden_answer": "Apex Legends",
+        "generated_answer": "James was playing Apex Legends in the online gaming tournament held on April 3, 2022.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "4"
+      },
+      {
+        "question_id": "locomo_6_qa76",
+        "question": "How does James communicate with his gaming team?",
+        "golden_answer": "voice chat",
+        "generated_answer": "James typically communicates with his gaming team using voice chat because it is fast and facilitates effective teamwork. This approach was reinforced during an online gaming tournament on April 3, 2022, when a team member advised him to communicate effectively and never let ego override team success. James plays fast-paced games like Apex Legends with his team, where voice chat enables quick and clear communication essential for good teamwork.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "4"
+      },
+      {
+        "question_id": "locomo_6_qa77",
+        "question": "What advice did James receive from the famous players he met at the tournament?",
+        "golden_answer": "never put your ego above team success",
+        "generated_answer": "James received advice from a member of the famous gaming team he met at the April 3, 2022 online tournament emphasizing the importance of communicating effectively with the team and never letting ego override team success.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "4"
+      },
+      {
+        "question_id": "locomo_6_qa78",
+        "question": "What did James adopt in April 2022?",
+        "golden_answer": "a pup",
+        "generated_answer": "In April 2022, James adopted a pup named Ned from a shelter in Stamford during the week of March 28 to April 3, 2022.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "4"
+      },
+      {
+        "question_id": "locomo_6_qa79",
+        "question": "What is the name of the pup that was adopted by James?",
+        "golden_answer": "Ned",
+        "generated_answer": "The name of the pup adopted by James is Ned. He adopted Ned from a shelter in Stamford during the week of March 28 to April 3, 2022.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "4"
+      },
+      {
+        "question_id": "locomo_6_qa80",
+        "question": "Why did James embody the appearance of the game character from the woman he saw during a walk?",
+        "golden_answer": "He found her appearance and eyes amazing.",
+        "generated_answer": "James embodied the appearance of the female game character from the woman he saw during a walk around April 6, 2022, because her eyes and appearance amazed him so much that he felt like he fell in love at first sight. Although he did not approach her, the strong emotional impression she made inspired him to capture her look in the game character he created, linking his real-life experience to his creative programming project.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "4"
+      },
+      {
+        "question_id": "locomo_6_qa81",
+        "question": "What inspired James to create the game character in the virtual world?",
+        "golden_answer": "Appearance of a woman he saw during a walk",
+        "generated_answer": "James was inspired to create the female game character in the virtual world by a real-life stranger he encountered during a walk with his dogs in his neighborhood around April 6, 2022. The stranger’s striking eyes and appearance amazed him so much that he felt like he fell in love at first sight, and he embodied this impression in the character’s design. This character was part of a programming project inspired by the immersive world and story of the video game The Witcher 3, which served as a major source of creative inspiration for James.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "4"
+      },
+      {
+        "question_id": "locomo_6_qa82",
+        "question": "Which country did James visit in 2021?",
+        "golden_answer": "Italy",
+        "generated_answer": "James visited Italy in 2021.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "4"
+      },
+      {
+        "question_id": "locomo_6_qa83",
+        "question": "What impresses John about Japan?",
+        "golden_answer": "Technologically advanced megacities and tasty street food",
+        "generated_answer": "John is impressed by Japan’s megacities for their technological advancement, the huge screens on buildings, and the tasty street food available there.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "4"
+      },
+      {
+        "question_id": "locomo_6_qa84",
+        "question": "What kind of assignment was giving John a hard time at work?",
+        "golden_answer": "Coding assignment",
+        "generated_answer": "John was having a hard time with a challenging coding assignment at work involving the development of a website for a local small business. Specifically, he struggled with improving a new algorithm and integrating payment functionality into the website. The complexity of the coding and the difficulty in making progress on these tasks caused him frustration and made the assignment particularly hard.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "4"
+      },
+      {
+        "question_id": "locomo_6_qa85",
+        "question": "What breed is Daisy, one of James' dogs?",
+        "golden_answer": "Labrador",
+        "generated_answer": "Daisy, one of James's dogs, is a Labrador.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "4"
+      },
+      {
+        "question_id": "locomo_6_qa86",
+        "question": "What type of pizza is James' favorite?",
+        "golden_answer": "Pepperoni",
+        "generated_answer": "James's favorite type of pizza is pepperoni pizza, which he appreciates for its combination of spicy salami and cheese. He also enjoys cheese pizza and prosciutto pizza but considers pepperoni his top choice.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "4"
+      },
+      {
+        "question_id": "locomo_6_qa87",
+        "question": "What type of pizza is John's favorite?",
+        "golden_answer": "Hawaiian",
+        "generated_answer": "John's favorite type of pizza is Hawaiian pizza, which is topped with pineapples and ham, appreciated for its sweet and salty flavor blend.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "4"
+      },
+      {
+        "question_id": "locomo_6_qa88",
+        "question": "What did John organize with his friends on May 8, 2022?",
+        "golden_answer": "A tournament for CS:GO",
+        "generated_answer": "On May 7, 2022, John organized a CS:GO (Counter-Strike: Global Offensive) tournament with his friends that attracted many participants and successfully raised money for charity. The funds primarily supported a local dog shelter near John’s residence, and the remaining money was used to buy groceries and prepare food for homeless people.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "4"
+      },
+      {
+        "question_id": "locomo_6_qa89",
+        "question": "What did John and his friends do with the remaining money after helping the dog shelter?",
+        "golden_answer": "Bought groceries and cooked food for the homeless",
+        "generated_answer": "After helping the local dog shelter near his residence with the funds raised from the CS:GO charity tournament on May 7, 2022, John and his friends used the remaining money to buy groceries and prepare food for homeless people, who were very appreciative.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "4"
+      },
+      {
+        "question_id": "locomo_6_qa90",
+        "question": "What was the main goal of the money raised from the charity tournament organized by John and his friends in May 2022?",
+        "golden_answer": "Raise money for a dog shelter",
+        "generated_answer": "The main goal of the money raised from the charity tournament organized by John and his friends on May 7, 2022, was to raise funds for a local dog shelter near John's residence. After supporting the dog shelter, the remaining funds were used to buy groceries and prepare food for homeless people.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "4"
+      },
+      {
+        "question_id": "locomo_6_qa91",
+        "question": "What did the system John created help the charitable foundation with?",
+        "golden_answer": "tracking inventory, resources, and donations",
+        "generated_answer": "The system John created helped the charitable foundation by transforming their previously manual, paper-based inventory system into a smartphone application that consolidated all inventory tracking, resources, and donations. This enabled smoother operations and allowed the foundation to generate reports for analysis, thereby streamlining their inventory management and improving operational efficiency.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "4"
+      },
+      {
+        "question_id": "locomo_6_qa92",
+        "question": "What did John create for the charitable foundation that helped generate reports for analysis?",
+        "golden_answer": "computer application on smartphones",
+        "generated_answer": "John developed a smartphone application for the charitable foundation that transformed their manual, paper-based inventory system into a consolidated digital system for tracking inventory, resources, and donations. This software enabled smoother operations and generated reports for analysis.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "4"
+      },
+      {
+        "question_id": "locomo_6_qa93",
+        "question": "What did John receive for achieving second place in the tournament?",
+        "golden_answer": "money and a trophy",
+        "generated_answer": "John received a monetary prize (amount unspecified) and a trophy depicting a graduation cap on a book tied with a rope for achieving second place in the local tournament held on May 20, 2022.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "4"
+      },
+      {
+        "question_id": "locomo_6_qa94",
+        "question": "What project is James working on in his game design course?",
+        "golden_answer": "a new part of the football simulator, collecting player databases",
+        "generated_answer": "James is working on a project developing a new part of a football simulator in his game design course, specifically focusing on collecting player databases. He finds this task difficult but rewarding. This project aligns with the course he started by June 13, 2022, which combines his passions for gaming and programming.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "4"
+      },
+      {
+        "question_id": "locomo_6_qa95",
+        "question": "Who does James support in football matches?",
+        "golden_answer": "Liverpool",
+        "generated_answer": "James supports Liverpool football club in football matches. He is a passionate fan who never misses a Liverpool match and considers Liverpool the best football club.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "4"
+      },
+      {
+        "question_id": "locomo_6_qa96",
+        "question": "Which football club does John support?",
+        "golden_answer": "Manchester City",
+        "generated_answer": "John supports the football club Manchester City.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "4"
+      },
+      {
+        "question_id": "locomo_6_qa97",
+        "question": "What disagreement do James and John have about their football teams?",
+        "golden_answer": "debating on which team will perform better in the championship",
+        "generated_answer": "James and John disagree about which football team will win the championship next season. James passionately supports Liverpool, never misses a match, and predicts Liverpool will finish higher in the final standings. He criticizes Manchester City’s current form and transfer policy. John, a Manchester City fan, predicts a championship battle between Liverpool and Manchester City but confidently expects Manchester City to win, defending their manager despite James’s criticism. They accept this as a friendly bet, reflecting their rivalry and mutual enthusiasm for their teams. This discussion took place on June 13, 2022.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "4"
+      },
+      {
+        "question_id": "locomo_6_qa98",
+        "question": "What is Max good at doing according to James?",
+        "golden_answer": "catching frisbees in mid-air",
+        "generated_answer": "According to James, Max is good at swimming—he loves swimming at the beach or lake and is a skilled swimmer—and has a special talent for catching frisbees mid-air without missing.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "4"
+      },
+      {
+        "question_id": "locomo_6_qa99",
+        "question": "What is the main focus of the organization that James volunteered with?",
+        "golden_answer": "providing necessary items to those who are less fortunate",
+        "generated_answer": "The main focus of the organization that James volunteered with is distributing essential items to less fortunate people, providing necessary goods to those in need.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "4"
+      },
+      {
+        "question_id": "locomo_6_qa100",
+        "question": "Will there be an interview required to volunteer with the organization James volunteered for?",
+        "golden_answer": "No",
+        "generated_answer": "No, there will not be an interview required to volunteer with the organization James volunteered for. According to James on June 19, 2022, the only prerequisites are being friendly, polite, and having a strong desire to help others.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "4"
+      },
+      {
+        "question_id": "locomo_6_qa101",
+        "question": "How did John relax in his free time on 9 July, 2022?",
+        "golden_answer": "Reading",
+        "generated_answer": "On July 9, 2022, John relaxed in his free time by reading books and playing guitar. He shared an image of a bookshelf filled with books and a guitar, explaining that reading helped him escape into imaginative worlds, making it his preferred way to unwind.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "4"
+      },
+      {
+        "question_id": "locomo_6_qa102",
+        "question": "What did James enjoy doing on cold winter days?",
+        "golden_answer": "Reading while snuggled under the covers",
+        "generated_answer": "James usually enjoys reading while snuggled under covers on cold winter days.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "4"
+      },
+      {
+        "question_id": "locomo_6_qa103",
+        "question": "What new hobby did James become interested in on 9 July, 2022?",
+        "golden_answer": "Extreme sports",
+        "generated_answer": "On July 9, 2022, James had become interested in the new hobby of extreme sports, specifically engaging in rope jumping from a height of 150 meters on July 8, 2022, and surfing on July 6, 2022.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "4"
+      },
+      {
+        "question_id": "locomo_6_qa104",
+        "question": "Where did James plan to visit after Toronto?",
+        "golden_answer": "Vancouver",
+        "generated_answer": "After Toronto, James planned to visit Vancouver during his summer trip departing on July 11, 2022, with a return date of July 20, 2022.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "4"
+      },
+      {
+        "question_id": "locomo_6_qa105",
+        "question": "When did James plan to return from his trip to Toronto and Vancouver?",
+        "golden_answer": "July 20",
+        "generated_answer": "James planned to return from his trip to Toronto and Vancouver on July 20, 2022.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "4"
+      },
+      {
+        "question_id": "locomo_6_qa106",
+        "question": "What online game did John start playing recently for improving strategy?",
+        "golden_answer": "Chess",
+        "generated_answer": "John recently started playing chess primarily online to improve his strategic thinking, as of mid-2022. He also joined a chess club to practice with others and won a regional chess tournament on November 1, 2022, demonstrating his progress and commitment to the game.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "4"
+      },
+      {
+        "question_id": "locomo_6_qa107",
+        "question": "What made John leave his IT job?",
+        "golden_answer": "to focus on things that align with his values and passions",
+        "generated_answer": "John left his IT job after three years because he wanted to pursue work that aligned with his values and made a meaningful difference. He found the decision difficult but necessary, as he sought a career that truly made him happy. This led him to follow his passion for gaming by planning to organize computer game tournaments like CS:GO and Fortnite within their state, and to engage in volunteer programming roles for charitable and non-profit organizations, combining his skills with his desire to have a positive impact on the world.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "4"
+      },
+      {
+        "question_id": "locomo_6_qa108",
+        "question": "Which game tournaments does John plan to organize besides CS:GO?",
+        "golden_answer": "Fortnite competitions",
+        "generated_answer": "Besides CS:GO, John plans to organize tournaments for Fortnite, Overwatch, Apex Legends, and is contemplating competitions for strategy and RPG games. He has already organized a tournament featuring Fortnite, Overwatch, and Apex Legends as of October 30, 2022, and is exploring expanding into other game genres beyond shooters.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "4"
+      },
+      {
+        "question_id": "locomo_6_qa109",
+        "question": "What happened to James's puppy during the recent visit to the clinic?",
+        "golden_answer": "routine examination and vaccination",
+        "generated_answer": "On August 5, 2022, James took his puppy Ned to the clinic for a routine veterinary examination during which Ned was vaccinated to prevent seasonal canine disease. The visit was a standard health check, and Ned was reported to be healthy and well.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "4"
+      },
+      {
+        "question_id": "locomo_6_qa110",
+        "question": "What game genre did John start exploring instead of shooters?",
+        "golden_answer": "strategy and RPG games",
+        "generated_answer": "John started exploring the strategy and role-playing game (RPG) genres instead of his usual shooters.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "4"
+      },
+      {
+        "question_id": "locomo_6_qa111",
+        "question": "Which RPG game is John playing and enjoying on 10 August, 2022?",
+        "golden_answer": "The Witcher 3",
+        "generated_answer": "On August 10, 2022, John was playing and enjoying the RPG game \"The Witcher 3.\" He described it as having amazing storytelling and characters, with the main character being an awesome monster hunter. John was deeply immersed in the game, actively making choices to shape the game world.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "4"
+      },
+      {
+        "question_id": "locomo_6_qa112",
+        "question": "What aspect of \"The Witcher 3\" does John find immersive?",
+        "golden_answer": "shaping the world with choices",
+        "generated_answer": "John finds \"The Witcher 3\" immersive because of its amazing storytelling, compelling characters, and the impactful choice-driven narrative that lets him shape the game world. The game's immersive world and compelling story deeply engage him, making the experience highly absorbing.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "4"
+      },
+      {
+        "question_id": "locomo_6_qa113",
+        "question": "Whose phone number did James receive during the beach outing?",
+        "golden_answer": "Samantha",
+        "generated_answer": "James received the phone number of a beautiful girl named Samantha during the beach outing on August 9, 2022.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "4"
+      },
+      {
+        "question_id": "locomo_6_qa114",
+        "question": "What is James planning to do after receiving Samantha's phone number?",
+        "golden_answer": "call her",
+        "generated_answer": "After receiving Samantha's phone number at the beach outing on August 9, 2022, James planned to call her on August 11, 2022 to ask her out on a date.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "4"
+      },
+      {
+        "question_id": "locomo_6_qa115",
+        "question": "What is John organizing with his siblings?",
+        "golden_answer": "a gaming night",
+        "generated_answer": "John is organizing coding education and programming projects with his younger siblings. Since they joined a programming course, he has been teaching them coding and collaborating on a simple text-based adventure game to help them learn while having fun. By September 1, 2022, his siblings were already creating their own small programs, such as basic games and stories. Additionally, John organizes gaming nights with his siblings occasionally when they are together, fostering family connection through gaming.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "4"
+      },
+      {
+        "question_id": "locomo_6_qa116",
+        "question": "What type of beer does John not like?",
+        "golden_answer": "dark beer",
+        "generated_answer": "John does not like dark beer.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "4"
+      },
+      {
+        "question_id": "locomo_6_qa117",
+        "question": "What were some difficulties James faced during the development of his game?",
+        "golden_answer": "balancing mechanics and ensuring fairness",
+        "generated_answer": "James faced several difficulties during the development of his game. Around April 29, 2022, he encountered a major bug in the code that disrupted game mechanics and could not fix it alone, leading him to collaborate with friends to resolve the issue. He also found balancing game mechanics and ensuring fairness challenging, requiring trial and error. Additionally, James had to learn a new programming language and manage many intricate details, which added complexity to the project. A practical difficulty occurred on October 18, 2022, when a power outage caused him to lose game progress because he forgot to save. Throughout the process, perseverance, patience, collaboration, and feedback were crucial in overcoming these challenges.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "4"
+      },
+      {
+        "question_id": "locomo_6_qa118",
+        "question": "What has John been teaching his siblings?",
+        "golden_answer": "coding",
+        "generated_answer": "John has been teaching his siblings coding, focusing on practical programming projects. Since his siblings joined a programming course, he has helped them create simple programs, including a simple text-based adventure game, basic games, and stories to facilitate their learning. This hands-on approach has enabled his siblings to start making their own programs, and John finds the teaching experience fulfilling.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "4"
+      },
+      {
+        "question_id": "locomo_6_qa119",
+        "question": "What kind of programs are John's siblings making?",
+        "golden_answer": "basic games and stories",
+        "generated_answer": "John's siblings are making beginner-level programs that include basic games and stories. Specifically, they are collaborating on a simple text-based adventure game designed to help them learn programming while enjoying the process. These projects reflect their rapid progress and shared enthusiasm for video games.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "4"
+      },
+      {
+        "question_id": "locomo_6_qa120",
+        "question": "Which company's headphones did John choose for gaming?",
+        "golden_answer": "Sennheiser",
+        "generated_answer": "John chose headphones from the company Sennheiser for gaming.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "4"
+      },
+      {
+        "question_id": "locomo_6_qa121",
+        "question": "What did James and Samantha discover they both enjoy at McGee's bar?",
+        "golden_answer": "Lager beer",
+        "generated_answer": "James and Samantha discovered that they both enjoy spending time at McGee's bar, with Samantha specifically discovering her liking for lager beer there. Their shared fondness for McGee's bar was significant enough that by October 31, 2022, they decided to rent an apartment located not far from the bar.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "4"
+      },
+      {
+        "question_id": "locomo_6_qa122",
+        "question": "How much does James pay per cooking class?",
+        "golden_answer": "$10",
+        "generated_answer": "James pays $10 per cooking class session.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "4"
+      },
+      {
+        "question_id": "locomo_6_qa123",
+        "question": "What did James learn to make in the cooking class besides omelette and meringue?",
+        "golden_answer": "Dough",
+        "generated_answer": "Besides omelette and meringue, James learned how to make dough in the cooking class.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "4"
+      },
+      {
+        "question_id": "locomo_6_qa124",
+        "question": "Why did James sign up for a cooking class?",
+        "golden_answer": "He wanted to learn something new",
+        "generated_answer": "James signed up for the cooking class on September 2, 2022, because he wanted to learn something new despite previously disliking cooking. His motivation was driven by a desire for self-improvement and acquiring new skills. The class cost $10 per session, and during his first lesson, he prepared dishes such as an omelette, meringue, and dough. James expressed enthusiasm about developing his cooking skills and hoped to treat John to his creations in the future.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "4"
+      },
+      {
+        "question_id": "locomo_6_qa125",
+        "question": "What did James prepare for the first time in the cooking class?",
+        "golden_answer": "Omelette",
+        "generated_answer": "On September 2, 2022, during his first cooking class, James prepared a great omelette for the first time. He also made meringue and learned how to make dough during that class.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "4"
+      },
+      {
+        "question_id": "locomo_6_qa126",
+        "question": "What is the name of the board game John tried in September 2022?",
+        "golden_answer": "Dungeons of the Dragon",
+        "generated_answer": "The name of the board game John tried in September 2022 is \"Dungeons of the Dragon.\"",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "4"
+      },
+      {
+        "question_id": "locomo_6_qa127",
+        "question": "Where does James get his ideas from?",
+        "golden_answer": "books, movies, dreams",
+        "generated_answer": "James gets his ideas from multiple sources including books, movies, and dreams—he described a vivid dream about a medieval castle with puzzles that sparked creative ideas. He is also inspired by video games, notably The Witcher 3 and strategy games like Civilization and Total War. Childhood influences such as comic sketches and real-life experiences, like meeting a stranger during a walk, further inspire his creativity. To support his process, James regularly writes down everything he needs to do in a notebook, helping him organize and develop his ideas.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "4"
+      },
+      {
+        "question_id": "locomo_6_qa128",
+        "question": "What kind of dream did James have recently?",
+        "golden_answer": "a dream with a medieval castle full of puzzles and traps",
+        "generated_answer": "James recently had a vivid and crazy dream around late August 2022 about a medieval castle with a labyrinth full of puzzles and traps, which he likened to playing a video game in real life. This dream inspired creative ideas, leading him to make sketches and notes, including a drawing of a guitar, which he shared with John on September 18, 2022.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "4"
+      },
+      {
+        "question_id": "locomo_6_qa129",
+        "question": "What kind of music does John like?",
+        "golden_answer": "electronic and rock music",
+        "generated_answer": "John likes electronic and rock music. He used to play drums in his youth and resumed playing drums as of March 2022, which aligns with his preference for these music genres.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "4"
+      },
+      {
+        "question_id": "locomo_6_qa130",
+        "question": "What instrument did James used to play when he was younger?",
+        "golden_answer": "guitar",
+        "generated_answer": "James used to play the guitar when he was younger.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "4"
+      },
+      {
+        "question_id": "locomo_6_qa131",
+        "question": "What did John use to play when he was younger to let off steam?",
+        "golden_answer": "drums",
+        "generated_answer": "John used to play drums when he was younger as a fun way to relieve stress and let off steam.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "4"
+      },
+      {
+        "question_id": "locomo_6_qa132",
+        "question": "What career milestone did John achieve recently in September 2022?",
+        "golden_answer": "making his first mobile game",
+        "generated_answer": "In September 2022, John achieved the career milestone of creating his first mobile game, a 2D adventure with puzzles and exploration, which he announced on September 20, 2022, with a scheduled launch planned for October 2022. This accomplishment marked a major step in his career, supported by his recent purchase of Sennheiser headphones and a Logitech mouse to improve his gaming skills.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "4"
+      },
+      {
+        "question_id": "locomo_6_qa133",
+        "question": "What type of game is John's upcoming mobile game?",
+        "golden_answer": "2D adventure",
+        "generated_answer": "John's upcoming mobile game is a 2D adventure game that features puzzles and exploration. It includes thematic elements such as a demonic figure flying with a sword, and John developed it over several months with the launch scheduled for October 2022.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "4"
+      },
+      {
+        "question_id": "locomo_6_qa134",
+        "question": "What does John do to stay informed and constantly learn about game design?",
+        "golden_answer": "watch tutorials and keep up with developer forums",
+        "generated_answer": "John stays informed and constantly learns about game design by using multiple resources: he studies a book on game design with valuable tips, watches tutorials, follows developer forums, and reads a magazine featuring developer interviews and tutorials. He actively engages with the game development community by volunteering as a programming mentor at a game development non-profit, attending programming seminars to learn new techniques, and taking programming classes to refresh and expand his coding skills. Additionally, John values collaboration and feedback as key components of his ongoing learning process.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "4"
+      },
+      {
+        "question_id": "locomo_6_qa135",
+        "question": "What kind of gig was John offered at the game dev non-profit organization?",
+        "golden_answer": "programming mentor for game developers",
+        "generated_answer": "John was offered a volunteer position as a programming mentor at a game development non-profit organization. This gig involved teaching coding and assisting with projects, allowing him to combine his passions for gaming and helping others.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "4"
+      },
+      {
+        "question_id": "locomo_6_qa136",
+        "question": "What does John feel about starting the journey as a programming mentor for game developers?",
+        "golden_answer": "excited and inspired",
+        "generated_answer": "John feels excited, inspired, and strongly motivated about starting his journey as a programming mentor for game developers at a game development non-profit. He values the opportunity to combine his passions for gaming and helping others by teaching coding and assisting with projects. John is grateful for James’s support and hopeful that this volunteer experience will open more career opportunities for him.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "4"
+      },
+      {
+        "question_id": "locomo_6_qa137",
+        "question": "What kind of games is James excited to play with his new video card?",
+        "golden_answer": "RPGs",
+        "generated_answer": "James is excited to play role-playing games (RPGs) with his new video card, specifically mentioning Cyberpunk 2077 as a game he is eager to try. While he has also expressed interest in MOBAs and strategy games, his primary excitement with the new video card is focused on RPGs.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "4"
+      },
+      {
+        "question_id": "locomo_6_qa138",
+        "question": "What inspired James to create his game?",
+        "golden_answer": "Witcher 3",
+        "generated_answer": "James was inspired to create his game by his childhood dream of turning comic sketches into a computer game, his love for strategy games like Civilization and Total War, and the immersive world and story of The Witcher 3. Additionally, real-life experiences, such as encountering a stranger whose appearance inspired a game character, also fueled his creativity. These combined passions for storytelling, gaming, and real-world inspiration motivated James to develop his games.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "4"
+      },
+      {
+        "question_id": "locomo_6_qa139",
+        "question": "What sparked James' passion for gaming when he was a kid?",
+        "golden_answer": "Super Mario and The Legend of Zelda games",
+        "generated_answer": "James’s passion for gaming was sparked in his childhood by playing on his first gaming system, a Nintendo console, where he spent hours playing games like Super Mario and The Legend of Zelda. These immersive gaming sessions ignited his love for gaming, which was further supported by his early interest in storytelling through comic drawing.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "4"
+      },
+      {
+        "question_id": "locomo_6_qa140",
+        "question": "What did James lose progress on due to a power outage?",
+        "golden_answer": "a game",
+        "generated_answer": "James lost progress on a game he was playing due to a power outage in his apartment on October 18, 2022. The outage occurred just as he reached the big reveal in the game, and because he forgot to save beforehand, he lost achievements and progress, which caused him frustration.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "4"
+      },
+      {
+        "question_id": "locomo_6_qa141",
+        "question": "What games were played at the gaming tournament organized by John on 31 October, 2022?",
+        "golden_answer": "Fortnite, Overwatch, Apex Legends",
+        "generated_answer": "The gaming tournament organized by John on October 30, 2022, featured the games Fortnite, Overwatch, and Apex Legends. The event was held to raise funds for a children's hospital and was described as a positive and competitive experience by John.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "4"
+      },
+      {
+        "question_id": "locomo_6_qa142",
+        "question": "What was the purpose of the gaming tournament organized by John on 31 October, 2022?",
+        "golden_answer": "To raise money for a children's hospital",
+        "generated_answer": "The gaming tournament organized by John on October 30, 2022, featuring Fortnite, Overwatch, and Apex Legends, was held to raise funds for a children's hospital.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "4"
+      },
+      {
+        "question_id": "locomo_6_qa143",
+        "question": "What decision did James and Samantha make on 31 October, 2022?",
+        "golden_answer": "To move in together",
+        "generated_answer": "On October 31, 2022, James and Samantha made the mutual and well-informed decision to move in together. They rented an apartment located near McGee's bar, a favored social spot they both enjoy, and this proximity was a key factor in choosing the apartment's location.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "4"
+      },
+      {
+        "question_id": "locomo_6_qa144",
+        "question": "Where did James and Samantha decide to live together on 31 October, 2022?",
+        "golden_answer": "In an apartment not far from McGee's bar",
+        "generated_answer": "On October 31, 2022, James and Samantha decided to live together in an apartment located not far from McGee's bar, a location they chose partly because of their shared fondness for the bar.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "4"
+      },
+      {
+        "question_id": "locomo_6_qa145",
+        "question": "Why did James and Samantha choose an apartment near McGee's bar?",
+        "golden_answer": "They love spending time together at the bar",
+        "generated_answer": "James and Samantha chose to rent an apartment near McGee's bar because they both loved spending time there. James was fond of the bar, and Samantha had discovered her liking for lager beer at McGee's bar, making it a favored social spot for both. Their shared enjoyment of the bar and its atmosphere was a key factor in selecting the apartment's location.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "4"
+      },
+      {
+        "question_id": "locomo_6_qa146",
+        "question": "What game is John hooked on playing on 5 November, 2022?",
+        "golden_answer": "FIFA 23",
+        "generated_answer": "On November 5, 2022, John is hooked on playing \"The Witcher 3,\" an RPG game he described as having amazing storytelling and characters. Although on that date he was also actively engaged in chess—having won a regional chess tournament on November 1, 2022—and enthusiastic about starting to play FIFA 23 online after some practice, the specific game he is \"hooked on\" remains \"The Witcher 3.\"",
+        "llm_judgments": {
+          "judgment_1": false,
+          "judgment_2": false,
+          "judgment_3": false
+        },
+        "category": "4"
+      },
+      {
+        "question_id": "locomo_6_qa147",
+        "question": "What did John suggest James practice before playing FIFA 23 together?",
+        "golden_answer": "Control with a gamepad and timing",
+        "generated_answer": "John suggested that James practice getting familiar with FIFA 23’s game mechanics, specifically mastering control with a gamepad and developing a good sense of timing, before they play the game together.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "4"
+      },
+      {
+        "question_id": "locomo_6_qa148",
+        "question": "What project did John work on with a game developer by 7 November, 2022?",
+        "golden_answer": "An online board game",
+        "generated_answer": "By November 7, 2022, John worked with a game developer to create an online board game featuring four wooden pieces and four colored balls. He shared a photo of the wooden board game and expressed excitement about the collaboration, describing it as an incredible and fun experience. They were preparing to release a demo of this online board game soon and were eager to receive feedback and suggestions from others.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "4"
+      },
+      {
+        "question_id": "locomo_6_qa149",
+        "question": "What is the name of John's cousin's dog?",
+        "golden_answer": "Luna",
+        "generated_answer": "John’s cousin’s dog is named Luna.",
+        "llm_judgments": {
+          "judgment_1": true,
+          "judgment_2": true,
+          "judgment_3": true
+        },
+        "category": "4"
+      }
+    ]
+  },
+  "metadata": {
+    "model": "gpt-4o-mini",
+    "num_runs": 3,
+    "mean_accuracy": 0.9333333333333332,
+    "std_accuracy": 1.1102230246251565e-16,
+    "run_scores": [
+      0.9333333333333333,
+      0.9333333333333333,
+      0.9333333333333333
+    ],
+    "category_accuracies": {
+      "3": {
+        "mean": 0.6923076923076922,
+        "std": 1.1102230246251565e-16,
+        "individual_runs": [
+          0.6923076923076923,
+          0.6923076923076923,
+          0.6923076923076923
+        ],
+        "total": 13
+      },
+      "2": {
+        "mean": 0.8823529411764706,
+        "std": 0.0,
+        "individual_runs": [
+          0.8823529411764706,
+          0.8823529411764706,
+          0.8823529411764706
+        ],
+        "total": 34
+      },
+      "1": {
+        "mean": 0.9499999999999998,
+        "std": 1.1102230246251565e-16,
+        "individual_runs": [
+          0.95,
+          0.95,
+          0.95
+        ],
+        "total": 20
+      },
+      "4": {
+        "mean": 0.9879518072289156,
+        "std": 0.0,
+        "individual_runs": [
+          0.9879518072289156,
+          0.9879518072289156,
+          0.9879518072289156
+        ],
+        "total": 83
+      }
+    }
+  }
+}

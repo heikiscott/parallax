@@ -1,0 +1,6 @@
+2025-11-23 05:44:34,048 - evaluation - INFO - checkpoint.py:57 - 🔄 发现 checkpoint 文件: checkpoint_default.json
+2025-11-23 05:44:34,058 - evaluation - INFO - checkpoint.py:58 -    上次运行时间: 2025-11-23T05:37:34.261035
+2025-11-23 05:44:34,058 - evaluation - INFO - checkpoint.py:59 -    已完成阶段: answer, add, evaluate, search
+2025-11-23 05:44:34,058 - evaluation - INFO - checkpoint.py:63 -    已处理对话数: 178
+2025-11-23 05:44:34,063 - root - INFO - pipeline.py:453 - Report saved to: D:\parallax\eval\results\locomo-conv4\report_8.txt
+2025-11-23 05:44:34,065 - agents.rerank_service - INFO - rerank_service.py:132 - Initialized DeepInfra Rerank Service with model: Qwen/Qwen3-Reranker-4B

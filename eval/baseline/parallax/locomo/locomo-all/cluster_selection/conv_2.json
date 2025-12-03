@@ -1,0 +1,795 @@
+{
+  "qa_count": 152,
+  "questions": [
+    {
+      "query": "When did Maria go to the beach?",
+      "question_id": "locomo_2_qa5",
+      "clusters_found": [
+        "gec_069",
+        "gec_013",
+        "gec_003",
+        "gec_014",
+        "gec_039",
+        "gec_040",
+        "gec_007",
+        "gec_062",
+        "gec_051",
+        "gec_010",
+        "gec_061",
+        "gec_022",
+        "gec_009",
+        "gec_055",
+        "gec_065",
+        "gec_019",
+        "gec_038",
+        "gec_015",
+        "gec_056",
+        "gec_059",
+        "gec_004",
+        "gec_052",
+        "gec_050",
+        "gec_001",
+        "gec_018",
+        "gec_070",
+        "gec_021",
+        "gec_037",
+        "gec_034",
+        "gec_066",
+        "gec_063",
+        "gec_064",
+        "gec_020",
+        "gec_057",
+        "gec_008"
+      ],
+      "clusters_selected": [
+        "gec_007",
+        "gec_008",
+        "gec_037",
+        "gec_038",
+        "gec_039",
+        "gec_040"
+      ],
+      "selection_reasoning": "Clusters gec_007 and gec_008 mention Maria using a personal photo of a beach sunset on January 1, 2023, which implies she had been to the beach by then. Clusters gec_037, gec_038, gec_039, and gec_040 discuss Maria's solo trip to Spain on May 4, 2023, where she learned surfing, indicating another beach-related event. These clusters together provide the relevant timing information about when Maria went to the beach.",
+      "cluster_details": {
+        "gec_007": {
+          "topic": "John's stress over failing military aptitude test",
+          "summary": "On January 1, 2023, Maria offered emotional support and encouragement to John after he shared his stress over failing a military aptitude test, using a personal photo of a beach sunset to illustrate the calming power of nature. Their conversation highlighted John's vulnerability and Maria's reassurance through shared appreciation of nature's small joys.",
+          "member_count": 1,
+          "members_returned": 1
+        },
+        "gec_008": {
+          "topic": "Maria's emotional support to John using nature imagery",
+          "summary": "On January 1, 2023, Maria offered emotional support and encouragement to John after he shared his stress over failing a military aptitude test, using a personal photo of a beach sunset to illustrate the calming power of nature. Their conversation highlighted John's vulnerability and Maria's reassurance through shared appreciation of nature's small joys.",
+          "member_count": 2,
+          "members_returned": 1
+        },
+        "gec_037": {
+          "topic": "Maria's solo trip to Spain and personal growth",
+          "summary": "On May 4, 2023, Maria and John discussed life balance, personal well-being, and transformative experiences, focusing on Maria's solo trip to Spain that taught her resilience, self-care, and the value of trying new things like surfing. They exchanged photos and reflected on the importance of growth, perseverance, and maintaining positivity through self-exploration.",
+          "member_count": 1,
+          "members_returned": 1
+        },
+        "gec_038": {
+          "topic": "Life balance and personal well-being discussions between Maria and John",
+          "summary": "On May 4, 2023, Maria and John discussed life balance, personal well-being, and transformative experiences, focusing on Maria's solo trip to Spain that taught her resilience, self-care, and the value of trying new things like surfing. They exchanged photos and reflected on the importance of growth, perseverance, and maintaining positivity through self-exploration.",
+          "member_count": 1,
+          "members_returned": 0
+        },
+        "gec_039": {
+          "topic": "Maria's experience learning surfing during travel",
+          "summary": "On May 4, 2023, Maria and John discussed life balance, personal well-being, and transformative experiences, focusing on Maria's solo trip to Spain that taught her resilience, self-care, and the value of trying new things like surfing. They exchanged photos and reflected on the importance of growth, perseverance, and maintaining positivity through self-exploration.",
+          "member_count": 1,
+          "members_returned": 0
+        },
+        "gec_040": {
+          "topic": "Sharing photos and reflections on growth and perseverance",
+          "summary": "On May 4, 2023, Maria and John discussed life balance, personal well-being, and transformative experiences, focusing on Maria's solo trip to Spain that taught her resilience, self-care, and the value of trying new things like surfing. They exchanged photos and reflected on the importance of growth, perseverance, and maintaining positivity through self-exploration.",
+          "member_count": 1,
+          "members_returned": 0
+        }
+      },
+      "members_per_cluster": {
+        "gec_007": 1,
+        "gec_008": 1,
+        "gec_037": 1,
+        "gec_038": 0,
+        "gec_039": 0,
+        "gec_040": 0
+      },
+      "final_count": 13,
+      "truncated": false,
+      "evidence": [
+        "D3:15"
+      ],
+      "evidence_detail": {
+        "D3:15": [
+          "526958b9-7f2e-4b5a-8f91-1dc684bff411",
+          "gec_008"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "526958b9-7f2e-4b5a-8f91-1dc684bff411"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_008"
+      ],
+      "cluster_hit": true,
+      "memunit_hit": true,
+      "memunit_coverage": 1.0,
+      "selected_unit_ids": [
+        "59feffb8-2522-4f73-a426-85debca930f0",
+        "dca987ef-e8ec-4ab7-8493-4a654917f9f6",
+        "526958b9-7f2e-4b5a-8f91-1dc684bff411"
+      ]
+    },
+    {
+      "query": "When did Maria meet Jean?",
+      "question_id": "locomo_2_qa10",
+      "clusters_found": [
+        "gec_008",
+        "gec_025",
+        "gec_041",
+        "gec_043",
+        "gec_024",
+        "gec_013",
+        "gec_003",
+        "gec_014",
+        "gec_039",
+        "gec_040",
+        "gec_032",
+        "gec_007",
+        "gec_033",
+        "gec_035",
+        "gec_002",
+        "gec_044",
+        "gec_010",
+        "gec_036",
+        "gec_022",
+        "gec_009",
+        "gec_055",
+        "gec_054",
+        "gec_012",
+        "gec_065",
+        "gec_019",
+        "gec_015",
+        "gec_038",
+        "gec_056",
+        "gec_004",
+        "gec_001",
+        "gec_018",
+        "gec_021",
+        "gec_037",
+        "gec_034",
+        "gec_066",
+        "gec_064",
+        "gec_020",
+        "gec_042",
+        "gec_057",
+        "gec_053"
+      ],
+      "clusters_selected": [
+        "gec_001"
+      ],
+      "selection_reasoning": "Cluster gec_001 covers Maria and John's reunion conversation starting from December 17, 2022, which likely includes when Maria met Jean, as it documents their initial and ongoing interactions.",
+      "cluster_details": {
+        "gec_001": {
+          "topic": "Maria and John's reunion conversation on Dec 17...",
+          "summary": "Maria and John consistently discussed their shared commitment to community service, volunteering, and local activism, supporting each other's efforts in education, homelessness, veterans' aid, and fundraising, while emphasizing family, compassion, and positive impact over time.",
+          "member_count": 22,
+          "members_returned": 15
+        }
+      },
+      "members_per_cluster": {
+        "gec_001": 15
+      },
+      "final_count": 25,
+      "truncated": false,
+      "evidence": [
+        "D7:1"
+      ],
+      "evidence_detail": {
+        "D7:1": [
+          "6f50ec6c-8e26-4b7f-8f71-91f4d08ff70a",
+          "gec_019"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "6f50ec6c-8e26-4b7f-8f71-91f4d08ff70a"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_019"
+      ],
+      "cluster_hit": false,
+      "memunit_hit": false,
+      "memunit_coverage": 0.0,
+      "selected_unit_ids": [
+        "03ee0638-7455-4a0a-bc67-13c28325faa8",
+        "0773eda8-c1e4-4de2-a9c3-3a1d81941020",
+        "e3701f41-aa5f-4776-ad1c-09796446c698",
+        "934397e5-1eff-4171-a110-735cc1e571e2",
+        "c962b562-41c4-4d6c-be71-ad70e4b6536a",
+        "c1535033-58fa-4abb-a935-cfdbaaeb75fa",
+        "754da84d-5298-41f8-afa3-aae6d9e70cc6",
+        "aff5c22b-2487-4870-804a-b22b06cf7f7a",
+        "35a1dfcd-e86d-4ae1-a3d9-2307c452999a",
+        "a83e4a41-4fcd-4a8a-b039-501207637f84",
+        "b16fc7e5-341f-4e03-9f7e-dcffa3a6fea7",
+        "a7546b59-3047-43cf-8785-299db8292da2",
+        "da8e3436-a3ca-4fb6-9e9f-ea04fc15d0e5",
+        "f4a13016-18c3-41d4-8274-946173dbfcd6",
+        "da307258-6c48-491c-8cf3-901636f0de1d"
+      ]
+    },
+    {
+      "query": "When did John go to a convention with colleagues?",
+      "question_id": "locomo_2_qa22",
+      "clusters_found": [
+        "gec_005",
+        "gec_013",
+        "gec_014",
+        "gec_011",
+        "gec_032",
+        "gec_033",
+        "gec_062",
+        "gec_002",
+        "gec_031",
+        "gec_051",
+        "gec_061",
+        "gec_012",
+        "gec_068",
+        "gec_015",
+        "gec_029",
+        "gec_030",
+        "gec_004",
+        "gec_052",
+        "gec_045",
+        "gec_050",
+        "gec_001",
+        "gec_018",
+        "gec_006",
+        "gec_034",
+        "gec_063"
+      ],
+      "clusters_selected": [
+        "gec_032",
+        "gec_033"
+      ],
+      "selection_reasoning": "Clusters gec_032 and gec_033 both mention John attending a recent convention with like-minded peers and colleagues, which energized and inspired his political blogging efforts. These clusters directly address when John went to a convention with colleagues.",
+      "cluster_details": {
+        "gec_032": {
+          "topic": "John's political blogging on education reform",
+          "summary": "On April 18, 2023, John shared with Maria his ongoing commitment to political blogging focused on education reform and infrastructure development, highlighting how attending a recent convention with like-minded peers energized and inspired his efforts to create positive community impact. Maria encouraged and supported John’s dedication, acknowledging the importance of his work and the motivating influence of his engaged network.",
+          "member_count": 1,
+          "members_returned": 1
+        },
+        "gec_033": {
+          "topic": "John's political blogging on infrastructure development",
+          "summary": "On April 18, 2023, John shared with Maria his ongoing commitment to political blogging focused on education reform and infrastructure development, highlighting how attending a recent convention with like-minded peers energized and inspired his efforts to create positive community impact. Maria encouraged and supported John’s dedication, acknowledging the importance of his work and the motivating influence of his engaged network.",
+          "member_count": 1,
+          "members_returned": 0
+        }
+      },
+      "members_per_cluster": {
+        "gec_032": 1,
+        "gec_033": 0
+      },
+      "final_count": 11,
+      "truncated": false,
+      "evidence": [
+        "D12:9"
+      ],
+      "evidence_detail": {
+        "D12:9": [
+          "2eb25d68-c1e0-4ec8-adf3-51dbad95b3b1",
+          "gec_033"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "2eb25d68-c1e0-4ec8-adf3-51dbad95b3b1"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_033"
+      ],
+      "cluster_hit": true,
+      "memunit_hit": true,
+      "memunit_coverage": 1.0,
+      "selected_unit_ids": [
+        "2eb25d68-c1e0-4ec8-adf3-51dbad95b3b1"
+      ]
+    },
+    {
+      "query": "When did John start boot camp with his family?",
+      "question_id": "locomo_2_qa24",
+      "clusters_found": [
+        "gec_005",
+        "gec_048",
+        "gec_013",
+        "gec_060",
+        "gec_014",
+        "gec_049",
+        "gec_007",
+        "gec_062",
+        "gec_035",
+        "gec_002",
+        "gec_047",
+        "gec_061",
+        "gec_036",
+        "gec_055",
+        "gec_016",
+        "gec_015",
+        "gec_017",
+        "gec_056",
+        "gec_026",
+        "gec_004",
+        "gec_045",
+        "gec_001",
+        "gec_018",
+        "gec_006",
+        "gec_063",
+        "gec_057",
+        "gec_008"
+      ],
+      "clusters_selected": [
+        "gec_035",
+        "gec_036"
+      ],
+      "selection_reasoning": "Clusters gec_035 and gec_036 specifically mention John and Maria discussing their recent family fitness activities and attending boot camps together, which directly relates to when John started boot camp with his family.",
+      "cluster_details": {
+        "gec_035": {
+          "topic": "John and Maria's family fitness activities and boot camps",
+          "summary": "John and Maria discussed their recent family fitness activities, highlighting how attending boot camps together has strengthened their bond and improved their health, while also sharing personal experiences of family support and healthy habits.",
+          "member_count": 1,
+          "members_returned": 1
+        },
+        "gec_036": {
+          "topic": "John and Maria's family bonding through healthy habits and support",
+          "summary": "John and Maria discussed their recent family fitness activities, highlighting how attending boot camps together has strengthened their bond and improved their health, while also sharing personal experiences of family support and healthy habits.",
+          "member_count": 1,
+          "members_returned": 0
+        }
+      },
+      "members_per_cluster": {
+        "gec_035": 1,
+        "gec_036": 0
+      },
+      "final_count": 11,
+      "truncated": false,
+      "evidence": [
+        "D13:3"
+      ],
+      "evidence_detail": {
+        "D13:3": [
+          "e3a8392e-f390-4eb8-91e1-5798c49ef558",
+          "gec_036"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "e3a8392e-f390-4eb8-91e1-5798c49ef558"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_036"
+      ],
+      "cluster_hit": true,
+      "memunit_hit": true,
+      "memunit_coverage": 1.0,
+      "selected_unit_ids": [
+        "e3a8392e-f390-4eb8-91e1-5798c49ef558"
+      ]
+    },
+    {
+      "query": "When did John have a party with veterans?",
+      "question_id": "locomo_2_qa27",
+      "clusters_found": [
+        "gec_005",
+        "gec_013",
+        "gec_014",
+        "gec_032",
+        "gec_007",
+        "gec_033",
+        "gec_035",
+        "gec_075",
+        "gec_027",
+        "gec_051",
+        "gec_036",
+        "gec_028",
+        "gec_015",
+        "gec_004",
+        "gec_052",
+        "gec_045",
+        "gec_050",
+        "gec_076",
+        "gec_001",
+        "gec_018",
+        "gec_006",
+        "gec_034",
+        "gec_008"
+      ],
+      "clusters_selected": [
+        "gec_045"
+      ],
+      "selection_reasoning": "Cluster gec_045 specifically mentions John organizing a community event with military veterans, which directly relates to the query about when John had a party with veterans.",
+      "cluster_details": {
+        "gec_045": {
+          "topic": "John's efforts to support military veterans through petition and community event",
+          "summary": "John updated Maria on his efforts to support military veterans by organizing a petition and hosting a community event, expressing his passion and commitment to improving veterans' lives, while Maria offered strong support and encouragement throughout their conversation.",
+          "member_count": 1,
+          "members_returned": 1
+        }
+      },
+      "members_per_cluster": {
+        "gec_045": 1
+      },
+      "final_count": 11,
+      "truncated": false,
+      "evidence": [
+        "D15:11"
+      ],
+      "evidence_detail": {
+        "D15:11": [
+          "592ed09c-79b5-4040-ae87-a1a7aef69959",
+          "gec_045"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "592ed09c-79b5-4040-ae87-a1a7aef69959"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_045"
+      ],
+      "cluster_hit": true,
+      "memunit_hit": true,
+      "memunit_coverage": 1.0,
+      "selected_unit_ids": [
+        "592ed09c-79b5-4040-ae87-a1a7aef69959"
+      ]
+    },
+    {
+      "query": "When did Maria go hiking with her church friends?",
+      "question_id": "locomo_2_qa46",
+      "clusters_found": [
+        "gec_069",
+        "gec_013",
+        "gec_014",
+        "gec_011",
+        "gec_007",
+        "gec_062",
+        "gec_002",
+        "gec_051",
+        "gec_010",
+        "gec_061",
+        "gec_009",
+        "gec_055",
+        "gec_065",
+        "gec_012",
+        "gec_015",
+        "gec_056",
+        "gec_004",
+        "gec_052",
+        "gec_067",
+        "gec_050",
+        "gec_001",
+        "gec_018",
+        "gec_070",
+        "gec_034",
+        "gec_023",
+        "gec_066",
+        "gec_063",
+        "gec_064",
+        "gec_057",
+        "gec_008"
+      ],
+      "clusters_selected": [
+        "gec_051"
+      ],
+      "selection_reasoning": "Cluster gec_051 specifically mentions Maria's recent camping trip with church friends, which is directly relevant to when Maria went hiking with her church friends.",
+      "cluster_details": {
+        "gec_051": {
+          "topic": "Maria's recent camping trip with church friends",
+          "summary": "Maria and John engaged in a supportive conversation about coping with loss and shared their recent outdoor experiences, exchanging photos and reflecting on how nature and activities like camping and mountaineering provide emotional comfort. They expressed mutual empathy and discussed personal strategies for finding peace amid life's challenges.",
+          "member_count": 1,
+          "members_returned": 1
+        }
+      },
+      "members_per_cluster": {
+        "gec_051": 1
+      },
+      "final_count": 11,
+      "truncated": false,
+      "evidence": [
+        "D25:2"
+      ],
+      "evidence_detail": {
+        "D25:2": [
+          "ff1c0fee-394c-4d75-96df-cd232e97adda",
+          "gec_014"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "ff1c0fee-394c-4d75-96df-cd232e97adda"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_014"
+      ],
+      "cluster_hit": false,
+      "memunit_hit": false,
+      "memunit_coverage": 0.0,
+      "selected_unit_ids": [
+        "33c860d7-3876-4129-bde1-c2a26f93c078"
+      ]
+    },
+    {
+      "query": "When did John have his first firefighter call-out?",
+      "question_id": "locomo_2_qa48",
+      "clusters_found": [
+        "gec_025",
+        "gec_005",
+        "gec_069",
+        "gec_024",
+        "gec_013",
+        "gec_003",
+        "gec_014",
+        "gec_079",
+        "gec_062",
+        "gec_075",
+        "gec_002",
+        "gec_031",
+        "gec_010",
+        "gec_061",
+        "gec_009",
+        "gec_065",
+        "gec_012",
+        "gec_019",
+        "gec_068",
+        "gec_015",
+        "gec_016",
+        "gec_017",
+        "gec_029",
+        "gec_030",
+        "gec_026",
+        "gec_045",
+        "gec_076",
+        "gec_001",
+        "gec_018",
+        "gec_070",
+        "gec_080",
+        "gec_006",
+        "gec_034",
+        "gec_066",
+        "gec_063",
+        "gec_064",
+        "gec_008"
+      ],
+      "clusters_selected": [
+        "gec_068"
+      ],
+      "selection_reasoning": "Cluster gec_068 specifically mentions John describing his involvement in a fire-fighting brigade and their first emergency call-out, directly addressing when John had his first firefighter call-out.",
+      "cluster_details": {
+        "gec_068": {
+          "topic": "John's involvement in fire-fighting brigade and first emergency call-out",
+          "summary": "Maria and John reflected on their recent volunteer efforts, with Maria sharing her experience baking and donating goods to a homeless shelter, and John describing his involvement in a fire-fighting brigade and their first emergency call-out. Both expressed mutual inspiration and a strong commitment to community service.",
+          "member_count": 1,
+          "members_returned": 1
+        }
+      },
+      "members_per_cluster": {
+        "gec_068": 1
+      },
+      "final_count": 11,
+      "truncated": false,
+      "evidence": [
+        "D26:4"
+      ],
+      "evidence_detail": {
+        "D26:4": [
+          "5a50e0e6-e29c-4da9-bd56-cc5595bee276",
+          "gec_068"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "5a50e0e6-e29c-4da9-bd56-cc5595bee276"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_068"
+      ],
+      "cluster_hit": true,
+      "memunit_hit": true,
+      "memunit_coverage": 1.0,
+      "selected_unit_ids": [
+        "5a50e0e6-e29c-4da9-bd56-cc5595bee276"
+      ]
+    },
+    {
+      "query": "When did Maria start volunteering at the homeless shelter?",
+      "question_id": "locomo_2_qa51",
+      "clusters_found": [
+        "gec_048",
+        "gec_013",
+        "gec_014",
+        "gec_011",
+        "gec_049",
+        "gec_002",
+        "gec_027",
+        "gec_047",
+        "gec_012",
+        "gec_068",
+        "gec_015",
+        "gec_028",
+        "gec_016",
+        "gec_017",
+        "gec_004",
+        "gec_067",
+        "gec_001",
+        "gec_018",
+        "gec_034",
+        "gec_023",
+        "gec_003"
+      ],
+      "clusters_selected": [
+        "gec_001",
+        "gec_015",
+        "gec_034",
+        "gec_023"
+      ],
+      "selection_reasoning": "These clusters mention Maria's volunteering at homeless shelters and related community service activities, with timeframes spanning from late 2022 through mid-2023. They provide the most direct information about when Maria started or was involved in volunteering at the homeless shelter.",
+      "cluster_details": {
+        "gec_001": {
+          "topic": "Maria and John's reunion conversation on Dec 17...",
+          "summary": "Maria and John consistently discussed their shared commitment to community service, volunteering, and local activism, supporting each other's efforts in education, homelessness, veterans' aid, and fundraising, while emphasizing family, compassion, and positive impact over time.",
+          "member_count": 22,
+          "members_returned": 15
+        },
+        "gec_015": {
+          "topic": "Maria connecting homeless individuals with support services",
+          "summary": "They discussed Maria’s ongoing dedication to connecting homeless individuals with support services, sharing experiences from shelter volunteering, organizing community meals, and fundraising. Their conversations reflected mutual encouragement and a sustained commitment to compassion and community impact.",
+          "member_count": 13,
+          "members_returned": 8
+        },
+        "gec_034": {
+          "topic": "John's upcoming East Coast trip plans",
+          "summary": "John and Maria discussed John’s upcoming East Coast trip and Maria’s ongoing volunteer work at a homeless shelter, sharing mutual encouragement and emphasizing the importance of small acts of kindness in making a positive impact.",
+          "member_count": 1,
+          "members_returned": 0
+        },
+        "gec_023": {
+          "topic": "John's recent aptitude test results and decision to serve his country",
+          "summary": "On March 6, 2023, Maria and John discussed their travel experiences and shared their commitment to volunteering, with John expressing pride in his recent aptitude test results and decision to serve his country, while Maria highlighted the importance of building trust and compassion through her work at a homeless shelter. Their conversation reflected mutual admiration and a focus on personal growth and community service.",
+          "member_count": 1,
+          "members_returned": 0
+        }
+      },
+      "members_per_cluster": {
+        "gec_001": 15,
+        "gec_015": 8,
+        "gec_034": 0,
+        "gec_023": 0
+      },
+      "final_count": 28,
+      "truncated": false,
+      "evidence": [
+        "D27:4"
+      ],
+      "evidence_detail": {
+        "D27:4": [
+          "929347fa-8088-4508-9270-5f26e8e68819",
+          "gec_015"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "929347fa-8088-4508-9270-5f26e8e68819"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_015"
+      ],
+      "cluster_hit": true,
+      "memunit_hit": true,
+      "memunit_coverage": 1.0,
+      "selected_unit_ids": [
+        "c962b562-41c4-4d6c-be71-ad70e4b6536a",
+        "e3701f41-aa5f-4776-ad1c-09796446c698",
+        "934397e5-1eff-4171-a110-735cc1e571e2",
+        "90a933b3-f73c-4565-8ed4-7b9de2fee312",
+        "b16fc7e5-341f-4e03-9f7e-dcffa3a6fea7",
+        "0ae1fbb6-e01e-4a8f-9b6d-982a9d36faab",
+        "f4a13016-18c3-41d4-8274-946173dbfcd6",
+        "da8e3436-a3ca-4fb6-9e9f-ea04fc15d0e5",
+        "03ee0638-7455-4a0a-bc67-13c28325faa8",
+        "c1535033-58fa-4abb-a935-cfdbaaeb75fa",
+        "aff5c22b-2487-4870-804a-b22b06cf7f7a",
+        "35a1dfcd-e86d-4ae1-a3d9-2307c452999a",
+        "929347fa-8088-4508-9270-5f26e8e68819",
+        "a7546b59-3047-43cf-8785-299db8292da2",
+        "da307258-6c48-491c-8cf3-901636f0de1d",
+        "9e0a435b-0925-460a-8d48-4a3b48b27fd3",
+        "ca086eb8-ef75-4608-b3cb-b37852f1dc02",
+        "754da84d-5298-41f8-afa3-aae6d9e70cc6",
+        "5a50e0e6-e29c-4da9-bd56-cc5595bee276",
+        "c4512f81-cd46-4851-8c7a-f12f59c3deca",
+        "24d727ae-5c58-4450-9622-cb6d3a6552d2",
+        "0773eda8-c1e4-4de2-a9c3-3a1d81941020",
+        "a83e4a41-4fcd-4a8a-b039-501207637f84"
+      ]
+    },
+    {
+      "query": "When did John go on a camping trip with Max?",
+      "question_id": "locomo_2_qa59",
+      "clusters_found": [
+        "gec_013",
+        "gec_074",
+        "gec_014",
+        "gec_039",
+        "gec_040",
+        "gec_071",
+        "gec_062",
+        "gec_035",
+        "gec_075",
+        "gec_051",
+        "gec_061",
+        "gec_036",
+        "gec_009",
+        "gec_019",
+        "gec_038",
+        "gec_015",
+        "gec_004",
+        "gec_052",
+        "gec_067",
+        "gec_050",
+        "gec_076",
+        "gec_001",
+        "gec_018",
+        "gec_072",
+        "gec_046",
+        "gec_037",
+        "gec_034",
+        "gec_063",
+        "gec_073",
+        "gec_008"
+      ],
+      "clusters_selected": [
+        "gec_050"
+      ],
+      "selection_reasoning": "Cluster gec_050 mentions John and Maria sharing recent outdoor experiences including camping and mountaineering, which is relevant to identifying when John went on a camping trip with Max.",
+      "cluster_details": {
+        "gec_050": {
+          "topic": "John's loss of his pet Max and coping",
+          "summary": "Maria and John engaged in a supportive conversation about coping with loss and shared their recent outdoor experiences, exchanging photos and reflecting on how nature and activities like camping and mountaineering provide emotional comfort. They expressed mutual empathy and discussed personal strategies for finding peace amid life's challenges.",
+          "member_count": 1,
+          "members_returned": 1
+        }
+      },
+      "members_per_cluster": {
+        "gec_050": 1
+      },
+      "final_count": 11,
+      "truncated": false,
+      "evidence": [
+        "D30:6"
+      ],
+      "evidence_detail": {
+        "D30:6": [
+          "6d16746e-ffaf-4e0e-89a6-70a09fac6501",
+          "gec_074"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "6d16746e-ffaf-4e0e-89a6-70a09fac6501"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_074"
+      ],
+      "cluster_hit": false,
+      "memunit_hit": false,
+      "memunit_coverage": 0.0,
+      "selected_unit_ids": [
+        "33c860d7-3876-4129-bde1-c2a26f93c078"
+      ]
+    }
+  ],
+  "summary": {
+    "total_questions": 9,
+    "cluster_hit_count": 6,
+    "cluster_hit_rate": 0.6666666666666666,
+    "memunit_hit_count": 6,
+    "memunit_hit_rate": 0.6666666666666666,
+    "avg_memunit_coverage": 0.6666666666666666
+  }
+}
