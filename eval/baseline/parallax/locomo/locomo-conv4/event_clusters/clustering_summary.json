@@ -1,0 +1,18 @@
+{
+  "total_conversations": 1,
+  "clustered_conversations": 1,
+  "total_clusters": 83,
+  "total_units": 91,
+  "config": {
+    "llm_provider": "openai",
+    "llm_model": "gpt-4.1-mini",
+    "llm_api_key": "[redacted]",
+    "llm_base_url": "https://api.openai.com/v1",
+    "llm_temperature": 0.0,
+    "llm_max_tokens": 1024,
+    "summary_update_threshold": 5,
+    "max_clusters_in_prompt": 20,
+    "max_members_per_cluster_in_prompt": 3,
+    "output_dir": "C:\\Users\\Hank Su\\Documents\\parallax\\eval\\results\\locomo-conv4-2\\event_clusters"
+  }
+}

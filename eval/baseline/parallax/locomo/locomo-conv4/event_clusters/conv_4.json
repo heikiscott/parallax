@@ -1,0 +1,2181 @@
+{
+  "clusters": {
+    "gec_001": {
+      "cluster_id": "gec_001",
+      "topic": "John's inquiry about Tim's Harry Potter fan pro...",
+      "summary": "They shared a lasting bond through their mutual passion for Harry Potter, fantasy literature, and basketball, supporting each other's interests, personal growth, and challenges while celebrating community, motivation, and shared experiences over time.",
+      "members": [
+        {
+          "unit_id": "aa40c630-b60d-4163-8fb1-dacc9d470e63",
+          "timestamp": "2023-05-21T19:48:30+08:00",
+          "summary": "On May 21, 2023, John and Tim exchanged greetings and discussed Tim's enthusiasm for ongoing collaborations on a Harry Potter fan project, with both expressing positive interest in each other's lives."
+        },
+        {
+          "unit_id": "49aacd15-1e0f-4627-8be2-0366d414490b",
+          "timestamp": "2023-05-21T19:57:30+08:00",
+          "summary": "On May 21, 2023, Tim and John discussed their current interests, with John sharing positive experiences about his new team and Tim updating on his Harry Potter fan project and related visits, highlighting their mutual enthusiasm and support."
+        },
+        {
+          "unit_id": "17f50f41-5eb9-4632-945d-fdb8e8c9489e",
+          "timestamp": "2023-06-15T17:08:00+08:00",
+          "summary": "Tim recommended adding a fun activity or destination to a list and offered visiting tips, later sharing that he joined a fantasy literature forum where he had an enriching conversation about his favorite books."
+        },
+        {
+          "unit_id": "9a5b72ed-6a0e-4f7d-a56d-621a3fce0c55",
+          "timestamp": "2023-06-15T17:14:00+08:00",
+          "summary": "Tim and John discussed Tim's Harry Potter book collection and memorabilia, with Tim expressing enthusiasm for the MinaLima designs and his plans to visit more Harry Potter-related places, while John showed interest and encouragement."
+        },
+        {
+          "unit_id": "7e7fbea4-9914-43ac-9b64-c294fdb950b7",
+          "timestamp": "2023-06-15T17:17:00+08:00",
+          "summary": "Tim and John exchanged mutual encouragement during a conversation where Tim shared his excitement about visiting Harry Potter spots, and John expressed his passion for playing basketball. Both friends supported each other's interests and aspirations."
+        },
+        {
+          "unit_id": "a4633d9d-fb8e-4ec5-9a91-6fade7ef887c",
+          "timestamp": "2023-07-16T16:23:00+08:00",
+          "summary": "Tim congratulated John on his recent basketball victory, and they shared photos and reflections on their achievements and memorable social interactions, highlighting pride and camaraderie."
+        },
+        {
+          "unit_id": "8222b42c-052a-4f60-8699-d1eef34c3a8f",
+          "timestamp": "2023-07-16T16:24:00+08:00",
+          "summary": "On July 16, 2023, Tim and John discussed the emotional connections formed through shared passions, with Tim highlighting the camaraderie among fans and John describing the strong bonds and family-like atmosphere within his sports team. Both expressed positive feelings about connection, passion, and community in their respective interests."
+        },
+        {
+          "unit_id": "f8540647-be81-4bc6-ab93-66f500922c85",
+          "timestamp": "2023-08-02T16:21:00+08:00",
+          "summary": "On August 2, 2023, Tim shared with John his excitement about a new role writing articles on fantasy novels for an online magazine, highlighting his passion for works like \"Harry Potter\" and \"Game of Thrones,\" while John responded with a related personal story about a Harry Potter trivia contest. Their conversation reflected mutual enthusiasm for fantasy literature and strengthened their connection."
+        },
+        {
+          "unit_id": "f90907dc-ef23-4496-b706-b019fac4e4fd",
+          "timestamp": "2023-08-09T10:29:00+08:00",
+          "summary": "On August 9, 2023, Tim reconnected with John, sharing his recent enjoyable Skype conversation with a Harry Potter fan from California and discussing potential collaboration, while also inquiring about John's updates. This followed Tim's earlier message expressing enthusiasm about writing tasks and maintaining a positive tone."
+        },
+        {
+          "unit_id": "9bf76902-0561-4b29-a509-a72d42b8d7ef",
+          "timestamp": "2023-08-09T10:34:00+08:00",
+          "summary": "John and Tim discussed John's recent intense basketball game, where his team won narrowly and shared a strong bond that felt like a supportive family, emphasizing the importance of teamwork and camaraderie both on and off the court."
+        },
+        {
+          "unit_id": "b5ca7db2-54af-49ce-a1de-dca2f050aa0c",
+          "timestamp": "2023-08-09T10:38:30+08:00",
+          "summary": "On August 9, 2023, Tim and John discussed the importance of family support and shared enthusiasm for fantasy literature, with Tim recommending a captivating book by Patrick Rothfuss that he praised for its world-building and character development. John expressed interest in reading the book and agreed to share his thoughts afterward."
+        },
+        {
+          "unit_id": "d39d9d29-079f-4d6c-952c-713ceecdca39",
+          "timestamp": "2023-08-17T19:55:30+08:00",
+          "summary": "John shared with Tim his joyful reunion with his basketball teammates after a trip, highlighting the strong sense of belonging and camaraderie, which led to a discussion between them about the emotional significance of shared passions and feeling truly connected."
+        },
+        {
+          "unit_id": "bc23d67e-a3cc-46d6-a82a-85d1d69021d1",
+          "timestamp": "2023-08-17T20:01:30+08:00",
+          "summary": "On August 17, 2023, John shared with Tim a photograph of a basketball covered with his teammates' autographs, symbolizing their friendship and mutual support, which motivates John to persevere and give his best effort. Their conversation highlighted the importance of meaningful tokens and social bonds in fostering motivation and personal strength."
+        },
+        {
+          "unit_id": "d4f02df3-0710-4e5c-8876-7aab23f98461",
+          "timestamp": "2023-08-21T16:38:30+08:00",
+          "summary": "On August 21, 2023, John and Tim discussed Tim's personal progress, including his piano learning and favorite Harry Potter theme, while sharing cherished family memories centered around watching the first Harry Potter movie together. The conversation highlighted their mutual appreciation for music, family moments, and personal growth."
+        },
+        {
+          "unit_id": "fd2184f9-bf8b-4370-ac84-94abece401ad",
+          "timestamp": "2023-10-13T14:00:30+08:00",
+          "summary": "Tim and John reconnected after a long time, sharing experiences about their passions—Tim about a Harry Potter conference and John about his sports team's challenges and successes—while encouraging and supporting each other's goals. Their conversation ended on a positive note with mutual motivation and offers of help."
+        },
+        {
+          "unit_id": "4de63d62-57bc-4514-b4b0-f9ca8aa476b9",
+          "timestamp": "2023-11-06T11:47:00+08:00",
+          "summary": "On November 6, 2023, Tim and John discussed overcoming personal challenges and perseverance, sharing experiences from writing and basketball, including Tim’s admiration for LeBron James’ determination and a memorable comeback game John played. Their conversation highlighted mutual respect and the value of enduring struggles to achieve growth and success."
+        },
+        {
+          "unit_id": "6cbc4f02-6e17-4fc8-84d2-fcc5ec1d2e5a",
+          "timestamp": "2023-11-06T11:49:00+08:00",
+          "summary": "Tim and John shared a supportive conversation reflecting on meaningful experiences in sports and discussed John's upcoming European vacation, with Tim offering travel recommendations and both exchanging well wishes."
+        },
+        {
+          "unit_id": "cd6f3c89-b5d7-44c9-b4bd-d1daf4cbf3c6",
+          "timestamp": "2023-11-16T15:59:00+08:00",
+          "summary": "John expressed gratitude for support and motivation on November 11, 2023, while Tim shared a photo and recounted his impressive visit to a historic UK castle on November 16, 2023."
+        },
+        {
+          "unit_id": "e8552924-26af-4eb9-8e76-9101466f4d87",
+          "timestamp": "2023-11-21T10:22:30+08:00",
+          "summary": "On November 21, 2023, Tim reached out to John expressing concern about his injury and offering support, to which John responded by sharing his challenging recovery and maintaining a positive outlook, reflecting their ongoing mutual care and friendship. This exchange followed earlier supportive messages from Tim, highlighting continued encouragement between them."
+        },
+        {
+          "unit_id": "c3cced00-be2e-4abd-a6ca-5b5de2088f14",
+          "timestamp": "2023-12-08T19:50:30+08:00",
+          "summary": "Tim and John reconnected through a friendly conversation sharing their recent experiences and mutual interests in Harry Potter, basketball, and literature, exchanging photos and book recommendations while emphasizing camaraderie and encouragement. Their discussion highlighted Tim's attendance at a Harry Potter-themed party and John's basketball team's unity, culminating in plans to explore new books together."
+        },
+        {
+          "unit_id": "0447338a-666d-47c9-9ae5-378678854bc9",
+          "timestamp": "2023-12-26T15:46:30+08:00",
+          "summary": "Tim and John discussed personal motivation, influential figures like Emma Watson, and their commitments to charitable causes, with John sharing his work supporting youth sports and advocating for underserved communities. They expressed mutual admiration for advocacy efforts and the impact of using their platforms to inspire positive change."
+        },
+        {
+          "unit_id": "7b98e574-a789-46ad-a58b-b2ec774fa869",
+          "timestamp": "2023-12-26T15:47:00+08:00",
+          "summary": "Tim praised John’s dedication to helping children, and John expressed gratitude while sharing his positive impact and asking about Tim’s recent activities."
+        },
+        {
+          "unit_id": "a1d5938d-68bf-43b7-9317-f186196b68f5",
+          "timestamp": "2023-12-26T15:49:30+08:00",
+          "summary": "Tim and John discussed their mutual appreciation for the Harry Potter series, sharing their enjoyment of the books and movies as a relaxing escape. They exchanged photos and expressed enthusiasm for watching movies together, highlighting the fun of movie marathons with friends."
+        },
+        {
+          "unit_id": "c60b75d1-75a2-4993-b7ed-9a6e635c79e3",
+          "timestamp": "2023-12-26T15:53:30+08:00",
+          "summary": "John and Tim discussed their shared enthusiasm for fantasy movies and TV shows, with Tim expressing excitement about the upcoming January 2024 premiere of the fantasy series \"The Wheel of Time,\" based on his favorite book series."
+        },
+        {
+          "unit_id": "a46be478-9b47-4654-8683-cff5e5bf12ba",
+          "timestamp": "2024-01-02T17:35:00+08:00",
+          "summary": "Tim and John discussed their shared passion for reading, with Tim expressing his love for his Harry Potter book collection and John encouraging his dedication to the hobby. Their conversation highlighted the emotional connection Tim has to books and John's curiosity about what inspired Tim's interest in reading."
+        },
+        {
+          "unit_id": "b3f39710-4526-425d-a811-f15b8b52d9d6",
+          "timestamp": "2024-01-02T17:43:00+08:00",
+          "summary": "On January 2, 2024, John and Tim discussed their favorite fantasy movies, sharing enthusiasm for Star Wars and Lord of the Rings, particularly admiring Aragorn's leadership and growth. They exchanged images and reflections on the inspiring qualities of fantasy stories and characters."
+        },
+        {
+          "unit_id": "eb92ece7-8556-439c-be8c-ed7bfaae4556",
+          "timestamp": "2024-01-02T17:45:30+08:00",
+          "summary": "Tim and John discussed their shared enthusiasm for fantasy stories and traveling, focusing on cultural exploration and their experiences with Paris and the Eiffel Tower. Both expressed excitement about how traveling broadens perspectives and offers educational value."
+        },
+        {
+          "unit_id": "df4020c0-fd96-4cf0-be5f-b4e36fb7d154",
+          "timestamp": "2024-01-07T17:34:00+08:00",
+          "summary": "On January 7, 2024, Tim encouraged John, leading to a friendly conversation where Tim recommended the fantasy novel \"The Name of the Wind\" by Patrick Rothfuss, which John decided to add to his reading list. They also discussed the unifying power of sports and agreed to share thoughts on the book after John reads it."
+        }
+      ],
+      "first_timestamp": "2023-05-21T19:48:30+08:00",
+      "last_timestamp": "2024-01-07T17:34:00+08:00",
+      "created_at": "2025-12-04T02:13:58.617714",
+      "updated_at": "2025-12-04T02:21:57.770367"
+    },
+    "gec_002": {
+      "cluster_id": "gec_002",
+      "topic": "John's signing with the Minnesota Wolves basketball team",
+      "summary": "On May 21, 2023, John shared with Tim that he had signed with the Minnesota Wolves as a shooting guard and expressed excitement for the upcoming season opener, while discussing his goals and challenges adapting to the new team's style. Tim responded with supportive questions and encouragement throughout their conversation.",
+      "members": [
+        {
+          "unit_id": "715aa783-5d1f-4b8f-b3f3-9a3d0798c820",
+          "timestamp": "2023-05-21T19:53:30+08:00",
+          "summary": "On May 21, 2023, John shared with Tim that he had signed with the Minnesota Wolves as a shooting guard and expressed excitement for the upcoming season opener, while discussing his goals and challenges adapting to the new team's style. Tim responded with supportive questions and encouragement throughout their conversation."
+        },
+        {
+          "unit_id": "49aacd15-1e0f-4627-8be2-0366d414490b",
+          "timestamp": "2023-05-21T19:57:30+08:00",
+          "summary": "On May 21, 2023, Tim and John discussed their current interests, with John sharing positive experiences about his new team and Tim updating on his Harry Potter fan project and related visits, highlighting their mutual enthusiasm and support."
+        },
+        {
+          "unit_id": "5b77ac17-c9f9-43ef-8744-c922758ba35e",
+          "timestamp": "2023-12-06T17:38:00+08:00",
+          "summary": "Tim and John reconnected to share their enthusiasm for personal growth, with Tim discussing his recent travel club membership and new musical pursuits, while John reflected on his first year as a professional basketball player and the challenges and rewards of building his career."
+        },
+        {
+          "unit_id": "62422737-ee9b-4d36-9bb0-0ed5dbd1fef2",
+          "timestamp": "2023-12-06T17:40:30+08:00",
+          "summary": "Tim shared with John that he had recently joined a travel club and was learning to play the violin and piano, expressing enthusiasm for music and personal growth. John responded with encouragement and admiration, highlighting the rewarding nature of learning new skills."
+        }
+      ],
+      "first_timestamp": "2023-05-21T19:53:30+08:00",
+      "last_timestamp": "2023-12-06T17:40:30+08:00",
+      "created_at": "2025-12-04T02:14:03.425335",
+      "updated_at": "2025-12-04T02:19:43.679179"
+    },
+    "gec_003": {
+      "cluster_id": "gec_003",
+      "topic": "John's basketball season goals and challenges",
+      "summary": "They discussed John's basketball journey, highlighting his goals, challenges, team camaraderie, injuries, and recovery. Over time, their conversations reflected mutual support, motivation, and John's evolving passion and aspirations within the sport.",
+      "members": [
+        {
+          "unit_id": "715aa783-5d1f-4b8f-b3f3-9a3d0798c820",
+          "timestamp": "2023-05-21T19:53:30+08:00",
+          "summary": "On May 21, 2023, John shared with Tim that he had signed with the Minnesota Wolves as a shooting guard and expressed excitement for the upcoming season opener, while discussing his goals and challenges adapting to the new team's style. Tim responded with supportive questions and encouragement throughout their conversation."
+        },
+        {
+          "unit_id": "49aacd15-1e0f-4627-8be2-0366d414490b",
+          "timestamp": "2023-05-21T19:57:30+08:00",
+          "summary": "On May 21, 2023, Tim and John discussed their current interests, with John sharing positive experiences about his new team and Tim updating on his Harry Potter fan project and related visits, highlighting their mutual enthusiasm and support."
+        },
+        {
+          "unit_id": "7e7fbea4-9914-43ac-9b64-c294fdb950b7",
+          "timestamp": "2023-06-15T17:17:00+08:00",
+          "summary": "Tim and John exchanged mutual encouragement during a conversation where Tim shared his excitement about visiting Harry Potter spots, and John expressed his passion for playing basketball. Both friends supported each other's interests and aspirations."
+        },
+        {
+          "unit_id": "9cd8505c-b90b-4ddc-b0e1-98c06dfc0bb1",
+          "timestamp": "2023-07-16T16:21:00+08:00",
+          "summary": "Tim encouraged John to keep pursuing his dreams, and nearly a month later, John shared his excitement about scoring 40 points in a basketball game, reflecting their mutual support and motivation."
+        },
+        {
+          "unit_id": "a4633d9d-fb8e-4ec5-9a91-6fade7ef887c",
+          "timestamp": "2023-07-16T16:23:00+08:00",
+          "summary": "Tim congratulated John on his recent basketball victory, and they shared photos and reflections on their achievements and memorable social interactions, highlighting pride and camaraderie."
+        },
+        {
+          "unit_id": "8222b42c-052a-4f60-8699-d1eef34c3a8f",
+          "timestamp": "2023-07-16T16:24:00+08:00",
+          "summary": "On July 16, 2023, Tim and John discussed the emotional connections formed through shared passions, with Tim highlighting the camaraderie among fans and John describing the strong bonds and family-like atmosphere within his sports team. Both expressed positive feelings about connection, passion, and community in their respective interests."
+        },
+        {
+          "unit_id": "9486f0b5-48ff-4e1b-badc-72d51059f06a",
+          "timestamp": "2023-07-16T16:32:00+08:00",
+          "summary": "On July 16, 2023, John shared photos and expressed excitement about his upcoming basketball game and exploration of Seattle, highlighting the city's vibrant atmosphere and local seafood, while Tim responded with admiration and curiosity."
+        },
+        {
+          "unit_id": "9bf76902-0561-4b29-a509-a72d42b8d7ef",
+          "timestamp": "2023-08-09T10:34:00+08:00",
+          "summary": "John and Tim discussed John's recent intense basketball game, where his team won narrowly and shared a strong bond that felt like a supportive family, emphasizing the importance of teamwork and camaraderie both on and off the court."
+        },
+        {
+          "unit_id": "b5ca7db2-54af-49ce-a1de-dca2f050aa0c",
+          "timestamp": "2023-08-09T10:38:30+08:00",
+          "summary": "On August 9, 2023, Tim and John discussed the importance of family support and shared enthusiasm for fantasy literature, with Tim recommending a captivating book by Patrick Rothfuss that he praised for its world-building and character development. John expressed interest in reading the book and agreed to share his thoughts afterward."
+        },
+        {
+          "unit_id": "154ef003-de5c-4a05-96d3-5c54f1838a73",
+          "timestamp": "2023-08-11T13:19:00+08:00",
+          "summary": "John and Tim discussed John's basketball journey, symbolized by his lucky shoes, his career achievements, and his future goals of winning a championship and starting charity work to support disadvantaged kids."
+        },
+        {
+          "unit_id": "d39d9d29-079f-4d6c-952c-713ceecdca39",
+          "timestamp": "2023-08-17T19:55:30+08:00",
+          "summary": "John shared with Tim his joyful reunion with his basketball teammates after a trip, highlighting the strong sense of belonging and camaraderie, which led to a discussion between them about the emotional significance of shared passions and feeling truly connected."
+        },
+        {
+          "unit_id": "bc23d67e-a3cc-46d6-a82a-85d1d69021d1",
+          "timestamp": "2023-08-17T20:01:30+08:00",
+          "summary": "On August 17, 2023, John shared with Tim a photograph of a basketball covered with his teammates' autographs, symbolizing their friendship and mutual support, which motivates John to persevere and give his best effort. Their conversation highlighted the importance of meaningful tokens and social bonds in fostering motivation and personal strength."
+        },
+        {
+          "unit_id": "ae7d7ae4-bb5d-453c-b58c-8ca7654711f2",
+          "timestamp": "2023-08-21T16:34:00+08:00",
+          "summary": "On August 21, 2023, John and Tim reconnected through a conversation where John shared his experience of finding a new gym to improve his basketball skills, emphasizing the importance of balancing basketball practice with strength training for better performance and injury prevention. Tim responded with encouragement and interest in John's progress, leading to a mutual exchange of support and updates."
+        },
+        {
+          "unit_id": "3388be64-8e07-4d7b-9f8c-996b17e8328c",
+          "timestamp": "2023-09-21T20:20:00+08:00",
+          "summary": "John and Tim reconnected in a friendly conversation where John shared his positive experiences bonding with new teammates over a recent restaurant outing and expressed excitement about an upcoming team trip planned for October 2023."
+        },
+        {
+          "unit_id": "b4277ec2-1493-450b-837c-620f9b3c3b69",
+          "timestamp": "2023-09-21T20:22:30+08:00",
+          "summary": "John and Tim discussed planning a team trip for the following month, with Tim suggesting Edinburgh, Scotland as a potential destination due to its cultural and historical appeal, which John found compelling and worth considering."
+        },
+        {
+          "unit_id": "7fdf858d-8b57-45ac-97f8-df6d5e3eb900",
+          "timestamp": "2023-09-21T20:25:00+08:00",
+          "summary": "On September 21, 2023, Tim and John discussed John's basketball career, with John sharing his passion for the sport, his goals to improve his shooting and consistency, and his aspirations for endorsements and personal branding to prepare for life after basketball."
+        },
+        {
+          "unit_id": "03a15864-9780-406b-a66d-eab0b2b8faa4",
+          "timestamp": "2023-09-21T20:27:30+08:00",
+          "summary": "On September 21, 2023, John and Tim discussed John's goals to improve his basketball performance, expand his endorsements, and prepare for life after basketball by leveraging his platform for positive impact, with Tim offering support and advice on authentic partnerships."
+        },
+        {
+          "unit_id": "f1392017-d43a-4028-9d5b-a4da9fde5f42",
+          "timestamp": "2023-10-02T15:14:00+08:00",
+          "summary": "John and Tim discussed their interests in basketball, with John sharing his passion for collecting jerseys and his admiration for LeBron James, including experiences of meeting him and attending live games. Tim expressed curiosity and admiration throughout their conversation."
+        },
+        {
+          "unit_id": "fd2184f9-bf8b-4370-ac84-94abece401ad",
+          "timestamp": "2023-10-13T14:00:30+08:00",
+          "summary": "Tim and John reconnected after a long time, sharing experiences about their passions—Tim about a Harry Potter conference and John about his sports team's challenges and successes—while encouraging and supporting each other's goals. Their conversation ended on a positive note with mutual motivation and offers of help."
+        },
+        {
+          "unit_id": "4de63d62-57bc-4514-b4b0-f9ca8aa476b9",
+          "timestamp": "2023-11-06T11:47:00+08:00",
+          "summary": "On November 6, 2023, Tim and John discussed overcoming personal challenges and perseverance, sharing experiences from writing and basketball, including Tim’s admiration for LeBron James’ determination and a memorable comeback game John played. Their conversation highlighted mutual respect and the value of enduring struggles to achieve growth and success."
+        },
+        {
+          "unit_id": "6cbc4f02-6e17-4fc8-84d2-fcc5ec1d2e5a",
+          "timestamp": "2023-11-06T11:49:00+08:00",
+          "summary": "Tim and John shared a supportive conversation reflecting on meaningful experiences in sports and discussed John's upcoming European vacation, with Tim offering travel recommendations and both exchanging well wishes."
+        },
+        {
+          "unit_id": "e8552924-26af-4eb9-8e76-9101466f4d87",
+          "timestamp": "2023-11-21T10:22:30+08:00",
+          "summary": "On November 21, 2023, Tim reached out to John expressing concern about his injury and offering support, to which John responded by sharing his challenging recovery and maintaining a positive outlook, reflecting their ongoing mutual care and friendship. This exchange followed earlier supportive messages from Tim, highlighting continued encouragement between them."
+        },
+        {
+          "unit_id": "743b8cab-220a-4115-93d8-bd36175845d7",
+          "timestamp": "2023-11-21T10:28:00+08:00",
+          "summary": "On November 21, 2023, Tim and John discussed overcoming challenges and maintaining motivation in basketball, with John sharing his experiences recovering from a major ankle injury and learning resilience through setbacks. They exchanged mutual encouragement focused on personal growth and perseverance both on and off the court."
+        },
+        {
+          "unit_id": "5b77ac17-c9f9-43ef-8744-c922758ba35e",
+          "timestamp": "2023-12-06T17:38:00+08:00",
+          "summary": "Tim and John reconnected to share their enthusiasm for personal growth, with Tim discussing his recent travel club membership and new musical pursuits, while John reflected on his first year as a professional basketball player and the challenges and rewards of building his career."
+        },
+        {
+          "unit_id": "c3cced00-be2e-4abd-a6ca-5b5de2088f14",
+          "timestamp": "2023-12-08T19:50:30+08:00",
+          "summary": "Tim and John reconnected through a friendly conversation sharing their recent experiences and mutual interests in Harry Potter, basketball, and literature, exchanging photos and book recommendations while emphasizing camaraderie and encouragement. Their discussion highlighted Tim's attendance at a Harry Potter-themed party and John's basketball team's unity, culminating in plans to explore new books together."
+        },
+        {
+          "unit_id": "b7683ee3-3886-4644-aab3-5eaad7d39539",
+          "timestamp": "2023-12-11T20:35:30+08:00",
+          "summary": "On December 11, 2023, Tim and John discussed Tim’s struggles with English literature and John’s recent basketball achievements, sharing personal reflections on the emotional impact of sports and encouraging each other to pursue their dreams. Their conversation highlighted mutual support, personal growth, and the significance of basketball in John’s life."
+        },
+        {
+          "unit_id": "ab17cc21-213a-4ad7-884a-e9c263924278",
+          "timestamp": "2023-12-16T15:40:30+08:00",
+          "summary": "On December 16, 2023, Tim and John discussed a recent intense women's basketball game that John's team narrowly won, with John sharing photos and expressing how the victory deepened his passion for basketball. Their conversation highlighted the emotional significance of the win and the motivation it provided for continued effort."
+        },
+        {
+          "unit_id": "e1dae0a4-94c5-4f80-bdd3-75faee37f024",
+          "timestamp": "2023-12-16T15:41:00+08:00",
+          "summary": "On December 16, 2023, John shared a motivational photograph of a basketball hoop at sunset from his morning workout, emphasizing perseverance, while Tim complimented the location and asked about challenges in John's fitness journey. Their conversation centered on motivation, personal effort, and the inspiring workout environment."
+        },
+        {
+          "unit_id": "46aad5a6-c817-4711-b27b-90311619ba7b",
+          "timestamp": "2023-12-19T10:04:00+08:00",
+          "summary": "On December 16, 2023, John informed Tim about his foot injury that required a cast and caused him to miss games, but shared that his rehabilitation was progressing well, highlighted by jogging pain-free on December 15. They discussed his recovery efforts, and John celebrated this milestone with a gathering of friends and family, receiving Tim's encouragement and support."
+        },
+        {
+          "unit_id": "f62cf29c-66fa-45c9-be81-f9c4a9ee5db8",
+          "timestamp": "2023-12-19T10:12:00+08:00",
+          "summary": "Tim and John discussed the recent progress of John's basketball team, highlighting their hard work, improved communication, and team bonding during training and scrimmages. Both expressed enthusiasm and mutual support for the team's ongoing development and future challenges."
+        },
+        {
+          "unit_id": "a96cb3b4-ae04-4977-a1a9-df149a752086",
+          "timestamp": "2023-12-26T15:37:00+08:00",
+          "summary": "Tim encouraged John to believe in himself, and a week later, John shared his positive experience conducting successful sports and marketing seminars, with both expressing mutual support and enthusiasm about their respective projects."
+        },
+        {
+          "unit_id": "3a7d7389-ad96-4dc5-ba08-a1bbc0d0ec26",
+          "timestamp": "2024-01-02T17:32:30+08:00",
+          "summary": "On January 2, 2024, John encouraged Tim to continue his German lessons, while Tim expressed gratitude and commitment to learning; John also shared his passion for basketball, highlighting his daily training and dedication to the sport."
+        },
+        {
+          "unit_id": "df4020c0-fd96-4cf0-be5f-b4e36fb7d154",
+          "timestamp": "2024-01-07T17:34:00+08:00",
+          "summary": "On January 7, 2024, Tim encouraged John, leading to a friendly conversation where Tim recommended the fantasy novel \"The Name of the Wind\" by Patrick Rothfuss, which John decided to add to his reading list. They also discussed the unifying power of sports and agreed to share thoughts on the book after John reads it."
+        }
+      ],
+      "first_timestamp": "2023-05-21T19:53:30+08:00",
+      "last_timestamp": "2024-01-07T17:34:00+08:00",
+      "created_at": "2025-12-04T02:14:03.427852",
+      "updated_at": "2025-12-04T02:21:57.770367"
+    },
+    "gec_004": {
+      "cluster_id": "gec_004",
+      "topic": "Tim's fantasy literature forum participation",
+      "summary": "They discussed their shared passion for fantasy literature, exchanging book recommendations, writing experiences, and personal reflections. Over time, their conversations deepened, highlighting mutual support, creative growth, and the emotional escape fantasy provides.",
+      "members": [
+        {
+          "unit_id": "17f50f41-5eb9-4632-945d-fdb8e8c9489e",
+          "timestamp": "2023-06-15T17:08:00+08:00",
+          "summary": "Tim recommended adding a fun activity or destination to a list and offered visiting tips, later sharing that he joined a fantasy literature forum where he had an enriching conversation about his favorite books."
+        },
+        {
+          "unit_id": "1f8d4196-4fdb-42e9-93e0-b80d1163a845",
+          "timestamp": "2023-07-16T16:38:00+08:00",
+          "summary": "On July 16, 2023, John and Tim discussed their personal ways of experiencing freedom and happiness, with John sharing his love for surfing and Tim expressing his joy in reading fantasy books, highlighting their mutual respect for each other's sources of bliss."
+        },
+        {
+          "unit_id": "f8540647-be81-4bc6-ab93-66f500922c85",
+          "timestamp": "2023-08-02T16:21:00+08:00",
+          "summary": "On August 2, 2023, Tim shared with John his excitement about a new role writing articles on fantasy novels for an online magazine, highlighting his passion for works like \"Harry Potter\" and \"Game of Thrones,\" while John responded with a related personal story about a Harry Potter trivia contest. Their conversation reflected mutual enthusiasm for fantasy literature and strengthened their connection."
+        },
+        {
+          "unit_id": "4adc4d54-e15b-418b-9a1a-fbc10c32337a",
+          "timestamp": "2023-08-11T13:10:30+08:00",
+          "summary": "On August 11, 2023, John and Tim discussed John's recent trip to Chicago and their shared experiences with cultural events and sports games, while Tim also shared his engagement with reading and writing articles. Both expressed positive reflections on travel, social connections, and creative pursuits."
+        },
+        {
+          "unit_id": "82cb4787-04f0-4d4d-a06f-452ece71d076",
+          "timestamp": "2023-08-11T13:11:30+08:00",
+          "summary": "On August 11, 2023, Tim shared with John his enthusiasm for writing and reading by sending images of a book and recommending \"The Name of the Wind,\" while John responded positively and showed interest in Tim's literary activities."
+        },
+        {
+          "unit_id": "9f972069-0235-4d67-9fbf-56aadd7111fe",
+          "timestamp": "2023-09-21T20:31:30+08:00",
+          "summary": "Tim recommended a fantasy novel by Patrick Rothfuss to John, who appreciated the suggestion and planned to read it during his travels, while they also discussed and shared their mutual enjoyment of books like \"The Alchemist.\""
+        },
+        {
+          "unit_id": "f8e23a80-1d07-478f-adf9-930d083a719d",
+          "timestamp": "2023-10-02T15:08:00+08:00",
+          "summary": "John and Tim shared a heartfelt conversation expressing mutual appreciation for their friendship, during which Tim revealed his love for fantasy novels as a means of imaginative escape. Their exchange highlighted emotional closeness and support between the two."
+        },
+        {
+          "unit_id": "c8fdd327-cbf4-402a-9980-4c02c54aab7e",
+          "timestamp": "2023-10-21T18:05:30+08:00",
+          "summary": "On October 21, 2023, John and Tim reconnected through a detailed conversation discussing Tim's fantasy writing inspired by UK castles and J.K. Rowling, while also sharing their motivations, supportive relationships, and personal hobbies like cooking and outdoor activities. Both expressed mutual encouragement and enthusiasm throughout their exchange."
+        },
+        {
+          "unit_id": "c8fdd327-cbf4-402a-9980-4c02c54aab7e",
+          "timestamp": "2023-10-21T18:05:30+08:00",
+          "summary": "On October 21, 2023, John and Tim reconnected through a detailed conversation discussing Tim's fantasy writing inspired by UK castles and J.K. Rowling, while also sharing their motivations, supportive relationships, and personal hobbies like cooking and outdoor activities. Both expressed mutual encouragement and enthusiasm throughout their exchange."
+        },
+        {
+          "unit_id": "77014c62-4932-4cfc-be16-52b86514c19c",
+          "timestamp": "2023-11-11T15:45:00+08:00",
+          "summary": "On November 11, 2023, John and Tim discussed their shared enjoyment of fantasy series as a mental escape and form of self-care, emphasizing the importance of balance and taking time for oneself to recharge and gain new perspectives. Their conversation highlighted mutual support and appreciation for the emotional benefits of engaging with fantasy media."
+        },
+        {
+          "unit_id": "cd6f3c89-b5d7-44c9-b4bd-d1daf4cbf3c6",
+          "timestamp": "2023-11-16T15:59:00+08:00",
+          "summary": "John expressed gratitude for support and motivation on November 11, 2023, while Tim shared a photo and recounted his impressive visit to a historic UK castle on November 16, 2023."
+        },
+        {
+          "unit_id": "b0be5ad4-84c7-4017-83ba-aee5d084eb4e",
+          "timestamp": "2023-11-21T10:23:30+08:00",
+          "summary": "On November 21, 2023, Tim shared with John his frustration over a recent unsuccessful attempt to write a story based on his UK experiences, and John advised him to adopt a reflective approach to improve his storytelling skills."
+        },
+        {
+          "unit_id": "d2c3d993-bab8-4931-a0c5-f4517b741d4d",
+          "timestamp": "2023-11-21T10:33:00+08:00",
+          "summary": "On November 21, 2023, Tim and John discussed their shared passion for reading, focusing on how books like fantasy novels and personal development titles influence their growth, creativity, and perspectives. They exchanged thoughts on favorite books such as \"Harry Potter,\" \"Game of Thrones,\" and \"The Alchemist,\" highlighting the motivational and transformative power of literature in their lives."
+        },
+        {
+          "unit_id": "76b379a1-2c4b-4a4a-be70-db65f493d169",
+          "timestamp": "2023-12-01T10:04:30+08:00",
+          "summary": "On December 1, 2023, John and Tim shared a warm conversation about their mutual love for fantasy books and movies, exchanging photos of Tim's bookshelf and discussing favorite titles, which deepened their friendship through their shared enthusiasm. They reflected on how fantasy literature offers an escape to magical worlds, reinforcing their appreciation for the genre."
+        },
+        {
+          "unit_id": "c3cced00-be2e-4abd-a6ca-5b5de2088f14",
+          "timestamp": "2023-12-08T19:50:30+08:00",
+          "summary": "Tim and John reconnected through a friendly conversation sharing their recent experiences and mutual interests in Harry Potter, basketball, and literature, exchanging photos and book recommendations while emphasizing camaraderie and encouragement. Their discussion highlighted Tim's attendance at a Harry Potter-themed party and John's basketball team's unity, culminating in plans to explore new books together."
+        },
+        {
+          "unit_id": "a1d5938d-68bf-43b7-9317-f186196b68f5",
+          "timestamp": "2023-12-26T15:49:30+08:00",
+          "summary": "Tim and John discussed their mutual appreciation for the Harry Potter series, sharing their enjoyment of the books and movies as a relaxing escape. They exchanged photos and expressed enthusiasm for watching movies together, highlighting the fun of movie marathons with friends."
+        },
+        {
+          "unit_id": "c60b75d1-75a2-4993-b7ed-9a6e635c79e3",
+          "timestamp": "2023-12-26T15:53:30+08:00",
+          "summary": "John and Tim discussed their shared enthusiasm for fantasy movies and TV shows, with Tim expressing excitement about the upcoming January 2024 premiere of the fantasy series \"The Wheel of Time,\" based on his favorite book series."
+        },
+        {
+          "unit_id": "b3f39710-4526-425d-a811-f15b8b52d9d6",
+          "timestamp": "2024-01-02T17:43:00+08:00",
+          "summary": "On January 2, 2024, John and Tim discussed their favorite fantasy movies, sharing enthusiasm for Star Wars and Lord of the Rings, particularly admiring Aragorn's leadership and growth. They exchanged images and reflections on the inspiring qualities of fantasy stories and characters."
+        }
+      ],
+      "first_timestamp": "2023-06-15T17:08:00+08:00",
+      "last_timestamp": "2024-01-02T17:43:00+08:00",
+      "created_at": "2025-12-04T02:14:14.734667",
+      "updated_at": "2025-12-04T02:21:35.388328"
+    },
+    "gec_005": {
+      "cluster_id": "gec_005",
+      "topic": "John's endorsement opportunities with sports brands",
+      "summary": "They discussed John's growing endorsement opportunities with sports brands, from initial excitement about potential deals to securing a Nike contract and negotiating with Gatorade. Conversations emphasized authentic partnerships, networking, and leveraging endorsements for long-term personal branding.",
+      "members": [
+        {
+          "unit_id": "43639aa3-923c-456b-87fc-c2edc7930ff6",
+          "timestamp": "2023-06-15T17:11:00+08:00",
+          "summary": "On June 15, 2023, John and Tim discussed John's new endorsement opportunities, with John expressing excitement about potential collaborations with sports brands like Nike and Under Armour, while Tim offered congratulations and support."
+        },
+        {
+          "unit_id": "974d0af9-a7fa-44fa-99bf-ca4a72eaa2c1",
+          "timestamp": "2023-07-16T16:29:00+08:00",
+          "summary": "Tim and John discussed John's progress in securing sports endorsements, with John revealing he had signed a deal with Nike and was negotiating with Gatorade, while expressing excitement about potential future collaborations. Throughout the conversation, John emphasized the importance of networking and showed optimism about upcoming opportunities, as Tim offered support and encouragement."
+        },
+        {
+          "unit_id": "7fdf858d-8b57-45ac-97f8-df6d5e3eb900",
+          "timestamp": "2023-09-21T20:25:00+08:00",
+          "summary": "On September 21, 2023, Tim and John discussed John's basketball career, with John sharing his passion for the sport, his goals to improve his shooting and consistency, and his aspirations for endorsements and personal branding to prepare for life after basketball."
+        },
+        {
+          "unit_id": "03a15864-9780-406b-a66d-eab0b2b8faa4",
+          "timestamp": "2023-09-21T20:27:30+08:00",
+          "summary": "On September 21, 2023, John and Tim discussed John's goals to improve his basketball performance, expand his endorsements, and prepare for life after basketball by leveraging his platform for positive impact, with Tim offering support and advice on authentic partnerships."
+        },
+        {
+          "unit_id": "8731869c-a7c0-4eeb-937f-063c9facb498",
+          "timestamp": "2023-09-21T20:28:00+08:00",
+          "summary": "On September 21, 2023, Tim advised John on selecting authentic endorsements aligned with his values, and John responded positively while seeking book recommendations for his upcoming trip. The conversation highlighted a thoughtful exchange on strategic endorsements and travel reading suggestions."
+        },
+        {
+          "unit_id": "394c72b9-5ee1-44ce-a08a-b690c397ceb0",
+          "timestamp": "2024-01-12T13:44:30+08:00",
+          "summary": "On January 12, 2024, John shared with Tim that he had secured an endorsement deal with a popular beverage company, describing the achievement as a dream come true and a validation of his hard work, while Tim offered congratulations and support."
+        }
+      ],
+      "first_timestamp": "2023-06-15T17:11:00+08:00",
+      "last_timestamp": "2024-01-12T13:44:30+08:00",
+      "created_at": "2025-12-04T02:14:19.672582",
+      "updated_at": "2025-12-04T02:22:08.540287"
+    },
+    "gec_006": {
+      "cluster_id": "gec_006",
+      "topic": "John's passion for surfing and connection to the ocean",
+      "summary": "On July 16, 2023, John and Tim discussed John's passion for surfing and the ocean, with John sharing photos and memories of his five years of surfing and the emotional connection he feels to nature, while Tim expressed curiosity and admiration.",
+      "members": [
+        {
+          "unit_id": "21051b26-f291-4e21-b410-ae60755d7c7c",
+          "timestamp": "2023-07-16T16:35:00+08:00",
+          "summary": "On July 16, 2023, John and Tim discussed John's passion for surfing and the ocean, with John sharing photos and memories of his five years of surfing and the emotional connection he feels to nature, while Tim expressed curiosity and admiration."
+        },
+        {
+          "unit_id": "1f8d4196-4fdb-42e9-93e0-b80d1163a845",
+          "timestamp": "2023-07-16T16:38:00+08:00",
+          "summary": "On July 16, 2023, John and Tim discussed their personal ways of experiencing freedom and happiness, with John sharing his love for surfing and Tim expressing his joy in reading fantasy books, highlighting their mutual respect for each other's sources of bliss."
+        }
+      ],
+      "first_timestamp": "2023-07-16T16:35:00+08:00",
+      "last_timestamp": "2023-07-16T16:38:00+08:00",
+      "created_at": "2025-12-04T02:15:00.182666",
+      "updated_at": "2025-12-04T02:15:05.365098"
+    },
+    "gec_007": {
+      "cluster_id": "gec_007",
+      "topic": "John's inspiration from reading motivational books",
+      "summary": "Tim and John engaged in a positive conversation about inspiration and motivation, with John sharing his experience reading an inspiring book and both encouraging each other's dreams and creative pursuits. They exchanged friendly farewells, expressing mutual support for reading and writing activities.",
+      "members": [
+        {
+          "unit_id": "f7db6d89-d4e7-4e9e-b994-b3457bcaa3c0",
+          "timestamp": "2023-08-02T16:24:00+08:00",
+          "summary": "Tim and John engaged in a positive conversation about inspiration and motivation, with John sharing his experience reading an inspiring book and both encouraging each other's dreams and creative pursuits. They exchanged friendly farewells, expressing mutual support for reading and writing activities."
+        }
+      ],
+      "first_timestamp": "2023-08-02T16:24:00+08:00",
+      "last_timestamp": "2023-08-02T16:24:00+08:00",
+      "created_at": "2025-12-04T02:15:16.501417",
+      "updated_at": "2025-12-04T02:15:16.501417"
+    },
+    "gec_008": {
+      "cluster_id": "gec_008",
+      "topic": "Mutual encouragement for creative pursuits between Tim and John",
+      "summary": "Tim and John consistently encouraged each other's creative pursuits, sharing inspirations from books, travel, and personal hobbies. Their ongoing exchanges reflect mutual support and enthusiasm for writing, reading, and artistic motivation across several months.",
+      "members": [
+        {
+          "unit_id": "f7db6d89-d4e7-4e9e-b994-b3457bcaa3c0",
+          "timestamp": "2023-08-02T16:24:00+08:00",
+          "summary": "Tim and John engaged in a positive conversation about inspiration and motivation, with John sharing his experience reading an inspiring book and both encouraging each other's dreams and creative pursuits. They exchanged friendly farewells, expressing mutual support for reading and writing activities."
+        },
+        {
+          "unit_id": "4adc4d54-e15b-418b-9a1a-fbc10c32337a",
+          "timestamp": "2023-08-11T13:10:30+08:00",
+          "summary": "On August 11, 2023, John and Tim discussed John's recent trip to Chicago and their shared experiences with cultural events and sports games, while Tim also shared his engagement with reading and writing articles. Both expressed positive reflections on travel, social connections, and creative pursuits."
+        },
+        {
+          "unit_id": "82cb4787-04f0-4d4d-a06f-452ece71d076",
+          "timestamp": "2023-08-11T13:11:30+08:00",
+          "summary": "On August 11, 2023, Tim shared with John his enthusiasm for writing and reading by sending images of a book and recommending \"The Name of the Wind,\" while John responded positively and showed interest in Tim's literary activities."
+        },
+        {
+          "unit_id": "c8fdd327-cbf4-402a-9980-4c02c54aab7e",
+          "timestamp": "2023-10-21T18:05:30+08:00",
+          "summary": "On October 21, 2023, John and Tim reconnected through a detailed conversation discussing Tim's fantasy writing inspired by UK castles and J.K. Rowling, while also sharing their motivations, supportive relationships, and personal hobbies like cooking and outdoor activities. Both expressed mutual encouragement and enthusiasm throughout their exchange."
+        },
+        {
+          "unit_id": "c8fdd327-cbf4-402a-9980-4c02c54aab7e",
+          "timestamp": "2023-10-21T18:05:30+08:00",
+          "summary": "On October 21, 2023, John and Tim reconnected through a detailed conversation discussing Tim's fantasy writing inspired by UK castles and J.K. Rowling, while also sharing their motivations, supportive relationships, and personal hobbies like cooking and outdoor activities. Both expressed mutual encouragement and enthusiasm throughout their exchange."
+        },
+        {
+          "unit_id": "59367b3f-04ff-4704-82b2-cfa4615a061d",
+          "timestamp": "2023-10-21T18:09:30+08:00",
+          "summary": "John and Tim discussed cooking as a relaxing and creative activity, with John sharing his favorite honey garlic chicken recipe and agreeing to mail it to Tim for future culinary experimentation. Their conversation highlighted their mutual appreciation for cooking and friendly rapport."
+        },
+        {
+          "unit_id": "b0be5ad4-84c7-4017-83ba-aee5d084eb4e",
+          "timestamp": "2023-11-21T10:23:30+08:00",
+          "summary": "On November 21, 2023, Tim shared with John his frustration over a recent unsuccessful attempt to write a story based on his UK experiences, and John advised him to adopt a reflective approach to improve his storytelling skills."
+        }
+      ],
+      "first_timestamp": "2023-08-02T16:24:00+08:00",
+      "last_timestamp": "2023-11-21T10:23:30+08:00",
+      "created_at": "2025-12-04T02:15:16.503548",
+      "updated_at": "2025-12-04T02:18:57.141647"
+    },
+    "gec_009": {
+      "cluster_id": "gec_009",
+      "topic": "John's trip to Chicago and cultural events",
+      "summary": "On August 11, 2023, John and Tim discussed John's recent trip to Chicago and their shared experiences with cultural events and sports games, while Tim also shared his engagement with reading and writing articles. Both expressed positive reflections on travel, social connections, and creative pursuits.",
+      "members": [
+        {
+          "unit_id": "4adc4d54-e15b-418b-9a1a-fbc10c32337a",
+          "timestamp": "2023-08-11T13:10:30+08:00",
+          "summary": "On August 11, 2023, John and Tim discussed John's recent trip to Chicago and their shared experiences with cultural events and sports games, while Tim also shared his engagement with reading and writing articles. Both expressed positive reflections on travel, social connections, and creative pursuits."
+        }
+      ],
+      "first_timestamp": "2023-08-11T13:10:30+08:00",
+      "last_timestamp": "2023-08-11T13:10:30+08:00",
+      "created_at": "2025-12-04T02:15:38.301036",
+      "updated_at": "2025-12-04T02:15:38.301036"
+    },
+    "gec_010": {
+      "cluster_id": "gec_010",
+      "topic": "John and Tim's shared experiences with sports games",
+      "summary": "On August 11, 2023, John and Tim discussed John's recent trip to Chicago and their shared experiences with cultural events and sports games, while Tim also shared his engagement with reading and writing articles. Both expressed positive reflections on travel, social connections, and creative pursuits.",
+      "members": [
+        {
+          "unit_id": "4adc4d54-e15b-418b-9a1a-fbc10c32337a",
+          "timestamp": "2023-08-11T13:10:30+08:00",
+          "summary": "On August 11, 2023, John and Tim discussed John's recent trip to Chicago and their shared experiences with cultural events and sports games, while Tim also shared his engagement with reading and writing articles. Both expressed positive reflections on travel, social connections, and creative pursuits."
+        }
+      ],
+      "first_timestamp": "2023-08-11T13:10:30+08:00",
+      "last_timestamp": "2023-08-11T13:10:30+08:00",
+      "created_at": "2025-12-04T02:15:38.303687",
+      "updated_at": "2025-12-04T02:15:38.303687"
+    },
+    "gec_011": {
+      "cluster_id": "gec_011",
+      "topic": "John's enthusiasm about connecting with like-minded people",
+      "summary": "On August 17, 2023, John expressed enthusiasm about connecting with like-minded people and asked Tim about upcoming plans, to which Tim replied he hoped to attend a book conference the following month to deepen his literary knowledge and connections.",
+      "members": [
+        {
+          "unit_id": "44aa1048-6215-46cb-95ad-d20e5c4ef404",
+          "timestamp": "2023-08-17T19:56:30+08:00",
+          "summary": "On August 17, 2023, John expressed enthusiasm about connecting with like-minded people and asked Tim about upcoming plans, to which Tim replied he hoped to attend a book conference the following month to deepen his literary knowledge and connections."
+        }
+      ],
+      "first_timestamp": "2023-08-17T19:56:30+08:00",
+      "last_timestamp": "2023-08-17T19:56:30+08:00",
+      "created_at": "2025-12-04T02:15:58.922166",
+      "updated_at": "2025-12-04T02:15:58.922166"
+    },
+    "gec_012": {
+      "cluster_id": "gec_012",
+      "topic": "Tim's plans to attend a book conference to deepen literary knowledge and connections",
+      "summary": "On August 17, 2023, John expressed enthusiasm about connecting with like-minded people and asked Tim about upcoming plans, to which Tim replied he hoped to attend a book conference the following month to deepen his literary knowledge and connections.",
+      "members": [
+        {
+          "unit_id": "44aa1048-6215-46cb-95ad-d20e5c4ef404",
+          "timestamp": "2023-08-17T19:56:30+08:00",
+          "summary": "On August 17, 2023, John expressed enthusiasm about connecting with like-minded people and asked Tim about upcoming plans, to which Tim replied he hoped to attend a book conference the following month to deepen his literary knowledge and connections."
+        }
+      ],
+      "first_timestamp": "2023-08-17T19:56:30+08:00",
+      "last_timestamp": "2023-08-17T19:56:30+08:00",
+      "created_at": "2025-12-04T02:15:58.924349",
+      "updated_at": "2025-12-04T02:15:58.924349"
+    },
+    "gec_013": {
+      "cluster_id": "gec_013",
+      "topic": "Tim's piano learning progress",
+      "summary": "On August 21, 2023, John and Tim discussed Tim's personal progress, including his piano learning and favorite Harry Potter theme, while sharing cherished family memories centered around watching the first Harry Potter movie together. The conversation highlighted their mutual appreciation for music, family moments, and personal growth.",
+      "members": [
+        {
+          "unit_id": "d4f02df3-0710-4e5c-8876-7aab23f98461",
+          "timestamp": "2023-08-21T16:38:30+08:00",
+          "summary": "On August 21, 2023, John and Tim discussed Tim's personal progress, including his piano learning and favorite Harry Potter theme, while sharing cherished family memories centered around watching the first Harry Potter movie together. The conversation highlighted their mutual appreciation for music, family moments, and personal growth."
+        },
+        {
+          "unit_id": "62422737-ee9b-4d36-9bb0-0ed5dbd1fef2",
+          "timestamp": "2023-12-06T17:40:30+08:00",
+          "summary": "Tim shared with John that he had recently joined a travel club and was learning to play the violin and piano, expressing enthusiasm for music and personal growth. John responded with encouragement and admiration, highlighting the rewarding nature of learning new skills."
+        }
+      ],
+      "first_timestamp": "2023-08-21T16:38:30+08:00",
+      "last_timestamp": "2023-12-06T17:40:30+08:00",
+      "created_at": "2025-12-04T02:16:15.079254",
+      "updated_at": "2025-12-04T02:19:43.679179"
+    },
+    "gec_014": {
+      "cluster_id": "gec_014",
+      "topic": "Shared family memories of watching the first Harry Potter movie",
+      "summary": "On August 21, 2023, John and Tim discussed Tim's personal progress, including his piano learning and favorite Harry Potter theme, while sharing cherished family memories centered around watching the first Harry Potter movie together. The conversation highlighted their mutual appreciation for music, family moments, and personal growth.",
+      "members": [
+        {
+          "unit_id": "d4f02df3-0710-4e5c-8876-7aab23f98461",
+          "timestamp": "2023-08-21T16:38:30+08:00",
+          "summary": "On August 21, 2023, John and Tim discussed Tim's personal progress, including his piano learning and favorite Harry Potter theme, while sharing cherished family memories centered around watching the first Harry Potter movie together. The conversation highlighted their mutual appreciation for music, family moments, and personal growth."
+        }
+      ],
+      "first_timestamp": "2023-08-21T16:38:30+08:00",
+      "last_timestamp": "2023-08-21T16:38:30+08:00",
+      "created_at": "2025-12-04T02:16:15.081709",
+      "updated_at": "2025-12-04T02:16:15.081709"
+    },
+    "gec_015": {
+      "cluster_id": "gec_015",
+      "topic": "Mutual appreciation for music and personal growth",
+      "summary": "On August 21, 2023, John and Tim discussed Tim's personal progress, including his piano learning and favorite Harry Potter theme, while sharing cherished family memories centered around watching the first Harry Potter movie together. The conversation highlighted their mutual appreciation for music, family moments, and personal growth.",
+      "members": [
+        {
+          "unit_id": "d4f02df3-0710-4e5c-8876-7aab23f98461",
+          "timestamp": "2023-08-21T16:38:30+08:00",
+          "summary": "On August 21, 2023, John and Tim discussed Tim's personal progress, including his piano learning and favorite Harry Potter theme, while sharing cherished family memories centered around watching the first Harry Potter movie together. The conversation highlighted their mutual appreciation for music, family moments, and personal growth."
+        }
+      ],
+      "first_timestamp": "2023-08-21T16:38:30+08:00",
+      "last_timestamp": "2023-08-21T16:38:30+08:00",
+      "created_at": "2025-12-04T02:16:15.083496",
+      "updated_at": "2025-12-04T02:16:15.083496"
+    },
+    "gec_016": {
+      "cluster_id": "gec_016",
+      "topic": "Tim's family holiday traditions",
+      "summary": "Tim and John discussed their family holiday traditions, favorite festive movies like \"Home Alone,\" \"Elf,\" and \"The Santa Clause,\" and shared photos of their Christmas tree decorations, highlighting their mutual enjoyment of holiday celebrations. The conversation reflected their appreciation for festive activities and the joy these traditions bring.",
+      "members": [
+        {
+          "unit_id": "f3446509-355e-4dbe-89b9-51f1e4fcef8c",
+          "timestamp": "2023-08-21T16:47:00+08:00",
+          "summary": "Tim and John discussed their family holiday traditions, favorite festive movies like \"Home Alone,\" \"Elf,\" and \"The Santa Clause,\" and shared photos of their Christmas tree decorations, highlighting their mutual enjoyment of holiday celebrations. The conversation reflected their appreciation for festive activities and the joy these traditions bring."
+        }
+      ],
+      "first_timestamp": "2023-08-21T16:47:00+08:00",
+      "last_timestamp": "2023-08-21T16:47:00+08:00",
+      "created_at": "2025-12-04T02:16:20.320671",
+      "updated_at": "2025-12-04T02:16:20.320671"
+    },
+    "gec_017": {
+      "cluster_id": "gec_017",
+      "topic": "Favorite festive holiday movies",
+      "summary": "Tim and John discussed their family holiday traditions, favorite festive movies like \"Home Alone,\" \"Elf,\" and \"The Santa Clause,\" and shared photos of their Christmas tree decorations, highlighting their mutual enjoyment of holiday celebrations. The conversation reflected their appreciation for festive activities and the joy these traditions bring.",
+      "members": [
+        {
+          "unit_id": "f3446509-355e-4dbe-89b9-51f1e4fcef8c",
+          "timestamp": "2023-08-21T16:47:00+08:00",
+          "summary": "Tim and John discussed their family holiday traditions, favorite festive movies like \"Home Alone,\" \"Elf,\" and \"The Santa Clause,\" and shared photos of their Christmas tree decorations, highlighting their mutual enjoyment of holiday celebrations. The conversation reflected their appreciation for festive activities and the joy these traditions bring."
+        }
+      ],
+      "first_timestamp": "2023-08-21T16:47:00+08:00",
+      "last_timestamp": "2023-08-21T16:47:00+08:00",
+      "created_at": "2025-12-04T02:16:20.322914",
+      "updated_at": "2025-12-04T02:16:20.322914"
+    },
+    "gec_018": {
+      "cluster_id": "gec_018",
+      "topic": "Christmas tree decoration sharing",
+      "summary": "Tim and John discussed their family holiday traditions, favorite festive movies like \"Home Alone,\" \"Elf,\" and \"The Santa Clause,\" and shared photos of their Christmas tree decorations, highlighting their mutual enjoyment of holiday celebrations. The conversation reflected their appreciation for festive activities and the joy these traditions bring.",
+      "members": [
+        {
+          "unit_id": "f3446509-355e-4dbe-89b9-51f1e4fcef8c",
+          "timestamp": "2023-08-21T16:47:00+08:00",
+          "summary": "Tim and John discussed their family holiday traditions, favorite festive movies like \"Home Alone,\" \"Elf,\" and \"The Santa Clause,\" and shared photos of their Christmas tree decorations, highlighting their mutual enjoyment of holiday celebrations. The conversation reflected their appreciation for festive activities and the joy these traditions bring."
+        }
+      ],
+      "first_timestamp": "2023-08-21T16:47:00+08:00",
+      "last_timestamp": "2023-08-21T16:47:00+08:00",
+      "created_at": "2025-12-04T02:16:20.325074",
+      "updated_at": "2025-12-04T02:16:20.325074"
+    },
+    "gec_019": {
+      "cluster_id": "gec_019",
+      "topic": "Tim's struggles balancing studies and hobbies",
+      "summary": "Tim and John discussed their recent experiences and future plans, with Tim sharing his struggles balancing studies and hobbies, while John encouraged him and recommended visiting New York City, offering support for the trip.",
+      "members": [
+        {
+          "unit_id": "e1d05049-cfa2-4ce7-a8c5-c40800286769",
+          "timestamp": "2023-08-26T19:06:00+08:00",
+          "summary": "Tim and John discussed their recent experiences and future plans, with Tim sharing his struggles balancing studies and hobbies, while John encouraged him and recommended visiting New York City, offering support for the trip."
+        },
+        {
+          "unit_id": "09c723ee-014b-4cea-80be-15952ca6853f",
+          "timestamp": "2023-08-31T14:55:30+08:00",
+          "summary": "On August 31, 2023, Tim and John exchanged a supportive conversation where Tim shared his recent job rejection and class presentation, while John recounted overcoming subway navigation challenges in NYC and discussed his improvised butternut squash soup recipe. The interaction highlighted mutual encouragement and personal experiences related to challenges and achievements."
+        },
+        {
+          "unit_id": "10b3a801-15b4-4a2d-894b-ba91daa8dfe6",
+          "timestamp": "2023-08-31T15:00:00+08:00",
+          "summary": "John and Tim had a friendly conversation where John shared a cooking tip about adding sage, and Tim expressed excitement about his upcoming first visit to Universal Studios, especially the Harry Potter attractions. They exchanged well wishes and looked forward to catching up after Tim's trip."
+        },
+        {
+          "unit_id": "3b51d9b0-571a-4273-8189-cb1c89a666f8",
+          "timestamp": "2023-10-17T14:01:00+08:00",
+          "summary": "On October 17, 2023, Tim and John discussed balancing school and leisure activities, with Tim sharing his success in managing studies and relaxation through reading, which motivated John to resume reading as well. Both expressed positive feelings about maintaining this balance."
+        }
+      ],
+      "first_timestamp": "2023-08-26T19:06:00+08:00",
+      "last_timestamp": "2023-10-17T14:01:00+08:00",
+      "created_at": "2025-12-04T02:16:24.939310",
+      "updated_at": "2025-12-04T02:17:53.515809"
+    },
+    "gec_020": {
+      "cluster_id": "gec_020",
+      "topic": "John's recommendation and support for Tim's New York City trip",
+      "summary": "Tim and John discussed their recent experiences and future plans, with Tim sharing his struggles balancing studies and hobbies, while John encouraged him and recommended visiting New York City, offering support for the trip.",
+      "members": [
+        {
+          "unit_id": "e1d05049-cfa2-4ce7-a8c5-c40800286769",
+          "timestamp": "2023-08-26T19:06:00+08:00",
+          "summary": "Tim and John discussed their recent experiences and future plans, with Tim sharing his struggles balancing studies and hobbies, while John encouraged him and recommended visiting New York City, offering support for the trip."
+        },
+        {
+          "unit_id": "09c723ee-014b-4cea-80be-15952ca6853f",
+          "timestamp": "2023-08-31T14:55:30+08:00",
+          "summary": "On August 31, 2023, Tim and John exchanged a supportive conversation where Tim shared his recent job rejection and class presentation, while John recounted overcoming subway navigation challenges in NYC and discussed his improvised butternut squash soup recipe. The interaction highlighted mutual encouragement and personal experiences related to challenges and achievements."
+        }
+      ],
+      "first_timestamp": "2023-08-26T19:06:00+08:00",
+      "last_timestamp": "2023-08-31T14:55:30+08:00",
+      "created_at": "2025-12-04T02:16:24.941467",
+      "updated_at": "2025-12-04T02:16:31.524276"
+    },
+    "gec_021": {
+      "cluster_id": "gec_021",
+      "topic": "Tim's recent job rejection and maintaining a positive attitude",
+      "summary": "On August 31, 2023, Tim and John exchanged a supportive conversation where Tim shared his recent job rejection and class presentation, while John recounted overcoming subway navigation challenges in NYC and discussed his improvised butternut squash soup recipe. The interaction highlighted mutual encouragement and personal experiences related to challenges and achievements.",
+      "members": [
+        {
+          "unit_id": "09c723ee-014b-4cea-80be-15952ca6853f",
+          "timestamp": "2023-08-31T14:55:30+08:00",
+          "summary": "On August 31, 2023, Tim and John exchanged a supportive conversation where Tim shared his recent job rejection and class presentation, while John recounted overcoming subway navigation challenges in NYC and discussed his improvised butternut squash soup recipe. The interaction highlighted mutual encouragement and personal experiences related to challenges and achievements."
+        }
+      ],
+      "first_timestamp": "2023-08-31T14:55:30+08:00",
+      "last_timestamp": "2023-08-31T14:55:30+08:00",
+      "created_at": "2025-12-04T02:16:31.520047",
+      "updated_at": "2025-12-04T02:16:31.520047"
+    },
+    "gec_022": {
+      "cluster_id": "gec_022",
+      "topic": "Tim's class presentation experience",
+      "summary": "On August 31, 2023, Tim and John exchanged a supportive conversation where Tim shared his recent job rejection and class presentation, while John recounted overcoming subway navigation challenges in NYC and discussed his improvised butternut squash soup recipe. The interaction highlighted mutual encouragement and personal experiences related to challenges and achievements.",
+      "members": [
+        {
+          "unit_id": "09c723ee-014b-4cea-80be-15952ca6853f",
+          "timestamp": "2023-08-31T14:55:30+08:00",
+          "summary": "On August 31, 2023, Tim and John exchanged a supportive conversation where Tim shared his recent job rejection and class presentation, while John recounted overcoming subway navigation challenges in NYC and discussed his improvised butternut squash soup recipe. The interaction highlighted mutual encouragement and personal experiences related to challenges and achievements."
+        }
+      ],
+      "first_timestamp": "2023-08-31T14:55:30+08:00",
+      "last_timestamp": "2023-08-31T14:55:30+08:00",
+      "created_at": "2025-12-04T02:16:31.522491",
+      "updated_at": "2025-12-04T02:16:31.522491"
+    },
+    "gec_023": {
+      "cluster_id": "gec_023",
+      "topic": "John's subway navigation challenges in New York City",
+      "summary": "On August 31, 2023, Tim and John exchanged a supportive conversation where Tim shared his recent job rejection and class presentation, while John recounted overcoming subway navigation challenges in NYC and discussed his improvised butternut squash soup recipe. The interaction highlighted mutual encouragement and personal experiences related to challenges and achievements.",
+      "members": [
+        {
+          "unit_id": "09c723ee-014b-4cea-80be-15952ca6853f",
+          "timestamp": "2023-08-31T14:55:30+08:00",
+          "summary": "On August 31, 2023, Tim and John exchanged a supportive conversation where Tim shared his recent job rejection and class presentation, while John recounted overcoming subway navigation challenges in NYC and discussed his improvised butternut squash soup recipe. The interaction highlighted mutual encouragement and personal experiences related to challenges and achievements."
+        }
+      ],
+      "first_timestamp": "2023-08-31T14:55:30+08:00",
+      "last_timestamp": "2023-08-31T14:55:30+08:00",
+      "created_at": "2025-12-04T02:16:31.524276",
+      "updated_at": "2025-12-04T02:16:31.524276"
+    },
+    "gec_024": {
+      "cluster_id": "gec_024",
+      "topic": "John's improvised butternut squash soup recipe",
+      "summary": "On August 31, 2023, Tim and John exchanged a supportive conversation where Tim shared his recent job rejection and class presentation, while John recounted overcoming subway navigation challenges in NYC and discussed his improvised butternut squash soup recipe. The interaction highlighted mutual encouragement and personal experiences related to challenges and achievements.",
+      "members": [
+        {
+          "unit_id": "09c723ee-014b-4cea-80be-15952ca6853f",
+          "timestamp": "2023-08-31T14:55:30+08:00",
+          "summary": "On August 31, 2023, Tim and John exchanged a supportive conversation where Tim shared his recent job rejection and class presentation, while John recounted overcoming subway navigation challenges in NYC and discussed his improvised butternut squash soup recipe. The interaction highlighted mutual encouragement and personal experiences related to challenges and achievements."
+        }
+      ],
+      "first_timestamp": "2023-08-31T14:55:30+08:00",
+      "last_timestamp": "2023-08-31T14:55:30+08:00",
+      "created_at": "2025-12-04T02:16:31.526027",
+      "updated_at": "2025-12-04T02:16:31.526027"
+    },
+    "gec_025": {
+      "cluster_id": "gec_025",
+      "topic": "Tim's upcoming first visit to Universal Studios and Harry Potter attractions",
+      "summary": "John and Tim had a friendly conversation where John shared a cooking tip about adding sage, and Tim expressed excitement about his upcoming first visit to Universal Studios, especially the Harry Potter attractions. They exchanged well wishes and looked forward to catching up after Tim's trip.",
+      "members": [
+        {
+          "unit_id": "10b3a801-15b4-4a2d-894b-ba91daa8dfe6",
+          "timestamp": "2023-08-31T15:00:00+08:00",
+          "summary": "John and Tim had a friendly conversation where John shared a cooking tip about adding sage, and Tim expressed excitement about his upcoming first visit to Universal Studios, especially the Harry Potter attractions. They exchanged well wishes and looked forward to catching up after Tim's trip."
+        }
+      ],
+      "first_timestamp": "2023-08-31T15:00:00+08:00",
+      "last_timestamp": "2023-08-31T15:00:00+08:00",
+      "created_at": "2025-12-04T02:16:37.716108",
+      "updated_at": "2025-12-04T02:16:37.716108"
+    },
+    "gec_026": {
+      "cluster_id": "gec_026",
+      "topic": "John's cooking tips involving sage",
+      "summary": "John and Tim had a friendly conversation where John shared a cooking tip about adding sage, and Tim expressed excitement about his upcoming first visit to Universal Studios, especially the Harry Potter attractions. They exchanged well wishes and looked forward to catching up after Tim's trip.",
+      "members": [
+        {
+          "unit_id": "10b3a801-15b4-4a2d-894b-ba91daa8dfe6",
+          "timestamp": "2023-08-31T15:00:00+08:00",
+          "summary": "John and Tim had a friendly conversation where John shared a cooking tip about adding sage, and Tim expressed excitement about his upcoming first visit to Universal Studios, especially the Harry Potter attractions. They exchanged well wishes and looked forward to catching up after Tim's trip."
+        }
+      ],
+      "first_timestamp": "2023-08-31T15:00:00+08:00",
+      "last_timestamp": "2023-08-31T15:00:00+08:00",
+      "created_at": "2025-12-04T02:16:37.717344",
+      "updated_at": "2025-12-04T02:16:37.717344"
+    },
+    "gec_027": {
+      "cluster_id": "gec_027",
+      "topic": "John's book recommendations for travel",
+      "summary": "On September 21, 2023, Tim advised John on selecting authentic endorsements aligned with his values, and John responded positively while seeking book recommendations for his upcoming trip. The conversation highlighted a thoughtful exchange on strategic endorsements and travel reading suggestions.",
+      "members": [
+        {
+          "unit_id": "8731869c-a7c0-4eeb-937f-063c9facb498",
+          "timestamp": "2023-09-21T20:28:00+08:00",
+          "summary": "On September 21, 2023, Tim advised John on selecting authentic endorsements aligned with his values, and John responded positively while seeking book recommendations for his upcoming trip. The conversation highlighted a thoughtful exchange on strategic endorsements and travel reading suggestions."
+        }
+      ],
+      "first_timestamp": "2023-09-21T20:28:00+08:00",
+      "last_timestamp": "2023-09-21T20:28:00+08:00",
+      "created_at": "2025-12-04T02:17:03.820733",
+      "updated_at": "2025-12-04T02:17:03.820733"
+    },
+    "gec_028": {
+      "cluster_id": "gec_028",
+      "topic": "Tim's friendly conversation closings with John",
+      "summary": "Tim and John reconnected after a period of time, with Tim expressing enthusiasm about catching up and sharing updates on recent life changes, highlighting their ongoing friendship.",
+      "members": [
+        {
+          "unit_id": "fc8f18d4-ea2d-499b-8105-4591766781c3",
+          "timestamp": "2023-10-02T15:00:00+08:00",
+          "summary": "Tim and John reconnected after a period of time, with Tim expressing enthusiasm about catching up and sharing updates on recent life changes, highlighting their ongoing friendship."
+        }
+      ],
+      "first_timestamp": "2023-10-02T15:00:00+08:00",
+      "last_timestamp": "2023-10-02T15:00:00+08:00",
+      "created_at": "2025-12-04T02:17:15.982351",
+      "updated_at": "2025-12-04T02:17:15.982351"
+    },
+    "gec_029": {
+      "cluster_id": "gec_029",
+      "topic": "John's intimate wedding ceremony in a greenhouse",
+      "summary": "John shared with Tim the joyful and emotional experience of his recent intimate wedding held in a greenhouse, highlighting the love and happiness felt during the ceremony and the special moments with loved ones.",
+      "members": [
+        {
+          "unit_id": "12016404-a6d6-4070-ac38-0926e5331c39",
+          "timestamp": "2023-10-02T15:06:30+08:00",
+          "summary": "John shared with Tim the joyful and emotional experience of his recent intimate wedding held in a greenhouse, highlighting the love and happiness felt during the ceremony and the special moments with loved ones."
+        }
+      ],
+      "first_timestamp": "2023-10-02T15:06:30+08:00",
+      "last_timestamp": "2023-10-02T15:06:30+08:00",
+      "created_at": "2025-12-04T02:17:20.433964",
+      "updated_at": "2025-12-04T02:17:20.433964"
+    },
+    "gec_030": {
+      "cluster_id": "gec_030",
+      "topic": "Mutual appreciation and emotional support in John and Tim's friendship",
+      "summary": "John and Tim shared a heartfelt conversation expressing mutual appreciation for their friendship, during which Tim revealed his love for fantasy novels as a means of imaginative escape. Their exchange highlighted emotional closeness and support between the two.",
+      "members": [
+        {
+          "unit_id": "f8e23a80-1d07-478f-adf9-930d083a719d",
+          "timestamp": "2023-10-02T15:08:00+08:00",
+          "summary": "John and Tim shared a heartfelt conversation expressing mutual appreciation for their friendship, during which Tim revealed his love for fantasy novels as a means of imaginative escape. Their exchange highlighted emotional closeness and support between the two."
+        }
+      ],
+      "first_timestamp": "2023-10-02T15:08:00+08:00",
+      "last_timestamp": "2023-10-02T15:08:00+08:00",
+      "created_at": "2025-12-04T02:17:25.503517",
+      "updated_at": "2025-12-04T02:17:25.503517"
+    },
+    "gec_031": {
+      "cluster_id": "gec_031",
+      "topic": "John's mentoring of younger basketball players",
+      "summary": "On October 17, 2023, John and Tim reconnected in a conversation where John shared his rewarding experience mentoring younger basketball players, highlighting the challenges and fulfillment of being a positive role model. Tim expressed admiration and interest in John's impact on the mentees, leading to a mutual exchange of respect and encouragement.",
+      "members": [
+        {
+          "unit_id": "dc919cf0-fef2-4ad2-97c1-058f60fe107c",
+          "timestamp": "2023-10-17T13:55:00+08:00",
+          "summary": "On October 17, 2023, John and Tim reconnected in a conversation where John shared his rewarding experience mentoring younger basketball players, highlighting the challenges and fulfillment of being a positive role model. Tim expressed admiration and interest in John's impact on the mentees, leading to a mutual exchange of respect and encouragement."
+        }
+      ],
+      "first_timestamp": "2023-10-17T13:55:00+08:00",
+      "last_timestamp": "2023-10-17T13:55:00+08:00",
+      "created_at": "2025-12-04T02:17:42.059969",
+      "updated_at": "2025-12-04T02:17:42.059969"
+    },
+    "gec_032": {
+      "cluster_id": "gec_032",
+      "topic": "John's mentoring of young athletes",
+      "summary": "On October 17, 2023, John and Tim shared a brief conversation where John expressed fulfillment in mentoring young athletes, while Tim shared and discussed his nature photography from a trip to the Smoky Mountains, highlighting their mutual appreciation for inspiration and the beauty of nature.",
+      "members": [
+        {
+          "unit_id": "9380982d-e26c-4ccd-8a98-4b1c0b74f485",
+          "timestamp": "2023-10-17T13:58:30+08:00",
+          "summary": "On October 17, 2023, John and Tim shared a brief conversation where John expressed fulfillment in mentoring young athletes, while Tim shared and discussed his nature photography from a trip to the Smoky Mountains, highlighting their mutual appreciation for inspiration and the beauty of nature."
+        }
+      ],
+      "first_timestamp": "2023-10-17T13:58:30+08:00",
+      "last_timestamp": "2023-10-17T13:58:30+08:00",
+      "created_at": "2025-12-04T02:17:48.462999",
+      "updated_at": "2025-12-04T02:17:48.462999"
+    },
+    "gec_033": {
+      "cluster_id": "gec_033",
+      "topic": "Tim's nature photography from Smoky Mountains trip",
+      "summary": "On October 17, 2023, John and Tim shared a brief conversation where John expressed fulfillment in mentoring young athletes, while Tim shared and discussed his nature photography from a trip to the Smoky Mountains, highlighting their mutual appreciation for inspiration and the beauty of nature.",
+      "members": [
+        {
+          "unit_id": "9380982d-e26c-4ccd-8a98-4b1c0b74f485",
+          "timestamp": "2023-10-17T13:58:30+08:00",
+          "summary": "On October 17, 2023, John and Tim shared a brief conversation where John expressed fulfillment in mentoring young athletes, while Tim shared and discussed his nature photography from a trip to the Smoky Mountains, highlighting their mutual appreciation for inspiration and the beauty of nature."
+        }
+      ],
+      "first_timestamp": "2023-10-17T13:58:30+08:00",
+      "last_timestamp": "2023-10-17T13:58:30+08:00",
+      "created_at": "2025-12-04T02:17:48.464865",
+      "updated_at": "2025-12-04T02:17:48.464865"
+    },
+    "gec_034": {
+      "cluster_id": "gec_034",
+      "topic": "Mutual appreciation for inspiration and nature's beauty",
+      "summary": "On October 17, 2023, John and Tim shared a brief conversation where John expressed fulfillment in mentoring young athletes, while Tim shared and discussed his nature photography from a trip to the Smoky Mountains, highlighting their mutual appreciation for inspiration and the beauty of nature.",
+      "members": [
+        {
+          "unit_id": "9380982d-e26c-4ccd-8a98-4b1c0b74f485",
+          "timestamp": "2023-10-17T13:58:30+08:00",
+          "summary": "On October 17, 2023, John and Tim shared a brief conversation where John expressed fulfillment in mentoring young athletes, while Tim shared and discussed his nature photography from a trip to the Smoky Mountains, highlighting their mutual appreciation for inspiration and the beauty of nature."
+        }
+      ],
+      "first_timestamp": "2023-10-17T13:58:30+08:00",
+      "last_timestamp": "2023-10-17T13:58:30+08:00",
+      "created_at": "2025-12-04T02:17:48.467082",
+      "updated_at": "2025-12-04T02:17:48.467082"
+    },
+    "gec_035": {
+      "cluster_id": "gec_035",
+      "topic": "Tim's fantasy writing inspired by UK castles and J.K. Rowling",
+      "summary": "On October 21, 2023, John and Tim reconnected through a detailed conversation discussing Tim's fantasy writing inspired by UK castles and J.K. Rowling, while also sharing their motivations, supportive relationships, and personal hobbies like cooking and outdoor activities. Both expressed mutual encouragement and enthusiasm throughout their exchange.",
+      "members": [
+        {
+          "unit_id": "c8fdd327-cbf4-402a-9980-4c02c54aab7e",
+          "timestamp": "2023-10-21T18:05:30+08:00",
+          "summary": "On October 21, 2023, John and Tim reconnected through a detailed conversation discussing Tim's fantasy writing inspired by UK castles and J.K. Rowling, while also sharing their motivations, supportive relationships, and personal hobbies like cooking and outdoor activities. Both expressed mutual encouragement and enthusiasm throughout their exchange."
+        }
+      ],
+      "first_timestamp": "2023-10-21T18:05:30+08:00",
+      "last_timestamp": "2023-10-21T18:05:30+08:00",
+      "created_at": "2025-12-04T02:18:00.463763",
+      "updated_at": "2025-12-04T02:18:00.463763"
+    },
+    "gec_036": {
+      "cluster_id": "gec_036",
+      "topic": "John's upcoming European vacation and travel plans",
+      "summary": "Tim and John shared a supportive conversation reflecting on meaningful experiences in sports and discussed John's upcoming European vacation, with Tim offering travel recommendations and both exchanging well wishes.",
+      "members": [
+        {
+          "unit_id": "6cbc4f02-6e17-4fc8-84d2-fcc5ec1d2e5a",
+          "timestamp": "2023-11-06T11:49:00+08:00",
+          "summary": "Tim and John shared a supportive conversation reflecting on meaningful experiences in sports and discussed John's upcoming European vacation, with Tim offering travel recommendations and both exchanging well wishes."
+        }
+      ],
+      "first_timestamp": "2023-11-06T11:49:00+08:00",
+      "last_timestamp": "2023-11-06T11:49:00+08:00",
+      "created_at": "2025-12-04T02:18:16.024246",
+      "updated_at": "2025-12-04T02:18:16.024246"
+    },
+    "gec_037": {
+      "cluster_id": "gec_037",
+      "topic": "John's European coastline road trip and reflections on natural beauty",
+      "summary": "John and Tim exchanged messages sharing images and reflections about John's recent road trip along the European coastline, expressing admiration for the breathtaking natural beauty and the meaningful experience. Their conversation highlighted positive emotions and appreciation for nature without making any specific plans.",
+      "members": [
+        {
+          "unit_id": "11905911-7a73-4862-a088-fbeed74b8412",
+          "timestamp": "2023-11-11T15:39:00+08:00",
+          "summary": "John and Tim exchanged messages sharing images and reflections about John's recent road trip along the European coastline, expressing admiration for the breathtaking natural beauty and the meaningful experience. Their conversation highlighted positive emotions and appreciation for nature without making any specific plans."
+        }
+      ],
+      "first_timestamp": "2023-11-11T15:39:00+08:00",
+      "last_timestamp": "2023-11-11T15:39:00+08:00",
+      "created_at": "2025-12-04T02:18:21.772806",
+      "updated_at": "2025-12-04T02:18:21.772806"
+    },
+    "gec_038": {
+      "cluster_id": "gec_038",
+      "topic": "Admiration of nature's power and beauty",
+      "summary": "On November 11, 2023, John and Tim shared a reflective conversation admiring the power and beauty of nature before Tim shifted the topic to recent media consumption. The exchange highlighted their appreciation for the natural world without leading to any specific decisions.",
+      "members": [
+        {
+          "unit_id": "a143b424-e8a4-4803-b837-0e2b6c3386c1",
+          "timestamp": "2023-11-11T15:39:30+08:00",
+          "summary": "On November 11, 2023, John and Tim shared a reflective conversation admiring the power and beauty of nature before Tim shifted the topic to recent media consumption. The exchange highlighted their appreciation for the natural world without leading to any specific decisions."
+        }
+      ],
+      "first_timestamp": "2023-11-11T15:39:30+08:00",
+      "last_timestamp": "2023-11-11T15:39:30+08:00",
+      "created_at": "2025-12-04T02:18:27.052836",
+      "updated_at": "2025-12-04T02:18:27.052836"
+    },
+    "gec_039": {
+      "cluster_id": "gec_039",
+      "topic": "Recent media consumption and recommendations",
+      "summary": "On November 11, 2023, John and Tim shared a reflective conversation admiring the power and beauty of nature before Tim shifted the topic to recent media consumption. The exchange highlighted their appreciation for the natural world without leading to any specific decisions.",
+      "members": [
+        {
+          "unit_id": "a143b424-e8a4-4803-b837-0e2b6c3386c1",
+          "timestamp": "2023-11-11T15:39:30+08:00",
+          "summary": "On November 11, 2023, John and Tim shared a reflective conversation admiring the power and beauty of nature before Tim shifted the topic to recent media consumption. The exchange highlighted their appreciation for the natural world without leading to any specific decisions."
+        }
+      ],
+      "first_timestamp": "2023-11-11T15:39:30+08:00",
+      "last_timestamp": "2023-11-11T15:39:30+08:00",
+      "created_at": "2025-12-04T02:18:27.054714",
+      "updated_at": "2025-12-04T02:18:27.054714"
+    },
+    "gec_040": {
+      "cluster_id": "gec_040",
+      "topic": "John's leg injury and recovery",
+      "summary": "On November 16, 2023, John and Tim discussed John's leg injury and Tim's exam preparations, sharing mutual support, coping strategies, and optimism despite their respective challenges.",
+      "members": [
+        {
+          "unit_id": "ed8fa155-adcb-4061-9a85-77dea7c765a9",
+          "timestamp": "2023-11-16T16:06:00+08:00",
+          "summary": "On November 16, 2023, John and Tim discussed John's leg injury and Tim's exam preparations, sharing mutual support, coping strategies, and optimism despite their respective challenges."
+        }
+      ],
+      "first_timestamp": "2023-11-16T16:06:00+08:00",
+      "last_timestamp": "2023-11-16T16:06:00+08:00",
+      "created_at": "2025-12-04T02:18:46.115330",
+      "updated_at": "2025-12-04T02:18:46.115330"
+    },
+    "gec_041": {
+      "cluster_id": "gec_041",
+      "topic": "Tim's exam preparations and study strategies",
+      "summary": "On November 16, 2023, John and Tim discussed John's leg injury and Tim's exam preparations, sharing mutual support, coping strategies, and optimism despite their respective challenges.",
+      "members": [
+        {
+          "unit_id": "ed8fa155-adcb-4061-9a85-77dea7c765a9",
+          "timestamp": "2023-11-16T16:06:00+08:00",
+          "summary": "On November 16, 2023, John and Tim discussed John's leg injury and Tim's exam preparations, sharing mutual support, coping strategies, and optimism despite their respective challenges."
+        }
+      ],
+      "first_timestamp": "2023-11-16T16:06:00+08:00",
+      "last_timestamp": "2023-11-16T16:06:00+08:00",
+      "created_at": "2025-12-04T02:18:46.116879",
+      "updated_at": "2025-12-04T02:18:46.116879"
+    },
+    "gec_042": {
+      "cluster_id": "gec_042",
+      "topic": "Mutual support and coping strategies during personal challenges",
+      "summary": "On November 16, 2023, John and Tim discussed John's leg injury and Tim's exam preparations, sharing mutual support, coping strategies, and optimism despite their respective challenges.",
+      "members": [
+        {
+          "unit_id": "ed8fa155-adcb-4061-9a85-77dea7c765a9",
+          "timestamp": "2023-11-16T16:06:00+08:00",
+          "summary": "On November 16, 2023, John and Tim discussed John's leg injury and Tim's exam preparations, sharing mutual support, coping strategies, and optimism despite their respective challenges."
+        }
+      ],
+      "first_timestamp": "2023-11-16T16:06:00+08:00",
+      "last_timestamp": "2023-11-16T16:06:00+08:00",
+      "created_at": "2025-12-04T02:18:46.118284",
+      "updated_at": "2025-12-04T02:18:46.118284"
+    },
+    "gec_043": {
+      "cluster_id": "gec_043",
+      "topic": "Impact of fantasy and personal development books on personal growth and creativity",
+      "summary": "On November 21, 2023, Tim and John discussed their shared passion for reading, focusing on how books like fantasy novels and personal development titles influence their growth, creativity, and perspectives. They exchanged thoughts on favorite books such as \"Harry Potter,\" \"Game of Thrones,\" and \"The Alchemist,\" highlighting the motivational and transformative power of literature in their lives.",
+      "members": [
+        {
+          "unit_id": "d2c3d993-bab8-4931-a0c5-f4517b741d4d",
+          "timestamp": "2023-11-21T10:33:00+08:00",
+          "summary": "On November 21, 2023, Tim and John discussed their shared passion for reading, focusing on how books like fantasy novels and personal development titles influence their growth, creativity, and perspectives. They exchanged thoughts on favorite books such as \"Harry Potter,\" \"Game of Thrones,\" and \"The Alchemist,\" highlighting the motivational and transformative power of literature in their lives."
+        }
+      ],
+      "first_timestamp": "2023-11-21T10:33:00+08:00",
+      "last_timestamp": "2023-11-21T10:33:00+08:00",
+      "created_at": "2025-12-04T02:19:08.869492",
+      "updated_at": "2025-12-04T02:19:08.869492"
+    },
+    "gec_044": {
+      "cluster_id": "gec_044",
+      "topic": "Tim's overcoming difficult exams and academic resilience",
+      "summary": "Tim and John engaged in a supportive conversation where Tim reflected on overcoming a difficult exam, while John shared his progress with yoga, highlighting their mutual encouragement and personal growth. Their exchange emphasized resilience, motivation, and the value of their friendship.",
+      "members": [
+        {
+          "unit_id": "954131e4-c529-48e5-a7ea-723e158c607d",
+          "timestamp": "2023-12-01T09:59:30+08:00",
+          "summary": "Tim and John engaged in a supportive conversation where Tim reflected on overcoming a difficult exam, while John shared his progress with yoga, highlighting their mutual encouragement and personal growth. Their exchange emphasized resilience, motivation, and the value of their friendship."
+        }
+      ],
+      "first_timestamp": "2023-12-01T09:59:30+08:00",
+      "last_timestamp": "2023-12-01T09:59:30+08:00",
+      "created_at": "2025-12-04T02:19:14.511373",
+      "updated_at": "2025-12-04T02:19:14.511373"
+    },
+    "gec_045": {
+      "cluster_id": "gec_045",
+      "topic": "John's progress with yoga and personal wellness",
+      "summary": "Tim and John engaged in a supportive conversation where Tim reflected on overcoming a difficult exam, while John shared his progress with yoga, highlighting their mutual encouragement and personal growth. Their exchange emphasized resilience, motivation, and the value of their friendship.",
+      "members": [
+        {
+          "unit_id": "954131e4-c529-48e5-a7ea-723e158c607d",
+          "timestamp": "2023-12-01T09:59:30+08:00",
+          "summary": "Tim and John engaged in a supportive conversation where Tim reflected on overcoming a difficult exam, while John shared his progress with yoga, highlighting their mutual encouragement and personal growth. Their exchange emphasized resilience, motivation, and the value of their friendship."
+        }
+      ],
+      "first_timestamp": "2023-12-01T09:59:30+08:00",
+      "last_timestamp": "2023-12-01T09:59:30+08:00",
+      "created_at": "2025-12-04T02:19:14.513483",
+      "updated_at": "2025-12-04T02:19:14.513483"
+    },
+    "gec_046": {
+      "cluster_id": "gec_046",
+      "topic": "Mutual encouragement and personal growth between Tim and John",
+      "summary": "Tim and John engaged in a supportive conversation where Tim reflected on overcoming a difficult exam, while John shared his progress with yoga, highlighting their mutual encouragement and personal growth. Their exchange emphasized resilience, motivation, and the value of their friendship.",
+      "members": [
+        {
+          "unit_id": "954131e4-c529-48e5-a7ea-723e158c607d",
+          "timestamp": "2023-12-01T09:59:30+08:00",
+          "summary": "Tim and John engaged in a supportive conversation where Tim reflected on overcoming a difficult exam, while John shared his progress with yoga, highlighting their mutual encouragement and personal growth. Their exchange emphasized resilience, motivation, and the value of their friendship."
+        }
+      ],
+      "first_timestamp": "2023-12-01T09:59:30+08:00",
+      "last_timestamp": "2023-12-01T09:59:30+08:00",
+      "created_at": "2025-12-04T02:19:14.514266",
+      "updated_at": "2025-12-04T02:19:14.514266"
+    },
+    "gec_047": {
+      "cluster_id": "gec_047",
+      "topic": "John and Tim's appreciation of nature photography",
+      "summary": "On December 1, 2023, John and Tim engaged in a conversation appreciating nature photography, sharing photos of serene forest and lake scenes near John's hometown, and expressing awe and tranquility inspired by these natural surroundings. They emphasized the importance of valuing and enjoying nearby natural environments for their calming and grounding effects.",
+      "members": [
+        {
+          "unit_id": "25eb567a-c219-453b-9cef-1480264fd48c",
+          "timestamp": "2023-12-01T10:07:30+08:00",
+          "summary": "On December 1, 2023, John and Tim engaged in a conversation appreciating nature photography, sharing photos of serene forest and lake scenes near John's hometown, and expressing awe and tranquility inspired by these natural surroundings. They emphasized the importance of valuing and enjoying nearby natural environments for their calming and grounding effects."
+        }
+      ],
+      "first_timestamp": "2023-12-01T10:07:30+08:00",
+      "last_timestamp": "2023-12-01T10:07:30+08:00",
+      "created_at": "2025-12-04T02:19:24.858959",
+      "updated_at": "2025-12-04T02:19:24.858959"
+    },
+    "gec_048": {
+      "cluster_id": "gec_048",
+      "topic": "John and Tim's shared experiences of natural environments near John's hometown",
+      "summary": "On December 1, 2023, John and Tim engaged in a conversation appreciating nature photography, sharing photos of serene forest and lake scenes near John's hometown, and expressing awe and tranquility inspired by these natural surroundings. They emphasized the importance of valuing and enjoying nearby natural environments for their calming and grounding effects.",
+      "members": [
+        {
+          "unit_id": "25eb567a-c219-453b-9cef-1480264fd48c",
+          "timestamp": "2023-12-01T10:07:30+08:00",
+          "summary": "On December 1, 2023, John and Tim engaged in a conversation appreciating nature photography, sharing photos of serene forest and lake scenes near John's hometown, and expressing awe and tranquility inspired by these natural surroundings. They emphasized the importance of valuing and enjoying nearby natural environments for their calming and grounding effects."
+        }
+      ],
+      "first_timestamp": "2023-12-01T10:07:30+08:00",
+      "last_timestamp": "2023-12-01T10:07:30+08:00",
+      "created_at": "2025-12-04T02:19:24.861398",
+      "updated_at": "2025-12-04T02:19:24.861398"
+    },
+    "gec_049": {
+      "cluster_id": "gec_049",
+      "topic": "John's and Tim's appreciation for nature and outdoor experiences",
+      "summary": "On December 1, 2023, John and Tim shared a conversation appreciating nature, camping, and mountain trips, exchanging photos and reflections on the peacefulness and beauty of outdoor experiences. They expressed feelings of awe, connection, and refreshment from their time spent in natural settings.",
+      "members": [
+        {
+          "unit_id": "82defefd-6957-49d2-a55e-326bda5295cd",
+          "timestamp": "2023-12-01T10:13:00+08:00",
+          "summary": "On December 1, 2023, John and Tim shared a conversation appreciating nature, camping, and mountain trips, exchanging photos and reflections on the peacefulness and beauty of outdoor experiences. They expressed feelings of awe, connection, and refreshment from their time spent in natural settings."
+        }
+      ],
+      "first_timestamp": "2023-12-01T10:13:00+08:00",
+      "last_timestamp": "2023-12-01T10:13:00+08:00",
+      "created_at": "2025-12-04T02:19:30.304370",
+      "updated_at": "2025-12-04T02:19:30.304370"
+    },
+    "gec_050": {
+      "cluster_id": "gec_050",
+      "topic": "John's and Tim's camping experiences",
+      "summary": "On December 1, 2023, John and Tim shared a conversation appreciating nature, camping, and mountain trips, exchanging photos and reflections on the peacefulness and beauty of outdoor experiences. They expressed feelings of awe, connection, and refreshment from their time spent in natural settings.",
+      "members": [
+        {
+          "unit_id": "82defefd-6957-49d2-a55e-326bda5295cd",
+          "timestamp": "2023-12-01T10:13:00+08:00",
+          "summary": "On December 1, 2023, John and Tim shared a conversation appreciating nature, camping, and mountain trips, exchanging photos and reflections on the peacefulness and beauty of outdoor experiences. They expressed feelings of awe, connection, and refreshment from their time spent in natural settings."
+        }
+      ],
+      "first_timestamp": "2023-12-01T10:13:00+08:00",
+      "last_timestamp": "2023-12-01T10:13:00+08:00",
+      "created_at": "2025-12-04T02:19:30.306547",
+      "updated_at": "2025-12-04T02:19:30.306547"
+    },
+    "gec_051": {
+      "cluster_id": "gec_051",
+      "topic": "John's and Tim's mountain trips and reflections",
+      "summary": "On December 1, 2023, John and Tim shared a conversation appreciating nature, camping, and mountain trips, exchanging photos and reflections on the peacefulness and beauty of outdoor experiences. They expressed feelings of awe, connection, and refreshment from their time spent in natural settings.",
+      "members": [
+        {
+          "unit_id": "82defefd-6957-49d2-a55e-326bda5295cd",
+          "timestamp": "2023-12-01T10:13:00+08:00",
+          "summary": "On December 1, 2023, John and Tim shared a conversation appreciating nature, camping, and mountain trips, exchanging photos and reflections on the peacefulness and beauty of outdoor experiences. They expressed feelings of awe, connection, and refreshment from their time spent in natural settings."
+        }
+      ],
+      "first_timestamp": "2023-12-01T10:13:00+08:00",
+      "last_timestamp": "2023-12-01T10:13:00+08:00",
+      "created_at": "2025-12-04T02:19:30.308394",
+      "updated_at": "2025-12-04T02:19:30.308394"
+    },
+    "gec_052": {
+      "cluster_id": "gec_052",
+      "topic": "Tim's travel club membership and cultural exploration",
+      "summary": "Tim and John reconnected to share their enthusiasm for personal growth, with Tim discussing his recent travel club membership and new musical pursuits, while John reflected on his first year as a professional basketball player and the challenges and rewards of building his career.",
+      "members": [
+        {
+          "unit_id": "5b77ac17-c9f9-43ef-8744-c922758ba35e",
+          "timestamp": "2023-12-06T17:38:00+08:00",
+          "summary": "Tim and John reconnected to share their enthusiasm for personal growth, with Tim discussing his recent travel club membership and new musical pursuits, while John reflected on his first year as a professional basketball player and the challenges and rewards of building his career."
+        }
+      ],
+      "first_timestamp": "2023-12-06T17:38:00+08:00",
+      "last_timestamp": "2023-12-06T17:38:00+08:00",
+      "created_at": "2025-12-04T02:19:38.432147",
+      "updated_at": "2025-12-04T02:19:38.432147"
+    },
+    "gec_053": {
+      "cluster_id": "gec_053",
+      "topic": "Tim's new musical pursuits",
+      "summary": "Tim and John reconnected to share their enthusiasm for personal growth, with Tim discussing his recent travel club membership and new musical pursuits, while John reflected on his first year as a professional basketball player and the challenges and rewards of building his career.",
+      "members": [
+        {
+          "unit_id": "5b77ac17-c9f9-43ef-8744-c922758ba35e",
+          "timestamp": "2023-12-06T17:38:00+08:00",
+          "summary": "Tim and John reconnected to share their enthusiasm for personal growth, with Tim discussing his recent travel club membership and new musical pursuits, while John reflected on his first year as a professional basketball player and the challenges and rewards of building his career."
+        }
+      ],
+      "first_timestamp": "2023-12-06T17:38:00+08:00",
+      "last_timestamp": "2023-12-06T17:38:00+08:00",
+      "created_at": "2025-12-04T02:19:38.434557",
+      "updated_at": "2025-12-04T02:19:38.434557"
+    },
+    "gec_054": {
+      "cluster_id": "gec_054",
+      "topic": "John's achievement of winning a trophy",
+      "summary": "On December 6, 2023, John shared his excitement about winning a trophy and discussed with Tim effective strategies for motivating teammates, emphasizing care, positive reinforcement, and hard work. Their conversation highlighted mutual respect and a shared commitment to fostering team motivation and success.",
+      "members": [
+        {
+          "unit_id": "8030a267-aeba-4d22-b05a-d222ab8ada17",
+          "timestamp": "2023-12-06T17:43:00+08:00",
+          "summary": "On December 6, 2023, John shared his excitement about winning a trophy and discussed with Tim effective strategies for motivating teammates, emphasizing care, positive reinforcement, and hard work. Their conversation highlighted mutual respect and a shared commitment to fostering team motivation and success."
+        }
+      ],
+      "first_timestamp": "2023-12-06T17:43:00+08:00",
+      "last_timestamp": "2023-12-06T17:43:00+08:00",
+      "created_at": "2025-12-04T02:19:49.180341",
+      "updated_at": "2025-12-04T02:19:49.180341"
+    },
+    "gec_055": {
+      "cluster_id": "gec_055",
+      "topic": "Strategies for motivating teammates and fostering team motivation",
+      "summary": "On December 6, 2023, John shared his excitement about winning a trophy and discussed with Tim effective strategies for motivating teammates, emphasizing care, positive reinforcement, and hard work. Their conversation highlighted mutual respect and a shared commitment to fostering team motivation and success.",
+      "members": [
+        {
+          "unit_id": "8030a267-aeba-4d22-b05a-d222ab8ada17",
+          "timestamp": "2023-12-06T17:43:00+08:00",
+          "summary": "On December 6, 2023, John shared his excitement about winning a trophy and discussed with Tim effective strategies for motivating teammates, emphasizing care, positive reinforcement, and hard work. Their conversation highlighted mutual respect and a shared commitment to fostering team motivation and success."
+        }
+      ],
+      "first_timestamp": "2023-12-06T17:43:00+08:00",
+      "last_timestamp": "2023-12-06T17:43:00+08:00",
+      "created_at": "2025-12-04T02:19:49.181076",
+      "updated_at": "2025-12-04T02:19:49.181076"
+    },
+    "gec_056": {
+      "cluster_id": "gec_056",
+      "topic": "John's polite and positive messaging style",
+      "summary": "In December 2023, John exchanged polite and positive messages, including sharing an image related to sales and warmly engaging Tim by asking about new success stories.",
+      "members": [
+        {
+          "unit_id": "464d99f8-5056-4abd-8c5d-a10699751eb8",
+          "timestamp": "2023-12-11T20:28:00+08:00",
+          "summary": "In December 2023, John exchanged polite and positive messages, including sharing an image related to sales and warmly engaging Tim by asking about new success stories."
+        }
+      ],
+      "first_timestamp": "2023-12-11T20:28:00+08:00",
+      "last_timestamp": "2023-12-11T20:28:00+08:00",
+      "created_at": "2025-12-04T02:20:01.046645",
+      "updated_at": "2025-12-04T02:20:01.046645"
+    },
+    "gec_057": {
+      "cluster_id": "gec_057",
+      "topic": "John sharing sales-related images",
+      "summary": "In December 2023, John exchanged polite and positive messages, including sharing an image related to sales and warmly engaging Tim by asking about new success stories.",
+      "members": [
+        {
+          "unit_id": "464d99f8-5056-4abd-8c5d-a10699751eb8",
+          "timestamp": "2023-12-11T20:28:00+08:00",
+          "summary": "In December 2023, John exchanged polite and positive messages, including sharing an image related to sales and warmly engaging Tim by asking about new success stories."
+        }
+      ],
+      "first_timestamp": "2023-12-11T20:28:00+08:00",
+      "last_timestamp": "2023-12-11T20:28:00+08:00",
+      "created_at": "2025-12-04T02:20:01.048152",
+      "updated_at": "2025-12-04T02:20:01.048152"
+    },
+    "gec_058": {
+      "cluster_id": "gec_058",
+      "topic": "John inquiring about Tim's new success stories",
+      "summary": "In December 2023, John exchanged polite and positive messages, including sharing an image related to sales and warmly engaging Tim by asking about new success stories.",
+      "members": [
+        {
+          "unit_id": "464d99f8-5056-4abd-8c5d-a10699751eb8",
+          "timestamp": "2023-12-11T20:28:00+08:00",
+          "summary": "In December 2023, John exchanged polite and positive messages, including sharing an image related to sales and warmly engaging Tim by asking about new success stories."
+        }
+      ],
+      "first_timestamp": "2023-12-11T20:28:00+08:00",
+      "last_timestamp": "2023-12-11T20:28:00+08:00",
+      "created_at": "2025-12-04T02:20:01.050325",
+      "updated_at": "2025-12-04T02:20:01.050325"
+    },
+    "gec_059": {
+      "cluster_id": "gec_059",
+      "topic": "Tim's struggles with English literature",
+      "summary": "On December 11, 2023, Tim and John discussed Tim’s struggles with English literature and John’s recent basketball achievements, sharing personal reflections on the emotional impact of sports and encouraging each other to pursue their dreams. Their conversation highlighted mutual support, personal growth, and the significance of basketball in John’s life.",
+      "members": [
+        {
+          "unit_id": "b7683ee3-3886-4644-aab3-5eaad7d39539",
+          "timestamp": "2023-12-11T20:35:30+08:00",
+          "summary": "On December 11, 2023, Tim and John discussed Tim’s struggles with English literature and John’s recent basketball achievements, sharing personal reflections on the emotional impact of sports and encouraging each other to pursue their dreams. Their conversation highlighted mutual support, personal growth, and the significance of basketball in John’s life."
+        }
+      ],
+      "first_timestamp": "2023-12-11T20:35:30+08:00",
+      "last_timestamp": "2023-12-11T20:35:30+08:00",
+      "created_at": "2025-12-04T02:20:06.577498",
+      "updated_at": "2025-12-04T02:20:06.577498"
+    },
+    "gec_060": {
+      "cluster_id": "gec_060",
+      "topic": "John's endorsement deal with an outdoor gear company",
+      "summary": "Tim and John discussed John's recent exciting deal with a renowned outdoor gear company and his positive experiences during a photoshoot in a beautiful forest, highlighting their shared enthusiasm for nature and outdoor activities.",
+      "members": [
+        {
+          "unit_id": "a7e7b430-484f-4a3e-84ca-fabd7f80187e",
+          "timestamp": "2023-12-19T10:08:00+08:00",
+          "summary": "Tim and John discussed John's recent exciting deal with a renowned outdoor gear company and his positive experiences during a photoshoot in a beautiful forest, highlighting their shared enthusiasm for nature and outdoor activities."
+        }
+      ],
+      "first_timestamp": "2023-12-19T10:08:00+08:00",
+      "last_timestamp": "2023-12-19T10:08:00+08:00",
+      "created_at": "2025-12-04T02:20:29.069303",
+      "updated_at": "2025-12-04T02:20:29.069303"
+    },
+    "gec_061": {
+      "cluster_id": "gec_061",
+      "topic": "John's photoshoot experience in a forest setting",
+      "summary": "Tim and John discussed John's recent exciting deal with a renowned outdoor gear company and his positive experiences during a photoshoot in a beautiful forest, highlighting their shared enthusiasm for nature and outdoor activities.",
+      "members": [
+        {
+          "unit_id": "a7e7b430-484f-4a3e-84ca-fabd7f80187e",
+          "timestamp": "2023-12-19T10:08:00+08:00",
+          "summary": "Tim and John discussed John's recent exciting deal with a renowned outdoor gear company and his positive experiences during a photoshoot in a beautiful forest, highlighting their shared enthusiasm for nature and outdoor activities."
+        }
+      ],
+      "first_timestamp": "2023-12-19T10:08:00+08:00",
+      "last_timestamp": "2023-12-19T10:08:00+08:00",
+      "created_at": "2025-12-04T02:20:29.070796",
+      "updated_at": "2025-12-04T02:20:29.070796"
+    },
+    "gec_062": {
+      "cluster_id": "gec_062",
+      "topic": "Shared enthusiasm for nature and outdoor activities between Tim and John",
+      "summary": "Tim and John discussed John's recent exciting deal with a renowned outdoor gear company and his positive experiences during a photoshoot in a beautiful forest, highlighting their shared enthusiasm for nature and outdoor activities.",
+      "members": [
+        {
+          "unit_id": "a7e7b430-484f-4a3e-84ca-fabd7f80187e",
+          "timestamp": "2023-12-19T10:08:00+08:00",
+          "summary": "Tim and John discussed John's recent exciting deal with a renowned outdoor gear company and his positive experiences during a photoshoot in a beautiful forest, highlighting their shared enthusiasm for nature and outdoor activities."
+        }
+      ],
+      "first_timestamp": "2023-12-19T10:08:00+08:00",
+      "last_timestamp": "2023-12-19T10:08:00+08:00",
+      "created_at": "2025-12-04T02:20:29.072146",
+      "updated_at": "2025-12-04T02:20:29.072146"
+    },
+    "gec_063": {
+      "cluster_id": "gec_063",
+      "topic": "Tim's travel inspiration from adventure books",
+      "summary": "John and Tim discussed travel and adventure, with Tim sharing stories from a book about challenging treks like the Himalayas that inspired his plans for a future trip. Both expressed enthusiasm and motivation for exploring new travel experiences.",
+      "members": [
+        {
+          "unit_id": "d919988a-d39a-4e40-9706-22b3cf8d17ec",
+          "timestamp": "2023-12-26T15:41:30+08:00",
+          "summary": "John and Tim discussed travel and adventure, with Tim sharing stories from a book about challenging treks like the Himalayas that inspired his plans for a future trip. Both expressed enthusiasm and motivation for exploring new travel experiences."
+        }
+      ],
+      "first_timestamp": "2023-12-26T15:41:30+08:00",
+      "last_timestamp": "2023-12-26T15:41:30+08:00",
+      "created_at": "2025-12-04T02:20:44.963042",
+      "updated_at": "2025-12-04T02:20:44.963042"
+    },
+    "gec_064": {
+      "cluster_id": "gec_064",
+      "topic": "Tim's plans for future trekking trips",
+      "summary": "John and Tim discussed travel and adventure, with Tim sharing stories from a book about challenging treks like the Himalayas that inspired his plans for a future trip. Both expressed enthusiasm and motivation for exploring new travel experiences.",
+      "members": [
+        {
+          "unit_id": "d919988a-d39a-4e40-9706-22b3cf8d17ec",
+          "timestamp": "2023-12-26T15:41:30+08:00",
+          "summary": "John and Tim discussed travel and adventure, with Tim sharing stories from a book about challenging treks like the Himalayas that inspired his plans for a future trip. Both expressed enthusiasm and motivation for exploring new travel experiences."
+        }
+      ],
+      "first_timestamp": "2023-12-26T15:41:30+08:00",
+      "last_timestamp": "2023-12-26T15:41:30+08:00",
+      "created_at": "2025-12-04T02:20:44.965299",
+      "updated_at": "2025-12-04T02:20:44.965299"
+    },
+    "gec_065": {
+      "cluster_id": "gec_065",
+      "topic": "John's work supporting youth sports and underserved communities",
+      "summary": "Tim and John discussed personal motivation, influential figures like Emma Watson, and their commitments to charitable causes, with John sharing his work supporting youth sports and advocating for underserved communities. They expressed mutual admiration for advocacy efforts and the impact of using their platforms to inspire positive change.",
+      "members": [
+        {
+          "unit_id": "0447338a-666d-47c9-9ae5-378678854bc9",
+          "timestamp": "2023-12-26T15:46:30+08:00",
+          "summary": "Tim and John discussed personal motivation, influential figures like Emma Watson, and their commitments to charitable causes, with John sharing his work supporting youth sports and advocating for underserved communities. They expressed mutual admiration for advocacy efforts and the impact of using their platforms to inspire positive change."
+        }
+      ],
+      "first_timestamp": "2023-12-26T15:46:30+08:00",
+      "last_timestamp": "2023-12-26T15:46:30+08:00",
+      "created_at": "2025-12-04T02:20:51.980873",
+      "updated_at": "2025-12-04T02:20:51.980873"
+    },
+    "gec_066": {
+      "cluster_id": "gec_066",
+      "topic": "Tim and John's commitments to charitable causes and advocacy",
+      "summary": "Tim and John discussed personal motivation, influential figures like Emma Watson, and their commitments to charitable causes, with John sharing his work supporting youth sports and advocating for underserved communities. They expressed mutual admiration for advocacy efforts and the impact of using their platforms to inspire positive change.",
+      "members": [
+        {
+          "unit_id": "0447338a-666d-47c9-9ae5-378678854bc9",
+          "timestamp": "2023-12-26T15:46:30+08:00",
+          "summary": "Tim and John discussed personal motivation, influential figures like Emma Watson, and their commitments to charitable causes, with John sharing his work supporting youth sports and advocating for underserved communities. They expressed mutual admiration for advocacy efforts and the impact of using their platforms to inspire positive change."
+        }
+      ],
+      "first_timestamp": "2023-12-26T15:46:30+08:00",
+      "last_timestamp": "2023-12-26T15:46:30+08:00",
+      "created_at": "2025-12-04T02:20:51.981440",
+      "updated_at": "2025-12-04T02:20:51.981440"
+    },
+    "gec_067": {
+      "cluster_id": "gec_067",
+      "topic": "Influential figures discussed by Tim and John, including Emma Watson",
+      "summary": "Tim and John discussed personal motivation, influential figures like Emma Watson, and their commitments to charitable causes, with John sharing his work supporting youth sports and advocating for underserved communities. They expressed mutual admiration for advocacy efforts and the impact of using their platforms to inspire positive change.",
+      "members": [
+        {
+          "unit_id": "0447338a-666d-47c9-9ae5-378678854bc9",
+          "timestamp": "2023-12-26T15:46:30+08:00",
+          "summary": "Tim and John discussed personal motivation, influential figures like Emma Watson, and their commitments to charitable causes, with John sharing his work supporting youth sports and advocating for underserved communities. They expressed mutual admiration for advocacy efforts and the impact of using their platforms to inspire positive change."
+        }
+      ],
+      "first_timestamp": "2023-12-26T15:46:30+08:00",
+      "last_timestamp": "2023-12-26T15:46:30+08:00",
+      "created_at": "2025-12-04T02:20:51.982577",
+      "updated_at": "2025-12-04T02:20:51.982577"
+    },
+    "gec_068": {
+      "cluster_id": "gec_068",
+      "topic": "Tim's globetrotters group membership and travel experiences",
+      "summary": "Tim shared with John his excitement about joining a group of globetrotters and learning about their travel experiences, while John recounted his recent trip to Italy in December 2023, highlighting its culture and cuisine. They also discussed language learning, with Tim currently studying German and inquiring about John's language skills.",
+      "members": [
+        {
+          "unit_id": "6ed6beb0-0f73-4f43-8662-b0e0eb6c62b3",
+          "timestamp": "2024-01-02T17:28:00+08:00",
+          "summary": "Tim shared with John his excitement about joining a group of globetrotters and learning about their travel experiences, while John recounted his recent trip to Italy in December 2023, highlighting its culture and cuisine. They also discussed language learning, with Tim currently studying German and inquiring about John's language skills."
+        }
+      ],
+      "first_timestamp": "2024-01-02T17:28:00+08:00",
+      "last_timestamp": "2024-01-02T17:28:00+08:00",
+      "created_at": "2025-12-04T02:21:14.878214",
+      "updated_at": "2025-12-04T02:21:14.878214"
+    },
+    "gec_069": {
+      "cluster_id": "gec_069",
+      "topic": "John's December 2023 trip to Italy focusing on culture and cuisine",
+      "summary": "Tim shared with John his excitement about joining a group of globetrotters and learning about their travel experiences, while John recounted his recent trip to Italy in December 2023, highlighting its culture and cuisine. They also discussed language learning, with Tim currently studying German and inquiring about John's language skills.",
+      "members": [
+        {
+          "unit_id": "6ed6beb0-0f73-4f43-8662-b0e0eb6c62b3",
+          "timestamp": "2024-01-02T17:28:00+08:00",
+          "summary": "Tim shared with John his excitement about joining a group of globetrotters and learning about their travel experiences, while John recounted his recent trip to Italy in December 2023, highlighting its culture and cuisine. They also discussed language learning, with Tim currently studying German and inquiring about John's language skills."
+        }
+      ],
+      "first_timestamp": "2024-01-02T17:28:00+08:00",
+      "last_timestamp": "2024-01-02T17:28:00+08:00",
+      "created_at": "2025-12-04T02:21:14.879330",
+      "updated_at": "2025-12-04T02:21:14.879330"
+    },
+    "gec_070": {
+      "cluster_id": "gec_070",
+      "topic": "Tim's German language learning and inquiry about John's language skills",
+      "summary": "Tim shared with John his excitement about joining a group of globetrotters and learning about their travel experiences, while John recounted his recent trip to Italy in December 2023, highlighting its culture and cuisine. They also discussed language learning, with Tim currently studying German and inquiring about John's language skills.",
+      "members": [
+        {
+          "unit_id": "6ed6beb0-0f73-4f43-8662-b0e0eb6c62b3",
+          "timestamp": "2024-01-02T17:28:00+08:00",
+          "summary": "Tim shared with John his excitement about joining a group of globetrotters and learning about their travel experiences, while John recounted his recent trip to Italy in December 2023, highlighting its culture and cuisine. They also discussed language learning, with Tim currently studying German and inquiring about John's language skills."
+        }
+      ],
+      "first_timestamp": "2024-01-02T17:28:00+08:00",
+      "last_timestamp": "2024-01-02T17:28:00+08:00",
+      "created_at": "2025-12-04T02:21:14.880381",
+      "updated_at": "2025-12-04T02:21:14.880381"
+    },
+    "gec_071": {
+      "cluster_id": "gec_071",
+      "topic": "Tim's German language learning",
+      "summary": "On January 2, 2024, Tim and John discussed their experiences and motivations in learning German and Spanish, sharing encouragement and language-learning resources to support each other's progress.",
+      "members": [
+        {
+          "unit_id": "8c7e2cf1-8984-43dd-956a-bf392d21b38a",
+          "timestamp": "2024-01-02T17:31:30+08:00",
+          "summary": "On January 2, 2024, Tim and John discussed their experiences and motivations in learning German and Spanish, sharing encouragement and language-learning resources to support each other's progress."
+        }
+      ],
+      "first_timestamp": "2024-01-02T17:31:30+08:00",
+      "last_timestamp": "2024-01-02T17:31:30+08:00",
+      "created_at": "2025-12-04T02:21:20.120750",
+      "updated_at": "2025-12-04T02:21:20.120750"
+    },
+    "gec_072": {
+      "cluster_id": "gec_072",
+      "topic": "John's knowledge of German and Spanish languages",
+      "summary": "On January 2, 2024, Tim and John discussed their experiences and motivations in learning German and Spanish, sharing encouragement and language-learning resources to support each other's progress.",
+      "members": [
+        {
+          "unit_id": "8c7e2cf1-8984-43dd-956a-bf392d21b38a",
+          "timestamp": "2024-01-02T17:31:30+08:00",
+          "summary": "On January 2, 2024, Tim and John discussed their experiences and motivations in learning German and Spanish, sharing encouragement and language-learning resources to support each other's progress."
+        }
+      ],
+      "first_timestamp": "2024-01-02T17:31:30+08:00",
+      "last_timestamp": "2024-01-02T17:31:30+08:00",
+      "created_at": "2025-12-04T02:21:20.121788",
+      "updated_at": "2025-12-04T02:21:20.121788"
+    },
+    "gec_073": {
+      "cluster_id": "gec_073",
+      "topic": "Language learning encouragement and resource sharing between Tim and John",
+      "summary": "On January 2, 2024, Tim and John discussed their experiences and motivations in learning German and Spanish, sharing encouragement and language-learning resources to support each other's progress.",
+      "members": [
+        {
+          "unit_id": "8c7e2cf1-8984-43dd-956a-bf392d21b38a",
+          "timestamp": "2024-01-02T17:31:30+08:00",
+          "summary": "On January 2, 2024, Tim and John discussed their experiences and motivations in learning German and Spanish, sharing encouragement and language-learning resources to support each other's progress."
+        }
+      ],
+      "first_timestamp": "2024-01-02T17:31:30+08:00",
+      "last_timestamp": "2024-01-02T17:31:30+08:00",
+      "created_at": "2025-12-04T02:21:20.122979",
+      "updated_at": "2025-12-04T02:21:20.122979"
+    },
+    "gec_074": {
+      "cluster_id": "gec_074",
+      "topic": "Tim's German language learning progress",
+      "summary": "On January 2, 2024, John encouraged Tim to continue his German lessons, while Tim expressed gratitude and commitment to learning; John also shared his passion for basketball, highlighting his daily training and dedication to the sport.",
+      "members": [
+        {
+          "unit_id": "3a7d7389-ad96-4dc5-ba08-a1bbc0d0ec26",
+          "timestamp": "2024-01-02T17:32:30+08:00",
+          "summary": "On January 2, 2024, John encouraged Tim to continue his German lessons, while Tim expressed gratitude and commitment to learning; John also shared his passion for basketball, highlighting his daily training and dedication to the sport."
+        }
+      ],
+      "first_timestamp": "2024-01-02T17:32:30+08:00",
+      "last_timestamp": "2024-01-02T17:32:30+08:00",
+      "created_at": "2025-12-04T02:21:25.317699",
+      "updated_at": "2025-12-04T02:21:25.317699"
+    },
+    "gec_075": {
+      "cluster_id": "gec_075",
+      "topic": "Tim and John's shared enthusiasm for traveling and cultural exploration",
+      "summary": "Tim and John discussed their shared enthusiasm for fantasy stories and traveling, focusing on cultural exploration and their experiences with Paris and the Eiffel Tower. Both expressed excitement about how traveling broadens perspectives and offers educational value.",
+      "members": [
+        {
+          "unit_id": "eb92ece7-8556-439c-be8c-ed7bfaae4556",
+          "timestamp": "2024-01-02T17:45:30+08:00",
+          "summary": "Tim and John discussed their shared enthusiasm for fantasy stories and traveling, focusing on cultural exploration and their experiences with Paris and the Eiffel Tower. Both expressed excitement about how traveling broadens perspectives and offers educational value."
+        }
+      ],
+      "first_timestamp": "2024-01-02T17:45:30+08:00",
+      "last_timestamp": "2024-01-02T17:45:30+08:00",
+      "created_at": "2025-12-04T02:21:40.190831",
+      "updated_at": "2025-12-04T02:21:40.190831"
+    },
+    "gec_076": {
+      "cluster_id": "gec_076",
+      "topic": "Tim's study abroad program in Ireland",
+      "summary": "On January 7, 2024, Tim informed John that he had been accepted into a study abroad program in Ireland starting February, sharing his plans to stay in Galway and visit natural sites like The Cliffs of Moher, with both expressing excitement and potential plans to meet.",
+      "members": [
+        {
+          "unit_id": "e15f2503-fc93-4efd-8422-b8aed0dcc029",
+          "timestamp": "2024-01-07T17:28:00+08:00",
+          "summary": "On January 7, 2024, Tim informed John that he had been accepted into a study abroad program in Ireland starting February, sharing his plans to stay in Galway and visit natural sites like The Cliffs of Moher, with both expressing excitement and potential plans to meet."
+        }
+      ],
+      "first_timestamp": "2024-01-07T17:28:00+08:00",
+      "last_timestamp": "2024-01-07T17:28:00+08:00",
+      "created_at": "2025-12-04T02:21:46.939818",
+      "updated_at": "2025-12-04T02:21:46.939818"
+    },
+    "gec_077": {
+      "cluster_id": "gec_077",
+      "topic": "Tim's plans to visit natural sites in Ireland",
+      "summary": "On January 7, 2024, Tim informed John that he had been accepted into a study abroad program in Ireland starting February, sharing his plans to stay in Galway and visit natural sites like The Cliffs of Moher, with both expressing excitement and potential plans to meet.",
+      "members": [
+        {
+          "unit_id": "e15f2503-fc93-4efd-8422-b8aed0dcc029",
+          "timestamp": "2024-01-07T17:28:00+08:00",
+          "summary": "On January 7, 2024, Tim informed John that he had been accepted into a study abroad program in Ireland starting February, sharing his plans to stay in Galway and visit natural sites like The Cliffs of Moher, with both expressing excitement and potential plans to meet."
+        }
+      ],
+      "first_timestamp": "2024-01-07T17:28:00+08:00",
+      "last_timestamp": "2024-01-07T17:28:00+08:00",
+      "created_at": "2025-12-04T02:21:46.941695",
+      "updated_at": "2025-12-04T02:21:46.941695"
+    },
+    "gec_078": {
+      "cluster_id": "gec_078",
+      "topic": "Tim and John's plans to meet during study abroad",
+      "summary": "On January 7, 2024, Tim informed John that he had been accepted into a study abroad program in Ireland starting February, sharing his plans to stay in Galway and visit natural sites like The Cliffs of Moher, with both expressing excitement and potential plans to meet.",
+      "members": [
+        {
+          "unit_id": "e15f2503-fc93-4efd-8422-b8aed0dcc029",
+          "timestamp": "2024-01-07T17:28:00+08:00",
+          "summary": "On January 7, 2024, Tim informed John that he had been accepted into a study abroad program in Ireland starting February, sharing his plans to stay in Galway and visit natural sites like The Cliffs of Moher, with both expressing excitement and potential plans to meet."
+        }
+      ],
+      "first_timestamp": "2024-01-07T17:28:00+08:00",
+      "last_timestamp": "2024-01-07T17:28:00+08:00",
+      "created_at": "2025-12-04T02:21:46.944075",
+      "updated_at": "2025-12-04T02:21:46.944075"
+    },
+    "gec_079": {
+      "cluster_id": "gec_079",
+      "topic": "John's benefit basketball game for charity",
+      "summary": "Tim and John discussed John's recent successful benefit basketball game, which raised money for charity and brought the community together, with Tim praising John's efforts and encouraging him.",
+      "members": [
+        {
+          "unit_id": "09b12722-03ca-4423-9126-6ee8cc9bbd69",
+          "timestamp": "2024-01-07T17:31:00+08:00",
+          "summary": "Tim and John discussed John's recent successful benefit basketball game, which raised money for charity and brought the community together, with Tim praising John's efforts and encouraging him."
+        }
+      ],
+      "first_timestamp": "2024-01-07T17:31:00+08:00",
+      "last_timestamp": "2024-01-07T17:31:00+08:00",
+      "created_at": "2025-12-04T02:21:51.901766",
+      "updated_at": "2025-12-04T02:21:51.901766"
+    },
+    "gec_080": {
+      "cluster_id": "gec_080",
+      "topic": "Tim's efforts to navigate visa requirements for upcoming travel",
+      "summary": "On January 12, 2024, Tim and John exchanged friendly updates, with Tim discussing his efforts to navigate visa requirements for upcoming travel and John hinting at a recent exciting event in his life.",
+      "members": [
+        {
+          "unit_id": "7fecb386-774a-4a26-8af6-7be137234bbe",
+          "timestamp": "2024-01-12T13:42:00+08:00",
+          "summary": "On January 12, 2024, Tim and John exchanged friendly updates, with Tim discussing his efforts to navigate visa requirements for upcoming travel and John hinting at a recent exciting event in his life."
+        }
+      ],
+      "first_timestamp": "2024-01-12T13:42:00+08:00",
+      "last_timestamp": "2024-01-12T13:42:00+08:00",
+      "created_at": "2025-12-04T02:22:03.384446",
+      "updated_at": "2025-12-04T02:22:03.384446"
+    },
+    "gec_081": {
+      "cluster_id": "gec_081",
+      "topic": "John's recent exciting life event",
+      "summary": "On January 12, 2024, Tim and John exchanged friendly updates, with Tim discussing his efforts to navigate visa requirements for upcoming travel and John hinting at a recent exciting event in his life.",
+      "members": [
+        {
+          "unit_id": "7fecb386-774a-4a26-8af6-7be137234bbe",
+          "timestamp": "2024-01-12T13:42:00+08:00",
+          "summary": "On January 12, 2024, Tim and John exchanged friendly updates, with Tim discussing his efforts to navigate visa requirements for upcoming travel and John hinting at a recent exciting event in his life."
+        }
+      ],
+      "first_timestamp": "2024-01-12T13:42:00+08:00",
+      "last_timestamp": "2024-01-12T13:42:00+08:00",
+      "created_at": "2025-12-04T02:22:03.386794",
+      "updated_at": "2025-12-04T02:22:03.386794"
+    },
+    "gec_082": {
+      "cluster_id": "gec_082",
+      "topic": "Tim's travel aspirations and visa research",
+      "summary": "Tim and John discussed travel aspirations and planning, with Tim researching visa requirements and John recommending Barcelona as a must-visit destination, leading Tim to enthusiastically add it to his travel list.",
+      "members": [
+        {
+          "unit_id": "eb81dd51-7d02-4e8f-b0d9-7a3006dff723",
+          "timestamp": "2024-01-12T13:44:30+08:00",
+          "summary": "Tim and John discussed travel aspirations and planning, with Tim researching visa requirements and John recommending Barcelona as a must-visit destination, leading Tim to enthusiastically add it to his travel list."
+        }
+      ],
+      "first_timestamp": "2024-01-12T13:44:30+08:00",
+      "last_timestamp": "2024-01-12T13:44:30+08:00",
+      "created_at": "2025-12-04T02:22:13.786517",
+      "updated_at": "2025-12-04T02:22:13.786517"
+    },
+    "gec_083": {
+      "cluster_id": "gec_083",
+      "topic": "John's travel recommendations",
+      "summary": "Tim and John discussed travel aspirations and planning, with Tim researching visa requirements and John recommending Barcelona as a must-visit destination, leading Tim to enthusiastically add it to his travel list.",
+      "members": [
+        {
+          "unit_id": "eb81dd51-7d02-4e8f-b0d9-7a3006dff723",
+          "timestamp": "2024-01-12T13:44:30+08:00",
+          "summary": "Tim and John discussed travel aspirations and planning, with Tim researching visa requirements and John recommending Barcelona as a must-visit destination, leading Tim to enthusiastically add it to his travel list."
+        }
+      ],
+      "first_timestamp": "2024-01-12T13:44:30+08:00",
+      "last_timestamp": "2024-01-12T13:44:30+08:00",
+      "created_at": "2025-12-04T02:22:13.787135",
+      "updated_at": "2025-12-04T02:22:13.787135"
+    }
+  },
+  "unit_to_clusters": {
+    "aa40c630-b60d-4163-8fb1-dacc9d470e63": [
+      "gec_001"
+    ],
+    "715aa783-5d1f-4b8f-b3f3-9a3d0798c820": [
+      "gec_002",
+      "gec_003"
+    ],
+    "49aacd15-1e0f-4627-8be2-0366d414490b": [
+      "gec_001",
+      "gec_002",
+      "gec_003"
+    ],
+    "17f50f41-5eb9-4632-945d-fdb8e8c9489e": [
+      "gec_001",
+      "gec_004"
+    ],
+    "43639aa3-923c-456b-87fc-c2edc7930ff6": [
+      "gec_005"
+    ],
+    "9a5b72ed-6a0e-4f7d-a56d-621a3fce0c55": [
+      "gec_001"
+    ],
+    "7e7fbea4-9914-43ac-9b64-c294fdb950b7": [
+      "gec_001",
+      "gec_003"
+    ],
+    "9cd8505c-b90b-4ddc-b0e1-98c06dfc0bb1": [
+      "gec_003"
+    ],
+    "a4633d9d-fb8e-4ec5-9a91-6fade7ef887c": [
+      "gec_001",
+      "gec_003"
+    ],
+    "8222b42c-052a-4f60-8699-d1eef34c3a8f": [
+      "gec_001",
+      "gec_003"
+    ],
+    "974d0af9-a7fa-44fa-99bf-ca4a72eaa2c1": [
+      "gec_005"
+    ],
+    "9486f0b5-48ff-4e1b-badc-72d51059f06a": [
+      "gec_003"
+    ],
+    "21051b26-f291-4e21-b410-ae60755d7c7c": [
+      "gec_006"
+    ],
+    "1f8d4196-4fdb-42e9-93e0-b80d1163a845": [
+      "gec_006",
+      "gec_004"
+    ],
+    "f8540647-be81-4bc6-ab93-66f500922c85": [
+      "gec_001",
+      "gec_004"
+    ],
+    "f7db6d89-d4e7-4e9e-b994-b3457bcaa3c0": [
+      "gec_007",
+      "gec_008"
+    ],
+    "f90907dc-ef23-4496-b706-b019fac4e4fd": [
+      "gec_001"
+    ],
+    "9bf76902-0561-4b29-a509-a72d42b8d7ef": [
+      "gec_003",
+      "gec_001"
+    ],
+    "b5ca7db2-54af-49ce-a1de-dca2f050aa0c": [
+      "gec_001",
+      "gec_003"
+    ],
+    "4adc4d54-e15b-418b-9a1a-fbc10c32337a": [
+      "gec_009",
+      "gec_010",
+      "gec_004",
+      "gec_008"
+    ],
+    "82cb4787-04f0-4d4d-a06f-452ece71d076": [
+      "gec_004",
+      "gec_008"
+    ],
+    "154ef003-de5c-4a05-96d3-5c54f1838a73": [
+      "gec_003"
+    ],
+    "d39d9d29-079f-4d6c-952c-713ceecdca39": [
+      "gec_001",
+      "gec_003"
+    ],
+    "44aa1048-6215-46cb-95ad-d20e5c4ef404": [
+      "gec_011",
+      "gec_012"
+    ],
+    "bc23d67e-a3cc-46d6-a82a-85d1d69021d1": [
+      "gec_001",
+      "gec_003"
+    ],
+    "ae7d7ae4-bb5d-453c-b58c-8ca7654711f2": [
+      "gec_003"
+    ],
+    "d4f02df3-0710-4e5c-8876-7aab23f98461": [
+      "gec_001",
+      "gec_013",
+      "gec_014",
+      "gec_015"
+    ],
+    "f3446509-355e-4dbe-89b9-51f1e4fcef8c": [
+      "gec_016",
+      "gec_017",
+      "gec_018"
+    ],
+    "e1d05049-cfa2-4ce7-a8c5-c40800286769": [
+      "gec_019",
+      "gec_020"
+    ],
+    "09c723ee-014b-4cea-80be-15952ca6853f": [
+      "gec_021",
+      "gec_022",
+      "gec_020",
+      "gec_023",
+      "gec_024",
+      "gec_019"
+    ],
+    "10b3a801-15b4-4a2d-894b-ba91daa8dfe6": [
+      "gec_019",
+      "gec_025",
+      "gec_026"
+    ],
+    "3388be64-8e07-4d7b-9f8c-996b17e8328c": [
+      "gec_003"
+    ],
+    "b4277ec2-1493-450b-837c-620f9b3c3b69": [
+      "gec_003"
+    ],
+    "7fdf858d-8b57-45ac-97f8-df6d5e3eb900": [
+      "gec_003",
+      "gec_005"
+    ],
+    "03a15864-9780-406b-a66d-eab0b2b8faa4": [
+      "gec_003",
+      "gec_005"
+    ],
+    "8731869c-a7c0-4eeb-937f-063c9facb498": [
+      "gec_005",
+      "gec_027"
+    ],
+    "9f972069-0235-4d67-9fbf-56aadd7111fe": [
+      "gec_004"
+    ],
+    "fc8f18d4-ea2d-499b-8105-4591766781c3": [
+      "gec_028"
+    ],
+    "12016404-a6d6-4070-ac38-0926e5331c39": [
+      "gec_029"
+    ],
+    "f8e23a80-1d07-478f-adf9-930d083a719d": [
+      "gec_030",
+      "gec_004"
+    ],
+    "f1392017-d43a-4028-9d5b-a4da9fde5f42": [
+      "gec_003"
+    ],
+    "fd2184f9-bf8b-4370-ac84-94abece401ad": [
+      "gec_001",
+      "gec_003"
+    ],
+    "dc919cf0-fef2-4ad2-97c1-058f60fe107c": [
+      "gec_031"
+    ],
+    "9380982d-e26c-4ccd-8a98-4b1c0b74f485": [
+      "gec_032",
+      "gec_033",
+      "gec_034"
+    ],
+    "3b51d9b0-571a-4273-8189-cb1c89a666f8": [
+      "gec_019"
+    ],
+    "c8fdd327-cbf4-402a-9980-4c02c54aab7e": [
+      "gec_004",
+      "gec_008",
+      "gec_035"
+    ],
+    "59367b3f-04ff-4704-82b2-cfa4615a061d": [
+      "gec_008"
+    ],
+    "4de63d62-57bc-4514-b4b0-f9ca8aa476b9": [
+      "gec_001",
+      "gec_003"
+    ],
+    "6cbc4f02-6e17-4fc8-84d2-fcc5ec1d2e5a": [
+      "gec_001",
+      "gec_036",
+      "gec_003"
+    ],
+    "11905911-7a73-4862-a088-fbeed74b8412": [
+      "gec_037"
+    ],
+    "a143b424-e8a4-4803-b837-0e2b6c3386c1": [
+      "gec_038",
+      "gec_039"
+    ],
+    "77014c62-4932-4cfc-be16-52b86514c19c": [
+      "gec_004"
+    ],
+    "cd6f3c89-b5d7-44c9-b4bd-d1daf4cbf3c6": [
+      "gec_001",
+      "gec_004"
+    ],
+    "ed8fa155-adcb-4061-9a85-77dea7c765a9": [
+      "gec_040",
+      "gec_041",
+      "gec_042"
+    ],
+    "e8552924-26af-4eb9-8e76-9101466f4d87": [
+      "gec_001",
+      "gec_003"
+    ],
+    "b0be5ad4-84c7-4017-83ba-aee5d084eb4e": [
+      "gec_004",
+      "gec_008"
+    ],
+    "743b8cab-220a-4115-93d8-bd36175845d7": [
+      "gec_003"
+    ],
+    "d2c3d993-bab8-4931-a0c5-f4517b741d4d": [
+      "gec_004",
+      "gec_043"
+    ],
+    "954131e4-c529-48e5-a7ea-723e158c607d": [
+      "gec_044",
+      "gec_045",
+      "gec_046"
+    ],
+    "76b379a1-2c4b-4a4a-be70-db65f493d169": [
+      "gec_004"
+    ],
+    "25eb567a-c219-453b-9cef-1480264fd48c": [
+      "gec_047",
+      "gec_048"
+    ],
+    "82defefd-6957-49d2-a55e-326bda5295cd": [
+      "gec_049",
+      "gec_050",
+      "gec_051"
+    ],
+    "5b77ac17-c9f9-43ef-8744-c922758ba35e": [
+      "gec_003",
+      "gec_052",
+      "gec_053",
+      "gec_002"
+    ],
+    "62422737-ee9b-4d36-9bb0-0ed5dbd1fef2": [
+      "gec_002",
+      "gec_013"
+    ],
+    "8030a267-aeba-4d22-b05a-d222ab8ada17": [
+      "gec_054",
+      "gec_055"
+    ],
+    "c3cced00-be2e-4abd-a6ca-5b5de2088f14": [
+      "gec_001",
+      "gec_003",
+      "gec_004"
+    ],
+    "464d99f8-5056-4abd-8c5d-a10699751eb8": [
+      "gec_056",
+      "gec_057",
+      "gec_058"
+    ],
+    "b7683ee3-3886-4644-aab3-5eaad7d39539": [
+      "gec_003",
+      "gec_059"
+    ],
+    "ab17cc21-213a-4ad7-884a-e9c263924278": [
+      "gec_003"
+    ],
+    "e1dae0a4-94c5-4f80-bdd3-75faee37f024": [
+      "gec_003"
+    ],
+    "46aad5a6-c817-4711-b27b-90311619ba7b": [
+      "gec_003"
+    ],
+    "a7e7b430-484f-4a3e-84ca-fabd7f80187e": [
+      "gec_060",
+      "gec_061",
+      "gec_062"
+    ],
+    "f62cf29c-66fa-45c9-be81-f9c4a9ee5db8": [
+      "gec_003"
+    ],
+    "a96cb3b4-ae04-4977-a1a9-df149a752086": [
+      "gec_003"
+    ],
+    "d919988a-d39a-4e40-9706-22b3cf8d17ec": [
+      "gec_063",
+      "gec_064"
+    ],
+    "0447338a-666d-47c9-9ae5-378678854bc9": [
+      "gec_001",
+      "gec_065",
+      "gec_066",
+      "gec_067"
+    ],
+    "7b98e574-a789-46ad-a58b-b2ec774fa869": [
+      "gec_001"
+    ],
+    "a1d5938d-68bf-43b7-9317-f186196b68f5": [
+      "gec_001",
+      "gec_004"
+    ],
+    "c60b75d1-75a2-4993-b7ed-9a6e635c79e3": [
+      "gec_001",
+      "gec_004"
+    ],
+    "6ed6beb0-0f73-4f43-8662-b0e0eb6c62b3": [
+      "gec_068",
+      "gec_069",
+      "gec_070"
+    ],
+    "8c7e2cf1-8984-43dd-956a-bf392d21b38a": [
+      "gec_071",
+      "gec_072",
+      "gec_073"
+    ],
+    "3a7d7389-ad96-4dc5-ba08-a1bbc0d0ec26": [
+      "gec_074",
+      "gec_003"
+    ],
+    "a46be478-9b47-4654-8683-cff5e5bf12ba": [
+      "gec_001"
+    ],
+    "b3f39710-4526-425d-a811-f15b8b52d9d6": [
+      "gec_001",
+      "gec_004"
+    ],
+    "eb92ece7-8556-439c-be8c-ed7bfaae4556": [
+      "gec_001",
+      "gec_075"
+    ],
+    "e15f2503-fc93-4efd-8422-b8aed0dcc029": [
+      "gec_076",
+      "gec_077",
+      "gec_078"
+    ],
+    "09b12722-03ca-4423-9126-6ee8cc9bbd69": [
+      "gec_079"
+    ],
+    "df4020c0-fd96-4cf0-be5f-b4e36fb7d154": [
+      "gec_001",
+      "gec_003"
+    ],
+    "7fecb386-774a-4a26-8af6-7be137234bbe": [
+      "gec_080",
+      "gec_081"
+    ],
+    "394c72b9-5ee1-44ce-a08a-b690c397ceb0": [
+      "gec_005"
+    ],
+    "eb81dd51-7d02-4e8f-b0d9-7a3006dff723": [
+      "gec_082",
+      "gec_083"
+    ]
+  },
+  "metadata": {
+    "conversation_id": "conv_4",
+    "total_units": 91,
+    "total_clusters": 83,
+    "created_at": "2025-12-04T02:13:54.848446",
+    "updated_at": "2025-12-04T02:22:13.787135",
+    "llm_model": "gpt-4.1-mini"
+  }
+}

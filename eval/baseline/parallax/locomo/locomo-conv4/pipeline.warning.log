@@ -1,38 +1,5 @@
-2025-11-23 03:53:09,323 - providers.llm.openai_provider - WARNING - openai_provider.py:174 - [OpenAI-gpt-4o-mini] 耗时太长: 30.04s
-2025-11-23 03:53:10,411 - providers.llm.openai_provider - WARNING - openai_provider.py:174 - [OpenAI-gpt-4o-mini] 耗时太长: 31.14s
-2025-11-23 03:53:10,842 - providers.llm.openai_provider - WARNING - openai_provider.py:174 - [OpenAI-gpt-4o-mini] 耗时太长: 31.55s
-2025-11-23 03:53:11,196 - providers.llm.openai_provider - WARNING - openai_provider.py:174 - [OpenAI-gpt-4o-mini] 耗时太长: 31.91s
-2025-11-23 03:53:11,510 - providers.llm.openai_provider - WARNING - openai_provider.py:174 - [OpenAI-gpt-4o-mini] 耗时太长: 32.23s
-2025-11-23 03:53:22,531 - providers.llm.openai_provider - WARNING - openai_provider.py:174 - [OpenAI-gpt-4o-mini] 耗时太长: 43.26s
-2025-11-23 03:53:24,881 - providers.llm.openai_provider - WARNING - openai_provider.py:174 - [OpenAI-gpt-4o-mini] 耗时太长: 45.61s
-2025-11-23 03:53:25,364 - providers.llm.openai_provider - WARNING - openai_provider.py:174 - [OpenAI-gpt-4o-mini] 耗时太长: 46.09s
-2025-11-23 03:53:25,782 - providers.llm.openai_provider - WARNING - openai_provider.py:174 - [OpenAI-gpt-4o-mini] 耗时太长: 46.49s
-2025-11-23 03:53:27,082 - providers.llm.openai_provider - WARNING - openai_provider.py:174 - [OpenAI-gpt-4o-mini] 耗时太长: 47.80s
-2025-11-23 03:53:27,434 - providers.llm.openai_provider - WARNING - openai_provider.py:174 - [OpenAI-gpt-4o-mini] 耗时太长: 48.15s
-2025-11-23 03:53:27,677 - providers.llm.openai_provider - WARNING - openai_provider.py:174 - [OpenAI-gpt-4o-mini] 耗时太长: 48.40s
-2025-11-23 03:53:36,819 - providers.llm.openai_provider - WARNING - openai_provider.py:174 - [OpenAI-gpt-4o-mini] 耗时太长: 30.76s
-2025-11-23 03:53:40,239 - providers.llm.openai_provider - WARNING - openai_provider.py:174 - [OpenAI-gpt-4o-mini] 耗时太长: 60.96s
-2025-11-23 03:53:41,762 - providers.llm.openai_provider - WARNING - openai_provider.py:174 - [OpenAI-gpt-4o-mini] 耗时太长: 31.35s
-2025-11-23 03:53:54,434 - providers.llm.openai_provider - WARNING - openai_provider.py:174 - [OpenAI-gpt-4o-mini] 耗时太长: 63.99s
-2025-11-23 03:53:55,159 - providers.llm.openai_provider - WARNING - openai_provider.py:174 - [OpenAI-gpt-4o-mini] 耗时太长: 75.87s
-2025-11-23 03:53:57,964 - providers.llm.openai_provider - WARNING - openai_provider.py:174 - [OpenAI-gpt-4o-mini] 耗时太长: 78.69s
-2025-11-23 03:53:58,578 - providers.llm.openai_provider - WARNING - openai_provider.py:174 - [OpenAI-gpt-4o-mini] 耗时太长: 31.49s
-2025-11-23 03:54:07,180 - providers.llm.openai_provider - WARNING - openai_provider.py:174 - [OpenAI-gpt-4o-mini] 耗时太长: 30.97s
-2025-11-23 03:54:10,550 - providers.llm.openai_provider - WARNING - openai_provider.py:174 - [OpenAI-gpt-4o-mini] 耗时太长: 80.59s
-2025-11-23 03:54:13,976 - providers.llm.openai_provider - WARNING - openai_provider.py:174 - [OpenAI-gpt-4o-mini] 耗时太长: 48.19s
-2025-11-23 03:54:33,152 - providers.llm.openai_provider - WARNING - openai_provider.py:174 - [OpenAI-gpt-4o-mini] 耗时太长: 47.13s
-2025-11-23 03:54:40,526 - providers.llm.openai_provider - WARNING - openai_provider.py:174 - [OpenAI-gpt-4o-mini] 耗时太长: 78.68s
-2025-11-23 03:54:50,542 - providers.llm.openai_provider - WARNING - openai_provider.py:174 - [OpenAI-gpt-4o-mini] 耗时太长: 31.47s
-2025-11-23 03:55:29,158 - providers.llm.openai_provider - WARNING - openai_provider.py:174 - [OpenAI-gpt-4o-mini] 耗时太长: 78.93s
-2025-11-23 03:56:05,552 - providers.llm.openai_provider - WARNING - openai_provider.py:174 - [OpenAI-gpt-4o-mini] 耗时太长: 31.99s
-2025-11-23 03:56:38,193 - providers.llm.openai_provider - WARNING - openai_provider.py:174 - [OpenAI-gpt-4o-mini] 耗时太长: 63.79s
-2025-11-23 03:57:13,464 - providers.llm.openai_provider - WARNING - openai_provider.py:174 - [OpenAI-gpt-4o-mini] 耗时太长: 64.58s
-2025-11-23 03:57:21,558 - providers.llm.openai_provider - WARNING - openai_provider.py:174 - [OpenAI-gpt-4o-mini] 耗时太长: 79.80s
-2025-11-23 03:58:04,261 - providers.llm.openai_provider - WARNING - openai_provider.py:174 - [OpenAI-gpt-4o-mini] 耗时太长: 80.86s
-2025-11-23 03:58:11,525 - providers.llm.openai_provider - WARNING - openai_provider.py:174 - [OpenAI-gpt-4o-mini] 耗时太长: 76.44s
-2025-11-23 05:00:20,048 - providers.llm.openai_provider - WARNING - openai_provider.py:174 - [OpenAI-gpt-4o-mini] 耗时太长: 30.51s
-2025-11-23 05:00:33,559 - providers.llm.openai_provider - WARNING - openai_provider.py:174 - [OpenAI-gpt-4o-mini] 耗时太长: 30.87s
-2025-11-23 05:00:43,912 - providers.llm.openai_provider - WARNING - openai_provider.py:174 - [OpenAI-gpt-4o-mini] 耗时太长: 30.59s
-2025-11-23 05:00:46,502 - providers.llm.openai_provider - WARNING - openai_provider.py:174 - [OpenAI-gpt-4o-mini] 耗时太长: 31.66s
-2025-11-23 05:00:51,127 - providers.llm.openai_provider - WARNING - openai_provider.py:174 - [OpenAI-gpt-4o-mini] 耗时太长: 46.98s
-2025-11-23 05:00:53,000 - providers.llm.openai_provider - WARNING - openai_provider.py:174 - [OpenAI-gpt-4o-mini] 耗时太长: 63.47s
+2025-12-04 02:17:14,384 - [add-idx-emb] - memory.group_event_cluster.clusterer - WARNING - clusterer.py:195 - No valid assignments for fc8f18d4-ea2d-499b-8105-4591766781c3, creating new cluster
+2025-12-04 02:18:00,458 - [add-idx-emb] - providers.llm.openai_provider - WARNING - openai_provider.py:295 - [OpenAI-gpt-4.1-mini] 完成原因: length
+2025-12-04 02:23:18,410 - [search-locomo_4_qa38] - providers.llm.openai_provider - WARNING - openai_provider.py:355 - 🔌 [OpenAI-gpt-4.1-mini] 连接异常! 重试 1/20: APIConnectionError
+2025-12-04 02:23:18,411 - [search-locomo_4_qa38] - providers.llm.openai_provider - WARNING - openai_provider.py:356 -    ⏱️  已耗时: 0.57s, 将等待 5.0-300.0s 后重试
+2025-12-04 02:23:18,412 - [search-locomo_4_qa38] - providers.llm.openai_provider - WARNING - openai_provider.py:357 -    💬 错误: Connection error.
