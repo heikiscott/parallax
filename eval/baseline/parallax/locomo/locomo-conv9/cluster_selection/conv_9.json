@@ -1,0 +1,618 @@
+{
+  "qa_count": 158,
+  "questions": [
+    {
+      "query": "When did Dave start his car maintenance shop?",
+      "question_id": "locomo_9_qa8",
+      "clusters_found": [
+        "gec_010",
+        "gec_051",
+        "gec_020",
+        "gec_001",
+        "gec_011",
+        "gec_019",
+        "gec_014",
+        "gec_016",
+        "gec_033",
+        "gec_009",
+        "gec_015",
+        "gec_052",
+        "gec_018",
+        "gec_005",
+        "gec_008"
+      ],
+      "clusters_selected": [
+        "gec_011"
+      ],
+      "selection_reasoning": "The cluster gec_011 specifically contains the event of Dave opening his own car maintenance shop on May 1, 2023, which directly answers the query about when Dave started his car maintenance shop.",
+      "cluster_details": {
+        "gec_011": {
+          "topic": "Dave's opening of his own car maintenance shop",
+          "summary": "On May 1, 2023, Dave shared with Calvin his excitement and pride in opening his own car maintenance shop, highlighting his passion for classic car restoration and the fulfillment he finds in his work, while Calvin offered encouragement and recognition of Dave’s dedication and achievements.",
+          "member_count": 1,
+          "members_returned": 1
+        }
+      },
+      "members_per_cluster": {
+        "gec_011": 1
+      },
+      "final_count": 11,
+      "truncated": false,
+      "evidence": [
+        "D4:1"
+      ],
+      "evidence_detail": {
+        "D4:1": [
+          "188333c0-9c0c-4aa4-9b6c-0aa0e254bce0",
+          "gec_011"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "188333c0-9c0c-4aa4-9b6c-0aa0e254bce0"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_011"
+      ],
+      "cluster_hit": true,
+      "memunit_hit": true,
+      "memunit_coverage": 1.0,
+      "selected_unit_ids": [
+        "188333c0-9c0c-4aa4-9b6c-0aa0e254bce0"
+      ]
+    },
+    {
+      "query": "When did Calvin meet with the creative team for his new album?",
+      "question_id": "locomo_9_qa14",
+      "clusters_found": [
+        "gec_010",
+        "gec_020",
+        "gec_001",
+        "gec_031",
+        "gec_029",
+        "gec_056",
+        "gec_032",
+        "gec_049",
+        "gec_055",
+        "gec_057",
+        "gec_005",
+        "gec_044",
+        "gec_003",
+        "gec_054",
+        "gec_007",
+        "gec_027",
+        "gec_040",
+        "gec_015",
+        "gec_053",
+        "gec_018",
+        "gec_002",
+        "gec_048",
+        "gec_019",
+        "gec_042",
+        "gec_009",
+        "gec_028",
+        "gec_014",
+        "gec_041",
+        "gec_016",
+        "gec_043",
+        "gec_050",
+        "gec_008"
+      ],
+      "clusters_selected": [
+        "gec_008"
+      ],
+      "selection_reasoning": "Cluster gec_008 covers Calvin's music projects including studio sessions and collaborations, which likely includes meetings with the creative team for his new album. Other clusters focus on tours, travel, personal reflections, or unrelated topics.",
+      "cluster_details": {
+        "gec_008": {
+          "topic": "Calvin's music projects including studio sessions and collaborations",
+          "summary": "They discussed Calvin’s evolving music projects, including studio sessions, collaborations with global artists like Frank Ocean, and tours. Their conversations reflected mutual support, creative growth, and shared enthusiasm for music, artistic experimentation, and achieving career milestones.",
+          "member_count": 21,
+          "members_returned": 15
+        }
+      },
+      "members_per_cluster": {
+        "gec_008": 15
+      },
+      "final_count": 25,
+      "truncated": false,
+      "evidence": [
+        "D8:1"
+      ],
+      "evidence_detail": {
+        "D8:1": [
+          "e5816ba5-3706-41a8-ab60-0ebf4e777cef",
+          "gec_032"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "e5816ba5-3706-41a8-ab60-0ebf4e777cef"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_032"
+      ],
+      "cluster_hit": false,
+      "memunit_hit": true,
+      "memunit_coverage": 1.0,
+      "selected_unit_ids": [
+        "51d2553a-d0a2-4b8c-86fd-4cd8843f6bf1",
+        "469a7154-d20e-4c3b-a5b2-cef203ab0586",
+        "5b66097d-7d7c-4110-8ff9-46e22d4a6c12",
+        "c19ae004-f4e7-484c-ad34-d0555064b7a5",
+        "e5816ba5-3706-41a8-ab60-0ebf4e777cef",
+        "8b242ddd-e91d-4928-a854-9687e8efe67c",
+        "d6913789-7400-4901-9e3f-2610a4647554",
+        "392a928e-c1ae-4c6e-ba00-a2bfafd2dbc5",
+        "23258f1e-9487-425b-9e0b-6d6f6b1c70d1",
+        "0f7ea8d5-0d39-4f4d-b461-65916ca95d45",
+        "e581ae78-5f47-4969-89da-f6b53e96e1dc",
+        "6daf26df-54f3-4d9a-82b9-0675ab807994",
+        "610a5321-5210-454b-aca4-6050f0c87983",
+        "6c5fdfe3-ceef-4ce8-87a2-b13c80df7dc7",
+        "15a157ae-c564-4751-9232-e84264af2f4a"
+      ]
+    },
+    {
+      "query": "When did Calvin have a car incident?",
+      "question_id": "locomo_9_qa17",
+      "clusters_found": [
+        "gec_010",
+        "gec_007",
+        "gec_020",
+        "gec_001",
+        "gec_011",
+        "gec_014",
+        "gec_021",
+        "gec_016",
+        "gec_033",
+        "gec_009",
+        "gec_015",
+        "gec_017",
+        "gec_005",
+        "gec_008"
+      ],
+      "clusters_selected": [
+        "gec_033"
+      ],
+      "selection_reasoning": "The query asks when Calvin had a car incident. Cluster gec_033 specifically details Calvin's minor car accident on June 16, 2023, and the subsequent insurance and repair process, directly answering the question.",
+      "cluster_details": {
+        "gec_033": {
+          "topic": "Calvin's minor car accident and insurance repair process",
+          "summary": "On June 21, 2023, Calvin informed Dave about his minor car accident on June 16 and discussed the subsequent insurance and repair process, which was resolved within a week, leading to Calvin’s positive outlook and gratitude for Dave’s support.",
+          "member_count": 1,
+          "members_returned": 1
+        }
+      },
+      "members_per_cluster": {
+        "gec_033": 1
+      },
+      "final_count": 11,
+      "truncated": false,
+      "evidence": [
+        "D9:1"
+      ],
+      "evidence_detail": {
+        "D9:1": [
+          "45b79c6a-98a8-49a6-a7cd-bc402dbf0011",
+          "gec_033"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "45b79c6a-98a8-49a6-a7cd-bc402dbf0011"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_033"
+      ],
+      "cluster_hit": true,
+      "memunit_hit": true,
+      "memunit_coverage": 1.0,
+      "selected_unit_ids": [
+        "45b79c6a-98a8-49a6-a7cd-bc402dbf0011"
+      ]
+    },
+    {
+      "query": "How many times has Calvin had to deal with insurance paperwork?",
+      "question_id": "locomo_9_qa18",
+      "clusters_found": [
+        "gec_010",
+        "gec_020",
+        "gec_001",
+        "gec_056",
+        "gec_055",
+        "gec_005",
+        "gec_044",
+        "gec_015",
+        "gec_018",
+        "gec_034",
+        "gec_019",
+        "gec_042",
+        "gec_011",
+        "gec_014",
+        "gec_021",
+        "gec_016",
+        "gec_033",
+        "gec_043",
+        "gec_008"
+      ],
+      "clusters_selected": [
+        "gec_033",
+        "gec_021"
+      ],
+      "selection_reasoning": "Clusters gec_033 and gec_021 both describe incidents involving Calvin that likely required dealing with insurance paperwork: a minor car accident and a home flooding incident. These are the only clusters directly referencing situations where insurance paperwork would be involved.",
+      "cluster_details": {
+        "gec_033": {
+          "topic": "Calvin's minor car accident and insurance repair process",
+          "summary": "On June 21, 2023, Calvin informed Dave about his minor car accident on June 16 and discussed the subsequent insurance and repair process, which was resolved within a week, leading to Calvin’s positive outlook and gratitude for Dave’s support.",
+          "member_count": 1,
+          "members_returned": 1
+        },
+        "gec_021": {
+          "topic": "Calvin's home flooding incident and damage",
+          "summary": "On May 16, 2023, Calvin informed Dave about his recent flooding incident that damaged his home but spared his important music equipment, expressing optimism about repairs once insurance takes effect, while Dave offered sympathy and support.",
+          "member_count": 1,
+          "members_returned": 1
+        }
+      },
+      "members_per_cluster": {
+        "gec_033": 1,
+        "gec_021": 1
+      },
+      "final_count": 12,
+      "truncated": false,
+      "evidence": [
+        "D6:5",
+        "D9:1"
+      ],
+      "evidence_detail": {
+        "D6:5": [
+          "392a928e-c1ae-4c6e-ba00-a2bfafd2dbc5",
+          "gec_021"
+        ],
+        "D9:1": [
+          "45b79c6a-98a8-49a6-a7cd-bc402dbf0011",
+          "gec_033"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "392a928e-c1ae-4c6e-ba00-a2bfafd2dbc5",
+        "45b79c6a-98a8-49a6-a7cd-bc402dbf0011"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_021",
+        "gec_033"
+      ],
+      "cluster_hit": true,
+      "memunit_hit": true,
+      "memunit_coverage": 1.0,
+      "selected_unit_ids": [
+        "45b79c6a-98a8-49a6-a7cd-bc402dbf0011",
+        "392a928e-c1ae-4c6e-ba00-a2bfafd2dbc5"
+      ]
+    },
+    {
+      "query": "What does Calvin do to relax?",
+      "question_id": "locomo_9_qa28",
+      "clusters_found": [
+        "gec_051",
+        "gec_020",
+        "gec_001",
+        "gec_031",
+        "gec_032",
+        "gec_049",
+        "gec_017",
+        "gec_057",
+        "gec_005",
+        "gec_035",
+        "gec_003",
+        "gec_007",
+        "gec_015",
+        "gec_018",
+        "gec_036",
+        "gec_002",
+        "gec_048",
+        "gec_019",
+        "gec_012",
+        "gec_014",
+        "gec_016",
+        "gec_052",
+        "gec_004",
+        "gec_050",
+        "gec_008"
+      ],
+      "clusters_selected": [
+        "gec_017",
+        "gec_019",
+        "gec_020"
+      ],
+      "selection_reasoning": "These clusters discuss Calvin's hobbies and relaxation methods involving nature and movement (gec_017), his use of nature and cultural exploration for relaxation (gec_019), and how music and car restoration serve as therapeutic outlets and ways to overcome creative challenges (gec_020). Together, they provide a comprehensive view of what Calvin does to relax.",
+      "cluster_details": {
+        "gec_017": {
+          "topic": "Calvin and Dave's hobbies and relaxation methods involving nature and movement",
+          "summary": "On May 3, 2023, Calvin and Dave discussed their hobbies and ways to relax, sharing appreciation for activities like driving and walking that help them destress. Both expressed positive emotions about their methods of relaxation involving nature and movement.",
+          "member_count": 1,
+          "members_returned": 1
+        },
+        "gec_019": {
+          "topic": "Calvin's use of nature and cultural exploration for relaxation",
+          "summary": "On May 3, 2023, Calvin shared with Dave his creative block in music and received advice to take breaks and explore other interests to regain inspiration, leading to mutual encouragement and plans to stay connected. Later, on May 16, Calvin reached out again, reflecting on their ongoing support and efforts to overcome creative challenges.",
+          "member_count": 1,
+          "members_returned": 1
+        },
+        "gec_020": {
+          "topic": "Calvin and Dave's mutual encouragement and support for overcoming creative challenges",
+          "summary": "Calvin and Dave consistently supported each other through creative challenges, sharing how music and car restoration serve as therapeutic outlets. Their ongoing encouragement, focus on small wins, and connection to real-life experiences fueled their mutual inspiration and dedication over time.",
+          "member_count": 5,
+          "members_returned": 4
+        }
+      },
+      "members_per_cluster": {
+        "gec_017": 1,
+        "gec_019": 1,
+        "gec_020": 4
+      },
+      "final_count": 16,
+      "truncated": false,
+      "evidence": [
+        "D5:8",
+        "D5:10",
+        "D7:5"
+      ],
+      "evidence_detail": {
+        "D5:8": [
+          "53dde510-f879-4366-89a4-4ded0fa8d384",
+          "gec_017"
+        ],
+        "D5:10": [
+          "9a241f3f-23e1-48e1-a008-55007ede7c0e",
+          "gec_020"
+        ],
+        "D7:5": [
+          "f1122028-32a7-4e1e-bfa3-0859336ee36a",
+          "gec_001"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "53dde510-f879-4366-89a4-4ded0fa8d384",
+        "9a241f3f-23e1-48e1-a008-55007ede7c0e",
+        "f1122028-32a7-4e1e-bfa3-0859336ee36a"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_017",
+        "gec_001",
+        "gec_020"
+      ],
+      "cluster_hit": true,
+      "memunit_hit": true,
+      "memunit_coverage": 0.6666666666666666,
+      "selected_unit_ids": [
+        "9a241f3f-23e1-48e1-a008-55007ede7c0e",
+        "d6913789-7400-4901-9e3f-2610a4647554",
+        "53dde510-f879-4366-89a4-4ded0fa8d384",
+        "e581ae78-5f47-4969-89da-f6b53e96e1dc",
+        "00371374-3bff-433f-8cf1-965d65e87532",
+        "e8079c42-9542-47a6-924e-0a7c60fd76a3"
+      ]
+    },
+    {
+      "query": "When did Dave have a great jam session with his band?",
+      "question_id": "locomo_9_qa38",
+      "clusters_found": [
+        "gec_010",
+        "gec_030",
+        "gec_046",
+        "gec_001",
+        "gec_049",
+        "gec_037",
+        "gec_005",
+        "gec_003",
+        "gec_007",
+        "gec_045",
+        "gec_040",
+        "gec_015",
+        "gec_002",
+        "gec_034",
+        "gec_048",
+        "gec_009",
+        "gec_012",
+        "gec_006",
+        "gec_014",
+        "gec_041",
+        "gec_016",
+        "gec_038",
+        "gec_050",
+        "gec_008"
+      ],
+      "clusters_selected": [
+        "gec_046"
+      ],
+      "selection_reasoning": "The query asks specifically when Dave had a great jam session with his band. Cluster gec_046 directly references Dave sharing excitement about a recent jam session with his band on September 15, 2023, providing a precise date and context for the event.",
+      "cluster_details": {
+        "gec_046": {
+          "topic": "Dave's recent jam session with his band",
+          "summary": "On September 15, 2023, Dave shared his excitement with Calvin about a recent jam session with his band and a rock concert he attended in Boston, while Calvin expressed interest in any recordings of the session.",
+          "member_count": 1,
+          "members_returned": 1
+        }
+      },
+      "members_per_cluster": {
+        "gec_046": 1
+      },
+      "final_count": 11,
+      "truncated": false,
+      "evidence": [
+        "D19:1"
+      ],
+      "evidence_detail": {
+        "D19:1": [
+          "107b48e4-b262-48e4-a06b-8d5ddf83a96d",
+          "gec_046"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "107b48e4-b262-48e4-a06b-8d5ddf83a96d"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_046"
+      ],
+      "cluster_hit": true,
+      "memunit_hit": true,
+      "memunit_coverage": 1.0,
+      "selected_unit_ids": [
+        "107b48e4-b262-48e4-a06b-8d5ddf83a96d"
+      ]
+    },
+    {
+      "query": "When did Calvin visit some of the sights in Boston with a former high school friend?",
+      "question_id": "locomo_9_qa55",
+      "clusters_found": [
+        "gec_010",
+        "gec_020",
+        "gec_030",
+        "gec_001",
+        "gec_031",
+        "gec_056",
+        "gec_022",
+        "gec_032",
+        "gec_055",
+        "gec_057",
+        "gec_017",
+        "gec_035",
+        "gec_003",
+        "gec_054",
+        "gec_007",
+        "gec_023",
+        "gec_045",
+        "gec_015",
+        "gec_053",
+        "gec_036",
+        "gec_002",
+        "gec_009",
+        "gec_024",
+        "gec_014",
+        "gec_016",
+        "gec_004",
+        "gec_008"
+      ],
+      "clusters_selected": [
+        "gec_055"
+      ],
+      "selection_reasoning": "Cluster gec_055 specifically mentions Calvin's reunion with a former high school friend during a Boston performance, which is directly related to Calvin visiting sights in Boston with that friend.",
+      "cluster_details": {
+        "gec_055": {
+          "topic": "Calvin's reflections on music career and reunion with high school friend",
+          "summary": "On November 13, 2023, Calvin and Dave discussed Calvin's reflections on his music career, highlighting a reunion with a supportive high school friend during a Boston performance and his ongoing commitment to mentoring young musicians. Calvin expressed gratitude for long-term relationships and the importance of nurturing new talent to sustain his passion and growth in the industry.",
+          "member_count": 1,
+          "members_returned": 1
+        }
+      },
+      "members_per_cluster": {
+        "gec_055": 1
+      },
+      "final_count": 11,
+      "truncated": false,
+      "evidence": [
+        "D26:1"
+      ],
+      "evidence_detail": {
+        "D26:1": [
+          "26e4bfb3-49d4-4603-b1dd-206fd5d45026",
+          "gec_003"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "26e4bfb3-49d4-4603-b1dd-206fd5d45026"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_003"
+      ],
+      "cluster_hit": false,
+      "memunit_hit": false,
+      "memunit_coverage": 0.0,
+      "selected_unit_ids": [
+        "18c1b9f4-9df2-4d1c-9329-b1db5f5a69f4"
+      ]
+    },
+    {
+      "query": "When did Calvin attend a gala in Boston?",
+      "question_id": "locomo_9_qa70",
+      "clusters_found": [
+        "gec_010",
+        "gec_020",
+        "gec_030",
+        "gec_046",
+        "gec_001",
+        "gec_031",
+        "gec_056",
+        "gec_032",
+        "gec_055",
+        "gec_057",
+        "gec_003",
+        "gec_054",
+        "gec_007",
+        "gec_045",
+        "gec_015",
+        "gec_053",
+        "gec_002",
+        "gec_009",
+        "gec_006",
+        "gec_014",
+        "gec_016",
+        "gec_004",
+        "gec_008"
+      ],
+      "clusters_selected": [
+        "gec_003"
+      ],
+      "selection_reasoning": "Cluster gec_003 discusses Calvin's upcoming trips to Boston, including travel plans and events, which is the most relevant cluster for identifying when Calvin attended a gala in Boston.",
+      "cluster_details": {
+        "gec_003": {
+          "topic": "Calvin's upcoming trip to Boston",
+          "summary": "They discussed Calvin’s upcoming trips to Japan and Boston, sharing excitement about travel, skiing, and creative projects like his collaboration with Frank Ocean. Their conversations reflected ongoing mutual support and enthusiasm for adventure and artistic growth.",
+          "member_count": 10,
+          "members_returned": 10
+        }
+      },
+      "members_per_cluster": {
+        "gec_003": 10
+      },
+      "final_count": 20,
+      "truncated": false,
+      "evidence": [
+        "D30:1"
+      ],
+      "evidence_detail": {
+        "D30:1": [
+          "cd184ce9-b663-462c-9d62-5d209b6346e6",
+          "gec_057"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "cd184ce9-b663-462c-9d62-5d209b6346e6"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_057"
+      ],
+      "cluster_hit": false,
+      "memunit_hit": false,
+      "memunit_coverage": 0.0,
+      "selected_unit_ids": [
+        "e5816ba5-3706-41a8-ab60-0ebf4e777cef",
+        "8b242ddd-e91d-4928-a854-9687e8efe67c",
+        "9442cfcd-51b6-480d-98e0-8eeebfb1c3b0",
+        "23258f1e-9487-425b-9e0b-6d6f6b1c70d1",
+        "b01c51d0-ed58-48ea-bbb8-d6f3f0771b38",
+        "be2670d7-c8dc-4ac0-bf36-c16a529a4f84",
+        "b8c74701-0d2d-40e5-b6a5-e79e0e9e1c55",
+        "26e4bfb3-49d4-4603-b1dd-206fd5d45026",
+        "1c54a590-a3a7-4c9a-9112-c68f810aec32",
+        "662bc3d4-51b9-479a-92ca-c4f2a85ccab7"
+      ]
+    }
+  ],
+  "summary": {
+    "total_questions": 8,
+    "cluster_hit_count": 5,
+    "cluster_hit_rate": 0.625,
+    "memunit_hit_count": 6,
+    "memunit_hit_rate": 0.75,
+    "avg_memunit_coverage": 0.7083333333333334
+  }
+}

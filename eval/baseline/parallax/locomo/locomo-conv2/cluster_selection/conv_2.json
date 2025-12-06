@@ -1,0 +1,810 @@
+{
+  "qa_count": 152,
+  "questions": [
+    {
+      "query": "When did Maria go to the beach?",
+      "question_id": "locomo_2_qa5",
+      "clusters_found": [
+        "gec_020",
+        "gec_086",
+        "gec_032",
+        "gec_095",
+        "gec_075",
+        "gec_074",
+        "gec_034",
+        "gec_007",
+        "gec_001",
+        "gec_030",
+        "gec_089",
+        "gec_090",
+        "gec_033",
+        "gec_049",
+        "gec_016",
+        "gec_058",
+        "gec_052",
+        "gec_051",
+        "gec_013",
+        "gec_031",
+        "gec_080",
+        "gec_012",
+        "gec_017",
+        "gec_047",
+        "gec_073",
+        "gec_003",
+        "gec_044",
+        "gec_014",
+        "gec_059",
+        "gec_015",
+        "gec_066",
+        "gec_050",
+        "gec_079",
+        "gec_005",
+        "gec_081",
+        "gec_091",
+        "gec_048",
+        "gec_018",
+        "gec_008",
+        "gec_085",
+        "gec_065"
+      ],
+      "clusters_selected": [],
+      "selection_reasoning": "None of the clusters contain relevant information about when Maria went to the beach.",
+      "cluster_details": {},
+      "members_per_cluster": {},
+      "final_count": 20,
+      "truncated": false,
+      "evidence": [
+        "D3:15"
+      ],
+      "evidence_detail": {
+        "D3:15": [
+          "e2cecc9e-4fc4-4194-9364-d659e2556fe5",
+          "gec_015"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "e2cecc9e-4fc4-4194-9364-d659e2556fe5"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_015"
+      ],
+      "cluster_hit": false,
+      "memunit_hit": false,
+      "memunit_coverage": 0.0,
+      "selected_unit_ids": []
+    },
+    {
+      "query": "When did Maria meet Jean?",
+      "question_id": "locomo_2_qa10",
+      "clusters_found": [
+        "gec_020",
+        "gec_032",
+        "gec_095",
+        "gec_075",
+        "gec_074",
+        "gec_034",
+        "gec_009",
+        "gec_007",
+        "gec_001",
+        "gec_030",
+        "gec_011",
+        "gec_028",
+        "gec_108",
+        "gec_033",
+        "gec_016",
+        "gec_002",
+        "gec_106",
+        "gec_029",
+        "gec_031",
+        "gec_012",
+        "gec_010",
+        "gec_017",
+        "gec_019",
+        "gec_107",
+        "gec_073",
+        "gec_044",
+        "gec_015",
+        "gec_046",
+        "gec_005",
+        "gec_081",
+        "gec_018",
+        "gec_045",
+        "gec_008",
+        "gec_021",
+        "gec_003"
+      ],
+      "clusters_selected": [],
+      "selection_reasoning": "None of the clusters contain information about when Maria met Jean.",
+      "cluster_details": {},
+      "members_per_cluster": {},
+      "final_count": 20,
+      "truncated": false,
+      "evidence": [
+        "D7:1"
+      ],
+      "evidence_detail": {
+        "D7:1": [
+          "ad3b74ce-6bbd-4a7e-9f15-ec563afa3f5f",
+          "gec_029"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "ad3b74ce-6bbd-4a7e-9f15-ec563afa3f5f"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_029"
+      ],
+      "cluster_hit": false,
+      "memunit_hit": false,
+      "memunit_coverage": 0.0,
+      "selected_unit_ids": []
+    },
+    {
+      "query": "When did John go to a convention with colleagues?",
+      "question_id": "locomo_2_qa22",
+      "clusters_found": [
+        "gec_020",
+        "gec_086",
+        "gec_109",
+        "gec_095",
+        "gec_042",
+        "gec_007",
+        "gec_001",
+        "gec_085",
+        "gec_099",
+        "gec_011",
+        "gec_036",
+        "gec_089",
+        "gec_090",
+        "gec_084",
+        "gec_016",
+        "gec_058",
+        "gec_023",
+        "gec_002",
+        "gec_043",
+        "gec_010",
+        "gec_012",
+        "gec_094",
+        "gec_004",
+        "gec_017",
+        "gec_019",
+        "gec_035",
+        "gec_003",
+        "gec_044",
+        "gec_059",
+        "gec_015",
+        "gec_100",
+        "gec_037",
+        "gec_005",
+        "gec_091",
+        "gec_021",
+        "gec_022",
+        "gec_009"
+      ],
+      "clusters_selected": [],
+      "selection_reasoning": "None of the clusters mention John attending a convention with colleagues or provide related event details.",
+      "cluster_details": {},
+      "members_per_cluster": {},
+      "final_count": 20,
+      "truncated": false,
+      "evidence": [
+        "D12:9"
+      ],
+      "evidence_detail": {
+        "D12:9": [
+          "66d95c83-99da-4764-bf87-983021eae190",
+          "gec_003"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "66d95c83-99da-4764-bf87-983021eae190"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_003"
+      ],
+      "cluster_hit": false,
+      "memunit_hit": false,
+      "memunit_coverage": 0.0,
+      "selected_unit_ids": []
+    },
+    {
+      "query": "When did John start boot camp with his family?",
+      "question_id": "locomo_2_qa24",
+      "clusters_found": [
+        "gec_020",
+        "gec_109",
+        "gec_095",
+        "gec_098",
+        "gec_006",
+        "gec_007",
+        "gec_096",
+        "gec_001",
+        "gec_026",
+        "gec_089",
+        "gec_108",
+        "gec_090",
+        "gec_049",
+        "gec_016",
+        "gec_058",
+        "gec_002",
+        "gec_092",
+        "gec_093",
+        "gec_106",
+        "gec_013",
+        "gec_012",
+        "gec_017",
+        "gec_019",
+        "gec_027",
+        "gec_076",
+        "gec_107",
+        "gec_047",
+        "gec_014",
+        "gec_059",
+        "gec_015",
+        "gec_046",
+        "gec_066",
+        "gec_025",
+        "gec_050",
+        "gec_005",
+        "gec_091",
+        "gec_048",
+        "gec_045",
+        "gec_008",
+        "gec_077",
+        "gec_021",
+        "gec_097",
+        "gec_065",
+        "gec_078"
+      ],
+      "clusters_selected": [
+        "gec_045"
+      ],
+      "selection_reasoning": "Cluster gec_045 specifically mentions John attending family boot camps and discusses the timing of this experience, which directly relates to when John started boot camp with his family.",
+      "cluster_details": {
+        "gec_045": {
+          "topic": "John's family boot camp participation",
+          "summary": "John and Maria reconnected after a long time, discussing John's recent experience attending family boot camps that fostered both physical fitness and emotional support, with Maria praising their dedication to creating healthy habits together.",
+          "member_count": 1,
+          "members_returned": 1
+        }
+      },
+      "members_per_cluster": {
+        "gec_045": 1
+      },
+      "final_count": 11,
+      "truncated": false,
+      "evidence": [
+        "D13:3"
+      ],
+      "evidence_detail": {
+        "D13:3": [
+          "50bd90ec-d25f-4eb5-a436-78731d3507d0",
+          "gec_046"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "50bd90ec-d25f-4eb5-a436-78731d3507d0"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_046"
+      ],
+      "cluster_hit": false,
+      "memunit_hit": true,
+      "memunit_coverage": 1.0,
+      "selected_unit_ids": [
+        "50bd90ec-d25f-4eb5-a436-78731d3507d0"
+      ]
+    },
+    {
+      "query": "When did John have a party with veterans?",
+      "question_id": "locomo_2_qa27",
+      "clusters_found": [
+        "gec_086",
+        "gec_109",
+        "gec_095",
+        "gec_098",
+        "gec_009",
+        "gec_104",
+        "gec_007",
+        "gec_096",
+        "gec_001",
+        "gec_085",
+        "gec_055",
+        "gec_011",
+        "gec_036",
+        "gec_089",
+        "gec_090",
+        "gec_057",
+        "gec_087",
+        "gec_049",
+        "gec_054",
+        "gec_016",
+        "gec_002",
+        "gec_088",
+        "gec_010",
+        "gec_012",
+        "gec_004",
+        "gec_017",
+        "gec_019",
+        "gec_035",
+        "gec_053",
+        "gec_047",
+        "gec_003",
+        "gec_056",
+        "gec_015",
+        "gec_066",
+        "gec_037",
+        "gec_050",
+        "gec_005",
+        "gec_091",
+        "gec_105",
+        "gec_048",
+        "gec_097",
+        "gec_084",
+        "gec_065"
+      ],
+      "clusters_selected": [
+        "gec_053",
+        "gec_054"
+      ],
+      "selection_reasoning": "Clusters gec_053 and gec_054 both mention John hosting a veterans' gathering or party related to his project supporting military veterans, dated 2023-05-20, directly answering when John had a party with veterans.",
+      "cluster_details": {
+        "gec_053": {
+          "topic": "John's project supporting military veterans",
+          "summary": "John discussed with Maria his ongoing project supporting military veterans, sharing his motivation, recent activities like hosting a veterans' gathering, and expressing gratitude for Maria's supportive involvement in their shared commitment to aid veterans.",
+          "member_count": 1,
+          "members_returned": 1
+        },
+        "gec_054": {
+          "topic": "Maria's supportive involvement in veterans aid",
+          "summary": "John discussed with Maria his ongoing project supporting military veterans, sharing his motivation, recent activities like hosting a veterans' gathering, and expressing gratitude for Maria's supportive involvement in their shared commitment to aid veterans.",
+          "member_count": 1,
+          "members_returned": 0
+        }
+      },
+      "members_per_cluster": {
+        "gec_053": 1,
+        "gec_054": 0
+      },
+      "final_count": 11,
+      "truncated": false,
+      "evidence": [
+        "D15:11"
+      ],
+      "evidence_detail": {
+        "D15:11": [
+          "146bae52-0de0-46f9-b34a-e8436f5bd1d0",
+          "gec_054"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "146bae52-0de0-46f9-b34a-e8436f5bd1d0"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_054"
+      ],
+      "cluster_hit": true,
+      "memunit_hit": true,
+      "memunit_coverage": 1.0,
+      "selected_unit_ids": [
+        "146bae52-0de0-46f9-b34a-e8436f5bd1d0"
+      ]
+    },
+    {
+      "query": "When did Maria go hiking with her church friends?",
+      "question_id": "locomo_2_qa46",
+      "clusters_found": [
+        "gec_086",
+        "gec_095",
+        "gec_075",
+        "gec_074",
+        "gec_007",
+        "gec_001",
+        "gec_099",
+        "gec_036",
+        "gec_089",
+        "gec_090",
+        "gec_087",
+        "gec_049",
+        "gec_016",
+        "gec_058",
+        "gec_064",
+        "gec_052",
+        "gec_002",
+        "gec_051",
+        "gec_088",
+        "gec_012",
+        "gec_017",
+        "gec_035",
+        "gec_062",
+        "gec_047",
+        "gec_073",
+        "gec_003",
+        "gec_044",
+        "gec_059",
+        "gec_063",
+        "gec_015",
+        "gec_100",
+        "gec_066",
+        "gec_037",
+        "gec_050",
+        "gec_005",
+        "gec_091",
+        "gec_018",
+        "gec_048",
+        "gec_008",
+        "gec_085",
+        "gec_065"
+      ],
+      "clusters_selected": [
+        "gec_051"
+      ],
+      "selection_reasoning": "Cluster gec_051 specifically mentions Maria's involvement in church activities and includes a conversation on May 6, 2023, where Maria shared her positive experience joining a church, which is the most relevant context to when she went hiking with her church friends.",
+      "cluster_details": {
+        "gec_051": {
+          "topic": "Maria's involvement in church activities",
+          "summary": "On May 6, 2023, John and Maria had a supportive conversation where Maria shared her positive experience joining a church and engaging in charity work, while John expressed encouragement and concern for her well-being.",
+          "member_count": 1,
+          "members_returned": 1
+        }
+      },
+      "members_per_cluster": {
+        "gec_051": 1
+      },
+      "final_count": 11,
+      "truncated": false,
+      "evidence": [
+        "D25:2"
+      ],
+      "evidence_detail": {
+        "D25:2": [
+          "8bb93000-743a-4a49-b06a-e4a581e53e28",
+          "gec_017"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "8bb93000-743a-4a49-b06a-e4a581e53e28"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_017"
+      ],
+      "cluster_hit": false,
+      "memunit_hit": false,
+      "memunit_coverage": 0.0,
+      "selected_unit_ids": [
+        "2cd63aef-6a74-4b48-8a9b-50084c16b744"
+      ]
+    },
+    {
+      "query": "When did John have his first firefighter call-out?",
+      "question_id": "locomo_2_qa48",
+      "clusters_found": [
+        "gec_020",
+        "gec_117",
+        "gec_086",
+        "gec_109",
+        "gec_095",
+        "gec_071",
+        "gec_001",
+        "gec_102",
+        "gec_085",
+        "gec_039",
+        "gec_011",
+        "gec_116",
+        "gec_036",
+        "gec_103",
+        "gec_049",
+        "gec_087",
+        "gec_070",
+        "gec_072",
+        "gec_002",
+        "gec_088",
+        "gec_010",
+        "gec_012",
+        "gec_094",
+        "gec_004",
+        "gec_017",
+        "gec_035",
+        "gec_047",
+        "gec_003",
+        "gec_101",
+        "gec_044",
+        "gec_015",
+        "gec_046",
+        "gec_037",
+        "gec_050",
+        "gec_005",
+        "gec_048",
+        "gec_038",
+        "gec_045",
+        "gec_021",
+        "gec_009"
+      ],
+      "clusters_selected": [
+        "gec_094",
+        "gec_116"
+      ],
+      "selection_reasoning": "These clusters specifically mention John's involvement and excitement about joining the fire-fighting brigade, which is directly relevant to identifying when John had his first firefighter call-out.",
+      "cluster_details": {
+        "gec_094": {
+          "topic": "John's involvement in fire-fighting brigade",
+          "summary": "Maria and John discussed their recent community service efforts, with Maria sharing her experience volunteering at a homeless shelter and John describing his involvement in a fire-fighting brigade, highlighting their mutual encouragement and commitment to helping others.",
+          "member_count": 1,
+          "members_returned": 1
+        },
+        "gec_116": {
+          "topic": "John's membership in the fire-fighting brigade",
+          "summary": "On August 16, 2023, John shared with Maria his excitement about joining the fire-fighting brigade and their successful community donation drive that helped acquire a new fire truck, while Maria expressed admiration and support for his dedication and the group's efforts.",
+          "member_count": 1,
+          "members_returned": 1
+        }
+      },
+      "members_per_cluster": {
+        "gec_094": 1,
+        "gec_116": 1
+      },
+      "final_count": 12,
+      "truncated": false,
+      "evidence": [
+        "D26:4"
+      ],
+      "evidence_detail": {
+        "D26:4": [
+          "96858fad-ca3d-474a-bc45-4ae1872341f2",
+          "gec_094"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "96858fad-ca3d-474a-bc45-4ae1872341f2"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_094"
+      ],
+      "cluster_hit": true,
+      "memunit_hit": true,
+      "memunit_coverage": 1.0,
+      "selected_unit_ids": [
+        "96858fad-ca3d-474a-bc45-4ae1872341f2",
+        "d1b14362-8239-4dcc-9475-1b93937da0e6"
+      ]
+    },
+    {
+      "query": "When did Maria start volunteering at the homeless shelter?",
+      "question_id": "locomo_2_qa51",
+      "clusters_found": [
+        "gec_095",
+        "gec_041",
+        "gec_006",
+        "gec_104",
+        "gec_007",
+        "gec_001",
+        "gec_082",
+        "gec_055",
+        "gec_026",
+        "gec_036",
+        "gec_057",
+        "gec_016",
+        "gec_064",
+        "gec_058",
+        "gec_023",
+        "gec_002",
+        "gec_040",
+        "gec_012",
+        "gec_094",
+        "gec_017",
+        "gec_035",
+        "gec_019",
+        "gec_027",
+        "gec_062",
+        "gec_056",
+        "gec_044",
+        "gec_059",
+        "gec_063",
+        "gec_015",
+        "gec_037",
+        "gec_025",
+        "gec_005",
+        "gec_081",
+        "gec_105",
+        "gec_018",
+        "gec_022",
+        "gec_083"
+      ],
+      "clusters_selected": [
+        "gec_095",
+        "gec_017",
+        "gec_016",
+        "gec_044",
+        "gec_058",
+        "gec_059",
+        "gec_104",
+        "gec_105"
+      ],
+      "selection_reasoning": "These clusters contain direct references to Maria volunteering at the homeless shelter, including discussions of her experiences, events, and related activities. They provide the best context to determine when Maria started volunteering at the homeless shelter.",
+      "cluster_details": {
+        "gec_095": {
+          "topic": "John's advocacy and support efforts for military personnel",
+          "summary": "Maria and John exchanged messages expressing mutual support and admiration for their respective efforts in helping vulnerable groups, with John advocating for military personnel and Maria volunteering at a homeless shelter.",
+          "member_count": 1,
+          "members_returned": 1
+        },
+        "gec_017": {
+          "topic": "Maria's enthusiasm for volunteer activities",
+          "summary": "They discussed Maria’s ongoing passion for volunteering, highlighting her meaningful connections, challenges, and fulfillment through helping others. Over time, their shared commitment to kindness, community support, and positive impact remained a constant source of motivation and growth.",
+          "member_count": 11,
+          "members_returned": 11
+        },
+        "gec_016": {
+          "topic": "Maria's new friendship through volunteering",
+          "summary": "Maria and John discussed her growing friendship and fulfillment through volunteering at a shelter, highlighting her dedication, challenges faced, and mutual support. Their conversations reflect ongoing encouragement, concern, and the positive impact of kindness and community connection.",
+          "member_count": 8,
+          "members_returned": 1
+        },
+        "gec_044": {
+          "topic": "John's upcoming East Coast trip plans",
+          "summary": "John and Maria engaged in a supportive conversation where John shared his upcoming East Coast trip plans, and Maria discussed her fulfilling yet challenging volunteering at a homeless shelter, with both emphasizing the importance of kindness and making a positive impact.",
+          "member_count": 1,
+          "members_returned": 0
+        },
+        "gec_058": {
+          "topic": "John's petition work for community cause",
+          "summary": "On May 25, 2023, John and Maria discussed their community efforts, with John working on a petition and Maria preparing a fundraiser at a homeless shelter, while they offered mutual support and committed to promoting and volunteering for the cause. Their conversation highlighted their shared dedication to making a positive impact and appreciating meaningful moments in life.",
+          "member_count": 1,
+          "members_returned": 1
+        },
+        "gec_059": {
+          "topic": "Maria's fundraiser preparation at homeless shelter",
+          "summary": "On May 25, 2023, John and Maria discussed their community efforts, with John working on a petition and Maria preparing a fundraiser at a homeless shelter, while they offered mutual support and committed to promoting and volunteering for the cause. Their conversation highlighted their shared dedication to making a positive impact and appreciating meaningful moments in life.",
+          "member_count": 1,
+          "members_returned": 0
+        },
+        "gec_104": {
+          "topic": "John's organization of 5K charity run for veterans",
+          "summary": "John and Maria discussed their recent community service activities, with Maria sharing her experience volunteering at a homeless shelter and receiving a medal, while John described organizing a successful 5K charity run to support veterans and his involvement in raising awareness for domestic abuse victims. Both expressed mutual respect and encouragement for each other's charitable efforts.",
+          "member_count": 1,
+          "members_returned": 1
+        },
+        "gec_105": {
+          "topic": "John's involvement in raising awareness for domestic abuse victims",
+          "summary": "John and Maria discussed their recent community service activities, with Maria sharing her experience volunteering at a homeless shelter and receiving a medal, while John described organizing a successful 5K charity run to support veterans and his involvement in raising awareness for domestic abuse victims. Both expressed mutual respect and encouragement for each other's charitable efforts.",
+          "member_count": 1,
+          "members_returned": 0
+        }
+      },
+      "members_per_cluster": {
+        "gec_095": 1,
+        "gec_017": 11,
+        "gec_016": 1,
+        "gec_044": 0,
+        "gec_058": 1,
+        "gec_059": 0,
+        "gec_104": 1,
+        "gec_105": 0
+      },
+      "final_count": 24,
+      "truncated": false,
+      "evidence": [
+        "D27:4"
+      ],
+      "evidence_detail": {
+        "D27:4": [
+          "349e14ba-b42b-478c-adc5-c5976699dd54",
+          "gec_095"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "349e14ba-b42b-478c-adc5-c5976699dd54"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_095"
+      ],
+      "cluster_hit": true,
+      "memunit_hit": true,
+      "memunit_coverage": 1.0,
+      "selected_unit_ids": [
+        "d7f1714f-950e-47cf-9b81-80cc7f41bb3c",
+        "7ea2e882-66bb-498b-b0cd-12f872dbf8e3",
+        "70bd3f2e-165f-4992-8d0c-da5d42dcb300",
+        "349e14ba-b42b-478c-adc5-c5976699dd54",
+        "543409bb-bada-44e5-807d-6257f7aa572f",
+        "fd160aab-1e3f-474c-b5ff-1615ffea8d76",
+        "ffa61b7d-433f-494c-98bc-0265ba70a35b",
+        "a2fc8402-82e8-42fa-a9de-635e8efe9ff6",
+        "0b158e7e-e0ef-431b-aef5-3e17edcde9f6",
+        "6d68c9e3-2d90-4b03-9f8c-9d2619a73f06",
+        "531991fb-a6ff-4e6d-a12e-0cca9e3d083f",
+        "883a1787-5bcd-4b94-ac69-c7344a885abc",
+        "11f2ff1c-c1c2-4b4d-9f7a-13f2ec8cd13a",
+        "8bb93000-743a-4a49-b06a-e4a581e53e28",
+        "b1cf8cd0-1486-45cb-a08d-bb7a772a7505"
+      ]
+    },
+    {
+      "query": "When did John go on a camping trip with Max?",
+      "question_id": "locomo_2_qa59",
+      "clusters_found": [
+        "gec_020",
+        "gec_086",
+        "gec_071",
+        "gec_007",
+        "gec_001",
+        "gec_085",
+        "gec_089",
+        "gec_108",
+        "gec_090",
+        "gec_049",
+        "gec_070",
+        "gec_016",
+        "gec_058",
+        "gec_072",
+        "gec_002",
+        "gec_106",
+        "gec_012",
+        "gec_017",
+        "gec_019",
+        "gec_107",
+        "gec_047",
+        "gec_044",
+        "gec_059",
+        "gec_015",
+        "gec_046",
+        "gec_060",
+        "gec_066",
+        "gec_061",
+        "gec_050",
+        "gec_091",
+        "gec_048",
+        "gec_045",
+        "gec_008",
+        "gec_003",
+        "gec_065"
+      ],
+      "clusters_selected": [
+        "gec_107"
+      ],
+      "selection_reasoning": "Cluster gec_107 specifically mentions John reminiscing about his dog Max and a memorable camping trip, directly addressing when John went on a camping trip with Max.",
+      "cluster_details": {
+        "gec_107": {
+          "topic": "John's dog Max and camping trip",
+          "summary": "On August 11, 2023, Maria and John reconnected through a conversation about their pets, with Maria sharing about her new puppy Coco and John reminiscing about his dog Max and a memorable camping trip, highlighting the joy and emotional support their animals and nature provide.",
+          "member_count": 1,
+          "members_returned": 1
+        }
+      },
+      "members_per_cluster": {
+        "gec_107": 1
+      },
+      "final_count": 11,
+      "truncated": false,
+      "evidence": [
+        "D30:6"
+      ],
+      "evidence_detail": {
+        "D30:6": [
+          "61841d81-860f-4b20-b56f-5527d6d865a6",
+          "gec_108"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "61841d81-860f-4b20-b56f-5527d6d865a6"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_108"
+      ],
+      "cluster_hit": false,
+      "memunit_hit": true,
+      "memunit_coverage": 1.0,
+      "selected_unit_ids": [
+        "61841d81-860f-4b20-b56f-5527d6d865a6"
+      ]
+    }
+  ],
+  "summary": {
+    "total_questions": 9,
+    "cluster_hit_count": 3,
+    "cluster_hit_rate": 0.3333333333333333,
+    "memunit_hit_count": 5,
+    "memunit_hit_rate": 0.5555555555555556,
+    "avg_memunit_coverage": 0.5555555555555556
+  }
+}

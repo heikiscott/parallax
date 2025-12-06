@@ -1,0 +1,419 @@
+{
+  "qa_count": 123,
+  "questions": [
+    {
+      "query": "When did Andrew start his new job as a financial analyst?",
+      "question_id": "locomo_5_qa1",
+      "clusters_found": [
+        "gec_012",
+        "gec_026",
+        "gec_017",
+        "gec_030",
+        "gec_025",
+        "gec_018",
+        "gec_006",
+        "gec_014",
+        "gec_009",
+        "gec_007",
+        "gec_015",
+        "gec_013",
+        "gec_002",
+        "gec_032",
+        "gec_003",
+        "gec_033",
+        "gec_001",
+        "gec_020",
+        "gec_019",
+        "gec_004",
+        "gec_031",
+        "gec_011",
+        "gec_029",
+        "gec_005"
+      ],
+      "clusters_selected": [
+        "gec_001"
+      ],
+      "selection_reasoning": "Cluster gec_001 directly states when Andrew started his new job as a financial analyst, mentioning that on March 27, 2023, Andrew shared he had started the job the previous week.",
+      "cluster_details": {
+        "gec_001": {
+          "topic": "Andrew's new financial analyst job start",
+          "summary": "On March 27, 2023, Audrey warmly greeted Andrew and inquired about recent events, to which Andrew shared that he had started a new job as a Financial Analyst the previous week, marking a significant career change.",
+          "member_count": 2,
+          "members_returned": 2
+        }
+      },
+      "members_per_cluster": {
+        "gec_001": 2
+      },
+      "final_count": 12,
+      "truncated": false,
+      "evidence": [
+        "D1:2"
+      ],
+      "evidence_detail": {
+        "D1:2": [
+          "a8844eab-fe58-47f2-94ef-5cdb67b7bc6a",
+          "gec_001"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "a8844eab-fe58-47f2-94ef-5cdb67b7bc6a"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_001"
+      ],
+      "cluster_hit": true,
+      "memunit_hit": true,
+      "memunit_coverage": 1.0,
+      "selected_unit_ids": [
+        "81f01954-7617-4d7f-8a23-bea83b4c01d9",
+        "a8844eab-fe58-47f2-94ef-5cdb67b7bc6a"
+      ]
+    },
+    {
+      "query": "When did Audrey make muffins for herself?",
+      "question_id": "locomo_5_qa4",
+      "clusters_found": [
+        "gec_024",
+        "gec_017",
+        "gec_030",
+        "gec_023",
+        "gec_018",
+        "gec_014",
+        "gec_009",
+        "gec_007",
+        "gec_015",
+        "gec_002",
+        "gec_003",
+        "gec_033",
+        "gec_016",
+        "gec_020",
+        "gec_019",
+        "gec_031",
+        "gec_029",
+        "gec_027",
+        "gec_028",
+        "gec_005"
+      ],
+      "clusters_selected": [
+        "gec_029",
+        "gec_030"
+      ],
+      "selection_reasoning": "The query asks when Audrey made muffins for herself. The only cluster mentioning baking activities, including muffins, is gec_029, which also overlaps with gec_030 that highlights Audrey's baking to thank neighbors. Both are from the same conversation on October 13, 2023, and likely contain relevant details about Audrey baking muffins.",
+      "cluster_details": {
+        "gec_029": {
+          "topic": "Andrew's board game nights with girlfriend Toby",
+          "summary": "On October 13, 2023, Andrew and Audrey shared a warm conversation about their recent activities, weekend plans, and mutual affection for their dogs, exchanging photos and stories about board games, dog parks, baking, and tattoos that celebrate their pets. Their dialogue highlighted their enjoyment of socializing, exploring new places, and expressing love for their dogs as part of their families.",
+          "member_count": 1,
+          "members_returned": 1
+        },
+        "gec_030": {
+          "topic": "Audrey's baking to thank neighbors",
+          "summary": "On October 13, 2023, Andrew and Audrey shared a warm conversation about their recent activities, weekend plans, and mutual affection for their dogs, exchanging photos and stories about board games, dog parks, baking, and tattoos that celebrate their pets. Their dialogue highlighted their enjoyment of socializing, exploring new places, and expressing love for their dogs as part of their families.",
+          "member_count": 1,
+          "members_returned": 0
+        }
+      },
+      "members_per_cluster": {
+        "gec_029": 1,
+        "gec_030": 0
+      },
+      "final_count": 11,
+      "truncated": false,
+      "evidence": [
+        "D3:18"
+      ],
+      "evidence_detail": {
+        "D3:18": [
+          "d2d16c44-e7f4-4f6c-9357-abf7847ad0f3",
+          "gec_003"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "d2d16c44-e7f4-4f6c-9357-abf7847ad0f3"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_003"
+      ],
+      "cluster_hit": false,
+      "memunit_hit": false,
+      "memunit_coverage": 0.0,
+      "selected_unit_ids": [
+        "dfcf9aa9-3eb1-4c1d-b94d-bc1daab3e798"
+      ]
+    },
+    {
+      "query": "When did Andrew go rock climbing?",
+      "question_id": "locomo_5_qa11",
+      "clusters_found": [
+        "gec_007",
+        "gec_004",
+        "gec_015",
+        "gec_012",
+        "gec_025",
+        "gec_002",
+        "gec_011",
+        "gec_022",
+        "gec_021",
+        "gec_003",
+        "gec_005",
+        "gec_017",
+        "gec_018",
+        "gec_006",
+        "gec_016",
+        "gec_009"
+      ],
+      "clusters_selected": [
+        "gec_011"
+      ],
+      "selection_reasoning": "Cluster gec_011 specifically details Andrew attending a rock climbing class on June 11, 2023, which directly answers the query about when Andrew went rock climbing.",
+      "cluster_details": {
+        "gec_011": {
+          "topic": "Andrew's rock climbing class experience",
+          "summary": "On June 11, 2023, Andrew attended a rock climbing class with friends, successfully reaching the top of a challenging climb, which inspired him to pursue more outdoor activities; Audrey responded with admiration and curiosity about his experience.",
+          "member_count": 2,
+          "members_returned": 2
+        }
+      },
+      "members_per_cluster": {
+        "gec_011": 2
+      },
+      "final_count": 12,
+      "truncated": false,
+      "evidence": [
+        "D8:1"
+      ],
+      "evidence_detail": {
+        "D8:1": [
+          "68b22551-bf62-4fd9-89b8-03ffff6a5700",
+          "gec_012"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "68b22551-bf62-4fd9-89b8-03ffff6a5700"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_012"
+      ],
+      "cluster_hit": false,
+      "memunit_hit": true,
+      "memunit_coverage": 1.0,
+      "selected_unit_ids": [
+        "68b22551-bf62-4fd9-89b8-03ffff6a5700",
+        "2fdd6081-f559-4ad4-b1ab-a615aa1cb79e"
+      ]
+    },
+    {
+      "query": "When is Andrew going to go hiking with Audrey?",
+      "question_id": "locomo_5_qa16",
+      "clusters_found": [
+        "gec_012",
+        "gec_022",
+        "gec_017",
+        "gec_021",
+        "gec_030",
+        "gec_018",
+        "gec_006",
+        "gec_014",
+        "gec_009",
+        "gec_007",
+        "gec_002",
+        "gec_003",
+        "gec_001",
+        "gec_016",
+        "gec_004",
+        "gec_031",
+        "gec_011",
+        "gec_029",
+        "gec_005"
+      ],
+      "clusters_selected": [
+        "gec_016",
+        "gec_017"
+      ],
+      "selection_reasoning": "These clusters specifically mention Andrew and Audrey planning a hiking trip together, including timing references such as 'next month' and recent discussions about the trip, which directly address when Andrew is going hiking with Audrey.",
+      "cluster_details": {
+        "gec_016": {
+          "topic": "Andrew's new puppy Toby",
+          "summary": "Andrew and Audrey discussed Andrew’s new puppy Toby, shared their mutual love for their pets, and planned a hiking trip next month for their dogs to enjoy together. The conversation also touched on Andrew’s work stress and their excitement for the upcoming outdoor adventure.",
+          "member_count": 3,
+          "members_returned": 3
+        },
+        "gec_017": {
+          "topic": "Andrew and Audrey's planned hiking trip with their dogs",
+          "summary": "Andrew and Audrey discussed Andrew’s new puppy Toby, shared their mutual love for their pets, and planned a hiking trip next month for their dogs to enjoy together. The conversation also touched on Andrew’s work stress and their excitement for the upcoming outdoor adventure.",
+          "member_count": 6,
+          "members_returned": 4
+        }
+      },
+      "members_per_cluster": {
+        "gec_016": 3,
+        "gec_017": 4
+      },
+      "final_count": 17,
+      "truncated": false,
+      "evidence": [
+        "D11:7"
+      ],
+      "evidence_detail": {
+        "D11:7": [
+          "66f0b13e-9be0-4c41-a595-607b33a6056a",
+          "gec_003"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "66f0b13e-9be0-4c41-a595-607b33a6056a"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_003"
+      ],
+      "cluster_hit": false,
+      "memunit_hit": false,
+      "memunit_coverage": 0.0,
+      "selected_unit_ids": [
+        "849a4e56-e243-404a-94a0-3b0e4272e4cf",
+        "8ca143dd-e2b3-4a89-be07-0c07bd6dd18d",
+        "145793cc-4c4c-4591-b3f9-5dc31bd1288b",
+        "3b7c8536-246f-44d3-aeb4-797e1533e223",
+        "2f9a9365-e3eb-464e-9c5e-d80fb7181ab0",
+        "96f5b90f-ab89-4d20-b4ef-ff6f3498ab66",
+        "f6efbbb3-2dfd-43ad-8893-093876e95756"
+      ]
+    },
+    {
+      "query": "When is Andrew planning to go to the beach with his girlfriend?",
+      "question_id": "locomo_5_qa30",
+      "clusters_found": [
+        "gec_007",
+        "gec_002",
+        "gec_032",
+        "gec_022",
+        "gec_017",
+        "gec_003",
+        "gec_021",
+        "gec_005",
+        "gec_033",
+        "gec_018",
+        "gec_001",
+        "gec_014",
+        "gec_016",
+        "gec_010",
+        "gec_009"
+      ],
+      "clusters_selected": [],
+      "selection_reasoning": "None of the clusters contain information about Andrew planning to go to the beach with his girlfriend.",
+      "cluster_details": {},
+      "members_per_cluster": {},
+      "final_count": 20,
+      "truncated": false,
+      "evidence": [
+        "D20:1"
+      ],
+      "evidence_detail": {
+        "D20:1": [
+          "b7d526aa-9557-445c-95b2-44c3a6ae03ea",
+          "gec_003"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "b7d526aa-9557-445c-95b2-44c3a6ae03ea"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_003"
+      ],
+      "cluster_hit": false,
+      "memunit_hit": false,
+      "memunit_coverage": 0.0,
+      "selected_unit_ids": []
+    },
+    {
+      "query": "When did Andrew make his dogs a fun indoor area?",
+      "question_id": "locomo_5_qa55",
+      "clusters_found": [
+        "gec_026",
+        "gec_022",
+        "gec_024",
+        "gec_017",
+        "gec_021",
+        "gec_030",
+        "gec_023",
+        "gec_018",
+        "gec_006",
+        "gec_014",
+        "gec_009",
+        "gec_007",
+        "gec_002",
+        "gec_003",
+        "gec_033",
+        "gec_001",
+        "gec_016",
+        "gec_020",
+        "gec_019",
+        "gec_004",
+        "gec_031",
+        "gec_029",
+        "gec_005"
+      ],
+      "clusters_selected": [
+        "gec_002"
+      ],
+      "selection_reasoning": "Cluster gec_002 includes discussions about Andrew and Audrey's dogs and activities related to their care and indoor dog-friendly areas, making it the most relevant for determining when Andrew made his dogs a fun indoor area.",
+      "cluster_details": {
+        "gec_002": {
+          "topic": "Audrey's dogs and new collars",
+          "summary": "They shared a deep bond over their dogs, discussing new collars, adoption, outdoor adventures, training, and pet care. Their conversations evolved to include tattoos symbolizing their love, health challenges, and plans for dog-friendly activities, reflecting ongoing mutual support and affection.",
+          "member_count": 28,
+          "members_returned": 15
+        }
+      },
+      "members_per_cluster": {
+        "gec_002": 15
+      },
+      "final_count": 25,
+      "truncated": false,
+      "evidence": [
+        "D28:12"
+      ],
+      "evidence_detail": {
+        "D28:12": [
+          "8ca143dd-e2b3-4a89-be07-0c07bd6dd18d",
+          "gec_033"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "8ca143dd-e2b3-4a89-be07-0c07bd6dd18d"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_033"
+      ],
+      "cluster_hit": false,
+      "memunit_hit": false,
+      "memunit_coverage": 0.0,
+      "selected_unit_ids": [
+        "3fb58117-826f-4330-b969-addf3d427b09",
+        "6ca6b59c-e6a2-4098-b9cf-572d8144d688",
+        "81f01954-7617-4d7f-8a23-bea83b4c01d9",
+        "c04a683f-bebf-4ce0-95b7-ece3096b43a0",
+        "66f0b13e-9be0-4c41-a595-607b33a6056a",
+        "0e0878dd-9647-432e-8567-9f48dddd73fb",
+        "78861c30-4596-4537-bae2-a104b8c0d8d2",
+        "24bad285-c3ab-4052-acb0-94346ef25c9a",
+        "e67f71b4-4cd5-44b7-a337-96da20cceee6",
+        "4014bd44-1c6f-4f20-8030-1d485999e14a",
+        "17c26980-2f8f-404b-bbbe-ada6a2b71732",
+        "680aeb20-5311-4081-ab48-30e1f4d61bee",
+        "9a05d4ef-8ee9-44b3-aa8a-38fa2c21a941",
+        "86b79e9b-0746-45c1-b944-52008927a744",
+        "713e98c6-9e9a-4813-9713-0ea3c3ecf0ec"
+      ]
+    }
+  ],
+  "summary": {
+    "total_questions": 6,
+    "cluster_hit_count": 1,
+    "cluster_hit_rate": 0.16666666666666666,
+    "memunit_hit_count": 2,
+    "memunit_hit_rate": 0.3333333333333333,
+    "avg_memunit_coverage": 0.3333333333333333
+  }
+}

@@ -1,0 +1,27 @@
+2025-12-05 13:47:24,302 - [add-1-mu10] - providers.llm.openai_provider - WARNING - openai_provider.py:355 - 🔌 [OpenAI-gpt-4.1-mini] 连接异常! 重试 1/20: APIConnectionError
+2025-12-05 13:47:24,302 - [add-1-mu10] - providers.llm.openai_provider - WARNING - openai_provider.py:356 -    ⏱️  已耗时: 5.13s, 将等待 5.0-300.0s 后重试
+2025-12-05 13:47:24,302 - [add-1-mu10] - providers.llm.openai_provider - WARNING - openai_provider.py:357 -    💬 错误: Connection error.
+2025-12-05 13:52:47,978 - [add-1-mu16] - providers.llm.openai_provider - WARNING - openai_provider.py:328 - 🔌 [OpenAI-gpt-4.1-mini] 流式传输网络中断! 重试 1/20
+2025-12-05 13:52:47,990 - [add-1-mu16] - providers.llm.openai_provider - WARNING - openai_provider.py:329 -    ⏱️  已耗时: 139.38s
+2025-12-05 13:52:47,992 - [add-1-mu16] - providers.llm.openai_provider - WARNING - openai_provider.py:330 -    💬 错误: peer closed connection without sending complete message body (incomplete chunked read)
+2025-12-05 13:53:46,192 - [add-1-mu17] - providers.llm.openai_provider - WARNING - openai_provider.py:355 - 🔌 [OpenAI-gpt-4.1-mini] 连接异常! 重试 1/20: APIConnectionError
+2025-12-05 13:53:46,204 - [add-1-mu17] - providers.llm.openai_provider - WARNING - openai_provider.py:356 -    ⏱️  已耗时: 16.81s, 将等待 5.0-300.0s 后重试
+2025-12-05 13:53:46,204 - [add-1-mu17] - providers.llm.openai_provider - WARNING - openai_provider.py:357 -    💬 错误: Connection error.
+2025-12-05 13:55:58,313 - [add-1-mu18] - providers.llm.openai_provider - WARNING - openai_provider.py:355 - 🔌 [OpenAI-gpt-4.1-mini] 连接异常! 重试 1/20: APIConnectionError
+2025-12-05 13:55:58,318 - [add-1-mu18] - providers.llm.openai_provider - WARNING - openai_provider.py:356 -    ⏱️  已耗时: 5.02s, 将等待 5.0-300.0s 后重试
+2025-12-05 13:55:58,320 - [add-1-mu18] - providers.llm.openai_provider - WARNING - openai_provider.py:357 -    💬 错误: Connection error.
+2025-12-05 14:13:25,800 - [add-1-el31] - providers.llm.openai_provider - WARNING - openai_provider.py:355 - 🔌 [OpenAI-gpt-4.1-mini] 连接异常! 重试 1/20: APIConnectionError
+2025-12-05 14:13:25,803 - [add-1-el31] - providers.llm.openai_provider - WARNING - openai_provider.py:356 -    ⏱️  已耗时: 5.02s, 将等待 5.0-300.0s 后重试
+2025-12-05 14:13:25,806 - [add-1-el31] - providers.llm.openai_provider - WARNING - openai_provider.py:357 -    💬 错误: Connection error.
+2025-12-05 14:18:49,823 - [add-idx-emb] - providers.llm.openai_provider - WARNING - openai_provider.py:355 - 🔌 [OpenAI-gpt-4.1-mini] 连接异常! 重试 1/20: APIConnectionError
+2025-12-05 14:18:49,824 - [add-idx-emb] - providers.llm.openai_provider - WARNING - openai_provider.py:356 -    ⏱️  已耗时: 15.02s, 将等待 5.0-300.0s 后重试
+2025-12-05 14:18:49,824 - [add-idx-emb] - providers.llm.openai_provider - WARNING - openai_provider.py:357 -    💬 错误: Connection error.
+2025-12-05 14:21:23,482 - [search-locomo_1_qa25] - providers.llm.openai_provider - WARNING - openai_provider.py:355 - 🔌 [OpenAI-gpt-4.1-mini] 连接异常! 重试 1/20: APIConnectionError
+2025-12-05 14:21:23,486 - [search-locomo_1_qa25] - providers.llm.openai_provider - WARNING - openai_provider.py:356 -    ⏱️  已耗时: 5.01s, 将等待 5.0-300.0s 后重试
+2025-12-05 14:21:23,490 - [search-locomo_1_qa25] - providers.llm.openai_provider - WARNING - openai_provider.py:357 -    💬 错误: Connection error.
+2025-12-05 14:26:37,050 - [answer-locomo_1_qa22] - providers.llm.openai_provider - WARNING - openai_provider.py:355 - 🔌 [OpenAI-gpt-4.1-mini] 连接异常! 重试 1/20: APIConnectionError
+2025-12-05 14:26:37,050 - [answer-locomo_1_qa22] - providers.llm.openai_provider - WARNING - openai_provider.py:356 -    ⏱️  已耗时: 5.02s, 将等待 5.0-300.0s 后重试
+2025-12-05 14:26:37,050 - [answer-locomo_1_qa22] - providers.llm.openai_provider - WARNING - openai_provider.py:357 -    💬 错误: Connection error.
+2025-12-05 14:27:49,297 - [answer-locomo_1_qa49] - providers.llm.openai_provider - WARNING - openai_provider.py:355 - 🔌 [OpenAI-gpt-4.1-mini] 连接异常! 重试 1/20: APIConnectionError
+2025-12-05 14:27:49,298 - [answer-locomo_1_qa49] - providers.llm.openai_provider - WARNING - openai_provider.py:356 -    ⏱️  已耗时: 5.02s, 将等待 5.0-300.0s 后重试
+2025-12-05 14:27:49,298 - [answer-locomo_1_qa49] - providers.llm.openai_provider - WARNING - openai_provider.py:357 -    💬 错误: Connection error.

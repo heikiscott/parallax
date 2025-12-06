@@ -3,10 +3,10 @@
 ============================================================
 
 System: Parallax
-Time Elapsed: 4135.93s
+Time Elapsed: 4379.70s
 
 Total Questions: 178
-Correct: 157
-Accuracy: 88.76%
+Correct: 163
+Accuracy: 91.57%
 
 ============================================================

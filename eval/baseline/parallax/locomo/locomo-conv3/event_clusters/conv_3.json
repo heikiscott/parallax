@@ -1,0 +1,1426 @@
+{
+  "clusters": {
+    "gec_001": {
+      "cluster_id": "gec_001",
+      "topic": "Nate and Joanna's January 2022 reunion chat",
+      "summary": "On January 21, 2022, Nate and Joanna reconnected, sharing updates about their recent activities, including Nate's excitement over winning his first Counter-Strike: Global Offensive tournament and Joanna's ongoing project. Both expressed warmth and enthusiasm in catching up and discussing their hobbies.",
+      "members": [
+        {
+          "unit_id": "3cbeac2d-994d-44a4-9b3b-f1e93191aa4d",
+          "timestamp": "2022-01-21T19:35:00+08:00",
+          "summary": "On January 21, 2022, Nate and Joanna reconnected, sharing updates about their recent activities, including Nate's excitement over winning his first Counter-Strike: Global Offensive tournament and Joanna's ongoing project. Both expressed warmth and enthusiasm in catching up and discussing their hobbies."
+        },
+        {
+          "unit_id": "7cbd5fcd-9df6-4541-9257-8653d1c223b6",
+          "timestamp": "2022-01-21T19:41:30+08:00",
+          "summary": "On January 21, 2022, Nate and Joanna discussed their hobbies and movie preferences, with Joanna recommending a romantic drama film that she enjoyed, and Nate expressing interest in watching it. Their conversation highlighted their shared enthusiasm for movies and friendly exchange."
+        },
+        {
+          "unit_id": "3fef93ed-43fa-46ae-8fd8-e9b8a4aea674",
+          "timestamp": "2022-01-23T14:08:00+08:00",
+          "summary": "Joanna shared with Nate her excitement and mixed emotions after completing her first full screenplay, which she planned to submit to film festivals, while Nate responded with encouragement and shared how his pet turtles help him stay calm. Their conversation reflected mutual support and interest in each other's lives and activities."
+        },
+        {
+          "unit_id": "956ee60c-0bd7-4f43-8c7f-011b45c4cb44",
+          "timestamp": "2022-03-24T13:46:00+08:00",
+          "summary": "On March 24, 2022, Joanna thanked Nate for his support and promised to keep him updated, while Nate shared that he was engaged in an intense and adrenaline-filled video game tournament."
+        }
+      ],
+      "first_timestamp": "2022-01-21T19:35:00+08:00",
+      "last_timestamp": "2022-03-24T13:46:00+08:00",
+      "created_at": "2025-12-05T16:21:59.088187",
+      "updated_at": "2025-12-05T16:23:02.217635"
+    },
+    "gec_002": {
+      "cluster_id": "gec_002",
+      "topic": "Nate and Joanna's movie preferences and recommendations",
+      "summary": "Nate and Joanna consistently shared their movie preferences and recommendations, exchanging favorite films like romantic dramas and \"Little Women.\" Their conversations evolved to include creating cozy viewing spaces and supporting each other's hobbies, reflecting a deepening mutual enthusiasm for movies.",
+      "members": [
+        {
+          "unit_id": "7cbd5fcd-9df6-4541-9257-8653d1c223b6",
+          "timestamp": "2022-01-21T19:41:30+08:00",
+          "summary": "On January 21, 2022, Nate and Joanna discussed their hobbies and movie preferences, with Joanna recommending a romantic drama film that she enjoyed, and Nate expressing interest in watching it. Their conversation highlighted their shared enthusiasm for movies and friendly exchange."
+        },
+        {
+          "unit_id": "74fddbc0-ad0c-4420-b23e-a829dc41e11e",
+          "timestamp": "2022-02-07T09:39:00+08:00",
+          "summary": "On February 7, 2022, Nate and Joanna had a friendly conversation where Nate shared his enthusiasm for cooking, and Joanna recommended the movie \"Little Women,\" leading to plans for future movie discussions."
+        },
+        {
+          "unit_id": "d9fb5be7-6a61-4785-8ffd-8efa987535a7",
+          "timestamp": "2022-10-06T11:26:00+08:00",
+          "summary": "Joanna and Nate shared a supportive conversation celebrating Joanna’s completion of her book, exchanged creative projects, and encouraged each other through personal achievements and motivational gestures."
+        },
+        {
+          "unit_id": "6ac8a318-097f-4d22-93f6-c9dd27a4cbce",
+          "timestamp": "2022-10-09T11:12:30+08:00",
+          "summary": "On October 9, 2022, Nate and Joanna discussed their leisure activities, focusing on movies, video games, and creating a comfortable home environment, with Joanna offering Nate tips to enhance his living room setup for a cozier movie-watching experience. Both shared positive feelings about their hobbies and exchanged images to illustrate their points."
+        },
+        {
+          "unit_id": "2a0d907d-8e5c-40b2-b0f0-ce9a52149e11",
+          "timestamp": "2022-10-25T20:22:30+08:00",
+          "summary": "On October 25, 2022, Nate expressed enthusiasm about watching a movie, which Joanna positively received before asking about his recent activities, highlighting their mutual engagement and positive emotions."
+        },
+        {
+          "unit_id": "aff5b91b-972f-45fa-98f6-ecff3dc46700",
+          "timestamp": "2022-11-07T20:23:00+08:00",
+          "summary": "Joanna and Nate discussed their mutual appreciation for movie recommendations, expressing satisfaction when suggestions from friends align with personal tastes. They highlighted the positive experience of sharing trusted movie preferences without making any specific plans."
+        },
+        {
+          "unit_id": "0f934d12-3335-4c43-81e6-4b6b1ec77f86",
+          "timestamp": "2022-11-09T18:10:00+08:00",
+          "summary": "Joanna expressed interest in visiting Nate to watch him play with his turtles despite her allergy, and they planned to spend time together watching movies or going to the park. Both showed enthusiasm and anticipation for the visit, with Nate preparing the turtles for her arrival."
+        }
+      ],
+      "first_timestamp": "2022-01-21T19:41:30+08:00",
+      "last_timestamp": "2022-11-09T18:10:00+08:00",
+      "created_at": "2025-12-05T16:22:03.843242",
+      "updated_at": "2025-12-05T16:27:59.179569"
+    },
+    "gec_003": {
+      "cluster_id": "gec_003",
+      "topic": "Joanna's first full screenplay completion and film festival plans",
+      "summary": "Joanna shared her journey completing and submitting screenplays, expressing mixed emotions from excitement to setbacks. Nate consistently offered encouragement and support, fostering mutual motivation as Joanna progressed from writing to filming and engaging with producers.",
+      "members": [
+        {
+          "unit_id": "3fef93ed-43fa-46ae-8fd8-e9b8a4aea674",
+          "timestamp": "2022-01-23T14:08:00+08:00",
+          "summary": "Joanna shared with Nate her excitement and mixed emotions after completing her first full screenplay, which she planned to submit to film festivals, while Nate responded with encouragement and shared how his pet turtles help him stay calm. Their conversation reflected mutual support and interest in each other's lives and activities."
+        },
+        {
+          "unit_id": "e573adc5-520d-4b82-9296-9a84da355982",
+          "timestamp": "2022-02-07T09:28:00+08:00",
+          "summary": "On February 7, 2022, Joanna shared with Nate her mixed emotions about submitting a screenplay to a film festival, expressing hope for its success, while Nate offered supportive encouragement and positivity. Their conversation reflected an ongoing supportive relationship centered on Joanna's creative efforts and emotional experiences."
+        },
+        {
+          "unit_id": "8605bb2b-693e-4f91-a11b-77da7541c47a",
+          "timestamp": "2022-02-25T13:16:00+08:00",
+          "summary": "On February 25, 2022, Nate and Joanna engaged in a supportive conversation where Joanna shared her new autobiographical screenplay about a woman's journey of self-discovery following loss, while Nate expressed appreciation for her creativity and encouragement for her work's success."
+        },
+        {
+          "unit_id": "bef834d1-3b24-41fc-9986-10e0a220297b",
+          "timestamp": "2022-03-18T19:00:30+08:00",
+          "summary": "On March 18, 2022, Joanna informed Nate that she had completed her second screenplay, expressing mixed emotions of relief and anxiety about its future, while Nate offered congratulations, encouragement, and reassurance to help her manage her doubts."
+        },
+        {
+          "unit_id": "4fbdaa9f-38c0-46ff-8590-63ac4f68464e",
+          "timestamp": "2022-03-18T19:09:00+08:00",
+          "summary": "On March 18, 2022, Joanna and Nate discussed Joanna's ongoing work on her script and her dedication to her pets, with Nate offering encouragement and support to help her stay motivated through the challenging process."
+        },
+        {
+          "unit_id": "4d1b4e7e-62b4-4e44-b5f1-19cd76331f20",
+          "timestamp": "2022-03-24T13:45:30+08:00",
+          "summary": "On March 24, 2022, Nate and Joanna reconnected, discussing Joanna’s recent audition for a writing gig, during which she expressed mixed emotions of excitement and anxiety, and Nate offered support and encouragement."
+        },
+        {
+          "unit_id": "0576bea1-8139-4d66-84e2-9ae3724ad91c",
+          "timestamp": "2022-03-24T13:49:00+08:00",
+          "summary": "Joanna and Nate engaged in a supportive conversation about writing inspiration and encouragement, where Joanna shared advice on improving writing skills and both expressed mutual motivation to pursue their creative goals."
+        },
+        {
+          "unit_id": "dc6c633e-b75f-4645-b3ee-6a67d5f04b83",
+          "timestamp": "2022-04-15T19:43:00+08:00",
+          "summary": "On April 15, 2022, Nate and Joanna discussed personal expression, with Nate explaining his bold color choice and Joanna sharing a sunset photo that inspired self-expression, while also talking about her writing commitments and their plans to reconnect soon. The conversation reflected themes of creativity, mutual support, and the desire to stand out."
+        },
+        {
+          "unit_id": "e68166e1-3bcc-4366-ab0c-7da9c341f4c7",
+          "timestamp": "2022-04-21T19:46:00+08:00",
+          "summary": "Joanna reconnected with Nate and shared her positive experience joining a writers group, where she is working on an emotional script titled \"Finding Home,\" while Nate discussed his upcoming gaming tournament, with both expressing mutual support and reflecting on their personal growth related to performance and motivation."
+        },
+        {
+          "unit_id": "e6e49bb7-558e-47af-91e0-9274389b4af5",
+          "timestamp": "2022-04-21T19:49:30+08:00",
+          "summary": "On April 21, 2022, Joanna and Nate discussed their creative passions, with Joanna reflecting on her acting experiences and current focus on writing, while Nate shared his inspirations from fantasy and sci-fi movies and video games. Both expressed mutual encouragement and enthusiasm for their artistic pursuits."
+        },
+        {
+          "unit_id": "07a9c9b2-d1a4-4c3b-a1a2-466b37527f2d",
+          "timestamp": "2022-05-02T12:01:30+08:00",
+          "summary": "On May 2, 2022, Nate and Joanna exchanged a supportive conversation where Nate shared excitement about a competitive match, and Joanna discussed her creative work on a screenplay and dairy-free dessert recipes, including a cake she had made. They encouraged each other's efforts, highlighting positive sportsmanship and culinary creativity."
+        },
+        {
+          "unit_id": "7a994235-8599-426c-9ec9-f80f142c3494",
+          "timestamp": "2022-05-12T15:44:30+08:00",
+          "summary": "Joanna shared with Nate her recent hiking experience at Whispering Falls, describing the calming and inspiring effect of nature that made her feel like an expert hiker and sparked ideas for writing a drama, leading them to plan a future hike together."
+        },
+        {
+          "unit_id": "6c096765-5171-4cc5-8c26-b8990c8af479",
+          "timestamp": "2022-05-20T19:58:00+08:00",
+          "summary": "On May 20, 2022, Nate and Joanna discussed how creative expression and supportive friendships help Joanna cope with difficult emotions, with Joanna sharing her personal writing journey focused on themes of loss and identity. Nate encouraged her bravery and authenticity, emphasizing the importance of pursuing her creative dreams."
+        },
+        {
+          "unit_id": "803481f6-a65c-4094-90dd-02f8638e0397",
+          "timestamp": "2022-05-25T15:11:00+08:00",
+          "summary": "On May 25, 2022, Nate and Joanna shared a positive conversation about Nate’s new friendship with a nearby couple through their dogs, exchanged thoughtful gifts, and encouraged each other’s creative and personal growth. They emphasized the importance of cherishing small joyful moments and supporting one another’s endeavors, including Joanna’s screenplay progress."
+        },
+        {
+          "unit_id": "4548e3b6-6c0f-4a61-aa5e-a57b4a805198",
+          "timestamp": "2022-06-03T17:47:00+08:00",
+          "summary": "Joanna shared with Nate her disappointment after receiving a generic rejection letter for her screenplay from a major company, and Nate offered empathetic encouragement for her to keep pursuing her dreams despite the setback."
+        },
+        {
+          "unit_id": "797e7337-c9c8-45ac-b06f-ce986999d9d1",
+          "timestamp": "2022-06-05T14:20:00+08:00",
+          "summary": "On June 5, 2022, Joanna and Nate discussed Joanna's recent achievement of seeing her screenplay on the big screen, their favorite superheroes Spider-Man and Iron Man, and the motivational role of personal mementos like Joanna's cork board filled with inspiring items and family photos. The conversation was supportive and highlighted their shared appreciation for creativity, inspiration, and family encouragement."
+        },
+        {
+          "unit_id": "e36681f2-47d1-4aaa-a4cb-42f24e3b4e50",
+          "timestamp": "2022-06-24T10:58:00+08:00",
+          "summary": "Joanna and Nate reconnected after a period of no contact, discussing Joanna's recent screenplay submission and Nate's successful gaming party, which was well-received by attendees and planned to be repeated. Their conversation was friendly and supportive, highlighting Joanna's creative efforts and Nate's social event."
+        },
+        {
+          "unit_id": "0288bf82-9d7c-4450-bf01-604e4193b745",
+          "timestamp": "2022-10-21T14:10:00+08:00",
+          "summary": "Nate and Joanna discussed Joanna's recent rejection from a production company, with Nate offering empathetic support and encouragement, leading to a mutual exchange of motivation and affirmation of resilience."
+        },
+        {
+          "unit_id": "267507ef-a6d2-4278-96ce-697e9a1c88c1",
+          "timestamp": "2022-10-25T20:22:00+08:00",
+          "summary": "On October 25, 2022, Joanna and Nate discussed Joanna's experience seeing a movie script she helped write shown on the big screen for the first time, with Joanna expressing pride and excitement about bringing her characters to life. Nate showed admiration and curiosity, engaging Joanna about her creative process and the characters she developed."
+        },
+        {
+          "unit_id": "4ff8fd04-cd05-4aa1-9ab9-2f63feb6d2a5",
+          "timestamp": "2022-11-04T16:01:00+08:00",
+          "summary": "On November 4, 2022, Joanna shared with Nate her excitement and success in meetings with movie producers who appreciated the self-discovery themes in her script, leading to feelings of validation and inspiration, while they reflected on her growth as a writer and encouraged each other creatively."
+        },
+        {
+          "unit_id": "467ec0cc-0a98-4180-af41-d63f2bfbdeb6",
+          "timestamp": "2022-11-07T20:16:30+08:00",
+          "summary": "Nate shared with Joanna his recent victory in a major Valorant tournament, while Joanna discussed her progress on a challenging movie script, with both expressing mutual support and enthusiasm for their respective passions and future plans."
+        },
+        {
+          "unit_id": "8641dbb8-2aba-4262-bba5-50e0736244f1",
+          "timestamp": "2022-11-07T20:25:30+08:00",
+          "summary": "On November 7, 2022, Joanna shared with Nate a photo of a handwritten letter from her brother, which she included in the introduction of her next movie script, sparking a conversation about childhood memories, family bonds, and creative inspiration."
+        },
+        {
+          "unit_id": "3e6e2d35-51c5-4a9c-943f-1805192e3f1e",
+          "timestamp": "2022-11-09T17:59:30+08:00",
+          "summary": "On November 9, 2022, Nate and Joanna discussed their recent creative projects, with Joanna sharing her excitement about pitching a new script to producers and working on a suspenseful thriller, while Nate expressed support and pride in her accomplishments. Both demonstrated mutual enthusiasm and encouragement for their ongoing professional endeavors."
+        },
+        {
+          "unit_id": "1f69303f-e0e9-42aa-8654-5b0870dbcace",
+          "timestamp": "2022-11-09T18:03:30+08:00",
+          "summary": "On November 9, 2022, Joanna and Nate discussed their creative projects, with Joanna working on a suspenseful thriller and Nate starting to create gaming content for YouTube, sharing mutual enthusiasm and encouragement throughout their conversation."
+        },
+        {
+          "unit_id": "e93bc51e-39f6-4e65-a05f-f46a39b8705c",
+          "timestamp": "2022-11-11T00:08:00+08:00",
+          "summary": "On November 11, 2022, Joanna shared with Nate that she had begun filming her movie based on her road-trip script, expressing excitement and pride in bringing her vision to life, while Nate offered congratulations and encouragement."
+        },
+        {
+          "unit_id": "8d497714-74f0-4198-88f9-e4e72b41ea86",
+          "timestamp": "2022-11-11T00:10:00+08:00",
+          "summary": "On November 11, 2022, Joanna shared her excitement after an actor complimented her script, while Nate described the peace he finds in caring for his turtles, including a recent beach visit in Tampa and a photo of a turtle in a pond. Their conversation highlighted Joanna's emotional uplift and Nate's appreciation for the calming presence of his turtles."
+        }
+      ],
+      "first_timestamp": "2022-01-23T14:08:00+08:00",
+      "last_timestamp": "2022-11-11T00:10:00+08:00",
+      "created_at": "2025-12-05T16:22:09.253749",
+      "updated_at": "2025-12-05T16:28:09.223365"
+    },
+    "gec_004": {
+      "cluster_id": "gec_004",
+      "topic": "Nate's pet turtles and their calming effect",
+      "summary": "They discussed how Nate’s pet turtles provide a calming presence amid stress, sharing photos and care routines. Joanna, unable to have pets due to allergies, found comfort through their companionship and related emotional support, reflecting a continuous theme of mutual encouragement and tranquility.",
+      "members": [
+        {
+          "unit_id": "3fef93ed-43fa-46ae-8fd8-e9b8a4aea674",
+          "timestamp": "2022-01-23T14:08:00+08:00",
+          "summary": "Joanna shared with Nate her excitement and mixed emotions after completing her first full screenplay, which she planned to submit to film festivals, while Nate responded with encouragement and shared how his pet turtles help him stay calm. Their conversation reflected mutual support and interest in each other's lives and activities."
+        },
+        {
+          "unit_id": "f4328a6b-3e56-49ee-9892-a421c84bf397",
+          "timestamp": "2022-03-18T19:05:00+08:00",
+          "summary": "On March 18, 2022, Joanna and Nate discussed Nate's pet turtles, focusing on their calming nature, care routines, and Joanna's allergies that prevent her from having pets. Nate offered to share pictures of his turtles to help Joanna enjoy them despite her allergies."
+        },
+        {
+          "unit_id": "a649720c-160e-4097-8cca-82a522d68b10",
+          "timestamp": "2022-04-17T18:51:00+08:00",
+          "summary": "On April 17, 2022, Joanna and Nate discussed their appreciation for nature, hiking, and finding peace through simple pleasures, with Joanna sharing a new hiking trail and suggesting they hike together sometime. They also exchanged photos of Nate’s turtles, highlighting their shared enjoyment of companionship and moments of calm."
+        },
+        {
+          "unit_id": "b851eaf9-9cb9-46df-8846-58e1710ce7e6",
+          "timestamp": "2022-09-05T18:12:00+08:00",
+          "summary": "Nate and Joanna reconnected through a supportive conversation where Nate shared his recent setback in a video game tournament, and Joanna discussed her experiments with dairy-free dessert recipes, leading to plans for future cooking collaboration. They exchanged photos and baking tips, reflecting mutual encouragement and shared interests."
+        },
+        {
+          "unit_id": "ea58d8d1-a6f6-4d90-be63-da4bd98718b9",
+          "timestamp": "2022-10-21T14:06:00+08:00",
+          "summary": "On October 21, 2022, Nate and Joanna shared a brief conversation where Nate expressed stress over his video game tournament while finding comfort in watching his turtles, and Joanna reflected on the emotional support her stuffed dog Tilly provided, symbolizing her connection to a real pet she had to give up. Both participants exchanged emotional support and discussed their current activities, highlighting the comforting effects of their respective animals."
+        },
+        {
+          "unit_id": "6f61735a-a5f4-4a3c-ada8-9679cde9d08e",
+          "timestamp": "2022-10-25T20:30:00+08:00",
+          "summary": "Nate and Joanna discussed Nate's pet turtles, sharing photos and details about their personalities, diet, and activities, with Nate expressing his affection for them and Joanna showing curiosity and delight."
+        },
+        {
+          "unit_id": "c8586302-92a3-4724-b178-aeb0ad63c318",
+          "timestamp": "2022-11-09T18:07:30+08:00",
+          "summary": "On November 9, 2022, Joanna and Nate discussed their appreciation for nature, sharing photos of a sunset sunflower and turtles, while Nate revealed his recent decision to get a third turtle, which brought him joy and peace. Joanna expressed surprise at Nate's new pet but showed support and interest in visiting to observe his turtles despite her allergies."
+        },
+        {
+          "unit_id": "0f934d12-3335-4c43-81e6-4b6b1ec77f86",
+          "timestamp": "2022-11-09T18:10:00+08:00",
+          "summary": "Joanna expressed interest in visiting Nate to watch him play with his turtles despite her allergy, and they planned to spend time together watching movies or going to the park. Both showed enthusiasm and anticipation for the visit, with Nate preparing the turtles for her arrival."
+        },
+        {
+          "unit_id": "8d497714-74f0-4198-88f9-e4e72b41ea86",
+          "timestamp": "2022-11-11T00:10:00+08:00",
+          "summary": "On November 11, 2022, Joanna shared her excitement after an actor complimented her script, while Nate described the peace he finds in caring for his turtles, including a recent beach visit in Tampa and a photo of a turtle in a pond. Their conversation highlighted Joanna's emotional uplift and Nate's appreciation for the calming presence of his turtles."
+        },
+        {
+          "unit_id": "fdb56453-b91a-4d3b-ab28-52c94ffc345c",
+          "timestamp": "2022-11-11T00:10:00+08:00",
+          "summary": "Nate shared a photo of his homemade coconut milk ice cream, describing turtles as zen masters and expressing his enjoyment of flavor experimentation, while Joanna complimented the vibrant appearance and eagerly accepted his offer to try the recipe, leading to a warm and friendly exchange."
+        }
+      ],
+      "first_timestamp": "2022-01-23T14:08:00+08:00",
+      "last_timestamp": "2022-11-11T00:10:00+08:00",
+      "created_at": "2025-12-05T16:22:09.256520",
+      "updated_at": "2025-12-05T16:28:14.183593"
+    },
+    "gec_005": {
+      "cluster_id": "gec_005",
+      "topic": "Joanna's severe allergies to pets",
+      "summary": "They discussed Joanna's severe pet allergies, which consistently influenced her hesitation to have pets. Despite this, Nate shared his pet experiences, including turtles and a dog, while Joanna showed support and interest, even planning visits to enjoy Nate's pets safely.",
+      "members": [
+        {
+          "unit_id": "e86e44c3-519d-482c-80c9-225243616270",
+          "timestamp": "2022-01-23T14:15:00+08:00",
+          "summary": "On January 23, 2022, Joanna and Nate discussed Joanna's severe allergies to pets, Nate's new social experiences at a tournament, and Joanna's passion for writing as a vital outlet for happiness and self-expression. Their conversation highlighted mutual support and understanding of personal challenges and interests."
+        },
+        {
+          "unit_id": "f4328a6b-3e56-49ee-9892-a421c84bf397",
+          "timestamp": "2022-03-18T19:05:00+08:00",
+          "summary": "On March 18, 2022, Joanna and Nate discussed Nate's pet turtles, focusing on their calming nature, care routines, and Joanna's allergies that prevent her from having pets. Nate offered to share pictures of his turtles to help Joanna enjoy them despite her allergies."
+        },
+        {
+          "unit_id": "66f734cd-6f48-4dd5-8094-eead66fd8093",
+          "timestamp": "2022-05-20T19:53:00+08:00",
+          "summary": "On May 20, 2022, Nate and Joanna discussed Nate's new adopted dog Max and the joy pets bring, while Joanna shared her hesitation to get pets due to allergies."
+        },
+        {
+          "unit_id": "c8586302-92a3-4724-b178-aeb0ad63c318",
+          "timestamp": "2022-11-09T18:07:30+08:00",
+          "summary": "On November 9, 2022, Joanna and Nate discussed their appreciation for nature, sharing photos of a sunset sunflower and turtles, while Nate revealed his recent decision to get a third turtle, which brought him joy and peace. Joanna expressed surprise at Nate's new pet but showed support and interest in visiting to observe his turtles despite her allergies."
+        },
+        {
+          "unit_id": "0f934d12-3335-4c43-81e6-4b6b1ec77f86",
+          "timestamp": "2022-11-09T18:10:00+08:00",
+          "summary": "Joanna expressed interest in visiting Nate to watch him play with his turtles despite her allergy, and they planned to spend time together watching movies or going to the park. Both showed enthusiasm and anticipation for the visit, with Nate preparing the turtles for her arrival."
+        }
+      ],
+      "first_timestamp": "2022-01-23T14:15:00+08:00",
+      "last_timestamp": "2022-11-09T18:10:00+08:00",
+      "created_at": "2025-12-05T16:22:14.370030",
+      "updated_at": "2025-12-05T16:28:01.127034"
+    },
+    "gec_006": {
+      "cluster_id": "gec_006",
+      "topic": "Nate's new social experiences at a tournament",
+      "summary": "They discussed Nate’s growing social experiences through gaming tournaments and events, highlighting his victories, new friendships, and confidence boosts. Their conversations reflected ongoing mutual support, shared enthusiasm for creative pursuits, and the positive impact of gaming on Nate’s well-being and social life.",
+      "members": [
+        {
+          "unit_id": "e86e44c3-519d-482c-80c9-225243616270",
+          "timestamp": "2022-01-23T14:15:00+08:00",
+          "summary": "On January 23, 2022, Joanna and Nate discussed Joanna's severe allergies to pets, Nate's new social experiences at a tournament, and Joanna's passion for writing as a vital outlet for happiness and self-expression. Their conversation highlighted mutual support and understanding of personal challenges and interests."
+        },
+        {
+          "unit_id": "0576bea1-8139-4d66-84e2-9ae3724ad91c",
+          "timestamp": "2022-03-24T13:49:00+08:00",
+          "summary": "Joanna and Nate engaged in a supportive conversation about writing inspiration and encouragement, where Joanna shared advice on improving writing skills and both expressed mutual motivation to pursue their creative goals."
+        },
+        {
+          "unit_id": "c7802428-2170-43f8-a004-64ce9e5b8837",
+          "timestamp": "2022-06-03T17:52:00+08:00",
+          "summary": "On June 3, 2022, Joanna and Nate discussed Nate's recent victory in a regional video game tournament, highlighting his confidence boost, social connections with fellow gamers, and mutual support between the two."
+        },
+        {
+          "unit_id": "4ee34afa-901c-4270-aeb9-5ef242f9e7b1",
+          "timestamp": "2022-06-03T17:57:00+08:00",
+          "summary": "Joanna and Nate discussed their upcoming weekend plans, with Joanna excited about hiking a new trail and Nate organizing a gaming party featuring custom controller decorations for his friends. Both expressed enthusiasm and support for each other's activities."
+        },
+        {
+          "unit_id": "e36681f2-47d1-4aaa-a4cb-42f24e3b4e50",
+          "timestamp": "2022-06-24T10:58:00+08:00",
+          "summary": "Joanna and Nate reconnected after a period of no contact, discussing Joanna's recent screenplay submission and Nate's successful gaming party, which was well-received by attendees and planned to be repeated. Their conversation was friendly and supportive, highlighting Joanna's creative efforts and Nate's social event."
+        },
+        {
+          "unit_id": "8460479f-34aa-46ae-9614-525c6ba6cb63",
+          "timestamp": "2022-07-10T14:44:00+08:00",
+          "summary": "On July 10, 2022, Nate celebrated winning his fourth online video game tournament while Joanna shared insights from her inspirational road trip to Woodhaven for movie research and her new venture into book writing, with both exchanging mutual encouragement and support for their creative pursuits."
+        },
+        {
+          "unit_id": "2e1e571b-656b-4031-8d93-bd4d952cb17a",
+          "timestamp": "2022-08-22T10:57:30+08:00",
+          "summary": "On August 22, 2022, Nate shared with Joanna that he had won an international gaming tournament the previous day, expressing excitement about turning his passion for gaming into a successful career, to which Joanna responded with enthusiastic congratulations and pride."
+        },
+        {
+          "unit_id": "69b5f662-33ac-43e3-a968-3ff02c105f1b",
+          "timestamp": "2022-10-09T11:04:00+08:00",
+          "summary": "On October 9, 2022, Nate shared with Joanna his experience attending a game convention on October 7, where he met new people, made friends through gaming, and enjoyed bonding over shared interests in a relaxed and competitive environment. Their conversation highlighted the joy of social connection, stepping outside comfort zones, and the positive impact of gaming on personal well-being."
+        },
+        {
+          "unit_id": "6ac8a318-097f-4d22-93f6-c9dd27a4cbce",
+          "timestamp": "2022-10-09T11:12:30+08:00",
+          "summary": "On October 9, 2022, Nate and Joanna discussed their leisure activities, focusing on movies, video games, and creating a comfortable home environment, with Joanna offering Nate tips to enhance his living room setup for a cozier movie-watching experience. Both shared positive feelings about their hobbies and exchanged images to illustrate their points."
+        },
+        {
+          "unit_id": "ea58d8d1-a6f6-4d90-be63-da4bd98718b9",
+          "timestamp": "2022-10-21T14:06:00+08:00",
+          "summary": "On October 21, 2022, Nate and Joanna shared a brief conversation where Nate expressed stress over his video game tournament while finding comfort in watching his turtles, and Joanna reflected on the emotional support her stuffed dog Tilly provided, symbolizing her connection to a real pet she had to give up. Both participants exchanged emotional support and discussed their current activities, highlighting the comforting effects of their respective animals."
+        },
+        {
+          "unit_id": "0288bf82-9d7c-4450-bf01-604e4193b745",
+          "timestamp": "2022-10-21T14:10:00+08:00",
+          "summary": "Nate and Joanna discussed Joanna's recent rejection from a production company, with Nate offering empathetic support and encouragement, leading to a mutual exchange of motivation and affirmation of resilience."
+        },
+        {
+          "unit_id": "06ff79a9-09c4-46ce-bb34-d1db9c9237eb",
+          "timestamp": "2022-11-04T16:03:00+08:00",
+          "summary": "On November 4, 2022, Joanna and Nate exchanged a friendly conversation where Joanna shared her challenging project at work, and Nate discussed helping friends reset high scores at an international gaming tournament, both expressing enthusiasm for their respective activities."
+        },
+        {
+          "unit_id": "af9359bb-a165-4b0c-b56f-8e5f1169594b",
+          "timestamp": "2022-11-07T20:22:30+08:00",
+          "summary": "Joanna and Nate engaged in a positive conversation about Nate’s upgraded gaming setup, practice routines, and favorite games, including his current enjoyment of the Nintendo RPG \"Xeonoblade Chronicles.\" They shared enthusiasm for gaming equipment and the benefits of having a dedicated space for focus during practice and competition."
+        },
+        {
+          "unit_id": "8332d25f-1459-4d95-af50-9e11968098a4",
+          "timestamp": "2022-11-09T17:57:00+08:00",
+          "summary": "On November 9, 2022, Nate and Joanna discussed Nate's postponed game tournament, his homemade coconut ice cream experiment, and his potential move to a new gaming team, with both expressing mutual support and optimism about future plans."
+        }
+      ],
+      "first_timestamp": "2022-01-23T14:15:00+08:00",
+      "last_timestamp": "2022-11-09T17:57:00+08:00",
+      "created_at": "2025-12-05T16:22:14.372307",
+      "updated_at": "2025-12-05T16:27:38.842047"
+    },
+    "gec_007": {
+      "cluster_id": "gec_007",
+      "topic": "Joanna's passion for writing as a vital outlet for happiness and self-expression",
+      "summary": "They discussed Joanna's passion for writing as a a vital outlet for happiness and self-expression, highlighting its role in coping with emotions, overcoming setbacks, and creating meaningful connections, supported by Nate's encouragement throughout their evolving conversations.",
+      "members": [
+        {
+          "unit_id": "e86e44c3-519d-482c-80c9-225243616270",
+          "timestamp": "2022-01-23T14:15:00+08:00",
+          "summary": "On January 23, 2022, Joanna and Nate discussed Joanna's severe allergies to pets, Nate's new social experiences at a tournament, and Joanna's passion for writing as a vital outlet for happiness and self-expression. Their conversation highlighted mutual support and understanding of personal challenges and interests."
+        },
+        {
+          "unit_id": "6c096765-5171-4cc5-8c26-b8990c8af479",
+          "timestamp": "2022-05-20T19:58:00+08:00",
+          "summary": "On May 20, 2022, Nate and Joanna discussed how creative expression and supportive friendships help Joanna cope with difficult emotions, with Joanna sharing her personal writing journey focused on themes of loss and identity. Nate encouraged her bravery and authenticity, emphasizing the importance of pursuing her creative dreams."
+        },
+        {
+          "unit_id": "4548e3b6-6c0f-4a61-aa5e-a57b4a805198",
+          "timestamp": "2022-06-03T17:47:00+08:00",
+          "summary": "Joanna shared with Nate her disappointment after receiving a generic rejection letter for her screenplay from a major company, and Nate offered empathetic encouragement for her to keep pursuing her dreams despite the setback."
+        },
+        {
+          "unit_id": "ec18e40c-b6b5-4783-be99-776bde838b13",
+          "timestamp": "2022-08-14T18:15:00+08:00",
+          "summary": "On August 14, 2022, Joanna and Nate discussed Joanna's deep connection to writing, highlighting how it serves as an emotional outlet and source of stability, especially after Joanna shared a touching note from a reader impacted by her blog. Their conversation emphasized the meaningful impact of Joanna's words and the supportive friendship between them."
+        },
+        {
+          "unit_id": "cb1ee15c-52fa-4318-b2d5-180d162ee16b",
+          "timestamp": "2022-08-14T18:19:30+08:00",
+          "summary": "On August 14, 2022, Joanna and Nate exchanged a supportive conversation about their passions, during which Nate shared a new dairy-free dessert recipe with Joanna, who planned to try it and surprise her family. Both expressed appreciation and enthusiasm throughout their brief but positive interaction."
+        },
+        {
+          "unit_id": "d9fb5be7-6a61-4785-8ffd-8efa987535a7",
+          "timestamp": "2022-10-06T11:26:00+08:00",
+          "summary": "Joanna and Nate shared a supportive conversation celebrating Joanna’s completion of her book, exchanged creative projects, and encouraged each other through personal achievements and motivational gestures."
+        }
+      ],
+      "first_timestamp": "2022-01-23T14:15:00+08:00",
+      "last_timestamp": "2022-10-06T11:26:00+08:00",
+      "created_at": "2025-12-05T16:22:14.373955",
+      "updated_at": "2025-12-05T16:26:02.652646"
+    },
+    "gec_008": {
+      "cluster_id": "gec_008",
+      "topic": "Nate's dairy-free dessert experimentation and recipes",
+      "summary": "Nate and Joanna consistently shared and experimented with dairy-free dessert recipes, especially coconut milk and vegan ice creams, exchanging tips, photos, and encouragement. Their ongoing collaboration reflected mutual enthusiasm and evolving culinary creativity over time.",
+      "members": [
+        {
+          "unit_id": "f0ca4a1c-be32-42a8-9048-5ca9b4a4863e",
+          "timestamp": "2022-02-07T09:33:30+08:00",
+          "summary": "On February 7, 2022, Nate shared with Joanna his successful attempt at making rich and creamy coconut milk ice cream, sparking a positive exchange about dairy-free dessert experimentation and future culinary plans. Both expressed enthusiasm and mutual encouragement for trying new flavors and recipes, including a dairy-free chocolate cake Nate recently made."
+        },
+        {
+          "unit_id": "9b09ead2-2644-44cd-9752-5180d314fe35",
+          "timestamp": "2022-02-25T13:11:00+08:00",
+          "summary": "Nate and Joanna reconnected in a friendly conversation about ice cream making, where Nate shared a chocolate and vanilla swirl recipe and offered Joanna a dairy-free version using coconut milk, which she eagerly accepted. Their exchange highlighted mutual appreciation for homemade desserts and consideration of dietary needs."
+        },
+        {
+          "unit_id": "875b05ab-c55c-4c8d-8466-eda5adba5ec8",
+          "timestamp": "2022-04-17T18:54:30+08:00",
+          "summary": "Nate and Joanna discussed homemade dairy-free ice cream, with Nate sharing a recipe using coconut milk that Joanna, who is lactose intolerant, eagerly planned to try. Their conversation was friendly and focused on the preparation and enjoyment of the recipe."
+        },
+        {
+          "unit_id": "07a9c9b2-d1a4-4c3b-a1a2-466b37527f2d",
+          "timestamp": "2022-05-02T12:01:30+08:00",
+          "summary": "On May 2, 2022, Nate and Joanna exchanged a supportive conversation where Nate shared excitement about a competitive match, and Joanna discussed her creative work on a screenplay and dairy-free dessert recipes, including a cake she had made. They encouraged each other's efforts, highlighting positive sportsmanship and culinary creativity."
+        },
+        {
+          "unit_id": "a9cb81f1-ff3f-4dc7-a569-1a03900aed9e",
+          "timestamp": "2022-06-24T11:02:30+08:00",
+          "summary": "Joanna and Nate discussed Nate’s recent success in making vegan ice cream, with Nate agreeing to share the recipe the next day and Joanna planning to prepare it for her family over the weekend. The conversation was positive and supportive, focusing on sharing culinary experiences."
+        },
+        {
+          "unit_id": "cb1ee15c-52fa-4318-b2d5-180d162ee16b",
+          "timestamp": "2022-08-14T18:19:30+08:00",
+          "summary": "On August 14, 2022, Joanna and Nate exchanged a supportive conversation about their passions, during which Nate shared a new dairy-free dessert recipe with Joanna, who planned to try it and surprise her family. Both expressed appreciation and enthusiasm throughout their brief but positive interaction."
+        },
+        {
+          "unit_id": "b851eaf9-9cb9-46df-8846-58e1710ce7e6",
+          "timestamp": "2022-09-05T18:12:00+08:00",
+          "summary": "Nate and Joanna reconnected through a supportive conversation where Nate shared his recent setback in a video game tournament, and Joanna discussed her experiments with dairy-free dessert recipes, leading to plans for future cooking collaboration. They exchanged photos and baking tips, reflecting mutual encouragement and shared interests."
+        },
+        {
+          "unit_id": "9ac42989-499c-4f25-98ea-b9a0c7beca6d",
+          "timestamp": "2022-09-14T13:52:30+08:00",
+          "summary": "Joanna and Nate discussed their shared enthusiasm for dairy-free and vegan desserts, exchanging recipes, photos, and experiences, including Nate's recent cooking show featuring vegan ice cream. They encouraged each other to try and share their favorite dairy-free treats."
+        },
+        {
+          "unit_id": "3f6d2cf0-0b15-453a-8b12-b9bbbfda2f49",
+          "timestamp": "2022-10-06T11:15:00+08:00",
+          "summary": "On October 6, 2022, Joanna shared a photo of a raspberry tart with Nate, expressing enthusiasm about her successful new dairy-free recipe and her interest in hearing about Nate's recent experiences."
+        },
+        {
+          "unit_id": "a4e31a57-dd97-48f6-94f5-19c5e9538559",
+          "timestamp": "2022-11-04T16:07:30+08:00",
+          "summary": "Nate invited Joanna to try the lactose-free ice cream he made, and they planned for her to visit the next day to share homemade desserts together. Their friendly conversation highlighted a mutual interest in baking and hospitality."
+        },
+        {
+          "unit_id": "8332d25f-1459-4d95-af50-9e11968098a4",
+          "timestamp": "2022-11-09T17:57:00+08:00",
+          "summary": "On November 9, 2022, Nate and Joanna discussed Nate's postponed game tournament, his homemade coconut ice cream experiment, and his potential move to a new gaming team, with both expressing mutual support and optimism about future plans."
+        },
+        {
+          "unit_id": "fdb56453-b91a-4d3b-ab28-52c94ffc345c",
+          "timestamp": "2022-11-11T00:10:00+08:00",
+          "summary": "Nate shared a photo of his homemade coconut milk ice cream, describing turtles as zen masters and expressing his enjoyment of flavor experimentation, while Joanna complimented the vibrant appearance and eagerly accepted his offer to try the recipe, leading to a warm and friendly exchange."
+        }
+      ],
+      "first_timestamp": "2022-02-07T09:33:30+08:00",
+      "last_timestamp": "2022-11-11T00:10:00+08:00",
+      "created_at": "2025-12-05T16:22:23.473502",
+      "updated_at": "2025-12-05T16:28:14.183593"
+    },
+    "gec_009": {
+      "cluster_id": "gec_009",
+      "topic": "Joanna's dedication to her pets",
+      "summary": "On March 18, 2022, Joanna and Nate discussed Joanna's ongoing work on her script and her dedication to her pets, with Nate offering encouragement and support to help her stay motivated through the challenging process.",
+      "members": [
+        {
+          "unit_id": "4fbdaa9f-38c0-46ff-8590-63ac4f68464e",
+          "timestamp": "2022-03-18T19:09:00+08:00",
+          "summary": "On March 18, 2022, Joanna and Nate discussed Joanna's ongoing work on her script and her dedication to her pets, with Nate offering encouragement and support to help her stay motivated through the challenging process."
+        }
+      ],
+      "first_timestamp": "2022-03-18T19:09:00+08:00",
+      "last_timestamp": "2022-03-18T19:09:00+08:00",
+      "created_at": "2025-12-05T16:22:52.133422",
+      "updated_at": "2025-12-05T16:22:52.133422"
+    },
+    "gec_010": {
+      "cluster_id": "gec_010",
+      "topic": "Nate's participation in video game tournaments",
+      "summary": "Nate and Joanna consistently shared updates on Nate’s video game tournament journey, celebrating his wins from local to international levels, discussing setbacks, and expressing mutual support. Nate’s growing success boosted his confidence and financial stability, reflecting his evolving passion and career aspirations.",
+      "members": [
+        {
+          "unit_id": "956ee60c-0bd7-4f43-8c7f-011b45c4cb44",
+          "timestamp": "2022-03-24T13:46:00+08:00",
+          "summary": "On March 24, 2022, Joanna thanked Nate for his support and promised to keep him updated, while Nate shared that he was engaged in an intense and adrenaline-filled video game tournament."
+        },
+        {
+          "unit_id": "0576bea1-8139-4d66-84e2-9ae3724ad91c",
+          "timestamp": "2022-03-24T13:49:00+08:00",
+          "summary": "Joanna and Nate engaged in a supportive conversation about writing inspiration and encouragement, where Joanna shared advice on improving writing skills and both expressed mutual motivation to pursue their creative goals."
+        },
+        {
+          "unit_id": "e68166e1-3bcc-4366-ab0c-7da9c341f4c7",
+          "timestamp": "2022-04-21T19:46:00+08:00",
+          "summary": "Joanna reconnected with Nate and shared her positive experience joining a writers group, where she is working on an emotional script titled \"Finding Home,\" while Nate discussed his upcoming gaming tournament, with both expressing mutual support and reflecting on their personal growth related to performance and motivation."
+        },
+        {
+          "unit_id": "e6e49bb7-558e-47af-91e0-9274389b4af5",
+          "timestamp": "2022-04-21T19:49:30+08:00",
+          "summary": "On April 21, 2022, Joanna and Nate discussed their creative passions, with Joanna reflecting on her acting experiences and current focus on writing, while Nate shared his inspirations from fantasy and sci-fi movies and video games. Both expressed mutual encouragement and enthusiasm for their artistic pursuits."
+        },
+        {
+          "unit_id": "bbf3d708-7995-4997-971e-6e1a4a51d849",
+          "timestamp": "2022-05-02T11:57:30+08:00",
+          "summary": "On May 2, 2022, Joanna told Nate she enjoyed watching \"The Lord of the Rings\" Trilogy based on his recommendation, while Nate shared details about his recent gaming successes, including winning a local Street Fighter tournament. Both expressed enthusiasm and pride throughout their conversation."
+        },
+        {
+          "unit_id": "07a9c9b2-d1a4-4c3b-a1a2-466b37527f2d",
+          "timestamp": "2022-05-02T12:01:30+08:00",
+          "summary": "On May 2, 2022, Nate and Joanna exchanged a supportive conversation where Nate shared excitement about a competitive match, and Joanna discussed her creative work on a screenplay and dairy-free dessert recipes, including a cake she had made. They encouraged each other's efforts, highlighting positive sportsmanship and culinary creativity."
+        },
+        {
+          "unit_id": "c7802428-2170-43f8-a004-64ce9e5b8837",
+          "timestamp": "2022-06-03T17:52:00+08:00",
+          "summary": "On June 3, 2022, Joanna and Nate discussed Nate's recent victory in a regional video game tournament, highlighting his confidence boost, social connections with fellow gamers, and mutual support between the two."
+        },
+        {
+          "unit_id": "2e1e571b-656b-4031-8d93-bd4d952cb17a",
+          "timestamp": "2022-08-22T10:57:30+08:00",
+          "summary": "On August 22, 2022, Nate shared with Joanna that he had won an international gaming tournament the previous day, expressing excitement about turning his passion for gaming into a successful career, to which Joanna responded with enthusiastic congratulations and pride."
+        },
+        {
+          "unit_id": "b851eaf9-9cb9-46df-8846-58e1710ce7e6",
+          "timestamp": "2022-09-05T18:12:00+08:00",
+          "summary": "Nate and Joanna reconnected through a supportive conversation where Nate shared his recent setback in a video game tournament, and Joanna discussed her experiments with dairy-free dessert recipes, leading to plans for future cooking collaboration. They exchanged photos and baking tips, reflecting mutual encouragement and shared interests."
+        },
+        {
+          "unit_id": "7380d993-8d36-4074-86f6-a39a8873345c",
+          "timestamp": "2022-10-06T11:17:30+08:00",
+          "summary": "Nate shared with Joanna his excitement about winning a major video game tournament and earning a substantial prize, expressing contentment with having extra money to reduce financial stress. Joanna congratulated him and acknowledged the sense of freedom that comes with having extra cash."
+        },
+        {
+          "unit_id": "467ec0cc-0a98-4180-af41-d63f2bfbdeb6",
+          "timestamp": "2022-11-07T20:16:30+08:00",
+          "summary": "Nate shared with Joanna his recent victory in a major Valorant tournament, while Joanna discussed her progress on a challenging movie script, with both expressing mutual support and enthusiasm for their respective passions and future plans."
+        },
+        {
+          "unit_id": "af9359bb-a165-4b0c-b56f-8e5f1169594b",
+          "timestamp": "2022-11-07T20:22:30+08:00",
+          "summary": "Joanna and Nate engaged in a positive conversation about Nate’s upgraded gaming setup, practice routines, and favorite games, including his current enjoyment of the Nintendo RPG \"Xeonoblade Chronicles.\" They shared enthusiasm for gaming equipment and the benefits of having a dedicated space for focus during practice and competition."
+        }
+      ],
+      "first_timestamp": "2022-03-24T13:46:00+08:00",
+      "last_timestamp": "2022-11-07T20:22:30+08:00",
+      "created_at": "2025-12-05T16:23:02.217635",
+      "updated_at": "2025-12-05T16:27:18.394512"
+    },
+    "gec_011": {
+      "cluster_id": "gec_011",
+      "topic": "Nate's hair dyeing and new look",
+      "summary": "Nate excitedly shared with Joanna that he had dyed his hair bright purple to reflect his personality and stand out, while Joanna responded with enthusiasm and support for his bold new look.",
+      "members": [
+        {
+          "unit_id": "70dae0e6-6787-4e9d-b28f-acfc142f2719",
+          "timestamp": "2022-04-15T19:39:00+08:00",
+          "summary": "Nate excitedly shared with Joanna that he had dyed his hair bright purple to reflect his personality and stand out, while Joanna responded with enthusiasm and support for his bold new look."
+        },
+        {
+          "unit_id": "dc6c633e-b75f-4645-b3ee-6a67d5f04b83",
+          "timestamp": "2022-04-15T19:43:00+08:00",
+          "summary": "On April 15, 2022, Nate and Joanna discussed personal expression, with Nate explaining his bold color choice and Joanna sharing a sunset photo that inspired self-expression, while also talking about her writing commitments and their plans to reconnect soon. The conversation reflected themes of creativity, mutual support, and the desire to stand out."
+        }
+      ],
+      "first_timestamp": "2022-04-15T19:39:00+08:00",
+      "last_timestamp": "2022-04-15T19:43:00+08:00",
+      "created_at": "2025-12-05T16:23:11.737957",
+      "updated_at": "2025-12-05T16:23:17.475463"
+    },
+    "gec_012": {
+      "cluster_id": "gec_012",
+      "topic": "Joanna's sharing of inspirational photos related to self-expression",
+      "summary": "On April 15, 2022, Nate and Joanna discussed personal expression, with Nate explaining his bold color choice and Joanna sharing a sunset photo that inspired self-expression, while also talking about her writing commitments and their plans to reconnect soon. The conversation reflected themes of creativity, mutual support, and the desire to stand out.",
+      "members": [
+        {
+          "unit_id": "dc6c633e-b75f-4645-b3ee-6a67d5f04b83",
+          "timestamp": "2022-04-15T19:43:00+08:00",
+          "summary": "On April 15, 2022, Nate and Joanna discussed personal expression, with Nate explaining his bold color choice and Joanna sharing a sunset photo that inspired self-expression, while also talking about her writing commitments and their plans to reconnect soon. The conversation reflected themes of creativity, mutual support, and the desire to stand out."
+        }
+      ],
+      "first_timestamp": "2022-04-15T19:43:00+08:00",
+      "last_timestamp": "2022-04-15T19:43:00+08:00",
+      "created_at": "2025-12-05T16:23:17.476031",
+      "updated_at": "2025-12-05T16:23:17.476031"
+    },
+    "gec_013": {
+      "cluster_id": "gec_013",
+      "topic": "Nate and Joanna's mutual enjoyment of rediscovering old books",
+      "summary": "On April 17, 2022, Nate and Joanna reconnected after some time apart, sharing a warm conversation about their mutual enjoyment of rediscovering old books. Their exchange reflected a nostalgic appreciation for reading, with no specific plans made beyond the friendly catch-up.",
+      "members": [
+        {
+          "unit_id": "b40503ba-5598-4a46-890a-ec556fbc6b3f",
+          "timestamp": "2022-04-17T18:45:00+08:00",
+          "summary": "On April 17, 2022, Nate and Joanna reconnected after some time apart, sharing a warm conversation about their mutual enjoyment of rediscovering old books. Their exchange reflected a nostalgic appreciation for reading, with no specific plans made beyond the friendly catch-up."
+        }
+      ],
+      "first_timestamp": "2022-04-17T18:45:00+08:00",
+      "last_timestamp": "2022-04-17T18:45:00+08:00",
+      "created_at": "2025-12-05T16:23:21.802419",
+      "updated_at": "2025-12-05T16:23:21.802419"
+    },
+    "gec_014": {
+      "cluster_id": "gec_014",
+      "topic": "Joanna's appreciation for nature and hiking",
+      "summary": "On April 17, 2022, Joanna and Nate discussed their appreciation for nature, hiking, and finding peace through simple pleasures, with Joanna sharing a new hiking trail and suggesting they hike together sometime. They also exchanged photos of Nate’s turtles, highlighting their shared enjoyment of companionship and moments of calm.",
+      "members": [
+        {
+          "unit_id": "a649720c-160e-4097-8cca-82a522d68b10",
+          "timestamp": "2022-04-17T18:51:00+08:00",
+          "summary": "On April 17, 2022, Joanna and Nate discussed their appreciation for nature, hiking, and finding peace through simple pleasures, with Joanna sharing a new hiking trail and suggesting they hike together sometime. They also exchanged photos of Nate’s turtles, highlighting their shared enjoyment of companionship and moments of calm."
+        },
+        {
+          "unit_id": "7a994235-8599-426c-9ec9-f80f142c3494",
+          "timestamp": "2022-05-12T15:44:30+08:00",
+          "summary": "Joanna shared with Nate her recent hiking experience at Whispering Falls, describing the calming and inspiring effect of nature that made her feel like an expert hiker and sparked ideas for writing a drama, leading them to plan a future hike together."
+        },
+        {
+          "unit_id": "4ee34afa-901c-4270-aeb9-5ef242f9e7b1",
+          "timestamp": "2022-06-03T17:57:00+08:00",
+          "summary": "Joanna and Nate discussed their upcoming weekend plans, with Joanna excited about hiking a new trail and Nate organizing a gaming party featuring custom controller decorations for his friends. Both expressed enthusiasm and support for each other's activities."
+        },
+        {
+          "unit_id": "c8586302-92a3-4724-b178-aeb0ad63c318",
+          "timestamp": "2022-11-09T18:07:30+08:00",
+          "summary": "On November 9, 2022, Joanna and Nate discussed their appreciation for nature, sharing photos of a sunset sunflower and turtles, while Nate revealed his recent decision to get a third turtle, which brought him joy and peace. Joanna expressed surprise at Nate's new pet but showed support and interest in visiting to observe his turtles despite her allergies."
+        }
+      ],
+      "first_timestamp": "2022-04-17T18:51:00+08:00",
+      "last_timestamp": "2022-11-09T18:07:30+08:00",
+      "created_at": "2025-12-05T16:23:27.305600",
+      "updated_at": "2025-12-05T16:27:53.831077"
+    },
+    "gec_015": {
+      "cluster_id": "gec_015",
+      "topic": "Nate and Joanna's favorite book recommendations and discussions",
+      "summary": "On April 21, 2022, Nate and Joanna discussed their favorite books, with Nate enthusiastically recommending a beloved trilogy known for its world building and characters, which Joanna acknowledged and planned to read. Their brief conversation highlighted mutual enthusiasm for literature and ended with friendly exchanges.",
+      "members": [
+        {
+          "unit_id": "c0e0374b-daf0-4500-8be5-cf5cf40e856a",
+          "timestamp": "2022-04-21T19:52:30+08:00",
+          "summary": "On April 21, 2022, Nate and Joanna discussed their favorite books, with Nate enthusiastically recommending a beloved trilogy known for its world building and characters, which Joanna acknowledged and planned to read. Their brief conversation highlighted mutual enthusiasm for literature and ended with friendly exchanges."
+        }
+      ],
+      "first_timestamp": "2022-04-21T19:52:30+08:00",
+      "last_timestamp": "2022-04-21T19:52:30+08:00",
+      "created_at": "2025-12-05T16:23:47.780615",
+      "updated_at": "2025-12-05T16:23:47.780615"
+    },
+    "gec_016": {
+      "cluster_id": "gec_016",
+      "topic": "Joanna's viewing of The Lord of the Rings Trilogy based on Nate's recommendation",
+      "summary": "On May 2, 2022, Joanna told Nate she enjoyed watching \"The Lord of the Rings\" Trilogy based on his recommendation, while Nate shared details about his recent gaming successes, including winning a local Street Fighter tournament. Both expressed enthusiasm and pride throughout their conversation.",
+      "members": [
+        {
+          "unit_id": "bbf3d708-7995-4997-971e-6e1a4a51d849",
+          "timestamp": "2022-05-02T11:57:30+08:00",
+          "summary": "On May 2, 2022, Joanna told Nate she enjoyed watching \"The Lord of the Rings\" Trilogy based on his recommendation, while Nate shared details about his recent gaming successes, including winning a local Street Fighter tournament. Both expressed enthusiasm and pride throughout their conversation."
+        }
+      ],
+      "first_timestamp": "2022-05-02T11:57:30+08:00",
+      "last_timestamp": "2022-05-02T11:57:30+08:00",
+      "created_at": "2025-12-05T16:23:52.995978",
+      "updated_at": "2025-12-05T16:23:52.995978"
+    },
+    "gec_017": {
+      "cluster_id": "gec_017",
+      "topic": "Nate's new friendship with a nearby couple through their dogs and doggy playdates",
+      "summary": "On May 25, 2022, Nate and Joanna shared a positive conversation about Nate’s new friendship with a nearby couple through their dogs, exchanged thoughtful gifts, and encouraged each other’s creative and personal growth. They emphasized the importance of cherishing small joyful moments and supporting one another’s endeavors, including Joanna’s screenplay progress.",
+      "members": [
+        {
+          "unit_id": "803481f6-a65c-4094-90dd-02f8638e0397",
+          "timestamp": "2022-05-25T15:11:00+08:00",
+          "summary": "On May 25, 2022, Nate and Joanna shared a positive conversation about Nate’s new friendship with a nearby couple through their dogs, exchanged thoughtful gifts, and encouraged each other’s creative and personal growth. They emphasized the importance of cherishing small joyful moments and supporting one another’s endeavors, including Joanna’s screenplay progress."
+        }
+      ],
+      "first_timestamp": "2022-05-25T15:11:00+08:00",
+      "last_timestamp": "2022-05-25T15:11:00+08:00",
+      "created_at": "2025-12-05T16:24:23.375777",
+      "updated_at": "2025-12-05T16:24:23.375777"
+    },
+    "gec_018": {
+      "cluster_id": "gec_018",
+      "topic": "Nate and Joanna exchanging thoughtful gifts and supporting each other's personal growth",
+      "summary": "On May 25, 2022, Nate and Joanna shared a positive conversation about Nate’s new friendship with a nearby couple through their dogs, exchanged thoughtful gifts, and encouraged each other’s creative and personal growth. They emphasized the importance of cherishing small joyful moments and supporting one another’s endeavors, including Joanna’s screenplay progress.",
+      "members": [
+        {
+          "unit_id": "803481f6-a65c-4094-90dd-02f8638e0397",
+          "timestamp": "2022-05-25T15:11:00+08:00",
+          "summary": "On May 25, 2022, Nate and Joanna shared a positive conversation about Nate’s new friendship with a nearby couple through their dogs, exchanged thoughtful gifts, and encouraged each other’s creative and personal growth. They emphasized the importance of cherishing small joyful moments and supporting one another’s endeavors, including Joanna’s screenplay progress."
+        }
+      ],
+      "first_timestamp": "2022-05-25T15:11:00+08:00",
+      "last_timestamp": "2022-05-25T15:11:00+08:00",
+      "created_at": "2025-12-05T16:24:23.376877",
+      "updated_at": "2025-12-05T16:24:23.376877"
+    },
+    "gec_019": {
+      "cluster_id": "gec_019",
+      "topic": "Cherishing small joyful moments in daily life",
+      "summary": "On May 25, 2022, Nate and Joanna shared a positive conversation about Nate’s new friendship with a nearby couple through their dogs, exchanged thoughtful gifts, and encouraged each other’s creative and personal growth. They emphasized the importance of cherishing small joyful moments and supporting one another’s endeavors, including Joanna’s screenplay progress.",
+      "members": [
+        {
+          "unit_id": "803481f6-a65c-4094-90dd-02f8638e0397",
+          "timestamp": "2022-05-25T15:11:00+08:00",
+          "summary": "On May 25, 2022, Nate and Joanna shared a positive conversation about Nate’s new friendship with a nearby couple through their dogs, exchanged thoughtful gifts, and encouraged each other’s creative and personal growth. They emphasized the importance of cherishing small joyful moments and supporting one another’s endeavors, including Joanna’s screenplay progress."
+        }
+      ],
+      "first_timestamp": "2022-05-25T15:11:00+08:00",
+      "last_timestamp": "2022-05-25T15:11:00+08:00",
+      "created_at": "2025-12-05T16:24:23.376877",
+      "updated_at": "2025-12-05T16:24:23.376877"
+    },
+    "gec_020": {
+      "cluster_id": "gec_020",
+      "topic": "Nate's gaming party with custom controller decorations",
+      "summary": "Joanna and Nate discussed their upcoming weekend plans, with Joanna excited about hiking a new trail and Nate organizing a gaming party featuring custom controller decorations for his friends. Both expressed enthusiasm and support for each other's activities.",
+      "members": [
+        {
+          "unit_id": "4ee34afa-901c-4270-aeb9-5ef242f9e7b1",
+          "timestamp": "2022-06-03T17:57:00+08:00",
+          "summary": "Joanna and Nate discussed their upcoming weekend plans, with Joanna excited about hiking a new trail and Nate organizing a gaming party featuring custom controller decorations for his friends. Both expressed enthusiasm and support for each other's activities."
+        },
+        {
+          "unit_id": "e36681f2-47d1-4aaa-a4cb-42f24e3b4e50",
+          "timestamp": "2022-06-24T10:58:00+08:00",
+          "summary": "Joanna and Nate reconnected after a period of no contact, discussing Joanna's recent screenplay submission and Nate's successful gaming party, which was well-received by attendees and planned to be repeated. Their conversation was friendly and supportive, highlighting Joanna's creative efforts and Nate's social event."
+        }
+      ],
+      "first_timestamp": "2022-06-03T17:57:00+08:00",
+      "last_timestamp": "2022-06-24T10:58:00+08:00",
+      "created_at": "2025-12-05T16:24:40.154309",
+      "updated_at": "2025-12-05T16:24:52.880726"
+    },
+    "gec_021": {
+      "cluster_id": "gec_021",
+      "topic": "Joanna and Nate's favorite superheroes Spider-Man and Iron Man",
+      "summary": "On June 5, 2022, Joanna and Nate discussed Joanna's recent achievement of seeing her screenplay on the big screen, their favorite superheroes Spider-Man and Iron Man, and the motivational role of personal mementos like Joanna's cork board filled with inspiring items and family photos. The conversation was supportive and highlighted their shared appreciation for creativity, inspiration, and family encouragement.",
+      "members": [
+        {
+          "unit_id": "797e7337-c9c8-45ac-b06f-ce986999d9d1",
+          "timestamp": "2022-06-05T14:20:00+08:00",
+          "summary": "On June 5, 2022, Joanna and Nate discussed Joanna's recent achievement of seeing her screenplay on the big screen, their favorite superheroes Spider-Man and Iron Man, and the motivational role of personal mementos like Joanna's cork board filled with inspiring items and family photos. The conversation was supportive and highlighted their shared appreciation for creativity, inspiration, and family encouragement."
+        }
+      ],
+      "first_timestamp": "2022-06-05T14:20:00+08:00",
+      "last_timestamp": "2022-06-05T14:20:00+08:00",
+      "created_at": "2025-12-05T16:24:45.531767",
+      "updated_at": "2025-12-05T16:24:45.531767"
+    },
+    "gec_022": {
+      "cluster_id": "gec_022",
+      "topic": "Joanna's use of personal mementos for motivation and inspiration",
+      "summary": "On June 5, 2022, Joanna and Nate discussed Joanna's recent achievement of seeing her screenplay on the big screen, their favorite superheroes Spider-Man and Iron Man, and the motivational role of personal mementos like Joanna's cork board filled with inspiring items and family photos. The conversation was supportive and highlighted their shared appreciation for creativity, inspiration, and family encouragement.",
+      "members": [
+        {
+          "unit_id": "797e7337-c9c8-45ac-b06f-ce986999d9d1",
+          "timestamp": "2022-06-05T14:20:00+08:00",
+          "summary": "On June 5, 2022, Joanna and Nate discussed Joanna's recent achievement of seeing her screenplay on the big screen, their favorite superheroes Spider-Man and Iron Man, and the motivational role of personal mementos like Joanna's cork board filled with inspiring items and family photos. The conversation was supportive and highlighted their shared appreciation for creativity, inspiration, and family encouragement."
+        }
+      ],
+      "first_timestamp": "2022-06-05T14:20:00+08:00",
+      "last_timestamp": "2022-06-05T14:20:00+08:00",
+      "created_at": "2025-12-05T16:24:45.534092",
+      "updated_at": "2025-12-05T16:24:45.534092"
+    },
+    "gec_023": {
+      "cluster_id": "gec_023",
+      "topic": "Joanna's inspirational road trip to Woodhaven for movie research",
+      "summary": "On July 10, 2022, Nate celebrated winning his fourth online video game tournament while Joanna shared insights from her inspirational road trip to Woodhaven for movie research and her new venture into book writing, with both exchanging mutual encouragement and support for their creative pursuits.",
+      "members": [
+        {
+          "unit_id": "8460479f-34aa-46ae-9614-525c6ba6cb63",
+          "timestamp": "2022-07-10T14:44:00+08:00",
+          "summary": "On July 10, 2022, Nate celebrated winning his fourth online video game tournament while Joanna shared insights from her inspirational road trip to Woodhaven for movie research and her new venture into book writing, with both exchanging mutual encouragement and support for their creative pursuits."
+        }
+      ],
+      "first_timestamp": "2022-07-10T14:44:00+08:00",
+      "last_timestamp": "2022-07-10T14:44:00+08:00",
+      "created_at": "2025-12-05T16:25:03.383654",
+      "updated_at": "2025-12-05T16:25:03.383654"
+    },
+    "gec_024": {
+      "cluster_id": "gec_024",
+      "topic": "Joanna's new venture into book writing",
+      "summary": "On July 10, 2022, Nate celebrated winning his fourth online video game tournament while Joanna shared insights from her inspirational road trip to Woodhaven for movie research and her new venture into book writing, with both exchanging mutual encouragement and support for their creative pursuits.",
+      "members": [
+        {
+          "unit_id": "8460479f-34aa-46ae-9614-525c6ba6cb63",
+          "timestamp": "2022-07-10T14:44:00+08:00",
+          "summary": "On July 10, 2022, Nate celebrated winning his fourth online video game tournament while Joanna shared insights from her inspirational road trip to Woodhaven for movie research and her new venture into book writing, with both exchanging mutual encouragement and support for their creative pursuits."
+        }
+      ],
+      "first_timestamp": "2022-07-10T14:44:00+08:00",
+      "last_timestamp": "2022-07-10T14:44:00+08:00",
+      "created_at": "2025-12-05T16:25:03.385435",
+      "updated_at": "2025-12-05T16:25:03.385435"
+    },
+    "gec_025": {
+      "cluster_id": "gec_025",
+      "topic": "Nate's fish tank upgrade and care for fish",
+      "summary": "On August 22, 2022, Nate shared a photo of his newly upgraded fish tank and expressed pride and affection for his calm fish companions, while Joanna complimented the increased swimming space and showed appreciation for his care. Their brief exchange highlighted Nate's joy from the tank expansion and Joanna's admiration.",
+      "members": [
+        {
+          "unit_id": "93231b4c-be20-45a3-8b22-9fbf0893a0fd",
+          "timestamp": "2022-08-22T10:59:00+08:00",
+          "summary": "On August 22, 2022, Nate shared a photo of his newly upgraded fish tank and expressed pride and affection for his calm fish companions, while Joanna complimented the increased swimming space and showed appreciation for his care. Their brief exchange highlighted Nate's joy from the tank expansion and Joanna's admiration."
+        }
+      ],
+      "first_timestamp": "2022-08-22T10:59:00+08:00",
+      "last_timestamp": "2022-08-22T10:59:00+08:00",
+      "created_at": "2025-12-05T16:25:26.408601",
+      "updated_at": "2025-12-05T16:25:26.408601"
+    },
+    "gec_026": {
+      "cluster_id": "gec_026",
+      "topic": "Nate's emotional connection to calm fish companions",
+      "summary": "On August 22, 2022, Nate shared a photo of his newly upgraded fish tank and expressed pride and affection for his calm fish companions, while Joanna complimented the increased swimming space and showed appreciation for his care. Their brief exchange highlighted Nate's joy from the tank expansion and Joanna's admiration.",
+      "members": [
+        {
+          "unit_id": "93231b4c-be20-45a3-8b22-9fbf0893a0fd",
+          "timestamp": "2022-08-22T10:59:00+08:00",
+          "summary": "On August 22, 2022, Nate shared a photo of his newly upgraded fish tank and expressed pride and affection for his calm fish companions, while Joanna complimented the increased swimming space and showed appreciation for his care. Their brief exchange highlighted Nate's joy from the tank expansion and Joanna's admiration."
+        }
+      ],
+      "first_timestamp": "2022-08-22T10:59:00+08:00",
+      "last_timestamp": "2022-08-22T10:59:00+08:00",
+      "created_at": "2025-12-05T16:25:26.412314",
+      "updated_at": "2025-12-05T16:25:26.412314"
+    },
+    "gec_027": {
+      "cluster_id": "gec_027",
+      "topic": "Joanna's positive feedback on book presentation to writers group",
+      "summary": "Joanna shared that she felt good after receiving positive feedback on her book presentation to her writers group, and she and Nate discussed the importance of self-care and exchanged book recommendations to relax and recharge.",
+      "members": [
+        {
+          "unit_id": "244b8fcb-9dbd-4de7-9fb9-180beb32e7ce",
+          "timestamp": "2022-08-22T11:07:30+08:00",
+          "summary": "Joanna shared that she felt good after receiving positive feedback on her book presentation to her writers group, and she and Nate discussed the importance of self-care and exchanged book recommendations to relax and recharge."
+        }
+      ],
+      "first_timestamp": "2022-08-22T11:07:30+08:00",
+      "last_timestamp": "2022-08-22T11:07:30+08:00",
+      "created_at": "2025-12-05T16:25:33.530264",
+      "updated_at": "2025-12-05T16:25:33.530264"
+    },
+    "gec_028": {
+      "cluster_id": "gec_028",
+      "topic": "Joanna and Nate's discussion on self-care",
+      "summary": "Joanna shared that she felt good after receiving positive feedback on her book presentation to her writers group, and she and Nate discussed the importance of self-care and exchanged book recommendations to relax and recharge.",
+      "members": [
+        {
+          "unit_id": "244b8fcb-9dbd-4de7-9fb9-180beb32e7ce",
+          "timestamp": "2022-08-22T11:07:30+08:00",
+          "summary": "Joanna shared that she felt good after receiving positive feedback on her book presentation to her writers group, and she and Nate discussed the importance of self-care and exchanged book recommendations to relax and recharge."
+        }
+      ],
+      "first_timestamp": "2022-08-22T11:07:30+08:00",
+      "last_timestamp": "2022-08-22T11:07:30+08:00",
+      "created_at": "2025-12-05T16:25:33.532046",
+      "updated_at": "2025-12-05T16:25:33.532046"
+    },
+    "gec_029": {
+      "cluster_id": "gec_029",
+      "topic": "Joanna and Nate exchanging book recommendations for relaxation",
+      "summary": "Joanna shared that she felt good after receiving positive feedback on her book presentation to her writers group, and she and Nate discussed the importance of self-care and exchanged book recommendations to relax and recharge.",
+      "members": [
+        {
+          "unit_id": "244b8fcb-9dbd-4de7-9fb9-180beb32e7ce",
+          "timestamp": "2022-08-22T11:07:30+08:00",
+          "summary": "Joanna shared that she felt good after receiving positive feedback on her book presentation to her writers group, and she and Nate discussed the importance of self-care and exchanged book recommendations to relax and recharge."
+        }
+      ],
+      "first_timestamp": "2022-08-22T11:07:30+08:00",
+      "last_timestamp": "2022-08-22T11:07:30+08:00",
+      "created_at": "2025-12-05T16:25:33.533131",
+      "updated_at": "2025-12-05T16:25:33.533131"
+    },
+    "gec_030": {
+      "cluster_id": "gec_030",
+      "topic": "Joanna's laptop crash and loss of work",
+      "summary": "On September 14, 2022, Joanna informed Nate that her laptop had crashed the previous week, causing the loss of all her work and significant frustration, to which Nate responded empathetically and advised her to back up her work in the future.",
+      "members": [
+        {
+          "unit_id": "d1bfafdc-70a9-4704-8275-e73cbd20546e",
+          "timestamp": "2022-09-14T13:43:30+08:00",
+          "summary": "On September 14, 2022, Joanna informed Nate that her laptop had crashed the previous week, causing the loss of all her work and significant frustration, to which Nate responded empathetically and advised her to back up her work in the future."
+        }
+      ],
+      "first_timestamp": "2022-09-14T13:43:30+08:00",
+      "last_timestamp": "2022-09-14T13:43:30+08:00",
+      "created_at": "2025-12-05T16:25:43.187621",
+      "updated_at": "2025-12-05T16:25:43.187621"
+    },
+    "gec_031": {
+      "cluster_id": "gec_031",
+      "topic": "Nate's recommendation of writing conventions",
+      "summary": "On October 9, 2022, Nate suggested to Joanna that she attend a writing convention, describing it as an unforgettable experience, to which Joanna expressed curiosity and appreciation while asking about Nate's plans for the evening.",
+      "members": [
+        {
+          "unit_id": "2a1ccea5-f198-47e4-806c-ec123720557b",
+          "timestamp": "2022-10-09T11:04:30+08:00",
+          "summary": "On October 9, 2022, Nate suggested to Joanna that she attend a writing convention, describing it as an unforgettable experience, to which Joanna expressed curiosity and appreciation while asking about Nate's plans for the evening."
+        }
+      ],
+      "first_timestamp": "2022-10-09T11:04:30+08:00",
+      "last_timestamp": "2022-10-09T11:04:30+08:00",
+      "created_at": "2025-12-05T16:26:12.949389",
+      "updated_at": "2025-12-05T16:26:12.949389"
+    },
+    "gec_032": {
+      "cluster_id": "gec_032",
+      "topic": "Joanna's curiosity and interest in writing conventions",
+      "summary": "On October 9, 2022, Nate suggested to Joanna that she attend a writing convention, describing it as an unforgettable experience, to which Joanna expressed curiosity and appreciation while asking about Nate's plans for the evening.",
+      "members": [
+        {
+          "unit_id": "2a1ccea5-f198-47e4-806c-ec123720557b",
+          "timestamp": "2022-10-09T11:04:30+08:00",
+          "summary": "On October 9, 2022, Nate suggested to Joanna that she attend a writing convention, describing it as an unforgettable experience, to which Joanna expressed curiosity and appreciation while asking about Nate's plans for the evening."
+        }
+      ],
+      "first_timestamp": "2022-10-09T11:04:30+08:00",
+      "last_timestamp": "2022-10-09T11:04:30+08:00",
+      "created_at": "2025-12-05T16:26:12.952184",
+      "updated_at": "2025-12-05T16:26:12.952184"
+    },
+    "gec_033": {
+      "cluster_id": "gec_033",
+      "topic": "Nate's evening plans on October 9, 2022",
+      "summary": "On October 9, 2022, Nate suggested to Joanna that she attend a writing convention, describing it as an unforgettable experience, to which Joanna expressed curiosity and appreciation while asking about Nate's plans for the evening.",
+      "members": [
+        {
+          "unit_id": "2a1ccea5-f198-47e4-806c-ec123720557b",
+          "timestamp": "2022-10-09T11:04:30+08:00",
+          "summary": "On October 9, 2022, Nate suggested to Joanna that she attend a writing convention, describing it as an unforgettable experience, to which Joanna expressed curiosity and appreciation while asking about Nate's plans for the evening."
+        }
+      ],
+      "first_timestamp": "2022-10-09T11:04:30+08:00",
+      "last_timestamp": "2022-10-09T11:04:30+08:00",
+      "created_at": "2025-12-05T16:26:12.954773",
+      "updated_at": "2025-12-05T16:26:12.954773"
+    },
+    "gec_034": {
+      "cluster_id": "gec_034",
+      "topic": "Joanna's recipe revision and family cooking",
+      "summary": "On October 21, 2022, Nate and Joanna engaged in a friendly catch-up conversation where Joanna shared her recent success in perfecting a family recipe, and they exchanged updates on their recent activities. This interaction followed their last communication on October 9, 2022.",
+      "members": [
+        {
+          "unit_id": "c966eb11-4fe0-4afd-8f26-20e3e47d7ac1",
+          "timestamp": "2022-10-21T14:01:30+08:00",
+          "summary": "On October 21, 2022, Nate and Joanna engaged in a friendly catch-up conversation where Joanna shared her recent success in perfecting a family recipe, and they exchanged updates on their recent activities. This interaction followed their last communication on October 9, 2022."
+        }
+      ],
+      "first_timestamp": "2022-10-21T14:01:30+08:00",
+      "last_timestamp": "2022-10-21T14:01:30+08:00",
+      "created_at": "2025-12-05T16:26:23.682797",
+      "updated_at": "2025-12-05T16:26:23.682797"
+    },
+    "gec_035": {
+      "cluster_id": "gec_035",
+      "topic": "Nate and Joanna's friendly catch-up conversations",
+      "summary": "On October 21, 2022, Nate and Joanna engaged in a friendly catch-up conversation where Joanna shared her recent success in perfecting a family recipe, and they exchanged updates on their recent activities. This interaction followed their last communication on October 9, 2022.",
+      "members": [
+        {
+          "unit_id": "c966eb11-4fe0-4afd-8f26-20e3e47d7ac1",
+          "timestamp": "2022-10-21T14:01:30+08:00",
+          "summary": "On October 21, 2022, Nate and Joanna engaged in a friendly catch-up conversation where Joanna shared her recent success in perfecting a family recipe, and they exchanged updates on their recent activities. This interaction followed their last communication on October 9, 2022."
+        }
+      ],
+      "first_timestamp": "2022-10-21T14:01:30+08:00",
+      "last_timestamp": "2022-10-21T14:01:30+08:00",
+      "created_at": "2025-12-05T16:26:23.685616",
+      "updated_at": "2025-12-05T16:26:23.685616"
+    },
+    "gec_036": {
+      "cluster_id": "gec_036",
+      "topic": "Joanna's emotional support from her stuffed dog Tilly",
+      "summary": "On October 21, 2022, Nate and Joanna shared a brief conversation where Nate expressed stress over his video game tournament while finding comfort in watching his turtles, and Joanna reflected on the emotional support her stuffed dog Tilly provided, symbolizing her connection to a real pet she had to give up. Both participants exchanged emotional support and discussed their current activities, highlighting the comforting effects of their respective animals.",
+      "members": [
+        {
+          "unit_id": "ea58d8d1-a6f6-4d90-be63-da4bd98718b9",
+          "timestamp": "2022-10-21T14:06:00+08:00",
+          "summary": "On October 21, 2022, Nate and Joanna shared a brief conversation where Nate expressed stress over his video game tournament while finding comfort in watching his turtles, and Joanna reflected on the emotional support her stuffed dog Tilly provided, symbolizing her connection to a real pet she had to give up. Both participants exchanged emotional support and discussed their current activities, highlighting the comforting effects of their respective animals."
+        }
+      ],
+      "first_timestamp": "2022-10-21T14:06:00+08:00",
+      "last_timestamp": "2022-10-21T14:06:00+08:00",
+      "created_at": "2025-12-05T16:26:29.192096",
+      "updated_at": "2025-12-05T16:26:29.192096"
+    },
+    "gec_037": {
+      "cluster_id": "gec_037",
+      "topic": "Nate's casual farewells and reconnection attempts with Joanna",
+      "summary": "In late October 2022, Nate ended a prior interaction with a casual farewell and later reached out to Joanna to reconnect and catch up, expressing friendly interest in maintaining their communication.",
+      "members": [
+        {
+          "unit_id": "5c432051-6413-4d2a-afb5-c0174e4b7f7c",
+          "timestamp": "2022-10-25T20:16:00+08:00",
+          "summary": "In late October 2022, Nate ended a prior interaction with a casual farewell and later reached out to Joanna to reconnect and catch up, expressing friendly interest in maintaining their communication."
+        }
+      ],
+      "first_timestamp": "2022-10-25T20:16:00+08:00",
+      "last_timestamp": "2022-10-25T20:16:00+08:00",
+      "created_at": "2025-12-05T16:26:38.454780",
+      "updated_at": "2025-12-05T16:26:38.454780"
+    },
+    "gec_038": {
+      "cluster_id": "gec_038",
+      "topic": "Joanna's challenging work project",
+      "summary": "On November 4, 2022, Joanna and Nate exchanged a friendly conversation where Joanna shared her challenging project at work, and Nate discussed helping friends reset high scores at an international gaming tournament, both expressing enthusiasm for their respective activities.",
+      "members": [
+        {
+          "unit_id": "06ff79a9-09c4-46ce-bb34-d1db9c9237eb",
+          "timestamp": "2022-11-04T16:03:00+08:00",
+          "summary": "On November 4, 2022, Joanna and Nate exchanged a friendly conversation where Joanna shared her challenging project at work, and Nate discussed helping friends reset high scores at an international gaming tournament, both expressing enthusiasm for their respective activities."
+        }
+      ],
+      "first_timestamp": "2022-11-04T16:03:00+08:00",
+      "last_timestamp": "2022-11-04T16:03:00+08:00",
+      "created_at": "2025-12-05T16:27:03.038174",
+      "updated_at": "2025-12-05T16:27:03.038174"
+    },
+    "gec_039": {
+      "cluster_id": "gec_039",
+      "topic": "Nate's special day with his pets at the park",
+      "summary": "On November 7, 2022, Nate and Joanna shared a heartfelt conversation about cherishing and recording memories, with Nate reflecting on a special day with his pets and both deciding to start documenting their favorite moments together. Their exchange emphasized the value of preserving memories and supporting each other in creating new ones.",
+      "members": [
+        {
+          "unit_id": "fad1d735-e008-488c-a74a-564e3a56c85e",
+          "timestamp": "2022-11-07T20:28:30+08:00",
+          "summary": "On November 7, 2022, Nate and Joanna shared a heartfelt conversation about cherishing and recording memories, with Nate reflecting on a special day with his pets and both deciding to start documenting their favorite moments together. Their exchange emphasized the value of preserving memories and supporting each other in creating new ones."
+        }
+      ],
+      "first_timestamp": "2022-11-07T20:28:30+08:00",
+      "last_timestamp": "2022-11-07T20:28:30+08:00",
+      "created_at": "2025-12-05T16:27:33.059985",
+      "updated_at": "2025-12-05T16:27:33.059985"
+    },
+    "gec_040": {
+      "cluster_id": "gec_040",
+      "topic": "Nate and Joanna's practice of cherishing and recording memories",
+      "summary": "On November 7, 2022, Nate and Joanna shared a heartfelt conversation about cherishing and recording memories, with Nate reflecting on a special day with his pets and both deciding to start documenting their favorite moments together. Their exchange emphasized the value of preserving memories and supporting each other in creating new ones.",
+      "members": [
+        {
+          "unit_id": "fad1d735-e008-488c-a74a-564e3a56c85e",
+          "timestamp": "2022-11-07T20:28:30+08:00",
+          "summary": "On November 7, 2022, Nate and Joanna shared a heartfelt conversation about cherishing and recording memories, with Nate reflecting on a special day with his pets and both deciding to start documenting their favorite moments together. Their exchange emphasized the value of preserving memories and supporting each other in creating new ones."
+        }
+      ],
+      "first_timestamp": "2022-11-07T20:28:30+08:00",
+      "last_timestamp": "2022-11-07T20:28:30+08:00",
+      "created_at": "2025-12-05T16:27:33.062252",
+      "updated_at": "2025-12-05T16:27:33.062252"
+    },
+    "gec_041": {
+      "cluster_id": "gec_041",
+      "topic": "Nate's potential move to a new gaming team",
+      "summary": "On November 9, 2022, Nate and Joanna discussed Nate's postponed game tournament, his homemade coconut ice cream experiment, and his potential move to a new gaming team, with both expressing mutual support and optimism about future plans.",
+      "members": [
+        {
+          "unit_id": "8332d25f-1459-4d95-af50-9e11968098a4",
+          "timestamp": "2022-11-09T17:57:00+08:00",
+          "summary": "On November 9, 2022, Nate and Joanna discussed Nate's postponed game tournament, his homemade coconut ice cream experiment, and his potential move to a new gaming team, with both expressing mutual support and optimism about future plans."
+        }
+      ],
+      "first_timestamp": "2022-11-09T17:57:00+08:00",
+      "last_timestamp": "2022-11-09T17:57:00+08:00",
+      "created_at": "2025-12-05T16:27:38.842621",
+      "updated_at": "2025-12-05T16:27:38.842621"
+    },
+    "gec_042": {
+      "cluster_id": "gec_042",
+      "topic": "Nate's creation of gaming content for YouTube",
+      "summary": "On November 9, 2022, Joanna and Nate discussed their creative projects, with Joanna working on a suspenseful thriller and Nate starting to create gaming content for YouTube, sharing mutual enthusiasm and encouragement throughout their conversation.",
+      "members": [
+        {
+          "unit_id": "1f69303f-e0e9-42aa-8654-5b0870dbcace",
+          "timestamp": "2022-11-09T18:03:30+08:00",
+          "summary": "On November 9, 2022, Joanna and Nate discussed their creative projects, with Joanna working on a suspenseful thriller and Nate starting to create gaming content for YouTube, sharing mutual enthusiasm and encouragement throughout their conversation."
+        }
+      ],
+      "first_timestamp": "2022-11-09T18:03:30+08:00",
+      "last_timestamp": "2022-11-09T18:03:30+08:00",
+      "created_at": "2025-12-05T16:27:48.177020",
+      "updated_at": "2025-12-05T16:27:48.177020"
+    }
+  },
+  "unit_to_clusters": {
+    "3cbeac2d-994d-44a4-9b3b-f1e93191aa4d": [
+      "gec_001"
+    ],
+    "7cbd5fcd-9df6-4541-9257-8653d1c223b6": [
+      "gec_001",
+      "gec_002"
+    ],
+    "3fef93ed-43fa-46ae-8fd8-e9b8a4aea674": [
+      "gec_001",
+      "gec_003",
+      "gec_004"
+    ],
+    "e86e44c3-519d-482c-80c9-225243616270": [
+      "gec_005",
+      "gec_006",
+      "gec_007"
+    ],
+    "e573adc5-520d-4b82-9296-9a84da355982": [
+      "gec_003"
+    ],
+    "f0ca4a1c-be32-42a8-9048-5ca9b4a4863e": [
+      "gec_008"
+    ],
+    "74fddbc0-ad0c-4420-b23e-a829dc41e11e": [
+      "gec_002"
+    ],
+    "9b09ead2-2644-44cd-9752-5180d314fe35": [
+      "gec_008"
+    ],
+    "8605bb2b-693e-4f91-a11b-77da7541c47a": [
+      "gec_003"
+    ],
+    "bef834d1-3b24-41fc-9986-10e0a220297b": [
+      "gec_003"
+    ],
+    "f4328a6b-3e56-49ee-9892-a421c84bf397": [
+      "gec_004",
+      "gec_005"
+    ],
+    "4fbdaa9f-38c0-46ff-8590-63ac4f68464e": [
+      "gec_003",
+      "gec_009"
+    ],
+    "4d1b4e7e-62b4-4e44-b5f1-19cd76331f20": [
+      "gec_003"
+    ],
+    "956ee60c-0bd7-4f43-8c7f-011b45c4cb44": [
+      "gec_001",
+      "gec_010"
+    ],
+    "0576bea1-8139-4d66-84e2-9ae3724ad91c": [
+      "gec_003",
+      "gec_006",
+      "gec_010"
+    ],
+    "70dae0e6-6787-4e9d-b28f-acfc142f2719": [
+      "gec_011"
+    ],
+    "dc6c633e-b75f-4645-b3ee-6a67d5f04b83": [
+      "gec_011",
+      "gec_012",
+      "gec_003"
+    ],
+    "b40503ba-5598-4a46-890a-ec556fbc6b3f": [
+      "gec_013"
+    ],
+    "a649720c-160e-4097-8cca-82a522d68b10": [
+      "gec_014",
+      "gec_004"
+    ],
+    "875b05ab-c55c-4c8d-8466-eda5adba5ec8": [
+      "gec_008"
+    ],
+    "e68166e1-3bcc-4366-ab0c-7da9c341f4c7": [
+      "gec_003",
+      "gec_010"
+    ],
+    "e6e49bb7-558e-47af-91e0-9274389b4af5": [
+      "gec_003",
+      "gec_010"
+    ],
+    "c0e0374b-daf0-4500-8be5-cf5cf40e856a": [
+      "gec_015"
+    ],
+    "bbf3d708-7995-4997-971e-6e1a4a51d849": [
+      "gec_010",
+      "gec_016"
+    ],
+    "07a9c9b2-d1a4-4c3b-a1a2-466b37527f2d": [
+      "gec_003",
+      "gec_008",
+      "gec_010"
+    ],
+    "7a994235-8599-426c-9ec9-f80f142c3494": [
+      "gec_014",
+      "gec_003"
+    ],
+    "66f734cd-6f48-4dd5-8094-eead66fd8093": [
+      "gec_005"
+    ],
+    "6c096765-5171-4cc5-8c26-b8990c8af479": [
+      "gec_003",
+      "gec_007"
+    ],
+    "803481f6-a65c-4094-90dd-02f8638e0397": [
+      "gec_003",
+      "gec_017",
+      "gec_018",
+      "gec_019"
+    ],
+    "4548e3b6-6c0f-4a61-aa5e-a57b4a805198": [
+      "gec_003",
+      "gec_007"
+    ],
+    "c7802428-2170-43f8-a004-64ce9e5b8837": [
+      "gec_006",
+      "gec_010"
+    ],
+    "4ee34afa-901c-4270-aeb9-5ef242f9e7b1": [
+      "gec_014",
+      "gec_006",
+      "gec_020"
+    ],
+    "797e7337-c9c8-45ac-b06f-ce986999d9d1": [
+      "gec_003",
+      "gec_021",
+      "gec_022"
+    ],
+    "e36681f2-47d1-4aaa-a4cb-42f24e3b4e50": [
+      "gec_003",
+      "gec_020",
+      "gec_006"
+    ],
+    "a9cb81f1-ff3f-4dc7-a569-1a03900aed9e": [
+      "gec_008"
+    ],
+    "8460479f-34aa-46ae-9614-525c6ba6cb63": [
+      "gec_006",
+      "gec_023",
+      "gec_024"
+    ],
+    "ec18e40c-b6b5-4783-be99-776bde838b13": [
+      "gec_007"
+    ],
+    "cb1ee15c-52fa-4318-b2d5-180d162ee16b": [
+      "gec_007",
+      "gec_008"
+    ],
+    "2e1e571b-656b-4031-8d93-bd4d952cb17a": [
+      "gec_006",
+      "gec_010"
+    ],
+    "93231b4c-be20-45a3-8b22-9fbf0893a0fd": [
+      "gec_025",
+      "gec_026"
+    ],
+    "244b8fcb-9dbd-4de7-9fb9-180beb32e7ce": [
+      "gec_027",
+      "gec_028",
+      "gec_029"
+    ],
+    "b851eaf9-9cb9-46df-8846-58e1710ce7e6": [
+      "gec_004",
+      "gec_010",
+      "gec_008"
+    ],
+    "d1bfafdc-70a9-4704-8275-e73cbd20546e": [
+      "gec_030"
+    ],
+    "9ac42989-499c-4f25-98ea-b9a0c7beca6d": [
+      "gec_008"
+    ],
+    "3f6d2cf0-0b15-453a-8b12-b9bbbfda2f49": [
+      "gec_008"
+    ],
+    "7380d993-8d36-4074-86f6-a39a8873345c": [
+      "gec_010"
+    ],
+    "d9fb5be7-6a61-4785-8ffd-8efa987535a7": [
+      "gec_007",
+      "gec_002"
+    ],
+    "69b5f662-33ac-43e3-a968-3ff02c105f1b": [
+      "gec_006"
+    ],
+    "2a1ccea5-f198-47e4-806c-ec123720557b": [
+      "gec_031",
+      "gec_032",
+      "gec_033"
+    ],
+    "6ac8a318-097f-4d22-93f6-c9dd27a4cbce": [
+      "gec_002",
+      "gec_006"
+    ],
+    "c966eb11-4fe0-4afd-8f26-20e3e47d7ac1": [
+      "gec_034",
+      "gec_035"
+    ],
+    "ea58d8d1-a6f6-4d90-be63-da4bd98718b9": [
+      "gec_004",
+      "gec_006",
+      "gec_036"
+    ],
+    "0288bf82-9d7c-4450-bf01-604e4193b745": [
+      "gec_003",
+      "gec_006"
+    ],
+    "5c432051-6413-4d2a-afb5-c0174e4b7f7c": [
+      "gec_037"
+    ],
+    "267507ef-a6d2-4278-96ce-697e9a1c88c1": [
+      "gec_003"
+    ],
+    "2a0d907d-8e5c-40b2-b0f0-ce9a52149e11": [
+      "gec_002"
+    ],
+    "6f61735a-a5f4-4a3c-ada8-9679cde9d08e": [
+      "gec_004"
+    ],
+    "4ff8fd04-cd05-4aa1-9ab9-2f63feb6d2a5": [
+      "gec_003"
+    ],
+    "06ff79a9-09c4-46ce-bb34-d1db9c9237eb": [
+      "gec_006",
+      "gec_038"
+    ],
+    "a4e31a57-dd97-48f6-94f5-19c5e9538559": [
+      "gec_008"
+    ],
+    "467ec0cc-0a98-4180-af41-d63f2bfbdeb6": [
+      "gec_003",
+      "gec_010"
+    ],
+    "af9359bb-a165-4b0c-b56f-8e5f1169594b": [
+      "gec_006",
+      "gec_010"
+    ],
+    "aff5b91b-972f-45fa-98f6-ecff3dc46700": [
+      "gec_002"
+    ],
+    "8641dbb8-2aba-4262-bba5-50e0736244f1": [
+      "gec_003"
+    ],
+    "fad1d735-e008-488c-a74a-564e3a56c85e": [
+      "gec_039",
+      "gec_040"
+    ],
+    "8332d25f-1459-4d95-af50-9e11968098a4": [
+      "gec_008",
+      "gec_006",
+      "gec_041"
+    ],
+    "3e6e2d35-51c5-4a9c-943f-1805192e3f1e": [
+      "gec_003"
+    ],
+    "1f69303f-e0e9-42aa-8654-5b0870dbcace": [
+      "gec_003",
+      "gec_042"
+    ],
+    "c8586302-92a3-4724-b178-aeb0ad63c318": [
+      "gec_004",
+      "gec_005",
+      "gec_014"
+    ],
+    "0f934d12-3335-4c43-81e6-4b6b1ec77f86": [
+      "gec_004",
+      "gec_005",
+      "gec_002"
+    ],
+    "e93bc51e-39f6-4e65-a05f-f46a39b8705c": [
+      "gec_003"
+    ],
+    "8d497714-74f0-4198-88f9-e4e72b41ea86": [
+      "gec_003",
+      "gec_004"
+    ],
+    "fdb56453-b91a-4d3b-ab28-52c94ffc345c": [
+      "gec_004",
+      "gec_008"
+    ]
+  },
+  "metadata": {
+    "conversation_id": "conv_3",
+    "total_units": 73,
+    "total_clusters": 42,
+    "created_at": "2025-12-05T16:21:55.383349",
+    "updated_at": "2025-12-05T16:28:14.183593",
+    "llm_model": "gpt-4.1-mini"
+  }
+}

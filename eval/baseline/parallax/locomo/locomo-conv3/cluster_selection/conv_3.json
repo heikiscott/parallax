@@ -1,0 +1,1134 @@
+{
+  "qa_count": 199,
+  "questions": [
+    {
+      "query": "When did Joanna finish her first screenplay?",
+      "question_id": "locomo_3_qa7",
+      "clusters_found": [
+        "gec_023",
+        "gec_003",
+        "gec_019",
+        "gec_018",
+        "gec_010",
+        "gec_005",
+        "gec_001",
+        "gec_021",
+        "gec_008",
+        "gec_007",
+        "gec_006",
+        "gec_020",
+        "gec_022",
+        "gec_017",
+        "gec_024",
+        "gec_002",
+        "gec_004"
+      ],
+      "clusters_selected": [
+        "gec_001",
+        "gec_003"
+      ],
+      "selection_reasoning": "Clusters gec_001 and gec_003 both contain direct references to Joanna completing her first screenplay. Gec_001 mentions Joanna sharing excitement after completing her first full screenplay in early 2022, and gec_003 covers her journey completing and submitting screenplays with detailed timeline and progress, making these two clusters most relevant to pinpoint when Joanna finished her first screenplay.",
+      "cluster_details": {
+        "gec_001": {
+          "topic": "Nate and Joanna's January 2022 reunion chat",
+          "summary": "On January 21, 2022, Nate and Joanna reconnected, sharing updates about their recent activities, including Nate's excitement over winning his first Counter-Strike: Global Offensive tournament and Joanna's ongoing project. Both expressed warmth and enthusiasm in catching up and discussing their hobbies.",
+          "member_count": 4,
+          "members_returned": 4
+        },
+        "gec_003": {
+          "topic": "Joanna's first full screenplay completion and film festival plans",
+          "summary": "Joanna shared her journey completing and submitting screenplays, expressing mixed emotions from excitement to setbacks. Nate consistently offered encouragement and support, fostering mutual motivation as Joanna progressed from writing to filming and engaging with producers.",
+          "member_count": 26,
+          "members_returned": 15
+        }
+      },
+      "members_per_cluster": {
+        "gec_001": 4,
+        "gec_003": 15
+      },
+      "final_count": 27,
+      "truncated": false,
+      "evidence": [
+        "D2:3"
+      ],
+      "evidence_detail": {
+        "D2:3": [
+          "3fef93ed-43fa-46ae-8fd8-e9b8a4aea674",
+          "gec_004"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "3fef93ed-43fa-46ae-8fd8-e9b8a4aea674"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_004"
+      ],
+      "cluster_hit": false,
+      "memunit_hit": true,
+      "memunit_coverage": 1.0,
+      "selected_unit_ids": [
+        "8605bb2b-693e-4f91-a11b-77da7541c47a",
+        "7cbd5fcd-9df6-4541-9257-8653d1c223b6",
+        "bef834d1-3b24-41fc-9986-10e0a220297b",
+        "797e7337-c9c8-45ac-b06f-ce986999d9d1",
+        "956ee60c-0bd7-4f43-8c7f-011b45c4cb44",
+        "7a994235-8599-426c-9ec9-f80f142c3494",
+        "6c096765-5171-4cc5-8c26-b8990c8af479",
+        "e573adc5-520d-4b82-9296-9a84da355982",
+        "e68166e1-3bcc-4366-ab0c-7da9c341f4c7",
+        "e6e49bb7-558e-47af-91e0-9274389b4af5",
+        "0576bea1-8139-4d66-84e2-9ae3724ad91c",
+        "3fef93ed-43fa-46ae-8fd8-e9b8a4aea674",
+        "07a9c9b2-d1a4-4c3b-a1a2-466b37527f2d",
+        "4d1b4e7e-62b4-4e44-b5f1-19cd76331f20",
+        "4548e3b6-6c0f-4a61-aa5e-a57b4a805198",
+        "803481f6-a65c-4094-90dd-02f8638e0397",
+        "3cbeac2d-994d-44a4-9b3b-f1e93191aa4d",
+        "4fbdaa9f-38c0-46ff-8590-63ac4f68464e",
+        "dc6c633e-b75f-4645-b3ee-6a67d5f04b83"
+      ]
+    },
+    {
+      "query": "When did Joanna have an audition for a writing gig?",
+      "question_id": "locomo_3_qa13",
+      "clusters_found": [
+        "gec_003",
+        "gec_010",
+        "gec_014",
+        "gec_031",
+        "gec_033",
+        "gec_024",
+        "gec_002",
+        "gec_032",
+        "gec_039",
+        "gec_001",
+        "gec_009",
+        "gec_012",
+        "gec_004",
+        "gec_040",
+        "gec_023",
+        "gec_011",
+        "gec_006",
+        "gec_005",
+        "gec_007"
+      ],
+      "clusters_selected": [],
+      "selection_reasoning": "None of the clusters mention Joanna having an audition for a writing gig or any related event.",
+      "cluster_details": {},
+      "members_per_cluster": {},
+      "final_count": 20,
+      "truncated": false,
+      "evidence": [
+        "D6:2"
+      ],
+      "evidence_detail": {
+        "D6:2": [
+          "4d1b4e7e-62b4-4e44-b5f1-19cd76331f20",
+          "gec_003"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "4d1b4e7e-62b4-4e44-b5f1-19cd76331f20"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_003"
+      ],
+      "cluster_hit": false,
+      "memunit_hit": false,
+      "memunit_coverage": 0.0,
+      "selected_unit_ids": []
+    },
+    {
+      "query": "How many times has Joanna found new hiking trails?",
+      "question_id": "locomo_3_qa19",
+      "clusters_found": [
+        "gec_003",
+        "gec_010",
+        "gec_014",
+        "gec_027",
+        "gec_020",
+        "gec_002",
+        "gec_001",
+        "gec_008",
+        "gec_012",
+        "gec_013",
+        "gec_004",
+        "gec_011",
+        "gec_006",
+        "gec_038",
+        "gec_028",
+        "gec_005",
+        "gec_034",
+        "gec_042",
+        "gec_007",
+        "gec_029",
+        "gec_035"
+      ],
+      "clusters_selected": [
+        "gec_014",
+        "gec_020"
+      ],
+      "selection_reasoning": "Clusters gec_014 and gec_020 both contain information about Joanna finding and discussing new hiking trails, which directly addresses how many times Joanna has found new hiking trails.",
+      "cluster_details": {
+        "gec_014": {
+          "topic": "Joanna's appreciation for nature and hiking",
+          "summary": "On April 17, 2022, Joanna and Nate discussed their appreciation for nature, hiking, and finding peace through simple pleasures, with Joanna sharing a new hiking trail and suggesting they hike together sometime. They also exchanged photos of Nate’s turtles, highlighting their shared enjoyment of companionship and moments of calm.",
+          "member_count": 4,
+          "members_returned": 4
+        },
+        "gec_020": {
+          "topic": "Nate's gaming party with custom controller decorations",
+          "summary": "Joanna and Nate discussed their upcoming weekend plans, with Joanna excited about hiking a new trail and Nate organizing a gaming party featuring custom controller decorations for his friends. Both expressed enthusiasm and support for each other's activities.",
+          "member_count": 2,
+          "members_returned": 1
+        }
+      },
+      "members_per_cluster": {
+        "gec_014": 4,
+        "gec_020": 1
+      },
+      "final_count": 15,
+      "truncated": false,
+      "evidence": [
+        "D8:4",
+        "D11:3"
+      ],
+      "evidence_detail": {
+        "D8:4": [
+          "a649720c-160e-4097-8cca-82a522d68b10",
+          "gec_014"
+        ],
+        "D11:3": [
+          "7a994235-8599-426c-9ec9-f80f142c3494",
+          "gec_014"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "a649720c-160e-4097-8cca-82a522d68b10",
+        "7a994235-8599-426c-9ec9-f80f142c3494"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_014"
+      ],
+      "cluster_hit": true,
+      "memunit_hit": true,
+      "memunit_coverage": 1.0,
+      "selected_unit_ids": [
+        "a649720c-160e-4097-8cca-82a522d68b10",
+        "e36681f2-47d1-4aaa-a4cb-42f24e3b4e50",
+        "c8586302-92a3-4724-b178-aeb0ad63c318",
+        "4ee34afa-901c-4270-aeb9-5ef242f9e7b1",
+        "7a994235-8599-426c-9ec9-f80f142c3494"
+      ]
+    },
+    {
+      "query": "When did Joanna start writing her third screenplay?",
+      "question_id": "locomo_3_qa22",
+      "clusters_found": [
+        "gec_040",
+        "gec_023",
+        "gec_003",
+        "gec_039",
+        "gec_010",
+        "gec_021",
+        "gec_001",
+        "gec_042",
+        "gec_009",
+        "gec_007",
+        "gec_006",
+        "gec_038",
+        "gec_020",
+        "gec_022",
+        "gec_030",
+        "gec_024",
+        "gec_002",
+        "gec_004"
+      ],
+      "clusters_selected": [
+        "gec_003"
+      ],
+      "selection_reasoning": "Cluster gec_003 covers Joanna's screenplay writing journey, including completion and progress updates, which likely include the timing of when she started writing her third screenplay.",
+      "cluster_details": {
+        "gec_003": {
+          "topic": "Joanna's first full screenplay completion and film festival plans",
+          "summary": "Joanna shared her journey completing and submitting screenplays, expressing mixed emotions from excitement to setbacks. Nate consistently offered encouragement and support, fostering mutual motivation as Joanna progressed from writing to filming and engaging with producers.",
+          "member_count": 26,
+          "members_returned": 15
+        }
+      },
+      "members_per_cluster": {
+        "gec_003": 15
+      },
+      "final_count": 25,
+      "truncated": false,
+      "evidence": [
+        "D12:13",
+        "D12:14"
+      ],
+      "evidence_detail": {
+        "D12:13": [
+          "6c096765-5171-4cc5-8c26-b8990c8af479",
+          "gec_007"
+        ],
+        "D12:14": [
+          "6c096765-5171-4cc5-8c26-b8990c8af479",
+          "gec_007"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "6c096765-5171-4cc5-8c26-b8990c8af479"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_007"
+      ],
+      "cluster_hit": false,
+      "memunit_hit": true,
+      "memunit_coverage": 1.0,
+      "selected_unit_ids": [
+        "07a9c9b2-d1a4-4c3b-a1a2-466b37527f2d",
+        "e573adc5-520d-4b82-9296-9a84da355982",
+        "e68166e1-3bcc-4366-ab0c-7da9c341f4c7",
+        "4fbdaa9f-38c0-46ff-8590-63ac4f68464e",
+        "4d1b4e7e-62b4-4e44-b5f1-19cd76331f20",
+        "8605bb2b-693e-4f91-a11b-77da7541c47a",
+        "4548e3b6-6c0f-4a61-aa5e-a57b4a805198",
+        "e6e49bb7-558e-47af-91e0-9274389b4af5",
+        "0576bea1-8139-4d66-84e2-9ae3724ad91c",
+        "7a994235-8599-426c-9ec9-f80f142c3494",
+        "803481f6-a65c-4094-90dd-02f8638e0397",
+        "6c096765-5171-4cc5-8c26-b8990c8af479",
+        "bef834d1-3b24-41fc-9986-10e0a220297b",
+        "dc6c633e-b75f-4645-b3ee-6a67d5f04b83",
+        "3fef93ed-43fa-46ae-8fd8-e9b8a4aea674"
+      ]
+    },
+    {
+      "query": "When did Nate make vegan icecream and share it with a vegan diet group?",
+      "question_id": "locomo_3_qa28",
+      "clusters_found": [
+        "gec_040",
+        "gec_003",
+        "gec_039",
+        "gec_010",
+        "gec_014",
+        "gec_005",
+        "gec_042",
+        "gec_001",
+        "gec_008",
+        "gec_007",
+        "gec_006",
+        "gec_041",
+        "gec_002",
+        "gec_004"
+      ],
+      "clusters_selected": [
+        "gec_008",
+        "gec_041"
+      ],
+      "selection_reasoning": "Cluster gec_008 focuses on Nate's dairy-free dessert experimentation, including vegan ice cream, which directly relates to the query about when Nate made vegan ice cream. Cluster gec_041 mentions Nate's homemade coconut ice cream experiment and discussions with a vegan diet group contextually, providing a specific time reference to the event.",
+      "cluster_details": {
+        "gec_008": {
+          "topic": "Nate's dairy-free dessert experimentation and recipes",
+          "summary": "Nate and Joanna consistently shared and experimented with dairy-free dessert recipes, especially coconut milk and vegan ice creams, exchanging tips, photos, and encouragement. Their ongoing collaboration reflected mutual enthusiasm and evolving culinary creativity over time.",
+          "member_count": 12,
+          "members_returned": 12
+        },
+        "gec_041": {
+          "topic": "Nate's potential move to a new gaming team",
+          "summary": "On November 9, 2022, Nate and Joanna discussed Nate's postponed game tournament, his homemade coconut ice cream experiment, and his potential move to a new gaming team, with both expressing mutual support and optimism about future plans.",
+          "member_count": 1,
+          "members_returned": 0
+        }
+      },
+      "members_per_cluster": {
+        "gec_008": 12,
+        "gec_041": 0
+      },
+      "final_count": 22,
+      "truncated": false,
+      "evidence": [
+        "D16:8"
+      ],
+      "evidence_detail": {
+        "D16:8": [
+          "a9cb81f1-ff3f-4dc7-a569-1a03900aed9e",
+          "gec_008"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "a9cb81f1-ff3f-4dc7-a569-1a03900aed9e"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_008"
+      ],
+      "cluster_hit": true,
+      "memunit_hit": true,
+      "memunit_coverage": 1.0,
+      "selected_unit_ids": [
+        "07a9c9b2-d1a4-4c3b-a1a2-466b37527f2d",
+        "8332d25f-1459-4d95-af50-9e11968098a4",
+        "3f6d2cf0-0b15-453a-8b12-b9bbbfda2f49",
+        "875b05ab-c55c-4c8d-8466-eda5adba5ec8",
+        "9b09ead2-2644-44cd-9752-5180d314fe35",
+        "f0ca4a1c-be32-42a8-9048-5ca9b4a4863e",
+        "cb1ee15c-52fa-4318-b2d5-180d162ee16b",
+        "a4e31a57-dd97-48f6-94f5-19c5e9538559",
+        "9ac42989-499c-4f25-98ea-b9a0c7beca6d",
+        "a9cb81f1-ff3f-4dc7-a569-1a03900aed9e",
+        "fdb56453-b91a-4d3b-ab28-52c94ffc345c",
+        "b851eaf9-9cb9-46df-8846-58e1710ce7e6"
+      ]
+    },
+    {
+      "query": "When is Joanna going to make Nate's ice cream for her family?",
+      "question_id": "locomo_3_qa29",
+      "clusters_found": [
+        "gec_003",
+        "gec_015",
+        "gec_027",
+        "gec_034",
+        "gec_014",
+        "gec_005",
+        "gec_001",
+        "gec_029",
+        "gec_008",
+        "gec_007",
+        "gec_006",
+        "gec_041",
+        "gec_028",
+        "gec_002",
+        "gec_004",
+        "gec_035"
+      ],
+      "clusters_selected": [
+        "gec_008"
+      ],
+      "selection_reasoning": "The query specifically asks about when Joanna is going to make Nate's ice cream for her family. Cluster gec_008 focuses on Nate's dairy-free dessert experimentation and recipes, including ice cream, and mentions plans involving Joanna making or trying these desserts, making it directly relevant to the timing of Joanna making Nate's ice cream.",
+      "cluster_details": {
+        "gec_008": {
+          "topic": "Nate's dairy-free dessert experimentation and recipes",
+          "summary": "Nate and Joanna consistently shared and experimented with dairy-free dessert recipes, especially coconut milk and vegan ice creams, exchanging tips, photos, and encouragement. Their ongoing collaboration reflected mutual enthusiasm and evolving culinary creativity over time.",
+          "member_count": 12,
+          "members_returned": 12
+        }
+      },
+      "members_per_cluster": {
+        "gec_008": 12
+      },
+      "final_count": 22,
+      "truncated": false,
+      "evidence": [
+        "D16:11"
+      ],
+      "evidence_detail": {
+        "D16:11": [
+          "a9cb81f1-ff3f-4dc7-a569-1a03900aed9e",
+          "gec_008"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "a9cb81f1-ff3f-4dc7-a569-1a03900aed9e"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_008"
+      ],
+      "cluster_hit": true,
+      "memunit_hit": true,
+      "memunit_coverage": 1.0,
+      "selected_unit_ids": [
+        "07a9c9b2-d1a4-4c3b-a1a2-466b37527f2d",
+        "8332d25f-1459-4d95-af50-9e11968098a4",
+        "3f6d2cf0-0b15-453a-8b12-b9bbbfda2f49",
+        "875b05ab-c55c-4c8d-8466-eda5adba5ec8",
+        "9b09ead2-2644-44cd-9752-5180d314fe35",
+        "f0ca4a1c-be32-42a8-9048-5ca9b4a4863e",
+        "cb1ee15c-52fa-4318-b2d5-180d162ee16b",
+        "a4e31a57-dd97-48f6-94f5-19c5e9538559",
+        "9ac42989-499c-4f25-98ea-b9a0c7beca6d",
+        "a9cb81f1-ff3f-4dc7-a569-1a03900aed9e",
+        "fdb56453-b91a-4d3b-ab28-52c94ffc345c",
+        "b851eaf9-9cb9-46df-8846-58e1710ce7e6"
+      ]
+    },
+    {
+      "query": "When did someone write Joanna a touching letter?",
+      "question_id": "locomo_3_qa33",
+      "clusters_found": [
+        "gec_003",
+        "gec_032",
+        "gec_019",
+        "gec_010",
+        "gec_018",
+        "gec_001",
+        "gec_021",
+        "gec_031",
+        "gec_008",
+        "gec_007",
+        "gec_006",
+        "gec_009",
+        "gec_013",
+        "gec_030",
+        "gec_022",
+        "gec_033",
+        "gec_017",
+        "gec_004"
+      ],
+      "clusters_selected": [],
+      "selection_reasoning": "None of the clusters mention anyone writing Joanna a touching letter or similar event.",
+      "cluster_details": {},
+      "members_per_cluster": {},
+      "final_count": 20,
+      "truncated": false,
+      "evidence": [
+        "D18:5"
+      ],
+      "evidence_detail": {
+        "D18:5": [
+          "ec18e40c-b6b5-4783-be99-776bde838b13",
+          "gec_007"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "ec18e40c-b6b5-4783-be99-776bde838b13"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_007"
+      ],
+      "cluster_hit": false,
+      "memunit_hit": false,
+      "memunit_coverage": 0.0,
+      "selected_unit_ids": []
+    },
+    {
+      "query": "When did Joanna make a desert with almond milk?",
+      "question_id": "locomo_3_qa38",
+      "clusters_found": [
+        "gec_040",
+        "gec_003",
+        "gec_039",
+        "gec_010",
+        "gec_034",
+        "gec_027",
+        "gec_005",
+        "gec_042",
+        "gec_029",
+        "gec_008",
+        "gec_007",
+        "gec_006",
+        "gec_041",
+        "gec_030",
+        "gec_028",
+        "gec_002",
+        "gec_004",
+        "gec_035"
+      ],
+      "clusters_selected": [
+        "gec_008"
+      ],
+      "selection_reasoning": "The query asks about Joanna making a dessert with almond milk, which relates to dairy-free dessert experimentation and recipes shared between Nate and Joanna. Cluster gec_008 specifically covers Nate and Joanna's dairy-free dessert experiments, including various milk alternatives, making it the most relevant cluster to answer when Joanna made a dessert with almond milk.",
+      "cluster_details": {
+        "gec_008": {
+          "topic": "Nate's dairy-free dessert experimentation and recipes",
+          "summary": "Nate and Joanna consistently shared and experimented with dairy-free dessert recipes, especially coconut milk and vegan ice creams, exchanging tips, photos, and encouragement. Their ongoing collaboration reflected mutual enthusiasm and evolving culinary creativity over time.",
+          "member_count": 12,
+          "members_returned": 12
+        }
+      },
+      "members_per_cluster": {
+        "gec_008": 12
+      },
+      "final_count": 21,
+      "truncated": false,
+      "evidence": [
+        "D21:9"
+      ],
+      "evidence_detail": {
+        "D21:9": [
+          "9ac42989-499c-4f25-98ea-b9a0c7beca6d",
+          "gec_008"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "9ac42989-499c-4f25-98ea-b9a0c7beca6d"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_008"
+      ],
+      "cluster_hit": true,
+      "memunit_hit": true,
+      "memunit_coverage": 1.0,
+      "selected_unit_ids": [
+        "07a9c9b2-d1a4-4c3b-a1a2-466b37527f2d",
+        "8332d25f-1459-4d95-af50-9e11968098a4",
+        "3f6d2cf0-0b15-453a-8b12-b9bbbfda2f49",
+        "875b05ab-c55c-4c8d-8466-eda5adba5ec8",
+        "9b09ead2-2644-44cd-9752-5180d314fe35",
+        "f0ca4a1c-be32-42a8-9048-5ca9b4a4863e",
+        "cb1ee15c-52fa-4318-b2d5-180d162ee16b",
+        "a4e31a57-dd97-48f6-94f5-19c5e9538559",
+        "9ac42989-499c-4f25-98ea-b9a0c7beca6d",
+        "a9cb81f1-ff3f-4dc7-a569-1a03900aed9e",
+        "fdb56453-b91a-4d3b-ab28-52c94ffc345c",
+        "b851eaf9-9cb9-46df-8846-58e1710ce7e6"
+      ]
+    },
+    {
+      "query": "When did Nate attend a cooking show?",
+      "question_id": "locomo_3_qa39",
+      "clusters_found": [
+        "gec_003",
+        "gec_015",
+        "gec_010",
+        "gec_027",
+        "gec_001",
+        "gec_029",
+        "gec_008",
+        "gec_006",
+        "gec_007",
+        "gec_020",
+        "gec_041",
+        "gec_038",
+        "gec_011",
+        "gec_028",
+        "gec_002",
+        "gec_004"
+      ],
+      "clusters_selected": [],
+      "selection_reasoning": "None of the clusters mention Nate attending a cooking show or any event related to a cooking show.",
+      "cluster_details": {},
+      "members_per_cluster": {},
+      "final_count": 20,
+      "truncated": false,
+      "evidence": [
+        "D21:4"
+      ],
+      "evidence_detail": {
+        "D21:4": [
+          "9ac42989-499c-4f25-98ea-b9a0c7beca6d",
+          "gec_008"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "9ac42989-499c-4f25-98ea-b9a0c7beca6d"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_008"
+      ],
+      "cluster_hit": false,
+      "memunit_hit": false,
+      "memunit_coverage": 0.0,
+      "selected_unit_ids": []
+    },
+    {
+      "query": "When did Joanna make a chocolate tart with raspberries?",
+      "question_id": "locomo_3_qa41",
+      "clusters_found": [
+        "gec_003",
+        "gec_010",
+        "gec_027",
+        "gec_014",
+        "gec_042",
+        "gec_029",
+        "gec_008",
+        "gec_007",
+        "gec_006",
+        "gec_038",
+        "gec_028",
+        "gec_002",
+        "gec_004"
+      ],
+      "clusters_selected": [
+        "gec_008"
+      ],
+      "selection_reasoning": "Cluster gec_008 focuses on Nate and Joanna's dessert experimentation and recipes, which is the most relevant context for when Joanna made a chocolate tart with raspberries.",
+      "cluster_details": {
+        "gec_008": {
+          "topic": "Nate's dairy-free dessert experimentation and recipes",
+          "summary": "Nate and Joanna consistently shared and experimented with dairy-free dessert recipes, especially coconut milk and vegan ice creams, exchanging tips, photos, and encouragement. Their ongoing collaboration reflected mutual enthusiasm and evolving culinary creativity over time.",
+          "member_count": 12,
+          "members_returned": 12
+        }
+      },
+      "members_per_cluster": {
+        "gec_008": 12
+      },
+      "final_count": 22,
+      "truncated": false,
+      "evidence": [
+        "D22:1"
+      ],
+      "evidence_detail": {
+        "D22:1": [
+          "3f6d2cf0-0b15-453a-8b12-b9bbbfda2f49",
+          "gec_008"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "3f6d2cf0-0b15-453a-8b12-b9bbbfda2f49"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_008"
+      ],
+      "cluster_hit": true,
+      "memunit_hit": true,
+      "memunit_coverage": 1.0,
+      "selected_unit_ids": [
+        "07a9c9b2-d1a4-4c3b-a1a2-466b37527f2d",
+        "8332d25f-1459-4d95-af50-9e11968098a4",
+        "3f6d2cf0-0b15-453a-8b12-b9bbbfda2f49",
+        "875b05ab-c55c-4c8d-8466-eda5adba5ec8",
+        "9b09ead2-2644-44cd-9752-5180d314fe35",
+        "f0ca4a1c-be32-42a8-9048-5ca9b4a4863e",
+        "cb1ee15c-52fa-4318-b2d5-180d162ee16b",
+        "a4e31a57-dd97-48f6-94f5-19c5e9538559",
+        "9ac42989-499c-4f25-98ea-b9a0c7beca6d",
+        "a9cb81f1-ff3f-4dc7-a569-1a03900aed9e",
+        "fdb56453-b91a-4d3b-ab28-52c94ffc345c",
+        "b851eaf9-9cb9-46df-8846-58e1710ce7e6"
+      ]
+    },
+    {
+      "query": "When did Joanna finish up the writing for her book?",
+      "question_id": "locomo_3_qa45",
+      "clusters_found": [
+        "gec_003",
+        "gec_027",
+        "gec_010",
+        "gec_017",
+        "gec_024",
+        "gec_002",
+        "gec_019",
+        "gec_001",
+        "gec_012",
+        "gec_013",
+        "gec_015",
+        "gec_004",
+        "gec_023",
+        "gec_018",
+        "gec_011",
+        "gec_006",
+        "gec_028",
+        "gec_005",
+        "gec_007",
+        "gec_029"
+      ],
+      "clusters_selected": [
+        "gec_007"
+      ],
+      "selection_reasoning": "Cluster gec_007 includes a direct mention of Joanna and Nate celebrating Joanna’s completion of her book, providing the specific timing and context needed to answer when Joanna finished writing her book.",
+      "cluster_details": {
+        "gec_007": {
+          "topic": "Joanna's passion for writing as a vital outlet for happiness and self-expression",
+          "summary": "They discussed Joanna's passion for writing as a a vital outlet for happiness and self-expression, highlighting its role in coping with emotions, overcoming setbacks, and creating meaningful connections, supported by Nate's encouragement throughout their evolving conversations.",
+          "member_count": 6,
+          "members_returned": 6
+        }
+      },
+      "members_per_cluster": {
+        "gec_007": 6
+      },
+      "final_count": 16,
+      "truncated": false,
+      "evidence": [
+        "D22:9"
+      ],
+      "evidence_detail": {
+        "D22:9": [
+          "d9fb5be7-6a61-4785-8ffd-8efa987535a7",
+          "gec_007"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "d9fb5be7-6a61-4785-8ffd-8efa987535a7"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_007"
+      ],
+      "cluster_hit": true,
+      "memunit_hit": true,
+      "memunit_coverage": 1.0,
+      "selected_unit_ids": [
+        "4548e3b6-6c0f-4a61-aa5e-a57b4a805198",
+        "cb1ee15c-52fa-4318-b2d5-180d162ee16b",
+        "ec18e40c-b6b5-4783-be99-776bde838b13",
+        "d9fb5be7-6a61-4785-8ffd-8efa987535a7",
+        "6c096765-5171-4cc5-8c26-b8990c8af479",
+        "e86e44c3-519d-482c-80c9-225243616270"
+      ]
+    },
+    {
+      "query": "When did Nate go to a convention and meet new people?",
+      "question_id": "locomo_3_qa48",
+      "clusters_found": [
+        "gec_003",
+        "gec_010",
+        "gec_014",
+        "gec_027",
+        "gec_031",
+        "gec_020",
+        "gec_022",
+        "gec_017",
+        "gec_033",
+        "gec_002",
+        "gec_037",
+        "gec_032",
+        "gec_019",
+        "gec_001",
+        "gec_004",
+        "gec_018",
+        "gec_011",
+        "gec_006",
+        "gec_038",
+        "gec_028",
+        "gec_005",
+        "gec_021",
+        "gec_042",
+        "gec_007",
+        "gec_029"
+      ],
+      "clusters_selected": [
+        "gec_031",
+        "gec_032",
+        "gec_033"
+      ],
+      "selection_reasoning": "These clusters discuss Nate suggesting a writing convention and mention his plans for the evening on October 9, 2022, indicating Nate's involvement with a convention and meeting new people, which directly answers the query.",
+      "cluster_details": {
+        "gec_031": {
+          "topic": "Nate's recommendation of writing conventions",
+          "summary": "On October 9, 2022, Nate suggested to Joanna that she attend a writing convention, describing it as an unforgettable experience, to which Joanna expressed curiosity and appreciation while asking about Nate's plans for the evening.",
+          "member_count": 1,
+          "members_returned": 1
+        },
+        "gec_032": {
+          "topic": "Joanna's curiosity and interest in writing conventions",
+          "summary": "On October 9, 2022, Nate suggested to Joanna that she attend a writing convention, describing it as an unforgettable experience, to which Joanna expressed curiosity and appreciation while asking about Nate's plans for the evening.",
+          "member_count": 1,
+          "members_returned": 0
+        },
+        "gec_033": {
+          "topic": "Nate's evening plans on October 9, 2022",
+          "summary": "On October 9, 2022, Nate suggested to Joanna that she attend a writing convention, describing it as an unforgettable experience, to which Joanna expressed curiosity and appreciation while asking about Nate's plans for the evening.",
+          "member_count": 1,
+          "members_returned": 0
+        }
+      },
+      "members_per_cluster": {
+        "gec_031": 1,
+        "gec_032": 0,
+        "gec_033": 0
+      },
+      "final_count": 11,
+      "truncated": false,
+      "evidence": [
+        "D23:1"
+      ],
+      "evidence_detail": {
+        "D23:1": [
+          "69b5f662-33ac-43e3-a968-3ff02c105f1b",
+          "gec_006"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "69b5f662-33ac-43e3-a968-3ff02c105f1b"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_006"
+      ],
+      "cluster_hit": false,
+      "memunit_hit": false,
+      "memunit_coverage": 0.0,
+      "selected_unit_ids": [
+        "2a1ccea5-f198-47e4-806c-ec123720557b"
+      ]
+    },
+    {
+      "query": "How many times has Joanna's scripts been rejected?",
+      "question_id": "locomo_3_qa49",
+      "clusters_found": [
+        "gec_003",
+        "gec_010",
+        "gec_027",
+        "gec_001",
+        "gec_021",
+        "gec_029",
+        "gec_009",
+        "gec_007",
+        "gec_006",
+        "gec_020",
+        "gec_022",
+        "gec_030",
+        "gec_028",
+        "gec_004"
+      ],
+      "clusters_selected": [
+        "gec_003"
+      ],
+      "selection_reasoning": "Cluster gec_003 focuses on Joanna's screenplay journey, including her experiences with submitting scripts and encountering setbacks, which likely includes information about script rejections relevant to the query.",
+      "cluster_details": {
+        "gec_003": {
+          "topic": "Joanna's first full screenplay completion and film festival plans",
+          "summary": "Joanna shared her journey completing and submitting screenplays, expressing mixed emotions from excitement to setbacks. Nate consistently offered encouragement and support, fostering mutual motivation as Joanna progressed from writing to filming and engaging with producers.",
+          "member_count": 26,
+          "members_returned": 15
+        }
+      },
+      "members_per_cluster": {
+        "gec_003": 15
+      },
+      "final_count": 25,
+      "truncated": false,
+      "evidence": [
+        "D14:1",
+        "D24:12"
+      ],
+      "evidence_detail": {
+        "D14:1": [
+          "4548e3b6-6c0f-4a61-aa5e-a57b4a805198",
+          "gec_007"
+        ],
+        "D24:12": [
+          "0288bf82-9d7c-4450-bf01-604e4193b745",
+          "gec_006"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "4548e3b6-6c0f-4a61-aa5e-a57b4a805198",
+        "0288bf82-9d7c-4450-bf01-604e4193b745"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_007",
+        "gec_006"
+      ],
+      "cluster_hit": false,
+      "memunit_hit": true,
+      "memunit_coverage": 0.5,
+      "selected_unit_ids": [
+        "07a9c9b2-d1a4-4c3b-a1a2-466b37527f2d",
+        "e573adc5-520d-4b82-9296-9a84da355982",
+        "e68166e1-3bcc-4366-ab0c-7da9c341f4c7",
+        "4fbdaa9f-38c0-46ff-8590-63ac4f68464e",
+        "4d1b4e7e-62b4-4e44-b5f1-19cd76331f20",
+        "8605bb2b-693e-4f91-a11b-77da7541c47a",
+        "4548e3b6-6c0f-4a61-aa5e-a57b4a805198",
+        "e6e49bb7-558e-47af-91e0-9274389b4af5",
+        "0576bea1-8139-4d66-84e2-9ae3724ad91c",
+        "7a994235-8599-426c-9ec9-f80f142c3494",
+        "803481f6-a65c-4094-90dd-02f8638e0397",
+        "6c096765-5171-4cc5-8c26-b8990c8af479",
+        "bef834d1-3b24-41fc-9986-10e0a220297b",
+        "dc6c633e-b75f-4645-b3ee-6a67d5f04b83",
+        "3fef93ed-43fa-46ae-8fd8-e9b8a4aea674"
+      ]
+    },
+    {
+      "query": "How many times has Nate taken his turtles on a walk?",
+      "question_id": "locomo_3_qa53",
+      "clusters_found": [
+        "gec_003",
+        "gec_010",
+        "gec_014",
+        "gec_027",
+        "gec_020",
+        "gec_017",
+        "gec_024",
+        "gec_036",
+        "gec_002",
+        "gec_039",
+        "gec_019",
+        "gec_001",
+        "gec_008",
+        "gec_004",
+        "gec_040",
+        "gec_023",
+        "gec_018",
+        "gec_006",
+        "gec_038",
+        "gec_028",
+        "gec_005",
+        "gec_029"
+      ],
+      "clusters_selected": [
+        "gec_004",
+        "gec_039",
+        "gec_040"
+      ],
+      "selection_reasoning": "Clusters gec_004 discusses Nate's pet turtles and their presence, which may include mentions of walks. Clusters gec_039 and gec_040 specifically mention Nate's special day with his pets at the park and cherishing memories with his pets, likely including outings such as walks. These clusters together provide the most relevant information to determine how many times Nate has taken his turtles on a walk.",
+      "cluster_details": {
+        "gec_004": {
+          "topic": "Nate's pet turtles and their calming effect",
+          "summary": "They discussed how Nate’s pet turtles provide a calming presence amid stress, sharing photos and care routines. Joanna, unable to have pets due to allergies, found comfort through their companionship and related emotional support, reflecting a continuous theme of mutual encouragement and tranquility.",
+          "member_count": 10,
+          "members_returned": 10
+        },
+        "gec_039": {
+          "topic": "Nate's special day with his pets at the park",
+          "summary": "On November 7, 2022, Nate and Joanna shared a heartfelt conversation about cherishing and recording memories, with Nate reflecting on a special day with his pets and both deciding to start documenting their favorite moments together. Their exchange emphasized the value of preserving memories and supporting each other in creating new ones.",
+          "member_count": 1,
+          "members_returned": 1
+        },
+        "gec_040": {
+          "topic": "Nate and Joanna's practice of cherishing and recording memories",
+          "summary": "On November 7, 2022, Nate and Joanna shared a heartfelt conversation about cherishing and recording memories, with Nate reflecting on a special day with his pets and both deciding to start documenting their favorite moments together. Their exchange emphasized the value of preserving memories and supporting each other in creating new ones.",
+          "member_count": 1,
+          "members_returned": 0
+        }
+      },
+      "members_per_cluster": {
+        "gec_004": 10,
+        "gec_039": 1,
+        "gec_040": 0
+      },
+      "final_count": 20,
+      "truncated": false,
+      "evidence": [
+        "D5:4",
+        "D25:15"
+      ],
+      "evidence_detail": {
+        "D5:4": [
+          "bef834d1-3b24-41fc-9986-10e0a220297b",
+          "gec_003"
+        ],
+        "D25:15": [
+          "6f61735a-a5f4-4a3c-ada8-9679cde9d08e",
+          "gec_004"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "bef834d1-3b24-41fc-9986-10e0a220297b",
+        "6f61735a-a5f4-4a3c-ada8-9679cde9d08e"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_003",
+        "gec_004"
+      ],
+      "cluster_hit": true,
+      "memunit_hit": true,
+      "memunit_coverage": 0.5,
+      "selected_unit_ids": [
+        "a649720c-160e-4097-8cca-82a522d68b10",
+        "c8586302-92a3-4724-b178-aeb0ad63c318",
+        "6f61735a-a5f4-4a3c-ada8-9679cde9d08e",
+        "ea58d8d1-a6f6-4d90-be63-da4bd98718b9",
+        "8d497714-74f0-4198-88f9-e4e72b41ea86",
+        "f4328a6b-3e56-49ee-9892-a421c84bf397",
+        "fad1d735-e008-488c-a74a-564e3a56c85e",
+        "0f934d12-3335-4c43-81e6-4b6b1ec77f86",
+        "fdb56453-b91a-4d3b-ab28-52c94ffc345c",
+        "b851eaf9-9cb9-46df-8846-58e1710ce7e6",
+        "3fef93ed-43fa-46ae-8fd8-e9b8a4aea674"
+      ]
+    },
+    {
+      "query": "What activities does Nate do with his turtles?",
+      "question_id": "locomo_3_qa70",
+      "clusters_found": [
+        "gec_003",
+        "gec_010",
+        "gec_014",
+        "gec_017",
+        "gec_036",
+        "gec_002",
+        "gec_039",
+        "gec_019",
+        "gec_001",
+        "gec_008",
+        "gec_009",
+        "gec_004",
+        "gec_040",
+        "gec_018",
+        "gec_025",
+        "gec_006",
+        "gec_038",
+        "gec_005",
+        "gec_007",
+        "gec_026"
+      ],
+      "clusters_selected": [
+        "gec_004",
+        "gec_005",
+        "gec_036"
+      ],
+      "selection_reasoning": "Clusters gec_004 and gec_005 directly discuss Nate's pet turtles, their calming effect, care routines, and Joanna's interest despite her allergies. Cluster gec_036 includes a conversation where Nate finds comfort in watching his turtles, highlighting activities and emotional connection with them.",
+      "cluster_details": {
+        "gec_004": {
+          "topic": "Nate's pet turtles and their calming effect",
+          "summary": "They discussed how Nate’s pet turtles provide a calming presence amid stress, sharing photos and care routines. Joanna, unable to have pets due to allergies, found comfort through their companionship and related emotional support, reflecting a continuous theme of mutual encouragement and tranquility.",
+          "member_count": 10,
+          "members_returned": 10
+        },
+        "gec_005": {
+          "topic": "Joanna's severe allergies to pets",
+          "summary": "They discussed Joanna's severe pet allergies, which consistently influenced her hesitation to have pets. Despite this, Nate shared his pet experiences, including turtles and a dog, while Joanna showed support and interest, even planning visits to enjoy Nate's pets safely.",
+          "member_count": 5,
+          "members_returned": 2
+        },
+        "gec_036": {
+          "topic": "Joanna's emotional support from her stuffed dog Tilly",
+          "summary": "On October 21, 2022, Nate and Joanna shared a brief conversation where Nate expressed stress over his video game tournament while finding comfort in watching his turtles, and Joanna reflected on the emotional support her stuffed dog Tilly provided, symbolizing her connection to a real pet she had to give up. Both participants exchanged emotional support and discussed their current activities, highlighting the comforting effects of their respective animals.",
+          "member_count": 1,
+          "members_returned": 0
+        }
+      },
+      "members_per_cluster": {
+        "gec_004": 10,
+        "gec_005": 2,
+        "gec_036": 0
+      },
+      "final_count": 20,
+      "truncated": false,
+      "evidence": [
+        "D25:21",
+        "D25:23",
+        "D28:31"
+      ],
+      "evidence_detail": {
+        "D25:21": [
+          "6f61735a-a5f4-4a3c-ada8-9679cde9d08e",
+          "gec_004"
+        ],
+        "D25:23": [
+          "6f61735a-a5f4-4a3c-ada8-9679cde9d08e",
+          "gec_004"
+        ],
+        "D28:31": [
+          "0f934d12-3335-4c43-81e6-4b6b1ec77f86",
+          "gec_005"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "6f61735a-a5f4-4a3c-ada8-9679cde9d08e",
+        "0f934d12-3335-4c43-81e6-4b6b1ec77f86"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_005",
+        "gec_004"
+      ],
+      "cluster_hit": true,
+      "memunit_hit": true,
+      "memunit_coverage": 1.0,
+      "selected_unit_ids": [
+        "a649720c-160e-4097-8cca-82a522d68b10",
+        "c8586302-92a3-4724-b178-aeb0ad63c318",
+        "6f61735a-a5f4-4a3c-ada8-9679cde9d08e",
+        "ea58d8d1-a6f6-4d90-be63-da4bd98718b9",
+        "e86e44c3-519d-482c-80c9-225243616270",
+        "8d497714-74f0-4198-88f9-e4e72b41ea86",
+        "f4328a6b-3e56-49ee-9892-a421c84bf397",
+        "0f934d12-3335-4c43-81e6-4b6b1ec77f86",
+        "66f734cd-6f48-4dd5-8094-eead66fd8093",
+        "fdb56453-b91a-4d3b-ab28-52c94ffc345c",
+        "b851eaf9-9cb9-46df-8846-58e1710ce7e6",
+        "3fef93ed-43fa-46ae-8fd8-e9b8a4aea674"
+      ]
+    }
+  ],
+  "summary": {
+    "total_questions": 15,
+    "cluster_hit_count": 8,
+    "cluster_hit_rate": 0.5333333333333333,
+    "memunit_hit_count": 11,
+    "memunit_hit_rate": 0.7333333333333333,
+    "avg_memunit_coverage": 0.6666666666666666
+  }
+}

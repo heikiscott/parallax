@@ -1,0 +1,478 @@
+{
+  "qa_count": 81,
+  "questions": [
+    {
+      "query": "When did Jon start to go to the gym?",
+      "question_id": "locomo_1_qa12",
+      "clusters_found": [
+        "gec_001",
+        "gec_002",
+        "gec_005"
+      ],
+      "clusters_selected": [
+        "gec_001"
+      ],
+      "selection_reasoning": "Cluster gec_001 includes conversations about Jon's life transitions and activities, including his preparation for opening a dance studio and related personal developments, which is the most likely to contain information about when Jon started going to the gym.",
+      "cluster_details": {
+        "gec_001": {
+          "topic": "Jon's job loss and business plans conversation",
+          "summary": "Jon and Gina consistently supported each other through job losses and entrepreneurial challenges, sharing optimism and encouragement as Jon pursued opening a dance studio and Gina expanded her clothing business, highlighting their mutual resilience and evolving partnership.",
+          "member_count": 33,
+          "members_returned": 15
+        }
+      },
+      "members_per_cluster": {
+        "gec_001": 15
+      },
+      "final_count": 25,
+      "truncated": false,
+      "evidence": [
+        "D6:1"
+      ],
+      "evidence_detail": {
+        "D6:1": [
+          "9a09deea-dd18-4a85-aca7-e4cd58013891",
+          "gec_001"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "9a09deea-dd18-4a85-aca7-e4cd58013891"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_001"
+      ],
+      "cluster_hit": true,
+      "memunit_hit": true,
+      "memunit_coverage": 1.0,
+      "selected_unit_ids": [
+        "944fdfc5-287a-4be3-b017-b88244f94039",
+        "4251d3a3-02d6-4afb-86d1-8834da5ea5d1",
+        "912e6b4d-3bc5-4af5-873f-8320d7871a25",
+        "3bdcbe52-38a9-4c71-be15-7765143e7c86",
+        "677eac09-2273-468e-b549-5920ae7f983a",
+        "027999c0-e8b5-4d3a-a04d-78475692a0e9",
+        "6a2435b8-6991-4c87-a4df-84b9015c21c2",
+        "8192dfc6-d2df-46a7-b381-b44c89c1efcc",
+        "b0b0d33f-5f8e-45d9-a2e1-40147d0b0d16",
+        "fe199365-2f53-42a5-a81c-1ad9ac7ad8ef",
+        "1aabb3a2-8a9d-475d-a404-545fb38b2396",
+        "9a09deea-dd18-4a85-aca7-e4cd58013891",
+        "d60c82dc-9384-47ca-a546-e6dec883deb8",
+        "0e67e81c-c0be-41c4-8ea4-c01422cf2ddb",
+        "cffeaa23-ceae-4540-9dac-911bf2c4ba77"
+      ]
+    },
+    {
+      "query": "When did Jon start expanding his studio's social media presence?",
+      "question_id": "locomo_1_qa14",
+      "clusters_found": [
+        "gec_001",
+        "gec_003",
+        "gec_002",
+        "gec_005"
+      ],
+      "clusters_selected": [
+        "gec_001"
+      ],
+      "selection_reasoning": "Cluster gec_001 covers Jon's transition to opening his dance studio and related conversations, including his business plans and activities such as expanding his social media presence. Other clusters focus on Gina's business or unrelated topics.",
+      "cluster_details": {
+        "gec_001": {
+          "topic": "Jon's job loss and business plans conversation",
+          "summary": "Jon and Gina consistently supported each other through job losses and entrepreneurial challenges, sharing optimism and encouragement as Jon pursued opening a dance studio and Gina expanded her clothing business, highlighting their mutual resilience and evolving partnership.",
+          "member_count": 33,
+          "members_returned": 15
+        }
+      },
+      "members_per_cluster": {
+        "gec_001": 15
+      },
+      "final_count": 25,
+      "truncated": false,
+      "evidence": [
+        "D8:13"
+      ],
+      "evidence_detail": {
+        "D8:13": [
+          "6d0403b9-a926-434b-8652-2e39b7335157",
+          "gec_002"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "6d0403b9-a926-434b-8652-2e39b7335157"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_002"
+      ],
+      "cluster_hit": false,
+      "memunit_hit": false,
+      "memunit_coverage": 0.0,
+      "selected_unit_ids": [
+        "944fdfc5-287a-4be3-b017-b88244f94039",
+        "4251d3a3-02d6-4afb-86d1-8834da5ea5d1",
+        "912e6b4d-3bc5-4af5-873f-8320d7871a25",
+        "3bdcbe52-38a9-4c71-be15-7765143e7c86",
+        "677eac09-2273-468e-b549-5920ae7f983a",
+        "027999c0-e8b5-4d3a-a04d-78475692a0e9",
+        "6a2435b8-6991-4c87-a4df-84b9015c21c2",
+        "8192dfc6-d2df-46a7-b381-b44c89c1efcc",
+        "b0b0d33f-5f8e-45d9-a2e1-40147d0b0d16",
+        "fe199365-2f53-42a5-a81c-1ad9ac7ad8ef",
+        "1aabb3a2-8a9d-475d-a404-545fb38b2396",
+        "9a09deea-dd18-4a85-aca7-e4cd58013891",
+        "d60c82dc-9384-47ca-a546-e6dec883deb8",
+        "0e67e81c-c0be-41c4-8ea4-c01422cf2ddb",
+        "cffeaa23-ceae-4540-9dac-911bf2c4ba77"
+      ]
+    },
+    {
+      "query": "When did Jon go to a fair to get more exposure for his dance studio?",
+      "question_id": "locomo_1_qa16",
+      "clusters_found": [
+        "gec_001",
+        "gec_003",
+        "gec_002",
+        "gec_005"
+      ],
+      "clusters_selected": [
+        "gec_001"
+      ],
+      "selection_reasoning": "Cluster gec_001 covers Jon's transition to opening and promoting his dance studio, including conversations about his business plans and efforts to gain exposure, which likely includes attending events like fairs.",
+      "cluster_details": {
+        "gec_001": {
+          "topic": "Jon's job loss and business plans conversation",
+          "summary": "Jon and Gina consistently supported each other through job losses and entrepreneurial challenges, sharing optimism and encouragement as Jon pursued opening a dance studio and Gina expanded her clothing business, highlighting their mutual resilience and evolving partnership.",
+          "member_count": 33,
+          "members_returned": 15
+        }
+      },
+      "members_per_cluster": {
+        "gec_001": 15
+      },
+      "final_count": 25,
+      "truncated": false,
+      "evidence": [
+        "D10:1"
+      ],
+      "evidence_detail": {
+        "D10:1": [
+          "1936dbc0-bf72-4635-9abc-91dbeb8d45c1",
+          "gec_001"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "1936dbc0-bf72-4635-9abc-91dbeb8d45c1"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_001"
+      ],
+      "cluster_hit": true,
+      "memunit_hit": false,
+      "memunit_coverage": 0.0,
+      "selected_unit_ids": [
+        "944fdfc5-287a-4be3-b017-b88244f94039",
+        "4251d3a3-02d6-4afb-86d1-8834da5ea5d1",
+        "912e6b4d-3bc5-4af5-873f-8320d7871a25",
+        "3bdcbe52-38a9-4c71-be15-7765143e7c86",
+        "677eac09-2273-468e-b549-5920ae7f983a",
+        "027999c0-e8b5-4d3a-a04d-78475692a0e9",
+        "6a2435b8-6991-4c87-a4df-84b9015c21c2",
+        "8192dfc6-d2df-46a7-b381-b44c89c1efcc",
+        "b0b0d33f-5f8e-45d9-a2e1-40147d0b0d16",
+        "fe199365-2f53-42a5-a81c-1ad9ac7ad8ef",
+        "1aabb3a2-8a9d-475d-a404-545fb38b2396",
+        "9a09deea-dd18-4a85-aca7-e4cd58013891",
+        "d60c82dc-9384-47ca-a546-e6dec883deb8",
+        "0e67e81c-c0be-41c4-8ea4-c01422cf2ddb",
+        "cffeaa23-ceae-4540-9dac-911bf2c4ba77"
+      ]
+    },
+    {
+      "query": "When did Jon start reading \"The Lean Startup\"?",
+      "question_id": "locomo_1_qa21",
+      "clusters_found": [
+        "gec_003",
+        "gec_001",
+        "gec_002",
+        "gec_004",
+        "gec_005"
+      ],
+      "clusters_selected": [
+        "gec_001"
+      ],
+      "selection_reasoning": "Cluster gec_001 covers Jon's personal and business transitions, including conversations about his entrepreneurial efforts and mindset, which is the most likely context to contain information about when Jon started reading 'The Lean Startup.' Other clusters focus on Gina's fashion-related activities and are less relevant.",
+      "cluster_details": {
+        "gec_001": {
+          "topic": "Jon's job loss and business plans conversation",
+          "summary": "Jon and Gina consistently supported each other through job losses and entrepreneurial challenges, sharing optimism and encouragement as Jon pursued opening a dance studio and Gina expanded her clothing business, highlighting their mutual resilience and evolving partnership.",
+          "member_count": 33,
+          "members_returned": 15
+        }
+      },
+      "members_per_cluster": {
+        "gec_001": 15
+      },
+      "final_count": 25,
+      "truncated": false,
+      "evidence": [
+        "D12:6"
+      ],
+      "evidence_detail": {
+        "D12:6": [
+          "197665bc-42b8-4229-92a3-62a7d72752f1",
+          "gec_004"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "197665bc-42b8-4229-92a3-62a7d72752f1"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_004"
+      ],
+      "cluster_hit": false,
+      "memunit_hit": false,
+      "memunit_coverage": 0.0,
+      "selected_unit_ids": [
+        "944fdfc5-287a-4be3-b017-b88244f94039",
+        "4251d3a3-02d6-4afb-86d1-8834da5ea5d1",
+        "912e6b4d-3bc5-4af5-873f-8320d7871a25",
+        "3bdcbe52-38a9-4c71-be15-7765143e7c86",
+        "677eac09-2273-468e-b549-5920ae7f983a",
+        "027999c0-e8b5-4d3a-a04d-78475692a0e9",
+        "6a2435b8-6991-4c87-a4df-84b9015c21c2",
+        "8192dfc6-d2df-46a7-b381-b44c89c1efcc",
+        "b0b0d33f-5f8e-45d9-a2e1-40147d0b0d16",
+        "fe199365-2f53-42a5-a81c-1ad9ac7ad8ef",
+        "1aabb3a2-8a9d-475d-a404-545fb38b2396",
+        "9a09deea-dd18-4a85-aca7-e4cd58013891",
+        "d60c82dc-9384-47ca-a546-e6dec883deb8",
+        "0e67e81c-c0be-41c4-8ea4-c01422cf2ddb",
+        "cffeaa23-ceae-4540-9dac-911bf2c4ba77"
+      ]
+    },
+    {
+      "query": "When did Jon visit networking events for his store?",
+      "question_id": "locomo_1_qa33",
+      "clusters_found": [
+        "gec_001",
+        "gec_002",
+        "gec_004",
+        "gec_005"
+      ],
+      "clusters_selected": [
+        "gec_001"
+      ],
+      "selection_reasoning": "Cluster gec_001 covers Jon's business plans and transitions, including his entrepreneurial activities and related conversations, which are most likely to include information about Jon visiting networking events for his store.",
+      "cluster_details": {
+        "gec_001": {
+          "topic": "Jon's job loss and business plans conversation",
+          "summary": "Jon and Gina consistently supported each other through job losses and entrepreneurial challenges, sharing optimism and encouragement as Jon pursued opening a dance studio and Gina expanded her clothing business, highlighting their mutual resilience and evolving partnership.",
+          "member_count": 33,
+          "members_returned": 15
+        }
+      },
+      "members_per_cluster": {
+        "gec_001": 15
+      },
+      "final_count": 25,
+      "truncated": false,
+      "evidence": [
+        "D16:6"
+      ],
+      "evidence_detail": {
+        "D16:6": [
+          "a651ddf8-1ca1-4f92-ae8b-0269fa39f8f0",
+          "gec_001"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "a651ddf8-1ca1-4f92-ae8b-0269fa39f8f0"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_001"
+      ],
+      "cluster_hit": true,
+      "memunit_hit": false,
+      "memunit_coverage": 0.0,
+      "selected_unit_ids": [
+        "944fdfc5-287a-4be3-b017-b88244f94039",
+        "4251d3a3-02d6-4afb-86d1-8834da5ea5d1",
+        "912e6b4d-3bc5-4af5-873f-8320d7871a25",
+        "3bdcbe52-38a9-4c71-be15-7765143e7c86",
+        "677eac09-2273-468e-b549-5920ae7f983a",
+        "027999c0-e8b5-4d3a-a04d-78475692a0e9",
+        "6a2435b8-6991-4c87-a4df-84b9015c21c2",
+        "8192dfc6-d2df-46a7-b381-b44c89c1efcc",
+        "b0b0d33f-5f8e-45d9-a2e1-40147d0b0d16",
+        "fe199365-2f53-42a5-a81c-1ad9ac7ad8ef",
+        "1aabb3a2-8a9d-475d-a404-545fb38b2396",
+        "9a09deea-dd18-4a85-aca7-e4cd58013891",
+        "d60c82dc-9384-47ca-a546-e6dec883deb8",
+        "0e67e81c-c0be-41c4-8ea4-c01422cf2ddb",
+        "cffeaa23-ceae-4540-9dac-911bf2c4ba77"
+      ]
+    },
+    {
+      "query": "When did Gina start being recognized by fashion editors?",
+      "question_id": "locomo_1_qa34",
+      "clusters_found": [
+        "gec_001",
+        "gec_002",
+        "gec_004",
+        "gec_005"
+      ],
+      "clusters_selected": [
+        "gec_004",
+        "gec_005"
+      ],
+      "selection_reasoning": "Cluster gec_004 details Gina's acceptance of a fashion internship, marking an early recognition step by fashion editors, and cluster gec_005 mentions Gina's recent recognition in the fashion industry, providing a timeline of when she started being recognized.",
+      "cluster_details": {
+        "gec_004": {
+          "topic": "Gina's fashion internship acceptance and emotional response",
+          "summary": "On May 27, 2023, Gina informed Jon about her acceptance for a part-time fashion internship at an international company, expressing mixed feelings of excitement and nervousness, while Jon responded with enthusiastic support and encouragement. Their conversation centered on Gina’s new opportunity, her emotional response, and her plans for growth in the fashion industry.",
+          "member_count": 2,
+          "members_returned": 2
+        },
+        "gec_005": {
+          "topic": "Gina's recent recognition in the fashion industry",
+          "summary": "On July 9, 2023, Jon and Gina engaged in a supportive conversation focused on Jon's transition to full-time entrepreneurship with his dance studio and mentoring plans, while Gina shared her recent recognition in the fashion industry; both expressed encouragement, gratitude, and determination to pursue their dreams.",
+          "member_count": 1,
+          "members_returned": 1
+        }
+      },
+      "members_per_cluster": {
+        "gec_004": 2,
+        "gec_005": 1
+      },
+      "final_count": 13,
+      "truncated": false,
+      "evidence": [
+        "D17:1"
+      ],
+      "evidence_detail": {
+        "D17:1": [
+          "12241cbe-c440-4c9a-baf7-b0c4fb92fb35",
+          "gec_005"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "12241cbe-c440-4c9a-baf7-b0c4fb92fb35"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_005"
+      ],
+      "cluster_hit": true,
+      "memunit_hit": true,
+      "memunit_coverage": 1.0,
+      "selected_unit_ids": [
+        "197665bc-42b8-4229-92a3-62a7d72752f1",
+        "12241cbe-c440-4c9a-baf7-b0c4fb92fb35",
+        "d7efff64-1897-4897-a330-e67bbc32a3e2"
+      ]
+    },
+    {
+      "query": "When did Jon start learning marketing and analytics tools?",
+      "question_id": "locomo_1_qa35",
+      "clusters_found": [
+        "gec_003",
+        "gec_001",
+        "gec_002",
+        "gec_004",
+        "gec_005"
+      ],
+      "clusters_selected": [
+        "gec_001"
+      ],
+      "selection_reasoning": "Cluster gec_001 covers Jon's transition period, including his discussions about business plans and likely learning marketing and analytics tools as part of preparing to open his dance studio and become an entrepreneur. Other clusters focus on Gina's fashion-related activities and do not mention Jon's learning of marketing and analytics tools.",
+      "cluster_details": {
+        "gec_001": {
+          "topic": "Jon's job loss and business plans conversation",
+          "summary": "Jon and Gina consistently supported each other through job losses and entrepreneurial challenges, sharing optimism and encouragement as Jon pursued opening a dance studio and Gina expanded her clothing business, highlighting their mutual resilience and evolving partnership.",
+          "member_count": 33,
+          "members_returned": 15
+        }
+      },
+      "members_per_cluster": {
+        "gec_001": 15
+      },
+      "final_count": 25,
+      "truncated": false,
+      "evidence": [
+        "D17:4"
+      ],
+      "evidence_detail": {
+        "D17:4": [
+          "12241cbe-c440-4c9a-baf7-b0c4fb92fb35",
+          "gec_005"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "12241cbe-c440-4c9a-baf7-b0c4fb92fb35"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_005"
+      ],
+      "cluster_hit": false,
+      "memunit_hit": false,
+      "memunit_coverage": 0.0,
+      "selected_unit_ids": [
+        "944fdfc5-287a-4be3-b017-b88244f94039",
+        "4251d3a3-02d6-4afb-86d1-8834da5ea5d1",
+        "912e6b4d-3bc5-4af5-873f-8320d7871a25",
+        "3bdcbe52-38a9-4c71-be15-7765143e7c86",
+        "677eac09-2273-468e-b549-5920ae7f983a",
+        "027999c0-e8b5-4d3a-a04d-78475692a0e9",
+        "6a2435b8-6991-4c87-a4df-84b9015c21c2",
+        "8192dfc6-d2df-46a7-b381-b44c89c1efcc",
+        "b0b0d33f-5f8e-45d9-a2e1-40147d0b0d16",
+        "fe199365-2f53-42a5-a81c-1ad9ac7ad8ef",
+        "1aabb3a2-8a9d-475d-a404-545fb38b2396",
+        "9a09deea-dd18-4a85-aca7-e4cd58013891",
+        "d60c82dc-9384-47ca-a546-e6dec883deb8",
+        "0e67e81c-c0be-41c4-8ea4-c01422cf2ddb",
+        "cffeaa23-ceae-4540-9dac-911bf2c4ba77"
+      ]
+    },
+    {
+      "query": "When did Gina go to a dance class with a group of friends?",
+      "question_id": "locomo_1_qa38",
+      "clusters_found": [
+        "gec_001",
+        "gec_002",
+        "gec_005"
+      ],
+      "clusters_selected": [],
+      "selection_reasoning": "None of the clusters contain information about Gina going to a dance class with a group of friends.",
+      "cluster_details": {},
+      "members_per_cluster": {},
+      "final_count": 20,
+      "truncated": false,
+      "evidence": [
+        "D19:6"
+      ],
+      "evidence_detail": {
+        "D19:6": [
+          "96e00b37-77da-47be-9e24-fdb663075fc4",
+          "gec_001"
+        ]
+      },
+      "ground_truth_unit_ids": [
+        "96e00b37-77da-47be-9e24-fdb663075fc4"
+      ],
+      "ground_truth_cluster_ids": [
+        "gec_001"
+      ],
+      "cluster_hit": false,
+      "memunit_hit": false,
+      "memunit_coverage": 0.0,
+      "selected_unit_ids": []
+    }
+  ],
+  "summary": {
+    "total_questions": 8,
+    "cluster_hit_count": 4,
+    "cluster_hit_rate": 0.5,
+    "memunit_hit_count": 2,
+    "memunit_hit_rate": 0.25,
+    "avg_memunit_coverage": 0.25
+  }
+}

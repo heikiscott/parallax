@@ -1,5 +1,5 @@
-2025-12-04 02:17:14,384 - [add-idx-emb] - memory.group_event_cluster.clusterer - WARNING - clusterer.py:195 - No valid assignments for fc8f18d4-ea2d-499b-8105-4591766781c3, creating new cluster
-2025-12-04 02:18:00,458 - [add-idx-emb] - providers.llm.openai_provider - WARNING - openai_provider.py:295 - [OpenAI-gpt-4.1-mini] 完成原因: length
-2025-12-04 02:23:18,410 - [search-locomo_4_qa38] - providers.llm.openai_provider - WARNING - openai_provider.py:355 - 🔌 [OpenAI-gpt-4.1-mini] 连接异常! 重试 1/20: APIConnectionError
-2025-12-04 02:23:18,411 - [search-locomo_4_qa38] - providers.llm.openai_provider - WARNING - openai_provider.py:356 -    ⏱️  已耗时: 0.57s, 将等待 5.0-300.0s 后重试
-2025-12-04 02:23:18,412 - [search-locomo_4_qa38] - providers.llm.openai_provider - WARNING - openai_provider.py:357 -    💬 错误: Connection error.
+2025-12-06 00:00:38,918 - [add-idx-emb] - memory.group_event_cluster.clusterer - WARNING - clusterer.py:195 - No valid assignments for f3de0f48-d5cc-4d22-91c2-3b47793e8281, creating new cluster
+2025-12-06 00:01:06,258 - [add-idx-emb] - providers.llm.openai_provider - WARNING - openai_provider.py:295 - [OpenAI-gpt-4.1-mini] 完成原因: length
+2025-12-06 00:05:08,974 - [add-idx-emb] - providers.llm.openai_provider - WARNING - openai_provider.py:355 - 🔌 [OpenAI-gpt-4.1-mini] 连接异常! 重试 1/20: APIConnectionError
+2025-12-06 00:05:08,975 - [add-idx-emb] - providers.llm.openai_provider - WARNING - openai_provider.py:356 -    ⏱️  已耗时: 0.43s, 将等待 5.0-300.0s 后重试
+2025-12-06 00:05:08,977 - [add-idx-emb] - providers.llm.openai_provider - WARNING - openai_provider.py:357 -    💬 错误: Connection error.

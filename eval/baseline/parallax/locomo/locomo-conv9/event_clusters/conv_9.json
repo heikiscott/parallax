@@ -1,0 +1,1832 @@
+{
+  "clusters": {
+    "gec_001": {
+      "cluster_id": "gec_001",
+      "topic": "Dave's recent event attendance update",
+      "summary": "Dave and Calvin consistently shared their passion for classic car restoration, discussing events, projects, and personal achievements. Their conversations evolved from admiration and learning to collaboration, business ventures, and mutual encouragement, highlighting the emotional and creative fulfillment they find in their automotive pursuits.",
+      "members": [
+        {
+          "unit_id": "22de6305-1100-469b-9cc9-6b1544c95b8c",
+          "timestamp": "2023-03-23T11:53:30+08:00",
+          "summary": "On March 23, 2023, Dave shared with Calvin his awe-inspiring experience attending a classic car event, where he admired the variety of cars and learned inspiring stories from their owners."
+        },
+        {
+          "unit_id": "2c8d180e-17e4-4270-949f-2f7456a8d32e",
+          "timestamp": "2023-04-20T16:20:30+08:00",
+          "summary": "On April 20, 2023, Calvin reconnected with Dave to share his enriching experience at a Tokyo music event, where he gained valuable industry advice and expressed his dream of touring globally, while Dave offered to show him around Boston’s music scene and shared his passion for classic cars. Their conversation highlighted mutual enthusiasm and plans for future meetings centered on music and shared interests."
+        },
+        {
+          "unit_id": "fa8dbd78-967d-4aa1-853e-84c82b8c00af",
+          "timestamp": "2023-04-20T16:23:30+08:00",
+          "summary": "Dave and Calvin discussed their shared passion for cars and planned to explore Boston’s food and attractions together during Calvin’s upcoming visit. Both expressed excitement about showing each other their cars and enjoying social and culinary experiences in the city."
+        },
+        {
+          "unit_id": "188333c0-9c0c-4aa4-9b6c-0aa0e254bce0",
+          "timestamp": "2023-05-01T18:35:00+08:00",
+          "summary": "On May 1, 2023, Dave shared with Calvin his excitement and pride in opening his own car maintenance shop, highlighting his passion for classic car restoration and the fulfillment he finds in his work, while Calvin offered encouragement and recognition of Dave’s dedication and achievements."
+        },
+        {
+          "unit_id": "e9556888-de45-4af5-89d1-8d5e8b8608e7",
+          "timestamp": "2023-05-03T13:18:30+08:00",
+          "summary": "Dave and Calvin discussed Dave's new collaboration with a local garage, where Dave expressed enthusiasm for the project and his ambition to deepen his auto engineering skills and eventually build a custom car, while Calvin offered support and encouragement."
+        },
+        {
+          "unit_id": "53dde510-f879-4366-89a4-4ded0fa8d384",
+          "timestamp": "2023-05-03T13:20:00+08:00",
+          "summary": "On May 3, 2023, Calvin and Dave discussed their hobbies and ways to relax, sharing appreciation for activities like driving and walking that help them destress. Both expressed positive emotions about their methods of relaxation involving nature and movement."
+        },
+        {
+          "unit_id": "cad58d88-371a-4b31-bab3-a7f386d3290d",
+          "timestamp": "2023-05-16T11:54:00+08:00",
+          "summary": "On May 16, 2023, Dave shared his excitement about opening his own car shop the previous week and celebrating with friends, while Calvin congratulated him and encouraged his enthusiasm. The conversation highlighted Dave’s pride in his new business and Calvin’s supportive response."
+        },
+        {
+          "unit_id": "f1122028-32a7-4e1e-bfa3-0859336ee36a",
+          "timestamp": "2023-05-31T18:10:00+08:00",
+          "summary": "Dave and Calvin discussed their shared passion for working on cars, highlighting the therapeutic and fulfilling nature of repairing and transforming broken items, which brought them pride, calmness, and a sense of purpose."
+        },
+        {
+          "unit_id": "c19ae004-f4e7-484c-ad34-d0555064b7a5",
+          "timestamp": "2023-07-21T18:44:30+08:00",
+          "summary": "On July 21, 2023, Dave and Calvin reconnected through a conversation where Dave shared his refreshing road trip experience, and Calvin discussed his music studio project and artistic experimentation, with both expressing mutual support and motivation for their passions. Their exchange reinforced their friendship and commitment to their creative pursuits."
+        },
+        {
+          "unit_id": "0e155545-9563-4f5d-aa7a-0e16fe98f647",
+          "timestamp": "2023-08-03T13:16:00+08:00",
+          "summary": "On August 3, 2023, Calvin and Dave reconnected through a conversation about their shared passion for cars, with Calvin discussing the stress of servicing his Ferrari and Dave reminiscing about restoring cars with his father, leading to mutual encouragement and the sharing of meaningful photographs. Their exchange highlighted how car-related hobbies foster personal connections and motivation."
+        },
+        {
+          "unit_id": "322ea053-731c-45fb-a3cc-29cb08a32899",
+          "timestamp": "2023-08-14T00:36:00+08:00",
+          "summary": "On August 14, 2023, Dave shared with Calvin his inspiring experience attending a car restoration workshop in San Francisco, highlighting the passionate community and techniques he encountered, while Calvin responded with enthusiasm and support for Dave’s interest."
+        },
+        {
+          "unit_id": "51b06bb6-27d5-46bf-9513-e3f772f34021",
+          "timestamp": "2023-08-14T00:42:30+08:00",
+          "summary": "Dave updated Calvin on his car restoration project, expressing excitement about transforming the damaged car and aiming to complete it by the end of September 2023, while Calvin offered encouragement and admiration throughout their conversation."
+        },
+        {
+          "unit_id": "c161d847-b669-4e9e-b8b5-a54c743b02da",
+          "timestamp": "2023-09-02T09:21:00+08:00",
+          "summary": "On September 2, 2023, Dave and Calvin discussed the rewarding experience of car modification, with Dave sharing his fulfillment in restoring old cars and the positive impact it has on car owners. Their conversation highlighted Dave's enthusiasm and sense of purpose in giving cars new life."
+        },
+        {
+          "unit_id": "1c54a590-a3a7-4c9a-9112-c68f810aec32",
+          "timestamp": "2023-09-02T09:23:30+08:00",
+          "summary": "Dave expressed pride in his job fixing cars, while Calvin shared excitement about his upcoming trip to Boston and they planned to meet once Calvin arrived. Both exchanged positive sentiments and well wishes for safety during the trip."
+        },
+        {
+          "unit_id": "82b99b23-8565-499a-83ef-4ebe7fd6edd3",
+          "timestamp": "2023-09-15T00:18:30+08:00",
+          "summary": "Calvin and Dave discussed Dave’s vintage car restoration hobby, with Calvin expressing admiration for Dave’s craftsmanship and Dave sharing the satisfaction and pride he felt from completing the project. Their conversation highlighted mutual appreciation for passion and creativity."
+        },
+        {
+          "unit_id": "152a2db5-9253-4604-b921-ead705f22052",
+          "timestamp": "2023-09-22T20:58:00+08:00",
+          "summary": "On September 22, 2023, Dave and Calvin discussed their shared passion for cars and photography, with Dave sharing his struggles repairing a vintage Mustang and Calvin responding with empathy and a photo symbolizing his own dedication. Their conversation highlighted mutual respect and encouragement amid the emotional challenges of their automotive projects."
+        },
+        {
+          "unit_id": "e581ae78-5f47-4969-89da-f6b53e96e1dc",
+          "timestamp": "2023-10-04T14:52:30+08:00",
+          "summary": "On October 4, 2023, Calvin and Dave discussed their creative and restorative pursuits, with Calvin sharing his inspiring music collaborations in Boston and Dave describing his therapeutic car restoration projects, both emphasizing the importance of hard work, small wins, and mutual encouragement in achieving their goals."
+        },
+        {
+          "unit_id": "e581ae78-5f47-4969-89da-f6b53e96e1dc",
+          "timestamp": "2023-10-04T14:52:30+08:00",
+          "summary": "On October 4, 2023, Calvin and Dave discussed their creative and restorative pursuits, with Calvin sharing his inspiring music collaborations in Boston and Dave describing his therapeutic car restoration projects, both emphasizing the importance of hard work, small wins, and mutual encouragement in achieving their goals."
+        },
+        {
+          "unit_id": "d20ff7fc-17b5-408a-95f4-aa021fba58d6",
+          "timestamp": "2023-10-08T15:19:30+08:00",
+          "summary": "Dave and Calvin discussed Dave's passion for car restoration, highlighting his recent car show visit, personal modifications, and the emotional significance of the hobby, while Calvin offered enthusiastic support and encouragement for Dave's ongoing pursuit of his dreams."
+        },
+        {
+          "unit_id": "c155559b-e5eb-42fa-9fbb-5d81adf44f64",
+          "timestamp": "2023-10-15T09:47:30+08:00",
+          "summary": "On October 15, 2023, Dave and Calvin shared a supportive conversation where Calvin encouraged Dave to pursue his goals while celebrating his recent acquisition of a Ferrari, with both expressing mutual appreciation and plans to share photos to sustain motivation."
+        },
+        {
+          "unit_id": "e1e8f5ed-1b38-4889-afed-860d13aa8787",
+          "timestamp": "2023-10-25T20:27:30+08:00",
+          "summary": "On October 25, 2023, Dave shared a photo of his latest car project and discussed his passion for automotive engineering, sparked by a childhood car show experience, while Calvin expressed enthusiasm and admiration for cars and powerful models. Their conversation highlighted their shared interest and appreciation for car building and engineering."
+        },
+        {
+          "unit_id": "6daf26df-54f3-4d9a-82b9-0675ab807994",
+          "timestamp": "2023-10-29T10:55:00+08:00",
+          "summary": "On October 29, 2023, Dave and Calvin discussed their creative projects, with Dave sharing his enjoyment of photography and completion of a car restoration, while Calvin updated Dave on his music collaborations and nearing album completion. Both expressed enthusiasm and planned to reconnect soon."
+        },
+        {
+          "unit_id": "9d32b866-1997-4be8-b771-743cea353d59",
+          "timestamp": "2023-11-02T17:56:00+08:00",
+          "summary": "On November 2, 2023, Calvin and Dave discussed their creative passions, with Calvin sharing his enthusiasm for music and Dave showcasing his car modification blog and restoration projects, exchanging encouragement and insights throughout their conversation."
+        }
+      ],
+      "first_timestamp": "2023-03-23T11:53:30+08:00",
+      "last_timestamp": "2023-11-02T17:56:00+08:00",
+      "created_at": "2025-12-06T02:14:25.162757",
+      "updated_at": "2025-12-06T02:20:02.151682"
+    },
+    "gec_002": {
+      "cluster_id": "gec_002",
+      "topic": "Calvin's planned trip to Japan and cultural exploration",
+      "summary": "They discussed Calvin’s planned trip to Japan, highlighting his excitement for cultural exploration, music collaborations, and skiing. Over time, Calvin shared experiences from touring and performing in Japan, with mutual enthusiasm and support for the opportunities the trip and culture offered.",
+      "members": [
+        {
+          "unit_id": "d22c84e2-93bf-4414-b10d-625af6ce7c3d",
+          "timestamp": "2023-03-23T12:00:00+08:00",
+          "summary": "Calvin shared with Dave his excitement about a significant life change involving a planned trip to Japan to explore its culture and collaborate with local musicians, expressing optimism about the experience. Dave responded with supportive curiosity, asking about Calvin's plans and accommodations for the journey."
+        },
+        {
+          "unit_id": "9442cfcd-51b6-480d-98e0-8eeebfb1c3b0",
+          "timestamp": "2023-03-23T12:02:00+08:00",
+          "summary": "Calvin informed Dave about his upcoming trip to Japan and Boston, and they exchanged recommendations about a local park, expressing mutual goodwill and support."
+        },
+        {
+          "unit_id": "be2670d7-c8dc-4ac0-bf36-c16a529a4f84",
+          "timestamp": "2023-06-21T15:22:30+08:00",
+          "summary": "Calvin shared photos with Dave showcasing a small town in Japan and its stunning mountain scenery, expressing excitement about his upcoming visit and skiing plans after his tour with Frank Ocean, while Dave showed curiosity and enthusiasm about the location and activities."
+        },
+        {
+          "unit_id": "6c5fdfe3-ceef-4ce8-87a2-b13c80df7dc7",
+          "timestamp": "2023-07-07T20:04:00+08:00",
+          "summary": "Dave and Calvin discussed their excitement about Japan, with Calvin sharing his enthusiasm for exploring the culture and working on music collaborations with Japanese artists, while Dave expressed support and eagerness to hear the results. Both showed mutual encouragement and appreciation for the opportunities Japan offers in culture, food, and music."
+        },
+        {
+          "unit_id": "e010e9fc-a17c-403a-83ec-8ed8dba173ce",
+          "timestamp": "2023-08-14T00:39:00+08:00",
+          "summary": "Calvin shared with Dave his experience touring with a well-known artist, highlighting a magical show in Tokyo where the engaged audience sang along, and expressed his love for the crowd's energy and the connection live music brings. Dave responded with enthusiasm, appreciating the rewarding nature of Calvin's passion and the vibrant atmosphere of the concert."
+        },
+        {
+          "unit_id": "b680d621-43b5-4d2c-93bc-50d77090dcf1",
+          "timestamp": "2023-09-22T21:05:00+08:00",
+          "summary": "On September 22, 2023, Calvin shared with Dave reflections on an unforgettable summer drive, his recent trip to Japan, and nostalgic memories of a childhood song, leading to plans for a future music jam session together."
+        },
+        {
+          "unit_id": "b8632efe-2fbc-40b8-a8d1-2a383b186691",
+          "timestamp": "2023-11-02T17:49:00+08:00",
+          "summary": "Calvin shared with Dave photos and details of a recent party at his Japanese house celebrating the release of his new album, highlighting the love and support from family and friends that energized and motivated him as an artist. The conversation reflected mutual admiration for Calvin's ability to create music that brings people together and inspires joy."
+        }
+      ],
+      "first_timestamp": "2023-03-23T12:00:00+08:00",
+      "last_timestamp": "2023-11-02T17:49:00+08:00",
+      "created_at": "2025-12-06T02:14:29.063043",
+      "updated_at": "2025-12-06T02:19:56.786219"
+    },
+    "gec_003": {
+      "cluster_id": "gec_003",
+      "topic": "Calvin's upcoming trip to Boston",
+      "summary": "They discussed Calvin’s upcoming trips to Japan and Boston, sharing excitement about travel, skiing, and creative projects like his collaboration with Frank Ocean. Their conversations reflected ongoing mutual support and enthusiasm for adventure and artistic growth.",
+      "members": [
+        {
+          "unit_id": "9442cfcd-51b6-480d-98e0-8eeebfb1c3b0",
+          "timestamp": "2023-03-23T12:02:00+08:00",
+          "summary": "Calvin informed Dave about his upcoming trip to Japan and Boston, and they exchanged recommendations about a local park, expressing mutual goodwill and support."
+        },
+        {
+          "unit_id": "e5816ba5-3706-41a8-ab60-0ebf4e777cef",
+          "timestamp": "2023-06-09T14:37:30+08:00",
+          "summary": "Calvin and Dave discussed their recent creative and personal activities, including Calvin’s album progress and Dave’s nature explorations, while sharing photos and expressing excitement about upcoming travel plans to Boston and a mountainous region. Their conversation highlighted mutual support and enthusiasm for creativity, nature, and adventure."
+        },
+        {
+          "unit_id": "be2670d7-c8dc-4ac0-bf36-c16a529a4f84",
+          "timestamp": "2023-06-21T15:22:30+08:00",
+          "summary": "Calvin shared photos with Dave showcasing a small town in Japan and its stunning mountain scenery, expressing excitement about his upcoming visit and skiing plans after his tour with Frank Ocean, while Dave showed curiosity and enthusiasm about the location and activities."
+        },
+        {
+          "unit_id": "b01c51d0-ed58-48ea-bbb8-d6f3f0771b38",
+          "timestamp": "2023-06-21T15:23:00+08:00",
+          "summary": "On June 21, 2023, Dave expressed enthusiasm about skiing and asked Calvin if he had tried it, to which Calvin replied he had not but was interested in trying it in the future. The conversation then shifted to Calvin inquiring about Dave's daily routine, reflecting a casual and friendly exchange."
+        },
+        {
+          "unit_id": "8b242ddd-e91d-4928-a854-9687e8efe67c",
+          "timestamp": "2023-08-22T11:11:00+08:00",
+          "summary": "On August 22, 2023, Calvin shared with Dave his excitement about securing a collaboration deal with Frank Ocean after meeting him at a Tokyo music festival, where they recorded a song together, and discussed his upcoming tour plans and potential meet-up in Boston."
+        },
+        {
+          "unit_id": "662bc3d4-51b9-479a-92ca-c4f2a85ccab7",
+          "timestamp": "2023-08-22T11:13:00+08:00",
+          "summary": "On August 22, 2023, Dave and Calvin discussed Calvin's recent podcast about the evolving rap industry, with Dave expressing enthusiasm to listen and promising to stay updated on its release. Both showed mutual support and planned to meet in person."
+        },
+        {
+          "unit_id": "1c54a590-a3a7-4c9a-9112-c68f810aec32",
+          "timestamp": "2023-09-02T09:23:30+08:00",
+          "summary": "Dave expressed pride in his job fixing cars, while Calvin shared excitement about his upcoming trip to Boston and they planned to meet once Calvin arrived. Both exchanged positive sentiments and well wishes for safety during the trip."
+        },
+        {
+          "unit_id": "23258f1e-9487-425b-9e0b-6d6f6b1c70d1",
+          "timestamp": "2023-09-13T11:03:30+08:00",
+          "summary": "On September 13, 2023, Calvin and Dave discussed Calvin's upcoming music tour and shared mutual enthusiasm for music, touring, and creative hobbies, with Dave inviting Calvin to visit his garage in Boston. Both expressed excitement, support, and appreciation for their ongoing friendship."
+        },
+        {
+          "unit_id": "26e4bfb3-49d4-4603-b1dd-206fd5d45026",
+          "timestamp": "2023-10-25T20:26:00+08:00",
+          "summary": "On October 25, 2023, Calvin and Dave reconnected, sharing their recent experiences—Calvin enjoyed exploring Boston's sights and history, while Dave attended an engaging conference in Detroit. Their conversation was friendly and positive, reflecting mutual enthusiasm for their activities."
+        },
+        {
+          "unit_id": "b8c74701-0d2d-40e5-b6a5-e79e0e9e1c55",
+          "timestamp": "2023-11-17T11:03:00+08:00",
+          "summary": "On November 17, 2023, Dave and Calvin exchanged enthusiastic messages about Calvin's upcoming musical performance in Boston and made plans to meet there, expressing mutual support and excitement for Calvin's career."
+        }
+      ],
+      "first_timestamp": "2023-03-23T12:02:00+08:00",
+      "last_timestamp": "2023-11-17T11:03:00+08:00",
+      "created_at": "2025-12-06T02:14:33.492957",
+      "updated_at": "2025-12-06T02:20:32.330242"
+    },
+    "gec_004": {
+      "cluster_id": "gec_004",
+      "topic": "Dave's recommendation of a local park",
+      "summary": "Calvin informed Dave about his upcoming trip to Japan and Boston, and they exchanged recommendations about a local park, expressing mutual goodwill and support.",
+      "members": [
+        {
+          "unit_id": "9442cfcd-51b6-480d-98e0-8eeebfb1c3b0",
+          "timestamp": "2023-03-23T12:02:00+08:00",
+          "summary": "Calvin informed Dave about his upcoming trip to Japan and Boston, and they exchanged recommendations about a local park, expressing mutual goodwill and support."
+        },
+        {
+          "unit_id": "456e6c58-5cc1-4eee-829b-631c4b51488a",
+          "timestamp": "2023-07-07T20:00:00+08:00",
+          "summary": "On July 7, 2023, Dave and Calvin discussed their recent activities, with Dave sharing his routine of regular park walks with friends and Calvin describing his luxurious mansion and cityscape views in Japan. Their conversation highlighted themes of friendship, nature, and appreciation for tranquil and impressive living environments."
+        }
+      ],
+      "first_timestamp": "2023-03-23T12:02:00+08:00",
+      "last_timestamp": "2023-07-07T20:00:00+08:00",
+      "created_at": "2025-12-06T02:14:33.493504",
+      "updated_at": "2025-12-06T02:16:35.954910"
+    },
+    "gec_005": {
+      "cluster_id": "gec_005",
+      "topic": "Calvin's purchase of a new luxury sports car",
+      "summary": "Calvin shared his excitement about purchasing a new luxury sports car, which he viewed as a reward for hard work. Over time, they discussed a minor accident, repairs, and ongoing enthusiasm for the car, alongside mutual support and motivation in their personal goals.",
+      "members": [
+        {
+          "unit_id": "e5f514c7-1536-4e65-bc97-59411506ad44",
+          "timestamp": "2023-03-26T16:48:00+08:00",
+          "summary": "Calvin excitedly shared with Dave the news of purchasing a new red luxury sports car, describing it as a dream come true and a reward for his hard work, while Dave responded with supportive enthusiasm and curiosity about the driving experience."
+        },
+        {
+          "unit_id": "15a157ae-c564-4751-9232-e84264af2f4a",
+          "timestamp": "2023-03-26T16:55:00+08:00",
+          "summary": "On March 26, 2023, Dave and Calvin discussed Calvin's recent acquisition of a new vehicle and his exciting music projects, including studio sessions and upcoming collaborations, with both expressing enthusiasm and support."
+        },
+        {
+          "unit_id": "45b79c6a-98a8-49a6-a7cd-bc402dbf0011",
+          "timestamp": "2023-06-21T15:20:00+08:00",
+          "summary": "On June 21, 2023, Calvin informed Dave about his minor car accident on June 16 and discussed the subsequent insurance and repair process, which was resolved within a week, leading to Calvin’s positive outlook and gratitude for Dave’s support."
+        },
+        {
+          "unit_id": "5db6ca87-5331-4eef-8586-ca7e128c9411",
+          "timestamp": "2023-07-07T19:56:30+08:00",
+          "summary": "On July 7, 2023, Dave checked in with Calvin about the condition of Calvin's car after a recent crash, to which Calvin responded with a photo and confirmed the car was fully repaired and performing well, expressing excitement about driving it again. The conversation also included mutual interest in each other's current lives."
+        },
+        {
+          "unit_id": "c155559b-e5eb-42fa-9fbb-5d81adf44f64",
+          "timestamp": "2023-10-15T09:47:30+08:00",
+          "summary": "On October 15, 2023, Dave and Calvin shared a supportive conversation where Calvin encouraged Dave to pursue his goals while celebrating his recent acquisition of a Ferrari, with both expressing mutual appreciation and plans to share photos to sustain motivation."
+        }
+      ],
+      "first_timestamp": "2023-03-26T16:48:00+08:00",
+      "last_timestamp": "2023-10-15T09:47:30+08:00",
+      "created_at": "2025-12-06T02:14:37.144826",
+      "updated_at": "2025-12-06T02:18:59.661088"
+    },
+    "gec_006": {
+      "cluster_id": "gec_006",
+      "topic": "Calvin's recent achievements",
+      "summary": "Calvin and Dave discussed Calvin's recent achievements and Dave's experience attending a music festival in Boston, where Dave highlighted Aerosmith's performance as a dream come true. The conversation was positive and centered on their shared enthusiasm for music and personal milestones.",
+      "members": [
+        {
+          "unit_id": "409dd28b-2bee-4bfe-916b-9af5c606daeb",
+          "timestamp": "2023-03-26T16:52:30+08:00",
+          "summary": "Calvin and Dave discussed Calvin's recent achievements and Dave's experience attending a music festival in Boston, where Dave highlighted Aerosmith's performance as a dream come true. The conversation was positive and centered on their shared enthusiasm for music and personal milestones."
+        }
+      ],
+      "first_timestamp": "2023-03-26T16:52:30+08:00",
+      "last_timestamp": "2023-03-26T16:52:30+08:00",
+      "created_at": "2025-12-06T02:14:42.140090",
+      "updated_at": "2025-12-06T02:14:42.140090"
+    },
+    "gec_007": {
+      "cluster_id": "gec_007",
+      "topic": "Dave's attendance at a Boston music festival",
+      "summary": "They discussed Dave's experiences at Boston music events, from Aerosmith's iconic performance to recent festivals and jam sessions, highlighting their shared passion for music, support for the local scene, and ongoing plans to connect through performances and mutual encouragement.",
+      "members": [
+        {
+          "unit_id": "409dd28b-2bee-4bfe-916b-9af5c606daeb",
+          "timestamp": "2023-03-26T16:52:30+08:00",
+          "summary": "Calvin and Dave discussed Calvin's recent achievements and Dave's experience attending a music festival in Boston, where Dave highlighted Aerosmith's performance as a dream come true. The conversation was positive and centered on their shared enthusiasm for music and personal milestones."
+        },
+        {
+          "unit_id": "2c8d180e-17e4-4270-949f-2f7456a8d32e",
+          "timestamp": "2023-04-20T16:20:30+08:00",
+          "summary": "On April 20, 2023, Calvin reconnected with Dave to share his enriching experience at a Tokyo music event, where he gained valuable industry advice and expressed his dream of touring globally, while Dave offered to show him around Boston’s music scene and shared his passion for classic cars. Their conversation highlighted mutual enthusiasm and plans for future meetings centered on music and shared interests."
+        },
+        {
+          "unit_id": "f8dcd99a-1586-4a66-882c-814faf345442",
+          "timestamp": "2023-05-31T18:15:00+08:00",
+          "summary": "Calvin and Dave discussed Calvin's upcoming music tour with Frank, focusing on his excitement to perform in Boston and Dave's support for the vibrant local music scene. Both expressed enthusiasm and anticipation for the tour and future updates."
+        },
+        {
+          "unit_id": "107b48e4-b262-48e4-a06b-8d5ddf83a96d",
+          "timestamp": "2023-09-15T00:14:00+08:00",
+          "summary": "On September 15, 2023, Dave shared his excitement with Calvin about a recent jam session with his band and a rock concert he attended in Boston, while Calvin expressed interest in any recordings of the session."
+        },
+        {
+          "unit_id": "1e8d781a-ee75-47d2-8181-451b6e626fb3",
+          "timestamp": "2023-10-15T09:46:00+08:00",
+          "summary": "On October 15, 2023, Dave and Calvin discussed Dave's recent experience at a vibrant music festival headlined by The Fireworks, sharing mutual appreciation for passion-driven work and offering each other encouragement and support in their respective crafts. Their conversation highlighted the importance of fulfillment, perseverance, and friendship."
+        },
+        {
+          "unit_id": "7a4538d7-b745-4784-a506-58133f9ac4e0",
+          "timestamp": "2023-10-23T14:32:00+08:00",
+          "summary": "Calvin and Dave shared a conversation on October 23, 2023, expressing their mutual appreciation for concerts and the powerful emotional connections music creates, supported by photos from Dave’s recent concert experiences. They reflected on the unique energy and lasting memories fostered by live music and the bond between artists and audiences."
+        }
+      ],
+      "first_timestamp": "2023-03-26T16:52:30+08:00",
+      "last_timestamp": "2023-10-23T14:32:00+08:00",
+      "created_at": "2025-12-06T02:14:42.141202",
+      "updated_at": "2025-12-06T02:19:27.198720"
+    },
+    "gec_008": {
+      "cluster_id": "gec_008",
+      "topic": "Calvin's music projects including studio sessions and collaborations",
+      "summary": "They discussed Calvin’s evolving music projects, including studio sessions, collaborations with global artists like Frank Ocean, and tours. Their conversations reflected mutual support, creative growth, and shared enthusiasm for music, artistic experimentation, and achieving career milestones.",
+      "members": [
+        {
+          "unit_id": "15a157ae-c564-4751-9232-e84264af2f4a",
+          "timestamp": "2023-03-26T16:55:00+08:00",
+          "summary": "On March 26, 2023, Dave and Calvin discussed Calvin's recent acquisition of a new vehicle and his exciting music projects, including studio sessions and upcoming collaborations, with both expressing enthusiasm and support."
+        },
+        {
+          "unit_id": "392a928e-c1ae-4c6e-ba00-a2bfafd2dbc5",
+          "timestamp": "2023-05-16T11:52:30+08:00",
+          "summary": "On May 16, 2023, Calvin informed Dave about his recent flooding incident that damaged his home but spared his important music equipment, expressing optimism about repairs once insurance takes effect, while Dave offered sympathy and support."
+        },
+        {
+          "unit_id": "d6913789-7400-4901-9e3f-2610a4647554",
+          "timestamp": "2023-05-16T11:53:00+08:00",
+          "summary": "On May 16, 2023, Dave complimented Calvin's studio and encouraged him to stay positive while dealing with repairs, prompting Calvin to express eagerness to resume making music and inquire about Dave's current projects. Their conversation reflected mutual support and shared interest in their creative work."
+        },
+        {
+          "unit_id": "e5816ba5-3706-41a8-ab60-0ebf4e777cef",
+          "timestamp": "2023-06-09T14:37:30+08:00",
+          "summary": "Calvin and Dave discussed their recent creative and personal activities, including Calvin’s album progress and Dave’s nature explorations, while sharing photos and expressing excitement about upcoming travel plans to Boston and a mountainous region. Their conversation highlighted mutual support and enthusiasm for creativity, nature, and adventure."
+        },
+        {
+          "unit_id": "6c5fdfe3-ceef-4ce8-87a2-b13c80df7dc7",
+          "timestamp": "2023-07-07T20:04:00+08:00",
+          "summary": "Dave and Calvin discussed their excitement about Japan, with Calvin sharing his enthusiasm for exploring the culture and working on music collaborations with Japanese artists, while Dave expressed support and eagerness to hear the results. Both showed mutual encouragement and appreciation for the opportunities Japan offers in culture, food, and music."
+        },
+        {
+          "unit_id": "c19ae004-f4e7-484c-ad34-d0555064b7a5",
+          "timestamp": "2023-07-21T18:44:30+08:00",
+          "summary": "On July 21, 2023, Dave and Calvin reconnected through a conversation where Dave shared his refreshing road trip experience, and Calvin discussed his music studio project and artistic experimentation, with both expressing mutual support and motivation for their passions. Their exchange reinforced their friendship and commitment to their creative pursuits."
+        },
+        {
+          "unit_id": "610a5321-5210-454b-aca4-6050f0c87983",
+          "timestamp": "2023-08-03T13:20:00+08:00",
+          "summary": "On August 3, 2023, Calvin and Dave discussed Calvin's musical ambitions, with Calvin expressing gratitude for Dave's support as he aims to expand his music brand globally and collaborate with artists worldwide. Dave encouraged Calvin to stay focused and motivated, affirming that his efforts would help him achieve his goals."
+        },
+        {
+          "unit_id": "5b66097d-7d7c-4110-8ff9-46e22d4a6c12",
+          "timestamp": "2023-08-11T17:31:00+08:00",
+          "summary": "Calvin and Dave engaged in a supportive conversation about creativity, work ethic, and music collaboration, expressing mutual encouragement and openness to future projects. They shared appreciation for each other's efforts and discussed their music setups while maintaining a positive and motivating rapport."
+        },
+        {
+          "unit_id": "0f7ea8d5-0d39-4f4d-b461-65916ca95d45",
+          "timestamp": "2023-08-14T00:39:30+08:00",
+          "summary": "On August 14, 2023, Dave and Calvin discussed the vibrant energy in a photograph of a crowd with raised hands, sharing positive reflections on artistic expression and its impact, while Calvin also inquired about the progress of Dave's project."
+        },
+        {
+          "unit_id": "8b242ddd-e91d-4928-a854-9687e8efe67c",
+          "timestamp": "2023-08-22T11:11:00+08:00",
+          "summary": "On August 22, 2023, Calvin shared with Dave his excitement about securing a collaboration deal with Frank Ocean after meeting him at a Tokyo music festival, where they recorded a song together, and discussed his upcoming tour plans and potential meet-up in Boston."
+        },
+        {
+          "unit_id": "51d2553a-d0a2-4b8c-86fd-4cd8843f6bf1",
+          "timestamp": "2023-08-31T14:57:00+08:00",
+          "summary": "On August 31, 2023, Dave and Calvin discussed the conclusion of Calvin's tour, with Calvin sharing a photo and expressing his excitement and fulfillment from performing on a large stage, which he described as a dream come true. Dave acknowledged the memorable experience and congratulated Calvin on the achievement."
+        },
+        {
+          "unit_id": "23258f1e-9487-425b-9e0b-6d6f6b1c70d1",
+          "timestamp": "2023-09-13T11:03:30+08:00",
+          "summary": "On September 13, 2023, Calvin and Dave discussed Calvin's upcoming music tour and shared mutual enthusiasm for music, touring, and creative hobbies, with Dave inviting Calvin to visit his garage in Boston. Both expressed excitement, support, and appreciation for their ongoing friendship."
+        },
+        {
+          "unit_id": "e581ae78-5f47-4969-89da-f6b53e96e1dc",
+          "timestamp": "2023-10-04T14:52:30+08:00",
+          "summary": "On October 4, 2023, Calvin and Dave discussed their creative and restorative pursuits, with Calvin sharing his inspiring music collaborations in Boston and Dave describing his therapeutic car restoration projects, both emphasizing the importance of hard work, small wins, and mutual encouragement in achieving their goals."
+        },
+        {
+          "unit_id": "e581ae78-5f47-4969-89da-f6b53e96e1dc",
+          "timestamp": "2023-10-04T14:52:30+08:00",
+          "summary": "On October 4, 2023, Calvin and Dave discussed their creative and restorative pursuits, with Calvin sharing his inspiring music collaborations in Boston and Dave describing his therapeutic car restoration projects, both emphasizing the importance of hard work, small wins, and mutual encouragement in achieving their goals."
+        },
+        {
+          "unit_id": "469a7154-d20e-4c3b-a5b2-cef203ab0586",
+          "timestamp": "2023-10-25T20:32:00+08:00",
+          "summary": "On October 25, 2023, Calvin and Dave reflected on their passions and achievements, with Calvin sharing his music career experiences and Dave discussing his engineering work, both expressing mutual inspiration and encouragement to continue pursuing their dreams. They concluded their conversation positively, reaffirming their commitment to support each other's goals."
+        },
+        {
+          "unit_id": "6daf26df-54f3-4d9a-82b9-0675ab807994",
+          "timestamp": "2023-10-29T10:55:00+08:00",
+          "summary": "On October 29, 2023, Dave and Calvin discussed their creative projects, with Dave sharing his enjoyment of photography and completion of a car restoration, while Calvin updated Dave on his music collaborations and nearing album completion. Both expressed enthusiasm and planned to reconnect soon."
+        },
+        {
+          "unit_id": "b8632efe-2fbc-40b8-a8d1-2a383b186691",
+          "timestamp": "2023-11-02T17:49:00+08:00",
+          "summary": "Calvin shared with Dave photos and details of a recent party at his Japanese house celebrating the release of his new album, highlighting the love and support from family and friends that energized and motivated him as an artist. The conversation reflected mutual admiration for Calvin's ability to create music that brings people together and inspires joy."
+        },
+        {
+          "unit_id": "9d32b866-1997-4be8-b771-743cea353d59",
+          "timestamp": "2023-11-02T17:56:00+08:00",
+          "summary": "On November 2, 2023, Calvin and Dave discussed their creative passions, with Calvin sharing his enthusiasm for music and Dave showcasing his car modification blog and restoration projects, exchanging encouragement and insights throughout their conversation."
+        },
+        {
+          "unit_id": "bdd6e643-8245-4d25-a4bb-ed7e14188f38",
+          "timestamp": "2023-11-02T17:59:00+08:00",
+          "summary": "On November 2, 2023, Calvin and Dave discussed their shared passion for music, with Dave showcasing his guitar restoration skills and band logo, while Calvin shared his music studio setup, both emphasizing the emotional impact of music and their creative projects."
+        },
+        {
+          "unit_id": "9d19f479-2a22-4fb4-b019-b613ee195d79",
+          "timestamp": "2023-11-02T18:07:00+08:00",
+          "summary": "On November 2, 2023, Calvin and Dave engaged in a supportive conversation about their music-related environments, creative processes, and listening habits, sharing photos of their studios and tools while encouraging each other's artistic pursuits. They discussed how music inspires and motivates them, with Calvin highlighting his recording studio and relaxation space, and Dave sharing his lyric-writing notebook and vintage record player."
+        },
+        {
+          "unit_id": "ea6a8c32-86b2-40fb-a80f-1ef5dc035e44",
+          "timestamp": "2023-11-13T21:23:30+08:00",
+          "summary": "On November 13, 2023, Calvin shared with Dave a photo of himself making a beat for a young artist, expressing enthusiasm for collaborating with new talent and experimenting with creative sounds, while Dave encouraged his artistic growth and expressed excitement for his future work. Their conversation highlighted mutual respect and a shared commitment to artistic development."
+        }
+      ],
+      "first_timestamp": "2023-03-26T16:55:00+08:00",
+      "last_timestamp": "2023-11-13T21:23:30+08:00",
+      "created_at": "2025-12-06T02:14:46.707500",
+      "updated_at": "2025-12-06T02:20:22.339792"
+    },
+    "gec_009": {
+      "cluster_id": "gec_009",
+      "topic": "Calvin's experience at a Tokyo music event",
+      "summary": "They discussed Calvin’s enriching experiences at Tokyo music events, including industry insights, live show energy, a collaboration with Frank Ocean, and his global tour dreams, highlighting their shared passion for music and plans to connect further around their artistic journeys.",
+      "members": [
+        {
+          "unit_id": "2c8d180e-17e4-4270-949f-2f7456a8d32e",
+          "timestamp": "2023-04-20T16:20:30+08:00",
+          "summary": "On April 20, 2023, Calvin reconnected with Dave to share his enriching experience at a Tokyo music event, where he gained valuable industry advice and expressed his dream of touring globally, while Dave offered to show him around Boston’s music scene and shared his passion for classic cars. Their conversation highlighted mutual enthusiasm and plans for future meetings centered on music and shared interests."
+        },
+        {
+          "unit_id": "e010e9fc-a17c-403a-83ec-8ed8dba173ce",
+          "timestamp": "2023-08-14T00:39:00+08:00",
+          "summary": "Calvin shared with Dave his experience touring with a well-known artist, highlighting a magical show in Tokyo where the engaged audience sang along, and expressed his love for the crowd's energy and the connection live music brings. Dave responded with enthusiasm, appreciating the rewarding nature of Calvin's passion and the vibrant atmosphere of the concert."
+        },
+        {
+          "unit_id": "0f7ea8d5-0d39-4f4d-b461-65916ca95d45",
+          "timestamp": "2023-08-14T00:39:30+08:00",
+          "summary": "On August 14, 2023, Dave and Calvin discussed the vibrant energy in a photograph of a crowd with raised hands, sharing positive reflections on artistic expression and its impact, while Calvin also inquired about the progress of Dave's project."
+        },
+        {
+          "unit_id": "8b242ddd-e91d-4928-a854-9687e8efe67c",
+          "timestamp": "2023-08-22T11:11:00+08:00",
+          "summary": "On August 22, 2023, Calvin shared with Dave his excitement about securing a collaboration deal with Frank Ocean after meeting him at a Tokyo music festival, where they recorded a song together, and discussed his upcoming tour plans and potential meet-up in Boston."
+        },
+        {
+          "unit_id": "51d2553a-d0a2-4b8c-86fd-4cd8843f6bf1",
+          "timestamp": "2023-08-31T14:57:00+08:00",
+          "summary": "On August 31, 2023, Dave and Calvin discussed the conclusion of Calvin's tour, with Calvin sharing a photo and expressing his excitement and fulfillment from performing on a large stage, which he described as a dream come true. Dave acknowledged the memorable experience and congratulated Calvin on the achievement."
+        },
+        {
+          "unit_id": "35d65637-8c66-4993-9692-294ba0914c5f",
+          "timestamp": "2023-10-19T10:16:00+08:00",
+          "summary": "Calvin shared with Dave his exciting experience touring with Frank Ocean, highlighting the strong on-stage chemistry and the energetic crowds, including a memorable concert in Tokyo. Dave expressed enthusiasm and interest in attending one of their shows."
+        },
+        {
+          "unit_id": "b53df52c-9673-49cc-8c00-25ae34af1535",
+          "timestamp": "2023-10-19T10:22:00+08:00",
+          "summary": "Calvin and Dave discussed Tokyo's vibrant city life, culture, and food, sharing images and personal experiences, with Calvin planning a visit next month and Dave expressing eagerness to explore the city. Their conversation highlighted admiration for Tokyo's energetic atmosphere and culinary delights."
+        }
+      ],
+      "first_timestamp": "2023-04-20T16:20:30+08:00",
+      "last_timestamp": "2023-10-19T10:22:00+08:00",
+      "created_at": "2025-12-06T02:14:51.970774",
+      "updated_at": "2025-12-06T02:19:07.265497"
+    },
+    "gec_010": {
+      "cluster_id": "gec_010",
+      "topic": "Calvin's dream of touring globally",
+      "summary": "They discussed Calvin’s dream of touring globally, sharing experiences from Tokyo music events, collaborations with artists like Frank Ocean, and the fulfillment of performing on large stages. Their ongoing conversations reflect mutual support and excitement for future tours and creative pursuits.",
+      "members": [
+        {
+          "unit_id": "2c8d180e-17e4-4270-949f-2f7456a8d32e",
+          "timestamp": "2023-04-20T16:20:30+08:00",
+          "summary": "On April 20, 2023, Calvin reconnected with Dave to share his enriching experience at a Tokyo music event, where he gained valuable industry advice and expressed his dream of touring globally, while Dave offered to show him around Boston’s music scene and shared his passion for classic cars. Their conversation highlighted mutual enthusiasm and plans for future meetings centered on music and shared interests."
+        },
+        {
+          "unit_id": "e010e9fc-a17c-403a-83ec-8ed8dba173ce",
+          "timestamp": "2023-08-14T00:39:00+08:00",
+          "summary": "Calvin shared with Dave his experience touring with a well-known artist, highlighting a magical show in Tokyo where the engaged audience sang along, and expressed his love for the crowd's energy and the connection live music brings. Dave responded with enthusiasm, appreciating the rewarding nature of Calvin's passion and the vibrant atmosphere of the concert."
+        },
+        {
+          "unit_id": "8b242ddd-e91d-4928-a854-9687e8efe67c",
+          "timestamp": "2023-08-22T11:11:00+08:00",
+          "summary": "On August 22, 2023, Calvin shared with Dave his excitement about securing a collaboration deal with Frank Ocean after meeting him at a Tokyo music festival, where they recorded a song together, and discussed his upcoming tour plans and potential meet-up in Boston."
+        },
+        {
+          "unit_id": "51d2553a-d0a2-4b8c-86fd-4cd8843f6bf1",
+          "timestamp": "2023-08-31T14:57:00+08:00",
+          "summary": "On August 31, 2023, Dave and Calvin discussed the conclusion of Calvin's tour, with Calvin sharing a photo and expressing his excitement and fulfillment from performing on a large stage, which he described as a dream come true. Dave acknowledged the memorable experience and congratulated Calvin on the achievement."
+        },
+        {
+          "unit_id": "23258f1e-9487-425b-9e0b-6d6f6b1c70d1",
+          "timestamp": "2023-09-13T11:03:30+08:00",
+          "summary": "On September 13, 2023, Calvin and Dave discussed Calvin's upcoming music tour and shared mutual enthusiasm for music, touring, and creative hobbies, with Dave inviting Calvin to visit his garage in Boston. Both expressed excitement, support, and appreciation for their ongoing friendship."
+        },
+        {
+          "unit_id": "35d65637-8c66-4993-9692-294ba0914c5f",
+          "timestamp": "2023-10-19T10:16:00+08:00",
+          "summary": "Calvin shared with Dave his exciting experience touring with Frank Ocean, highlighting the strong on-stage chemistry and the energetic crowds, including a memorable concert in Tokyo. Dave expressed enthusiasm and interest in attending one of their shows."
+        },
+        {
+          "unit_id": "063d93ae-e84a-4edd-a94f-ef9dffeb87ba",
+          "timestamp": "2023-10-23T14:19:30+08:00",
+          "summary": "On October 23, 2023, Dave and Calvin discussed Calvin's ongoing tour with Frank Ocean, where Calvin shared the excitement and challenges of fame and touring, emphasizing the importance of a strong support system to manage the pressures. Dave offered support and curiosity about how Calvin balances his professional and personal life amid these demands."
+        },
+        {
+          "unit_id": "00371374-3bff-433f-8cf1-965d65e87532",
+          "timestamp": "2023-10-23T14:22:30+08:00",
+          "summary": "On October 23, 2023, Calvin and Dave discussed the importance of support systems and staying connected to current events, with Calvin explaining how these elements inspire his music and serve as a form of emotional expression and therapy. They highlighted how real-world struggles motivate Calvin to create music that resonates deeply with his fans."
+        }
+      ],
+      "first_timestamp": "2023-04-20T16:20:30+08:00",
+      "last_timestamp": "2023-10-23T14:22:30+08:00",
+      "created_at": "2025-12-06T02:14:51.972438",
+      "updated_at": "2025-12-06T02:19:16.825661"
+    },
+    "gec_011": {
+      "cluster_id": "gec_011",
+      "topic": "Dave's opening of his own car maintenance shop",
+      "summary": "On May 1, 2023, Dave shared with Calvin his excitement and pride in opening his own car maintenance shop, highlighting his passion for classic car restoration and the fulfillment he finds in his work, while Calvin offered encouragement and recognition of Dave’s dedication and achievements.",
+      "members": [
+        {
+          "unit_id": "188333c0-9c0c-4aa4-9b6c-0aa0e254bce0",
+          "timestamp": "2023-05-01T18:35:00+08:00",
+          "summary": "On May 1, 2023, Dave shared with Calvin his excitement and pride in opening his own car maintenance shop, highlighting his passion for classic car restoration and the fulfillment he finds in his work, while Calvin offered encouragement and recognition of Dave’s dedication and achievements."
+        }
+      ],
+      "first_timestamp": "2023-05-01T18:35:00+08:00",
+      "last_timestamp": "2023-05-01T18:35:00+08:00",
+      "created_at": "2025-12-06T02:15:02.251792",
+      "updated_at": "2025-12-06T02:15:02.251792"
+    },
+    "gec_012": {
+      "cluster_id": "gec_012",
+      "topic": "Dave and Calvin's mutual artistic motivation and encouragement",
+      "summary": "On May 1, 2023, Dave and Calvin shared a supportive conversation about their artistic efforts and motivation, with Calvin encouraging Dave by sharing the symbolic significance of a gifted necklace that reminded him of his musical journey. Both expressed mutual appreciation and commitment to persevering in their creative pursuits.",
+      "members": [
+        {
+          "unit_id": "b8a1e40a-eed0-4d23-9fa8-98162af399f5",
+          "timestamp": "2023-05-01T18:37:30+08:00",
+          "summary": "On May 1, 2023, Dave and Calvin shared a supportive conversation about their artistic efforts and motivation, with Calvin encouraging Dave by sharing the symbolic significance of a gifted necklace that reminded him of his musical journey. Both expressed mutual appreciation and commitment to persevering in their creative pursuits."
+        },
+        {
+          "unit_id": "1e8d781a-ee75-47d2-8181-451b6e626fb3",
+          "timestamp": "2023-10-15T09:46:00+08:00",
+          "summary": "On October 15, 2023, Dave and Calvin discussed Dave's recent experience at a vibrant music festival headlined by The Fireworks, sharing mutual appreciation for passion-driven work and offering each other encouragement and support in their respective crafts. Their conversation highlighted the importance of fulfillment, perseverance, and friendship."
+        },
+        {
+          "unit_id": "c155559b-e5eb-42fa-9fbb-5d81adf44f64",
+          "timestamp": "2023-10-15T09:47:30+08:00",
+          "summary": "On October 15, 2023, Dave and Calvin shared a supportive conversation where Calvin encouraged Dave to pursue his goals while celebrating his recent acquisition of a Ferrari, with both expressing mutual appreciation and plans to share photos to sustain motivation."
+        },
+        {
+          "unit_id": "7a4538d7-b745-4784-a506-58133f9ac4e0",
+          "timestamp": "2023-10-23T14:32:00+08:00",
+          "summary": "Calvin and Dave shared a conversation on October 23, 2023, expressing their mutual appreciation for concerts and the powerful emotional connections music creates, supported by photos from Dave’s recent concert experiences. They reflected on the unique energy and lasting memories fostered by live music and the bond between artists and audiences."
+        }
+      ],
+      "first_timestamp": "2023-05-01T18:37:30+08:00",
+      "last_timestamp": "2023-10-23T14:32:00+08:00",
+      "created_at": "2025-12-06T02:15:08.281421",
+      "updated_at": "2025-12-06T02:19:27.199265"
+    },
+    "gec_013": {
+      "cluster_id": "gec_013",
+      "topic": "Calvin's symbolic gift of a necklace related to his musical journey",
+      "summary": "On May 1, 2023, Dave and Calvin shared a supportive conversation about their artistic efforts and motivation, with Calvin encouraging Dave by sharing the symbolic significance of a gifted necklace that reminded him of his musical journey. Both expressed mutual appreciation and commitment to persevering in their creative pursuits.",
+      "members": [
+        {
+          "unit_id": "b8a1e40a-eed0-4d23-9fa8-98162af399f5",
+          "timestamp": "2023-05-01T18:37:30+08:00",
+          "summary": "On May 1, 2023, Dave and Calvin shared a supportive conversation about their artistic efforts and motivation, with Calvin encouraging Dave by sharing the symbolic significance of a gifted necklace that reminded him of his musical journey. Both expressed mutual appreciation and commitment to persevering in their creative pursuits."
+        }
+      ],
+      "first_timestamp": "2023-05-01T18:37:30+08:00",
+      "last_timestamp": "2023-05-01T18:37:30+08:00",
+      "created_at": "2025-12-06T02:15:08.283026",
+      "updated_at": "2025-12-06T02:15:08.283026"
+    },
+    "gec_014": {
+      "cluster_id": "gec_014",
+      "topic": "Dave's collaboration with a local garage",
+      "summary": "Dave and Calvin discussed Dave’s evolving collaboration with a local garage, highlighting his passion for car restoration and modification, progress in workshops, and the therapeutic value of his projects, while Calvin consistently offered support and encouragement throughout their creative exchanges.",
+      "members": [
+        {
+          "unit_id": "e9556888-de45-4af5-89d1-8d5e8b8608e7",
+          "timestamp": "2023-05-03T13:18:30+08:00",
+          "summary": "Dave and Calvin discussed Dave's new collaboration with a local garage, where Dave expressed enthusiasm for the project and his ambition to deepen his auto engineering skills and eventually build a custom car, while Calvin offered support and encouragement."
+        },
+        {
+          "unit_id": "37ef46ca-6848-4f7b-8422-f9baa33a7544",
+          "timestamp": "2023-08-11T17:28:30+08:00",
+          "summary": "On August 11, 2023, Dave shared with Calvin his experience and progress in a car modification workshop, highlighting his work on a silver Corvette involving engine swaps, suspension, and body modifications, which fulfilled his passion for auto engineering. Calvin responded with enthusiasm and support, appreciating Dave's attention to detail and dedication."
+        },
+        {
+          "unit_id": "322ea053-731c-45fb-a3cc-29cb08a32899",
+          "timestamp": "2023-08-14T00:36:00+08:00",
+          "summary": "On August 14, 2023, Dave shared with Calvin his inspiring experience attending a car restoration workshop in San Francisco, highlighting the passionate community and techniques he encountered, while Calvin responded with enthusiasm and support for Dave’s interest."
+        },
+        {
+          "unit_id": "51b06bb6-27d5-46bf-9513-e3f772f34021",
+          "timestamp": "2023-08-14T00:42:30+08:00",
+          "summary": "Dave updated Calvin on his car restoration project, expressing excitement about transforming the damaged car and aiming to complete it by the end of September 2023, while Calvin offered encouragement and admiration throughout their conversation."
+        },
+        {
+          "unit_id": "c161d847-b669-4e9e-b8b5-a54c743b02da",
+          "timestamp": "2023-09-02T09:21:00+08:00",
+          "summary": "On September 2, 2023, Dave and Calvin discussed the rewarding experience of car modification, with Dave sharing his fulfillment in restoring old cars and the positive impact it has on car owners. Their conversation highlighted Dave's enthusiasm and sense of purpose in giving cars new life."
+        },
+        {
+          "unit_id": "e581ae78-5f47-4969-89da-f6b53e96e1dc",
+          "timestamp": "2023-10-04T14:52:30+08:00",
+          "summary": "On October 4, 2023, Calvin and Dave discussed their creative and restorative pursuits, with Calvin sharing his inspiring music collaborations in Boston and Dave describing his therapeutic car restoration projects, both emphasizing the importance of hard work, small wins, and mutual encouragement in achieving their goals."
+        },
+        {
+          "unit_id": "e581ae78-5f47-4969-89da-f6b53e96e1dc",
+          "timestamp": "2023-10-04T14:52:30+08:00",
+          "summary": "On October 4, 2023, Calvin and Dave discussed their creative and restorative pursuits, with Calvin sharing his inspiring music collaborations in Boston and Dave describing his therapeutic car restoration projects, both emphasizing the importance of hard work, small wins, and mutual encouragement in achieving their goals."
+        },
+        {
+          "unit_id": "e8079c42-9542-47a6-924e-0a7c60fd76a3",
+          "timestamp": "2023-10-23T14:28:30+08:00",
+          "summary": "On October 23, 2023, Calvin and Dave discussed their personal outlets for self-expression, with Calvin sharing how music serves as his therapy and Dave describing car restoration as his calming passion, highlighting the importance of detail in both crafts. They exchanged stories about Dave’s early interest in cars and mutual admiration for each other’s dedication and creative processes."
+        },
+        {
+          "unit_id": "9d32b866-1997-4be8-b771-743cea353d59",
+          "timestamp": "2023-11-02T17:56:00+08:00",
+          "summary": "On November 2, 2023, Calvin and Dave discussed their creative passions, with Calvin sharing his enthusiasm for music and Dave showcasing his car modification blog and restoration projects, exchanging encouragement and insights throughout their conversation."
+        },
+        {
+          "unit_id": "bdd6e643-8245-4d25-a4bb-ed7e14188f38",
+          "timestamp": "2023-11-02T17:59:00+08:00",
+          "summary": "On November 2, 2023, Calvin and Dave discussed their shared passion for music, with Dave showcasing his guitar restoration skills and band logo, while Calvin shared his music studio setup, both emphasizing the emotional impact of music and their creative projects."
+        },
+        {
+          "unit_id": "9d19f479-2a22-4fb4-b019-b613ee195d79",
+          "timestamp": "2023-11-02T18:07:00+08:00",
+          "summary": "On November 2, 2023, Calvin and Dave engaged in a supportive conversation about their music-related environments, creative processes, and listening habits, sharing photos of their studios and tools while encouraging each other's artistic pursuits. They discussed how music inspires and motivates them, with Calvin highlighting his recording studio and relaxation space, and Dave sharing his lyric-writing notebook and vintage record player."
+        }
+      ],
+      "first_timestamp": "2023-05-03T13:18:30+08:00",
+      "last_timestamp": "2023-11-02T18:07:00+08:00",
+      "created_at": "2025-12-06T02:15:14.075904",
+      "updated_at": "2025-12-06T02:20:13.231291"
+    },
+    "gec_015": {
+      "cluster_id": "gec_015",
+      "topic": "Dave's ambition to deepen auto engineering skills",
+      "summary": "They discussed Dave’s growing passion for auto engineering, from collaborating with a local garage to attending workshops and restoring cars. Over time, Dave’s skills and enthusiasm deepened, with mutual encouragement highlighting the therapeutic and creative value of his projects.",
+      "members": [
+        {
+          "unit_id": "e9556888-de45-4af5-89d1-8d5e8b8608e7",
+          "timestamp": "2023-05-03T13:18:30+08:00",
+          "summary": "Dave and Calvin discussed Dave's new collaboration with a local garage, where Dave expressed enthusiasm for the project and his ambition to deepen his auto engineering skills and eventually build a custom car, while Calvin offered support and encouragement."
+        },
+        {
+          "unit_id": "37ef46ca-6848-4f7b-8422-f9baa33a7544",
+          "timestamp": "2023-08-11T17:28:30+08:00",
+          "summary": "On August 11, 2023, Dave shared with Calvin his experience and progress in a car modification workshop, highlighting his work on a silver Corvette involving engine swaps, suspension, and body modifications, which fulfilled his passion for auto engineering. Calvin responded with enthusiasm and support, appreciating Dave's attention to detail and dedication."
+        },
+        {
+          "unit_id": "322ea053-731c-45fb-a3cc-29cb08a32899",
+          "timestamp": "2023-08-14T00:36:00+08:00",
+          "summary": "On August 14, 2023, Dave shared with Calvin his inspiring experience attending a car restoration workshop in San Francisco, highlighting the passionate community and techniques he encountered, while Calvin responded with enthusiasm and support for Dave’s interest."
+        },
+        {
+          "unit_id": "51b06bb6-27d5-46bf-9513-e3f772f34021",
+          "timestamp": "2023-08-14T00:42:30+08:00",
+          "summary": "Dave updated Calvin on his car restoration project, expressing excitement about transforming the damaged car and aiming to complete it by the end of September 2023, while Calvin offered encouragement and admiration throughout their conversation."
+        },
+        {
+          "unit_id": "c161d847-b669-4e9e-b8b5-a54c743b02da",
+          "timestamp": "2023-09-02T09:21:00+08:00",
+          "summary": "On September 2, 2023, Dave and Calvin discussed the rewarding experience of car modification, with Dave sharing his fulfillment in restoring old cars and the positive impact it has on car owners. Their conversation highlighted Dave's enthusiasm and sense of purpose in giving cars new life."
+        },
+        {
+          "unit_id": "e581ae78-5f47-4969-89da-f6b53e96e1dc",
+          "timestamp": "2023-10-04T14:52:30+08:00",
+          "summary": "On October 4, 2023, Calvin and Dave discussed their creative and restorative pursuits, with Calvin sharing his inspiring music collaborations in Boston and Dave describing his therapeutic car restoration projects, both emphasizing the importance of hard work, small wins, and mutual encouragement in achieving their goals."
+        },
+        {
+          "unit_id": "e581ae78-5f47-4969-89da-f6b53e96e1dc",
+          "timestamp": "2023-10-04T14:52:30+08:00",
+          "summary": "On October 4, 2023, Calvin and Dave discussed their creative and restorative pursuits, with Calvin sharing his inspiring music collaborations in Boston and Dave describing his therapeutic car restoration projects, both emphasizing the importance of hard work, small wins, and mutual encouragement in achieving their goals."
+        },
+        {
+          "unit_id": "e8079c42-9542-47a6-924e-0a7c60fd76a3",
+          "timestamp": "2023-10-23T14:28:30+08:00",
+          "summary": "On October 23, 2023, Calvin and Dave discussed their personal outlets for self-expression, with Calvin sharing how music serves as his therapy and Dave describing car restoration as his calming passion, highlighting the importance of detail in both crafts. They exchanged stories about Dave’s early interest in cars and mutual admiration for each other’s dedication and creative processes."
+        },
+        {
+          "unit_id": "469a7154-d20e-4c3b-a5b2-cef203ab0586",
+          "timestamp": "2023-10-25T20:32:00+08:00",
+          "summary": "On October 25, 2023, Calvin and Dave reflected on their passions and achievements, with Calvin sharing his music career experiences and Dave discussing his engineering work, both expressing mutual inspiration and encouragement to continue pursuing their dreams. They concluded their conversation positively, reaffirming their commitment to support each other's goals."
+        },
+        {
+          "unit_id": "9d32b866-1997-4be8-b771-743cea353d59",
+          "timestamp": "2023-11-02T17:56:00+08:00",
+          "summary": "On November 2, 2023, Calvin and Dave discussed their creative passions, with Calvin sharing his enthusiasm for music and Dave showcasing his car modification blog and restoration projects, exchanging encouragement and insights throughout their conversation."
+        },
+        {
+          "unit_id": "bdd6e643-8245-4d25-a4bb-ed7e14188f38",
+          "timestamp": "2023-11-02T17:59:00+08:00",
+          "summary": "On November 2, 2023, Calvin and Dave discussed their shared passion for music, with Dave showcasing his guitar restoration skills and band logo, while Calvin shared his music studio setup, both emphasizing the emotional impact of music and their creative projects."
+        }
+      ],
+      "first_timestamp": "2023-05-03T13:18:30+08:00",
+      "last_timestamp": "2023-11-02T17:59:00+08:00",
+      "created_at": "2025-12-06T02:15:14.077579",
+      "updated_at": "2025-12-06T02:20:07.758098"
+    },
+    "gec_016": {
+      "cluster_id": "gec_016",
+      "topic": "Dave's goal to build a custom car",
+      "summary": "They discussed Dave’s evolving passion for car restoration and custom builds, highlighting his hands-on projects, workshops, and therapeutic connection to automotive engineering, with Calvin consistently offering support and admiration throughout their creative journey.",
+      "members": [
+        {
+          "unit_id": "e9556888-de45-4af5-89d1-8d5e8b8608e7",
+          "timestamp": "2023-05-03T13:18:30+08:00",
+          "summary": "Dave and Calvin discussed Dave's new collaboration with a local garage, where Dave expressed enthusiasm for the project and his ambition to deepen his auto engineering skills and eventually build a custom car, while Calvin offered support and encouragement."
+        },
+        {
+          "unit_id": "37ef46ca-6848-4f7b-8422-f9baa33a7544",
+          "timestamp": "2023-08-11T17:28:30+08:00",
+          "summary": "On August 11, 2023, Dave shared with Calvin his experience and progress in a car modification workshop, highlighting his work on a silver Corvette involving engine swaps, suspension, and body modifications, which fulfilled his passion for auto engineering. Calvin responded with enthusiasm and support, appreciating Dave's attention to detail and dedication."
+        },
+        {
+          "unit_id": "322ea053-731c-45fb-a3cc-29cb08a32899",
+          "timestamp": "2023-08-14T00:36:00+08:00",
+          "summary": "On August 14, 2023, Dave shared with Calvin his inspiring experience attending a car restoration workshop in San Francisco, highlighting the passionate community and techniques he encountered, while Calvin responded with enthusiasm and support for Dave’s interest."
+        },
+        {
+          "unit_id": "51b06bb6-27d5-46bf-9513-e3f772f34021",
+          "timestamp": "2023-08-14T00:42:30+08:00",
+          "summary": "Dave updated Calvin on his car restoration project, expressing excitement about transforming the damaged car and aiming to complete it by the end of September 2023, while Calvin offered encouragement and admiration throughout their conversation."
+        },
+        {
+          "unit_id": "c161d847-b669-4e9e-b8b5-a54c743b02da",
+          "timestamp": "2023-09-02T09:21:00+08:00",
+          "summary": "On September 2, 2023, Dave and Calvin discussed the rewarding experience of car modification, with Dave sharing his fulfillment in restoring old cars and the positive impact it has on car owners. Their conversation highlighted Dave's enthusiasm and sense of purpose in giving cars new life."
+        },
+        {
+          "unit_id": "e581ae78-5f47-4969-89da-f6b53e96e1dc",
+          "timestamp": "2023-10-04T14:52:30+08:00",
+          "summary": "On October 4, 2023, Calvin and Dave discussed their creative and restorative pursuits, with Calvin sharing his inspiring music collaborations in Boston and Dave describing his therapeutic car restoration projects, both emphasizing the importance of hard work, small wins, and mutual encouragement in achieving their goals."
+        },
+        {
+          "unit_id": "e581ae78-5f47-4969-89da-f6b53e96e1dc",
+          "timestamp": "2023-10-04T14:52:30+08:00",
+          "summary": "On October 4, 2023, Calvin and Dave discussed their creative and restorative pursuits, with Calvin sharing his inspiring music collaborations in Boston and Dave describing his therapeutic car restoration projects, both emphasizing the importance of hard work, small wins, and mutual encouragement in achieving their goals."
+        },
+        {
+          "unit_id": "e8079c42-9542-47a6-924e-0a7c60fd76a3",
+          "timestamp": "2023-10-23T14:28:30+08:00",
+          "summary": "On October 23, 2023, Calvin and Dave discussed their personal outlets for self-expression, with Calvin sharing how music serves as his therapy and Dave describing car restoration as his calming passion, highlighting the importance of detail in both crafts. They exchanged stories about Dave’s early interest in cars and mutual admiration for each other’s dedication and creative processes."
+        },
+        {
+          "unit_id": "e1e8f5ed-1b38-4889-afed-860d13aa8787",
+          "timestamp": "2023-10-25T20:27:30+08:00",
+          "summary": "On October 25, 2023, Dave shared a photo of his latest car project and discussed his passion for automotive engineering, sparked by a childhood car show experience, while Calvin expressed enthusiasm and admiration for cars and powerful models. Their conversation highlighted their shared interest and appreciation for car building and engineering."
+        },
+        {
+          "unit_id": "9d32b866-1997-4be8-b771-743cea353d59",
+          "timestamp": "2023-11-02T17:56:00+08:00",
+          "summary": "On November 2, 2023, Calvin and Dave discussed their creative passions, with Calvin sharing his enthusiasm for music and Dave showcasing his car modification blog and restoration projects, exchanging encouragement and insights throughout their conversation."
+        },
+        {
+          "unit_id": "bdd6e643-8245-4d25-a4bb-ed7e14188f38",
+          "timestamp": "2023-11-02T17:59:00+08:00",
+          "summary": "On November 2, 2023, Calvin and Dave discussed their shared passion for music, with Dave showcasing his guitar restoration skills and band logo, while Calvin shared his music studio setup, both emphasizing the emotional impact of music and their creative projects."
+        }
+      ],
+      "first_timestamp": "2023-05-03T13:18:30+08:00",
+      "last_timestamp": "2023-11-02T17:59:00+08:00",
+      "created_at": "2025-12-06T02:15:14.078667",
+      "updated_at": "2025-12-06T02:20:07.758098"
+    },
+    "gec_017": {
+      "cluster_id": "gec_017",
+      "topic": "Calvin and Dave's hobbies and relaxation methods involving nature and movement",
+      "summary": "On May 3, 2023, Calvin and Dave discussed their hobbies and ways to relax, sharing appreciation for activities like driving and walking that help them destress. Both expressed positive emotions about their methods of relaxation involving nature and movement.",
+      "members": [
+        {
+          "unit_id": "53dde510-f879-4366-89a4-4ded0fa8d384",
+          "timestamp": "2023-05-03T13:20:00+08:00",
+          "summary": "On May 3, 2023, Calvin and Dave discussed their hobbies and ways to relax, sharing appreciation for activities like driving and walking that help them destress. Both expressed positive emotions about their methods of relaxation involving nature and movement."
+        }
+      ],
+      "first_timestamp": "2023-05-03T13:20:00+08:00",
+      "last_timestamp": "2023-05-03T13:20:00+08:00",
+      "created_at": "2025-12-06T02:15:19.065440",
+      "updated_at": "2025-12-06T02:15:19.065440"
+    },
+    "gec_018": {
+      "cluster_id": "gec_018",
+      "topic": "Calvin's creative block in music",
+      "summary": "On May 3, 2023, Calvin shared with Dave his creative block in music and received advice to take breaks and explore other interests to regain inspiration, leading to mutual encouragement and plans to stay connected. Later, on May 16, Calvin reached out again, reflecting on their ongoing support and efforts to overcome creative challenges.",
+      "members": [
+        {
+          "unit_id": "9a241f3f-23e1-48e1-a008-55007ede7c0e",
+          "timestamp": "2023-05-16T11:50:00+08:00",
+          "summary": "On May 3, 2023, Calvin shared with Dave his creative block in music and received advice to take breaks and explore other interests to regain inspiration, leading to mutual encouragement and plans to stay connected. Later, on May 16, Calvin reached out again, reflecting on their ongoing support and efforts to overcome creative challenges."
+        }
+      ],
+      "first_timestamp": "2023-05-16T11:50:00+08:00",
+      "last_timestamp": "2023-05-16T11:50:00+08:00",
+      "created_at": "2025-12-06T02:15:24.648776",
+      "updated_at": "2025-12-06T02:15:24.648776"
+    },
+    "gec_019": {
+      "cluster_id": "gec_019",
+      "topic": "Calvin's use of nature and cultural exploration for relaxation",
+      "summary": "On May 3, 2023, Calvin shared with Dave his creative block in music and received advice to take breaks and explore other interests to regain inspiration, leading to mutual encouragement and plans to stay connected. Later, on May 16, Calvin reached out again, reflecting on their ongoing support and efforts to overcome creative challenges.",
+      "members": [
+        {
+          "unit_id": "9a241f3f-23e1-48e1-a008-55007ede7c0e",
+          "timestamp": "2023-05-16T11:50:00+08:00",
+          "summary": "On May 3, 2023, Calvin shared with Dave his creative block in music and received advice to take breaks and explore other interests to regain inspiration, leading to mutual encouragement and plans to stay connected. Later, on May 16, Calvin reached out again, reflecting on their ongoing support and efforts to overcome creative challenges."
+        }
+      ],
+      "first_timestamp": "2023-05-16T11:50:00+08:00",
+      "last_timestamp": "2023-05-16T11:50:00+08:00",
+      "created_at": "2025-12-06T02:15:24.650909",
+      "updated_at": "2025-12-06T02:15:24.650909"
+    },
+    "gec_020": {
+      "cluster_id": "gec_020",
+      "topic": "Calvin and Dave's mutual encouragement and support for overcoming creative challenges",
+      "summary": "Calvin and Dave consistently supported each other through creative challenges, sharing how music and car restoration serve as therapeutic outlets. Their ongoing encouragement, focus on small wins, and connection to real-life experiences fueled their mutual inspiration and dedication over time.",
+      "members": [
+        {
+          "unit_id": "9a241f3f-23e1-48e1-a008-55007ede7c0e",
+          "timestamp": "2023-05-16T11:50:00+08:00",
+          "summary": "On May 3, 2023, Calvin shared with Dave his creative block in music and received advice to take breaks and explore other interests to regain inspiration, leading to mutual encouragement and plans to stay connected. Later, on May 16, Calvin reached out again, reflecting on their ongoing support and efforts to overcome creative challenges."
+        },
+        {
+          "unit_id": "d6913789-7400-4901-9e3f-2610a4647554",
+          "timestamp": "2023-05-16T11:53:00+08:00",
+          "summary": "On May 16, 2023, Dave complimented Calvin's studio and encouraged him to stay positive while dealing with repairs, prompting Calvin to express eagerness to resume making music and inquire about Dave's current projects. Their conversation reflected mutual support and shared interest in their creative work."
+        },
+        {
+          "unit_id": "e581ae78-5f47-4969-89da-f6b53e96e1dc",
+          "timestamp": "2023-10-04T14:52:30+08:00",
+          "summary": "On October 4, 2023, Calvin and Dave discussed their creative and restorative pursuits, with Calvin sharing his inspiring music collaborations in Boston and Dave describing his therapeutic car restoration projects, both emphasizing the importance of hard work, small wins, and mutual encouragement in achieving their goals."
+        },
+        {
+          "unit_id": "00371374-3bff-433f-8cf1-965d65e87532",
+          "timestamp": "2023-10-23T14:22:30+08:00",
+          "summary": "On October 23, 2023, Calvin and Dave discussed the importance of support systems and staying connected to current events, with Calvin explaining how these elements inspire his music and serve as a form of emotional expression and therapy. They highlighted how real-world struggles motivate Calvin to create music that resonates deeply with his fans."
+        },
+        {
+          "unit_id": "e8079c42-9542-47a6-924e-0a7c60fd76a3",
+          "timestamp": "2023-10-23T14:28:30+08:00",
+          "summary": "On October 23, 2023, Calvin and Dave discussed their personal outlets for self-expression, with Calvin sharing how music serves as his therapy and Dave describing car restoration as his calming passion, highlighting the importance of detail in both crafts. They exchanged stories about Dave’s early interest in cars and mutual admiration for each other’s dedication and creative processes."
+        }
+      ],
+      "first_timestamp": "2023-05-16T11:50:00+08:00",
+      "last_timestamp": "2023-10-23T14:28:30+08:00",
+      "created_at": "2025-12-06T02:15:24.652307",
+      "updated_at": "2025-12-06T02:19:24.842986"
+    },
+    "gec_021": {
+      "cluster_id": "gec_021",
+      "topic": "Calvin's home flooding incident and damage",
+      "summary": "On May 16, 2023, Calvin informed Dave about his recent flooding incident that damaged his home but spared his important music equipment, expressing optimism about repairs once insurance takes effect, while Dave offered sympathy and support.",
+      "members": [
+        {
+          "unit_id": "392a928e-c1ae-4c6e-ba00-a2bfafd2dbc5",
+          "timestamp": "2023-05-16T11:52:30+08:00",
+          "summary": "On May 16, 2023, Calvin informed Dave about his recent flooding incident that damaged his home but spared his important music equipment, expressing optimism about repairs once insurance takes effect, while Dave offered sympathy and support."
+        }
+      ],
+      "first_timestamp": "2023-05-16T11:52:30+08:00",
+      "last_timestamp": "2023-05-16T11:52:30+08:00",
+      "created_at": "2025-12-06T02:15:28.745100",
+      "updated_at": "2025-12-06T02:15:28.745100"
+    },
+    "gec_022": {
+      "cluster_id": "gec_022",
+      "topic": "Calvin's upcoming music performance in Tokyo",
+      "summary": "Dave and Calvin discussed Calvin's upcoming music performance in Tokyo and shared admiration for a photo Calvin took of the city's nighttime skyline, with Dave expressing interest in visiting Tokyo in the future.",
+      "members": [
+        {
+          "unit_id": "84799553-c854-4a05-812f-3f63455ae7ec",
+          "timestamp": "2023-05-16T11:58:30+08:00",
+          "summary": "Dave and Calvin discussed Calvin's upcoming music performance in Tokyo and shared admiration for a photo Calvin took of the city's nighttime skyline, with Dave expressing interest in visiting Tokyo in the future."
+        }
+      ],
+      "first_timestamp": "2023-05-16T11:58:30+08:00",
+      "last_timestamp": "2023-05-16T11:58:30+08:00",
+      "created_at": "2025-12-06T02:15:42.700072",
+      "updated_at": "2025-12-06T02:15:42.700072"
+    },
+    "gec_023": {
+      "cluster_id": "gec_023",
+      "topic": "Calvin's photography of Tokyo's nighttime skyline",
+      "summary": "Dave and Calvin discussed Calvin's upcoming music performance in Tokyo and shared admiration for a photo Calvin took of the city's nighttime skyline, with Dave expressing interest in visiting Tokyo in the future.",
+      "members": [
+        {
+          "unit_id": "84799553-c854-4a05-812f-3f63455ae7ec",
+          "timestamp": "2023-05-16T11:58:30+08:00",
+          "summary": "Dave and Calvin discussed Calvin's upcoming music performance in Tokyo and shared admiration for a photo Calvin took of the city's nighttime skyline, with Dave expressing interest in visiting Tokyo in the future."
+        }
+      ],
+      "first_timestamp": "2023-05-16T11:58:30+08:00",
+      "last_timestamp": "2023-05-16T11:58:30+08:00",
+      "created_at": "2025-12-06T02:15:42.701177",
+      "updated_at": "2025-12-06T02:15:42.701177"
+    },
+    "gec_024": {
+      "cluster_id": "gec_024",
+      "topic": "Dave's interest in visiting Tokyo",
+      "summary": "Dave and Calvin discussed Calvin's upcoming music performance in Tokyo and shared admiration for a photo Calvin took of the city's nighttime skyline, with Dave expressing interest in visiting Tokyo in the future.",
+      "members": [
+        {
+          "unit_id": "84799553-c854-4a05-812f-3f63455ae7ec",
+          "timestamp": "2023-05-16T11:58:30+08:00",
+          "summary": "Dave and Calvin discussed Calvin's upcoming music performance in Tokyo and shared admiration for a photo Calvin took of the city's nighttime skyline, with Dave expressing interest in visiting Tokyo in the future."
+        }
+      ],
+      "first_timestamp": "2023-05-16T11:58:30+08:00",
+      "last_timestamp": "2023-05-16T11:58:30+08:00",
+      "created_at": "2025-12-06T02:15:42.702064",
+      "updated_at": "2025-12-06T02:15:42.702064"
+    },
+    "gec_025": {
+      "cluster_id": "gec_025",
+      "topic": "Calvin's tour with Frank Ocean",
+      "summary": "On May 31, 2023, Calvin reconnected with Dave to share his exhilarating experience touring with Frank Ocean, highlighting a memorable performance in Tokyo that deeply moved him.",
+      "members": [
+        {
+          "unit_id": "d080674e-8911-4a95-8901-993777b278d2",
+          "timestamp": "2023-05-31T18:06:00+08:00",
+          "summary": "On May 31, 2023, Calvin reconnected with Dave to share his exhilarating experience touring with Frank Ocean, highlighting a memorable performance in Tokyo that deeply moved him."
+        }
+      ],
+      "first_timestamp": "2023-05-31T18:06:00+08:00",
+      "last_timestamp": "2023-05-31T18:06:00+08:00",
+      "created_at": "2025-12-06T02:15:47.085135",
+      "updated_at": "2025-12-06T02:15:47.085135"
+    },
+    "gec_026": {
+      "cluster_id": "gec_026",
+      "topic": "Calvin's performance experience in Tokyo",
+      "summary": "On May 31, 2023, Calvin reconnected with Dave to share his exhilarating experience touring with Frank Ocean, highlighting a memorable performance in Tokyo that deeply moved him.",
+      "members": [
+        {
+          "unit_id": "d080674e-8911-4a95-8901-993777b278d2",
+          "timestamp": "2023-05-31T18:06:00+08:00",
+          "summary": "On May 31, 2023, Calvin reconnected with Dave to share his exhilarating experience touring with Frank Ocean, highlighting a memorable performance in Tokyo that deeply moved him."
+        }
+      ],
+      "first_timestamp": "2023-05-31T18:06:00+08:00",
+      "last_timestamp": "2023-05-31T18:06:00+08:00",
+      "created_at": "2025-12-06T02:15:47.087625",
+      "updated_at": "2025-12-06T02:15:47.087625"
+    },
+    "gec_027": {
+      "cluster_id": "gec_027",
+      "topic": "Calvin and Dave's emotional fulfillment from creative efforts",
+      "summary": "On May 31, 2023, Calvin and Dave discussed the powerful emotions and fulfillment derived from their creative efforts and live performances, highlighting the energizing connection with the audience and the motivating nature of their accomplishments. Both expressed deep appreciation for the emotional impact of their collaboration and the live concert experience.",
+      "members": [
+        {
+          "unit_id": "6fef6094-1bfd-4985-a43e-2119128186fc",
+          "timestamp": "2023-05-31T18:12:00+08:00",
+          "summary": "On May 31, 2023, Calvin and Dave discussed the powerful emotions and fulfillment derived from their creative efforts and live performances, highlighting the energizing connection with the audience and the motivating nature of their accomplishments. Both expressed deep appreciation for the emotional impact of their collaboration and the live concert experience."
+        }
+      ],
+      "first_timestamp": "2023-05-31T18:12:00+08:00",
+      "last_timestamp": "2023-05-31T18:12:00+08:00",
+      "created_at": "2025-12-06T02:15:56.274858",
+      "updated_at": "2025-12-06T02:15:56.274858"
+    },
+    "gec_028": {
+      "cluster_id": "gec_028",
+      "topic": "Calvin's live performance experiences",
+      "summary": "On May 31, 2023, Calvin and Dave discussed the powerful emotions and fulfillment derived from their creative efforts and live performances, highlighting the energizing connection with the audience and the motivating nature of their accomplishments. Both expressed deep appreciation for the emotional impact of their collaboration and the live concert experience.",
+      "members": [
+        {
+          "unit_id": "6fef6094-1bfd-4985-a43e-2119128186fc",
+          "timestamp": "2023-05-31T18:12:00+08:00",
+          "summary": "On May 31, 2023, Calvin and Dave discussed the powerful emotions and fulfillment derived from their creative efforts and live performances, highlighting the energizing connection with the audience and the motivating nature of their accomplishments. Both expressed deep appreciation for the emotional impact of their collaboration and the live concert experience."
+        }
+      ],
+      "first_timestamp": "2023-05-31T18:12:00+08:00",
+      "last_timestamp": "2023-05-31T18:12:00+08:00",
+      "created_at": "2025-12-06T02:15:56.276038",
+      "updated_at": "2025-12-06T02:15:56.276038"
+    },
+    "gec_029": {
+      "cluster_id": "gec_029",
+      "topic": "Calvin and Dave's appreciation of audience connection during live concerts",
+      "summary": "On May 31, 2023, Calvin and Dave discussed the powerful emotions and fulfillment derived from their creative efforts and live performances, highlighting the energizing connection with the audience and the motivating nature of their accomplishments. Both expressed deep appreciation for the emotional impact of their collaboration and the live concert experience.",
+      "members": [
+        {
+          "unit_id": "6fef6094-1bfd-4985-a43e-2119128186fc",
+          "timestamp": "2023-05-31T18:12:00+08:00",
+          "summary": "On May 31, 2023, Calvin and Dave discussed the powerful emotions and fulfillment derived from their creative efforts and live performances, highlighting the energizing connection with the audience and the motivating nature of their accomplishments. Both expressed deep appreciation for the emotional impact of their collaboration and the live concert experience."
+        }
+      ],
+      "first_timestamp": "2023-05-31T18:12:00+08:00",
+      "last_timestamp": "2023-05-31T18:12:00+08:00",
+      "created_at": "2025-12-06T02:15:56.277225",
+      "updated_at": "2025-12-06T02:15:56.277225"
+    },
+    "gec_030": {
+      "cluster_id": "gec_030",
+      "topic": "Calvin's upcoming music tour with Frank",
+      "summary": "Calvin and Dave discussed Calvin's upcoming music tour with Frank, focusing on his excitement to perform in Boston and Dave's support for the vibrant local music scene. Both expressed enthusiasm and anticipation for the tour and future updates.",
+      "members": [
+        {
+          "unit_id": "f8dcd99a-1586-4a66-882c-814faf345442",
+          "timestamp": "2023-05-31T18:15:00+08:00",
+          "summary": "Calvin and Dave discussed Calvin's upcoming music tour with Frank, focusing on his excitement to perform in Boston and Dave's support for the vibrant local music scene. Both expressed enthusiasm and anticipation for the tour and future updates."
+        }
+      ],
+      "first_timestamp": "2023-05-31T18:15:00+08:00",
+      "last_timestamp": "2023-05-31T18:15:00+08:00",
+      "created_at": "2025-12-06T02:16:00.581518",
+      "updated_at": "2025-12-06T02:16:00.581518"
+    },
+    "gec_031": {
+      "cluster_id": "gec_031",
+      "topic": "Dave's nature explorations and photography",
+      "summary": "Calvin and Dave discussed their recent creative and personal activities, including Calvin’s album progress and Dave’s nature explorations, while sharing photos and expressing excitement about upcoming travel plans to Boston and a mountainous region. Their conversation highlighted mutual support and enthusiasm for creativity, nature, and adventure.",
+      "members": [
+        {
+          "unit_id": "e5816ba5-3706-41a8-ab60-0ebf4e777cef",
+          "timestamp": "2023-06-09T14:37:30+08:00",
+          "summary": "Calvin and Dave discussed their recent creative and personal activities, including Calvin’s album progress and Dave’s nature explorations, while sharing photos and expressing excitement about upcoming travel plans to Boston and a mountainous region. Their conversation highlighted mutual support and enthusiasm for creativity, nature, and adventure."
+        }
+      ],
+      "first_timestamp": "2023-06-09T14:37:30+08:00",
+      "last_timestamp": "2023-06-09T14:37:30+08:00",
+      "created_at": "2025-12-06T02:16:05.851442",
+      "updated_at": "2025-12-06T02:16:05.851442"
+    },
+    "gec_032": {
+      "cluster_id": "gec_032",
+      "topic": "Calvin and Dave's shared enthusiasm for adventure and travel plans",
+      "summary": "Calvin and Dave discussed their recent creative and personal activities, including Calvin’s album progress and Dave’s nature explorations, while sharing photos and expressing excitement about upcoming travel plans to Boston and a mountainous region. Their conversation highlighted mutual support and enthusiasm for creativity, nature, and adventure.",
+      "members": [
+        {
+          "unit_id": "e5816ba5-3706-41a8-ab60-0ebf4e777cef",
+          "timestamp": "2023-06-09T14:37:30+08:00",
+          "summary": "Calvin and Dave discussed their recent creative and personal activities, including Calvin’s album progress and Dave’s nature explorations, while sharing photos and expressing excitement about upcoming travel plans to Boston and a mountainous region. Their conversation highlighted mutual support and enthusiasm for creativity, nature, and adventure."
+        }
+      ],
+      "first_timestamp": "2023-06-09T14:37:30+08:00",
+      "last_timestamp": "2023-06-09T14:37:30+08:00",
+      "created_at": "2025-12-06T02:16:05.853208",
+      "updated_at": "2025-12-06T02:16:05.853208"
+    },
+    "gec_033": {
+      "cluster_id": "gec_033",
+      "topic": "Calvin's minor car accident and insurance repair process",
+      "summary": "On June 21, 2023, Calvin informed Dave about his minor car accident on June 16 and discussed the subsequent insurance and repair process, which was resolved within a week, leading to Calvin’s positive outlook and gratitude for Dave’s support.",
+      "members": [
+        {
+          "unit_id": "45b79c6a-98a8-49a6-a7cd-bc402dbf0011",
+          "timestamp": "2023-06-21T15:20:00+08:00",
+          "summary": "On June 21, 2023, Calvin informed Dave about his minor car accident on June 16 and discussed the subsequent insurance and repair process, which was resolved within a week, leading to Calvin’s positive outlook and gratitude for Dave’s support."
+        }
+      ],
+      "first_timestamp": "2023-06-21T15:20:00+08:00",
+      "last_timestamp": "2023-06-21T15:20:00+08:00",
+      "created_at": "2025-12-06T02:16:11.503502",
+      "updated_at": "2025-12-06T02:16:11.503502"
+    },
+    "gec_034": {
+      "cluster_id": "gec_034",
+      "topic": "Dave's involvement in a rock band and guitar practice",
+      "summary": "On June 21, 2023, Dave shared with Calvin that he had recently joined a rock band and was practicing guitar, highlighting the positive emotions and good company music brought him. The conversation centered on Dave’s new musical involvement and their mutual intention to stay in touch.",
+      "members": [
+        {
+          "unit_id": "4cca9337-ca21-46a7-82b4-39e6223c6c6c",
+          "timestamp": "2023-06-21T15:25:00+08:00",
+          "summary": "On June 21, 2023, Dave shared with Calvin that he had recently joined a rock band and was practicing guitar, highlighting the positive emotions and good company music brought him. The conversation centered on Dave’s new musical involvement and their mutual intention to stay in touch."
+        }
+      ],
+      "first_timestamp": "2023-06-21T15:25:00+08:00",
+      "last_timestamp": "2023-06-21T15:25:00+08:00",
+      "created_at": "2025-12-06T02:16:25.245654",
+      "updated_at": "2025-12-06T02:16:25.245654"
+    },
+    "gec_035": {
+      "cluster_id": "gec_035",
+      "topic": "Calvin's description of his luxurious mansion and cityscape views in Japan",
+      "summary": "On July 7, 2023, Dave and Calvin discussed their recent activities, with Dave sharing his routine of regular park walks with friends and Calvin describing his luxurious mansion and cityscape views in Japan. Their conversation highlighted themes of friendship, nature, and appreciation for tranquil and impressive living environments.",
+      "members": [
+        {
+          "unit_id": "456e6c58-5cc1-4eee-829b-631c4b51488a",
+          "timestamp": "2023-07-07T20:00:00+08:00",
+          "summary": "On July 7, 2023, Dave and Calvin discussed their recent activities, with Dave sharing his routine of regular park walks with friends and Calvin describing his luxurious mansion and cityscape views in Japan. Their conversation highlighted themes of friendship, nature, and appreciation for tranquil and impressive living environments."
+        }
+      ],
+      "first_timestamp": "2023-07-07T20:00:00+08:00",
+      "last_timestamp": "2023-07-07T20:00:00+08:00",
+      "created_at": "2025-12-06T02:16:35.954910",
+      "updated_at": "2025-12-06T02:16:35.954910"
+    },
+    "gec_036": {
+      "cluster_id": "gec_036",
+      "topic": "Dave's routine of regular park walks with friends for socializing and activity",
+      "summary": "On July 7, 2023, Dave and Calvin discussed their recent activities, with Dave sharing his routine of regular park walks with friends and Calvin describing his luxurious mansion and cityscape views in Japan. Their conversation highlighted themes of friendship, nature, and appreciation for tranquil and impressive living environments.",
+      "members": [
+        {
+          "unit_id": "456e6c58-5cc1-4eee-829b-631c4b51488a",
+          "timestamp": "2023-07-07T20:00:00+08:00",
+          "summary": "On July 7, 2023, Dave and Calvin discussed their recent activities, with Dave sharing his routine of regular park walks with friends and Calvin describing his luxurious mansion and cityscape views in Japan. Their conversation highlighted themes of friendship, nature, and appreciation for tranquil and impressive living environments."
+        }
+      ],
+      "first_timestamp": "2023-07-07T20:00:00+08:00",
+      "last_timestamp": "2023-07-07T20:00:00+08:00",
+      "created_at": "2025-12-06T02:16:35.956978",
+      "updated_at": "2025-12-06T02:16:35.956978"
+    },
+    "gec_037": {
+      "cluster_id": "gec_037",
+      "topic": "Dave's social bonding through card nights",
+      "summary": "In August 2023, Calvin encouraged Dave with supportive messages, and later Dave shared a photo and recounted an enjoyable card night with friends, highlighting their positive social bonding.",
+      "members": [
+        {
+          "unit_id": "3ea5418d-6665-4546-b37e-087b21c2ad20",
+          "timestamp": "2023-08-22T11:06:00+08:00",
+          "summary": "In August 2023, Calvin encouraged Dave with supportive messages, and later Dave shared a photo and recounted an enjoyable card night with friends, highlighting their positive social bonding."
+        }
+      ],
+      "first_timestamp": "2023-08-22T11:06:00+08:00",
+      "last_timestamp": "2023-08-22T11:06:00+08:00",
+      "created_at": "2025-12-06T02:17:27.429041",
+      "updated_at": "2025-12-06T02:17:27.429041"
+    },
+    "gec_038": {
+      "cluster_id": "gec_038",
+      "topic": "Calvin's supportive messages to Dave",
+      "summary": "In August 2023, Calvin encouraged Dave with supportive messages, and later Dave shared a photo and recounted an enjoyable card night with friends, highlighting their positive social bonding.",
+      "members": [
+        {
+          "unit_id": "3ea5418d-6665-4546-b37e-087b21c2ad20",
+          "timestamp": "2023-08-22T11:06:00+08:00",
+          "summary": "In August 2023, Calvin encouraged Dave with supportive messages, and later Dave shared a photo and recounted an enjoyable card night with friends, highlighting their positive social bonding."
+        }
+      ],
+      "first_timestamp": "2023-08-22T11:06:00+08:00",
+      "last_timestamp": "2023-08-22T11:06:00+08:00",
+      "created_at": "2025-12-06T02:17:27.430743",
+      "updated_at": "2025-12-06T02:17:27.430743"
+    },
+    "gec_039": {
+      "cluster_id": "gec_039",
+      "topic": "Calvin's podcast about the evolving rap industry",
+      "summary": "On August 22, 2023, Dave and Calvin discussed Calvin's recent podcast about the evolving rap industry, with Dave expressing enthusiasm to listen and promising to stay updated on its release. Both showed mutual support and planned to meet in person.",
+      "members": [
+        {
+          "unit_id": "662bc3d4-51b9-479a-92ca-c4f2a85ccab7",
+          "timestamp": "2023-08-22T11:13:00+08:00",
+          "summary": "On August 22, 2023, Dave and Calvin discussed Calvin's recent podcast about the evolving rap industry, with Dave expressing enthusiasm to listen and promising to stay updated on its release. Both showed mutual support and planned to meet in person."
+        }
+      ],
+      "first_timestamp": "2023-08-22T11:13:00+08:00",
+      "last_timestamp": "2023-08-22T11:13:00+08:00",
+      "created_at": "2025-12-06T02:17:38.289370",
+      "updated_at": "2025-12-06T02:17:38.289370"
+    },
+    "gec_040": {
+      "cluster_id": "gec_040",
+      "topic": "Calvin's video shoot for new album",
+      "summary": "Calvin and Dave discussed Calvin's recent video shoot for his new album in Miami and shared reflections on a custom guitar symbolizing Calvin's artistic style and passion for music. They exchanged support and admiration for Calvin's unique creativity and commitment to authenticity.",
+      "members": [
+        {
+          "unit_id": "a8b21d63-3ce5-4e1b-91ae-bf166a1948a7",
+          "timestamp": "2023-08-31T15:07:00+08:00",
+          "summary": "Calvin and Dave discussed Calvin's recent video shoot for his new album in Miami and shared reflections on a custom guitar symbolizing Calvin's artistic style and passion for music. They exchanged support and admiration for Calvin's unique creativity and commitment to authenticity."
+        }
+      ],
+      "first_timestamp": "2023-08-31T15:07:00+08:00",
+      "last_timestamp": "2023-08-31T15:07:00+08:00",
+      "created_at": "2025-12-06T02:17:48.810252",
+      "updated_at": "2025-12-06T02:17:48.810252"
+    },
+    "gec_041": {
+      "cluster_id": "gec_041",
+      "topic": "Calvin's custom guitar symbolizing artistic style",
+      "summary": "Calvin and Dave discussed Calvin's recent video shoot for his new album in Miami and shared reflections on a custom guitar symbolizing Calvin's artistic style and passion for music. They exchanged support and admiration for Calvin's unique creativity and commitment to authenticity.",
+      "members": [
+        {
+          "unit_id": "a8b21d63-3ce5-4e1b-91ae-bf166a1948a7",
+          "timestamp": "2023-08-31T15:07:00+08:00",
+          "summary": "Calvin and Dave discussed Calvin's recent video shoot for his new album in Miami and shared reflections on a custom guitar symbolizing Calvin's artistic style and passion for music. They exchanged support and admiration for Calvin's unique creativity and commitment to authenticity."
+        }
+      ],
+      "first_timestamp": "2023-08-31T15:07:00+08:00",
+      "last_timestamp": "2023-08-31T15:07:00+08:00",
+      "created_at": "2025-12-06T02:17:48.813055",
+      "updated_at": "2025-12-06T02:17:48.813055"
+    },
+    "gec_042": {
+      "cluster_id": "gec_042",
+      "topic": "Calvin's recent album release and reception",
+      "summary": "On September 13, 2023, Calvin and Dave discussed Calvin's recent album release on September 11, with Calvin expressing a mix of overwhelming appreciation and inspiration, and sharing his excitement about an upcoming tour and brand development. The conversation highlighted Calvin's emotional journey and motivation to continue his musical career.",
+      "members": [
+        {
+          "unit_id": "62185535-44a8-422e-a2f2-bfa0dce72867",
+          "timestamp": "2023-09-13T10:59:00+08:00",
+          "summary": "On September 13, 2023, Calvin and Dave discussed Calvin's recent album release on September 11, with Calvin expressing a mix of overwhelming appreciation and inspiration, and sharing his excitement about an upcoming tour and brand development. The conversation highlighted Calvin's emotional journey and motivation to continue his musical career."
+        }
+      ],
+      "first_timestamp": "2023-09-13T10:59:00+08:00",
+      "last_timestamp": "2023-09-13T10:59:00+08:00",
+      "created_at": "2025-12-06T02:18:04.302788",
+      "updated_at": "2025-12-06T02:18:04.302788"
+    },
+    "gec_043": {
+      "cluster_id": "gec_043",
+      "topic": "Calvin's upcoming music tour plans",
+      "summary": "On September 13, 2023, Calvin and Dave discussed Calvin's recent album release on September 11, with Calvin expressing a mix of overwhelming appreciation and inspiration, and sharing his excitement about an upcoming tour and brand development. The conversation highlighted Calvin's emotional journey and motivation to continue his musical career.",
+      "members": [
+        {
+          "unit_id": "62185535-44a8-422e-a2f2-bfa0dce72867",
+          "timestamp": "2023-09-13T10:59:00+08:00",
+          "summary": "On September 13, 2023, Calvin and Dave discussed Calvin's recent album release on September 11, with Calvin expressing a mix of overwhelming appreciation and inspiration, and sharing his excitement about an upcoming tour and brand development. The conversation highlighted Calvin's emotional journey and motivation to continue his musical career."
+        }
+      ],
+      "first_timestamp": "2023-09-13T10:59:00+08:00",
+      "last_timestamp": "2023-09-13T10:59:00+08:00",
+      "created_at": "2025-12-06T02:18:04.303867",
+      "updated_at": "2025-12-06T02:18:04.303867"
+    },
+    "gec_044": {
+      "cluster_id": "gec_044",
+      "topic": "Calvin's brand development and career motivation",
+      "summary": "On September 13, 2023, Calvin and Dave discussed Calvin's recent album release on September 11, with Calvin expressing a mix of overwhelming appreciation and inspiration, and sharing his excitement about an upcoming tour and brand development. The conversation highlighted Calvin's emotional journey and motivation to continue his musical career.",
+      "members": [
+        {
+          "unit_id": "62185535-44a8-422e-a2f2-bfa0dce72867",
+          "timestamp": "2023-09-13T10:59:00+08:00",
+          "summary": "On September 13, 2023, Calvin and Dave discussed Calvin's recent album release on September 11, with Calvin expressing a mix of overwhelming appreciation and inspiration, and sharing his excitement about an upcoming tour and brand development. The conversation highlighted Calvin's emotional journey and motivation to continue his musical career."
+        }
+      ],
+      "first_timestamp": "2023-09-13T10:59:00+08:00",
+      "last_timestamp": "2023-09-13T10:59:00+08:00",
+      "created_at": "2025-12-06T02:18:04.304415",
+      "updated_at": "2025-12-06T02:18:04.304415"
+    },
+    "gec_045": {
+      "cluster_id": "gec_045",
+      "topic": "Dave inviting Calvin to visit his garage in Boston",
+      "summary": "On September 13, 2023, Calvin and Dave discussed Calvin's upcoming music tour and shared mutual enthusiasm for music, touring, and creative hobbies, with Dave inviting Calvin to visit his garage in Boston. Both expressed excitement, support, and appreciation for their ongoing friendship.",
+      "members": [
+        {
+          "unit_id": "23258f1e-9487-425b-9e0b-6d6f6b1c70d1",
+          "timestamp": "2023-09-13T11:03:30+08:00",
+          "summary": "On September 13, 2023, Calvin and Dave discussed Calvin's upcoming music tour and shared mutual enthusiasm for music, touring, and creative hobbies, with Dave inviting Calvin to visit his garage in Boston. Both expressed excitement, support, and appreciation for their ongoing friendship."
+        }
+      ],
+      "first_timestamp": "2023-09-13T11:03:30+08:00",
+      "last_timestamp": "2023-09-13T11:03:30+08:00",
+      "created_at": "2025-12-06T02:18:09.079651",
+      "updated_at": "2025-12-06T02:18:09.079651"
+    },
+    "gec_046": {
+      "cluster_id": "gec_046",
+      "topic": "Dave's recent jam session with his band",
+      "summary": "On September 15, 2023, Dave shared his excitement with Calvin about a recent jam session with his band and a rock concert he attended in Boston, while Calvin expressed interest in any recordings of the session.",
+      "members": [
+        {
+          "unit_id": "107b48e4-b262-48e4-a06b-8d5ddf83a96d",
+          "timestamp": "2023-09-15T00:14:00+08:00",
+          "summary": "On September 15, 2023, Dave shared his excitement with Calvin about a recent jam session with his band and a rock concert he attended in Boston, while Calvin expressed interest in any recordings of the session."
+        }
+      ],
+      "first_timestamp": "2023-09-15T00:14:00+08:00",
+      "last_timestamp": "2023-09-15T00:14:00+08:00",
+      "created_at": "2025-12-06T02:18:13.395457",
+      "updated_at": "2025-12-06T02:18:13.395457"
+    },
+    "gec_047": {
+      "cluster_id": "gec_047",
+      "topic": "Calvin and Dave's discussion of Disney movie themes and emotional impact",
+      "summary": "On September 15, 2023, Calvin shared a Disney movie poster featuring a chef and reflected on the intangible nature of cherished memories, while Dave complimented the poster and connected it to a favorite Disney film's inspirational message about following dreams. Both engaged positively in discussing the emotional impact and themes of the movie.",
+      "members": [
+        {
+          "unit_id": "ba3f63db-c55a-4c74-a721-3ae646085c0c",
+          "timestamp": "2023-09-15T00:15:00+08:00",
+          "summary": "On September 15, 2023, Calvin shared a Disney movie poster featuring a chef and reflected on the intangible nature of cherished memories, while Dave complimented the poster and connected it to a favorite Disney film's inspirational message about following dreams. Both engaged positively in discussing the emotional impact and themes of the movie."
+        }
+      ],
+      "first_timestamp": "2023-09-15T00:15:00+08:00",
+      "last_timestamp": "2023-09-15T00:15:00+08:00",
+      "created_at": "2025-12-06T02:18:17.316813",
+      "updated_at": "2025-12-06T02:18:17.316813"
+    },
+    "gec_048": {
+      "cluster_id": "gec_048",
+      "topic": "Calvin's nostalgic reflections on childhood songs",
+      "summary": "On September 22, 2023, Calvin shared with Dave reflections on an unforgettable summer drive, his recent trip to Japan, and nostalgic memories of a childhood song, leading to plans for a future music jam session together.",
+      "members": [
+        {
+          "unit_id": "b680d621-43b5-4d2c-93bc-50d77090dcf1",
+          "timestamp": "2023-09-22T21:05:00+08:00",
+          "summary": "On September 22, 2023, Calvin shared with Dave reflections on an unforgettable summer drive, his recent trip to Japan, and nostalgic memories of a childhood song, leading to plans for a future music jam session together."
+        }
+      ],
+      "first_timestamp": "2023-09-22T21:05:00+08:00",
+      "last_timestamp": "2023-09-22T21:05:00+08:00",
+      "created_at": "2025-12-06T02:18:33.058226",
+      "updated_at": "2025-12-06T02:18:33.058226"
+    },
+    "gec_049": {
+      "cluster_id": "gec_049",
+      "topic": "Calvin and Dave's plans for future music jam sessions",
+      "summary": "On September 22, 2023, Calvin shared with Dave reflections on an unforgettable summer drive, his recent trip to Japan, and nostalgic memories of a childhood song, leading to plans for a future music jam session together.",
+      "members": [
+        {
+          "unit_id": "b680d621-43b5-4d2c-93bc-50d77090dcf1",
+          "timestamp": "2023-09-22T21:05:00+08:00",
+          "summary": "On September 22, 2023, Calvin shared with Dave reflections on an unforgettable summer drive, his recent trip to Japan, and nostalgic memories of a childhood song, leading to plans for a future music jam session together."
+        }
+      ],
+      "first_timestamp": "2023-09-22T21:05:00+08:00",
+      "last_timestamp": "2023-09-22T21:05:00+08:00",
+      "created_at": "2025-12-06T02:18:33.059283",
+      "updated_at": "2025-12-06T02:18:33.059283"
+    },
+    "gec_050": {
+      "cluster_id": "gec_050",
+      "topic": "Calvin's memorable summer day drive experience",
+      "summary": "On September 22, 2023, Calvin shared with Dave reflections on an unforgettable summer drive, his recent trip to Japan, and nostalgic memories of a childhood song, leading to plans for a future music jam session together.",
+      "members": [
+        {
+          "unit_id": "b680d621-43b5-4d2c-93bc-50d77090dcf1",
+          "timestamp": "2023-09-22T21:05:00+08:00",
+          "summary": "On September 22, 2023, Calvin shared with Dave reflections on an unforgettable summer drive, his recent trip to Japan, and nostalgic memories of a childhood song, leading to plans for a future music jam session together."
+        }
+      ],
+      "first_timestamp": "2023-09-22T21:05:00+08:00",
+      "last_timestamp": "2023-09-22T21:05:00+08:00",
+      "created_at": "2025-12-06T02:18:33.059833",
+      "updated_at": "2025-12-06T02:18:33.059833"
+    },
+    "gec_051": {
+      "cluster_id": "gec_051",
+      "topic": "Dave's frustration over losing a business deal",
+      "summary": "On October 15, 2023, Dave shared with Calvin his frustration over losing a long-sought deal to a competitor, and Calvin offered empathetic support and motivation by sharing his own strategies for overcoming setbacks.",
+      "members": [
+        {
+          "unit_id": "cc4b610e-789f-4444-b672-0fe0da261c92",
+          "timestamp": "2023-10-15T09:40:30+08:00",
+          "summary": "On October 15, 2023, Dave shared with Calvin his frustration over losing a long-sought deal to a competitor, and Calvin offered empathetic support and motivation by sharing his own strategies for overcoming setbacks."
+        }
+      ],
+      "first_timestamp": "2023-10-15T09:40:30+08:00",
+      "last_timestamp": "2023-10-15T09:40:30+08:00",
+      "created_at": "2025-12-06T02:18:48.014692",
+      "updated_at": "2025-12-06T02:18:48.014692"
+    },
+    "gec_052": {
+      "cluster_id": "gec_052",
+      "topic": "Calvin's strategies for overcoming setbacks and providing motivation",
+      "summary": "On October 15, 2023, Dave shared with Calvin his frustration over losing a long-sought deal to a competitor, and Calvin offered empathetic support and motivation by sharing his own strategies for overcoming setbacks.",
+      "members": [
+        {
+          "unit_id": "cc4b610e-789f-4444-b672-0fe0da261c92",
+          "timestamp": "2023-10-15T09:40:30+08:00",
+          "summary": "On October 15, 2023, Dave shared with Calvin his frustration over losing a long-sought deal to a competitor, and Calvin offered empathetic support and motivation by sharing his own strategies for overcoming setbacks."
+        }
+      ],
+      "first_timestamp": "2023-10-15T09:40:30+08:00",
+      "last_timestamp": "2023-10-15T09:40:30+08:00",
+      "created_at": "2025-12-06T02:18:48.017930",
+      "updated_at": "2025-12-06T02:18:48.017930"
+    },
+    "gec_053": {
+      "cluster_id": "gec_053",
+      "topic": "Calvin's experience at artist networking events",
+      "summary": "On October 29, 2023, Calvin and Dave discussed their recent creative activities, with Calvin sharing his experience at a networking event to connect with artists, while Dave revealed his new passion for photography, sharing impressive photos and expressing enthusiasm for the art form. Their conversation highlighted mutual support and excitement for their artistic pursuits.",
+      "members": [
+        {
+          "unit_id": "ac2ff86b-e806-4c8a-81f8-472a3289ecf1",
+          "timestamp": "2023-10-29T10:52:30+08:00",
+          "summary": "On October 29, 2023, Calvin and Dave discussed their recent creative activities, with Calvin sharing his experience at a networking event to connect with artists, while Dave revealed his new passion for photography, sharing impressive photos and expressing enthusiasm for the art form. Their conversation highlighted mutual support and excitement for their artistic pursuits."
+        }
+      ],
+      "first_timestamp": "2023-10-29T10:52:30+08:00",
+      "last_timestamp": "2023-10-29T10:52:30+08:00",
+      "created_at": "2025-12-06T02:19:47.647186",
+      "updated_at": "2025-12-06T02:19:47.647186"
+    },
+    "gec_054": {
+      "cluster_id": "gec_054",
+      "topic": "Dave's new passion for photography",
+      "summary": "On October 29, 2023, Calvin and Dave discussed their recent creative activities, with Calvin sharing his experience at a networking event to connect with artists, while Dave revealed his new passion for photography, sharing impressive photos and expressing enthusiasm for the art form. Their conversation highlighted mutual support and excitement for their artistic pursuits.",
+      "members": [
+        {
+          "unit_id": "ac2ff86b-e806-4c8a-81f8-472a3289ecf1",
+          "timestamp": "2023-10-29T10:52:30+08:00",
+          "summary": "On October 29, 2023, Calvin and Dave discussed their recent creative activities, with Calvin sharing his experience at a networking event to connect with artists, while Dave revealed his new passion for photography, sharing impressive photos and expressing enthusiasm for the art form. Their conversation highlighted mutual support and excitement for their artistic pursuits."
+        }
+      ],
+      "first_timestamp": "2023-10-29T10:52:30+08:00",
+      "last_timestamp": "2023-10-29T10:52:30+08:00",
+      "created_at": "2025-12-06T02:19:47.648234",
+      "updated_at": "2025-12-06T02:19:47.648234"
+    },
+    "gec_055": {
+      "cluster_id": "gec_055",
+      "topic": "Calvin's reflections on music career and reunion with high school friend",
+      "summary": "On November 13, 2023, Calvin and Dave discussed Calvin's reflections on his music career, highlighting a reunion with a supportive high school friend during a Boston performance and his ongoing commitment to mentoring young musicians. Calvin expressed gratitude for long-term relationships and the importance of nurturing new talent to sustain his passion and growth in the industry.",
+      "members": [
+        {
+          "unit_id": "18c1b9f4-9df2-4d1c-9329-b1db5f5a69f4",
+          "timestamp": "2023-11-13T21:21:00+08:00",
+          "summary": "On November 13, 2023, Calvin and Dave discussed Calvin's reflections on his music career, highlighting a reunion with a supportive high school friend during a Boston performance and his ongoing commitment to mentoring young musicians. Calvin expressed gratitude for long-term relationships and the importance of nurturing new talent to sustain his passion and growth in the industry."
+        }
+      ],
+      "first_timestamp": "2023-11-13T21:21:00+08:00",
+      "last_timestamp": "2023-11-13T21:21:00+08:00",
+      "created_at": "2025-12-06T02:20:18.023082",
+      "updated_at": "2025-12-06T02:20:18.023082"
+    },
+    "gec_056": {
+      "cluster_id": "gec_056",
+      "topic": "Calvin's mentoring of young musicians",
+      "summary": "On November 13, 2023, Calvin and Dave discussed Calvin's reflections on his music career, highlighting a reunion with a supportive high school friend during a Boston performance and his ongoing commitment to mentoring young musicians. Calvin expressed gratitude for long-term relationships and the importance of nurturing new talent to sustain his passion and growth in the industry.",
+      "members": [
+        {
+          "unit_id": "18c1b9f4-9df2-4d1c-9329-b1db5f5a69f4",
+          "timestamp": "2023-11-13T21:21:00+08:00",
+          "summary": "On November 13, 2023, Calvin and Dave discussed Calvin's reflections on his music career, highlighting a reunion with a supportive high school friend during a Boston performance and his ongoing commitment to mentoring young musicians. Calvin expressed gratitude for long-term relationships and the importance of nurturing new talent to sustain his passion and growth in the industry."
+        }
+      ],
+      "first_timestamp": "2023-11-13T21:21:00+08:00",
+      "last_timestamp": "2023-11-13T21:21:00+08:00",
+      "created_at": "2025-12-06T02:20:18.025409",
+      "updated_at": "2025-12-06T02:20:18.025409"
+    },
+    "gec_057": {
+      "cluster_id": "gec_057",
+      "topic": "Dave's photography hobby and scenic nature photography",
+      "summary": "On November 17, 2023, Dave and Calvin reconnected to share and discuss their creative pursuits, including photography, art, and inspiring experiences, exchanging photos and reflections on nature’s beauty and artistic inspiration. Their conversation strengthened their friendship and mutual appreciation for creativity.",
+      "members": [
+        {
+          "unit_id": "cd184ce9-b663-462c-9d62-5d209b6346e6",
+          "timestamp": "2023-11-17T11:03:00+08:00",
+          "summary": "On November 17, 2023, Dave and Calvin reconnected to share and discuss their creative pursuits, including photography, art, and inspiring experiences, exchanging photos and reflections on nature’s beauty and artistic inspiration. Their conversation strengthened their friendship and mutual appreciation for creativity."
+        }
+      ],
+      "first_timestamp": "2023-11-17T11:03:00+08:00",
+      "last_timestamp": "2023-11-17T11:03:00+08:00",
+      "created_at": "2025-12-06T02:20:28.151003",
+      "updated_at": "2025-12-06T02:20:28.151003"
+    }
+  },
+  "unit_to_clusters": {
+    "22de6305-1100-469b-9cc9-6b1544c95b8c": [
+      "gec_001"
+    ],
+    "d22c84e2-93bf-4414-b10d-625af6ce7c3d": [
+      "gec_002"
+    ],
+    "9442cfcd-51b6-480d-98e0-8eeebfb1c3b0": [
+      "gec_002",
+      "gec_003",
+      "gec_004"
+    ],
+    "e5f514c7-1536-4e65-bc97-59411506ad44": [
+      "gec_005"
+    ],
+    "409dd28b-2bee-4bfe-916b-9af5c606daeb": [
+      "gec_006",
+      "gec_007"
+    ],
+    "15a157ae-c564-4751-9232-e84264af2f4a": [
+      "gec_005",
+      "gec_008"
+    ],
+    "2c8d180e-17e4-4270-949f-2f7456a8d32e": [
+      "gec_009",
+      "gec_010",
+      "gec_007",
+      "gec_001"
+    ],
+    "fa8dbd78-967d-4aa1-853e-84c82b8c00af": [
+      "gec_001"
+    ],
+    "188333c0-9c0c-4aa4-9b6c-0aa0e254bce0": [
+      "gec_001",
+      "gec_011"
+    ],
+    "b8a1e40a-eed0-4d23-9fa8-98162af399f5": [
+      "gec_012",
+      "gec_013"
+    ],
+    "e9556888-de45-4af5-89d1-8d5e8b8608e7": [
+      "gec_001",
+      "gec_014",
+      "gec_015",
+      "gec_016"
+    ],
+    "53dde510-f879-4366-89a4-4ded0fa8d384": [
+      "gec_001",
+      "gec_017"
+    ],
+    "9a241f3f-23e1-48e1-a008-55007ede7c0e": [
+      "gec_018",
+      "gec_019",
+      "gec_020"
+    ],
+    "392a928e-c1ae-4c6e-ba00-a2bfafd2dbc5": [
+      "gec_021",
+      "gec_008"
+    ],
+    "d6913789-7400-4901-9e3f-2610a4647554": [
+      "gec_008",
+      "gec_020"
+    ],
+    "cad58d88-371a-4b31-bab3-a7f386d3290d": [
+      "gec_001"
+    ],
+    "84799553-c854-4a05-812f-3f63455ae7ec": [
+      "gec_022",
+      "gec_023",
+      "gec_024"
+    ],
+    "d080674e-8911-4a95-8901-993777b278d2": [
+      "gec_025",
+      "gec_026"
+    ],
+    "f1122028-32a7-4e1e-bfa3-0859336ee36a": [
+      "gec_001"
+    ],
+    "6fef6094-1bfd-4985-a43e-2119128186fc": [
+      "gec_027",
+      "gec_028",
+      "gec_029"
+    ],
+    "f8dcd99a-1586-4a66-882c-814faf345442": [
+      "gec_030",
+      "gec_007"
+    ],
+    "e5816ba5-3706-41a8-ab60-0ebf4e777cef": [
+      "gec_008",
+      "gec_003",
+      "gec_031",
+      "gec_032"
+    ],
+    "45b79c6a-98a8-49a6-a7cd-bc402dbf0011": [
+      "gec_033",
+      "gec_005"
+    ],
+    "be2670d7-c8dc-4ac0-bf36-c16a529a4f84": [
+      "gec_002",
+      "gec_003"
+    ],
+    "b01c51d0-ed58-48ea-bbb8-d6f3f0771b38": [
+      "gec_003"
+    ],
+    "4cca9337-ca21-46a7-82b4-39e6223c6c6c": [
+      "gec_034"
+    ],
+    "5db6ca87-5331-4eef-8586-ca7e128c9411": [
+      "gec_005"
+    ],
+    "456e6c58-5cc1-4eee-829b-631c4b51488a": [
+      "gec_004",
+      "gec_035",
+      "gec_036"
+    ],
+    "6c5fdfe3-ceef-4ce8-87a2-b13c80df7dc7": [
+      "gec_002",
+      "gec_008"
+    ],
+    "c19ae004-f4e7-484c-ad34-d0555064b7a5": [
+      "gec_001",
+      "gec_008"
+    ],
+    "0e155545-9563-4f5d-aa7a-0e16fe98f647": [
+      "gec_001"
+    ],
+    "610a5321-5210-454b-aca4-6050f0c87983": [
+      "gec_008"
+    ],
+    "37ef46ca-6848-4f7b-8422-f9baa33a7544": [
+      "gec_014",
+      "gec_015",
+      "gec_016"
+    ],
+    "5b66097d-7d7c-4110-8ff9-46e22d4a6c12": [
+      "gec_008"
+    ],
+    "322ea053-731c-45fb-a3cc-29cb08a32899": [
+      "gec_001",
+      "gec_014",
+      "gec_015",
+      "gec_016"
+    ],
+    "e010e9fc-a17c-403a-83ec-8ed8dba173ce": [
+      "gec_002",
+      "gec_009",
+      "gec_010"
+    ],
+    "0f7ea8d5-0d39-4f4d-b461-65916ca95d45": [
+      "gec_009",
+      "gec_008"
+    ],
+    "51b06bb6-27d5-46bf-9513-e3f772f34021": [
+      "gec_001",
+      "gec_014",
+      "gec_015",
+      "gec_016"
+    ],
+    "3ea5418d-6665-4546-b37e-087b21c2ad20": [
+      "gec_037",
+      "gec_038"
+    ],
+    "8b242ddd-e91d-4928-a854-9687e8efe67c": [
+      "gec_008",
+      "gec_009",
+      "gec_010",
+      "gec_003"
+    ],
+    "662bc3d4-51b9-479a-92ca-c4f2a85ccab7": [
+      "gec_039",
+      "gec_003"
+    ],
+    "51d2553a-d0a2-4b8c-86fd-4cd8843f6bf1": [
+      "gec_010",
+      "gec_009",
+      "gec_008"
+    ],
+    "a8b21d63-3ce5-4e1b-91ae-bf166a1948a7": [
+      "gec_040",
+      "gec_041"
+    ],
+    "c161d847-b669-4e9e-b8b5-a54c743b02da": [
+      "gec_001",
+      "gec_014",
+      "gec_015",
+      "gec_016"
+    ],
+    "1c54a590-a3a7-4c9a-9112-c68f810aec32": [
+      "gec_001",
+      "gec_003"
+    ],
+    "62185535-44a8-422e-a2f2-bfa0dce72867": [
+      "gec_042",
+      "gec_043",
+      "gec_044"
+    ],
+    "23258f1e-9487-425b-9e0b-6d6f6b1c70d1": [
+      "gec_008",
+      "gec_010",
+      "gec_003",
+      "gec_045"
+    ],
+    "107b48e4-b262-48e4-a06b-8d5ddf83a96d": [
+      "gec_046",
+      "gec_007"
+    ],
+    "ba3f63db-c55a-4c74-a721-3ae646085c0c": [
+      "gec_047"
+    ],
+    "82b99b23-8565-499a-83ef-4ebe7fd6edd3": [
+      "gec_001"
+    ],
+    "152a2db5-9253-4604-b921-ead705f22052": [
+      "gec_001"
+    ],
+    "b680d621-43b5-4d2c-93bc-50d77090dcf1": [
+      "gec_002",
+      "gec_048",
+      "gec_049",
+      "gec_050"
+    ],
+    "e581ae78-5f47-4969-89da-f6b53e96e1dc": [
+      "gec_001",
+      "gec_008",
+      "gec_014",
+      "gec_015",
+      "gec_016",
+      "gec_020"
+    ],
+    "d20ff7fc-17b5-408a-95f4-aa021fba58d6": [
+      "gec_001"
+    ],
+    "cc4b610e-789f-4444-b672-0fe0da261c92": [
+      "gec_051",
+      "gec_052"
+    ],
+    "1e8d781a-ee75-47d2-8181-451b6e626fb3": [
+      "gec_007",
+      "gec_012"
+    ],
+    "c155559b-e5eb-42fa-9fbb-5d81adf44f64": [
+      "gec_001",
+      "gec_005",
+      "gec_012"
+    ],
+    "35d65637-8c66-4993-9692-294ba0914c5f": [
+      "gec_009",
+      "gec_010"
+    ],
+    "b53df52c-9673-49cc-8c00-25ae34af1535": [
+      "gec_009"
+    ],
+    "063d93ae-e84a-4edd-a94f-ef9dffeb87ba": [
+      "gec_010"
+    ],
+    "00371374-3bff-433f-8cf1-965d65e87532": [
+      "gec_010",
+      "gec_020"
+    ],
+    "e8079c42-9542-47a6-924e-0a7c60fd76a3": [
+      "gec_020",
+      "gec_014",
+      "gec_015",
+      "gec_016"
+    ],
+    "7a4538d7-b745-4784-a506-58133f9ac4e0": [
+      "gec_007",
+      "gec_012"
+    ],
+    "26e4bfb3-49d4-4603-b1dd-206fd5d45026": [
+      "gec_003"
+    ],
+    "e1e8f5ed-1b38-4889-afed-860d13aa8787": [
+      "gec_001",
+      "gec_016"
+    ],
+    "469a7154-d20e-4c3b-a5b2-cef203ab0586": [
+      "gec_008",
+      "gec_015"
+    ],
+    "ac2ff86b-e806-4c8a-81f8-472a3289ecf1": [
+      "gec_053",
+      "gec_054"
+    ],
+    "6daf26df-54f3-4d9a-82b9-0675ab807994": [
+      "gec_001",
+      "gec_008"
+    ],
+    "b8632efe-2fbc-40b8-a8d1-2a383b186691": [
+      "gec_002",
+      "gec_008"
+    ],
+    "9d32b866-1997-4be8-b771-743cea353d59": [
+      "gec_001",
+      "gec_008",
+      "gec_014",
+      "gec_015",
+      "gec_016"
+    ],
+    "bdd6e643-8245-4d25-a4bb-ed7e14188f38": [
+      "gec_008",
+      "gec_014",
+      "gec_015",
+      "gec_016"
+    ],
+    "9d19f479-2a22-4fb4-b019-b613ee195d79": [
+      "gec_008",
+      "gec_014"
+    ],
+    "18c1b9f4-9df2-4d1c-9329-b1db5f5a69f4": [
+      "gec_055",
+      "gec_056"
+    ],
+    "ea6a8c32-86b2-40fb-a80f-1ef5dc035e44": [
+      "gec_008"
+    ],
+    "cd184ce9-b663-462c-9d62-5d209b6346e6": [
+      "gec_057"
+    ],
+    "b8c74701-0d2d-40e5-b6a5-e79e0e9e1c55": [
+      "gec_003"
+    ]
+  },
+  "metadata": {
+    "conversation_id": "conv_9",
+    "total_units": 76,
+    "total_clusters": 57,
+    "created_at": "2025-12-06T02:14:22.095278",
+    "updated_at": "2025-12-06T02:20:32.330242",
+    "llm_model": "gpt-4.1-mini"
+  }
+}

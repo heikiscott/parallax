@@ -1,0 +1,2 @@
+2025-12-06 02:18:39,029 - [add-idx-emb] - providers.llm.openai_provider - WARNING - openai_provider.py:295 - [OpenAI-gpt-4.1-mini] 完成原因: length
+2025-12-06 02:20:28,148 - [add-idx-emb] - providers.llm.openai_provider - WARNING - openai_provider.py:295 - [OpenAI-gpt-4.1-mini] 完成原因: length

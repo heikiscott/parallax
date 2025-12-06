@@ -1,0 +1,467 @@
+{
+  "clusters": {
+    "gec_001": {
+      "cluster_id": "gec_001",
+      "topic": "Jon's job loss and business plans conversation",
+      "summary": "Jon and Gina consistently supported each other through job losses and entrepreneurial challenges, sharing optimism and encouragement as Jon pursued opening a dance studio and Gina expanded her clothing business, highlighting their mutual resilience and evolving partnership.",
+      "members": [
+        {
+          "unit_id": "3bdcbe52-38a9-4c71-be15-7765143e7c86",
+          "timestamp": "2023-01-20T16:17:30+08:00",
+          "summary": "Jon and Gina, both recently unemployed, shared their passion for dance and plans to pursue it professionally, with Jon intending to open a dance studio and both looking forward to a joint dance session and upcoming performances. Their conversation highlighted mutual support and optimism despite personal setbacks."
+        },
+        {
+          "unit_id": "944fdfc5-287a-4be3-b017-b88244f94039",
+          "timestamp": "2023-01-29T14:32:30+08:00",
+          "summary": "On January 29, 2023, Gina shared with Jon her mixed feelings about launching an advertising campaign for her new clothing store, expressing both excitement and apprehension, while Jon responded with supportive compliments on her hard work and success."
+        },
+        {
+          "unit_id": "027999c0-e8b5-4d3a-a04d-78475692a0e9",
+          "timestamp": "2023-01-29T14:39:30+08:00",
+          "summary": "Gina and Jon discussed Jon's search for a suitable downtown location for his dance studio, focusing on features like natural light and Marley flooring, while sharing encouragement and optimism about achieving their goals."
+        },
+        {
+          "unit_id": "0e67e81c-c0be-41c4-8ea4-c01422cf2ddb",
+          "timestamp": "2023-02-01T00:48:00+08:00",
+          "summary": "In early 2023, Jon expressed optimism about his progress and shared with Gina his ongoing determination to pursue a career in dance despite challenges, including his active search for a location to open a dance studio."
+        },
+        {
+          "unit_id": "8192dfc6-d2df-46a7-b381-b44c89c1efcc",
+          "timestamp": "2023-02-01T00:54:30+08:00",
+          "summary": "Gina and Jon discussed Gina’s progress in expanding her clothing store, highlighting her successful contact with wholesalers and the store’s inviting design, while mutually encouraging each other in pursuing their business goals with optimism and determination."
+        },
+        {
+          "unit_id": "d60c82dc-9384-47ca-a546-e6dec883deb8",
+          "timestamp": "2023-02-04T10:47:00+08:00",
+          "summary": "On February 4, 2023, Jon and Gina exchanged mutual encouragement as Jon shared challenges in finding a dance studio location for his business, while Gina described her store as doing great and offered ongoing support and confidence in his persistence."
+        },
+        {
+          "unit_id": "677eac09-2273-468e-b549-5920ae7f983a",
+          "timestamp": "2023-02-04T10:52:00+08:00",
+          "summary": "On February 4, 2023, Jon and Gina discussed Jon's challenges in finding a suitable dance studio and his preparations for an upcoming dance competition, with Gina offering encouragement and support as Jon expressed determination to pursue his dance aspirations."
+        },
+        {
+          "unit_id": "6a2435b8-6991-4c87-a4df-84b9015c21c2",
+          "timestamp": "2023-02-08T09:32:00+08:00",
+          "summary": "On February 8, 2023, Gina contacted Jon to express happiness at hearing from him and shared excitement about a new fashion piece for her store, while referencing Jon's earlier message expressing gratitude and determination. The exchange highlighted Gina's enthusiasm and Jon's resilience."
+        },
+        {
+          "unit_id": "4251d3a3-02d6-4afb-86d1-8834da5ea5d1",
+          "timestamp": "2023-02-08T09:33:30+08:00",
+          "summary": "Jon shared with Gina his enthusiasm for dance and running his studio, highlighting the joy he finds in performing and fostering a welcoming space for dancers, while Gina expressed admiration and curiosity about his work."
+        },
+        {
+          "unit_id": "1aabb3a2-8a9d-475d-a404-545fb38b2396",
+          "timestamp": "2023-02-08T09:38:00+08:00",
+          "summary": "On February 8, 2023, Gina and Jon discussed their entrepreneurial journeys, sharing insights on creativity, risk-taking, and personal growth, with Gina highlighting her online store collaboration and Jon expressing his transition from banking to running a dance studio. They encouraged each other through challenges, emphasizing persistence and mutual support in pursuing their passions."
+        },
+        {
+          "unit_id": "fe199365-2f53-42a5-a81c-1ad9ac7ad8ef",
+          "timestamp": "2023-02-08T09:43:00+08:00",
+          "summary": "On February 8, 2023, Gina and Jon discussed the importance of personal motivation, self-expression through dance, and balancing their passions with entrepreneurial goals, sharing mutual encouragement and support in pursuing their dreams. Gina highlighted her tattoo symbolizing freedom, while Jon described the rewarding challenge of juggling his dance studio and business ambitions."
+        },
+        {
+          "unit_id": "9a09deea-dd18-4a85-aca7-e4cd58013891",
+          "timestamp": "2023-03-16T14:36:00+08:00",
+          "summary": "On March 16, 2023, Jon shared with Gina his new gym routine amid a hectic schedule while Gina revealed she was going through tough times, prompting Jon to offer his support as they continued to encourage each other in their personal and professional lives."
+        },
+        {
+          "unit_id": "cffeaa23-ceae-4540-9dac-911bf2c4ba77",
+          "timestamp": "2023-03-16T14:37:00+08:00",
+          "summary": "On March 16, 2023, Gina informed Jon that she had recently lost her job at Door Dash but expressed gratitude for his support and shared some positive news, to which Jon responded with enthusiasm and encouragement."
+        },
+        {
+          "unit_id": "912e6b4d-3bc5-4af5-873f-8320d7871a25",
+          "timestamp": "2023-03-23T19:28:00+08:00",
+          "summary": "On March 16, 2023, Jon and Gina discussed their experiences and challenges in starting and running their own businesses, expressing mutual support and inspiration for each other's entrepreneurial journeys. Their ongoing communication highlighted a motivating partnership as they encouraged one another to pursue their dreams and celebrate achievements together."
+        },
+        {
+          "unit_id": "b0b0d33f-5f8e-45d9-a2e1-40147d0b0d16",
+          "timestamp": "2023-03-23T19:36:00+08:00",
+          "summary": "On March 23, 2023, Gina and Jon engaged in a supportive conversation about motivation and business growth, where Jon shared how seeing his dance students succeed keeps him motivated, and Gina offered encouragement and appreciation for his efforts. Both expressed mutual gratitude and emotional support centered on their respective business endeavors."
+        },
+        {
+          "unit_id": "6d0403b9-a926-434b-8652-2e39b7335157",
+          "timestamp": "2023-04-03T13:38:30+08:00",
+          "summary": "Jon and Gina discussed their business ventures, with Jon sharing challenges and plans for his dance studio while Gina updated on her online clothing store's growth and promotional strategies. They encouraged each other, exchanged photos related to their passions, and planned to attend Jon's upcoming dance event."
+        },
+        {
+          "unit_id": "44a1ac36-864b-4e83-b047-1c4c656d4871",
+          "timestamp": "2023-04-09T10:39:30+08:00",
+          "summary": "On April 9, 2023, Jon shared with Gina his journey of turning his passion for dance into a business after losing his job, expressing pride in his students and personal growth, while Gina offered encouragement and reminisced about their shared dance memories. Their conversation highlighted Jon's transition to entrepreneurship, overcoming fear, and mutual support."
+        },
+        {
+          "unit_id": "1936dbc0-bf72-4635-9abc-91dbeb8d45c1",
+          "timestamp": "2023-04-25T11:24:00+08:00",
+          "summary": "On April 25, 2023, Jon updated Gina about his experience showcasing his dance studio at a fair, describing it as stressful yet rewarding and emphasizing the importance of self-confidence in running his business. Gina had previously encouraged Jon to keep up his efforts in growing the business."
+        },
+        {
+          "unit_id": "648439fe-2cf4-4ea9-812f-add6266f13d3",
+          "timestamp": "2023-04-25T11:30:30+08:00",
+          "summary": "On April 25, 2023, Gina and Jon engaged in a supportive conversation about their business ventures, where Gina encouraged Jon to stay motivated and confident while sharing her own entrepreneurial journey. Both demonstrated mutual encouragement and a shared commitment to overcoming challenges through motivation and support."
+        },
+        {
+          "unit_id": "0ade39aa-5509-410f-978d-73a97dfdec8c",
+          "timestamp": "2023-05-11T15:20:00+08:00",
+          "summary": "On May 11, 2023, Jon and Gina discussed Jon's progress and aspirations in opening his dance studio, with Gina expressing admiration and encouragement while both shared their mutual passion for dance as a source of stress relief and self-expression. Jon revealed that losing his job motivated him to pursue his dream business, and Gina supported his vision of creating a space for people to dance and express themselves."
+        },
+        {
+          "unit_id": "d2a1cef2-0119-4b6e-9c4c-32f3f72fef85",
+          "timestamp": "2023-05-11T15:20:30+08:00",
+          "summary": "On May 11, 2023, Jon and Gina exchanged gratitude and committed to keeping each other updated on the progress of a dance studio project, while Gina also shared her positive experience from a recent design internship interview."
+        },
+        {
+          "unit_id": "5a25589d-3f46-4c0f-85cd-78fc7a869f92",
+          "timestamp": "2023-05-11T15:21:30+08:00",
+          "summary": "On May 11, 2023, Jon expressed optimism about taking risks to follow his dreams and asked Gina about her interview, to which she responded positively, reflecting their hopeful and encouraging exchange about personal aspirations and career progress."
+        },
+        {
+          "unit_id": "623ea6d1-c936-4fa9-879d-c74e80beedde",
+          "timestamp": "2023-05-11T15:24:30+08:00",
+          "summary": "Jon shared with Gina that he had been practicing dance routines to stay focused, and they agreed that he would send her a video of one of his routines, with Gina expressing support and enthusiasm."
+        },
+        {
+          "unit_id": "197665bc-42b8-4229-92a3-62a7d72752f1",
+          "timestamp": "2023-05-27T19:27:00+08:00",
+          "summary": "On May 27, 2023, Gina and Jon discussed their aspirations, with Gina expressing excitement and apprehension about entering the fashion industry, while Jon shared his efforts to build an efficient business for his dance studio inspired by \"The Lean Startup,\" highlighting their mutual encouragement and optimism."
+        },
+        {
+          "unit_id": "ea72cc22-6963-4e54-a431-5afa781429c8",
+          "timestamp": "2023-06-13T20:40:00+08:00",
+          "summary": "On June 13, 2023, Jon and Gina engaged in a supportive conversation about Jon's preparations for opening his dance studio, sharing encouragement, mentoring experiences, and organizational strategies to help him stay motivated and focused. Gina offered ongoing support and resources, while Jon detailed his vision for a nurturing environment and his methods for goal-setting and progress tracking."
+        },
+        {
+          "unit_id": "4bb8a6b1-4443-4946-91b6-c1d2e7cee8b4",
+          "timestamp": "2023-06-16T21:41:00+08:00",
+          "summary": "On June 16, 2023, Jon and Gina discussed their entrepreneurial efforts, with Jon sharing his motivation from mentorship and seeking marketing advice, while Gina offered support and recommended social media strategies to grow their businesses. Both demonstrated mutual encouragement and a shared focus on business growth."
+        },
+        {
+          "unit_id": "47ad11a5-1e9e-40d9-847d-05d94dd8fba6",
+          "timestamp": "2023-06-16T21:44:30+08:00",
+          "summary": "On June 16, 2023, Jon and Gina discussed entrepreneurship and personal motivation, with Gina sharing her experience as an online clothing store owner and advising Jon to stay passionate, focused, and resilient. Their conversation emphasized mutual encouragement, perseverance, and personal growth."
+        },
+        {
+          "unit_id": "bb7444c2-eba9-48e3-8003-02e27daf90ec",
+          "timestamp": "2023-06-16T21:47:30+08:00",
+          "summary": "On June 16, 2023, Jon and Gina shared a supportive conversation about their passion for dancing, with Gina encouraging Jon to persevere through challenges and Jon expressing gratitude for her motivation. Their exchange highlighted mutual encouragement and a shared commitment to pursuing their dance dreams."
+        },
+        {
+          "unit_id": "de32093a-7c58-4b68-8e81-6bf89acc28cc",
+          "timestamp": "2023-06-19T10:14:30+08:00",
+          "summary": "On June 19, 2023, Jon and Gina shared an enthusiastic and supportive conversation about Jon's upcoming dance studio grand opening scheduled for June 20, highlighting Jon's dedication and Gina's encouragement. Both expressed excitement and anticipation for the event, with Gina promising to be there to celebrate Jon's achievement."
+        },
+        {
+          "unit_id": "a651ddf8-1ca1-4f92-ae8b-0269fa39f8f0",
+          "timestamp": "2023-06-21T14:22:30+08:00",
+          "summary": "On June 21, 2023, Gina and Jon discussed Jon’s recent job loss and his determination to advance his business through networking and goal-setting, with Gina offering continuous emotional support and encouragement to persevere. Their conversation emphasized resilience, planning, and mutual encouragement in the face of challenges."
+        },
+        {
+          "unit_id": "12241cbe-c440-4c9a-baf7-b0c4fb92fb35",
+          "timestamp": "2023-07-09T13:35:00+08:00",
+          "summary": "On July 9, 2023, Jon and Gina engaged in a supportive conversation focused on Jon's transition to full-time entrepreneurship with his dance studio and mentoring plans, while Gina shared her recent recognition in the fashion industry; both expressed encouragement, gratitude, and determination to pursue their dreams."
+        },
+        {
+          "unit_id": "b401583b-ea91-4b1e-8387-f39a1fe8a3d8",
+          "timestamp": "2023-07-21T17:54:30+08:00",
+          "summary": "Gina and Jon reconnected to discuss their respective businesses, with Gina sharing her experience launching a new website for her clothing store and Jon updating on his dance studio's challenges and networking efforts. They agreed to collaborate on marketing strategies, with Gina offering to help manage Jon's social media to boost the studio's online presence and attract investors."
+        },
+        {
+          "unit_id": "96e00b37-77da-47be-9e24-fdb663075fc4",
+          "timestamp": "2023-07-21T17:54:30+08:00",
+          "summary": "Jon and Gina engaged in a supportive conversation where Jon shared the stress of preparing to open his dance studio, and Gina encouraged him with motivational messages, emphasizing perseverance and the importance of a creative space for dancers. Their exchange highlighted Jon's determination and Gina's consistent encouragement as he worked toward realizing his dance studio vision."
+        }
+      ],
+      "first_timestamp": "2023-01-20T16:17:30+08:00",
+      "last_timestamp": "2023-07-21T17:54:30+08:00",
+      "created_at": "2025-12-05T14:15:31.401061",
+      "updated_at": "2025-12-05T14:20:21.973175"
+    },
+    "gec_002": {
+      "cluster_id": "gec_002",
+      "topic": "Gina's clothing store launch and advertising campaign",
+      "summary": "Gina and Jon consistently shared mutual support and encouragement throughout Gina’s journey launching and growing her online clothing store, discussing advertising, unique product lines, and marketing strategies while exchanging insights on entrepreneurship and personal motivation.",
+      "members": [
+        {
+          "unit_id": "944fdfc5-287a-4be3-b017-b88244f94039",
+          "timestamp": "2023-01-29T14:32:30+08:00",
+          "summary": "On January 29, 2023, Gina shared with Jon her mixed feelings about launching an advertising campaign for her new clothing store, expressing both excitement and apprehension, while Jon responded with supportive compliments on her hard work and success."
+        },
+        {
+          "unit_id": "8192dfc6-d2df-46a7-b381-b44c89c1efcc",
+          "timestamp": "2023-02-01T00:54:30+08:00",
+          "summary": "Gina and Jon discussed Gina’s progress in expanding her clothing store, highlighting her successful contact with wholesalers and the store’s inviting design, while mutually encouraging each other in pursuing their business goals with optimism and determination."
+        },
+        {
+          "unit_id": "d60c82dc-9384-47ca-a546-e6dec883deb8",
+          "timestamp": "2023-02-04T10:47:00+08:00",
+          "summary": "On February 4, 2023, Jon and Gina exchanged mutual encouragement as Jon shared challenges in finding a dance studio location for his business, while Gina described her store as doing great and offered ongoing support and confidence in his persistence."
+        },
+        {
+          "unit_id": "6a2435b8-6991-4c87-a4df-84b9015c21c2",
+          "timestamp": "2023-02-08T09:32:00+08:00",
+          "summary": "On February 8, 2023, Gina contacted Jon to express happiness at hearing from him and shared excitement about a new fashion piece for her store, while referencing Jon's earlier message expressing gratitude and determination. The exchange highlighted Gina's enthusiasm and Jon's resilience."
+        },
+        {
+          "unit_id": "4251d3a3-02d6-4afb-86d1-8834da5ea5d1",
+          "timestamp": "2023-02-08T09:33:30+08:00",
+          "summary": "Jon shared with Gina his enthusiasm for dance and running his studio, highlighting the joy he finds in performing and fostering a welcoming space for dancers, while Gina expressed admiration and curiosity about his work."
+        },
+        {
+          "unit_id": "1aabb3a2-8a9d-475d-a404-545fb38b2396",
+          "timestamp": "2023-02-08T09:38:00+08:00",
+          "summary": "On February 8, 2023, Gina and Jon discussed their entrepreneurial journeys, sharing insights on creativity, risk-taking, and personal growth, with Gina highlighting her online store collaboration and Jon expressing his transition from banking to running a dance studio. They encouraged each other through challenges, emphasizing persistence and mutual support in pursuing their passions."
+        },
+        {
+          "unit_id": "1c64ee27-4e14-42e0-adfb-d4c59b4ff4a1",
+          "timestamp": "2023-03-16T14:39:30+08:00",
+          "summary": "On March 16, 2023, Gina excitedly announced the launch of her online clothes store, sharing that her passion for fashion and dance inspired the venture, while Jon congratulated her and expressed interest in her motivations. The conversation highlighted Gina's enthusiasm and Jon's supportive curiosity about her new business."
+        },
+        {
+          "unit_id": "912e6b4d-3bc5-4af5-873f-8320d7871a25",
+          "timestamp": "2023-03-23T19:28:00+08:00",
+          "summary": "On March 16, 2023, Jon and Gina discussed their experiences and challenges in starting and running their own businesses, expressing mutual support and inspiration for each other's entrepreneurial journeys. Their ongoing communication highlighted a motivating partnership as they encouraged one another to pursue their dreams and celebrate achievements together."
+        },
+        {
+          "unit_id": "b60a599e-41bc-4fa5-9963-1aad46bfb2ce",
+          "timestamp": "2023-03-23T19:30:00+08:00",
+          "summary": "On March 23, 2023, Jon and Gina exchanged supportive insights about managing their online clothing stores, discussing the challenges and rewards of entrepreneurship while encouraging each other to persevere and build strong customer relationships."
+        },
+        {
+          "unit_id": "b0b0d33f-5f8e-45d9-a2e1-40147d0b0d16",
+          "timestamp": "2023-03-23T19:36:00+08:00",
+          "summary": "On March 23, 2023, Gina and Jon engaged in a supportive conversation about motivation and business growth, where Jon shared how seeing his dance students succeed keeps him motivated, and Gina offered encouragement and appreciation for his efforts. Both expressed mutual gratitude and emotional support centered on their respective business endeavors."
+        },
+        {
+          "unit_id": "6d0403b9-a926-434b-8652-2e39b7335157",
+          "timestamp": "2023-04-03T13:38:30+08:00",
+          "summary": "Jon and Gina discussed their business ventures, with Jon sharing challenges and plans for his dance studio while Gina updated on her online clothing store's growth and promotional strategies. They encouraged each other, exchanged photos related to their passions, and planned to attend Jon's upcoming dance event."
+        },
+        {
+          "unit_id": "648439fe-2cf4-4ea9-812f-add6266f13d3",
+          "timestamp": "2023-04-25T11:30:30+08:00",
+          "summary": "On April 25, 2023, Gina and Jon engaged in a supportive conversation about their business ventures, where Gina encouraged Jon to stay motivated and confident while sharing her own entrepreneurial journey. Both demonstrated mutual encouragement and a shared commitment to overcoming challenges through motivation and support."
+        },
+        {
+          "unit_id": "4bb8a6b1-4443-4946-91b6-c1d2e7cee8b4",
+          "timestamp": "2023-06-16T21:41:00+08:00",
+          "summary": "On June 16, 2023, Jon and Gina discussed their entrepreneurial efforts, with Jon sharing his motivation from mentorship and seeking marketing advice, while Gina offered support and recommended social media strategies to grow their businesses. Both demonstrated mutual encouragement and a shared focus on business growth."
+        },
+        {
+          "unit_id": "47ad11a5-1e9e-40d9-847d-05d94dd8fba6",
+          "timestamp": "2023-06-16T21:44:30+08:00",
+          "summary": "On June 16, 2023, Jon and Gina discussed entrepreneurship and personal motivation, with Gina sharing her experience as an online clothing store owner and advising Jon to stay passionate, focused, and resilient. Their conversation emphasized mutual encouragement, perseverance, and personal growth."
+        },
+        {
+          "unit_id": "0f5c2cad-c808-4ad5-abd5-a8d8149f7aa4",
+          "timestamp": "2023-06-21T14:17:00+08:00",
+          "summary": "On June 21, 2023, Gina shared with Jon that she had acquired new unique pieces for her store and created a limited edition line symbolizing grit and creativity, while clarifying that a hoodie she showed was part of her personal collection. Jon congratulated her success and expressed interest in the inspiration behind her designs."
+        },
+        {
+          "unit_id": "b401583b-ea91-4b1e-8387-f39a1fe8a3d8",
+          "timestamp": "2023-07-21T17:54:30+08:00",
+          "summary": "Gina and Jon reconnected to discuss their respective businesses, with Gina sharing her experience launching a new website for her clothing store and Jon updating on his dance studio's challenges and networking efforts. They agreed to collaborate on marketing strategies, with Gina offering to help manage Jon's social media to boost the studio's online presence and attract investors."
+        }
+      ],
+      "first_timestamp": "2023-01-29T14:32:30+08:00",
+      "last_timestamp": "2023-07-21T17:54:30+08:00",
+      "created_at": "2025-12-05T14:15:36.933754",
+      "updated_at": "2025-12-05T14:20:13.996132"
+    },
+    "gec_003": {
+      "cluster_id": "gec_003",
+      "topic": "Gina's design internship interview",
+      "summary": "On May 11, 2023, Jon and Gina exchanged gratitude and committed to keeping each other updated on the progress of a dance studio project, while Gina also shared her positive experience from a recent design internship interview.",
+      "members": [
+        {
+          "unit_id": "d2a1cef2-0119-4b6e-9c4c-32f3f72fef85",
+          "timestamp": "2023-05-11T15:20:30+08:00",
+          "summary": "On May 11, 2023, Jon and Gina exchanged gratitude and committed to keeping each other updated on the progress of a dance studio project, while Gina also shared her positive experience from a recent design internship interview."
+        },
+        {
+          "unit_id": "5a25589d-3f46-4c0f-85cd-78fc7a869f92",
+          "timestamp": "2023-05-11T15:21:30+08:00",
+          "summary": "On May 11, 2023, Jon expressed optimism about taking risks to follow his dreams and asked Gina about her interview, to which she responded positively, reflecting their hopeful and encouraging exchange about personal aspirations and career progress."
+        }
+      ],
+      "first_timestamp": "2023-05-11T15:20:30+08:00",
+      "last_timestamp": "2023-05-11T15:21:30+08:00",
+      "created_at": "2025-12-05T14:18:28.138851",
+      "updated_at": "2025-12-05T14:18:34.798092"
+    },
+    "gec_004": {
+      "cluster_id": "gec_004",
+      "topic": "Gina's fashion internship acceptance and emotional response",
+      "summary": "On May 27, 2023, Gina informed Jon about her acceptance for a part-time fashion internship at an international company, expressing mixed feelings of excitement and nervousness, while Jon responded with enthusiastic support and encouragement. Their conversation centered on Gina’s new opportunity, her emotional response, and her plans for growth in the fashion industry.",
+      "members": [
+        {
+          "unit_id": "d7efff64-1897-4897-a330-e67bbc32a3e2",
+          "timestamp": "2023-05-27T19:20:00+08:00",
+          "summary": "On May 27, 2023, Gina informed Jon about her acceptance for a part-time fashion internship at an international company, expressing mixed feelings of excitement and nervousness, while Jon responded with enthusiastic support and encouragement. Their conversation centered on Gina’s new opportunity, her emotional response, and her plans for growth in the fashion industry."
+        },
+        {
+          "unit_id": "197665bc-42b8-4229-92a3-62a7d72752f1",
+          "timestamp": "2023-05-27T19:27:00+08:00",
+          "summary": "On May 27, 2023, Gina and Jon discussed their aspirations, with Gina expressing excitement and apprehension about entering the fashion industry, while Jon shared his efforts to build an efficient business for his dance studio inspired by \"The Lean Startup,\" highlighting their mutual encouragement and optimism."
+        }
+      ],
+      "first_timestamp": "2023-05-27T19:20:00+08:00",
+      "last_timestamp": "2023-05-27T19:27:00+08:00",
+      "created_at": "2025-12-05T14:19:04.144842",
+      "updated_at": "2025-12-05T14:19:10.248810"
+    },
+    "gec_005": {
+      "cluster_id": "gec_005",
+      "topic": "Gina's recent recognition in the fashion industry",
+      "summary": "On July 9, 2023, Jon and Gina engaged in a supportive conversation focused on Jon's transition to full-time entrepreneurship with his dance studio and mentoring plans, while Gina shared her recent recognition in the fashion industry; both expressed encouragement, gratitude, and determination to pursue their dreams.",
+      "members": [
+        {
+          "unit_id": "12241cbe-c440-4c9a-baf7-b0c4fb92fb35",
+          "timestamp": "2023-07-09T13:35:00+08:00",
+          "summary": "On July 9, 2023, Jon and Gina engaged in a supportive conversation focused on Jon's transition to full-time entrepreneurship with his dance studio and mentoring plans, while Gina shared her recent recognition in the fashion industry; both expressed encouragement, gratitude, and determination to pursue their dreams."
+        }
+      ],
+      "first_timestamp": "2023-07-09T13:35:00+08:00",
+      "last_timestamp": "2023-07-09T13:35:00+08:00",
+      "created_at": "2025-12-05T14:20:05.681691",
+      "updated_at": "2025-12-05T14:20:05.681691"
+    }
+  },
+  "unit_to_clusters": {
+    "3bdcbe52-38a9-4c71-be15-7765143e7c86": [
+      "gec_001"
+    ],
+    "944fdfc5-287a-4be3-b017-b88244f94039": [
+      "gec_002",
+      "gec_001"
+    ],
+    "027999c0-e8b5-4d3a-a04d-78475692a0e9": [
+      "gec_001"
+    ],
+    "0e67e81c-c0be-41c4-8ea4-c01422cf2ddb": [
+      "gec_001"
+    ],
+    "8192dfc6-d2df-46a7-b381-b44c89c1efcc": [
+      "gec_001",
+      "gec_002"
+    ],
+    "d60c82dc-9384-47ca-a546-e6dec883deb8": [
+      "gec_001",
+      "gec_002"
+    ],
+    "677eac09-2273-468e-b549-5920ae7f983a": [
+      "gec_001"
+    ],
+    "6a2435b8-6991-4c87-a4df-84b9015c21c2": [
+      "gec_001",
+      "gec_002"
+    ],
+    "4251d3a3-02d6-4afb-86d1-8834da5ea5d1": [
+      "gec_001",
+      "gec_002"
+    ],
+    "1aabb3a2-8a9d-475d-a404-545fb38b2396": [
+      "gec_001",
+      "gec_002"
+    ],
+    "fe199365-2f53-42a5-a81c-1ad9ac7ad8ef": [
+      "gec_001"
+    ],
+    "9a09deea-dd18-4a85-aca7-e4cd58013891": [
+      "gec_001"
+    ],
+    "cffeaa23-ceae-4540-9dac-911bf2c4ba77": [
+      "gec_001"
+    ],
+    "1c64ee27-4e14-42e0-adfb-d4c59b4ff4a1": [
+      "gec_002"
+    ],
+    "912e6b4d-3bc5-4af5-873f-8320d7871a25": [
+      "gec_001",
+      "gec_002"
+    ],
+    "b60a599e-41bc-4fa5-9963-1aad46bfb2ce": [
+      "gec_002"
+    ],
+    "b0b0d33f-5f8e-45d9-a2e1-40147d0b0d16": [
+      "gec_001",
+      "gec_002"
+    ],
+    "6d0403b9-a926-434b-8652-2e39b7335157": [
+      "gec_001",
+      "gec_002"
+    ],
+    "44a1ac36-864b-4e83-b047-1c4c656d4871": [
+      "gec_001"
+    ],
+    "1936dbc0-bf72-4635-9abc-91dbeb8d45c1": [
+      "gec_001"
+    ],
+    "648439fe-2cf4-4ea9-812f-add6266f13d3": [
+      "gec_001",
+      "gec_002"
+    ],
+    "0ade39aa-5509-410f-978d-73a97dfdec8c": [
+      "gec_001"
+    ],
+    "d2a1cef2-0119-4b6e-9c4c-32f3f72fef85": [
+      "gec_001",
+      "gec_003"
+    ],
+    "5a25589d-3f46-4c0f-85cd-78fc7a869f92": [
+      "gec_001",
+      "gec_003"
+    ],
+    "623ea6d1-c936-4fa9-879d-c74e80beedde": [
+      "gec_001"
+    ],
+    "d7efff64-1897-4897-a330-e67bbc32a3e2": [
+      "gec_004"
+    ],
+    "197665bc-42b8-4229-92a3-62a7d72752f1": [
+      "gec_001",
+      "gec_004"
+    ],
+    "ea72cc22-6963-4e54-a431-5afa781429c8": [
+      "gec_001"
+    ],
+    "4bb8a6b1-4443-4946-91b6-c1d2e7cee8b4": [
+      "gec_001",
+      "gec_002"
+    ],
+    "47ad11a5-1e9e-40d9-847d-05d94dd8fba6": [
+      "gec_001",
+      "gec_002"
+    ],
+    "bb7444c2-eba9-48e3-8003-02e27daf90ec": [
+      "gec_001"
+    ],
+    "de32093a-7c58-4b68-8e81-6bf89acc28cc": [
+      "gec_001"
+    ],
+    "0f5c2cad-c808-4ad5-abd5-a8d8149f7aa4": [
+      "gec_002"
+    ],
+    "a651ddf8-1ca1-4f92-ae8b-0269fa39f8f0": [
+      "gec_001"
+    ],
+    "12241cbe-c440-4c9a-baf7-b0c4fb92fb35": [
+      "gec_001",
+      "gec_005"
+    ],
+    "b401583b-ea91-4b1e-8387-f39a1fe8a3d8": [
+      "gec_001",
+      "gec_002"
+    ],
+    "96e00b37-77da-47be-9e24-fdb663075fc4": [
+      "gec_001"
+    ]
+  },
+  "metadata": {
+    "conversation_id": "conv_1",
+    "total_units": 37,
+    "total_clusters": 5,
+    "created_at": "2025-12-05T14:15:25.042183",
+    "updated_at": "2025-12-05T14:20:21.973175",
+    "llm_model": "gpt-4.1-mini"
+  }
+}

@@ -1,0 +1,2605 @@
+{
+  "clusters": {
+    "gec_001": {
+      "cluster_id": "gec_001",
+      "topic": "Maria's reunion greeting with John",
+      "summary": "Maria and John reconnected to share personal updates and their growing commitment to community service and local politics. Over time, they consistently supported each other's efforts in education, infrastructure, and volunteer work, emphasizing collaboration for positive neighborhood impact.",
+      "members": [
+        {
+          "unit_id": "b6892efd-cca8-4c60-aa75-74e9474e711e",
+          "timestamp": "2022-12-17T11:03:00+08:00",
+          "summary": "Maria and John reconnected after a long time, sharing updates about their recent activities, including John's family road trip and kickboxing workouts, and Maria's volunteer work and aerial yoga practice. Their conversation was friendly and focused on fitness and personal experiences without making any concrete plans."
+        },
+        {
+          "unit_id": "0cb9ac0c-76c1-47ff-b3c4-7c942c52ec5c",
+          "timestamp": "2022-12-17T11:08:30+08:00",
+          "summary": "On December 17, 2022, John shared with Maria his strong desire to enter local politics to improve education and infrastructure in their community, motivated by his personal experiences, while Maria expressed enthusiastic support and encouraged his plans to engage with local leaders."
+        },
+        {
+          "unit_id": "809e325c-2691-4132-8ea8-2e76732f6455",
+          "timestamp": "2022-12-22T18:16:30+08:00",
+          "summary": "John and Maria discussed their community efforts, with Maria sharing her recent car donation to a homeless shelter and John updating her on his education campaign fueled by inspiring stories and family support. They exchanged mutual encouragement, emphasizing the importance of personal motivation and collective action for positive community impact."
+        },
+        {
+          "unit_id": "3cda8d5e-b17e-4f1d-b747-6ac1b26fc92b",
+          "timestamp": "2023-01-09T19:18:30+08:00",
+          "summary": "John and Maria engaged in a conversation about their commitment to community involvement and local political goals, expressing mutual support and optimism for upcoming initiatives. They emphasized teamwork and collaboration as essential for driving positive neighborhood changes."
+        },
+        {
+          "unit_id": "c4ffcc92-503c-4bbb-a384-4e1789f12816",
+          "timestamp": "2023-04-02T09:44:30+08:00",
+          "summary": "On April 2, 2023, John and Maria reconnected to discuss John's recent graduation and his aspirations in policymaking focused on education and infrastructure, while reflecting on their shared commitment to community service and mutual support."
+        },
+        {
+          "unit_id": "6d68c9e3-2d90-4b03-9f8c-9d2619a73f06",
+          "timestamp": "2023-05-25T13:33:00+08:00",
+          "summary": "On May 25, 2023, John and Maria discussed their community efforts, with John working on a petition and Maria preparing a fundraiser at a homeless shelter, while they offered mutual support and committed to promoting and volunteering for the cause. Their conversation highlighted their shared dedication to making a positive impact and appreciating meaningful moments in life."
+        }
+      ],
+      "first_timestamp": "2022-12-17T11:03:00+08:00",
+      "last_timestamp": "2023-05-25T13:33:00+08:00",
+      "created_at": "2025-12-05T15:17:05.403515",
+      "updated_at": "2025-12-05T15:20:04.233286"
+    },
+    "gec_002": {
+      "cluster_id": "gec_002",
+      "topic": "John's political ambitions to improve local education",
+      "summary": "John and Maria consistently discussed his political ambitions to improve local education and infrastructure, emphasizing community service, compassion, and resilience. Over time, John’s commitment deepened through campaigns, blogging, and multiple runs for office, supported by Maria’s encouragement and shared dedication.",
+      "members": [
+        {
+          "unit_id": "0cb9ac0c-76c1-47ff-b3c4-7c942c52ec5c",
+          "timestamp": "2022-12-17T11:08:30+08:00",
+          "summary": "On December 17, 2022, John shared with Maria his strong desire to enter local politics to improve education and infrastructure in their community, motivated by his personal experiences, while Maria expressed enthusiastic support and encouraged his plans to engage with local leaders."
+        },
+        {
+          "unit_id": "809e325c-2691-4132-8ea8-2e76732f6455",
+          "timestamp": "2022-12-22T18:16:30+08:00",
+          "summary": "John and Maria discussed their community efforts, with Maria sharing her recent car donation to a homeless shelter and John updating her on his education campaign fueled by inspiring stories and family support. They exchanged mutual encouragement, emphasizing the importance of personal motivation and collective action for positive community impact."
+        },
+        {
+          "unit_id": "3cda8d5e-b17e-4f1d-b747-6ac1b26fc92b",
+          "timestamp": "2023-01-09T19:18:30+08:00",
+          "summary": "John and Maria engaged in a conversation about their commitment to community involvement and local political goals, expressing mutual support and optimism for upcoming initiatives. They emphasized teamwork and collaboration as essential for driving positive neighborhood changes."
+        },
+        {
+          "unit_id": "a413cceb-554b-42e4-9d9f-66ab6bde9fc1",
+          "timestamp": "2023-01-28T13:24:30+08:00",
+          "summary": "John and Maria discussed concerns about the poor state of education and the need for community support, with Maria sharing her volunteering experience at a shelter for children and both emphasizing the importance of kindness and compassion in helping vulnerable youth."
+        },
+        {
+          "unit_id": "85172c77-80de-40cd-a039-2d11e718807f",
+          "timestamp": "2023-02-05T14:33:30+08:00",
+          "summary": "Maria shared with John her fulfilling experience participating in a charity event, highlighting the emotional impact and community effort, while John expressed admiration and interest in her feelings about the event."
+        },
+        {
+          "unit_id": "543409bb-bada-44e5-807d-6257f7aa572f",
+          "timestamp": "2023-02-05T14:36:00+08:00",
+          "summary": "On February 5, 2023, Maria and John discussed Maria's rewarding experience volunteering at a charity event and John's motivations for entering politics, highlighting their shared commitment to service and compassion. Maria also recounted connecting a man named David, whom she met at the event, with support services for the homeless."
+        },
+        {
+          "unit_id": "11f2ff1c-c1c2-4b4d-9f7a-13f2ec8cd13a",
+          "timestamp": "2023-02-25T21:03:00+08:00",
+          "summary": "John informed Maria about his decision to run for office again, motivated by his desire to create positive community change, while Maria shared her rewarding volunteer experience with an inspiring woman named Jean, highlighting the importance of kindness and optimism. They both agreed to continue working together to spread positivity and improve their community."
+        },
+        {
+          "unit_id": "c4ffcc92-503c-4bbb-a384-4e1789f12816",
+          "timestamp": "2023-04-02T09:44:30+08:00",
+          "summary": "On April 2, 2023, John and Maria reconnected to discuss John's recent graduation and his aspirations in policymaking focused on education and infrastructure, while reflecting on their shared commitment to community service and mutual support."
+        },
+        {
+          "unit_id": "66d95c83-99da-4764-bf87-983021eae190",
+          "timestamp": "2023-04-18T19:41:30+08:00",
+          "summary": "John shared with Maria his recent dedication to blogging about education reform and infrastructure development to inspire community improvement, while also discussing his positive experience at a convention with colleagues focused on leveraging technology for social impact."
+        },
+        {
+          "unit_id": "c1a64ecf-d117-4a1c-baa3-b79dab9b89f4",
+          "timestamp": "2023-05-06T17:07:00+08:00",
+          "summary": "On May 6, 2023, John shared with Maria his decision to run for office again despite past setbacks, expressing his determination and the emotional challenges he faced, while Maria offered continuous encouragement and support. Their conversation highlighted a supportive friendship focused on John's political ambitions and personal resilience."
+        },
+        {
+          "unit_id": "2d94a040-0399-4949-9a56-1628921e21bd",
+          "timestamp": "2023-07-05T19:01:00+08:00",
+          "summary": "On July 5, 2023, John and Maria discussed the impact of education and infrastructure on community development, expressing mutual support and shared commitment to making a positive difference despite challenges. Their conversation highlighted emotional encouragement and motivation, with John sharing personal reflections on his dedication inspired by his family."
+        }
+      ],
+      "first_timestamp": "2022-12-17T11:08:30+08:00",
+      "last_timestamp": "2023-07-05T19:01:00+08:00",
+      "created_at": "2025-12-05T15:17:10.772679",
+      "updated_at": "2025-12-05T15:21:35.704897"
+    },
+    "gec_003": {
+      "cluster_id": "gec_003",
+      "topic": "John's political ambitions to improve local infrastructure",
+      "summary": "John and Maria consistently discussed his political ambitions to improve local education and infrastructure, emphasizing community involvement, collaboration, and advocacy. Over time, John expanded his efforts through blogging and projects focused on technology and road safety to drive positive neighborhood change.",
+      "members": [
+        {
+          "unit_id": "0cb9ac0c-76c1-47ff-b3c4-7c942c52ec5c",
+          "timestamp": "2022-12-17T11:08:30+08:00",
+          "summary": "On December 17, 2022, John shared with Maria his strong desire to enter local politics to improve education and infrastructure in their community, motivated by his personal experiences, while Maria expressed enthusiastic support and encouraged his plans to engage with local leaders."
+        },
+        {
+          "unit_id": "3cda8d5e-b17e-4f1d-b747-6ac1b26fc92b",
+          "timestamp": "2023-01-09T19:18:30+08:00",
+          "summary": "John and Maria engaged in a conversation about their commitment to community involvement and local political goals, expressing mutual support and optimism for upcoming initiatives. They emphasized teamwork and collaboration as essential for driving positive neighborhood changes."
+        },
+        {
+          "unit_id": "c4ffcc92-503c-4bbb-a384-4e1789f12816",
+          "timestamp": "2023-04-02T09:44:30+08:00",
+          "summary": "On April 2, 2023, John and Maria reconnected to discuss John's recent graduation and his aspirations in policymaking focused on education and infrastructure, while reflecting on their shared commitment to community service and mutual support."
+        },
+        {
+          "unit_id": "66d95c83-99da-4764-bf87-983021eae190",
+          "timestamp": "2023-04-18T19:41:30+08:00",
+          "summary": "John shared with Maria his recent dedication to blogging about education reform and infrastructure development to inspire community improvement, while also discussing his positive experience at a convention with colleagues focused on leveraging technology for social impact."
+        },
+        {
+          "unit_id": "6a2dd3be-8ece-4ee7-8169-7d49374b2d1f",
+          "timestamp": "2023-05-06T17:15:00+08:00",
+          "summary": "On May 6, 2023, Maria and John discussed personal challenges and community issues, focusing on improving local infrastructure and road safety through a collaborative community project. Both expressed commitment to advocating for better living conditions and engaging neighborhood support to create positive change."
+        },
+        {
+          "unit_id": "2d94a040-0399-4949-9a56-1628921e21bd",
+          "timestamp": "2023-07-05T19:01:00+08:00",
+          "summary": "On July 5, 2023, John and Maria discussed the impact of education and infrastructure on community development, expressing mutual support and shared commitment to making a positive difference despite challenges. Their conversation highlighted emotional encouragement and motivation, with John sharing personal reflections on his dedication inspired by his family."
+        },
+        {
+          "unit_id": "89e3d44c-48f4-441c-ba5c-95628b31a742",
+          "timestamp": "2023-07-07T18:35:30+08:00",
+          "summary": "John and Maria discussed the recent flood damage in John's old neighborhood and expressed mutual commitment to organizing community efforts for recovery and improvement. They encouraged each other and planned to collaborate on solutions to address the area's infrastructure challenges."
+        }
+      ],
+      "first_timestamp": "2022-12-17T11:08:30+08:00",
+      "last_timestamp": "2023-07-07T18:35:30+08:00",
+      "created_at": "2025-12-05T15:17:10.774743",
+      "updated_at": "2025-12-05T15:21:55.756292"
+    },
+    "gec_004": {
+      "cluster_id": "gec_004",
+      "topic": "Maria's support for John's political plans",
+      "summary": "On December 17, 2022, John shared with Maria his strong desire to enter local politics to improve education and infrastructure in their community, motivated by his personal experiences, while Maria expressed enthusiastic support and encouraged his plans to engage with local leaders.",
+      "members": [
+        {
+          "unit_id": "0cb9ac0c-76c1-47ff-b3c4-7c942c52ec5c",
+          "timestamp": "2022-12-17T11:08:30+08:00",
+          "summary": "On December 17, 2022, John shared with Maria his strong desire to enter local politics to improve education and infrastructure in their community, motivated by his personal experiences, while Maria expressed enthusiastic support and encouraged his plans to engage with local leaders."
+        },
+        {
+          "unit_id": "3cda8d5e-b17e-4f1d-b747-6ac1b26fc92b",
+          "timestamp": "2023-01-09T19:18:30+08:00",
+          "summary": "John and Maria engaged in a conversation about their commitment to community involvement and local political goals, expressing mutual support and optimism for upcoming initiatives. They emphasized teamwork and collaboration as essential for driving positive neighborhood changes."
+        },
+        {
+          "unit_id": "c1a64ecf-d117-4a1c-baa3-b79dab9b89f4",
+          "timestamp": "2023-05-06T17:07:00+08:00",
+          "summary": "On May 6, 2023, John shared with Maria his decision to run for office again despite past setbacks, expressing his determination and the emotional challenges he faced, while Maria offered continuous encouragement and support. Their conversation highlighted a supportive friendship focused on John's political ambitions and personal resilience."
+        }
+      ],
+      "first_timestamp": "2022-12-17T11:08:30+08:00",
+      "last_timestamp": "2023-05-06T17:07:00+08:00",
+      "created_at": "2025-12-05T15:17:10.777898",
+      "updated_at": "2025-12-05T15:19:37.558029"
+    },
+    "gec_005": {
+      "cluster_id": "gec_005",
+      "topic": "Maria's car donation to homeless shelter",
+      "summary": "John and Maria discussed their community efforts, with Maria sharing her recent car donation to a homeless shelter and John updating her on his education campaign fueled by inspiring stories and family support. They exchanged mutual encouragement, emphasizing the importance of personal motivation and collective action for positive community impact.",
+      "members": [
+        {
+          "unit_id": "809e325c-2691-4132-8ea8-2e76732f6455",
+          "timestamp": "2022-12-22T18:16:30+08:00",
+          "summary": "John and Maria discussed their community efforts, with Maria sharing her recent car donation to a homeless shelter and John updating her on his education campaign fueled by inspiring stories and family support. They exchanged mutual encouragement, emphasizing the importance of personal motivation and collective action for positive community impact."
+        },
+        {
+          "unit_id": "349e14ba-b42b-478c-adc5-c5976699dd54",
+          "timestamp": "2023-08-03T18:22:30+08:00",
+          "summary": "Maria and John exchanged messages expressing mutual support and admiration for their respective efforts in helping vulnerable groups, with John advocating for military personnel and Maria volunteering at a homeless shelter."
+        },
+        {
+          "unit_id": "d7f1714f-950e-47cf-9b81-80cc7f41bb3c",
+          "timestamp": "2023-08-09T20:10:30+08:00",
+          "summary": "John and Maria discussed their recent community service activities, with Maria sharing her experience volunteering at a homeless shelter and receiving a medal, while John described organizing a successful 5K charity run to support veterans and his involvement in raising awareness for domestic abuse victims. Both expressed mutual respect and encouragement for each other's charitable efforts."
+        },
+        {
+          "unit_id": "531991fb-a6ff-4e6d-a12e-0cca9e3d083f",
+          "timestamp": "2023-08-16T11:14:00+08:00",
+          "summary": "John and Maria exchanged gratitude and reflections on their shared commitment to community service, with Maria sharing her recent volunteering experience at a shelter and both emphasizing the positive impact of kindness and collective efforts."
+        }
+      ],
+      "first_timestamp": "2022-12-22T18:16:30+08:00",
+      "last_timestamp": "2023-08-16T11:14:00+08:00",
+      "created_at": "2025-12-05T15:17:16.285385",
+      "updated_at": "2025-12-05T15:23:48.209089"
+    },
+    "gec_006": {
+      "cluster_id": "gec_006",
+      "topic": "John's education campaign progress",
+      "summary": "John and Maria discussed their community efforts, with Maria sharing her recent car donation to a homeless shelter and John updating her on his education campaign fueled by inspiring stories and family support. They exchanged mutual encouragement, emphasizing the importance of personal motivation and collective action for positive community impact.",
+      "members": [
+        {
+          "unit_id": "809e325c-2691-4132-8ea8-2e76732f6455",
+          "timestamp": "2022-12-22T18:16:30+08:00",
+          "summary": "John and Maria discussed their community efforts, with Maria sharing her recent car donation to a homeless shelter and John updating her on his education campaign fueled by inspiring stories and family support. They exchanged mutual encouragement, emphasizing the importance of personal motivation and collective action for positive community impact."
+        }
+      ],
+      "first_timestamp": "2022-12-22T18:16:30+08:00",
+      "last_timestamp": "2022-12-22T18:16:30+08:00",
+      "created_at": "2025-12-05T15:17:16.287576",
+      "updated_at": "2025-12-05T15:17:16.287576"
+    },
+    "gec_007": {
+      "cluster_id": "gec_007",
+      "topic": "John's family connections and support",
+      "summary": "They discussed the importance of family connections, shared joyful moments, and mutual support through both happy times and challenges. Over time, their conversations deepened to include empathy, encouragement, and a shared commitment to positive impact inspired by family bonds.",
+      "members": [
+        {
+          "unit_id": "0bd1b299-2fb1-4e9c-aeb1-6958322ad45c",
+          "timestamp": "2022-12-22T18:23:30+08:00",
+          "summary": "John and Maria shared a heartfelt conversation about the importance of family connections and joyful shared activities like playing, cooking, and eating together, emphasizing love, support, and creating meaningful memories. They expressed mutual appreciation for quality time with loved ones and the bonds formed through these moments."
+        },
+        {
+          "unit_id": "3fea3dc6-66ab-416d-bf36-511ef01d3e06",
+          "timestamp": "2023-06-16T19:32:30+08:00",
+          "summary": "Maria and John shared a brief conversation reflecting on the importance of spending quality time with loved ones, exchanging vacation photos from California and Florida that highlighted cherished family moments and the joy of beach settings. They expressed gratitude and appreciation for these shared experiences, emphasizing the emotional value of such memories."
+        },
+        {
+          "unit_id": "d4cf7a71-d0bd-4901-850f-6ef168967c0e",
+          "timestamp": "2023-06-27T00:22:00+08:00",
+          "summary": "In June 2023, John reflected on the value of special family moments, and later, Maria reached out to him after a long silence to share her struggles, emphasizing the crucial support from her family and friends, which John responded to with empathy and concern. Their conversation highlighted the importance of close relationships during difficult times."
+        },
+        {
+          "unit_id": "a2fc8402-82e8-42fa-a9de-635e8efe9ff6",
+          "timestamp": "2023-06-27T00:29:30+08:00",
+          "summary": "John and Maria reflected on meaningful personal experiences that bring them joy, with John sharing a family music event and Maria discussing the fulfillment she finds through volunteering at a shelter. They exchanged mutual encouragement and emphasized the importance of kindness, family support, and finding positivity in difficult times."
+        },
+        {
+          "unit_id": "2d94a040-0399-4949-9a56-1628921e21bd",
+          "timestamp": "2023-07-05T19:01:00+08:00",
+          "summary": "On July 5, 2023, John and Maria discussed the impact of education and infrastructure on community development, expressing mutual support and shared commitment to making a positive difference despite challenges. Their conversation highlighted emotional encouragement and motivation, with John sharing personal reflections on his dedication inspired by his family."
+        },
+        {
+          "unit_id": "77fe7b6c-c0ec-432c-8512-2b6a75000594",
+          "timestamp": "2023-07-05T19:09:00+08:00",
+          "summary": "John and Maria discussed their sources of personal motivation and inspiration, with John highlighting his family and nature moments, while Maria shared her appreciation for social interactions and small daily practices that sustain well-being."
+        },
+        {
+          "unit_id": "20dfdec2-b208-4af5-beeb-b5dcc059388a",
+          "timestamp": "2023-08-13T15:25:00+08:00",
+          "summary": "Maria and John discussed the importance of family support and shared activities, with John expressing gratitude for his family's unwavering backing and describing their favorite indoor and outdoor pastimes. The conversation ended with John preparing to spend quality time with his family, highlighting the value he places on their bonds."
+        }
+      ],
+      "first_timestamp": "2022-12-22T18:23:30+08:00",
+      "last_timestamp": "2023-08-13T15:25:00+08:00",
+      "created_at": "2025-12-05T15:17:21.050899",
+      "updated_at": "2025-12-05T15:23:36.401154"
+    },
+    "gec_008": {
+      "cluster_id": "gec_008",
+      "topic": "Maria's appreciation for family quality time",
+      "summary": "They consistently emphasized the importance of family quality time, sharing joyful activities, mutual support, and meaningful memories. Over time, their conversations evolved from celebrating happy moments to recognizing family as crucial support during challenges, underscoring enduring bonds.",
+      "members": [
+        {
+          "unit_id": "0bd1b299-2fb1-4e9c-aeb1-6958322ad45c",
+          "timestamp": "2022-12-22T18:23:30+08:00",
+          "summary": "John and Maria shared a heartfelt conversation about the importance of family connections and joyful shared activities like playing, cooking, and eating together, emphasizing love, support, and creating meaningful memories. They expressed mutual appreciation for quality time with loved ones and the bonds formed through these moments."
+        },
+        {
+          "unit_id": "3fea3dc6-66ab-416d-bf36-511ef01d3e06",
+          "timestamp": "2023-06-16T19:32:30+08:00",
+          "summary": "Maria and John shared a brief conversation reflecting on the importance of spending quality time with loved ones, exchanging vacation photos from California and Florida that highlighted cherished family moments and the joy of beach settings. They expressed gratitude and appreciation for these shared experiences, emphasizing the emotional value of such memories."
+        },
+        {
+          "unit_id": "d4cf7a71-d0bd-4901-850f-6ef168967c0e",
+          "timestamp": "2023-06-27T00:22:00+08:00",
+          "summary": "In June 2023, John reflected on the value of special family moments, and later, Maria reached out to him after a long silence to share her struggles, emphasizing the crucial support from her family and friends, which John responded to with empathy and concern. Their conversation highlighted the importance of close relationships during difficult times."
+        },
+        {
+          "unit_id": "77fe7b6c-c0ec-432c-8512-2b6a75000594",
+          "timestamp": "2023-07-05T19:09:00+08:00",
+          "summary": "John and Maria discussed their sources of personal motivation and inspiration, with John highlighting his family and nature moments, while Maria shared her appreciation for social interactions and small daily practices that sustain well-being."
+        },
+        {
+          "unit_id": "20dfdec2-b208-4af5-beeb-b5dcc059388a",
+          "timestamp": "2023-08-13T15:25:00+08:00",
+          "summary": "Maria and John discussed the importance of family support and shared activities, with John expressing gratitude for his family's unwavering backing and describing their favorite indoor and outdoor pastimes. The conversation ended with John preparing to spend quality time with his family, highlighting the value he places on their bonds."
+        }
+      ],
+      "first_timestamp": "2022-12-22T18:23:30+08:00",
+      "last_timestamp": "2023-08-13T15:25:00+08:00",
+      "created_at": "2025-12-05T15:17:21.050899",
+      "updated_at": "2025-12-05T15:23:38.335000"
+    },
+    "gec_009": {
+      "cluster_id": "gec_009",
+      "topic": "John's involvement in service-focused online group for underserved communities",
+      "summary": "On January 1, 2023, John shared with Maria his emotionally impactful experience in a service-focused online group dedicated to helping underserved communities through activities like shelter visits and toy drives, expressing a strong sense of connection and purpose. They discussed the group's future plans for education, mentorship, and job training initiatives aimed at empowering individuals, with Maria encouraging John's continued commitment to community service.",
+      "members": [
+        {
+          "unit_id": "708ea48c-8755-4f73-a27c-6ac0da7b940b",
+          "timestamp": "2023-01-01T20:34:30+08:00",
+          "summary": "On January 1, 2023, John shared with Maria his emotionally impactful experience in a service-focused online group dedicated to helping underserved communities through activities like shelter visits and toy drives, expressing a strong sense of connection and purpose. They discussed the group's future plans for education, mentorship, and job training initiatives aimed at empowering individuals, with Maria encouraging John's continued commitment to community service."
+        }
+      ],
+      "first_timestamp": "2023-01-01T20:34:30+08:00",
+      "last_timestamp": "2023-01-01T20:34:30+08:00",
+      "created_at": "2025-12-05T15:17:27.499698",
+      "updated_at": "2025-12-05T15:17:27.499698"
+    },
+    "gec_010": {
+      "cluster_id": "gec_010",
+      "topic": "John and Maria's discussion of future education initiatives in community service",
+      "summary": "On January 1, 2023, John shared with Maria his emotionally impactful experience in a service-focused online group dedicated to helping underserved communities through activities like shelter visits and toy drives, expressing a strong sense of connection and purpose. They discussed the group's future plans for education, mentorship, and job training initiatives aimed at empowering individuals, with Maria encouraging John's continued commitment to community service.",
+      "members": [
+        {
+          "unit_id": "708ea48c-8755-4f73-a27c-6ac0da7b940b",
+          "timestamp": "2023-01-01T20:34:30+08:00",
+          "summary": "On January 1, 2023, John shared with Maria his emotionally impactful experience in a service-focused online group dedicated to helping underserved communities through activities like shelter visits and toy drives, expressing a strong sense of connection and purpose. They discussed the group's future plans for education, mentorship, and job training initiatives aimed at empowering individuals, with Maria encouraging John's continued commitment to community service."
+        }
+      ],
+      "first_timestamp": "2023-01-01T20:34:30+08:00",
+      "last_timestamp": "2023-01-01T20:34:30+08:00",
+      "created_at": "2025-12-05T15:17:27.502302",
+      "updated_at": "2025-12-05T15:17:27.502302"
+    },
+    "gec_011": {
+      "cluster_id": "gec_011",
+      "topic": "John and Maria's discussion of mentorship and job training initiatives in community service",
+      "summary": "On January 1, 2023, John shared with Maria his emotionally impactful experience in a service-focused online group dedicated to helping underserved communities through activities like shelter visits and toy drives, expressing a strong sense of connection and purpose. They discussed the group's future plans for education, mentorship, and job training initiatives aimed at empowering individuals, with Maria encouraging John's continued commitment to community service.",
+      "members": [
+        {
+          "unit_id": "708ea48c-8755-4f73-a27c-6ac0da7b940b",
+          "timestamp": "2023-01-01T20:34:30+08:00",
+          "summary": "On January 1, 2023, John shared with Maria his emotionally impactful experience in a service-focused online group dedicated to helping underserved communities through activities like shelter visits and toy drives, expressing a strong sense of connection and purpose. They discussed the group's future plans for education, mentorship, and job training initiatives aimed at empowering individuals, with Maria encouraging John's continued commitment to community service."
+        }
+      ],
+      "first_timestamp": "2023-01-01T20:34:30+08:00",
+      "last_timestamp": "2023-01-01T20:34:30+08:00",
+      "created_at": "2025-12-05T15:17:27.504676",
+      "updated_at": "2025-12-05T15:17:27.504676"
+    },
+    "gec_012": {
+      "cluster_id": "gec_012",
+      "topic": "Maria's encouragement of John's commitment to community service",
+      "summary": "John and Maria consistently encouraged each other’s commitment to community service, sharing experiences from volunteering to political ambitions. Their ongoing support fostered resilience, positivity, and a shared dedication to making a meaningful impact despite challenges.",
+      "members": [
+        {
+          "unit_id": "708ea48c-8755-4f73-a27c-6ac0da7b940b",
+          "timestamp": "2023-01-01T20:34:30+08:00",
+          "summary": "On January 1, 2023, John shared with Maria his emotionally impactful experience in a service-focused online group dedicated to helping underserved communities through activities like shelter visits and toy drives, expressing a strong sense of connection and purpose. They discussed the group's future plans for education, mentorship, and job training initiatives aimed at empowering individuals, with Maria encouraging John's continued commitment to community service."
+        },
+        {
+          "unit_id": "c4ffcc92-503c-4bbb-a384-4e1789f12816",
+          "timestamp": "2023-04-02T09:44:30+08:00",
+          "summary": "On April 2, 2023, John and Maria reconnected to discuss John's recent graduation and his aspirations in policymaking focused on education and infrastructure, while reflecting on their shared commitment to community service and mutual support."
+        },
+        {
+          "unit_id": "c1a64ecf-d117-4a1c-baa3-b79dab9b89f4",
+          "timestamp": "2023-05-06T17:07:00+08:00",
+          "summary": "On May 6, 2023, John shared with Maria his decision to run for office again despite past setbacks, expressing his determination and the emotional challenges he faced, while Maria offered continuous encouragement and support. Their conversation highlighted a supportive friendship focused on John's political ambitions and personal resilience."
+        },
+        {
+          "unit_id": "6d68c9e3-2d90-4b03-9f8c-9d2619a73f06",
+          "timestamp": "2023-05-25T13:33:00+08:00",
+          "summary": "On May 25, 2023, John and Maria discussed their community efforts, with John working on a petition and Maria preparing a fundraiser at a homeless shelter, while they offered mutual support and committed to promoting and volunteering for the cause. Their conversation highlighted their shared dedication to making a positive impact and appreciating meaningful moments in life."
+        },
+        {
+          "unit_id": "2d94a040-0399-4949-9a56-1628921e21bd",
+          "timestamp": "2023-07-05T19:01:00+08:00",
+          "summary": "On July 5, 2023, John and Maria discussed the impact of education and infrastructure on community development, expressing mutual support and shared commitment to making a positive difference despite challenges. Their conversation highlighted emotional encouragement and motivation, with John sharing personal reflections on his dedication inspired by his family."
+        },
+        {
+          "unit_id": "8bb93000-743a-4a49-b06a-e4a581e53e28",
+          "timestamp": "2023-07-22T18:25:00+08:00",
+          "summary": "On July 22, 2023, John and Maria shared a conversation reflecting on their positive experiences with personal growth, nature, and community involvement, including Maria's recent hiking trip with church friends and her plans to volunteer next month. They exchanged photos and expressed mutual support and enthusiasm for future adventures."
+        },
+        {
+          "unit_id": "96858fad-ca3d-474a-bc45-4ae1872341f2",
+          "timestamp": "2023-07-31T14:07:00+08:00",
+          "summary": "Maria and John discussed their recent community service efforts, with Maria sharing her experience volunteering at a homeless shelter and John describing his involvement in a fire-fighting brigade, highlighting their mutual encouragement and commitment to helping others."
+        },
+        {
+          "unit_id": "349e14ba-b42b-478c-adc5-c5976699dd54",
+          "timestamp": "2023-08-03T18:22:30+08:00",
+          "summary": "Maria and John exchanged messages expressing mutual support and admiration for their respective efforts in helping vulnerable groups, with John advocating for military personnel and Maria volunteering at a homeless shelter."
+        },
+        {
+          "unit_id": "c844dd12-bb88-467f-ab14-fd57bfbb2461",
+          "timestamp": "2023-08-05T17:23:00+08:00",
+          "summary": "On August 5, 2023, John shared with Maria his recent job loss at a mechanical engineering company and his plans to transition into the tech industry, while Maria offered emotional support and encouragement, highlighting the importance of positivity and community involvement."
+        },
+        {
+          "unit_id": "516c6af1-1f29-4674-9189-63a5d37ad002",
+          "timestamp": "2023-08-05T17:28:00+08:00",
+          "summary": "John and Maria discussed their volunteer experiences, emphasizing the importance of kindness and compassion, with John sharing his past work renovating a community center and Maria offering encouragement and support for his continued efforts."
+        },
+        {
+          "unit_id": "d7f1714f-950e-47cf-9b81-80cc7f41bb3c",
+          "timestamp": "2023-08-09T20:10:30+08:00",
+          "summary": "John and Maria discussed their recent community service activities, with Maria sharing her experience volunteering at a homeless shelter and receiving a medal, while John described organizing a successful 5K charity run to support veterans and his involvement in raising awareness for domestic abuse victims. Both expressed mutual respect and encouragement for each other's charitable efforts."
+        },
+        {
+          "unit_id": "e3756374-13fa-4bff-8dcd-01966568dc42",
+          "timestamp": "2023-08-09T20:14:30+08:00",
+          "summary": "On August 9, 2023, John and Maria discussed their shared commitment to supporting victims of domestic abuse, with John highlighting his work raising awareness and funds through a local organization, and both expressing mutual encouragement and dedication to community action against domestic abuse."
+        },
+        {
+          "unit_id": "fa45bfcd-b786-4a4d-bafc-157c98a33f88",
+          "timestamp": "2023-08-11T00:21:00+08:00",
+          "summary": "On August 11, 2023, John shared his emotional struggles and feelings of doubt about his impact with Maria, who offered empathy and encouraged him to explore volunteering as a way to channel his passion and make a difference."
+        },
+        {
+          "unit_id": "c8f755e7-52f8-4c24-afd1-0c66ef5b9d61",
+          "timestamp": "2023-08-13T15:14:00+08:00",
+          "summary": "Maria thanked John for his encouraging words and expressed her commitment to spreading positivity, while John shared his rewarding experience volunteering as a mentor at a local school."
+        },
+        {
+          "unit_id": "531991fb-a6ff-4e6d-a12e-0cca9e3d083f",
+          "timestamp": "2023-08-16T11:14:00+08:00",
+          "summary": "John and Maria exchanged gratitude and reflections on their shared commitment to community service, with Maria sharing her recent volunteering experience at a shelter and both emphasizing the positive impact of kindness and collective efforts."
+        }
+      ],
+      "first_timestamp": "2023-01-01T20:34:30+08:00",
+      "last_timestamp": "2023-08-16T11:14:00+08:00",
+      "created_at": "2025-12-05T15:17:27.506550",
+      "updated_at": "2025-12-05T15:23:48.209089"
+    },
+    "gec_013": {
+      "cluster_id": "gec_013",
+      "topic": "John's stress over failing military aptitude test",
+      "summary": "On January 1, 2023, Maria and John engaged in a supportive conversation where John shared his stress over failing a military aptitude test, and Maria offered emotional encouragement by sharing a calming nature photo and reflecting on the beauty of small moments. Their exchange highlighted mutual appreciation and the comforting influence of nature.",
+      "members": [
+        {
+          "unit_id": "e2cecc9e-4fc4-4194-9364-d659e2556fe5",
+          "timestamp": "2023-01-01T20:38:00+08:00",
+          "summary": "On January 1, 2023, Maria and John engaged in a supportive conversation where John shared his stress over failing a military aptitude test, and Maria offered emotional encouragement by sharing a calming nature photo and reflecting on the beauty of small moments. Their exchange highlighted mutual appreciation and the comforting influence of nature."
+        }
+      ],
+      "first_timestamp": "2023-01-01T20:38:00+08:00",
+      "last_timestamp": "2023-01-01T20:38:00+08:00",
+      "created_at": "2025-12-05T15:17:32.463033",
+      "updated_at": "2025-12-05T15:17:32.463033"
+    },
+    "gec_014": {
+      "cluster_id": "gec_014",
+      "topic": "Maria's emotional encouragement with nature photos",
+      "summary": "On January 1, 2023, Maria and John engaged in a supportive conversation where John shared his stress over failing a military aptitude test, and Maria offered emotional encouragement by sharing a calming nature photo and reflecting on the beauty of small moments. Their exchange highlighted mutual appreciation and the comforting influence of nature.",
+      "members": [
+        {
+          "unit_id": "e2cecc9e-4fc4-4194-9364-d659e2556fe5",
+          "timestamp": "2023-01-01T20:38:00+08:00",
+          "summary": "On January 1, 2023, Maria and John engaged in a supportive conversation where John shared his stress over failing a military aptitude test, and Maria offered emotional encouragement by sharing a calming nature photo and reflecting on the beauty of small moments. Their exchange highlighted mutual appreciation and the comforting influence of nature."
+        }
+      ],
+      "first_timestamp": "2023-01-01T20:38:00+08:00",
+      "last_timestamp": "2023-01-01T20:38:00+08:00",
+      "created_at": "2025-12-05T15:17:32.466218",
+      "updated_at": "2025-12-05T15:17:32.466218"
+    },
+    "gec_015": {
+      "cluster_id": "gec_015",
+      "topic": "Mutual appreciation and comforting influence of nature between Maria and John",
+      "summary": "They shared mutual support through challenges by reflecting on nature’s calming and restorative power, exchanging photos and stories that emphasized empathy, personal growth, and hope, with their appreciation for nature and community deepening over time.",
+      "members": [
+        {
+          "unit_id": "e2cecc9e-4fc4-4194-9364-d659e2556fe5",
+          "timestamp": "2023-01-01T20:38:00+08:00",
+          "summary": "On January 1, 2023, Maria and John engaged in a supportive conversation where John shared his stress over failing a military aptitude test, and Maria offered emotional encouragement by sharing a calming nature photo and reflecting on the beauty of small moments. Their exchange highlighted mutual appreciation and the comforting influence of nature."
+        },
+        {
+          "unit_id": "52b5b252-c8ab-4a0d-9b6b-06d75546d74d",
+          "timestamp": "2023-04-10T18:17:00+08:00",
+          "summary": "John and Maria engaged in a supportive conversation reflecting on John's recent car troubles and financial challenges, while sharing memories of a past road trip and emphasizing the restorative power of nature and hope during difficult times."
+        },
+        {
+          "unit_id": "5a1aee34-d0cb-4c0d-baef-38ef881383c6",
+          "timestamp": "2023-06-12T14:54:00+08:00",
+          "summary": "On June 12, 2023, Maria and John shared a supportive conversation reflecting on coping with loss through their recent outdoor experiences, including camping and mountaineering, highlighting nature's calming and restorative effects. They exchanged photos and personal stories, emphasizing empathy and the emotional benefits of connecting with nature."
+        },
+        {
+          "unit_id": "77fe7b6c-c0ec-432c-8512-2b6a75000594",
+          "timestamp": "2023-07-05T19:09:00+08:00",
+          "summary": "John and Maria discussed their sources of personal motivation and inspiration, with John highlighting his family and nature moments, while Maria shared her appreciation for social interactions and small daily practices that sustain well-being."
+        },
+        {
+          "unit_id": "8bb93000-743a-4a49-b06a-e4a581e53e28",
+          "timestamp": "2023-07-22T18:25:00+08:00",
+          "summary": "On July 22, 2023, John and Maria shared a conversation reflecting on their positive experiences with personal growth, nature, and community involvement, including Maria's recent hiking trip with church friends and her plans to volunteer next month. They exchanged photos and expressed mutual support and enthusiasm for future adventures."
+        },
+        {
+          "unit_id": "fa45bfcd-b786-4a4d-bafc-157c98a33f88",
+          "timestamp": "2023-08-11T00:21:00+08:00",
+          "summary": "On August 11, 2023, John shared his emotional struggles and feelings of doubt about his impact with Maria, who offered empathy and encouraged him to explore volunteering as a way to channel his passion and make a difference."
+        }
+      ],
+      "first_timestamp": "2023-01-01T20:38:00+08:00",
+      "last_timestamp": "2023-08-11T00:21:00+08:00",
+      "created_at": "2025-12-05T15:17:32.467906",
+      "updated_at": "2025-12-05T15:23:15.879969"
+    },
+    "gec_016": {
+      "cluster_id": "gec_016",
+      "topic": "Maria's new friendship through volunteering",
+      "summary": "Maria and John discussed her growing friendship and fulfillment through volunteering at a shelter, highlighting her dedication, challenges faced, and mutual support. Their conversations reflect ongoing encouragement, concern, and the positive impact of kindness and community connection.",
+      "members": [
+        {
+          "unit_id": "70bd3f2e-165f-4992-8d0c-da5d42dcb300",
+          "timestamp": "2023-01-09T19:06:00+08:00",
+          "summary": "On January 9, 2023, Maria shared with John her positive experience of making a new friend through volunteering, expressing enthusiasm for her activities and concern for John's well-being, reflecting their mutual support and personal growth."
+        },
+        {
+          "unit_id": "7ea2e882-66bb-498b-b0cd-12f872dbf8e3",
+          "timestamp": "2023-04-10T18:23:00+08:00",
+          "summary": "On April 10, 2023, John and Maria discussed Maria’s volunteer work at a homeless shelter, including her recent talks and organizing a community meal, highlighting the fulfillment she found in helping others and the importance of faith and connection."
+        },
+        {
+          "unit_id": "a2fc8402-82e8-42fa-a9de-635e8efe9ff6",
+          "timestamp": "2023-06-27T00:29:30+08:00",
+          "summary": "John and Maria reflected on meaningful personal experiences that bring them joy, with John sharing a family music event and Maria discussing the fulfillment she finds through volunteering at a shelter. They exchanged mutual encouragement and emphasized the importance of kindness, family support, and finding positivity in difficult times."
+        },
+        {
+          "unit_id": "ffa61b7d-433f-494c-98bc-0265ba70a35b",
+          "timestamp": "2023-07-03T20:43:30+08:00",
+          "summary": "John encouraged Maria in late June 2023, and in early July, Maria reconnected with him, sharing her involvement with children at a shelter, prompting John to express concern and interest in her wellbeing and the children's situation."
+        },
+        {
+          "unit_id": "0b158e7e-e0ef-431b-aef5-3e17edcde9f6",
+          "timestamp": "2023-07-03T20:53:00+08:00",
+          "summary": "Maria informed John about a recent car accident she experienced and her cousin's urgent need for housing, while also sharing a heartfelt letter from a shelter resident that highlighted her dedication to volunteering; John offered support and resources throughout their empathetic conversation."
+        },
+        {
+          "unit_id": "8bb93000-743a-4a49-b06a-e4a581e53e28",
+          "timestamp": "2023-07-22T18:25:00+08:00",
+          "summary": "On July 22, 2023, John and Maria shared a conversation reflecting on their positive experiences with personal growth, nature, and community involvement, including Maria's recent hiking trip with church friends and her plans to volunteer next month. They exchanged photos and expressed mutual support and enthusiasm for future adventures."
+        },
+        {
+          "unit_id": "fd160aab-1e3f-474c-b5ff-1615ffea8d76",
+          "timestamp": "2023-08-03T18:23:30+08:00",
+          "summary": "On August 3, 2023, Maria shared a heartfelt handwritten note from Cindy, a shelter resident, expressing gratitude for the support they received, which deeply motivated Maria despite the challenges. John inquired about the note, leading Maria to explain its origin and emotional significance."
+        },
+        {
+          "unit_id": "531991fb-a6ff-4e6d-a12e-0cca9e3d083f",
+          "timestamp": "2023-08-16T11:14:00+08:00",
+          "summary": "John and Maria exchanged gratitude and reflections on their shared commitment to community service, with Maria sharing her recent volunteering experience at a shelter and both emphasizing the positive impact of kindness and collective efforts."
+        }
+      ],
+      "first_timestamp": "2023-01-09T19:06:00+08:00",
+      "last_timestamp": "2023-08-16T11:14:00+08:00",
+      "created_at": "2025-12-05T15:17:38.074790",
+      "updated_at": "2025-12-05T15:23:48.209089"
+    },
+    "gec_017": {
+      "cluster_id": "gec_017",
+      "topic": "Maria's enthusiasm for volunteer activities",
+      "summary": "They discussed Maria’s ongoing passion for volunteering, highlighting her meaningful connections, challenges, and fulfillment through helping others. Over time, their shared commitment to kindness, community support, and positive impact remained a constant source of motivation and growth.",
+      "members": [
+        {
+          "unit_id": "70bd3f2e-165f-4992-8d0c-da5d42dcb300",
+          "timestamp": "2023-01-09T19:06:00+08:00",
+          "summary": "On January 9, 2023, Maria shared with John her positive experience of making a new friend through volunteering, expressing enthusiasm for her activities and concern for John's well-being, reflecting their mutual support and personal growth."
+        },
+        {
+          "unit_id": "543409bb-bada-44e5-807d-6257f7aa572f",
+          "timestamp": "2023-02-05T14:36:00+08:00",
+          "summary": "On February 5, 2023, Maria and John discussed Maria's rewarding experience volunteering at a charity event and John's motivations for entering politics, highlighting their shared commitment to service and compassion. Maria also recounted connecting a man named David, whom she met at the event, with support services for the homeless."
+        },
+        {
+          "unit_id": "11f2ff1c-c1c2-4b4d-9f7a-13f2ec8cd13a",
+          "timestamp": "2023-02-25T21:03:00+08:00",
+          "summary": "John informed Maria about his decision to run for office again, motivated by his desire to create positive community change, while Maria shared her rewarding volunteer experience with an inspiring woman named Jean, highlighting the importance of kindness and optimism. They both agreed to continue working together to spread positivity and improve their community."
+        },
+        {
+          "unit_id": "7ea2e882-66bb-498b-b0cd-12f872dbf8e3",
+          "timestamp": "2023-04-10T18:23:00+08:00",
+          "summary": "On April 10, 2023, John and Maria discussed Maria’s volunteer work at a homeless shelter, including her recent talks and organizing a community meal, highlighting the fulfillment she found in helping others and the importance of faith and connection."
+        },
+        {
+          "unit_id": "883a1787-5bcd-4b94-ac69-c7344a885abc",
+          "timestamp": "2023-04-18T19:45:00+08:00",
+          "summary": "John and Maria engaged in a supportive conversation where John shared his upcoming East Coast trip plans, and Maria discussed her fulfilling yet challenging volunteering at a homeless shelter, with both emphasizing the importance of kindness and making a positive impact."
+        },
+        {
+          "unit_id": "a2fc8402-82e8-42fa-a9de-635e8efe9ff6",
+          "timestamp": "2023-06-27T00:29:30+08:00",
+          "summary": "John and Maria reflected on meaningful personal experiences that bring them joy, with John sharing a family music event and Maria discussing the fulfillment she finds through volunteering at a shelter. They exchanged mutual encouragement and emphasized the importance of kindness, family support, and finding positivity in difficult times."
+        },
+        {
+          "unit_id": "0b158e7e-e0ef-431b-aef5-3e17edcde9f6",
+          "timestamp": "2023-07-03T20:53:00+08:00",
+          "summary": "Maria informed John about a recent car accident she experienced and her cousin's urgent need for housing, while also sharing a heartfelt letter from a shelter resident that highlighted her dedication to volunteering; John offered support and resources throughout their empathetic conversation."
+        },
+        {
+          "unit_id": "b1cf8cd0-1486-45cb-a08d-bb7a772a7505",
+          "timestamp": "2023-07-03T20:57:00+08:00",
+          "summary": "On July 3, 2023, Maria and John discussed their shared passion for volunteering and activism, with Maria expressing her love for making a difference through small actions and John sharing his recent experience at a veterans' rights march that reinforced his commitment to supporting important causes. Both encouraged each other and emphasized the motivating power of collective efforts in striving for progress."
+        },
+        {
+          "unit_id": "8bb93000-743a-4a49-b06a-e4a581e53e28",
+          "timestamp": "2023-07-22T18:25:00+08:00",
+          "summary": "On July 22, 2023, John and Maria shared a conversation reflecting on their positive experiences with personal growth, nature, and community involvement, including Maria's recent hiking trip with church friends and her plans to volunteer next month. They exchanged photos and expressed mutual support and enthusiasm for future adventures."
+        },
+        {
+          "unit_id": "fd160aab-1e3f-474c-b5ff-1615ffea8d76",
+          "timestamp": "2023-08-03T18:23:30+08:00",
+          "summary": "On August 3, 2023, Maria shared a heartfelt handwritten note from Cindy, a shelter resident, expressing gratitude for the support they received, which deeply motivated Maria despite the challenges. John inquired about the note, leading Maria to explain its origin and emotional significance."
+        },
+        {
+          "unit_id": "531991fb-a6ff-4e6d-a12e-0cca9e3d083f",
+          "timestamp": "2023-08-16T11:14:00+08:00",
+          "summary": "John and Maria exchanged gratitude and reflections on their shared commitment to community service, with Maria sharing her recent volunteering experience at a shelter and both emphasizing the positive impact of kindness and collective efforts."
+        }
+      ],
+      "first_timestamp": "2023-01-09T19:06:00+08:00",
+      "last_timestamp": "2023-08-16T11:14:00+08:00",
+      "created_at": "2025-12-05T15:17:38.075336",
+      "updated_at": "2025-12-05T15:23:48.209664"
+    },
+    "gec_018": {
+      "cluster_id": "gec_018",
+      "topic": "Maria's concern for John's well-being",
+      "summary": "On January 9, 2023, Maria shared with John her positive experience of making a new friend through volunteering, expressing enthusiasm for her activities and concern for John's well-being, reflecting their mutual support and personal growth.",
+      "members": [
+        {
+          "unit_id": "70bd3f2e-165f-4992-8d0c-da5d42dcb300",
+          "timestamp": "2023-01-09T19:06:00+08:00",
+          "summary": "On January 9, 2023, Maria shared with John her positive experience of making a new friend through volunteering, expressing enthusiasm for her activities and concern for John's well-being, reflecting their mutual support and personal growth."
+        },
+        {
+          "unit_id": "2cd63aef-6a74-4b48-8a9b-50084c16b744",
+          "timestamp": "2023-05-06T17:09:30+08:00",
+          "summary": "On May 6, 2023, John and Maria had a supportive conversation where Maria shared her positive experience joining a church and engaging in charity work, while John expressed encouragement and concern for her well-being."
+        },
+        {
+          "unit_id": "ffa61b7d-433f-494c-98bc-0265ba70a35b",
+          "timestamp": "2023-07-03T20:43:30+08:00",
+          "summary": "John encouraged Maria in late June 2023, and in early July, Maria reconnected with him, sharing her involvement with children at a shelter, prompting John to express concern and interest in her wellbeing and the children's situation."
+        },
+        {
+          "unit_id": "0b158e7e-e0ef-431b-aef5-3e17edcde9f6",
+          "timestamp": "2023-07-03T20:53:00+08:00",
+          "summary": "Maria informed John about a recent car accident she experienced and her cousin's urgent need for housing, while also sharing a heartfelt letter from a shelter resident that highlighted her dedication to volunteering; John offered support and resources throughout their empathetic conversation."
+        }
+      ],
+      "first_timestamp": "2023-01-09T19:06:00+08:00",
+      "last_timestamp": "2023-07-03T20:53:00+08:00",
+      "created_at": "2025-12-05T15:17:38.075883",
+      "updated_at": "2025-12-05T15:21:24.323592"
+    },
+    "gec_019": {
+      "cluster_id": "gec_019",
+      "topic": "Mutual support and personal growth between Maria and John",
+      "summary": "On January 9, 2023, Maria shared with John her positive experience of making a new friend through volunteering, expressing enthusiasm for her activities and concern for John's well-being, reflecting their mutual support and personal growth.",
+      "members": [
+        {
+          "unit_id": "70bd3f2e-165f-4992-8d0c-da5d42dcb300",
+          "timestamp": "2023-01-09T19:06:00+08:00",
+          "summary": "On January 9, 2023, Maria shared with John her positive experience of making a new friend through volunteering, expressing enthusiasm for her activities and concern for John's well-being, reflecting their mutual support and personal growth."
+        },
+        {
+          "unit_id": "a2fc8402-82e8-42fa-a9de-635e8efe9ff6",
+          "timestamp": "2023-06-27T00:29:30+08:00",
+          "summary": "John and Maria reflected on meaningful personal experiences that bring them joy, with John sharing a family music event and Maria discussing the fulfillment she finds through volunteering at a shelter. They exchanged mutual encouragement and emphasized the importance of kindness, family support, and finding positivity in difficult times."
+        }
+      ],
+      "first_timestamp": "2023-01-09T19:06:00+08:00",
+      "last_timestamp": "2023-06-27T00:29:30+08:00",
+      "created_at": "2025-12-05T15:17:38.076401",
+      "updated_at": "2025-12-05T15:21:11.326018"
+    },
+    "gec_020": {
+      "cluster_id": "gec_020",
+      "topic": "John's car windshield incident and coping strategies",
+      "summary": "John shared with Maria a recent incident involving his car's broken windshield, reflecting on the unexpected challenges he faced and his coping strategies, while Maria offered empathy and support throughout their conversation.",
+      "members": [
+        {
+          "unit_id": "47b828ea-b342-47d9-b97b-7ea3e480f149",
+          "timestamp": "2023-01-09T19:10:30+08:00",
+          "summary": "John shared with Maria a recent incident involving his car's broken windshield, reflecting on the unexpected challenges he faced and his coping strategies, while Maria offered empathy and support throughout their conversation."
+        },
+        {
+          "unit_id": "52b5b252-c8ab-4a0d-9b6b-06d75546d74d",
+          "timestamp": "2023-04-10T18:17:00+08:00",
+          "summary": "John and Maria engaged in a supportive conversation reflecting on John's recent car troubles and financial challenges, while sharing memories of a past road trip and emphasizing the restorative power of nature and hope during difficult times."
+        }
+      ],
+      "first_timestamp": "2023-01-09T19:10:30+08:00",
+      "last_timestamp": "2023-04-10T18:17:00+08:00",
+      "created_at": "2025-12-05T15:17:42.521070",
+      "updated_at": "2025-12-05T15:19:03.347065"
+    },
+    "gec_021": {
+      "cluster_id": "gec_021",
+      "topic": "Maria's empathy and support for John's challenges",
+      "summary": "John shared with Maria a recent incident involving his car's broken windshield, reflecting on the unexpected challenges he faced and his coping strategies, while Maria offered empathy and support throughout their conversation.",
+      "members": [
+        {
+          "unit_id": "47b828ea-b342-47d9-b97b-7ea3e480f149",
+          "timestamp": "2023-01-09T19:10:30+08:00",
+          "summary": "John shared with Maria a recent incident involving his car's broken windshield, reflecting on the unexpected challenges he faced and his coping strategies, while Maria offered empathy and support throughout their conversation."
+        }
+      ],
+      "first_timestamp": "2023-01-09T19:10:30+08:00",
+      "last_timestamp": "2023-01-09T19:10:30+08:00",
+      "created_at": "2025-12-05T15:17:42.523927",
+      "updated_at": "2025-12-05T15:17:42.523927"
+    },
+    "gec_022": {
+      "cluster_id": "gec_022",
+      "topic": "Maria's volunteering experience at children's shelter",
+      "summary": "John and Maria discussed concerns about the poor state of education and the need for community support, with Maria sharing her volunteering experience at a shelter for children and both emphasizing the importance of kindness and compassion in helping vulnerable youth.",
+      "members": [
+        {
+          "unit_id": "a413cceb-554b-42e4-9d9f-66ab6bde9fc1",
+          "timestamp": "2023-01-28T13:24:30+08:00",
+          "summary": "John and Maria discussed concerns about the poor state of education and the need for community support, with Maria sharing her volunteering experience at a shelter for children and both emphasizing the importance of kindness and compassion in helping vulnerable youth."
+        }
+      ],
+      "first_timestamp": "2023-01-28T13:24:30+08:00",
+      "last_timestamp": "2023-01-28T13:24:30+08:00",
+      "created_at": "2025-12-05T15:17:54.353484",
+      "updated_at": "2025-12-05T15:17:54.353484"
+    },
+    "gec_023": {
+      "cluster_id": "gec_023",
+      "topic": "Emphasis on kindness and compassion in helping vulnerable youth",
+      "summary": "John and Maria discussed concerns about the poor state of education and the need for community support, with Maria sharing her volunteering experience at a shelter for children and both emphasizing the importance of kindness and compassion in helping vulnerable youth.",
+      "members": [
+        {
+          "unit_id": "a413cceb-554b-42e4-9d9f-66ab6bde9fc1",
+          "timestamp": "2023-01-28T13:24:30+08:00",
+          "summary": "John and Maria discussed concerns about the poor state of education and the need for community support, with Maria sharing her volunteering experience at a shelter for children and both emphasizing the importance of kindness and compassion in helping vulnerable youth."
+        }
+      ],
+      "first_timestamp": "2023-01-28T13:24:30+08:00",
+      "last_timestamp": "2023-01-28T13:24:30+08:00",
+      "created_at": "2025-12-05T15:17:54.356587",
+      "updated_at": "2025-12-05T15:17:54.356587"
+    },
+    "gec_024": {
+      "cluster_id": "gec_024",
+      "topic": "Maria's connection of David to homeless support services",
+      "summary": "On February 5, 2023, Maria and John discussed Maria's rewarding experience volunteering at a charity event and John's motivations for entering politics, highlighting their shared commitment to service and compassion. Maria also recounted connecting a man named David, whom she met at the event, with support services for the homeless.",
+      "members": [
+        {
+          "unit_id": "543409bb-bada-44e5-807d-6257f7aa572f",
+          "timestamp": "2023-02-05T14:36:00+08:00",
+          "summary": "On February 5, 2023, Maria and John discussed Maria's rewarding experience volunteering at a charity event and John's motivations for entering politics, highlighting their shared commitment to service and compassion. Maria also recounted connecting a man named David, whom she met at the event, with support services for the homeless."
+        }
+      ],
+      "first_timestamp": "2023-02-05T14:36:00+08:00",
+      "last_timestamp": "2023-02-05T14:36:00+08:00",
+      "created_at": "2025-12-05T15:18:05.032742",
+      "updated_at": "2025-12-05T15:18:05.032742"
+    },
+    "gec_025": {
+      "cluster_id": "gec_025",
+      "topic": "John's involvement in organizing food drives for unemployed neighbors",
+      "summary": "John and Maria discussed their personal experiences and shared dedication to community support, focusing on John’s involvement in organizing a food drive to help unemployed neighbors and Maria’s offer to assist with future volunteering efforts. Their conversation highlighted mutual respect, emotional warmth, and a commitment to helping others.",
+      "members": [
+        {
+          "unit_id": "9a27e591-91b3-4be8-8d42-61fa122a5835",
+          "timestamp": "2023-02-05T14:43:30+08:00",
+          "summary": "John and Maria discussed their personal experiences and shared dedication to community support, focusing on John’s involvement in organizing a food drive to help unemployed neighbors and Maria’s offer to assist with future volunteering efforts. Their conversation highlighted mutual respect, emotional warmth, and a commitment to helping others."
+        }
+      ],
+      "first_timestamp": "2023-02-05T14:43:30+08:00",
+      "last_timestamp": "2023-02-05T14:43:30+08:00",
+      "created_at": "2025-12-05T15:18:10.645795",
+      "updated_at": "2025-12-05T15:18:10.645795"
+    },
+    "gec_026": {
+      "cluster_id": "gec_026",
+      "topic": "Maria's offers to assist with future volunteering efforts",
+      "summary": "John and Maria discussed their personal experiences and shared dedication to community support, focusing on John’s involvement in organizing a food drive to help unemployed neighbors and Maria’s offer to assist with future volunteering efforts. Their conversation highlighted mutual respect, emotional warmth, and a commitment to helping others.",
+      "members": [
+        {
+          "unit_id": "9a27e591-91b3-4be8-8d42-61fa122a5835",
+          "timestamp": "2023-02-05T14:43:30+08:00",
+          "summary": "John and Maria discussed their personal experiences and shared dedication to community support, focusing on John’s involvement in organizing a food drive to help unemployed neighbors and Maria’s offer to assist with future volunteering efforts. Their conversation highlighted mutual respect, emotional warmth, and a commitment to helping others."
+        }
+      ],
+      "first_timestamp": "2023-02-05T14:43:30+08:00",
+      "last_timestamp": "2023-02-05T14:43:30+08:00",
+      "created_at": "2025-12-05T15:18:10.648953",
+      "updated_at": "2025-12-05T15:18:10.648953"
+    },
+    "gec_027": {
+      "cluster_id": "gec_027",
+      "topic": "Mutual respect and emotional warmth in community support conversations",
+      "summary": "John and Maria discussed their personal experiences and shared dedication to community support, focusing on John’s involvement in organizing a food drive to help unemployed neighbors and Maria’s offer to assist with future volunteering efforts. Their conversation highlighted mutual respect, emotional warmth, and a commitment to helping others.",
+      "members": [
+        {
+          "unit_id": "9a27e591-91b3-4be8-8d42-61fa122a5835",
+          "timestamp": "2023-02-05T14:43:30+08:00",
+          "summary": "John and Maria discussed their personal experiences and shared dedication to community support, focusing on John’s involvement in organizing a food drive to help unemployed neighbors and Maria’s offer to assist with future volunteering efforts. Their conversation highlighted mutual respect, emotional warmth, and a commitment to helping others."
+        }
+      ],
+      "first_timestamp": "2023-02-05T14:43:30+08:00",
+      "last_timestamp": "2023-02-05T14:43:30+08:00",
+      "created_at": "2025-12-05T15:18:10.650676",
+      "updated_at": "2025-12-05T15:18:10.650676"
+    },
+    "gec_028": {
+      "cluster_id": "gec_028",
+      "topic": "Maria's creative writing class experience",
+      "summary": "On February 25, 2023, Maria informed John about her recent experience taking a creative writing class, describing it as enlightening, while earlier John had expressed gratitude for their supportive friendship. The conversation highlighted their positive and mutually supportive relationship.",
+      "members": [
+        {
+          "unit_id": "ad3b74ce-6bbd-4a7e-9f15-ec563afa3f5f",
+          "timestamp": "2023-02-25T20:55:00+08:00",
+          "summary": "On February 25, 2023, Maria informed John about her recent experience taking a creative writing class, describing it as enlightening, while earlier John had expressed gratitude for their supportive friendship. The conversation highlighted their positive and mutually supportive relationship."
+        }
+      ],
+      "first_timestamp": "2023-02-25T20:55:00+08:00",
+      "last_timestamp": "2023-02-25T20:55:00+08:00",
+      "created_at": "2025-12-05T15:18:16.552504",
+      "updated_at": "2025-12-05T15:18:16.552504"
+    },
+    "gec_029": {
+      "cluster_id": "gec_029",
+      "topic": "John and Maria's supportive friendship",
+      "summary": "On February 25, 2023, Maria informed John about her recent experience taking a creative writing class, describing it as enlightening, while earlier John had expressed gratitude for their supportive friendship. The conversation highlighted their positive and mutually supportive relationship.",
+      "members": [
+        {
+          "unit_id": "ad3b74ce-6bbd-4a7e-9f15-ec563afa3f5f",
+          "timestamp": "2023-02-25T20:55:00+08:00",
+          "summary": "On February 25, 2023, Maria informed John about her recent experience taking a creative writing class, describing it as enlightening, while earlier John had expressed gratitude for their supportive friendship. The conversation highlighted their positive and mutually supportive relationship."
+        }
+      ],
+      "first_timestamp": "2023-02-25T20:55:00+08:00",
+      "last_timestamp": "2023-02-25T20:55:00+08:00",
+      "created_at": "2025-12-05T15:18:16.554737",
+      "updated_at": "2025-12-05T15:18:16.554737"
+    },
+    "gec_030": {
+      "cluster_id": "gec_030",
+      "topic": "Maria's grieving and coping after grandmother's passing",
+      "summary": "Maria reached out to John after her grandmother's recent passing, and they shared condolences while discussing family life, parenting, and memorable experiences, including John's family outings and Maria's inspiration from a trip to England.",
+      "members": [
+        {
+          "unit_id": "f3f11ceb-42fe-425f-ba30-144cf3ee1c71",
+          "timestamp": "2023-03-06T18:11:00+08:00",
+          "summary": "Maria reached out to John after her grandmother's recent passing, and they shared condolences while discussing family life, parenting, and memorable experiences, including John's family outings and Maria's inspiration from a trip to England."
+        }
+      ],
+      "first_timestamp": "2023-03-06T18:11:00+08:00",
+      "last_timestamp": "2023-03-06T18:11:00+08:00",
+      "created_at": "2025-12-05T15:18:29.604804",
+      "updated_at": "2025-12-05T15:18:29.604804"
+    },
+    "gec_031": {
+      "cluster_id": "gec_031",
+      "topic": "John's condolences and emotional support to Maria",
+      "summary": "Maria reached out to John after her grandmother's recent passing, and they shared condolences while discussing family life, parenting, and memorable experiences, including John's family outings and Maria's inspiration from a trip to England.",
+      "members": [
+        {
+          "unit_id": "f3f11ceb-42fe-425f-ba30-144cf3ee1c71",
+          "timestamp": "2023-03-06T18:11:00+08:00",
+          "summary": "Maria reached out to John after her grandmother's recent passing, and they shared condolences while discussing family life, parenting, and memorable experiences, including John's family outings and Maria's inspiration from a trip to England."
+        }
+      ],
+      "first_timestamp": "2023-03-06T18:11:00+08:00",
+      "last_timestamp": "2023-03-06T18:11:00+08:00",
+      "created_at": "2025-12-05T15:18:29.608056",
+      "updated_at": "2025-12-05T15:18:29.608056"
+    },
+    "gec_032": {
+      "cluster_id": "gec_032",
+      "topic": "Discussion of family life and parenting between Maria and John",
+      "summary": "Maria reached out to John after her grandmother's recent passing, and they shared condolences while discussing family life, parenting, and memorable experiences, including John's family outings and Maria's inspiration from a trip to England.",
+      "members": [
+        {
+          "unit_id": "f3f11ceb-42fe-425f-ba30-144cf3ee1c71",
+          "timestamp": "2023-03-06T18:11:00+08:00",
+          "summary": "Maria reached out to John after her grandmother's recent passing, and they shared condolences while discussing family life, parenting, and memorable experiences, including John's family outings and Maria's inspiration from a trip to England."
+        }
+      ],
+      "first_timestamp": "2023-03-06T18:11:00+08:00",
+      "last_timestamp": "2023-03-06T18:11:00+08:00",
+      "created_at": "2025-12-05T15:18:29.610502",
+      "updated_at": "2025-12-05T15:18:29.610502"
+    },
+    "gec_033": {
+      "cluster_id": "gec_033",
+      "topic": "John's family outings and shared family moments",
+      "summary": "Maria reached out to John after her grandmother's recent passing, and they shared condolences while discussing family life, parenting, and memorable experiences, including John's family outings and Maria's inspiration from a trip to England.",
+      "members": [
+        {
+          "unit_id": "f3f11ceb-42fe-425f-ba30-144cf3ee1c71",
+          "timestamp": "2023-03-06T18:11:00+08:00",
+          "summary": "Maria reached out to John after her grandmother's recent passing, and they shared condolences while discussing family life, parenting, and memorable experiences, including John's family outings and Maria's inspiration from a trip to England."
+        }
+      ],
+      "first_timestamp": "2023-03-06T18:11:00+08:00",
+      "last_timestamp": "2023-03-06T18:11:00+08:00",
+      "created_at": "2025-12-05T15:18:29.612278",
+      "updated_at": "2025-12-05T15:18:29.612278"
+    },
+    "gec_034": {
+      "cluster_id": "gec_034",
+      "topic": "Maria's inspiration from trip to England",
+      "summary": "Maria reached out to John after her grandmother's recent passing, and they shared condolences while discussing family life, parenting, and memorable experiences, including John's family outings and Maria's inspiration from a trip to England.",
+      "members": [
+        {
+          "unit_id": "f3f11ceb-42fe-425f-ba30-144cf3ee1c71",
+          "timestamp": "2023-03-06T18:11:00+08:00",
+          "summary": "Maria reached out to John after her grandmother's recent passing, and they shared condolences while discussing family life, parenting, and memorable experiences, including John's family outings and Maria's inspiration from a trip to England."
+        }
+      ],
+      "first_timestamp": "2023-03-06T18:11:00+08:00",
+      "last_timestamp": "2023-03-06T18:11:00+08:00",
+      "created_at": "2025-12-05T15:18:29.614503",
+      "updated_at": "2025-12-05T15:18:29.614503"
+    },
+    "gec_035": {
+      "cluster_id": "gec_035",
+      "topic": "Maria's passion for architecture inspired by London",
+      "summary": "On March 6, 2023, Maria and John discussed their personal inspirations and volunteering experiences, highlighting the importance of support systems and genuine human connections in making a positive impact. Maria shared her passion for architecture inspired by London, while John expressed his motivation to serve through volunteering after retaking an aptitude test.",
+      "members": [
+        {
+          "unit_id": "701e9409-d7c5-4df5-afee-9640339d8757",
+          "timestamp": "2023-03-06T18:15:30+08:00",
+          "summary": "On March 6, 2023, Maria and John discussed their personal inspirations and volunteering experiences, highlighting the importance of support systems and genuine human connections in making a positive impact. Maria shared her passion for architecture inspired by London, while John expressed his motivation to serve through volunteering after retaking an aptitude test."
+        }
+      ],
+      "first_timestamp": "2023-03-06T18:15:30+08:00",
+      "last_timestamp": "2023-03-06T18:15:30+08:00",
+      "created_at": "2025-12-05T15:18:36.806554",
+      "updated_at": "2025-12-05T15:18:36.806554"
+    },
+    "gec_036": {
+      "cluster_id": "gec_036",
+      "topic": "John's motivation to serve through volunteering after retaking aptitude test",
+      "summary": "On March 6, 2023, Maria and John discussed their personal inspirations and volunteering experiences, highlighting the importance of support systems and genuine human connections in making a positive impact. Maria shared her passion for architecture inspired by London, while John expressed his motivation to serve through volunteering after retaking an aptitude test.",
+      "members": [
+        {
+          "unit_id": "701e9409-d7c5-4df5-afee-9640339d8757",
+          "timestamp": "2023-03-06T18:15:30+08:00",
+          "summary": "On March 6, 2023, Maria and John discussed their personal inspirations and volunteering experiences, highlighting the importance of support systems and genuine human connections in making a positive impact. Maria shared her passion for architecture inspired by London, while John expressed his motivation to serve through volunteering after retaking an aptitude test."
+        }
+      ],
+      "first_timestamp": "2023-03-06T18:15:30+08:00",
+      "last_timestamp": "2023-03-06T18:15:30+08:00",
+      "created_at": "2025-12-05T15:18:36.809302",
+      "updated_at": "2025-12-05T15:18:36.809302"
+    },
+    "gec_037": {
+      "cluster_id": "gec_037",
+      "topic": "Importance of support systems and genuine human connections in volunteering",
+      "summary": "On March 6, 2023, Maria and John discussed their personal inspirations and volunteering experiences, highlighting the importance of support systems and genuine human connections in making a positive impact. Maria shared her passion for architecture inspired by London, while John expressed his motivation to serve through volunteering after retaking an aptitude test.",
+      "members": [
+        {
+          "unit_id": "701e9409-d7c5-4df5-afee-9640339d8757",
+          "timestamp": "2023-03-06T18:15:30+08:00",
+          "summary": "On March 6, 2023, Maria and John discussed their personal inspirations and volunteering experiences, highlighting the importance of support systems and genuine human connections in making a positive impact. Maria shared her passion for architecture inspired by London, while John expressed his motivation to serve through volunteering after retaking an aptitude test."
+        }
+      ],
+      "first_timestamp": "2023-03-06T18:15:30+08:00",
+      "last_timestamp": "2023-03-06T18:15:30+08:00",
+      "created_at": "2025-12-05T15:18:36.811965",
+      "updated_at": "2025-12-05T15:18:36.811965"
+    },
+    "gec_038": {
+      "cluster_id": "gec_038",
+      "topic": "John's beginner yoga class and wellbeing routine",
+      "summary": "On April 7, 2023, John shared with Maria his enthusiasm for a new beginner yoga class he started attending, highlighting its positive mental and physical benefits and his commitment to making yoga part of his daily routine. Maria responded supportively, encouraging his progress and discussing the wellbeing advantages of stretching and breathing exercises.",
+      "members": [
+        {
+          "unit_id": "a59a045f-8ecf-44db-bd44-e203dc6f599f",
+          "timestamp": "2023-04-07T00:28:00+08:00",
+          "summary": "On April 7, 2023, John shared with Maria his enthusiasm for a new beginner yoga class he started attending, highlighting its positive mental and physical benefits and his commitment to making yoga part of his daily routine. Maria responded supportively, encouraging his progress and discussing the wellbeing advantages of stretching and breathing exercises."
+        }
+      ],
+      "first_timestamp": "2023-04-07T00:28:00+08:00",
+      "last_timestamp": "2023-04-07T00:28:00+08:00",
+      "created_at": "2025-12-05T15:18:48.086931",
+      "updated_at": "2025-12-05T15:18:48.086931"
+    },
+    "gec_039": {
+      "cluster_id": "gec_039",
+      "topic": "Maria's encouragement of John's yoga practice",
+      "summary": "On April 7, 2023, John shared with Maria his enthusiasm for a new beginner yoga class he started attending, highlighting its positive mental and physical benefits and his commitment to making yoga part of his daily routine. Maria responded supportively, encouraging his progress and discussing the wellbeing advantages of stretching and breathing exercises.",
+      "members": [
+        {
+          "unit_id": "a59a045f-8ecf-44db-bd44-e203dc6f599f",
+          "timestamp": "2023-04-07T00:28:00+08:00",
+          "summary": "On April 7, 2023, John shared with Maria his enthusiasm for a new beginner yoga class he started attending, highlighting its positive mental and physical benefits and his commitment to making yoga part of his daily routine. Maria responded supportively, encouraging his progress and discussing the wellbeing advantages of stretching and breathing exercises."
+        }
+      ],
+      "first_timestamp": "2023-04-07T00:28:00+08:00",
+      "last_timestamp": "2023-04-07T00:28:00+08:00",
+      "created_at": "2025-12-05T15:18:48.089725",
+      "updated_at": "2025-12-05T15:18:48.089725"
+    },
+    "gec_040": {
+      "cluster_id": "gec_040",
+      "topic": "John's mindfulness routine",
+      "summary": "John and Maria discussed their recent activities, with John sharing his new mindfulness routine and Maria recounting her inspiring experience participating in a 5K charity run for a homeless shelter. Both expressed appreciation for activities that promote well-being and community engagement.",
+      "members": [
+        {
+          "unit_id": "e36a9d2b-04cf-4e75-b11d-a18b6a561bd4",
+          "timestamp": "2023-04-07T00:29:30+08:00",
+          "summary": "John and Maria discussed their recent activities, with John sharing his new mindfulness routine and Maria recounting her inspiring experience participating in a 5K charity run for a homeless shelter. Both expressed appreciation for activities that promote well-being and community engagement."
+        }
+      ],
+      "first_timestamp": "2023-04-07T00:29:30+08:00",
+      "last_timestamp": "2023-04-07T00:29:30+08:00",
+      "created_at": "2025-12-05T15:18:52.938742",
+      "updated_at": "2025-12-05T15:18:52.938742"
+    },
+    "gec_041": {
+      "cluster_id": "gec_041",
+      "topic": "Maria's participation in 5K charity run for homeless shelter",
+      "summary": "John and Maria discussed their recent activities, with John sharing his new mindfulness routine and Maria recounting her inspiring experience participating in a 5K charity run for a homeless shelter. Both expressed appreciation for activities that promote well-being and community engagement.",
+      "members": [
+        {
+          "unit_id": "e36a9d2b-04cf-4e75-b11d-a18b6a561bd4",
+          "timestamp": "2023-04-07T00:29:30+08:00",
+          "summary": "John and Maria discussed their recent activities, with John sharing his new mindfulness routine and Maria recounting her inspiring experience participating in a 5K charity run for a homeless shelter. Both expressed appreciation for activities that promote well-being and community engagement."
+        }
+      ],
+      "first_timestamp": "2023-04-07T00:29:30+08:00",
+      "last_timestamp": "2023-04-07T00:29:30+08:00",
+      "created_at": "2025-12-05T15:18:52.940377",
+      "updated_at": "2025-12-05T15:18:52.940377"
+    },
+    "gec_042": {
+      "cluster_id": "gec_042",
+      "topic": "John's volunteering at career fair for under-resourced students",
+      "summary": "John shared with Maria his rewarding experience volunteering at a recent career fair for under-resourced students, emphasizing the importance of community support, while Maria encouraged his continued efforts to inspire and help youth.",
+      "members": [
+        {
+          "unit_id": "4e4b81c9-f708-4aae-a905-b6b6b76c3cbe",
+          "timestamp": "2023-04-07T00:32:30+08:00",
+          "summary": "John shared with Maria his rewarding experience volunteering at a recent career fair for under-resourced students, emphasizing the importance of community support, while Maria encouraged his continued efforts to inspire and help youth."
+        }
+      ],
+      "first_timestamp": "2023-04-07T00:32:30+08:00",
+      "last_timestamp": "2023-04-07T00:32:30+08:00",
+      "created_at": "2025-12-05T15:18:58.489242",
+      "updated_at": "2025-12-05T15:18:58.489242"
+    },
+    "gec_043": {
+      "cluster_id": "gec_043",
+      "topic": "Maria's encouragement of John's youth outreach efforts",
+      "summary": "John shared with Maria his rewarding experience volunteering at a recent career fair for under-resourced students, emphasizing the importance of community support, while Maria encouraged his continued efforts to inspire and help youth.",
+      "members": [
+        {
+          "unit_id": "4e4b81c9-f708-4aae-a905-b6b6b76c3cbe",
+          "timestamp": "2023-04-07T00:32:30+08:00",
+          "summary": "John shared with Maria his rewarding experience volunteering at a recent career fair for under-resourced students, emphasizing the importance of community support, while Maria encouraged his continued efforts to inspire and help youth."
+        }
+      ],
+      "first_timestamp": "2023-04-07T00:32:30+08:00",
+      "last_timestamp": "2023-04-07T00:32:30+08:00",
+      "created_at": "2025-12-05T15:18:58.492050",
+      "updated_at": "2025-12-05T15:18:58.492050"
+    },
+    "gec_044": {
+      "cluster_id": "gec_044",
+      "topic": "John's upcoming East Coast trip plans",
+      "summary": "John and Maria engaged in a supportive conversation where John shared his upcoming East Coast trip plans, and Maria discussed her fulfilling yet challenging volunteering at a homeless shelter, with both emphasizing the importance of kindness and making a positive impact.",
+      "members": [
+        {
+          "unit_id": "883a1787-5bcd-4b94-ac69-c7344a885abc",
+          "timestamp": "2023-04-18T19:45:00+08:00",
+          "summary": "John and Maria engaged in a supportive conversation where John shared his upcoming East Coast trip plans, and Maria discussed her fulfilling yet challenging volunteering at a homeless shelter, with both emphasizing the importance of kindness and making a positive impact."
+        }
+      ],
+      "first_timestamp": "2023-04-18T19:45:00+08:00",
+      "last_timestamp": "2023-04-18T19:45:00+08:00",
+      "created_at": "2025-12-05T15:19:18.662099",
+      "updated_at": "2025-12-05T15:19:18.662099"
+    },
+    "gec_045": {
+      "cluster_id": "gec_045",
+      "topic": "John's family boot camp participation",
+      "summary": "John and Maria reconnected after a long time, discussing John's recent experience attending family boot camps that fostered both physical fitness and emotional support, with Maria praising their dedication to creating healthy habits together.",
+      "members": [
+        {
+          "unit_id": "50bd90ec-d25f-4eb5-a436-78731d3507d0",
+          "timestamp": "2023-05-04T15:25:00+08:00",
+          "summary": "John and Maria reconnected after a long time, discussing John's recent experience attending family boot camps that fostered both physical fitness and emotional support, with Maria praising their dedication to creating healthy habits together."
+        }
+      ],
+      "first_timestamp": "2023-05-04T15:25:00+08:00",
+      "last_timestamp": "2023-05-04T15:25:00+08:00",
+      "created_at": "2025-12-05T15:19:23.888603",
+      "updated_at": "2025-12-05T15:19:23.888603"
+    },
+    "gec_046": {
+      "cluster_id": "gec_046",
+      "topic": "Family bonding through physical fitness",
+      "summary": "John and Maria reconnected after a long time, discussing John's recent experience attending family boot camps that fostered both physical fitness and emotional support, with Maria praising their dedication to creating healthy habits together.",
+      "members": [
+        {
+          "unit_id": "50bd90ec-d25f-4eb5-a436-78731d3507d0",
+          "timestamp": "2023-05-04T15:25:00+08:00",
+          "summary": "John and Maria reconnected after a long time, discussing John's recent experience attending family boot camps that fostered both physical fitness and emotional support, with Maria praising their dedication to creating healthy habits together."
+        }
+      ],
+      "first_timestamp": "2023-05-04T15:25:00+08:00",
+      "last_timestamp": "2023-05-04T15:25:00+08:00",
+      "created_at": "2025-12-05T15:19:23.890746",
+      "updated_at": "2025-12-05T15:19:23.890746"
+    },
+    "gec_047": {
+      "cluster_id": "gec_047",
+      "topic": "John and Maria's mutual support during boot camp",
+      "summary": "On May 4, 2023, John and Maria discussed mutual support, life balance, and personal growth, sharing experiences from their boot camp and Maria's transformative solo trip to Spain, emphasizing the importance of self-care, perseverance, and embracing new challenges.",
+      "members": [
+        {
+          "unit_id": "69efecaa-26f6-4084-b99c-24d4d85c8ce7",
+          "timestamp": "2023-05-04T15:36:00+08:00",
+          "summary": "On May 4, 2023, John and Maria discussed mutual support, life balance, and personal growth, sharing experiences from their boot camp and Maria's transformative solo trip to Spain, emphasizing the importance of self-care, perseverance, and embracing new challenges."
+        }
+      ],
+      "first_timestamp": "2023-05-04T15:36:00+08:00",
+      "last_timestamp": "2023-05-04T15:36:00+08:00",
+      "created_at": "2025-12-05T15:19:32.086273",
+      "updated_at": "2025-12-05T15:19:32.086273"
+    },
+    "gec_048": {
+      "cluster_id": "gec_048",
+      "topic": "Maria's transformative solo trip to Spain",
+      "summary": "On May 4, 2023, John and Maria discussed mutual support, life balance, and personal growth, sharing experiences from their boot camp and Maria's transformative solo trip to Spain, emphasizing the importance of self-care, perseverance, and embracing new challenges.",
+      "members": [
+        {
+          "unit_id": "69efecaa-26f6-4084-b99c-24d4d85c8ce7",
+          "timestamp": "2023-05-04T15:36:00+08:00",
+          "summary": "On May 4, 2023, John and Maria discussed mutual support, life balance, and personal growth, sharing experiences from their boot camp and Maria's transformative solo trip to Spain, emphasizing the importance of self-care, perseverance, and embracing new challenges."
+        }
+      ],
+      "first_timestamp": "2023-05-04T15:36:00+08:00",
+      "last_timestamp": "2023-05-04T15:36:00+08:00",
+      "created_at": "2025-12-05T15:19:32.089038",
+      "updated_at": "2025-12-05T15:19:32.089038"
+    },
+    "gec_049": {
+      "cluster_id": "gec_049",
+      "topic": "John and Maria's emphasis on life balance and self-care",
+      "summary": "On May 4, 2023, John and Maria discussed mutual support, life balance, and personal growth, sharing experiences from their boot camp and Maria's transformative solo trip to Spain, emphasizing the importance of self-care, perseverance, and embracing new challenges.",
+      "members": [
+        {
+          "unit_id": "69efecaa-26f6-4084-b99c-24d4d85c8ce7",
+          "timestamp": "2023-05-04T15:36:00+08:00",
+          "summary": "On May 4, 2023, John and Maria discussed mutual support, life balance, and personal growth, sharing experiences from their boot camp and Maria's transformative solo trip to Spain, emphasizing the importance of self-care, perseverance, and embracing new challenges."
+        }
+      ],
+      "first_timestamp": "2023-05-04T15:36:00+08:00",
+      "last_timestamp": "2023-05-04T15:36:00+08:00",
+      "created_at": "2025-12-05T15:19:32.091354",
+      "updated_at": "2025-12-05T15:19:32.091354"
+    },
+    "gec_050": {
+      "cluster_id": "gec_050",
+      "topic": "John and Maria's personal growth through embracing new challenges",
+      "summary": "On May 4, 2023, John and Maria discussed mutual support, life balance, and personal growth, sharing experiences from their boot camp and Maria's transformative solo trip to Spain, emphasizing the importance of self-care, perseverance, and embracing new challenges.",
+      "members": [
+        {
+          "unit_id": "69efecaa-26f6-4084-b99c-24d4d85c8ce7",
+          "timestamp": "2023-05-04T15:36:00+08:00",
+          "summary": "On May 4, 2023, John and Maria discussed mutual support, life balance, and personal growth, sharing experiences from their boot camp and Maria's transformative solo trip to Spain, emphasizing the importance of self-care, perseverance, and embracing new challenges."
+        }
+      ],
+      "first_timestamp": "2023-05-04T15:36:00+08:00",
+      "last_timestamp": "2023-05-04T15:36:00+08:00",
+      "created_at": "2025-12-05T15:19:32.092990",
+      "updated_at": "2025-12-05T15:19:32.092990"
+    },
+    "gec_051": {
+      "cluster_id": "gec_051",
+      "topic": "Maria's involvement in church activities",
+      "summary": "On May 6, 2023, John and Maria had a supportive conversation where Maria shared her positive experience joining a church and engaging in charity work, while John expressed encouragement and concern for her well-being.",
+      "members": [
+        {
+          "unit_id": "2cd63aef-6a74-4b48-8a9b-50084c16b744",
+          "timestamp": "2023-05-06T17:09:30+08:00",
+          "summary": "On May 6, 2023, John and Maria had a supportive conversation where Maria shared her positive experience joining a church and engaging in charity work, while John expressed encouragement and concern for her well-being."
+        }
+      ],
+      "first_timestamp": "2023-05-06T17:09:30+08:00",
+      "last_timestamp": "2023-05-06T17:09:30+08:00",
+      "created_at": "2025-12-05T15:19:42.754588",
+      "updated_at": "2025-12-05T15:19:42.754588"
+    },
+    "gec_052": {
+      "cluster_id": "gec_052",
+      "topic": "Maria's charity work experiences",
+      "summary": "On May 6, 2023, John and Maria had a supportive conversation where Maria shared her positive experience joining a church and engaging in charity work, while John expressed encouragement and concern for her well-being.",
+      "members": [
+        {
+          "unit_id": "2cd63aef-6a74-4b48-8a9b-50084c16b744",
+          "timestamp": "2023-05-06T17:09:30+08:00",
+          "summary": "On May 6, 2023, John and Maria had a supportive conversation where Maria shared her positive experience joining a church and engaging in charity work, while John expressed encouragement and concern for her well-being."
+        }
+      ],
+      "first_timestamp": "2023-05-06T17:09:30+08:00",
+      "last_timestamp": "2023-05-06T17:09:30+08:00",
+      "created_at": "2025-12-05T15:19:42.757430",
+      "updated_at": "2025-12-05T15:19:42.757430"
+    },
+    "gec_053": {
+      "cluster_id": "gec_053",
+      "topic": "John's project supporting military veterans",
+      "summary": "John discussed with Maria his ongoing project supporting military veterans, sharing his motivation, recent activities like hosting a veterans' gathering, and expressing gratitude for Maria's supportive involvement in their shared commitment to aid veterans.",
+      "members": [
+        {
+          "unit_id": "146bae52-0de0-46f9-b34a-e8436f5bd1d0",
+          "timestamp": "2023-05-20T19:46:00+08:00",
+          "summary": "John discussed with Maria his ongoing project supporting military veterans, sharing his motivation, recent activities like hosting a veterans' gathering, and expressing gratitude for Maria's supportive involvement in their shared commitment to aid veterans."
+        }
+      ],
+      "first_timestamp": "2023-05-20T19:46:00+08:00",
+      "last_timestamp": "2023-05-20T19:46:00+08:00",
+      "created_at": "2025-12-05T15:19:52.451905",
+      "updated_at": "2025-12-05T15:19:52.451905"
+    },
+    "gec_054": {
+      "cluster_id": "gec_054",
+      "topic": "Maria's supportive involvement in veterans aid",
+      "summary": "John discussed with Maria his ongoing project supporting military veterans, sharing his motivation, recent activities like hosting a veterans' gathering, and expressing gratitude for Maria's supportive involvement in their shared commitment to aid veterans.",
+      "members": [
+        {
+          "unit_id": "146bae52-0de0-46f9-b34a-e8436f5bd1d0",
+          "timestamp": "2023-05-20T19:46:00+08:00",
+          "summary": "John discussed with Maria his ongoing project supporting military veterans, sharing his motivation, recent activities like hosting a veterans' gathering, and expressing gratitude for Maria's supportive involvement in their shared commitment to aid veterans."
+        }
+      ],
+      "first_timestamp": "2023-05-20T19:46:00+08:00",
+      "last_timestamp": "2023-05-20T19:46:00+08:00",
+      "created_at": "2025-12-05T15:19:52.453551",
+      "updated_at": "2025-12-05T15:19:52.453551"
+    },
+    "gec_055": {
+      "cluster_id": "gec_055",
+      "topic": "Maria's ring-toss tournament fundraiser for homeless shelter",
+      "summary": "John and Maria discussed their collaborative efforts to support veterans and the homeless, with Maria planning a ring-toss tournament fundraiser for a homeless shelter later in May 2023. Their conversation emphasized mutual encouragement and commitment to charitable activities.",
+      "members": [
+        {
+          "unit_id": "d3339225-0d4c-4a67-8c7c-1a94b6e1070f",
+          "timestamp": "2023-05-20T19:47:00+08:00",
+          "summary": "John and Maria discussed their collaborative efforts to support veterans and the homeless, with Maria planning a ring-toss tournament fundraiser for a homeless shelter later in May 2023. Their conversation emphasized mutual encouragement and commitment to charitable activities."
+        }
+      ],
+      "first_timestamp": "2023-05-20T19:47:00+08:00",
+      "last_timestamp": "2023-05-20T19:47:00+08:00",
+      "created_at": "2025-12-05T15:19:57.474700",
+      "updated_at": "2025-12-05T15:19:57.474700"
+    },
+    "gec_056": {
+      "cluster_id": "gec_056",
+      "topic": "John and Maria's collaborative support for veterans",
+      "summary": "John and Maria discussed their collaborative efforts to support veterans and the homeless, with Maria planning a ring-toss tournament fundraiser for a homeless shelter later in May 2023. Their conversation emphasized mutual encouragement and commitment to charitable activities.",
+      "members": [
+        {
+          "unit_id": "d3339225-0d4c-4a67-8c7c-1a94b6e1070f",
+          "timestamp": "2023-05-20T19:47:00+08:00",
+          "summary": "John and Maria discussed their collaborative efforts to support veterans and the homeless, with Maria planning a ring-toss tournament fundraiser for a homeless shelter later in May 2023. Their conversation emphasized mutual encouragement and commitment to charitable activities."
+        }
+      ],
+      "first_timestamp": "2023-05-20T19:47:00+08:00",
+      "last_timestamp": "2023-05-20T19:47:00+08:00",
+      "created_at": "2025-12-05T15:19:57.477617",
+      "updated_at": "2025-12-05T15:19:57.477617"
+    },
+    "gec_057": {
+      "cluster_id": "gec_057",
+      "topic": "John and Maria's collaborative support for homeless",
+      "summary": "John and Maria discussed their collaborative efforts to support veterans and the homeless, with Maria planning a ring-toss tournament fundraiser for a homeless shelter later in May 2023. Their conversation emphasized mutual encouragement and commitment to charitable activities.",
+      "members": [
+        {
+          "unit_id": "d3339225-0d4c-4a67-8c7c-1a94b6e1070f",
+          "timestamp": "2023-05-20T19:47:00+08:00",
+          "summary": "John and Maria discussed their collaborative efforts to support veterans and the homeless, with Maria planning a ring-toss tournament fundraiser for a homeless shelter later in May 2023. Their conversation emphasized mutual encouragement and commitment to charitable activities."
+        }
+      ],
+      "first_timestamp": "2023-05-20T19:47:00+08:00",
+      "last_timestamp": "2023-05-20T19:47:00+08:00",
+      "created_at": "2025-12-05T15:19:57.480089",
+      "updated_at": "2025-12-05T15:19:57.480089"
+    },
+    "gec_058": {
+      "cluster_id": "gec_058",
+      "topic": "John's petition work for community cause",
+      "summary": "On May 25, 2023, John and Maria discussed their community efforts, with John working on a petition and Maria preparing a fundraiser at a homeless shelter, while they offered mutual support and committed to promoting and volunteering for the cause. Their conversation highlighted their shared dedication to making a positive impact and appreciating meaningful moments in life.",
+      "members": [
+        {
+          "unit_id": "6d68c9e3-2d90-4b03-9f8c-9d2619a73f06",
+          "timestamp": "2023-05-25T13:33:00+08:00",
+          "summary": "On May 25, 2023, John and Maria discussed their community efforts, with John working on a petition and Maria preparing a fundraiser at a homeless shelter, while they offered mutual support and committed to promoting and volunteering for the cause. Their conversation highlighted their shared dedication to making a positive impact and appreciating meaningful moments in life."
+        }
+      ],
+      "first_timestamp": "2023-05-25T13:33:00+08:00",
+      "last_timestamp": "2023-05-25T13:33:00+08:00",
+      "created_at": "2025-12-05T15:20:04.233286",
+      "updated_at": "2025-12-05T15:20:04.233286"
+    },
+    "gec_059": {
+      "cluster_id": "gec_059",
+      "topic": "Maria's fundraiser preparation at homeless shelter",
+      "summary": "On May 25, 2023, John and Maria discussed their community efforts, with John working on a petition and Maria preparing a fundraiser at a homeless shelter, while they offered mutual support and committed to promoting and volunteering for the cause. Their conversation highlighted their shared dedication to making a positive impact and appreciating meaningful moments in life.",
+      "members": [
+        {
+          "unit_id": "6d68c9e3-2d90-4b03-9f8c-9d2619a73f06",
+          "timestamp": "2023-05-25T13:33:00+08:00",
+          "summary": "On May 25, 2023, John and Maria discussed their community efforts, with John working on a petition and Maria preparing a fundraiser at a homeless shelter, while they offered mutual support and committed to promoting and volunteering for the cause. Their conversation highlighted their shared dedication to making a positive impact and appreciating meaningful moments in life."
+        }
+      ],
+      "first_timestamp": "2023-05-25T13:33:00+08:00",
+      "last_timestamp": "2023-05-25T13:33:00+08:00",
+      "created_at": "2025-12-05T15:20:04.235581",
+      "updated_at": "2025-12-05T15:20:04.235581"
+    },
+    "gec_060": {
+      "cluster_id": "gec_060",
+      "topic": "John's grief over loss of dog Max",
+      "summary": "On June 3, 2023, John and Maria shared a heartfelt conversation about the recent loss of John’s dog Max, reflecting on the emotional impact and the importance of honoring Max’s memory through cherished memories and lessons of love and loyalty.",
+      "members": [
+        {
+          "unit_id": "cc4ffe8c-e97e-4eba-8dd4-78b931da9030",
+          "timestamp": "2023-06-03T11:55:00+08:00",
+          "summary": "On June 3, 2023, John and Maria shared a heartfelt conversation about the recent loss of John’s dog Max, reflecting on the emotional impact and the importance of honoring Max’s memory through cherished memories and lessons of love and loyalty."
+        }
+      ],
+      "first_timestamp": "2023-06-03T11:55:00+08:00",
+      "last_timestamp": "2023-06-03T11:55:00+08:00",
+      "created_at": "2025-12-05T15:20:10.084173",
+      "updated_at": "2025-12-05T15:20:10.084173"
+    },
+    "gec_061": {
+      "cluster_id": "gec_061",
+      "topic": "Honoring Max's memory and lessons of love and loyalty",
+      "summary": "On June 3, 2023, John and Maria shared a heartfelt conversation about the recent loss of John’s dog Max, reflecting on the emotional impact and the importance of honoring Max’s memory through cherished memories and lessons of love and loyalty.",
+      "members": [
+        {
+          "unit_id": "cc4ffe8c-e97e-4eba-8dd4-78b931da9030",
+          "timestamp": "2023-06-03T11:55:00+08:00",
+          "summary": "On June 3, 2023, John and Maria shared a heartfelt conversation about the recent loss of John’s dog Max, reflecting on the emotional impact and the importance of honoring Max’s memory through cherished memories and lessons of love and loyalty."
+        }
+      ],
+      "first_timestamp": "2023-06-03T11:55:00+08:00",
+      "last_timestamp": "2023-06-03T11:55:00+08:00",
+      "created_at": "2025-12-05T15:20:10.086776",
+      "updated_at": "2025-12-05T15:20:10.086776"
+    },
+    "gec_062": {
+      "cluster_id": "gec_062",
+      "topic": "John's bond with a pet and its influence on family values",
+      "summary": "On June 3, 2023, John and Maria discussed the importance of unconditional love and loyalty inspired by John's bond with a pet, with John expressing plans to adopt a rescue dog to teach his children responsibility and compassion, while Maria offered her support and shared her volunteer experience at a local dog shelter.",
+      "members": [
+        {
+          "unit_id": "130ca1ea-c0dd-4e2f-9ec4-9b09cc3828cf",
+          "timestamp": "2023-06-03T11:58:30+08:00",
+          "summary": "On June 3, 2023, John and Maria discussed the importance of unconditional love and loyalty inspired by John's bond with a pet, with John expressing plans to adopt a rescue dog to teach his children responsibility and compassion, while Maria offered her support and shared her volunteer experience at a local dog shelter."
+        }
+      ],
+      "first_timestamp": "2023-06-03T11:58:30+08:00",
+      "last_timestamp": "2023-06-03T11:58:30+08:00",
+      "created_at": "2025-12-05T15:20:15.946653",
+      "updated_at": "2025-12-05T15:20:15.946653"
+    },
+    "gec_063": {
+      "cluster_id": "gec_063",
+      "topic": "John's plans to adopt a rescue dog",
+      "summary": "On June 3, 2023, John and Maria discussed the importance of unconditional love and loyalty inspired by John's bond with a pet, with John expressing plans to adopt a rescue dog to teach his children responsibility and compassion, while Maria offered her support and shared her volunteer experience at a local dog shelter.",
+      "members": [
+        {
+          "unit_id": "130ca1ea-c0dd-4e2f-9ec4-9b09cc3828cf",
+          "timestamp": "2023-06-03T11:58:30+08:00",
+          "summary": "On June 3, 2023, John and Maria discussed the importance of unconditional love and loyalty inspired by John's bond with a pet, with John expressing plans to adopt a rescue dog to teach his children responsibility and compassion, while Maria offered her support and shared her volunteer experience at a local dog shelter."
+        }
+      ],
+      "first_timestamp": "2023-06-03T11:58:30+08:00",
+      "last_timestamp": "2023-06-03T11:58:30+08:00",
+      "created_at": "2025-12-05T15:20:15.949507",
+      "updated_at": "2025-12-05T15:20:15.949507"
+    },
+    "gec_064": {
+      "cluster_id": "gec_064",
+      "topic": "Maria's volunteer experience at a local dog shelter",
+      "summary": "On June 3, 2023, John and Maria discussed the importance of unconditional love and loyalty inspired by John's bond with a pet, with John expressing plans to adopt a rescue dog to teach his children responsibility and compassion, while Maria offered her support and shared her volunteer experience at a local dog shelter.",
+      "members": [
+        {
+          "unit_id": "130ca1ea-c0dd-4e2f-9ec4-9b09cc3828cf",
+          "timestamp": "2023-06-03T11:58:30+08:00",
+          "summary": "On June 3, 2023, John and Maria discussed the importance of unconditional love and loyalty inspired by John's bond with a pet, with John expressing plans to adopt a rescue dog to teach his children responsibility and compassion, while Maria offered her support and shared her volunteer experience at a local dog shelter."
+        }
+      ],
+      "first_timestamp": "2023-06-03T11:58:30+08:00",
+      "last_timestamp": "2023-06-03T11:58:30+08:00",
+      "created_at": "2025-12-05T15:20:15.951760",
+      "updated_at": "2025-12-05T15:20:15.951760"
+    },
+    "gec_065": {
+      "cluster_id": "gec_065",
+      "topic": "Maria and John's coping with loss through outdoor experiences",
+      "summary": "On June 12, 2023, Maria and John shared a supportive conversation reflecting on coping with loss through their recent outdoor experiences, including camping and mountaineering, highlighting nature's calming and restorative effects. They exchanged photos and personal stories, emphasizing empathy and the emotional benefits of connecting with nature.",
+      "members": [
+        {
+          "unit_id": "5a1aee34-d0cb-4c0d-baef-38ef881383c6",
+          "timestamp": "2023-06-12T14:54:00+08:00",
+          "summary": "On June 12, 2023, Maria and John shared a supportive conversation reflecting on coping with loss through their recent outdoor experiences, including camping and mountaineering, highlighting nature's calming and restorative effects. They exchanged photos and personal stories, emphasizing empathy and the emotional benefits of connecting with nature."
+        }
+      ],
+      "first_timestamp": "2023-06-12T14:54:00+08:00",
+      "last_timestamp": "2023-06-12T14:54:00+08:00",
+      "created_at": "2025-12-05T15:20:22.074466",
+      "updated_at": "2025-12-05T15:20:22.074466"
+    },
+    "gec_066": {
+      "cluster_id": "gec_066",
+      "topic": "Maria and John's camping trips and mountaineering activities",
+      "summary": "On June 12, 2023, Maria and John shared a supportive conversation reflecting on coping with loss through their recent outdoor experiences, including camping and mountaineering, highlighting nature's calming and restorative effects. They exchanged photos and personal stories, emphasizing empathy and the emotional benefits of connecting with nature.",
+      "members": [
+        {
+          "unit_id": "5a1aee34-d0cb-4c0d-baef-38ef881383c6",
+          "timestamp": "2023-06-12T14:54:00+08:00",
+          "summary": "On June 12, 2023, Maria and John shared a supportive conversation reflecting on coping with loss through their recent outdoor experiences, including camping and mountaineering, highlighting nature's calming and restorative effects. They exchanged photos and personal stories, emphasizing empathy and the emotional benefits of connecting with nature."
+        }
+      ],
+      "first_timestamp": "2023-06-12T14:54:00+08:00",
+      "last_timestamp": "2023-06-12T14:54:00+08:00",
+      "created_at": "2025-12-05T15:20:22.077302",
+      "updated_at": "2025-12-05T15:20:22.077302"
+    },
+    "gec_067": {
+      "cluster_id": "gec_067",
+      "topic": "Maria's practice of aerial yoga for well-being",
+      "summary": "On June 12, 2023, Maria shared with John that practicing aerial yoga and listening to her favorite music help her find peace, with a particular fondness for upside-down poses that make her feel free and light. John expressed support and encouragement throughout their positive conversation about the benefits of her practice on her well-being.",
+      "members": [
+        {
+          "unit_id": "bbf8d3bf-4be1-4fbb-9c2f-19ddba383663",
+          "timestamp": "2023-06-12T14:56:30+08:00",
+          "summary": "On June 12, 2023, Maria shared with John that practicing aerial yoga and listening to her favorite music help her find peace, with a particular fondness for upside-down poses that make her feel free and light. John expressed support and encouragement throughout their positive conversation about the benefits of her practice on her well-being."
+        }
+      ],
+      "first_timestamp": "2023-06-12T14:56:30+08:00",
+      "last_timestamp": "2023-06-12T14:56:30+08:00",
+      "created_at": "2025-12-05T15:20:28.335066",
+      "updated_at": "2025-12-05T15:20:28.335066"
+    },
+    "gec_068": {
+      "cluster_id": "gec_068",
+      "topic": "Maria's use of music for relaxation and peace",
+      "summary": "On June 12, 2023, Maria shared with John that practicing aerial yoga and listening to her favorite music help her find peace, with a particular fondness for upside-down poses that make her feel free and light. John expressed support and encouragement throughout their positive conversation about the benefits of her practice on her well-being.",
+      "members": [
+        {
+          "unit_id": "bbf8d3bf-4be1-4fbb-9c2f-19ddba383663",
+          "timestamp": "2023-06-12T14:56:30+08:00",
+          "summary": "On June 12, 2023, Maria shared with John that practicing aerial yoga and listening to her favorite music help her find peace, with a particular fondness for upside-down poses that make her feel free and light. John expressed support and encouragement throughout their positive conversation about the benefits of her practice on her well-being."
+        }
+      ],
+      "first_timestamp": "2023-06-12T14:56:30+08:00",
+      "last_timestamp": "2023-06-12T14:56:30+08:00",
+      "created_at": "2025-12-05T15:20:28.337636",
+      "updated_at": "2025-12-05T15:20:28.337636"
+    },
+    "gec_069": {
+      "cluster_id": "gec_069",
+      "topic": "John's support and encouragement of Maria's wellness practices",
+      "summary": "On June 12, 2023, Maria shared with John that practicing aerial yoga and listening to her favorite music help her find peace, with a particular fondness for upside-down poses that make her feel free and light. John expressed support and encouragement throughout their positive conversation about the benefits of her practice on her well-being.",
+      "members": [
+        {
+          "unit_id": "bbf8d3bf-4be1-4fbb-9c2f-19ddba383663",
+          "timestamp": "2023-06-12T14:56:30+08:00",
+          "summary": "On June 12, 2023, Maria shared with John that practicing aerial yoga and listening to her favorite music help her find peace, with a particular fondness for upside-down poses that make her feel free and light. John expressed support and encouragement throughout their positive conversation about the benefits of her practice on her well-being."
+        }
+      ],
+      "first_timestamp": "2023-06-12T14:56:30+08:00",
+      "last_timestamp": "2023-06-12T14:56:30+08:00",
+      "created_at": "2025-12-05T15:20:28.340127",
+      "updated_at": "2025-12-05T15:20:28.340127"
+    },
+    "gec_070": {
+      "cluster_id": "gec_070",
+      "topic": "John's joyful family outing at the park",
+      "summary": "On June 12, 2023, John shared a photo and described a joyful family outing at the park with his kids, while Maria expressed curiosity and support, highlighting their mutual appreciation for meaningful family moments.",
+      "members": [
+        {
+          "unit_id": "8f2be7b4-d60d-4a6d-82e3-7e9e80ed4437",
+          "timestamp": "2023-06-12T14:58:00+08:00",
+          "summary": "On June 12, 2023, John shared a photo and described a joyful family outing at the park with his kids, while Maria expressed curiosity and support, highlighting their mutual appreciation for meaningful family moments."
+        }
+      ],
+      "first_timestamp": "2023-06-12T14:58:00+08:00",
+      "last_timestamp": "2023-06-12T14:58:00+08:00",
+      "created_at": "2025-12-05T15:20:34.417691",
+      "updated_at": "2025-12-05T15:20:34.417691"
+    },
+    "gec_071": {
+      "cluster_id": "gec_071",
+      "topic": "Maria's curiosity and support for John's family moments",
+      "summary": "On June 12, 2023, John shared a photo and described a joyful family outing at the park with his kids, while Maria expressed curiosity and support, highlighting their mutual appreciation for meaningful family moments.",
+      "members": [
+        {
+          "unit_id": "8f2be7b4-d60d-4a6d-82e3-7e9e80ed4437",
+          "timestamp": "2023-06-12T14:58:00+08:00",
+          "summary": "On June 12, 2023, John shared a photo and described a joyful family outing at the park with his kids, while Maria expressed curiosity and support, highlighting their mutual appreciation for meaningful family moments."
+        }
+      ],
+      "first_timestamp": "2023-06-12T14:58:00+08:00",
+      "last_timestamp": "2023-06-12T14:58:00+08:00",
+      "created_at": "2025-12-05T15:20:34.420164",
+      "updated_at": "2025-12-05T15:20:34.420164"
+    },
+    "gec_072": {
+      "cluster_id": "gec_072",
+      "topic": "Mutual appreciation for meaningful family moments between John and Maria",
+      "summary": "On June 12, 2023, John shared a photo and described a joyful family outing at the park with his kids, while Maria expressed curiosity and support, highlighting their mutual appreciation for meaningful family moments.",
+      "members": [
+        {
+          "unit_id": "8f2be7b4-d60d-4a6d-82e3-7e9e80ed4437",
+          "timestamp": "2023-06-12T14:58:00+08:00",
+          "summary": "On June 12, 2023, John shared a photo and described a joyful family outing at the park with his kids, while Maria expressed curiosity and support, highlighting their mutual appreciation for meaningful family moments."
+        }
+      ],
+      "first_timestamp": "2023-06-12T14:58:00+08:00",
+      "last_timestamp": "2023-06-12T14:58:00+08:00",
+      "created_at": "2025-12-05T15:20:34.421634",
+      "updated_at": "2025-12-05T15:20:34.421634"
+    },
+    "gec_073": {
+      "cluster_id": "gec_073",
+      "topic": "Maria's gym membership and kundalini yoga practice",
+      "summary": "On June 16, 2023, Maria shared with John her positive experience joining a gym and trying kundalini yoga to improve strength and endurance, while John discussed his interest in rock climbing and various workout routines, with both expressing mutual encouragement about their fitness goals.",
+      "members": [
+        {
+          "unit_id": "0051f93f-b3c6-4714-a5d5-79f0b311d0f6",
+          "timestamp": "2023-06-16T19:22:00+08:00",
+          "summary": "On June 16, 2023, Maria shared with John her positive experience joining a gym and trying kundalini yoga to improve strength and endurance, while John discussed his interest in rock climbing and various workout routines, with both expressing mutual encouragement about their fitness goals."
+        }
+      ],
+      "first_timestamp": "2023-06-16T19:22:00+08:00",
+      "last_timestamp": "2023-06-16T19:22:00+08:00",
+      "created_at": "2025-12-05T15:20:42.184445",
+      "updated_at": "2025-12-05T15:20:42.184445"
+    },
+    "gec_074": {
+      "cluster_id": "gec_074",
+      "topic": "John's interest in rock climbing and workout routines",
+      "summary": "On June 16, 2023, Maria shared with John her positive experience joining a gym and trying kundalini yoga to improve strength and endurance, while John discussed his interest in rock climbing and various workout routines, with both expressing mutual encouragement about their fitness goals.",
+      "members": [
+        {
+          "unit_id": "0051f93f-b3c6-4714-a5d5-79f0b311d0f6",
+          "timestamp": "2023-06-16T19:22:00+08:00",
+          "summary": "On June 16, 2023, Maria shared with John her positive experience joining a gym and trying kundalini yoga to improve strength and endurance, while John discussed his interest in rock climbing and various workout routines, with both expressing mutual encouragement about their fitness goals."
+        }
+      ],
+      "first_timestamp": "2023-06-16T19:22:00+08:00",
+      "last_timestamp": "2023-06-16T19:22:00+08:00",
+      "created_at": "2025-12-05T15:20:42.187761",
+      "updated_at": "2025-12-05T15:20:42.187761"
+    },
+    "gec_075": {
+      "cluster_id": "gec_075",
+      "topic": "Mutual encouragement about fitness goals between Maria and John",
+      "summary": "On June 16, 2023, Maria shared with John her positive experience joining a gym and trying kundalini yoga to improve strength and endurance, while John discussed his interest in rock climbing and various workout routines, with both expressing mutual encouragement about their fitness goals.",
+      "members": [
+        {
+          "unit_id": "0051f93f-b3c6-4714-a5d5-79f0b311d0f6",
+          "timestamp": "2023-06-16T19:22:00+08:00",
+          "summary": "On June 16, 2023, Maria shared with John her positive experience joining a gym and trying kundalini yoga to improve strength and endurance, while John discussed his interest in rock climbing and various workout routines, with both expressing mutual encouragement about their fitness goals."
+        }
+      ],
+      "first_timestamp": "2023-06-16T19:22:00+08:00",
+      "last_timestamp": "2023-06-16T19:22:00+08:00",
+      "created_at": "2025-12-05T15:20:42.190492",
+      "updated_at": "2025-12-05T15:20:42.190492"
+    },
+    "gec_076": {
+      "cluster_id": "gec_076",
+      "topic": "John's promotion to assistant manager",
+      "summary": "On June 16, 2023, John shared with Maria his promotion to assistant manager, expressing pride in overcoming challenges and emphasizing the vital support of his family throughout his journey. Their conversation highlighted mutual encouragement, personal growth, and resilience.",
+      "members": [
+        {
+          "unit_id": "f445f62d-e9b1-4612-a309-d23d87985b23",
+          "timestamp": "2023-06-16T19:27:30+08:00",
+          "summary": "On June 16, 2023, John shared with Maria his promotion to assistant manager, expressing pride in overcoming challenges and emphasizing the vital support of his family throughout his journey. Their conversation highlighted mutual encouragement, personal growth, and resilience."
+        }
+      ],
+      "first_timestamp": "2023-06-16T19:27:30+08:00",
+      "last_timestamp": "2023-06-16T19:27:30+08:00",
+      "created_at": "2025-12-05T15:20:47.811294",
+      "updated_at": "2025-12-05T15:20:47.811294"
+    },
+    "gec_077": {
+      "cluster_id": "gec_077",
+      "topic": "John's family support in career achievements",
+      "summary": "On June 16, 2023, John shared with Maria his promotion to assistant manager, expressing pride in overcoming challenges and emphasizing the vital support of his family throughout his journey. Their conversation highlighted mutual encouragement, personal growth, and resilience.",
+      "members": [
+        {
+          "unit_id": "f445f62d-e9b1-4612-a309-d23d87985b23",
+          "timestamp": "2023-06-16T19:27:30+08:00",
+          "summary": "On June 16, 2023, John shared with Maria his promotion to assistant manager, expressing pride in overcoming challenges and emphasizing the vital support of his family throughout his journey. Their conversation highlighted mutual encouragement, personal growth, and resilience."
+        }
+      ],
+      "first_timestamp": "2023-06-16T19:27:30+08:00",
+      "last_timestamp": "2023-06-16T19:27:30+08:00",
+      "created_at": "2025-12-05T15:20:47.813586",
+      "updated_at": "2025-12-05T15:20:47.813586"
+    },
+    "gec_078": {
+      "cluster_id": "gec_078",
+      "topic": "Mutual encouragement and personal growth between John and Maria",
+      "summary": "On June 16, 2023, John shared with Maria his promotion to assistant manager, expressing pride in overcoming challenges and emphasizing the vital support of his family throughout his journey. Their conversation highlighted mutual encouragement, personal growth, and resilience.",
+      "members": [
+        {
+          "unit_id": "f445f62d-e9b1-4612-a309-d23d87985b23",
+          "timestamp": "2023-06-16T19:27:30+08:00",
+          "summary": "On June 16, 2023, John shared with Maria his promotion to assistant manager, expressing pride in overcoming challenges and emphasizing the vital support of his family throughout his journey. Their conversation highlighted mutual encouragement, personal growth, and resilience."
+        }
+      ],
+      "first_timestamp": "2023-06-16T19:27:30+08:00",
+      "last_timestamp": "2023-06-16T19:27:30+08:00",
+      "created_at": "2025-12-05T15:20:47.815824",
+      "updated_at": "2025-12-05T15:20:47.815824"
+    },
+    "gec_079": {
+      "cluster_id": "gec_079",
+      "topic": "John's appreciation of family support",
+      "summary": "On June 16, 2023, John and Maria discussed the importance of support from loved ones and managing work-life balance, sharing personal insights and photos that emphasized gratitude and the need to prioritize meaningful moments.",
+      "members": [
+        {
+          "unit_id": "18283979-3a72-4b4b-b0a5-58c2a95587dc",
+          "timestamp": "2023-06-16T19:30:00+08:00",
+          "summary": "On June 16, 2023, John and Maria discussed the importance of support from loved ones and managing work-life balance, sharing personal insights and photos that emphasized gratitude and the need to prioritize meaningful moments."
+        }
+      ],
+      "first_timestamp": "2023-06-16T19:30:00+08:00",
+      "last_timestamp": "2023-06-16T19:30:00+08:00",
+      "created_at": "2025-12-05T15:20:52.912427",
+      "updated_at": "2025-12-05T15:20:52.912427"
+    },
+    "gec_080": {
+      "cluster_id": "gec_080",
+      "topic": "John and Maria's discussion of work-life balance and gratitude",
+      "summary": "On June 16, 2023, John and Maria discussed the importance of support from loved ones and managing work-life balance, sharing personal insights and photos that emphasized gratitude and the need to prioritize meaningful moments.",
+      "members": [
+        {
+          "unit_id": "18283979-3a72-4b4b-b0a5-58c2a95587dc",
+          "timestamp": "2023-06-16T19:30:00+08:00",
+          "summary": "On June 16, 2023, John and Maria discussed the importance of support from loved ones and managing work-life balance, sharing personal insights and photos that emphasized gratitude and the need to prioritize meaningful moments."
+        }
+      ],
+      "first_timestamp": "2023-06-16T19:30:00+08:00",
+      "last_timestamp": "2023-06-16T19:30:00+08:00",
+      "created_at": "2025-12-05T15:20:52.914424",
+      "updated_at": "2025-12-05T15:20:52.914424"
+    },
+    "gec_081": {
+      "cluster_id": "gec_081",
+      "topic": "Maria's involvement with children at a shelter",
+      "summary": "John encouraged Maria in late June 2023, and in early July, Maria reconnected with him, sharing her involvement with children at a shelter, prompting John to express concern and interest in her wellbeing and the children's situation.",
+      "members": [
+        {
+          "unit_id": "ffa61b7d-433f-494c-98bc-0265ba70a35b",
+          "timestamp": "2023-07-03T20:43:30+08:00",
+          "summary": "John encouraged Maria in late June 2023, and in early July, Maria reconnected with him, sharing her involvement with children at a shelter, prompting John to express concern and interest in her wellbeing and the children's situation."
+        }
+      ],
+      "first_timestamp": "2023-07-03T20:43:30+08:00",
+      "last_timestamp": "2023-07-03T20:43:30+08:00",
+      "created_at": "2025-12-05T15:21:18.420256",
+      "updated_at": "2025-12-05T15:21:18.420256"
+    },
+    "gec_082": {
+      "cluster_id": "gec_082",
+      "topic": "Maria's recent car accident",
+      "summary": "Maria informed John about a recent car accident she experienced and her cousin's urgent need for housing, while also sharing a heartfelt letter from a shelter resident that highlighted her dedication to volunteering; John offered support and resources throughout their empathetic conversation.",
+      "members": [
+        {
+          "unit_id": "0b158e7e-e0ef-431b-aef5-3e17edcde9f6",
+          "timestamp": "2023-07-03T20:53:00+08:00",
+          "summary": "Maria informed John about a recent car accident she experienced and her cousin's urgent need for housing, while also sharing a heartfelt letter from a shelter resident that highlighted her dedication to volunteering; John offered support and resources throughout their empathetic conversation."
+        }
+      ],
+      "first_timestamp": "2023-07-03T20:53:00+08:00",
+      "last_timestamp": "2023-07-03T20:53:00+08:00",
+      "created_at": "2025-12-05T15:21:24.318494",
+      "updated_at": "2025-12-05T15:21:24.318494"
+    },
+    "gec_083": {
+      "cluster_id": "gec_083",
+      "topic": "Maria's cousin's urgent housing need",
+      "summary": "Maria informed John about a recent car accident she experienced and her cousin's urgent need for housing, while also sharing a heartfelt letter from a shelter resident that highlighted her dedication to volunteering; John offered support and resources throughout their empathetic conversation.",
+      "members": [
+        {
+          "unit_id": "0b158e7e-e0ef-431b-aef5-3e17edcde9f6",
+          "timestamp": "2023-07-03T20:53:00+08:00",
+          "summary": "Maria informed John about a recent car accident she experienced and her cousin's urgent need for housing, while also sharing a heartfelt letter from a shelter resident that highlighted her dedication to volunteering; John offered support and resources throughout their empathetic conversation."
+        }
+      ],
+      "first_timestamp": "2023-07-03T20:53:00+08:00",
+      "last_timestamp": "2023-07-03T20:53:00+08:00",
+      "created_at": "2025-12-05T15:21:24.320635",
+      "updated_at": "2025-12-05T15:21:24.320635"
+    },
+    "gec_084": {
+      "cluster_id": "gec_084",
+      "topic": "John's participation in veterans' rights activism",
+      "summary": "On July 3, 2023, Maria and John discussed their shared passion for volunteering and activism, with Maria expressing her love for making a difference through small actions and John sharing his recent experience at a veterans' rights march that reinforced his commitment to supporting important causes. Both encouraged each other and emphasized the motivating power of collective efforts in striving for progress.",
+      "members": [
+        {
+          "unit_id": "b1cf8cd0-1486-45cb-a08d-bb7a772a7505",
+          "timestamp": "2023-07-03T20:57:00+08:00",
+          "summary": "On July 3, 2023, Maria and John discussed their shared passion for volunteering and activism, with Maria expressing her love for making a difference through small actions and John sharing his recent experience at a veterans' rights march that reinforced his commitment to supporting important causes. Both encouraged each other and emphasized the motivating power of collective efforts in striving for progress."
+        }
+      ],
+      "first_timestamp": "2023-07-03T20:57:00+08:00",
+      "last_timestamp": "2023-07-03T20:57:00+08:00",
+      "created_at": "2025-12-05T15:21:29.809249",
+      "updated_at": "2025-12-05T15:21:29.809249"
+    },
+    "gec_085": {
+      "cluster_id": "gec_085",
+      "topic": "Flood damage in John's old neighborhood",
+      "summary": "John and Maria discussed the recent flood damage in John's old neighborhood and expressed mutual commitment to organizing community efforts for recovery and improvement. They encouraged each other and planned to collaborate on solutions to address the area's infrastructure challenges.",
+      "members": [
+        {
+          "unit_id": "89e3d44c-48f4-441c-ba5c-95628b31a742",
+          "timestamp": "2023-07-07T18:35:30+08:00",
+          "summary": "John and Maria discussed the recent flood damage in John's old neighborhood and expressed mutual commitment to organizing community efforts for recovery and improvement. They encouraged each other and planned to collaborate on solutions to address the area's infrastructure challenges."
+        }
+      ],
+      "first_timestamp": "2023-07-07T18:35:30+08:00",
+      "last_timestamp": "2023-07-07T18:35:30+08:00",
+      "created_at": "2025-12-05T15:21:55.751518",
+      "updated_at": "2025-12-05T15:21:55.751518"
+    },
+    "gec_086": {
+      "cluster_id": "gec_086",
+      "topic": "Community efforts for flood recovery",
+      "summary": "John and Maria discussed the recent flood damage in John's old neighborhood and expressed mutual commitment to organizing community efforts for recovery and improvement. They encouraged each other and planned to collaborate on solutions to address the area's infrastructure challenges.",
+      "members": [
+        {
+          "unit_id": "89e3d44c-48f4-441c-ba5c-95628b31a742",
+          "timestamp": "2023-07-07T18:35:30+08:00",
+          "summary": "John and Maria discussed the recent flood damage in John's old neighborhood and expressed mutual commitment to organizing community efforts for recovery and improvement. They encouraged each other and planned to collaborate on solutions to address the area's infrastructure challenges."
+        }
+      ],
+      "first_timestamp": "2023-07-07T18:35:30+08:00",
+      "last_timestamp": "2023-07-07T18:35:30+08:00",
+      "created_at": "2025-12-05T15:21:55.753586",
+      "updated_at": "2025-12-05T15:21:55.753586"
+    },
+    "gec_087": {
+      "cluster_id": "gec_087",
+      "topic": "John's experience visiting a veteran's hospital",
+      "summary": "On July 17, 2023, John shared with Maria his inspiring and emotional experience visiting a veteran's hospital, highlighting the resilience of veterans and the importance of giving back to the community, which Maria warmly acknowledged. Both expressed mutual respect and a shared commitment to supporting veterans throughout their conversation.",
+      "members": [
+        {
+          "unit_id": "bea5368d-dcfc-434b-9f17-6a1729c0a3c9",
+          "timestamp": "2023-07-17T15:36:00+08:00",
+          "summary": "On July 17, 2023, John shared with Maria his inspiring and emotional experience visiting a veteran's hospital, highlighting the resilience of veterans and the importance of giving back to the community, which Maria warmly acknowledged. Both expressed mutual respect and a shared commitment to supporting veterans throughout their conversation."
+        }
+      ],
+      "first_timestamp": "2023-07-17T15:36:00+08:00",
+      "last_timestamp": "2023-07-17T15:36:00+08:00",
+      "created_at": "2025-12-05T15:22:00.745526",
+      "updated_at": "2025-12-05T15:22:00.745526"
+    },
+    "gec_088": {
+      "cluster_id": "gec_088",
+      "topic": "Support for military veterans",
+      "summary": "On July 17, 2023, John shared with Maria his inspiring and emotional experience visiting a veteran's hospital, highlighting the resilience of veterans and the importance of giving back to the community, which Maria warmly acknowledged. Both expressed mutual respect and a shared commitment to supporting veterans throughout their conversation.",
+      "members": [
+        {
+          "unit_id": "bea5368d-dcfc-434b-9f17-6a1729c0a3c9",
+          "timestamp": "2023-07-17T15:36:00+08:00",
+          "summary": "On July 17, 2023, John shared with Maria his inspiring and emotional experience visiting a veteran's hospital, highlighting the resilience of veterans and the importance of giving back to the community, which Maria warmly acknowledged. Both expressed mutual respect and a shared commitment to supporting veterans throughout their conversation."
+        }
+      ],
+      "first_timestamp": "2023-07-17T15:36:00+08:00",
+      "last_timestamp": "2023-07-17T15:36:00+08:00",
+      "created_at": "2025-12-05T15:22:00.748370",
+      "updated_at": "2025-12-05T15:22:00.748370"
+    },
+    "gec_089": {
+      "cluster_id": "gec_089",
+      "topic": "John's appreciation of community organization as a supportive family",
+      "summary": "On July 17, 2023, John and Maria discussed recent enjoyable family and community activities, emphasizing the importance of connection, kindness, and spreading positivity. They shared experiences of picnics, games, and creative events, highlighting the joy and impact of fostering relationships and simple acts of goodwill.",
+      "members": [
+        {
+          "unit_id": "3ed64bb9-c9ac-45b4-b16b-e6ffa62170cb",
+          "timestamp": "2023-07-17T15:42:00+08:00",
+          "summary": "On July 17, 2023, John and Maria discussed recent enjoyable family and community activities, emphasizing the importance of connection, kindness, and spreading positivity. They shared experiences of picnics, games, and creative events, highlighting the joy and impact of fostering relationships and simple acts of goodwill."
+        }
+      ],
+      "first_timestamp": "2023-07-17T15:42:00+08:00",
+      "last_timestamp": "2023-07-17T15:42:00+08:00",
+      "created_at": "2025-12-05T15:22:06.831419",
+      "updated_at": "2025-12-05T15:22:06.831419"
+    },
+    "gec_090": {
+      "cluster_id": "gec_090",
+      "topic": "Maria's recent family picnic and social activities",
+      "summary": "On July 17, 2023, John and Maria discussed recent enjoyable family and community activities, emphasizing the importance of connection, kindness, and spreading positivity. They shared experiences of picnics, games, and creative events, highlighting the joy and impact of fostering relationships and simple acts of goodwill.",
+      "members": [
+        {
+          "unit_id": "3ed64bb9-c9ac-45b4-b16b-e6ffa62170cb",
+          "timestamp": "2023-07-17T15:42:00+08:00",
+          "summary": "On July 17, 2023, John and Maria discussed recent enjoyable family and community activities, emphasizing the importance of connection, kindness, and spreading positivity. They shared experiences of picnics, games, and creative events, highlighting the joy and impact of fostering relationships and simple acts of goodwill."
+        }
+      ],
+      "first_timestamp": "2023-07-17T15:42:00+08:00",
+      "last_timestamp": "2023-07-17T15:42:00+08:00",
+      "created_at": "2025-12-05T15:22:06.834088",
+      "updated_at": "2025-12-05T15:22:06.834088"
+    },
+    "gec_091": {
+      "cluster_id": "gec_091",
+      "topic": "John and Maria's emphasis on kindness and spreading positivity through simple acts",
+      "summary": "On July 17, 2023, John and Maria discussed recent enjoyable family and community activities, emphasizing the importance of connection, kindness, and spreading positivity. They shared experiences of picnics, games, and creative events, highlighting the joy and impact of fostering relationships and simple acts of goodwill.",
+      "members": [
+        {
+          "unit_id": "3ed64bb9-c9ac-45b4-b16b-e6ffa62170cb",
+          "timestamp": "2023-07-17T15:42:00+08:00",
+          "summary": "On July 17, 2023, John and Maria discussed recent enjoyable family and community activities, emphasizing the importance of connection, kindness, and spreading positivity. They shared experiences of picnics, games, and creative events, highlighting the joy and impact of fostering relationships and simple acts of goodwill."
+        }
+      ],
+      "first_timestamp": "2023-07-17T15:42:00+08:00",
+      "last_timestamp": "2023-07-17T15:42:00+08:00",
+      "created_at": "2025-12-05T15:22:06.836797",
+      "updated_at": "2025-12-05T15:22:06.836797"
+    },
+    "gec_092": {
+      "cluster_id": "gec_092",
+      "topic": "John's yoga studio fitness activities",
+      "summary": "On July 22, 2023, John and Maria discussed fitness activities, focusing on a yoga studio John frequently attends that offers various classes like yoga, kickboxing, and circuit training, with both expressing enthusiasm for trying new workouts. Their conversation highlighted mutual encouragement and interest in wellness between 6:25 PM and 6:30:30 PM UTC+8.",
+      "members": [
+        {
+          "unit_id": "1d5c0469-30cf-488a-92c3-115fa150945b",
+          "timestamp": "2023-07-22T18:30:30+08:00",
+          "summary": "On July 22, 2023, John and Maria discussed fitness activities, focusing on a yoga studio John frequently attends that offers various classes like yoga, kickboxing, and circuit training, with both expressing enthusiasm for trying new workouts. Their conversation highlighted mutual encouragement and interest in wellness between 6:25 PM and 6:30:30 PM UTC+8."
+        }
+      ],
+      "first_timestamp": "2023-07-22T18:30:30+08:00",
+      "last_timestamp": "2023-07-22T18:30:30+08:00",
+      "created_at": "2025-12-05T15:22:22.507196",
+      "updated_at": "2025-12-05T15:22:22.507196"
+    },
+    "gec_093": {
+      "cluster_id": "gec_093",
+      "topic": "John and Maria's mutual encouragement for wellness",
+      "summary": "On July 22, 2023, John and Maria discussed fitness activities, focusing on a yoga studio John frequently attends that offers various classes like yoga, kickboxing, and circuit training, with both expressing enthusiasm for trying new workouts. Their conversation highlighted mutual encouragement and interest in wellness between 6:25 PM and 6:30:30 PM UTC+8.",
+      "members": [
+        {
+          "unit_id": "1d5c0469-30cf-488a-92c3-115fa150945b",
+          "timestamp": "2023-07-22T18:30:30+08:00",
+          "summary": "On July 22, 2023, John and Maria discussed fitness activities, focusing on a yoga studio John frequently attends that offers various classes like yoga, kickboxing, and circuit training, with both expressing enthusiasm for trying new workouts. Their conversation highlighted mutual encouragement and interest in wellness between 6:25 PM and 6:30:30 PM UTC+8."
+        }
+      ],
+      "first_timestamp": "2023-07-22T18:30:30+08:00",
+      "last_timestamp": "2023-07-22T18:30:30+08:00",
+      "created_at": "2025-12-05T15:22:22.509799",
+      "updated_at": "2025-12-05T15:22:22.509799"
+    },
+    "gec_094": {
+      "cluster_id": "gec_094",
+      "topic": "John's involvement in fire-fighting brigade",
+      "summary": "Maria and John discussed their recent community service efforts, with Maria sharing her experience volunteering at a homeless shelter and John describing his involvement in a fire-fighting brigade, highlighting their mutual encouragement and commitment to helping others.",
+      "members": [
+        {
+          "unit_id": "96858fad-ca3d-474a-bc45-4ae1872341f2",
+          "timestamp": "2023-07-31T14:07:00+08:00",
+          "summary": "Maria and John discussed their recent community service efforts, with Maria sharing her experience volunteering at a homeless shelter and John describing his involvement in a fire-fighting brigade, highlighting their mutual encouragement and commitment to helping others."
+        }
+      ],
+      "first_timestamp": "2023-07-31T14:07:00+08:00",
+      "last_timestamp": "2023-07-31T14:07:00+08:00",
+      "created_at": "2025-12-05T15:22:27.305179",
+      "updated_at": "2025-12-05T15:22:27.305179"
+    },
+    "gec_095": {
+      "cluster_id": "gec_095",
+      "topic": "John's advocacy and support efforts for military personnel",
+      "summary": "Maria and John exchanged messages expressing mutual support and admiration for their respective efforts in helping vulnerable groups, with John advocating for military personnel and Maria volunteering at a homeless shelter.",
+      "members": [
+        {
+          "unit_id": "349e14ba-b42b-478c-adc5-c5976699dd54",
+          "timestamp": "2023-08-03T18:22:30+08:00",
+          "summary": "Maria and John exchanged messages expressing mutual support and admiration for their respective efforts in helping vulnerable groups, with John advocating for military personnel and Maria volunteering at a homeless shelter."
+        }
+      ],
+      "first_timestamp": "2023-08-03T18:22:30+08:00",
+      "last_timestamp": "2023-08-03T18:22:30+08:00",
+      "created_at": "2025-12-05T15:22:32.194405",
+      "updated_at": "2025-12-05T15:22:32.194405"
+    },
+    "gec_096": {
+      "cluster_id": "gec_096",
+      "topic": "John's family visit to military memorial",
+      "summary": "On August 3, 2023, John and Maria discussed the importance of teaching younger generations to respect military veterans, reflecting on John's impactful family visit to a military memorial and emphasizing the value of honoring veterans through education and teamwork.",
+      "members": [
+        {
+          "unit_id": "c7f2fbee-72da-4832-84d3-2aaf46069ae8",
+          "timestamp": "2023-08-03T18:27:30+08:00",
+          "summary": "On August 3, 2023, John and Maria discussed the importance of teaching younger generations to respect military veterans, reflecting on John's impactful family visit to a military memorial and emphasizing the value of honoring veterans through education and teamwork."
+        }
+      ],
+      "first_timestamp": "2023-08-03T18:27:30+08:00",
+      "last_timestamp": "2023-08-03T18:27:30+08:00",
+      "created_at": "2025-12-05T15:22:42.268026",
+      "updated_at": "2025-12-05T15:22:42.268026"
+    },
+    "gec_097": {
+      "cluster_id": "gec_097",
+      "topic": "Teaching younger generations to respect military veterans",
+      "summary": "On August 3, 2023, John and Maria discussed the importance of teaching younger generations to respect military veterans, reflecting on John's impactful family visit to a military memorial and emphasizing the value of honoring veterans through education and teamwork.",
+      "members": [
+        {
+          "unit_id": "c7f2fbee-72da-4832-84d3-2aaf46069ae8",
+          "timestamp": "2023-08-03T18:27:30+08:00",
+          "summary": "On August 3, 2023, John and Maria discussed the importance of teaching younger generations to respect military veterans, reflecting on John's impactful family visit to a military memorial and emphasizing the value of honoring veterans through education and teamwork."
+        }
+      ],
+      "first_timestamp": "2023-08-03T18:27:30+08:00",
+      "last_timestamp": "2023-08-03T18:27:30+08:00",
+      "created_at": "2025-12-05T15:22:42.270540",
+      "updated_at": "2025-12-05T15:22:42.270540"
+    },
+    "gec_098": {
+      "cluster_id": "gec_098",
+      "topic": "Honoring veterans through education and teamwork",
+      "summary": "On August 3, 2023, John and Maria discussed the importance of teaching younger generations to respect military veterans, reflecting on John's impactful family visit to a military memorial and emphasizing the value of honoring veterans through education and teamwork.",
+      "members": [
+        {
+          "unit_id": "c7f2fbee-72da-4832-84d3-2aaf46069ae8",
+          "timestamp": "2023-08-03T18:27:30+08:00",
+          "summary": "On August 3, 2023, John and Maria discussed the importance of teaching younger generations to respect military veterans, reflecting on John's impactful family visit to a military memorial and emphasizing the value of honoring veterans through education and teamwork."
+        }
+      ],
+      "first_timestamp": "2023-08-03T18:27:30+08:00",
+      "last_timestamp": "2023-08-03T18:27:30+08:00",
+      "created_at": "2025-12-05T15:22:42.273020",
+      "updated_at": "2025-12-05T15:22:42.273020"
+    },
+    "gec_099": {
+      "cluster_id": "gec_099",
+      "topic": "John's job loss at mechanical engineering company",
+      "summary": "On August 5, 2023, John shared with Maria his recent job loss at a mechanical engineering company and his plans to transition into the tech industry, while Maria offered emotional support and encouragement, highlighting the importance of positivity and community involvement.",
+      "members": [
+        {
+          "unit_id": "c844dd12-bb88-467f-ab14-fd57bfbb2461",
+          "timestamp": "2023-08-05T17:23:00+08:00",
+          "summary": "On August 5, 2023, John shared with Maria his recent job loss at a mechanical engineering company and his plans to transition into the tech industry, while Maria offered emotional support and encouragement, highlighting the importance of positivity and community involvement."
+        }
+      ],
+      "first_timestamp": "2023-08-05T17:23:00+08:00",
+      "last_timestamp": "2023-08-05T17:23:00+08:00",
+      "created_at": "2025-12-05T15:22:47.399764",
+      "updated_at": "2025-12-05T15:22:47.399764"
+    },
+    "gec_100": {
+      "cluster_id": "gec_100",
+      "topic": "John's plans to transition into the tech industry",
+      "summary": "On August 5, 2023, John shared with Maria his recent job loss at a mechanical engineering company and his plans to transition into the tech industry, while Maria offered emotional support and encouragement, highlighting the importance of positivity and community involvement.",
+      "members": [
+        {
+          "unit_id": "c844dd12-bb88-467f-ab14-fd57bfbb2461",
+          "timestamp": "2023-08-05T17:23:00+08:00",
+          "summary": "On August 5, 2023, John shared with Maria his recent job loss at a mechanical engineering company and his plans to transition into the tech industry, while Maria offered emotional support and encouragement, highlighting the importance of positivity and community involvement."
+        }
+      ],
+      "first_timestamp": "2023-08-05T17:23:00+08:00",
+      "last_timestamp": "2023-08-05T17:23:00+08:00",
+      "created_at": "2025-12-05T15:22:47.402032",
+      "updated_at": "2025-12-05T15:22:47.402032"
+    },
+    "gec_101": {
+      "cluster_id": "gec_101",
+      "topic": "John's past volunteer work renovating a community center",
+      "summary": "John and Maria discussed their volunteer experiences, emphasizing the importance of kindness and compassion, with John sharing his past work renovating a community center and Maria offering encouragement and support for his continued efforts.",
+      "members": [
+        {
+          "unit_id": "516c6af1-1f29-4674-9189-63a5d37ad002",
+          "timestamp": "2023-08-05T17:28:00+08:00",
+          "summary": "John and Maria discussed their volunteer experiences, emphasizing the importance of kindness and compassion, with John sharing his past work renovating a community center and Maria offering encouragement and support for his continued efforts."
+        }
+      ],
+      "first_timestamp": "2023-08-05T17:28:00+08:00",
+      "last_timestamp": "2023-08-05T17:28:00+08:00",
+      "created_at": "2025-12-05T15:22:54.093516",
+      "updated_at": "2025-12-05T15:22:54.093516"
+    },
+    "gec_102": {
+      "cluster_id": "gec_102",
+      "topic": "Maria's encouragement and support for John's volunteer efforts",
+      "summary": "John and Maria discussed their volunteer experiences, emphasizing the importance of kindness and compassion, with John sharing his past work renovating a community center and Maria offering encouragement and support for his continued efforts.",
+      "members": [
+        {
+          "unit_id": "516c6af1-1f29-4674-9189-63a5d37ad002",
+          "timestamp": "2023-08-05T17:28:00+08:00",
+          "summary": "John and Maria discussed their volunteer experiences, emphasizing the importance of kindness and compassion, with John sharing his past work renovating a community center and Maria offering encouragement and support for his continued efforts."
+        }
+      ],
+      "first_timestamp": "2023-08-05T17:28:00+08:00",
+      "last_timestamp": "2023-08-05T17:28:00+08:00",
+      "created_at": "2025-12-05T15:22:54.094223",
+      "updated_at": "2025-12-05T15:22:54.094223"
+    },
+    "gec_103": {
+      "cluster_id": "gec_103",
+      "topic": "Importance of kindness and compassion in volunteering",
+      "summary": "John and Maria discussed their volunteer experiences, emphasizing the importance of kindness and compassion, with John sharing his past work renovating a community center and Maria offering encouragement and support for his continued efforts.",
+      "members": [
+        {
+          "unit_id": "516c6af1-1f29-4674-9189-63a5d37ad002",
+          "timestamp": "2023-08-05T17:28:00+08:00",
+          "summary": "John and Maria discussed their volunteer experiences, emphasizing the importance of kindness and compassion, with John sharing his past work renovating a community center and Maria offering encouragement and support for his continued efforts."
+        }
+      ],
+      "first_timestamp": "2023-08-05T17:28:00+08:00",
+      "last_timestamp": "2023-08-05T17:28:00+08:00",
+      "created_at": "2025-12-05T15:22:54.094223",
+      "updated_at": "2025-12-05T15:22:54.094223"
+    },
+    "gec_104": {
+      "cluster_id": "gec_104",
+      "topic": "John's organization of 5K charity run for veterans",
+      "summary": "John and Maria discussed their recent community service activities, with Maria sharing her experience volunteering at a homeless shelter and receiving a medal, while John described organizing a successful 5K charity run to support veterans and his involvement in raising awareness for domestic abuse victims. Both expressed mutual respect and encouragement for each other's charitable efforts.",
+      "members": [
+        {
+          "unit_id": "d7f1714f-950e-47cf-9b81-80cc7f41bb3c",
+          "timestamp": "2023-08-09T20:10:30+08:00",
+          "summary": "John and Maria discussed their recent community service activities, with Maria sharing her experience volunteering at a homeless shelter and receiving a medal, while John described organizing a successful 5K charity run to support veterans and his involvement in raising awareness for domestic abuse victims. Both expressed mutual respect and encouragement for each other's charitable efforts."
+        }
+      ],
+      "first_timestamp": "2023-08-09T20:10:30+08:00",
+      "last_timestamp": "2023-08-09T20:10:30+08:00",
+      "created_at": "2025-12-05T15:23:00.226582",
+      "updated_at": "2025-12-05T15:23:00.227289"
+    },
+    "gec_105": {
+      "cluster_id": "gec_105",
+      "topic": "John's involvement in raising awareness for domestic abuse victims",
+      "summary": "John and Maria discussed their recent community service activities, with Maria sharing her experience volunteering at a homeless shelter and receiving a medal, while John described organizing a successful 5K charity run to support veterans and his involvement in raising awareness for domestic abuse victims. Both expressed mutual respect and encouragement for each other's charitable efforts.",
+      "members": [
+        {
+          "unit_id": "d7f1714f-950e-47cf-9b81-80cc7f41bb3c",
+          "timestamp": "2023-08-09T20:10:30+08:00",
+          "summary": "John and Maria discussed their recent community service activities, with Maria sharing her experience volunteering at a homeless shelter and receiving a medal, while John described organizing a successful 5K charity run to support veterans and his involvement in raising awareness for domestic abuse victims. Both expressed mutual respect and encouragement for each other's charitable efforts."
+        }
+      ],
+      "first_timestamp": "2023-08-09T20:10:30+08:00",
+      "last_timestamp": "2023-08-09T20:10:30+08:00",
+      "created_at": "2025-12-05T15:23:00.229183",
+      "updated_at": "2025-12-05T15:23:00.229183"
+    },
+    "gec_106": {
+      "cluster_id": "gec_106",
+      "topic": "Maria's new puppy Coco",
+      "summary": "On August 11, 2023, Maria and John reconnected through a conversation about their pets, with Maria sharing about her new puppy Coco and John reminiscing about his dog Max and a memorable camping trip, highlighting the joy and emotional support their animals and nature provide.",
+      "members": [
+        {
+          "unit_id": "61841d81-860f-4b20-b56f-5527d6d865a6",
+          "timestamp": "2023-08-11T00:15:30+08:00",
+          "summary": "On August 11, 2023, Maria and John reconnected through a conversation about their pets, with Maria sharing about her new puppy Coco and John reminiscing about his dog Max and a memorable camping trip, highlighting the joy and emotional support their animals and nature provide."
+        }
+      ],
+      "first_timestamp": "2023-08-11T00:15:30+08:00",
+      "last_timestamp": "2023-08-11T00:15:30+08:00",
+      "created_at": "2025-12-05T15:23:10.599925",
+      "updated_at": "2025-12-05T15:23:10.599925"
+    },
+    "gec_107": {
+      "cluster_id": "gec_107",
+      "topic": "John's dog Max and camping trip",
+      "summary": "On August 11, 2023, Maria and John reconnected through a conversation about their pets, with Maria sharing about her new puppy Coco and John reminiscing about his dog Max and a memorable camping trip, highlighting the joy and emotional support their animals and nature provide.",
+      "members": [
+        {
+          "unit_id": "61841d81-860f-4b20-b56f-5527d6d865a6",
+          "timestamp": "2023-08-11T00:15:30+08:00",
+          "summary": "On August 11, 2023, Maria and John reconnected through a conversation about their pets, with Maria sharing about her new puppy Coco and John reminiscing about his dog Max and a memorable camping trip, highlighting the joy and emotional support their animals and nature provide."
+        }
+      ],
+      "first_timestamp": "2023-08-11T00:15:30+08:00",
+      "last_timestamp": "2023-08-11T00:15:30+08:00",
+      "created_at": "2025-12-05T15:23:10.602063",
+      "updated_at": "2025-12-05T15:23:10.602063"
+    },
+    "gec_108": {
+      "cluster_id": "gec_108",
+      "topic": "Emotional support from pets and nature",
+      "summary": "On August 11, 2023, Maria and John reconnected through a conversation about their pets, with Maria sharing about her new puppy Coco and John reminiscing about his dog Max and a memorable camping trip, highlighting the joy and emotional support their animals and nature provide.",
+      "members": [
+        {
+          "unit_id": "61841d81-860f-4b20-b56f-5527d6d865a6",
+          "timestamp": "2023-08-11T00:15:30+08:00",
+          "summary": "On August 11, 2023, Maria and John reconnected through a conversation about their pets, with Maria sharing about her new puppy Coco and John reminiscing about his dog Max and a memorable camping trip, highlighting the joy and emotional support their animals and nature provide."
+        }
+      ],
+      "first_timestamp": "2023-08-11T00:15:30+08:00",
+      "last_timestamp": "2023-08-11T00:15:30+08:00",
+      "created_at": "2025-12-05T15:23:10.604086",
+      "updated_at": "2025-12-05T15:23:10.604086"
+    },
+    "gec_109": {
+      "cluster_id": "gec_109",
+      "topic": "John's volunteering as a mentor at a local school",
+      "summary": "Maria thanked John for his encouraging words and expressed her commitment to spreading positivity, while John shared his rewarding experience volunteering as a mentor at a local school.",
+      "members": [
+        {
+          "unit_id": "c8f755e7-52f8-4c24-afd1-0c66ef5b9d61",
+          "timestamp": "2023-08-13T15:14:00+08:00",
+          "summary": "Maria thanked John for his encouraging words and expressed her commitment to spreading positivity, while John shared his rewarding experience volunteering as a mentor at a local school."
+        }
+      ],
+      "first_timestamp": "2023-08-13T15:14:00+08:00",
+      "last_timestamp": "2023-08-13T15:14:00+08:00",
+      "created_at": "2025-12-05T15:23:20.726410",
+      "updated_at": "2025-12-05T15:23:20.726410"
+    },
+    "gec_110": {
+      "cluster_id": "gec_110",
+      "topic": "Maria's recent puppy adoption",
+      "summary": "Maria and John discussed pet adoption, with Maria sharing about her recently adopted puppy Shadow and John expressing interest in adopting a puppy himself. Their conversation highlighted mutual appreciation for animals and personal experiences with pets.",
+      "members": [
+        {
+          "unit_id": "55fa0c20-9ad2-47d0-a15f-ac8d128c79cd",
+          "timestamp": "2023-08-13T15:17:00+08:00",
+          "summary": "Maria and John discussed pet adoption, with Maria sharing about her recently adopted puppy Shadow and John expressing interest in adopting a puppy himself. Their conversation highlighted mutual appreciation for animals and personal experiences with pets."
+        }
+      ],
+      "first_timestamp": "2023-08-13T15:17:00+08:00",
+      "last_timestamp": "2023-08-13T15:17:00+08:00",
+      "created_at": "2025-12-05T15:23:25.822934",
+      "updated_at": "2025-12-05T15:23:25.822934"
+    },
+    "gec_111": {
+      "cluster_id": "gec_111",
+      "topic": "John's interest in adopting a puppy",
+      "summary": "Maria and John discussed pet adoption, with Maria sharing about her recently adopted puppy Shadow and John expressing interest in adopting a puppy himself. Their conversation highlighted mutual appreciation for animals and personal experiences with pets.",
+      "members": [
+        {
+          "unit_id": "55fa0c20-9ad2-47d0-a15f-ac8d128c79cd",
+          "timestamp": "2023-08-13T15:17:00+08:00",
+          "summary": "Maria and John discussed pet adoption, with Maria sharing about her recently adopted puppy Shadow and John expressing interest in adopting a puppy himself. Their conversation highlighted mutual appreciation for animals and personal experiences with pets."
+        }
+      ],
+      "first_timestamp": "2023-08-13T15:17:00+08:00",
+      "last_timestamp": "2023-08-13T15:17:00+08:00",
+      "created_at": "2025-12-05T15:23:25.825594",
+      "updated_at": "2025-12-05T15:23:25.825594"
+    },
+    "gec_112": {
+      "cluster_id": "gec_112",
+      "topic": "Mutual appreciation for animals and pets",
+      "summary": "Maria and John discussed pet adoption, with Maria sharing about her recently adopted puppy Shadow and John expressing interest in adopting a puppy himself. Their conversation highlighted mutual appreciation for animals and personal experiences with pets.",
+      "members": [
+        {
+          "unit_id": "55fa0c20-9ad2-47d0-a15f-ac8d128c79cd",
+          "timestamp": "2023-08-13T15:17:00+08:00",
+          "summary": "Maria and John discussed pet adoption, with Maria sharing about her recently adopted puppy Shadow and John expressing interest in adopting a puppy himself. Their conversation highlighted mutual appreciation for animals and personal experiences with pets."
+        }
+      ],
+      "first_timestamp": "2023-08-13T15:17:00+08:00",
+      "last_timestamp": "2023-08-13T15:17:00+08:00",
+      "created_at": "2025-12-05T15:23:25.827567",
+      "updated_at": "2025-12-05T15:23:25.827567"
+    },
+    "gec_113": {
+      "cluster_id": "gec_113",
+      "topic": "John's experiences with puppies and interest in animal shelters",
+      "summary": "On August 13, 2023, John and Maria discussed their experiences with pets and a mentoring program, sharing updates about their puppies and the progress of John's students, while reflecting on the joy and companionship animals bring.",
+      "members": [
+        {
+          "unit_id": "fc4b81e2-4e2b-4ec5-b605-292914cd89f4",
+          "timestamp": "2023-08-13T15:21:30+08:00",
+          "summary": "On August 13, 2023, John and Maria discussed their experiences with pets and a mentoring program, sharing updates about their puppies and the progress of John's students, while reflecting on the joy and companionship animals bring."
+        }
+      ],
+      "first_timestamp": "2023-08-13T15:21:30+08:00",
+      "last_timestamp": "2023-08-13T15:21:30+08:00",
+      "created_at": "2025-12-05T15:23:31.069489",
+      "updated_at": "2025-12-05T15:23:31.069489"
+    },
+    "gec_114": {
+      "cluster_id": "gec_114",
+      "topic": "John's mentoring program and student progress",
+      "summary": "On August 13, 2023, John and Maria discussed their experiences with pets and a mentoring program, sharing updates about their puppies and the progress of John's students, while reflecting on the joy and companionship animals bring.",
+      "members": [
+        {
+          "unit_id": "fc4b81e2-4e2b-4ec5-b605-292914cd89f4",
+          "timestamp": "2023-08-13T15:21:30+08:00",
+          "summary": "On August 13, 2023, John and Maria discussed their experiences with pets and a mentoring program, sharing updates about their puppies and the progress of John's students, while reflecting on the joy and companionship animals bring."
+        }
+      ],
+      "first_timestamp": "2023-08-13T15:21:30+08:00",
+      "last_timestamp": "2023-08-13T15:21:30+08:00",
+      "created_at": "2025-12-05T15:23:31.072169",
+      "updated_at": "2025-12-05T15:23:31.072169"
+    },
+    "gec_115": {
+      "cluster_id": "gec_115",
+      "topic": "Maria's reflections on the joy and companionship pets bring",
+      "summary": "On August 13, 2023, John and Maria discussed their experiences with pets and a mentoring program, sharing updates about their puppies and the progress of John's students, while reflecting on the joy and companionship animals bring.",
+      "members": [
+        {
+          "unit_id": "fc4b81e2-4e2b-4ec5-b605-292914cd89f4",
+          "timestamp": "2023-08-13T15:21:30+08:00",
+          "summary": "On August 13, 2023, John and Maria discussed their experiences with pets and a mentoring program, sharing updates about their puppies and the progress of John's students, while reflecting on the joy and companionship animals bring."
+        }
+      ],
+      "first_timestamp": "2023-08-13T15:21:30+08:00",
+      "last_timestamp": "2023-08-13T15:21:30+08:00",
+      "created_at": "2025-12-05T15:23:31.074576",
+      "updated_at": "2025-12-05T15:23:31.074576"
+    },
+    "gec_116": {
+      "cluster_id": "gec_116",
+      "topic": "John's membership in the fire-fighting brigade",
+      "summary": "On August 16, 2023, John shared with Maria his excitement about joining the fire-fighting brigade and their successful community donation drive that helped acquire a new fire truck, while Maria expressed admiration and support for his dedication and the group's efforts.",
+      "members": [
+        {
+          "unit_id": "d1b14362-8239-4dcc-9475-1b93937da0e6",
+          "timestamp": "2023-08-16T11:14:00+08:00",
+          "summary": "On August 16, 2023, John shared with Maria his excitement about joining the fire-fighting brigade and their successful community donation drive that helped acquire a new fire truck, while Maria expressed admiration and support for his dedication and the group's efforts."
+        }
+      ],
+      "first_timestamp": "2023-08-16T11:14:00+08:00",
+      "last_timestamp": "2023-08-16T11:14:00+08:00",
+      "created_at": "2025-12-05T15:23:41.562608",
+      "updated_at": "2025-12-05T15:23:41.562608"
+    },
+    "gec_117": {
+      "cluster_id": "gec_117",
+      "topic": "Community donation drive for fire-fighting equipment",
+      "summary": "On August 16, 2023, John shared with Maria his excitement about joining the fire-fighting brigade and their successful community donation drive that helped acquire a new fire truck, while Maria expressed admiration and support for his dedication and the group's efforts.",
+      "members": [
+        {
+          "unit_id": "d1b14362-8239-4dcc-9475-1b93937da0e6",
+          "timestamp": "2023-08-16T11:14:00+08:00",
+          "summary": "On August 16, 2023, John shared with Maria his excitement about joining the fire-fighting brigade and their successful community donation drive that helped acquire a new fire truck, while Maria expressed admiration and support for his dedication and the group's efforts."
+        }
+      ],
+      "first_timestamp": "2023-08-16T11:14:00+08:00",
+      "last_timestamp": "2023-08-16T11:14:00+08:00",
+      "created_at": "2025-12-05T15:23:41.565366",
+      "updated_at": "2025-12-05T15:23:41.565366"
+    }
+  },
+  "unit_to_clusters": {
+    "b6892efd-cca8-4c60-aa75-74e9474e711e": [
+      "gec_001"
+    ],
+    "0cb9ac0c-76c1-47ff-b3c4-7c942c52ec5c": [
+      "gec_001",
+      "gec_002",
+      "gec_003",
+      "gec_004"
+    ],
+    "809e325c-2691-4132-8ea8-2e76732f6455": [
+      "gec_001",
+      "gec_002",
+      "gec_005",
+      "gec_006"
+    ],
+    "0bd1b299-2fb1-4e9c-aeb1-6958322ad45c": [
+      "gec_007",
+      "gec_008"
+    ],
+    "708ea48c-8755-4f73-a27c-6ac0da7b940b": [
+      "gec_009",
+      "gec_010",
+      "gec_011",
+      "gec_012"
+    ],
+    "e2cecc9e-4fc4-4194-9364-d659e2556fe5": [
+      "gec_013",
+      "gec_014",
+      "gec_015"
+    ],
+    "70bd3f2e-165f-4992-8d0c-da5d42dcb300": [
+      "gec_016",
+      "gec_017",
+      "gec_018",
+      "gec_019"
+    ],
+    "47b828ea-b342-47d9-b97b-7ea3e480f149": [
+      "gec_020",
+      "gec_021"
+    ],
+    "3cda8d5e-b17e-4f1d-b747-6ac1b26fc92b": [
+      "gec_001",
+      "gec_002",
+      "gec_003",
+      "gec_004"
+    ],
+    "a413cceb-554b-42e4-9d9f-66ab6bde9fc1": [
+      "gec_002",
+      "gec_022",
+      "gec_023"
+    ],
+    "85172c77-80de-40cd-a039-2d11e718807f": [
+      "gec_002"
+    ],
+    "543409bb-bada-44e5-807d-6257f7aa572f": [
+      "gec_002",
+      "gec_017",
+      "gec_024"
+    ],
+    "9a27e591-91b3-4be8-8d42-61fa122a5835": [
+      "gec_025",
+      "gec_026",
+      "gec_027"
+    ],
+    "ad3b74ce-6bbd-4a7e-9f15-ec563afa3f5f": [
+      "gec_028",
+      "gec_029"
+    ],
+    "11f2ff1c-c1c2-4b4d-9f7a-13f2ec8cd13a": [
+      "gec_002",
+      "gec_017"
+    ],
+    "f3f11ceb-42fe-425f-ba30-144cf3ee1c71": [
+      "gec_030",
+      "gec_031",
+      "gec_032",
+      "gec_033",
+      "gec_034"
+    ],
+    "701e9409-d7c5-4df5-afee-9640339d8757": [
+      "gec_035",
+      "gec_036",
+      "gec_037"
+    ],
+    "c4ffcc92-503c-4bbb-a384-4e1789f12816": [
+      "gec_001",
+      "gec_002",
+      "gec_003",
+      "gec_012"
+    ],
+    "a59a045f-8ecf-44db-bd44-e203dc6f599f": [
+      "gec_038",
+      "gec_039"
+    ],
+    "e36a9d2b-04cf-4e75-b11d-a18b6a561bd4": [
+      "gec_040",
+      "gec_041"
+    ],
+    "4e4b81c9-f708-4aae-a905-b6b6b76c3cbe": [
+      "gec_042",
+      "gec_043"
+    ],
+    "52b5b252-c8ab-4a0d-9b6b-06d75546d74d": [
+      "gec_020",
+      "gec_015"
+    ],
+    "7ea2e882-66bb-498b-b0cd-12f872dbf8e3": [
+      "gec_016",
+      "gec_017"
+    ],
+    "66d95c83-99da-4764-bf87-983021eae190": [
+      "gec_002",
+      "gec_003"
+    ],
+    "883a1787-5bcd-4b94-ac69-c7344a885abc": [
+      "gec_017",
+      "gec_044"
+    ],
+    "50bd90ec-d25f-4eb5-a436-78731d3507d0": [
+      "gec_045",
+      "gec_046"
+    ],
+    "69efecaa-26f6-4084-b99c-24d4d85c8ce7": [
+      "gec_047",
+      "gec_048",
+      "gec_049",
+      "gec_050"
+    ],
+    "c1a64ecf-d117-4a1c-baa3-b79dab9b89f4": [
+      "gec_002",
+      "gec_004",
+      "gec_012"
+    ],
+    "2cd63aef-6a74-4b48-8a9b-50084c16b744": [
+      "gec_051",
+      "gec_052",
+      "gec_018"
+    ],
+    "6a2dd3be-8ece-4ee7-8169-7d49374b2d1f": [
+      "gec_003"
+    ],
+    "146bae52-0de0-46f9-b34a-e8436f5bd1d0": [
+      "gec_053",
+      "gec_054"
+    ],
+    "d3339225-0d4c-4a67-8c7c-1a94b6e1070f": [
+      "gec_055",
+      "gec_056",
+      "gec_057"
+    ],
+    "6d68c9e3-2d90-4b03-9f8c-9d2619a73f06": [
+      "gec_001",
+      "gec_058",
+      "gec_059",
+      "gec_012"
+    ],
+    "cc4ffe8c-e97e-4eba-8dd4-78b931da9030": [
+      "gec_060",
+      "gec_061"
+    ],
+    "130ca1ea-c0dd-4e2f-9ec4-9b09cc3828cf": [
+      "gec_062",
+      "gec_063",
+      "gec_064"
+    ],
+    "5a1aee34-d0cb-4c0d-baef-38ef881383c6": [
+      "gec_065",
+      "gec_066",
+      "gec_015"
+    ],
+    "bbf8d3bf-4be1-4fbb-9c2f-19ddba383663": [
+      "gec_067",
+      "gec_068",
+      "gec_069"
+    ],
+    "8f2be7b4-d60d-4a6d-82e3-7e9e80ed4437": [
+      "gec_070",
+      "gec_071",
+      "gec_072"
+    ],
+    "0051f93f-b3c6-4714-a5d5-79f0b311d0f6": [
+      "gec_073",
+      "gec_074",
+      "gec_075"
+    ],
+    "f445f62d-e9b1-4612-a309-d23d87985b23": [
+      "gec_076",
+      "gec_077",
+      "gec_078"
+    ],
+    "18283979-3a72-4b4b-b0a5-58c2a95587dc": [
+      "gec_079",
+      "gec_080"
+    ],
+    "3fea3dc6-66ab-416d-bf36-511ef01d3e06": [
+      "gec_007",
+      "gec_008"
+    ],
+    "d4cf7a71-d0bd-4901-850f-6ef168967c0e": [
+      "gec_007",
+      "gec_008"
+    ],
+    "a2fc8402-82e8-42fa-a9de-635e8efe9ff6": [
+      "gec_016",
+      "gec_017",
+      "gec_007",
+      "gec_019"
+    ],
+    "ffa61b7d-433f-494c-98bc-0265ba70a35b": [
+      "gec_016",
+      "gec_018",
+      "gec_081"
+    ],
+    "0b158e7e-e0ef-431b-aef5-3e17edcde9f6": [
+      "gec_082",
+      "gec_083",
+      "gec_016",
+      "gec_017",
+      "gec_018"
+    ],
+    "b1cf8cd0-1486-45cb-a08d-bb7a772a7505": [
+      "gec_017",
+      "gec_084"
+    ],
+    "2d94a040-0399-4949-9a56-1628921e21bd": [
+      "gec_002",
+      "gec_003",
+      "gec_012",
+      "gec_007"
+    ],
+    "77fe7b6c-c0ec-432c-8512-2b6a75000594": [
+      "gec_007",
+      "gec_015",
+      "gec_008"
+    ],
+    "89e3d44c-48f4-441c-ba5c-95628b31a742": [
+      "gec_085",
+      "gec_086",
+      "gec_003"
+    ],
+    "bea5368d-dcfc-434b-9f17-6a1729c0a3c9": [
+      "gec_087",
+      "gec_088"
+    ],
+    "3ed64bb9-c9ac-45b4-b16b-e6ffa62170cb": [
+      "gec_089",
+      "gec_090",
+      "gec_091"
+    ],
+    "8bb93000-743a-4a49-b06a-e4a581e53e28": [
+      "gec_016",
+      "gec_017",
+      "gec_015",
+      "gec_012"
+    ],
+    "1d5c0469-30cf-488a-92c3-115fa150945b": [
+      "gec_092",
+      "gec_093"
+    ],
+    "96858fad-ca3d-474a-bc45-4ae1872341f2": [
+      "gec_012",
+      "gec_094"
+    ],
+    "349e14ba-b42b-478c-adc5-c5976699dd54": [
+      "gec_005",
+      "gec_012",
+      "gec_095"
+    ],
+    "fd160aab-1e3f-474c-b5ff-1615ffea8d76": [
+      "gec_016",
+      "gec_017"
+    ],
+    "c7f2fbee-72da-4832-84d3-2aaf46069ae8": [
+      "gec_096",
+      "gec_097",
+      "gec_098"
+    ],
+    "c844dd12-bb88-467f-ab14-fd57bfbb2461": [
+      "gec_099",
+      "gec_100",
+      "gec_012"
+    ],
+    "516c6af1-1f29-4674-9189-63a5d37ad002": [
+      "gec_012",
+      "gec_101",
+      "gec_102",
+      "gec_103"
+    ],
+    "d7f1714f-950e-47cf-9b81-80cc7f41bb3c": [
+      "gec_005",
+      "gec_012",
+      "gec_104",
+      "gec_105"
+    ],
+    "e3756374-13fa-4bff-8dcd-01966568dc42": [
+      "gec_012"
+    ],
+    "61841d81-860f-4b20-b56f-5527d6d865a6": [
+      "gec_106",
+      "gec_107",
+      "gec_108"
+    ],
+    "fa45bfcd-b786-4a4d-bafc-157c98a33f88": [
+      "gec_012",
+      "gec_015"
+    ],
+    "c8f755e7-52f8-4c24-afd1-0c66ef5b9d61": [
+      "gec_012",
+      "gec_109"
+    ],
+    "55fa0c20-9ad2-47d0-a15f-ac8d128c79cd": [
+      "gec_110",
+      "gec_111",
+      "gec_112"
+    ],
+    "fc4b81e2-4e2b-4ec5-b605-292914cd89f4": [
+      "gec_113",
+      "gec_114",
+      "gec_115"
+    ],
+    "20dfdec2-b208-4af5-beeb-b5dcc059388a": [
+      "gec_007",
+      "gec_008"
+    ],
+    "d1b14362-8239-4dcc-9475-1b93937da0e6": [
+      "gec_116",
+      "gec_117"
+    ],
+    "531991fb-a6ff-4e6d-a12e-0cca9e3d083f": [
+      "gec_005",
+      "gec_012",
+      "gec_016",
+      "gec_017"
+    ]
+  },
+  "metadata": {
+    "conversation_id": "conv_2",
+    "total_units": 70,
+    "total_clusters": 117,
+    "created_at": "2025-12-05T15:17:01.179270",
+    "updated_at": "2025-12-05T15:23:48.209664",
+    "llm_model": "gpt-4.1-mini"
+  }
+}

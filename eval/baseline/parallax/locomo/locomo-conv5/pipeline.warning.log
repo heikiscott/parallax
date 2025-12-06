@@ -1,0 +1,11 @@
+2025-12-06 00:52:25,997 - [add-5-mu20] - providers.llm.openai_provider - WARNING - openai_provider.py:355 - 🔌 [OpenAI-gpt-4.1-mini] 连接异常! 重试 1/20: APIConnectionError
+2025-12-06 00:52:26,000 - [add-5-mu20] - providers.llm.openai_provider - WARNING - openai_provider.py:356 -    ⏱️  已耗时: 15.03s, 将等待 5.0-300.0s 后重试
+2025-12-06 00:52:26,001 - [add-5-mu20] - providers.llm.openai_provider - WARNING - openai_provider.py:357 -    💬 错误: Connection error.
+2025-12-06 00:53:33,676 - [add-5-mu21] - providers.llm.openai_provider - WARNING - openai_provider.py:355 - 🔌 [OpenAI-gpt-4.1-mini] 连接异常! 重试 1/20: APIConnectionError
+2025-12-06 00:53:33,677 - [add-5-mu21] - providers.llm.openai_provider - WARNING - openai_provider.py:356 -    ⏱️  已耗时: 17.86s, 将等待 5.0-300.0s 后重试
+2025-12-06 00:53:33,678 - [add-5-mu21] - providers.llm.openai_provider - WARNING - openai_provider.py:357 -    💬 错误: Connection error.
+2025-12-06 00:54:05,634 - [add-5-mu21] - providers.llm.openai_provider - WARNING - openai_provider.py:355 - 🔌 [OpenAI-gpt-4.1-mini] 连接异常! 重试 1/20: APIConnectionError
+2025-12-06 00:54:05,636 - [add-5-mu21] - providers.llm.openai_provider - WARNING - openai_provider.py:356 -    ⏱️  已耗时: 23.75s, 将等待 5.0-300.0s 后重试
+2025-12-06 00:54:05,639 - [add-5-mu21] - providers.llm.openai_provider - WARNING - openai_provider.py:357 -    💬 错误: Connection error.
+2025-12-06 01:20:26,700 - [add-idx-emb] - memory.group_event_cluster.clusterer - WARNING - clusterer.py:195 - No valid assignments for 41137559-9c11-43b0-b6e9-26203b0176fa, creating new cluster
+2025-12-06 01:23:17,312 - [add-idx-emb] - providers.llm.openai_provider - WARNING - openai_provider.py:295 - [OpenAI-gpt-4.1-mini] 完成原因: length
