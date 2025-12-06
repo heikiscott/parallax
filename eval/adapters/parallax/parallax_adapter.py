@@ -327,13 +327,11 @@ class ParallaxAdapter(BaseAdapter):
                     progress.update(main_task, advance=1)
                     return result
                 
-                # 🔥 并发执行所有待处理的任务
-                if processing_tasks:
-                    results = await asyncio.gather(
-                        *[run_with_completion(conv_id, task) for conv_id, task in processing_tasks]
-                    )
-                else:
-                    results = []
+                # 🔥 顺序执行所有待处理的任务（避免高并发导致 API timeout）
+                results = []
+                for conv_id, task in processing_tasks:
+                    result = await run_with_completion(conv_id, task)
+                    results.append(result)
                 
                 progress.update(main_task, status="✅ 完成")
             
