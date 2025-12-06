@@ -1,0 +1,570 @@
+======================================================================
+📊 LoCoMo 评估汇总报告
+======================================================================
+
+生成时间: 2025-12-05 19:53:29
+
+----------------------------------------------------------------------
+📈 总体统计
+----------------------------------------------------------------------
+总问题数: 1540
+正确数:   1437
+准确率:   93.31%
+错题数:   101
+
+----------------------------------------------------------------------
+📁 各对话详情
+----------------------------------------------------------------------
+
+Conv     状态         正确/总数        准确率        路径
+----------------------------------------------------------------------
+conv0    ✅          146/152      96.05%     locomo-conv0
+conv1    ✅          76/81        93.83%     locomo-conv1
+conv2    ✅          145/152      95.39%     locomo-conv2
+conv3    ✅          181/199      90.95%     locomo-conv3
+conv4    ✅          163/178      91.57%     locomo-conv4
+conv5    ✅          110/123      89.70%     locomo-conv5
+conv6    ✅          139/150      93.33%     locomo-conv6
+conv7    ✅          179/191      94.07%     locomo-conv7
+conv8    ✅          147/156      94.66%     locomo-conv8
+conv9    ✅          151/158      95.57%     locomo-conv9
+
+----------------------------------------------------------------------
+📊 按类别统计
+----------------------------------------------------------------------
+
+类别                             正确/总数           准确率       
+----------------------------------------------------------------------
+Multi-hop (多跳)                 260/282         92.20%
+Temporal (时序)                  293/321         91.28%
+Commonsense (常识)               70/96           72.92%
+Single-hop (单跳)                816/841         97.03%
+
+======================================================================
+
+----------------------------------------------------------------------
+❌ 错题列表 (共 101 题)
+----------------------------------------------------------------------
+
+### Multi-hop (多跳) (22 题)
+
+[1] locomo_0_qa11 (conv0)
+    问题: Where did Caroline move from 4 years ago?
+    标准答案: Sweden
+    生成答案: Caroline moved from her home country approximately four years ago (around June 2019), but the specific country she moved from is not mentioned in the available memories.
+
+[2] locomo_0_qa43 (conv0)
+    问题: What kind of art does Caroline make?
+    标准答案: abstract art
+    生成答案: Caroline is a multidisciplinary artist who creates paintings, drawings, stained glass windows, murals, and sidewalk paintings. Her artwork includes nature-inspired scenes like sunsets and flowers, as ...
+
+[3] locomo_0_qa55 (conv0)
+    问题: What subject have Caroline and Melanie both painted?
+    标准答案: Sunsets
+    生成答案: Caroline and Melanie have both painted flowers and nature scenes. Caroline shared a drawing of flowers on a table and a sunset painting inspired by the beach, while Melanie painted a sunflower on canv...
+
+[4] locomo_2_qa7 (conv2)
+    问题: What items des John mention having as a child?
+    标准答案: A doll, a film camera
+    生成答案: John mentions having a doll as a child, which brought him comfort and reminded him to support others in times of sadness. No other childhood items are specified.
+
+[5] locomo_3_qa19 (conv3)
+    问题: How many times has Joanna found new hiking trails?
+    标准答案: twice
+    生成答案: Joanna has found new hiking trails at least three times: first on April 16, 2022, when she discovered an awesome trail in her hometown; then by May 12, 2022, when she discovered multiple new amazing t...
+
+[6] locomo_3_qa34 (conv3)
+    问题: What book recommendations has Joanna given to Nate?
+    标准答案: "Little Women",'A Court of Thorns andRoses'.
+    生成答案: Joanna has recommended to Nate a fantasy book series as an excellent choice for relaxation, noting that most fiction series are great for unwinding. On August 22, 2022, she confirmed that a particular...
+
+[7] locomo_3_qa51 (conv3)
+    问题: When did Nate get Tilly for Joanna?
+    标准答案: 25 May, 2022
+    生成答案: Nate gave Joanna the stuffed animal dog named Tilly sometime before or on October 21, 2022, as referenced in their conversation on that date where Joanna already had and named the stuffed dog after he...
+
+[8] locomo_3_qa52 (conv3)
+    问题: How many of Joanna's writing have made it to the big screen?
+    标准答案: two
+    生成答案: Three of Joanna’s writing projects have made it to the big screen as of October 23, 2022.
+
+[9] locomo_3_qa58 (conv3)
+    问题: What things has Nate reccomended to Joanna?
+    标准答案: A pet,"The Lord of the Rings" movies,a dragon book series,coconut flavoring,"Project Hail Mary" book,Xenoblade Chronicles, dairy-free margarine, coconut oil
+    生成答案: Nate has recommended the following to Joanna:
+
+- Attending a writing convention for an unforgettable experience (October 9, 2022).
+- Watching the movie "Little Women," praising its acting and story (F...
+
+[10] locomo_3_qa78 (conv3)
+    问题: How many video game tournaments has Nate participated in?
+    标准答案: nine
+    生成答案: Nate has participated in at least seven video game tournaments between January and November 2022. Specifically, he won his first tournament in the week of January 14-20, 2022; his second in the week o...
+
+[11] locomo_3_qa79 (conv3)
+    问题: How many screenplays has Joanna written?
+    标准答案: three
+    生成答案: Joanna has written at least four screenplays. She completed her first screenplay by January 21, 2022, finished a second screenplay by March 18, 2022, and had completed a third screenplay by June 3, 20...
+
+[12] locomo_4_qa11 (conv4)
+    问题: What sports does John like besides basketball?
+    标准答案: surfing
+    生成答案: Besides basketball, John likes soccer. He has shared photos of soccer teams posing with trophies and a women's soccer team huddled together, indicating his interest or involvement in soccer alongside ...
+
+[13] locomo_4_qa49 (conv4)
+    问题: How many times has John injured his ankle?
+    标准答案: two times
+    生成答案: John has injured his ankle once, suffering a major ankle injury last season that required time off and physical therapy. Other injuries he experienced include a leg injury in November 2023 and a foot ...
+
+[14] locomo_5_qa2 (conv5)
+    问题: What kind of indoor activities has Andrew pursued with his girlfriend?
+    标准答案: boardgames, volunteering at pet shelter, wine tasting, growing flowers
+    生成答案: Andrew has pursued indoor activities with his girlfriend such as playing board games (notably on October 10, 2023), exploring new sushi restaurants (October 24, 2023), and visiting cafes (April 8-9, 2...
+
+[15] locomo_5_qa18 (conv5)
+    问题: Where did Audrey get Pixie from?
+    标准答案: breeder
+    生成答案: The memories do not specify where Audrey got Pixie from. Pixie was a newly adopted puppy by April 2, 2023, but no details are given about whether Audrey adopted Pixie from a shelter, breeder, or other...
+
+[16] locomo_6_qa5 (conv6)
+    问题: What are John and James' favorite games?
+    标准答案: John's favorite game is CS:GO, and James's is Apex Legends.
+    生成答案: James’s favorite game is Apex Legends, noted for its intensity, fast-paced gameplay, and impressive graphics. He is also deeply engaged with The Witcher 3, which inspired his own game development, and...
+
+[17] locomo_7_qa19 (conv7)
+    问题: How many times has Jolene been to France?
+    标准答案: two times
+    生成答案: Jolene has been to France once, as evidenced by her purchase of the snake Seraphim in Paris approximately one year before January 27, 2023.
+
+[18] locomo_7_qa77 (conv7)
+    问题: Where did Jolene and her partner find a cool diving spot?
+    标准答案: Phuket
+    生成答案: Jolene discovered a cool dive spot during her scuba diving lesson on September 15, 2023, but the exact location of the dive spot was not mentioned in the conversations.
+
+[19] locomo_7_qa86 (conv7)
+    问题: What gifts has Deborah received?
+    标准答案: an appreciate letter from her community, a flower bouqet from her friend, a motivational quote from a friend
+    生成答案: Deborah has received the following gifts: a vegan stir-fry meal consisting of tofu and vegetables with ginger and soy sauce from Anna around early March 2023; a bouquet of flowers in a vase given by a...
+
+[20] locomo_7_qa87 (conv7)
+    问题: Which countries has Deborah traveled to?
+    标准答案: Thailand, Brazil
+    生成答案: Deborah has traveled to Indonesia, specifically Bali in 2022, and Brazil, visiting Rio de Janeiro around 2020. She also went on a hiking trip with her friend Karlie in summer 2022, though the location...
+
+[21] locomo_8_qa54 (conv8)
+    问题: What personal health incidents does Evan face in 2023?
+    标准答案: heart palpitations, twisted ankle, twisted ankle
+    生成答案: In 2023, Evan faced several personal health incidents: on May 30, 2023, he experienced a sudden heart palpitation that acted as a serious wake-up call; from that point, he continued a two-year health ...
+
+[22] locomo_9_qa47 (conv9)
+    问题: How many car shows has Dave attended?
+    标准答案: two
+    生成答案: Dave has attended three car shows: one classic car event before March 23, 2023; a car show during the weekend of April 13-16, 2023; and another car show on October 6, 2023.
+
+
+### Temporal (时序) (28 题)
+
+[23] locomo_0_qa26 (conv0)
+    问题: When did Melanie read the book "nothing is impossible"?
+    标准答案: 2022
+    生成答案: There is no record in the provided memories of Melanie reading the book "nothing is impossible," so the date or time when she read it cannot be determined.
+
+[24] locomo_0_qa80 (conv0)
+    问题: When did Melanie buy the figurines?
+    标准答案: 21 October 2023
+    生成答案: There is no information in the memories about when Melanie bought the figurines. The only related detail is that Melanie shared an image of the wooden dolls symbolizing family love on October 22, 2023...
+
+[25] locomo_1_qa13 (conv1)
+    问题: When did Gina open her online clothing store?
+    标准答案: 16 March, 2023
+    生成答案: Gina opened her online clothing store by late January 2023, with evidence showing she launched an advertising campaign for it on January 29, 2023, and described it as doing great by February 4, 2023.
+
+[26] locomo_1_qa38 (conv1)
+    问题: When did Gina go to a dance class with a group of friends?
+    标准答案: 21 July 2023
+    生成答案: Gina went to a dance class with a group of friends on Friday, July 14, 2023.
+
+[27] locomo_2_qa48 (conv2)
+    问题: When did John have his first firefighter call-out?
+    标准答案: The sunday before 3` July 2023
+    生成答案: John had his first firefighter call-out on Sunday, July 23, 2023.
+
+[28] locomo_3_qa33 (conv3)
+    问题: When did someone write Joanna a touching letter?
+    标准答案: The week before 14August, 2022.
+    生成答案: Joanna's brother wrote her a touching handwritten letter during their childhood, which Joanna shared on November 7, 2022.
+
+[29] locomo_3_qa35 (conv3)
+    问题: When did Nate take time off to chill with his pets?
+    标准答案: The weekend of 22August, 2022.
+    生成答案: Nate planned to take time off to chill with his pets on the weekend of August 27-28, 2022. Additionally, he took his turtles to the beach in Tampa on November 10, 2022, as another occasion to relax wi...
+
+[30] locomo_3_qa43 (conv3)
+    问题: How long did it take for Joanna to finish writing her book?
+    标准答案: four months
+    生成答案: Joanna finished writing her book during the week of September 29 to October 5, 2022. She had already presented the book to her writers group during the week of August 15-21, 2022, indicating the book ...
+
+[31] locomo_4_qa6 (conv4)
+    问题: In which month's game did John achieve a career-high score in points?
+    标准答案: June 2023
+    生成答案: John achieved his career-high score in points in a game during July 2023, specifically in the week of July 9-15, 2023, when he scored 40 points.
+
+[32] locomo_4_qa20 (conv4)
+    问题: Which city was John in before traveling to Chicago?
+    标准答案: Seattle
+    生成答案: The memories do not specify which city John was in before traveling to Chicago. The earliest travel location mentioned is Chicago itself, followed later by New York City.
+
+[33] locomo_4_qa56 (conv4)
+    问题: When did Tim start playing the violin?
+    标准答案: August 2023
+    生成答案: Tim started playing the violin shortly before December 6, 2023, as he revealed during their conversation on that date.
+
+[34] locomo_4_qa60 (conv4)
+    问题: When did John achieve a career-high assist performance?
+    标准答案: December 11, 2023
+    生成答案: John achieved his career-high assist performance on Friday, December 8, 2023, during a significant game against their rival team.
+
+[35] locomo_5_qa4 (conv5)
+    问题: When did Audrey make muffins for herself?
+    标准答案: The week of April 3rd to 9th
+    生成答案: Audrey made muffins (or her favorite baked treats) for herself during the week of April 9 to April 15, 2023.
+
+[36] locomo_5_qa5 (conv5)
+    问题: When did Audrey see a hummingbird?
+    标准答案: first week of May 2023
+    生成答案: Audrey saw a hummingbird during her hike between April 26 and April 30, 2023.
+
+[37] locomo_5_qa16 (conv5)
+    问题: When is Andrew going to go hiking with Audrey?
+    标准答案: August
+    生成答案: Andrew is going to go hiking with Audrey on Saturday, October 28, 2023. They planned a dog-friendly hiking trip near a lake with beautiful autumn views for that day, intending to bring snacks and enjo...
+
+[38] locomo_5_qa46 (conv5)
+    问题: How many pets did Andrew have, as of September 2023?
+    标准答案: one
+    生成答案: As of September 2023, Andrew had two dogs named Toby and Buddy.
+
+[39] locomo_5_qa55 (conv5)
+    问题: When did Andrew make his dogs a fun indoor area?
+    标准答案: few days before November 22, 2023
+    生成答案: Andrew did not personally make a fun indoor area for his dogs, but on June 26, 2023, he shared a photo of a doggy daycare near him that features a spacious indoor play area for dogs. This suggests he ...
+
+[40] locomo_6_qa11 (conv6)
+    问题: How was John feeling on April 10, 2022?
+    标准答案: seeking solitude
+    生成答案: On April 10, 2022, John was feeling stressed and frustrated due to a busy work schedule and difficulties with a new RPG game that was laggy and buggy, which limited his gaming progress. Despite these ...
+
+[41] locomo_6_qa31 (conv6)
+    问题: How many days did James plan to spend on his trip in Canada?
+    标准答案: 19 days
+    生成答案: James planned to spend 9 full days on his trip in Canada, departing on the evening of July 11, 2022, and returning on July 20, 2022.
+
+[42] locomo_6_qa61 (conv6)
+    问题: What was James' big moment with Samantha in October 2023?
+    标准答案: They decided to live together and rented an apartment not far from McGee's bar.
+    生成答案: There is no information in the available memories about any big moment involving James and Samantha in October 2023. The latest significant event recorded is that on October 31, 2022, James and Samant...
+
+[43] locomo_6_qa66 (conv6)
+    问题: When did John work with a game developer on a project?
+    标准答案: November 5-6, 2022
+    生成答案: John worked with a game developer on a project involving an online board game demo, which he discussed with James on November 7, 2022 (Monday) at 9:00 PM UTC. The project featured a wooden board game ...
+
+[44] locomo_7_qa21 (conv7)
+    问题: When do Jolene and her partner plan to complete the game "Walking Dead"?
+    标准答案: Saturday after 27 January, 2023
+    生成答案: Jolene and her partner planned to start playing the game "Walking Dead" on Saturday, February 4, 2023.
+
+[45] locomo_7_qa45 (conv7)
+    问题: When did Jolene finish her robotics project?
+    标准答案: May 2023
+    生成答案: Jolene had not finished her robotics project as of February 1, 2023, when she described it as tough but enjoyable and still in progress. The exact completion date of the robotics project is not specif...
+
+[46] locomo_8_qa24 (conv8)
+    问题: What significant event happened in Sam's life towards the end of summer 2023?
+    标准答案: He fell in love with a Canadian woman
+    生成答案: Towards the end of summer 2023, specifically around mid-August, Sam experienced significant health challenges that he described as tough and motivating. This event prompted Sam to commit to a healthie...
+
+[47] locomo_8_qa39 (conv8)
+    问题: How many months lapsed between Sam's first and second doctor's appointment?
+    标准答案: three months
+    生成答案: Approximately 4.5 months elapsed between Sam’s first doctor’s appointment in late May 2023 and his second doctor’s appointment on October 2, 2023.
+
+[48] locomo_8_qa74 (conv8)
+    问题: When did Evan's son fall off his bike?
+    标准答案: Thursday before December 17, 2023.
+    生成答案: Evan's son fell off his bike on Tuesday, December 12, 2023.
+
+[49] locomo_8_qa80 (conv8)
+    问题: When did Evan have a drunken night with his friends?
+    标准答案: January 9, 2023
+    生成答案: Evan had his drunken night with friends on the evening of January 9, 2024.
+
+[50] locomo_9_qa62 (conv9)
+    问题: How long was the car modification workshop in San Francisco?
+    标准答案: two weeks
+    生成答案: The exact length of the car modification workshop in San Francisco is not explicitly stated in the memories. Dave mentioned attending the workshop recently as of August 14, 2023, and he returned from ...
+
+
+### Commonsense (常识) (26 题)
+
+[51] locomo_0_qa59 (conv0)
+    问题: Would Caroline be considered religious?
+    标准答案: Somewhat, but not extremely religious
+    生成答案: Caroline would not be considered religious based on the available information. Although she cherishes a necklace with a cross and heart given by her grandmother, symbolizing love, faith, and strength,...
+
+[52] locomo_2_qa8 (conv2)
+    问题: What might John's financial status be?
+    标准答案: Middle-class or wealthy
+    生成答案: John’s financial status as of August 2023 is likely strained and unstable due to his car breaking down on April 7, 2023, which caused financially challenging repairs, followed by losing his job at a m...
+
+[53] locomo_2_qa17 (conv2)
+    问题: What might John's degree be in?
+    标准答案: Political science, Public administration, Public affairs
+    生成答案: John's degree is very likely in mechanical engineering, as evidenced by his employment at a mechanical engineering company and his reference to mechanical engineering skills following his graduation o...
+
+[54] locomo_3_qa4 (conv3)
+    问题: What pets wouldn't cause any discomfort to Joanna?
+    标准答案: Hairless cats or pigs,since they don't have fur, which is one of the main causes of Joanna's allergy.
+    生成答案: Joanna is allergic to most reptiles and animals with fur, including Nate's turtles and his dog Max, so these real pets cause her discomfort. However, she finds comfort in a stuffed animal dog named Ti...
+
+[55] locomo_3_qa14 (conv3)
+    问题: What nickname does Nate use for Joanna?
+    标准答案: Jo
+    生成答案: There is no information in the available episodic memories indicating that Nate uses any nickname for Joanna.
+
+[56] locomo_3_qa60 (conv3)
+    问题: What Console does Nate own?
+    标准答案: A Nintendo Switch; since the game "Xenoblade 2" is made for this console.
+    生成答案: Nate owns an Xbox console, as evidenced by his black Xbox controller shared on April 21, 2022, and a Nintendo console, likely a Nintendo Switch, since he was playing the Nintendo game "Xeonoblade Chro...
+
+[57] locomo_3_qa66 (conv3)
+    问题: What alternative career might Nate consider after gaming?
+    标准答案: an animalkeeper at a localzoo and workingwith turtles; as heknows a great dealabout turtles andhow to care for them,and he enjoys it.
+    生成答案: After gaming, Nate might consider a career in creating gaming content on YouTube, as he is already producing videos to entertain viewers and connect with others during tournament downtimes. Additional...
+
+[58] locomo_3_qa68 (conv3)
+    问题: How many hikes has Joanna been on?
+    标准答案: Four
+    生成答案: Joanna has been on at least three distinct hikes: one on April 16, 2022, discovering a new trail in her hometown; another in early May 2022 at Whispering Falls; and a third during summer 2022 near For...
+
+[59] locomo_3_qa73 (conv3)
+    问题: What state did Joanna visit in summer 2021?
+    标准答案: Indiana
+    生成答案: There is no information in the memories indicating that Joanna visited any state in summer 2021. The only trips mentioned occurred in summer 2022, including a hike near Fort Wayne, Indiana, and a road...
+
+[60] locomo_4_qa51 (conv4)
+    问题: What kind of yoga for building core strength might John benefit from?
+    标准答案: Hatha Yoga
+    生成答案: John might benefit from practicing yoga that includes the Warrior II pose and other balance and stability-focused poses, as these are effective for building leg and core strength. He typically holds t...
+
+[61] locomo_4_qa53 (conv4)
+    问题: What other exercises can help John with his basketball performance?
+    标准答案: Sprinting, long-distance running, and boxing.
+    生成答案: Besides strength training, John incorporates yoga—practicing poses like Warrior II and balance/stability poses held for 30 to 60 seconds—to improve his strength, flexibility, focus, and balance, all o...
+
+[62] locomo_4_qa66 (conv4)
+    问题: What is a Star Wars book that Tim might enjoy?
+    标准答案: Star Wars: Jedi Apprentice by Judy Blundell and David Farland. It is a highly rated and immersive series about his favorite movies.
+    生成答案: A Star Wars book that Tim might enjoy is one that features rich world-building and engaging characters similar to those in "The Name of the Wind" by Patrick Rothfuss, which Tim highly recommends. Whil...
+
+[63] locomo_4_qa67 (conv4)
+    问题: What would be a good hobby related to his travel dreams for Tim to pick up?
+    标准答案: Writing a travel blog.
+    生成答案: A good hobby related to Tim’s travel dreams for him to pick up would be learning new languages, such as German, which he is already pursuing and which helps with cultural immersion and communication d...
+
+[64] locomo_4_qa70 (conv4)
+    问题: Which Star Wars-related locations would Tim enjoy during his visit to Ireland?
+    标准答案: Skellig Michael, Malin Head, Loop Head, Ceann Sibéal, and Brow Head because they are Star Wars filming locations.
+    生成答案: There are no Star Wars-related locations mentioned in the memories that Tim would enjoy during his visit to Ireland. Tim’s plans focus on staying in Galway and exploring natural sites such as The Clif...
+
+[65] locomo_5_qa19 (conv5)
+    问题: What is an indoor activity that Andrew would enjoy doing while make his dog happy?
+    标准答案: cook dog treats
+    生成答案: An indoor activity that Andrew would enjoy doing while making his dog happy is teaching Toby tricks such as sit, stay, shake, and roll over, playing hide-and-seek for mental stimulation, or grooming T...
+
+[66] locomo_5_qa43 (conv5)
+    问题: Which US state do Audrey and Andrew potentially live in?
+    标准答案: Minnesota
+    生成答案: Audrey and Andrew potentially live in California, a US state characterized by access to coastal beaches, hiking trails such as Fox Hollow, nearby rivers with scenic bike routes, and national parks wit...
+
+[67] locomo_5_qa44 (conv5)
+    问题: Which national park could Audrey and Andrew be referring to in their conversations?
+    标准答案: Voyageurs National Park
+    生成答案: Audrey and Andrew refer to a national park where Audrey took her dogs on a road trip on May 5, 2023, and went hiking again in late May 2023, describing features such as mountain peaks, lakes, and dog-...
+
+[68] locomo_6_qa0 (conv6)
+    问题: What are John's suspected health problems?
+    标准答案: Obesity
+    生成答案: John’s suspected health problems are primarily related to mental and emotional health, including stress, feelings of being overwhelmed, emotional vulnerability, and difficult times emotionally. There ...
+
+[69] locomo_6_qa6 (conv6)
+    问题: Does James live in Connecticut?
+    标准答案: Likely yes
+    生成答案: There is no information in the memories indicating that James lives in Connecticut. The exact location of James’s residence is not specified, only that he and Samantha moved into an apartment near McG...
+
+[70] locomo_6_qa17 (conv6)
+    问题: What is the board game where you have to find the imposter that John mentions to James?
+    标准答案: Mafia
+    生成答案: The board game John mentions to James where you have to find the impostor is a social deduction game described on May 4, 2022, but John does not specify its name. He only explains that it involves fig...
+
+[71] locomo_6_qa33 (conv6)
+    问题: Did John and James study together?
+    标准答案: Yes
+    生成答案: John and James did not study together. While John signed up for a programming class and they frequently discussed programming and shared resources, there is no evidence that they attended the same cla...
+
+[72] locomo_7_qa75 (conv7)
+    问题: What card game is Deborah talking about?
+    标准答案: Exploding Kittens
+    生成答案: Deborah is referring to a cat-themed card game played by drawing cards one by one from a deck, where players can attack opponents using those cards. However, she could not recall the game's name durin...
+
+[73] locomo_8_qa51 (conv8)
+    问题: What challenges does Sam face in his quest for a healthier lifestyle, and how does he address them?
+    标准答案: Sam faces challenges like maintaining motivation and making dietary changes. He addresses them by enrolling in cooking classes and seeking support from friends like Evan.
+    生成答案: Sam faces several challenges in his quest for a healthier lifestyle, including cravings for sugary drinks and snacks triggered by stress, boredom, and comfort seeking; emotional stress from family pre...
+
+[74] locomo_9_qa7 (conv9)
+    问题: Does Dave's shop employ a lot of people?
+    标准答案: Yes
+    生成答案: No, there is no explicit information indicating that Dave’s car maintenance shop employs a lot of people. While Dave has shared photos of groups of people and mentioned working with skilled mechanics ...
+
+[75] locomo_9_qa39 (conv9)
+    问题: Would Dave prefer working on a Dodge Charger or a Subaru Forester?
+    标准答案: Dodge Charger
+    生成答案: Dave would prefer working on a Subaru Forester rather than a Dodge Charger. He has recently restored a blue Subaru Forester found in poor condition (as of late October 2023) and expressed enthusiasm f...
+
+[76] locomo_9_qa42 (conv9)
+    问题: Based on the conversation, did Calvin and Dave have a meeting in Boston between August and November 2023? Answer in yes or no.
+    标准答案: No
+    生成答案: Yes. Calvin and Dave had a meeting or interaction in Boston between August and November 2023, with Calvin visiting Boston on October 3, October 24, and attending a gala on November 16, 2023, and plans...
+
+
+### Single-hop (单跳) (25 题)
+
+[77] locomo_1_qa43 (conv1)
+    问题: What do the dancers in the photo represent?
+    标准答案: They are performing at the festival
+    生成答案: The dancers in the photos represent dedication, passion, and perseverance in dance. Gina’s photo from her own dancing days symbolizes a difficult but rewarding journey that motivates Jon not to quit. ...
+
+[78] locomo_1_qa57 (conv1)
+    问题: What advice does Gina give to Jon about running a successful business?
+    标准答案: build relationships with customers, create a strong brand image, stay positive
+    生成答案: Gina advises Jon to run a successful business by staying passionate, focused, and resilient while believing in himself and continuously learning. She recommends leveraging social media platforms like ...
+
+[79] locomo_1_qa74 (conv1)
+    问题: What does Jon plan to do at the grand opening of his dance studio?
+    标准答案: savor all the good vibes
+    生成答案: At the grand opening of his dance studio on June 20, 2023, Jon plans to showcase his young dancers and celebrate the progress of his studio. He intends to offer dance classes, workshops, and one-on-on...
+
+[80] locomo_2_qa68 (conv2)
+    问题: What type of workout class did Maria start doing in December 2023?
+    标准答案: aerial yoga
+    生成答案: There is no information available in the memories about Maria starting any workout class in December 2023. The latest records show that Maria started aerial yoga in December 2022 and tried kundalini y...
+
+[81] locomo_2_qa69 (conv2)
+    问题: What did Maria donate to a homeless shelter in December 2023?
+    标准答案: old car
+    生成答案: Maria donated her old car to a homeless shelter on December 21, 2022. There is no record of any donation by Maria to a homeless shelter in December 2023.
+
+[82] locomo_2_qa85 (conv2)
+    问题: What event did John volunteer at last weekend?
+    标准答案: career fair at a local school
+    生成答案: John volunteered last weekend, August 5-6, 2023, at a 5K charity run he organized in their neighborhood to support veterans and their families, successfully raising funds for the cause.
+
+[83] locomo_3_qa91 (conv3)
+    问题: What is Nate's favorite book series about?
+    标准答案: dragons
+    生成答案: Nate's favorite book series is "The Lord of the Rings" Trilogy, which is about an epic fantasy world featuring impressive world building, thrilling battles, magical elements, adventurous storytelling,...
+
+[84] locomo_3_qa92 (conv3)
+    问题: What kind of lighting does Nate's gaming room have?
+    标准答案: red and purple lighting
+    生成答案: Nate's gaming room likely features or is planned to feature dimmable lighting, as Joanna recommended using dimmable lights to create a cozy and comfortable environment during their October 9, 2022 con...
+
+[85] locomo_4_qa136 (conv4)
+    问题: What did Tim say about his injury on 16 November, 2023?
+    标准答案: The doctor said it's not too serious
+    生成答案: On November 16, 2023, Tim did not report having an injury himself but expressed sympathy for John's leg injury, calling it unfortunate. He empathized by comparing John's inability to play basketball d...
+
+[86] locomo_4_qa164 (conv4)
+    问题: What language does Tim know besides German?
+    标准答案: Spanish
+    生成答案: Besides German, Tim knows French, which he studied in high school and which has helped him in learning German.
+
+[87] locomo_4_qa166 (conv4)
+    问题: What is John's favorite book series?
+    标准答案: Harry Potter
+    生成答案: John's favorite book series is "Lord of the Rings." He is a huge fan of the series, appreciates its adventure, world-building, and characters, has watched the movies multiple times, and his favorite c...
+
+[88] locomo_4_qa169 (conv4)
+    问题: What kind of painting does John have in his room as a reminder?
+    标准答案: a painting of Aragorn
+    生成答案: John has a painting of a man smoking a cigarette in his room, which he keeps as a reminder to stay true and be a leader in all he does.
+
+[89] locomo_5_qa63 (conv5)
+    问题: What kind of pastries did Andrew and his girlfriend have at the cafe?
+    标准答案: croissants, muffins, and tarts
+    生成答案: Andrew and his girlfriend had irresistible pastries with amazing smells at a new cafe they visited on the weekend of April 8-9, 2023. However, the specific kinds or types of pastries they enjoyed were...
+
+[90] locomo_5_qa81 (conv5)
+    问题: What did Andrew and his GF do on the Monday before July 24, 2023?
+    标准答案: volunteered at a pet shelter
+    生成答案: There is no information in the memories about what Andrew and his girlfriend did on Monday, July 17, 2023, the Monday before July 24, 2023. The only Monday activity mentioned is that on July 24, 2023,...
+
+[91] locomo_5_qa119 (conv5)
+    问题: What did Audrey share to show ways to keep dogs active in the city?
+    标准答案: photography of a basket full of stuffed animals
+    生成答案: Audrey shared that to keep dogs active in the city, she takes her dogs to agility classes and parks twice a week for physical exercise and bonding. She meets with a dog owners group once a week to all...
+
+[92] locomo_6_qa146 (conv6)
+    问题: What game is John hooked on playing on 5 November, 2022?
+    标准答案: FIFA 23
+    生成答案: On November 5, 2022, John is hooked on playing "The Witcher 3," an RPG game he described as having amazing storytelling and characters. Although on that date he was also actively engaged in chess—havi...
+
+[93] locomo_7_qa109 (conv7)
+    问题: What cool stuff did Jolene accomplish at the retreat on 9 February, 2023?
+    标准答案: Came up with neat solutions for her engineering project
+    生成答案: At the retreat on February 1, 2023, Jolene accomplished developing innovative solutions for her engineering project that excited her and gave her a significant confidence boost. She also conceived a v...
+
+[94] locomo_7_qa115 (conv7)
+    问题: What activity does Deborah incorporate into her daily routine after going for a morning jog in the park?
+    标准答案: spending time with loved ones
+    生成答案: After going for a morning jog in the nearby park (first done on February 24, 2023), Deborah incorporates meditation, yoga, and teaching classes into her daily routine. She also regularly takes her cat...
+
+[95] locomo_7_qa161 (conv7)
+    问题: What did Jolene's mom stress the value of, which she wants to keep in mind for her engineering projects?
+    标准答案: Helping others
+    生成答案: Jolene's mom stressed the value of perseverance and resilience, which Jolene wants to keep in mind as guiding principles for her engineering projects. These values inspire her to pursue sustainable so...
+
+[96] locomo_7_qa174 (conv7)
+    问题: Why did Jolene have to reschedule their meeting with Deborah on September 8, 2023?
+    标准答案: Jolene already had plans
+    生成答案: Deborah had to reschedule their coffee date originally planned for Wednesday at 4 PM on September 13, 2023, because she already had plans that day. Jolene understood and suggested checking her schedul...
+
+[97] locomo_7_qa179 (conv7)
+    问题: What did Jolene recently play that she described to Deb?
+    标准答案: a card game about cats
+    生成答案: Jolene recently described to Deborah playing the game "Detroit" on their console during the week of January 20-26, 2023.
+
+[98] locomo_8_qa102 (conv8)
+    问题: What dish did Sam make on 18 August, 2023 that turned out flavorful?
+    标准答案: grilled dish with salmon and vegetables
+    生成答案: On August 18, 2023, Sam made a flavorful and healthy grilled chicken and vegetable stir-fry dish with a homemade sauce, which he shared with Evan the following day along with the recipe.
+
+[99] locomo_8_qa144 (conv8)
+    问题: What did Evan share with Sam after their hiking trip?
+    标准答案: a photo of a man standing on a rock looking out over a valley
+    生成答案: After their hiking trip in the Rocky Mountains during early to mid-May 2023, Evan shared with Sam that he and his family had hiked the trails there, describing the views as amazing. He sent Sam a phot...
+
+[100] locomo_9_qa137 (conv9)
+    问题: When did Calvin first get interested in cars?
+    标准答案: at an early age
+    生成答案: There is no explicit information in the memories about when Calvin first got interested in cars. However, Dave’s passion for cars began at age 10, sparked by his father taking him to his first car sho...
+
+[101] locomo_9_qa151 (conv9)
+    问题: What hobby did Calvin take up recently?
+    标准答案: Photography
+    生成答案: Calvin recently took up the hobby of music production and creative music projects, notably starting around July 21, 2023, when he began transforming a Japanese mansion into a recording studio, which h...
+
+======================================================================
+报告结束
+======================================================================

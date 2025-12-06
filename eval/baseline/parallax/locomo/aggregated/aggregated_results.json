@@ -1,0 +1,1410 @@
+{
+  "total_questions": 1540,
+  "total_correct": 1437,
+  "overall_accuracy": 0.9331168831168831,
+  "conv_details": {
+    "0": {
+      "path": "D:\\parallax\\eval\\results\\locomo-conv0",
+      "status": "ok",
+      "total": 152,
+      "correct": 146,
+      "accuracy": 0.9605263157894738
+    },
+    "1": {
+      "path": "D:\\parallax\\eval\\results\\locomo-conv1",
+      "status": "ok",
+      "total": 81,
+      "correct": 76,
+      "accuracy": 0.9382716049382717
+    },
+    "2": {
+      "path": "D:\\parallax\\eval\\results\\locomo-conv2",
+      "status": "ok",
+      "total": 152,
+      "correct": 145,
+      "accuracy": 0.9539473684210527
+    },
+    "3": {
+      "path": "D:\\parallax\\eval\\results\\locomo-conv3",
+      "status": "ok",
+      "total": 199,
+      "correct": 181,
+      "accuracy": 0.9095477386934675
+    },
+    "4": {
+      "path": "D:\\parallax\\eval\\results\\locomo-conv4",
+      "status": "ok",
+      "total": 178,
+      "correct": 163,
+      "accuracy": 0.9157303370786517
+    },
+    "5": {
+      "path": "D:\\parallax\\eval\\results\\locomo-conv5",
+      "status": "ok",
+      "total": 123,
+      "correct": 110,
+      "accuracy": 0.8970189701897019
+    },
+    "6": {
+      "path": "D:\\parallax\\eval\\results\\locomo-conv6",
+      "status": "ok",
+      "total": 150,
+      "correct": 139,
+      "accuracy": 0.9333333333333332
+    },
+    "7": {
+      "path": "D:\\parallax\\eval\\results\\locomo-conv7",
+      "status": "ok",
+      "total": 191,
+      "correct": 179,
+      "accuracy": 0.9406631762652705
+    },
+    "8": {
+      "path": "D:\\parallax\\eval\\results\\locomo-conv8",
+      "status": "ok",
+      "total": 156,
+      "correct": 147,
+      "accuracy": 0.9465811965811964
+    },
+    "9": {
+      "path": "D:\\parallax\\eval\\results\\locomo-conv9",
+      "status": "ok",
+      "total": 158,
+      "correct": 151,
+      "accuracy": 0.9556962025316457
+    }
+  },
+  "category_stats": {
+    "2": {
+      "total": 321,
+      "correct": 293
+    },
+    "3": {
+      "total": 96,
+      "correct": 70
+    },
+    "1": {
+      "total": 282,
+      "correct": 260
+    },
+    "4": {
+      "total": 841,
+      "correct": 816
+    }
+  },
+  "wrong_answers": [
+    {
+      "conv_id": 0,
+      "question_id": "locomo_0_qa11",
+      "question": "Where did Caroline move from 4 years ago?",
+      "golden_answer": "Sweden",
+      "generated_answer": "Caroline moved from her home country approximately four years ago (around June 2019), but the specific country she moved from is not mentioned in the available memories.",
+      "category": "1",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 0,
+      "question_id": "locomo_0_qa26",
+      "question": "When did Melanie read the book \"nothing is impossible\"?",
+      "golden_answer": 2022,
+      "generated_answer": "There is no record in the provided memories of Melanie reading the book \"nothing is impossible,\" so the date or time when she read it cannot be determined.",
+      "category": "2",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 0,
+      "question_id": "locomo_0_qa43",
+      "question": "What kind of art does Caroline make?",
+      "golden_answer": "abstract art",
+      "generated_answer": "Caroline is a multidisciplinary artist who creates paintings, drawings, stained glass windows, murals, and sidewalk paintings. Her artwork includes nature-inspired scenes like sunsets and flowers, as well as pieces deeply connected to LGBTQ+ themes such as identity, acceptance, pride, and community unity. Notable works include a mural featuring a rainbow flag and eagle symbolizing transgender strength, a stained glass window made for a local church representing time and growth, and a rainbow sidewalk painting celebrating togetherness during Pride Month. Caroline’s drawings often depict realistic flowers and symbolic figures expressing freedom and authenticity. She uses art as a therapeutic and empowering tool to explore and share her transgender journey and personal growth. Caroline has been creating art since about age 17 and is organizing an LGBTQ art show scheduled for September 2023 to showcase her paintings.",
+      "category": "1",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 0,
+      "question_id": "locomo_0_qa55",
+      "question": "What subject have Caroline and Melanie both painted?",
+      "golden_answer": "Sunsets",
+      "generated_answer": "Caroline and Melanie have both painted flowers and nature scenes. Caroline shared a drawing of flowers on a table and a sunset painting inspired by the beach, while Melanie painted a sunflower on canvas and nature-inspired themes such as fields of flowers. Additionally, both have created abstract art, with Caroline experimenting with abstract paintings and Melanie painting abstract works featuring calming blue streaks.",
+      "category": "1",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 0,
+      "question_id": "locomo_0_qa59",
+      "question": "Would Caroline be considered religious?",
+      "golden_answer": "Somewhat, but not extremely religious",
+      "generated_answer": "Caroline would not be considered religious based on the available information. Although she cherishes a necklace with a cross and heart given by her grandmother, symbolizing love, faith, and strength, there is no explicit indication that she practices or identifies with a religion. Furthermore, her negative encounter with religious conservatives and her focus on LGBTQ rights suggest that religion is not a defining aspect of her identity.",
+      "category": "3",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 0,
+      "question_id": "locomo_0_qa80",
+      "question": "When did Melanie buy the figurines?",
+      "golden_answer": "21 October 2023",
+      "generated_answer": "There is no information in the memories about when Melanie bought the figurines. The only related detail is that Melanie shared an image of the wooden dolls symbolizing family love on October 22, 2023, but the purchase date is not mentioned.",
+      "category": "2",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 1,
+      "question_id": "locomo_1_qa13",
+      "question": "When did Gina open her online clothing store?",
+      "golden_answer": "16 March, 2023",
+      "generated_answer": "Gina opened her online clothing store by late January 2023, with evidence showing she launched an advertising campaign for it on January 29, 2023, and described it as doing great by February 4, 2023.",
+      "category": "2",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 1,
+      "question_id": "locomo_1_qa38",
+      "question": "When did Gina go to a dance class with a group of friends?",
+      "golden_answer": "21 July 2023",
+      "generated_answer": "Gina went to a dance class with a group of friends on Friday, July 14, 2023.",
+      "category": "2",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 1,
+      "question_id": "locomo_1_qa43",
+      "question": "What do the dancers in the photo represent?",
+      "golden_answer": "They are performing at the festival",
+      "generated_answer": "The dancers in the photos represent dedication, passion, and perseverance in dance. Gina’s photo from her own dancing days symbolizes a difficult but rewarding journey that motivates Jon not to quit. Jon’s photos of his students and dance groups illustrate the progress and success of his dance studio, serving as a source of motivation and fulfillment. Together, the dancers embody the journey of growth, resilience, and joy in pursuing dance both personally and professionally.",
+      "category": "4",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 1,
+      "question_id": "locomo_1_qa57",
+      "question": "What advice does Gina give to Jon about running a successful business?",
+      "golden_answer": "build relationships with customers, create a strong brand image, stay positive",
+      "generated_answer": "Gina advises Jon to run a successful business by staying passionate, focused, and resilient while believing in himself and continuously learning. She recommends leveraging social media platforms like Instagram and TikTok, collaborating with influencers, and creating engaging content to reach a broader audience. Gina emphasizes the importance of networking to open new opportunities and encourages Jon to track his goals visually to stay motivated. She also suggests using dancing as a stress reliever and reminding himself of his past successes to maintain confidence. Additionally, Gina highlights the necessity of taking risks and being creative in business. Throughout their conversations, she consistently offers emotional support and motivation to help Jon persevere through challenges.",
+      "category": "4",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 1,
+      "question_id": "locomo_1_qa74",
+      "question": "What does Jon plan to do at the grand opening of his dance studio?",
+      "golden_answer": "savor all the good vibes",
+      "generated_answer": "At the grand opening of his dance studio on June 20, 2023, Jon plans to showcase his young dancers and celebrate the progress of his studio. He intends to offer dance classes, workshops, and one-on-one mentoring to help dancers reach their full potential. Additionally, Jon will attend networking events that day to promote his business and seek opportunities for growth. He has been rehearsing and preparing extensively to ensure the launch is successful and memorable, with Gina providing ongoing support and encouragement.",
+      "category": "4",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 2,
+      "question_id": "locomo_2_qa7",
+      "question": "What items des John mention having as a child?",
+      "golden_answer": "A doll, a film camera",
+      "generated_answer": "John mentions having a doll as a child, which brought him comfort and reminded him to support others in times of sadness. No other childhood items are specified.",
+      "category": "1",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 2,
+      "question_id": "locomo_2_qa8",
+      "question": "What might John's financial status be?",
+      "golden_answer": "Middle-class or wealthy",
+      "generated_answer": "John’s financial status as of August 2023 is likely strained and unstable due to his car breaking down on April 7, 2023, which caused financially challenging repairs, followed by losing his job at a mechanical engineering company on August 5, 2023. Despite these difficulties, John is actively seeking new employment in the tech industry and remains engaged in community volunteering and mentoring. His recent plan to adopt a puppy between August 6-12, 2023, indicates some financial capacity or optimism about his future finances, but overall, he is probably experiencing financial pressure while working toward recovery.",
+      "category": "3",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 2,
+      "question_id": "locomo_2_qa17",
+      "question": "What might John's degree be in?",
+      "golden_answer": "Political science, Public administration, Public affairs",
+      "generated_answer": "John's degree is very likely in mechanical engineering, as evidenced by his employment at a mechanical engineering company and his reference to mechanical engineering skills following his graduation on March 26, 2023.",
+      "category": "3",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 2,
+      "question_id": "locomo_2_qa48",
+      "question": "When did John have his first firefighter call-out?",
+      "golden_answer": "The sunday before 3` July 2023",
+      "generated_answer": "John had his first firefighter call-out on Sunday, July 23, 2023.",
+      "category": "2",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 2,
+      "question_id": "locomo_2_qa68",
+      "question": "What type of workout class did Maria start doing in December 2023?",
+      "golden_answer": "aerial yoga",
+      "generated_answer": "There is no information available in the memories about Maria starting any workout class in December 2023. The latest records show that Maria started aerial yoga in December 2022 and tried kundalini yoga after joining a gym in June 2023, but no workout class starting in December 2023 is mentioned.",
+      "category": "4",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 2,
+      "question_id": "locomo_2_qa69",
+      "question": "What did Maria donate to a homeless shelter in December 2023?",
+      "golden_answer": "old car",
+      "generated_answer": "Maria donated her old car to a homeless shelter on December 21, 2022. There is no record of any donation by Maria to a homeless shelter in December 2023.",
+      "category": "4",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 2,
+      "question_id": "locomo_2_qa85",
+      "question": "What event did John volunteer at last weekend?",
+      "golden_answer": "career fair at a local school",
+      "generated_answer": "John volunteered last weekend, August 5-6, 2023, at a 5K charity run he organized in their neighborhood to support veterans and their families, successfully raising funds for the cause.",
+      "category": "4",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 3,
+      "question_id": "locomo_3_qa4",
+      "question": "What pets wouldn't cause any discomfort to Joanna?",
+      "golden_answer": "Hairless cats or pigs,since they don't have fur, which is one of the main causes of Joanna's allergy.",
+      "generated_answer": "Joanna is allergic to most reptiles and animals with fur, including Nate's turtles and his dog Max, so these real pets cause her discomfort. However, she finds comfort in a stuffed animal dog named Tilly, which causes no allergic reaction. Therefore, pets that would not cause Joanna any discomfort are non-living stuffed animals like Tilly. There is no evidence that Joanna can tolerate any live pets without discomfort.",
+      "category": "3",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 3,
+      "question_id": "locomo_3_qa14",
+      "question": "What nickname does Nate use for Joanna?",
+      "golden_answer": "Jo",
+      "generated_answer": "There is no information in the available episodic memories indicating that Nate uses any nickname for Joanna.",
+      "category": "3",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 3,
+      "question_id": "locomo_3_qa19",
+      "question": "How many times has Joanna found new hiking trails?",
+      "golden_answer": "twice",
+      "generated_answer": "Joanna has found new hiking trails at least three times: first on April 16, 2022, when she discovered an awesome trail in her hometown; then by May 12, 2022, when she discovered multiple new amazing trails including Whispering Falls; and finally, she planned to explore another new trail on the weekend of June 4-5, 2022.",
+      "category": "1",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 3,
+      "question_id": "locomo_3_qa33",
+      "question": "When did someone write Joanna a touching letter?",
+      "golden_answer": "The week before 14August, 2022.",
+      "generated_answer": "Joanna's brother wrote her a touching handwritten letter during their childhood, which Joanna shared on November 7, 2022.",
+      "category": "2",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 3,
+      "question_id": "locomo_3_qa34",
+      "question": "What book recommendations has Joanna given to Nate?",
+      "golden_answer": "\"Little Women\",'A Court of Thorns andRoses'.",
+      "generated_answer": "Joanna has recommended to Nate a fantasy book series as an excellent choice for relaxation, noting that most fiction series are great for unwinding. On August 22, 2022, she confirmed that a particular fantasy series Nate asked about was indeed a great series. Additionally, on April 21, 2022, Nate shared a favorite book trilogy with Joanna, which she was familiar with and planned to read. While no specific book titles were mentioned, Joanna’s recommendations emphasize fantasy series with engaging stories, battles, and interesting characters, encouraging Nate to read them and share his thoughts afterward.",
+      "category": "1",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 3,
+      "question_id": "locomo_3_qa35",
+      "question": "When did Nate take time off to chill with his pets?",
+      "golden_answer": "The weekend of 22August, 2022.",
+      "generated_answer": "Nate planned to take time off to chill with his pets on the weekend of August 27-28, 2022. Additionally, he took his turtles to the beach in Tampa on November 10, 2022, as another occasion to relax with his pets.",
+      "category": "2",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 3,
+      "question_id": "locomo_3_qa43",
+      "question": "How long did it take for Joanna to finish writing her book?",
+      "golden_answer": "four months",
+      "generated_answer": "Joanna finished writing her book during the week of September 29 to October 5, 2022. She had already presented the book to her writers group during the week of August 15-21, 2022, indicating the book was in progress or near completion by then. While the exact start date of writing is not specified, the final writing and editing phase took place over at least the six weeks between mid-August and early October 2022.",
+      "category": "2",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 3,
+      "question_id": "locomo_3_qa51",
+      "question": "When did Nate get Tilly for Joanna?",
+      "golden_answer": "25 May, 2022",
+      "generated_answer": "Nate gave Joanna the stuffed animal dog named Tilly sometime before or on October 21, 2022, as referenced in their conversation on that date where Joanna already had and named the stuffed dog after her real dog from Michigan.",
+      "category": "1",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 3,
+      "question_id": "locomo_3_qa52",
+      "question": "How many of Joanna's writing have made it to the big screen?",
+      "golden_answer": "two",
+      "generated_answer": "Three of Joanna’s writing projects have made it to the big screen as of October 23, 2022.",
+      "category": "1",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 3,
+      "question_id": "locomo_3_qa58",
+      "question": "What things has Nate reccomended to Joanna?",
+      "golden_answer": "A pet,\"The Lord of the Rings\" movies,a dragon book series,coconut flavoring,\"Project Hail Mary\" book,Xenoblade Chronicles, dairy-free margarine, coconut oil",
+      "generated_answer": "Nate has recommended the following to Joanna:\n\n- Attending a writing convention for an unforgettable experience (October 9, 2022).\n- Watching the movie \"Little Women,\" praising its acting and story (February 7, 2022 and October 6, 2022).\n- Reading a favorite book trilogy and a book series with awesome battles and interesting characters, encouraging her to share her thoughts after reading (April 21, 2022 and August 22, 2022).\n- Using dairy-free baking tips such as substituting dairy-free margarine or coconut oil for butter, and shared a dairy-free dessert recipe with her (September 5, 2022 and August 14, 2022).\n- Creating gaming content on YouTube, with advice to watch other videos first to understand audience preferences and avoid posting unsuccessful content (November 9, 2022).\n- Enjoying his turtles by viewing pictures he offered to send, accommodating her allergies (March 18, 2022).\n- Visiting to watch his turtles, with options to watch movies together or go to the park during her visit (November 9, 2022).",
+      "category": "1",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 3,
+      "question_id": "locomo_3_qa60",
+      "question": "What Console does Nate own?",
+      "golden_answer": "A Nintendo Switch; since the game \"Xenoblade 2\" is made for this console.",
+      "generated_answer": "Nate owns an Xbox console, as evidenced by his black Xbox controller shared on April 21, 2022, and a Nintendo console, likely a Nintendo Switch, since he was playing the Nintendo game \"Xeonoblade Chronicles\" as of November 7, 2022. He also has a PC gaming setup for games like CS:GO and Cyberpunk 2077.",
+      "category": "3",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 3,
+      "question_id": "locomo_3_qa66",
+      "question": "What alternative career might Nate consider after gaming?",
+      "golden_answer": "an animalkeeper at a localzoo and workingwith turtles; as heknows a great dealabout turtles andhow to care for them,and he enjoys it.",
+      "generated_answer": "After gaming, Nate might consider a career in creating gaming content on YouTube, as he is already producing videos to entertain viewers and connect with others during tournament downtimes. Additionally, based on his interest in creative pursuits like writing and fantasy/sci-fi media, he could potentially explore creative careers related to storytelling or media production.",
+      "category": "3",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 3,
+      "question_id": "locomo_3_qa68",
+      "question": "How many hikes has Joanna been on?",
+      "golden_answer": "Four",
+      "generated_answer": "Joanna has been on at least three distinct hikes: one on April 16, 2022, discovering a new trail in her hometown; another in early May 2022 at Whispering Falls; and a third during summer 2022 near Fort Wayne where she took a sunflower photo. Additionally, she planned a hike with friends for June 4-5, 2022.",
+      "category": "3",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 3,
+      "question_id": "locomo_3_qa73",
+      "question": "What state did Joanna visit in summer 2021?",
+      "golden_answer": "Indiana",
+      "generated_answer": "There is no information in the memories indicating that Joanna visited any state in summer 2021. The only trips mentioned occurred in summer 2022, including a hike near Fort Wayne, Indiana, and a road trip to Woodhaven in the Midwest.",
+      "category": "3",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 3,
+      "question_id": "locomo_3_qa78",
+      "question": "How many video game tournaments has Nate participated in?",
+      "golden_answer": "nine",
+      "generated_answer": "Nate has participated in at least seven video game tournaments between January and November 2022. Specifically, he won his first tournament in the week of January 14-20, 2022; his second in the week of April 25-30, 2022; another regional tournament in the week of May 27 to June 2, 2022; his fourth tournament on July 8, 2022; an international tournament on August 21, 2022; a big tournament during the week of September 29 to October 5, 2022; and a major Valorant tournament on November 5, 2022.",
+      "category": "1",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 3,
+      "question_id": "locomo_3_qa79",
+      "question": "How many screenplays has Joanna written?",
+      "golden_answer": "three",
+      "generated_answer": "Joanna has written at least four screenplays. She completed her first screenplay by January 21, 2022, finished a second screenplay by March 18, 2022, and had completed a third screenplay by June 3, 2022. Additionally, in late October to early November 2022, she submitted several more scripts and was working on a new thriller script as of November 9, 2022, indicating she has written multiple screenplays beyond the initial three.",
+      "category": "1",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 3,
+      "question_id": "locomo_3_qa91",
+      "question": "What is Nate's favorite book series about?",
+      "golden_answer": "dragons",
+      "generated_answer": "Nate's favorite book series is \"The Lord of the Rings\" Trilogy, which is about an epic fantasy world featuring impressive world building, thrilling battles, magical elements, adventurous storytelling, and well-developed characters. He praises the series for its rich adventures, magic, and compelling plot, considering it one of the greatest trilogies ever.",
+      "category": "4",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 3,
+      "question_id": "locomo_3_qa92",
+      "question": "What kind of lighting does Nate's gaming room have?",
+      "golden_answer": "red and purple lighting",
+      "generated_answer": "Nate's gaming room likely features or is planned to feature dimmable lighting, as Joanna recommended using dimmable lights to create a cozy and comfortable environment during their October 9, 2022 conversation. However, there is no explicit confirmation of the exact lighting currently installed in his gaming room.",
+      "category": "4",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 4,
+      "question_id": "locomo_4_qa6",
+      "question": "In which month's game did John achieve a career-high score in points?",
+      "golden_answer": "June 2023",
+      "generated_answer": "John achieved his career-high score in points in a game during July 2023, specifically in the week of July 9-15, 2023, when he scored 40 points.",
+      "category": "2",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 4,
+      "question_id": "locomo_4_qa11",
+      "question": "What sports does John like besides basketball?",
+      "golden_answer": "surfing",
+      "generated_answer": "Besides basketball, John likes soccer. He has shared photos of soccer teams posing with trophies and a women's soccer team huddled together, indicating his interest or involvement in soccer alongside his primary focus on basketball.",
+      "category": "1",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 4,
+      "question_id": "locomo_4_qa20",
+      "question": "Which city was John in before traveling to Chicago?",
+      "golden_answer": "Seattle",
+      "generated_answer": "The memories do not specify which city John was in before traveling to Chicago. The earliest travel location mentioned is Chicago itself, followed later by New York City.",
+      "category": "2",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 4,
+      "question_id": "locomo_4_qa49",
+      "question": "How many times has John injured his ankle?",
+      "golden_answer": "two times",
+      "generated_answer": "John has injured his ankle once, suffering a major ankle injury last season that required time off and physical therapy. Other injuries he experienced include a leg injury in November 2023 and a foot injury in December 2023, but these are separate from the ankle injury.",
+      "category": "1",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 4,
+      "question_id": "locomo_4_qa51",
+      "question": "What kind of yoga for building core strength might John benefit from?",
+      "golden_answer": "Hatha Yoga",
+      "generated_answer": "John might benefit from practicing yoga that includes the Warrior II pose and other balance and stability-focused poses, as these are effective for building leg and core strength. He typically holds these poses for 30 to 60 seconds, which helps develop strength and stability in the core.",
+      "category": "3",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 4,
+      "question_id": "locomo_4_qa53",
+      "question": "What other exercises can help John with his basketball performance?",
+      "golden_answer": "Sprinting, long-distance running, and boxing.",
+      "generated_answer": "Besides strength training, John incorporates yoga—practicing poses like Warrior II and balance/stability poses held for 30 to 60 seconds—to improve his strength, flexibility, focus, and balance, all of which benefit his basketball performance. Additionally, during his foot injury recovery, John performed daily physical therapy exercises to maintain fitness and aid rehabilitation. He also trains every day to maintain his physical condition and improve skills. These exercises together complement his strength training by enhancing explosiveness, injury prevention, and overall athleticism essential for basketball.",
+      "category": "3",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 4,
+      "question_id": "locomo_4_qa56",
+      "question": "When did Tim start playing the violin?",
+      "golden_answer": "August 2023",
+      "generated_answer": "Tim started playing the violin shortly before December 6, 2023, as he revealed during their conversation on that date.",
+      "category": "2",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 4,
+      "question_id": "locomo_4_qa60",
+      "question": "When did John achieve a career-high assist performance?",
+      "golden_answer": "December 11, 2023",
+      "generated_answer": "John achieved his career-high assist performance on Friday, December 8, 2023, during a significant game against their rival team.",
+      "category": "2",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 4,
+      "question_id": "locomo_4_qa66",
+      "question": "What is a Star Wars book that Tim might enjoy?",
+      "golden_answer": "Star Wars: Jedi Apprentice by Judy Blundell and David Farland. It is a highly rated and immersive series about his favorite movies.",
+      "generated_answer": "A Star Wars book that Tim might enjoy is one that features rich world-building and engaging characters similar to those in \"The Name of the Wind\" by Patrick Rothfuss, which Tim highly recommends. While no specific Star Wars novel was named, Tim’s interest in epic fantasy suggests he would appreciate Star Wars novels that offer deep storytelling and immersive adventures.",
+      "category": "3",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 4,
+      "question_id": "locomo_4_qa67",
+      "question": "What would be a good hobby related to his travel dreams for Tim to pick up?",
+      "golden_answer": "Writing a travel blog.",
+      "generated_answer": "A good hobby related to Tim’s travel dreams for him to pick up would be learning new languages, such as German, which he is already pursuing and which helps with cultural immersion and communication during travel. Additionally, joining a travel club to connect with fellow travelers, engaging in nature photography to capture travel experiences, and writing fantasy novels inspired by different cultures and places are excellent hobbies that complement his travel aspirations.",
+      "category": "3",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 4,
+      "question_id": "locomo_4_qa70",
+      "question": "Which Star Wars-related locations would Tim enjoy during his visit to Ireland?",
+      "golden_answer": "Skellig Michael, Malin Head, Loop Head, Ceann Sibéal, and Brow Head because they are Star Wars filming locations.",
+      "generated_answer": "There are no Star Wars-related locations mentioned in the memories that Tim would enjoy during his visit to Ireland. Tim’s plans focus on staying in Galway and exploring natural sites such as The Cliffs of Moher, with no references to Star Wars-related places.",
+      "category": "3",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 4,
+      "question_id": "locomo_4_qa136",
+      "question": "What did Tim say about his injury on 16 November, 2023?",
+      "golden_answer": "The doctor said it's not too serious",
+      "generated_answer": "On November 16, 2023, Tim did not report having an injury himself but expressed sympathy for John's leg injury, calling it unfortunate. He empathized by comparing John's inability to play basketball due to injury to his own difficulty in reading because of an injury. Tim shared that he was busy with exams that week but remained optimistic, using a study method of 25 minutes focused work followed by 5 minutes of fun breaks to stay motivated. He hoped John's injury would heal soon and encouraged him to keep pushing forward.",
+      "category": "4",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 4,
+      "question_id": "locomo_4_qa164",
+      "question": "What language does Tim know besides German?",
+      "golden_answer": "Spanish",
+      "generated_answer": "Besides German, Tim knows French, which he studied in high school and which has helped him in learning German.",
+      "category": "4",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 4,
+      "question_id": "locomo_4_qa166",
+      "question": "What is John's favorite book series?",
+      "golden_answer": "Harry Potter",
+      "generated_answer": "John's favorite book series is \"Lord of the Rings.\" He is a huge fan of the series, appreciates its adventure, world-building, and characters, has watched the movies multiple times, and his favorite character from the series is Aragorn.",
+      "category": "4",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 4,
+      "question_id": "locomo_4_qa169",
+      "question": "What kind of painting does John have in his room as a reminder?",
+      "golden_answer": "a painting of Aragorn",
+      "generated_answer": "John has a painting of a man smoking a cigarette in his room, which he keeps as a reminder to stay true and be a leader in all he does.",
+      "category": "4",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 5,
+      "question_id": "locomo_5_qa2",
+      "question": "What kind of indoor activities has Andrew pursued with his girlfriend?",
+      "golden_answer": "boardgames, volunteering at pet shelter, wine tasting, growing flowers",
+      "generated_answer": "Andrew has pursued indoor activities with his girlfriend such as playing board games (notably on October 10, 2023), exploring new sushi restaurants (October 24, 2023), and visiting cafes (April 8-9, 2023). These activities highlight their enjoyment of social and culinary experiences indoors.",
+      "category": "1",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 5,
+      "question_id": "locomo_5_qa4",
+      "question": "When did Audrey make muffins for herself?",
+      "golden_answer": "The week of April 3rd to 9th",
+      "generated_answer": "Audrey made muffins (or her favorite baked treats) for herself during the week of April 9 to April 15, 2023.",
+      "category": "2",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": true
+      }
+    },
+    {
+      "conv_id": 5,
+      "question_id": "locomo_5_qa5",
+      "question": "When did Audrey see a hummingbird?",
+      "golden_answer": "first week of May 2023",
+      "generated_answer": "Audrey saw a hummingbird during her hike between April 26 and April 30, 2023.",
+      "category": "2",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 5,
+      "question_id": "locomo_5_qa16",
+      "question": "When is Andrew going to go hiking with Audrey?",
+      "golden_answer": "August",
+      "generated_answer": "Andrew is going to go hiking with Audrey on Saturday, October 28, 2023. They planned a dog-friendly hiking trip near a lake with beautiful autumn views for that day, intending to bring snacks and enjoy the outdoors with their dogs.",
+      "category": "2",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 5,
+      "question_id": "locomo_5_qa18",
+      "question": "Where did Audrey get Pixie from?",
+      "golden_answer": "breeder",
+      "generated_answer": "The memories do not specify where Audrey got Pixie from. Pixie was a newly adopted puppy by April 2, 2023, but no details are given about whether Audrey adopted Pixie from a shelter, breeder, or other source.",
+      "category": "1",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 5,
+      "question_id": "locomo_5_qa19",
+      "question": "What is an indoor activity that Andrew would enjoy doing while make his dog happy?",
+      "golden_answer": "cook dog treats",
+      "generated_answer": "An indoor activity that Andrew would enjoy doing while making his dog happy is teaching Toby tricks such as sit, stay, shake, and roll over, playing hide-and-seek for mental stimulation, or grooming Toby. These activities provide fun, bonding, and mental engagement for Toby and are supported by Audrey’s advice and Andrew’s expressed interest.",
+      "category": "3",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 5,
+      "question_id": "locomo_5_qa43",
+      "question": "Which US state do Audrey and Andrew potentially live in?",
+      "golden_answer": "Minnesota",
+      "generated_answer": "Audrey and Andrew potentially live in California, a US state characterized by access to coastal beaches, hiking trails such as Fox Hollow, nearby rivers with scenic bike routes, and national parks within a few hours' drive.",
+      "category": "3",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 5,
+      "question_id": "locomo_5_qa44",
+      "question": "Which national park could Audrey and Andrew be referring to in their conversations?",
+      "golden_answer": "Voyageurs National Park",
+      "generated_answer": "Audrey and Andrew refer to a national park where Audrey took her dogs on a road trip on May 5, 2023, and went hiking again in late May 2023, describing features such as mountain peaks, lakes, and dog-friendly trails. Andrew also mentions hiking at a national park and nearby trails. However, none of their conversations explicitly name the national park, so the exact national park they refer to cannot be determined from the available memories.",
+      "category": "3",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 5,
+      "question_id": "locomo_5_qa46",
+      "question": "How many pets did Andrew have, as of September 2023?",
+      "golden_answer": "one",
+      "generated_answer": "As of September 2023, Andrew had two dogs named Toby and Buddy.",
+      "category": "2",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 5,
+      "question_id": "locomo_5_qa55",
+      "question": "When did Andrew make his dogs a fun indoor area?",
+      "golden_answer": "few days before November 22, 2023",
+      "generated_answer": "Andrew did not personally make a fun indoor area for his dogs, but on June 26, 2023, he shared a photo of a doggy daycare near him that features a spacious indoor play area for dogs. This suggests he utilizes or appreciates this doggy daycare's indoor facilities for his dogs.",
+      "category": "2",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 5,
+      "question_id": "locomo_5_qa63",
+      "question": "What kind of pastries did Andrew and his girlfriend have at the cafe?",
+      "golden_answer": "croissants, muffins, and tarts",
+      "generated_answer": "Andrew and his girlfriend had irresistible pastries with amazing smells at a new cafe they visited on the weekend of April 8-9, 2023. However, the specific kinds or types of pastries they enjoyed were not detailed in the conversation.",
+      "category": "4",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 5,
+      "question_id": "locomo_5_qa81",
+      "question": "What did Andrew and his GF do on the Monday before July 24, 2023?",
+      "golden_answer": "volunteered at a pet shelter",
+      "generated_answer": "There is no information in the memories about what Andrew and his girlfriend did on Monday, July 17, 2023, the Monday before July 24, 2023. The only Monday activity mentioned is that on July 24, 2023, Andrew and his girlfriend volunteered at a pet shelter.",
+      "category": "4",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 5,
+      "question_id": "locomo_5_qa119",
+      "question": "What did Audrey share to show ways to keep dogs active in the city?",
+      "golden_answer": "photography of a basket full of stuffed animals",
+      "generated_answer": "Audrey shared that to keep dogs active in the city, she takes her dogs to agility classes and parks twice a week for physical exercise and bonding. She meets with a dog owners group once a week to allow socialization and play. She organizes doggy playdates and plays fetch and frisbee with her dogs outdoors. Indoors, Audrey uses puzzles, training tricks, hide-and-seek games, and provides stuffed animals and toys to mentally stimulate and entertain her dogs. She also utilizes doggy daycare with spacious indoor play areas. Audrey emphasizes positive reinforcement training and routine changes to support her dogs’ well-being. These activities collectively keep her dogs physically and mentally active despite city living constraints.",
+      "category": "4",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 6,
+      "question_id": "locomo_6_qa0",
+      "question": "What are John's suspected health problems?",
+      "golden_answer": "Obesity",
+      "generated_answer": "John’s suspected health problems are primarily related to mental and emotional health, including stress, feelings of being overwhelmed, emotional vulnerability, and difficult times emotionally. There is no evidence of physical health issues mentioned in the memories.",
+      "category": "3",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 6,
+      "question_id": "locomo_6_qa5",
+      "question": "What are John and James' favorite games?",
+      "golden_answer": "John's favorite game is CS:GO, and James's is Apex Legends.",
+      "generated_answer": "James’s favorite game is Apex Legends, noted for its intensity, fast-paced gameplay, and impressive graphics. He is also deeply engaged with The Witcher 3, which inspired his own game development, and shows strong interest in RPGs such as Cyberpunk 2077. Additionally, James enjoys strategy games like Civilization VI and has completed a Unity strategy game inspired by Civilization and Total War. From childhood, he fondly remembers Nintendo games including Super Mario and The Legend of Zelda.\n\nJohn’s favorite games include Assassin's Creed Valhalla, which he is actively playing, and FIFA 23, which he enjoys for its online multiplayer features. He has recently started playing chess to enhance his strategic skills and is involved in organizing competitive gaming tournaments for CS:GO and Fortnite. John also appreciates RPGs like Cyberpunk 2077 and enjoys immersive VR gaming experiences.",
+      "category": "1",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 6,
+      "question_id": "locomo_6_qa6",
+      "question": "Does James live in Connecticut?",
+      "golden_answer": "Likely yes",
+      "generated_answer": "There is no information in the memories indicating that James lives in Connecticut. The exact location of James’s residence is not specified, only that he and Samantha moved into an apartment near McGee's bar, but the geographic location of McGee's bar is not provided. Therefore, it cannot be confirmed that James lives in Connecticut.",
+      "category": "3",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 6,
+      "question_id": "locomo_6_qa11",
+      "question": "How was John feeling on April 10, 2022?",
+      "golden_answer": "seeking solitude",
+      "generated_answer": "On April 10, 2022, John was feeling stressed and frustrated due to a busy work schedule and difficulties with a new RPG game that was laggy and buggy, which limited his gaming progress. Despite these challenges, he found gaming to be a joyful escape from stress, indicating a positive outlet. Around this time, John was also on the verge of expanding his social circle by meeting new friends in his programming course (which happened on April 12), suggesting he was motivated and hopeful despite the pressures he faced.",
+      "category": "2",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 6,
+      "question_id": "locomo_6_qa17",
+      "question": "What is the board game where you have to find the imposter that John mentions to James?",
+      "golden_answer": "Mafia",
+      "generated_answer": "The board game John mentions to James where you have to find the impostor is a social deduction game described on May 4, 2022, but John does not specify its name. He only explains that it involves figuring out who the impostors are and recommends playing it with a large group for more fun. Other board games John discusses, such as \"Dungeons of the Dragon\" and the wooden board game demo project, are different and unrelated to the impostor game.",
+      "category": "3",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 6,
+      "question_id": "locomo_6_qa31",
+      "question": "How many days did James plan to spend on his trip in Canada?",
+      "golden_answer": "19 days",
+      "generated_answer": "James planned to spend 9 full days on his trip in Canada, departing on the evening of July 11, 2022, and returning on July 20, 2022.",
+      "category": "2",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 6,
+      "question_id": "locomo_6_qa33",
+      "question": "Did John and James study together?",
+      "golden_answer": "Yes",
+      "generated_answer": "John and James did not study together. While John signed up for a programming class and they frequently discussed programming and shared resources, there is no evidence that they attended the same class or studied together formally. Their collaboration and conversations reflect mutual support and knowledge sharing rather than joint study.",
+      "category": "3",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 6,
+      "question_id": "locomo_6_qa61",
+      "question": "What was James' big moment with Samantha in October 2023?",
+      "golden_answer": "They decided to live together and rented an apartment not far from McGee's bar.",
+      "generated_answer": "There is no information in the available memories about any big moment involving James and Samantha in October 2023. The latest significant event recorded is that on October 31, 2022, James and Samantha mutually decided to move in together, renting an apartment near McGee's bar, a location they both enjoy.",
+      "category": "2",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 6,
+      "question_id": "locomo_6_qa66",
+      "question": "When did John work with a game developer on a project?",
+      "golden_answer": "November 5-6, 2022",
+      "generated_answer": "John worked with a game developer on a project involving an online board game demo, which he discussed with James on November 7, 2022 (Monday) at 9:00 PM UTC. The project featured a wooden board game with four wooden pieces and four colored balls, and John described the experience as incredible and fun, expressing eagerness to release the demo soon and receive feedback.",
+      "category": "2",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 6,
+      "question_id": "locomo_6_qa146",
+      "question": "What game is John hooked on playing on 5 November, 2022?",
+      "golden_answer": "FIFA 23",
+      "generated_answer": "On November 5, 2022, John is hooked on playing \"The Witcher 3,\" an RPG game he described as having amazing storytelling and characters. Although on that date he was also actively engaged in chess—having won a regional chess tournament on November 1, 2022—and enthusiastic about starting to play FIFA 23 online after some practice, the specific game he is \"hooked on\" remains \"The Witcher 3.\"",
+      "category": "4",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 7,
+      "question_id": "locomo_7_qa19",
+      "question": "How many times has Jolene been to France?",
+      "golden_answer": "two times",
+      "generated_answer": "Jolene has been to France once, as evidenced by her purchase of the snake Seraphim in Paris approximately one year before January 27, 2023.",
+      "category": "1",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 7,
+      "question_id": "locomo_7_qa21",
+      "question": "When do Jolene and her partner plan to complete the game \"Walking Dead\"?",
+      "golden_answer": "Saturday after 27 January, 2023",
+      "generated_answer": "Jolene and her partner planned to start playing the game \"Walking Dead\" on Saturday, February 4, 2023.",
+      "category": "2",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 7,
+      "question_id": "locomo_7_qa45",
+      "question": "When did Jolene finish her robotics project?",
+      "golden_answer": "May 2023",
+      "generated_answer": "Jolene had not finished her robotics project as of February 1, 2023, when she described it as tough but enjoyable and still in progress. The exact completion date of the robotics project is not specified in the available memories, but it was completed sometime after February 1, 2023 and before May 2023, when she completed a different engineering project (the solar powered vehicle).",
+      "category": "2",
+      "judgments": {
+        "judgment_1": true,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 7,
+      "question_id": "locomo_7_qa75",
+      "question": "What card game is Deborah talking about?",
+      "golden_answer": "Exploding Kittens",
+      "generated_answer": "Deborah is referring to a cat-themed card game played by drawing cards one by one from a deck, where players can attack opponents using those cards. However, she could not recall the game's name during the conversation on September 12, 2023, and no further details or the exact name of the game are available from the memories.",
+      "category": "3",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": true,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 7,
+      "question_id": "locomo_7_qa77",
+      "question": "Where did Jolene and her partner find a cool diving spot?",
+      "golden_answer": "Phuket",
+      "generated_answer": "Jolene discovered a cool dive spot during her scuba diving lesson on September 15, 2023, but the exact location of the dive spot was not mentioned in the conversations.",
+      "category": "1",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 7,
+      "question_id": "locomo_7_qa86",
+      "question": "What gifts has Deborah received?",
+      "golden_answer": "an appreciate letter from her community, a flower bouqet from her friend, a motivational quote from a friend",
+      "generated_answer": "Deborah has received the following gifts: a vegan stir-fry meal consisting of tofu and vegetables with ginger and soy sauce from Anna around early March 2023; a bouquet of flowers in a vase given by a friend during a difficult time before early February 2023; and a handwritten note from group members thanking her for her positive influence, received on January 26, 2023. She also possesses a pendant from her late mother, which serves as a cherished keepsake.",
+      "category": "1",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 7,
+      "question_id": "locomo_7_qa87",
+      "question": "Which countries has Deborah traveled to?",
+      "golden_answer": "Thailand, Brazil",
+      "generated_answer": "Deborah has traveled to Indonesia, specifically Bali in 2022, and Brazil, visiting Rio de Janeiro around 2020. She also went on a hiking trip with her friend Karlie in summer 2022, though the location of that trip is not specified.",
+      "category": "1",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 7,
+      "question_id": "locomo_7_qa109",
+      "question": "What cool stuff did Jolene accomplish at the retreat on 9 February, 2023?",
+      "golden_answer": "Came up with neat solutions for her engineering project",
+      "generated_answer": "At the retreat on February 1, 2023, Jolene accomplished developing innovative solutions for her engineering project that excited her and gave her a significant confidence boost. She also conceived a volunteer program idea to teach STEM subjects to underprivileged children by collaborating with local schools and community centers to conduct workshops. Additionally, she envisioned inviting engineers as guest speakers to expose children to various career options. Although she had not yet started outreach, she was eager to begin soon. The retreat provided her with a new outlook, personal growth, and motivation to combine engineering innovation with community engagement.",
+      "category": "4",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 7,
+      "question_id": "locomo_7_qa115",
+      "question": "What activity does Deborah incorporate into her daily routine after going for a morning jog in the park?",
+      "golden_answer": "spending time with loved ones",
+      "generated_answer": "After going for a morning jog in the nearby park (first done on February 24, 2023), Deborah incorporates meditation, yoga, and teaching classes into her daily routine. She also regularly takes her cats for a run in the park every morning and evening, reinforcing running as a consistent activity alongside her yoga and meditation practices.",
+      "category": "4",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 7,
+      "question_id": "locomo_7_qa161",
+      "question": "What did Jolene's mom stress the value of, which she wants to keep in mind for her engineering projects?",
+      "golden_answer": "Helping others",
+      "generated_answer": "Jolene's mom stressed the value of perseverance and resilience, which Jolene wants to keep in mind as guiding principles for her engineering projects. These values inspire her to pursue sustainable solutions and community-focused initiatives, such as developing renewable energy sources and providing clean water access to underserved populations.",
+      "category": "4",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 7,
+      "question_id": "locomo_7_qa174",
+      "question": "Why did Jolene have to reschedule their meeting with Deborah on September 8, 2023?",
+      "golden_answer": "Jolene already had plans",
+      "generated_answer": "Deborah had to reschedule their coffee date originally planned for Wednesday at 4 PM on September 13, 2023, because she already had plans that day. Jolene understood and suggested checking her schedule, eventually proposing Friday, September 15, 2023, at 5 PM as the new meeting time, which Deborah accepted. The rescheduling was due to Deborah’s prior commitment on Wednesday.",
+      "category": "4",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 7,
+      "question_id": "locomo_7_qa179",
+      "question": "What did Jolene recently play that she described to Deb?",
+      "golden_answer": "a card game about cats",
+      "generated_answer": "Jolene recently described to Deborah playing the game \"Detroit\" on their console during the week of January 20-26, 2023.",
+      "category": "4",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 8,
+      "question_id": "locomo_8_qa24",
+      "question": "What significant event happened in Sam's life towards the end of summer 2023?",
+      "golden_answer": "He fell in love with a Canadian woman",
+      "generated_answer": "Towards the end of summer 2023, specifically around mid-August, Sam experienced significant health challenges that he described as tough and motivating. This event prompted Sam to commit to a healthier lifestyle, including enrolling in a cooking class focused on nutritious meals, sharing healthy recipes with Evan, and adopting a mindset of progress over perfection to improve his well-being.",
+      "category": "2",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 8,
+      "question_id": "locomo_8_qa39",
+      "question": "How many months lapsed between Sam's first and second doctor's appointment?",
+      "golden_answer": "three months",
+      "generated_answer": "Approximately 4.5 months elapsed between Sam’s first doctor’s appointment in late May 2023 and his second doctor’s appointment on October 2, 2023.",
+      "category": "2",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 8,
+      "question_id": "locomo_8_qa51",
+      "question": "What challenges does Sam face in his quest for a healthier lifestyle, and how does he address them?",
+      "golden_answer": "Sam faces challenges like maintaining motivation and making dietary changes. He addresses them by enrolling in cooking classes and seeking support from friends like Evan.",
+      "generated_answer": "Sam faces several challenges in his quest for a healthier lifestyle, including cravings for sugary drinks and snacks triggered by stress, boredom, and comfort seeking; emotional stress from family pressure and friends mocking his weight; physical discomfort limiting movement; and occasional frustrations such as a malfunctioning phone navigation app and supermarket self-checkout issues. He also experiences emotional difficulty following a serious health warning on October 2, 2023, and a gastritis scare in early October.\n\nTo address these challenges, Sam adopts a comprehensive approach: he reduces soda and candy intake by substituting flavored seltzer water and healthier snacks, embraces cooking healthier meals learned in a cooking class (e.g., grilled salmon and vegetable stir-fry), and creates meal plans. He begins weightlifting on October 8, 2023, with Evan’s guidance, focusing on proper form and gradual progression, and plans hiking and low-impact exercises such as swimming, yoga, walking, and beach walks to accommodate his physical condition.\n\nFor stress relief, Sam engages in creative outlets like painting (encouraged by Evan), writing, and cooking, and finds relaxation in nature and car rides. He adopts a mindset centered on progress over perfection, celebrating small wins, and taking one step at a time, supported emotionally and practically by Evan. Becoming a Weight Watchers coach on November 9, 2023, further motivates Sam by providing accountability and a platform to help others.\n\nDespite ongoing struggles, Sam remains committed to his healthier lifestyle through gradual, sustainable changes, leveraging emotional support, creative expression, and practical health interventions.",
+      "category": "3",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 8,
+      "question_id": "locomo_8_qa54",
+      "question": "What personal health incidents does Evan face in 2023?",
+      "golden_answer": "heart palpitations, twisted ankle, twisted ankle",
+      "generated_answer": "In 2023, Evan faced several personal health incidents: on May 30, 2023, he experienced a sudden heart palpitation that acted as a serious wake-up call; from that point, he continued a two-year health journey involving lifestyle changes and weightlifting begun about a year before October 2023. Between September 29 and October 5, 2023, Evan suffered a knee injury playing basketball with his children, limiting his activity. In mid-November 2023 (November 14-20), he had a hospital check-up scare due to a suspicious finding, which was later clarified as a misunderstanding but caused significant fear. Additionally, Evan lost his job in October 2023, a stressful event likely affecting his health. Throughout the year, Evan used a fitness watch and maintained exercise routines to support his health management.",
+      "category": "1",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 8,
+      "question_id": "locomo_8_qa74",
+      "question": "When did Evan's son fall off his bike?",
+      "golden_answer": "Thursday before December 17, 2023.",
+      "generated_answer": "Evan's son fell off his bike on Tuesday, December 12, 2023.",
+      "category": "2",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 8,
+      "question_id": "locomo_8_qa80",
+      "question": "When did Evan have a drunken night with his friends?",
+      "golden_answer": "January 9, 2023",
+      "generated_answer": "Evan had his drunken night with friends on the evening of January 9, 2024.",
+      "category": "2",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 8,
+      "question_id": "locomo_8_qa102",
+      "question": "What dish did Sam make on 18 August, 2023 that turned out flavorful?",
+      "golden_answer": "grilled dish with salmon and vegetables",
+      "generated_answer": "On August 18, 2023, Sam made a flavorful and healthy grilled chicken and vegetable stir-fry dish with a homemade sauce, which he shared with Evan the following day along with the recipe.",
+      "category": "4",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 8,
+      "question_id": "locomo_8_qa144",
+      "question": "What did Evan share with Sam after their hiking trip?",
+      "golden_answer": "a photo of a man standing on a rock looking out over a valley",
+      "generated_answer": "After their hiking trip in the Rocky Mountains during early to mid-May 2023, Evan shared with Sam that he and his family had hiked the trails there, describing the views as amazing. He sent Sam a photo showing a lake with rocks and mountains in the background. Evan also explained that he had recently acquired a new Toyota Prius after repairing and selling his old one, which had broken down. Following the hiking trip, Evan recounted a family road trip to Jasper on May 13-14, 2023, where they drove the Icefields Parkway, saw glaciers and lakes, and stayed in a cozy cabin surrounded by mountains and forests. Throughout these exchanges, Evan conveyed positive emotions about the outdoor experiences and encouraged Sam to hike more often, emphasizing the calming and enjoyable nature of hiking and scenic road trips.",
+      "category": "4",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 9,
+      "question_id": "locomo_9_qa7",
+      "question": "Does Dave's shop employ a lot of people?",
+      "golden_answer": "Yes",
+      "generated_answer": "No, there is no explicit information indicating that Dave’s car maintenance shop employs a lot of people. While Dave has shared photos of groups of people and mentioned working with skilled mechanics through a partnership with a local garage, the memories do not specify the number of employees at his shop or suggest a large staff.",
+      "category": "3",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 9,
+      "question_id": "locomo_9_qa39",
+      "question": "Would Dave prefer working on a Dodge Charger or a Subaru Forester?",
+      "golden_answer": "Dodge Charger",
+      "generated_answer": "Dave would prefer working on a Subaru Forester rather than a Dodge Charger. He has recently restored a blue Subaru Forester found in poor condition (as of late October 2023) and expressed enthusiasm for the restoration process. Although Dave has a strong passion for classic muscle cars like Mustangs and Corvettes, there is no mention of him working on or expressing interest in a Dodge Charger. Therefore, based on his direct experience and expressed enthusiasm, Dave’s preference between these two cars is the Subaru Forester.",
+      "category": "3",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 9,
+      "question_id": "locomo_9_qa42",
+      "question": "Based on the conversation, did Calvin and Dave have a meeting in Boston between August and November 2023? Answer in yes or no.",
+      "golden_answer": "No",
+      "generated_answer": "Yes. Calvin and Dave had a meeting or interaction in Boston between August and November 2023, with Calvin visiting Boston on October 3, October 24, and attending a gala on November 16, 2023, and plans to meet Dave confirmed around these dates.",
+      "category": "3",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 9,
+      "question_id": "locomo_9_qa47",
+      "question": "How many car shows has Dave attended?",
+      "golden_answer": "two",
+      "generated_answer": "Dave has attended three car shows: one classic car event before March 23, 2023; a car show during the weekend of April 13-16, 2023; and another car show on October 6, 2023.",
+      "category": "1",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 9,
+      "question_id": "locomo_9_qa62",
+      "question": "How long was the car modification workshop in San Francisco?",
+      "golden_answer": "two weeks",
+      "generated_answer": "The exact length of the car modification workshop in San Francisco is not explicitly stated in the memories. Dave mentioned attending the workshop recently as of August 14, 2023, and he returned from San Francisco on September 1, 2023, indicating he was involved in the workshop or related activities for a period spanning at least part of those weeks. However, no specific duration (number of days or weeks) for the workshop was given.",
+      "category": "2",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 9,
+      "question_id": "locomo_9_qa137",
+      "question": "When did Calvin first get interested in cars?",
+      "golden_answer": "at an early age",
+      "generated_answer": "There is no explicit information in the memories about when Calvin first got interested in cars. However, Dave’s passion for cars began at age 10, sparked by his father taking him to his first car show and by fixing an old car in a neighbor’s garage. Calvin shows enthusiasm and admiration for cars throughout the conversations but has not shared when his interest started.",
+      "category": "4",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    },
+    {
+      "conv_id": 9,
+      "question_id": "locomo_9_qa151",
+      "question": "What hobby did Calvin take up recently?",
+      "golden_answer": "Photography",
+      "generated_answer": "Calvin recently took up the hobby of music production and creative music projects, notably starting around July 21, 2023, when he began transforming a Japanese mansion into a recording studio, which he described as his dream and a sanctuary for making music with other artists. Since then, he has been actively involved in shooting a music video in Miami (August 19-20, 2023), collaborating on an album nearing completion by October 29, 2023, and making beats for young artists as of November 13, 2023.",
+      "category": "4",
+      "judgments": {
+        "judgment_1": false,
+        "judgment_2": false,
+        "judgment_3": false
+      }
+    }
+  ]
+}
