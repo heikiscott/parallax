@@ -64,6 +64,11 @@
   - [集成到 Evaluation Pipeline](#集成到-evaluation-pipeline)
   - [流式执行示例](#流式执行示例)
   - [Checkpoint 恢复示例](#checkpoint-恢复示例)
+  - [5.5 架构分层与目录组织（常见问题解答）](#55-架构分层与目录组织常见问题解答)
+    - [5.5.1 Node 层 vs 组件层：目录组织](#551-node-层-vs-组件层目录组织)
+    - [5.5.2 Evaluation Pipeline 的配置化程度](#552-evaluation-pipeline-的配置化程度)
+    - [5.5.3 添加新检索方式的步骤](#553-添加新检索方式的步骤)
+    - [5.5.4 总结：架构问题快速参考](#554-总结架构问题快速参考)
 - [6. 实施路线图](#6-实施路线图)
   - [Phase 1: 基础框架（1-2周）](#phase-1-基础框架1-2周)
   - [Phase 2: 包装现有实现（1周）](#phase-2-包装现有实现1周)
@@ -2715,6 +2720,325 @@ async def recoverable_retrieval():
 
     return result
 ```
+
+[⬆️ 返回目录](#目录)
+
+---
+
+## 5.5 架构分层与目录组织（常见问题解答）
+
+> **重要说明**：本节回答架构实施中的常见问题，帮助理解 Node 层与组件层的职责划分。
+
+### 5.5.1 Node 层 vs 组件层：目录组织
+
+#### 核心设计原则：两层架构
+
+**Node 函数**（`src/agents/nodes/`）是 LangGraph 工作流中的执行单元，但它们**调用**的是底层的**检索组件/服务**（`src/retrieval/`）。
+
+#### 推荐的完整目录结构
+
+```
+src/agents/                          # LangGraph 编排层
+├── graphs/                          # Workflow 定义
+│   ├── retrieval_graph.py          # 主检索 Workflow
+│   └── memory_building_graph.py    # Memory 构建 Workflow
+├── nodes/                           # Node 函数（薄封装层）
+│   ├── retrieval_nodes.py          # 调用检索组件的 Node
+│   ├── reranker_nodes.py           # 调用 Reranker 的 Node
+│   ├── memory_nodes.py             # 调用 Memory 构建的 Node
+│   └── answer_nodes.py             # 调用 LLM 生成答案的 Node
+├── state.py                         # LangGraph State 定义
+├── context.py                       # 执行上下文（依赖注入）
+└── node_utils.py                    # Node 辅助函数
+
+src/retrieval/                       # 检索组件层（核心业务逻辑）
+├── retrievers/                      # 各种检索器实现
+│   ├── hybrid_retriever.py         # 混合检索（Embedding + BM25 + RRF）
+│   ├── colbert_retriever.py        # ColBERT 检索
+│   ├── qrhead_retriever.py         # QRHead 检索
+│   └── bm25_retriever.py           # BM25 检索
+├── rerankers/                       # 各种 Reranker 实现
+│   ├── deepinfra_reranker.py       # DeepInfra Rerank API
+│   ├── colbert_reranker.py         # ColBERT 作为 Reranker
+│   └── cross_encoder_reranker.py   # Cross-Encoder Reranker
+└── expanders/                       # 结果扩展器实现
+    ├── cluster_expander.py         # 基于聚类的扩展
+    └── multi_query_expander.py     # 多查询扩展
+
+src/prompts/                         # Prompt 模板（现有）
+├── retrieval/
+│   ├── sufficiency_check.txt       # 充分性判断 Prompt
+│   └── multi_query_gen.txt         # 多查询生成 Prompt
+└── answer/
+    └── answer_generation.txt       # 答案生成 Prompt
+```
+
+#### 职责划分
+
+| 层次 | 目录 | 职责 | 包含业务逻辑？ |
+|------|------|------|----------------|
+| **编排层** | `src/agents/nodes/` | 从 State 提取参数 → 调用组件 → 更新 State | ❌ 否（薄封装） |
+| **业务层** | `src/retrieval/` | 检索方法的具体实现、算法逻辑 | ✅ 是 |
+| **资源层** | `src/prompts/` | Prompt 模板统一管理 | ❌ 否（配置） |
+
+#### 示例：Node 层调用组件层
+
+**Node 函数（薄封装）**：
+```python
+# src/agents/nodes/retrieval_nodes.py
+
+from src.retrieval.retrievers.hybrid_retriever import HybridRetriever
+
+async def hybrid_retrieval_node(state: RetrievalState, context: ExecutionContext):
+    """混合检索 Node - 薄封装层"""
+
+    # 1. 从 State 提取参数
+    query = state["query"]
+    top_k = state.get("top_k", 50)
+
+    # 2. 调用业务逻辑组件
+    retriever = HybridRetriever(
+        vectorize_service=context.vectorize_service,
+        memory_index=context.memory_index,
+        top_k=top_k
+    )
+    documents = await retriever.retrieve(query)
+
+    # 3. 更新 State
+    return {"documents": documents, "metadata": {"retrieval_method": "hybrid"}}
+```
+
+**组件实现（业务逻辑）**：
+```python
+# src/retrieval/retrievers/hybrid_retriever.py
+
+class HybridRetriever:
+    """混合检索器 - 包含核心业务逻辑"""
+
+    def __init__(self, vectorize_service, memory_index, top_k=50):
+        self.vectorize_service = vectorize_service
+        self.memory_index = memory_index
+        self.top_k = top_k
+
+    async def retrieve(self, query: str) -> List[Document]:
+        """执行混合检索（Embedding + BM25 + RRF）"""
+        # 1. Embedding 检索
+        embedding_results = await self._embedding_search(query, self.top_k * 2)
+
+        # 2. BM25 检索
+        bm25_results = await self._bm25_search(query, self.top_k * 2)
+
+        # 3. RRF 融合
+        fused_results = self._reciprocal_rank_fusion(
+            [embedding_results, bm25_results],
+            top_k=self.top_k
+        )
+
+        return fused_results
+```
+
+#### 设计优势
+
+1. **关注点分离**：Node 层负责编排，组件层包含可复用的业务逻辑
+2. **易于测试**：`HybridRetriever` 可以独立单元测试，不需要启动 LangGraph
+3. **易于扩展**：添加新检索方法只需在 `src/retrieval/retrievers/` 中实现
+4. **复用性**：组件可以在非 LangGraph 场景中使用（如 Jupyter Notebook）
+
+### 5.5.2 Evaluation Pipeline 的配置化程度
+
+#### 两个层次的配置
+
+改造后，配置分为两个层次：
+
+| 层次 | 配置方式 | 示例 | 配置化程度 |
+|------|---------|------|-----------|
+| **Retrieval Workflow** | YAML 配置文件 | `config/workflows/agentic_hybrid.yaml` | 100% |
+| **Evaluation Pipeline** | Python `ExperimentConfig` | `ExperimentConfig(retrieval_workflow_config="...")` | 部分（指定 Workflow） |
+
+#### Retrieval Workflow 配置（100% YAML）
+
+```yaml
+# config/workflows/agentic_hybrid.yaml
+
+workflow:
+  name: "agentic_hybrid_retrieval"
+
+  nodes:
+    - name: "hybrid_retrieval"
+      function: "hybrid_retrieval_node"
+      config:
+        top_k: 50
+
+    - name: "rerank"
+      function: "deepinfra_rerank_node"
+      config:
+        top_k: 20
+
+  edges:
+    - from: "START"
+      to: "hybrid_retrieval"
+    - from: "hybrid_retrieval"
+      to: "rerank"
+    - from: "rerank"
+      to: "END"
+```
+
+#### Evaluation Pipeline 配置（Python + YAML）
+
+```python
+# experiments/run_eval.py
+
+config = ExperimentConfig(
+    dataset="locomo",
+    retrieval_workflow_config="config/workflows/colbert.yaml",  # 切换检索方法
+    answer_model="gpt-4"
+)
+
+pipeline = EvaluationPipeline(config)
+results = await pipeline.run(stages=["search", "answer", "evaluate"])
+```
+
+**切换检索方法**：只需修改 `retrieval_workflow_config` 参数！
+
+### 5.5.3 添加新检索方式的步骤
+
+#### 5 步添加新检索方法（零修改现有代码）
+
+假设添加 **BM25+ColBERT 混合检索**：
+
+**Step 1: 实现组件**（新文件）
+```python
+# src/retrieval/retrievers/bm25_colbert_retriever.py (新文件)
+
+class BM25ColBERTRetriever:
+    """BM25 + ColBERT 混合检索"""
+
+    def __init__(self, bm25_index, colbert_model, top_k=50):
+        self.bm25_index = bm25_index
+        self.colbert_model = colbert_model
+        self.top_k = top_k
+
+    async def retrieve(self, query: str) -> List[Document]:
+        # 1. BM25 检索
+        bm25_results = await self._bm25_search(query, self.top_k * 2)
+
+        # 2. ColBERT 检索
+        colbert_results = await self._colbert_search(query, self.top_k * 2)
+
+        # 3. RRF 融合
+        return self._reciprocal_rank_fusion([bm25_results, colbert_results], self.top_k)
+```
+
+**Step 2: 添加 Node**（在文件末尾添加）
+```python
+# src/agents/nodes/retrieval_nodes.py (添加新函数)
+
+async def bm25_colbert_retrieval_node(state: RetrievalState, context: ExecutionContext):
+    """BM25+ColBERT 混合检索 Node"""
+    retriever = BM25ColBERTRetriever(
+        bm25_index=context.bm25_index,
+        colbert_model=context.colbert_model,
+        top_k=state.get("top_k", 50)
+    )
+    documents = await retriever.retrieve(state["query"])
+    return {"documents": documents, "metadata": {"retrieval_method": "bm25_colbert"}}
+```
+
+**Step 3: 注册**（1 行代码）
+```python
+# src/agents/nodes/__init__.py
+
+NODE_REGISTRY = {
+    "hybrid_retrieval_node": hybrid_retrieval_node,
+    "bm25_colbert_retrieval_node": bm25_colbert_retrieval_node,  # 新增
+}
+```
+
+**Step 4: 创建配置**（新文件）
+```yaml
+# config/workflows/bm25_colbert.yaml (新文件)
+
+workflow:
+  name: "bm25_colbert_retrieval"
+  nodes:
+    - name: "retrieval"
+      function: "bm25_colbert_retrieval_node"
+      config:
+        top_k: 50
+  edges:
+    - from: "START"
+      to: "retrieval"
+    - from: "retrieval"
+      to: "END"
+```
+
+**Step 5: 使用**（修改配置路径）
+```python
+config = ExperimentConfig(
+    retrieval_workflow_config="config/workflows/bm25_colbert.yaml"  # 只改这一行
+)
+```
+
+#### 改造前 vs 改造后对比
+
+| 维度 | 改造前 | 改造后 |
+|------|--------|--------|
+| **新增检索方法** | 修改 3-6 个文件 | 新增 2-3 个文件 + 1 个 YAML |
+| **修改现有代码** | 是（需要在 `stage3_memory_retrival.py` 中添加分支） | 否（只需注册到 Registry） |
+| **测试隔离性** | 差（需要运行整个 Pipeline） | 好（可以独立测试组件） |
+| **切换成本** | 修改 Python 代码 | 修改 YAML 配置文件路径 |
+| **配置灵活性** | 低（硬编码在代码中） | 高（YAML 随意组合） |
+
+#### 扩展性示例：多阶段检索
+
+通过 YAML 轻松组合不同的检索阶段：
+
+```yaml
+# config/workflows/multi_stage_retrieval.yaml
+
+workflow:
+  name: "multi_stage_advanced"
+
+  nodes:
+    - name: "bm25_recall"          # Round 1: BM25 快速召回
+      function: "bm25_retrieval_node"
+      config: {top_k: 100}
+
+    - name: "colbert_rerank"       # Round 2: ColBERT 精排
+      function: "colbert_rerank_node"
+      config: {top_k: 50}
+
+    - name: "final_rerank"         # Round 3: DeepInfra 终排
+      function: "deepinfra_rerank_node"
+      config: {top_k: 20}
+
+    - name: "cluster_expand"       # Round 4: 聚类扩展
+      function: "cluster_expander_node"
+
+  edges:
+    - from: "START"
+      to: "bm25_recall"
+    - from: "bm25_recall"
+      to: "colbert_rerank"
+    - from: "colbert_rerank"
+      to: "final_rerank"
+    - from: "final_rerank"
+      to: "cluster_expand"
+    - from: "cluster_expand"
+      to: "END"
+```
+
+### 5.5.4 总结：架构问题快速参考
+
+| 问题 | 答案 |
+|------|------|
+| **检索器应该放哪里？** | `src/retrieval/retrievers/` |
+| **Reranker 应该放哪里？** | `src/retrieval/rerankers/` |
+| **Prompts 应该放哪里？** | `src/prompts/`（现有目录） |
+| **Node 函数应该放哪里？** | `src/agents/nodes/`（薄封装层） |
+| **eval 是配置流程吗？** | 部分：Retrieval Workflow 100% YAML，Evaluation Pipeline 通过 `ExperimentConfig` 指定 |
+| **切换检索方法需要改代码吗？** | 否，只需修改 `retrieval_workflow_config` 参数 |
+| **添加新检索方法容易吗？** | 非常容易：新增 2-3 个文件 + 1 个 YAML，零修改现有代码 |
 
 [⬆️ 返回目录](#目录)
 
