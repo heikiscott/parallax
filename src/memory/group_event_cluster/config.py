@@ -51,7 +51,7 @@ class GroupEventClusterConfig:
     Recommend 0.0 for clustering decisions to ensure consistency.
     """
 
-    llm_max_tokens: int = 1024
+    llm_max_tokens: int = 2048
     """Maximum tokens for LLM response."""
 
     # === Clustering Configuration ===
