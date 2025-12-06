@@ -13,10 +13,13 @@
   - [2.2 兼容性问题识别](#22-兼容性问题识别)
   - [2.3 设计调整方案](#23-设计调整方案)
 - [3. 核心架构](#3-核心架构)
-  - [3.1 架构层次与 StrategyRouter 定位](#31-架构层次与-strategyrouter-定位)
-    - [四层架构设计](#四层架构设计)
-    - [StrategyRouter 的关键特性](#strategyrouter-的关键特性)
-    - [子类叠加（Subclass Stacking）模式](#子类叠加subclass-stacking模式)
+  - [3.1 扁平可嵌套架构](#31-扁平可嵌套架构)
+    - [核心设计原则：一切皆 Component](#核心设计原则一切皆-component)
+    - [统一抽象：PipelineComponent](#统一抽象pipelinecomponent)
+    - [Pipeline 也是 Component](#pipeline-也是-component)
+    - [StrategyRouter 也是 Component](#strategyrouter-也是-component)
+    - [使用示例：灵活组合](#使用示例灵活组合)
+    - [与现有架构的关系](#与现有架构的关系)
   - [3.2 组件抽象](#32-组件抽象)
     - [组件分类体系](#组件分类体系)
     - [1. Memory Building（记忆构建）](#1-memory-building记忆构建)
@@ -300,123 +303,230 @@ config.retrieval_pipeline_config = "config/pipelines/agentic_hybrid.yaml"
 
 ## 3. 核心架构
 
-### 3.1 架构层次与 StrategyRouter 定位
+### 3.1 扁平可嵌套架构
 
-#### 四层架构设计
+#### 核心设计原则：一切皆 Component
 
-本 Pipeline 设计采用**四层架构**，每层职责清晰，支持**子类叠加**（subclass stacking）模式：
+本 Pipeline 设计采用**扁平可嵌套架构**，核心思想是：**一切皆 Component，Pipeline 也是 Component**。
 
-```
-┌─────────────────────────────────────────────────────────────┐
-│ Layer 0: Evaluation Pipeline (评估流程)                     │
-│  - Add Memory → Cluster → Search → Answer → Evaluate        │
-│  - 位置: eval/core/pipeline.py                              │
-│  - 职责: 端到端评估流程编排                                 │
-└─────────────────────────────────────────────────────────────┘
-                           │
-                           ▼
-┌─────────────────────────────────────────────────────────────┐
-│ Layer 1: StrategyRouter (策略路由器)                        │
-│  - 类型: BaseQuestionClassifier 的子类                      │
-│  - 位置: eval/adapters/parallax/strategy/router.py          │
-│  - 职责: 问题分类 + 策略选择                                │
-│  - 核心方法: route_and_retrieve(query, context)             │
-└─────────────────────────────────────────────────────────────┘
-                           │
-                           ▼
-┌─────────────────────────────────────────────────────────────┐
-│ Layer 2: Retrieval Strategies (检索策略)                    │
-│  - GECClusterRerankStrategy                                  │
-│  - GECInsertAfterHitStrategy                                 │
-│  - AgenticOnlyStrategy                                       │
-│  - 位置: eval/adapters/parallax/strategy/strategies.py      │
-│  - 职责: 实现具体的检索策略                                 │
-│  - 每个策略内部包含一个 RetrievalPipeline                   │
-└─────────────────────────────────────────────────────────────┘
-                           │
-                           ▼
-┌─────────────────────────────────────────────────────────────┐
-│ Layer 3: Fine-grained Components (细粒度组件)               │
-│  - HybridRetriever (Retrieval 大类的子类)                   │
-│  - DeepInfraReranker (Postprocessing 大类的子类)            │
-│  - ClusterExpander (Result Expansion 大类的子类)            │
-│  - MultiQueryExpander (Result Expansion 大类的子类)         │
-│  - 位置: src/agents/pipeline/components/                    │
-│  - 职责: 执行单一检索步骤                                   │
-└─────────────────────────────────────────────────────────────┘
-```
+这种设计带来极致的灵活性：
+- ✅ 组件可以任意嵌套（Component 包含 Component）
+- ✅ Pipeline 可以嵌套 Pipeline（Pipeline 本身也是 Component）
+- ✅ 无需预设层次（简单场景扁平化，复杂场景自由嵌套）
 
-#### StrategyRouter 的关键特性
+#### 统一抽象：PipelineComponent
 
-**StrategyRouter** 是 **BaseQuestionClassifier**（组件分类 2）的一个**复合子类**：
-
-1. **定位**: `eval/adapters/parallax/strategy/router.py`
-2. **继承关系**: `StrategyRouter` extends `BaseQuestionClassifier`
-3. **复合模式**: 内部管理多个 `BaseRetrievalStrategy` 实例，每个策略包含一个 `RetrievalPipeline`
-4. **核心方法**:
-   - `classify(query)` - 调用 `QuestionClassifier` 分类问题
-   - `route_and_retrieve(query, context)` - 根据分类结果选择策略并执行检索
-
-**代码示例**：
+所有组件（包括 Pipeline 自身）都实现同一个接口：
 
 ```python
-# eval/adapters/parallax/strategy/router.py
+# src/agents/pipeline/components/base.py
 
-class StrategyRouter(BaseQuestionClassifier):
-    """策略路由器 - BaseQuestionClassifier 的子类"""
+from abc import ABC, abstractmethod
+from typing import Optional
 
-    def __init__(self, classifier: QuestionClassifier):
-        self._classifier = classifier
-        self._strategies: Dict[StrategyType, BaseRetrievalStrategy] = {}
+class PipelineComponent(ABC):
+    """所有组件的基类 - 无论简单还是复合"""
 
-    async def route_and_retrieve(self, query: str, context: RetrievalContext):
-        # 1. 分类问题
-        classification = self._classifier.classify(query)
+    @abstractmethod
+    async def process(
+        self,
+        query: str,
+        context: 'PipelineContext'
+    ) -> 'RetrievalResult':
+        """处理输入，返回结果"""
+        pass
 
-        # 2. 选择策略
-        strategy_type = CLASSIFIER_TO_STRATEGY[classification.strategy]
-        strategy = self._strategies[strategy_type]
+    def is_composite(self) -> bool:
+        """是否是复合组件（包含子组件）"""
+        return False
+```
 
-        # 3. 执行检索（策略内部使用 Pipeline）
-        result = await strategy.retrieve(query, context)
+#### Pipeline 也是 Component
+
+Pipeline 本身实现 `PipelineComponent` 接口，因此可以作为组件嵌入到其他 Pipeline 中：
+
+```python
+# src/agents/pipeline/pipeline.py
+
+class RetrievalPipeline(PipelineComponent):
+    """Pipeline 也实现 Component 接口，可以嵌套"""
+
+    def __init__(self, name: str, stages: List['PipelineStage'] = None):
+        self.name = name
+        self.stages = stages or []
+
+    async def process(
+        self,
+        query: str,
+        context: 'PipelineContext'
+    ) -> 'RetrievalResult':
+        """顺序执行各个 stage"""
+        result = RetrievalResult(documents=[], metadata={})
+
+        for stage in self.stages:
+            # 每个 stage 的 component 也实现 process() 接口
+            result = await stage.component.process(query, context)
+
+            # 可以在这里做结果传递、条件判断等
+            if stage.condition and not await stage.condition(result, context):
+                continue
 
         return result
 
-# 策略内部使用 Pipeline 组合细粒度组件
-class GECClusterRerankStrategy(BaseRetrievalStrategy):
-    def __init__(self, config):
-        # 内部创建 Pipeline
-        self.pipeline = RetrievalPipeline("gec_cluster_rerank")
-        self.pipeline.add_stage(PipelineStage(HybridRetriever(...)))  # Layer 3
-        self.pipeline.add_stage(PipelineStage(DeepInfraReranker(...)))  # Layer 3
-        self.pipeline.add_stage(PipelineStage(ClusterExpander(...)))  # Layer 3
+    def add_stage(self, component: PipelineComponent, name: str = None):
+        """添加一个阶段"""
+        self.stages.append(PipelineStage(component, name))
+        return self
 
-    async def retrieve(self, query, context):
-        return await self.pipeline.execute(query, context)
+    def is_composite(self) -> bool:
+        return True
 ```
 
-#### 子类叠加（Subclass Stacking）模式
+#### StrategyRouter 也是 Component
 
-**核心思想**: 每个大类组件可以有多种子类实现，子类可以是：
+StrategyRouter 是一个特殊的 Component，内部包含多个子 Component（策略），可以嵌入到任何 Pipeline 中：
 
-1. **简单实现**：直接实现检索逻辑（如 `EmbeddingRetriever`）
-2. **复合实现**：内部包含 Pipeline 或其他组件（如 `HybridRetriever` 内部组合 `EmbeddingRetriever` + `BM25Retriever`）
+```python
+# eval/adapters/parallax/strategy/router.py (适配为新架构)
 
-**示例层级**：
+class StrategyRouter(PipelineComponent):
+    """路由组件 - 根据分类选择子 Component 执行
+
+    位置: eval/adapters/parallax/strategy/router.py
+    类型: Question Classification & Routing 大类的一个实现
+    """
+
+    def __init__(
+        self,
+        classifier: 'QuestionClassifier',
+        strategies: Dict[str, PipelineComponent]
+    ):
+        self._classifier = classifier
+        self._strategies = strategies  # 每个策略也是 Component
+
+    async def process(
+        self,
+        query: str,
+        context: 'PipelineContext'
+    ) -> 'RetrievalResult':
+        # 1. 分类问题
+        classification = self._classifier.classify(query)
+
+        # 2. 选择策略（策略本身也是 Component）
+        strategy = self._strategies[classification.strategy]
+
+        # 3. 执行策略的 process() 方法
+        result = await strategy.process(query, context)
+
+        # 4. 添加分类元数据
+        result.metadata["classification"] = {
+            "question_type": classification.question_type,
+            "confidence": classification.confidence,
+        }
+
+        return result
+
+    def is_composite(self) -> bool:
+        return True  # 因为内部包含多个 strategy
+```
+
+#### 使用示例：灵活组合
+
+##### 场景 1: 简单 Pipeline（无嵌套）
+
+```python
+# 直接组合 Components
+simple_pipeline = RetrievalPipeline("simple")
+simple_pipeline.add_stage(HybridRetriever(top_k=50))
+simple_pipeline.add_stage(DeepInfraReranker(top_k=20))
+simple_pipeline.add_stage(ClusterExpander())
+
+# 执行
+result = await simple_pipeline.process(query, context)
+```
+
+##### 场景 2: Pipeline 嵌套 Pipeline
+
+```python
+# 创建子 Pipeline
+round1_pipeline = RetrievalPipeline("round1")
+round1_pipeline.add_stage(HybridRetriever())
+round1_pipeline.add_stage(Reranker())
+
+# 主 Pipeline 嵌套子 Pipeline
+agentic_pipeline = RetrievalPipeline("agentic")
+agentic_pipeline.add_stage(round1_pipeline)  # 嵌套：Pipeline 作为 Component
+agentic_pipeline.add_stage(SufficiencyChecker())
+agentic_pipeline.add_stage(
+    MultiQueryExpander(),
+    condition=lambda result, ctx: not result.metadata.get("sufficient")
+)
+agentic_pipeline.add_stage(round1_pipeline)  # 复用同一个 Pipeline
+
+# 执行
+result = await agentic_pipeline.process(query, context)
+```
+
+##### 场景 3: 带 Router 的 Pipeline
+
+```python
+# 定义各个策略（每个策略是一个 Pipeline）
+simple_strategy = RetrievalPipeline("simple")
+simple_strategy.add_stage(EmbeddingRetriever())
+simple_strategy.add_stage(Reranker())
+
+complex_strategy = RetrievalPipeline("complex")
+complex_strategy.add_stage(HybridRetriever())
+complex_strategy.add_stage(MultiQueryExpander())
+complex_strategy.add_stage(Reranker())
+
+# 创建 Router（Router 也是 Component）
+router = StrategyRouter(
+    classifier=QuestionClassifier(),
+    strategies={
+        "SIMPLE": simple_strategy,
+        "COMPLEX": complex_strategy,
+    }
+)
+
+# 主 Pipeline 使用 Router
+main_pipeline = RetrievalPipeline("with_router")
+main_pipeline.add_stage(router)  # Stage 1: 路由 + 执行对应策略
+main_pipeline.add_stage(FinalDeduplicator())  # Stage 2: 通用后处理
+
+# 执行
+result = await main_pipeline.process(query, context)
+```
+
+#### 与现有架构的关系
+
+虽然不预设固定层次，但实际使用中会自然形成层次关系：
 
 ```
-BaseQuestionClassifier (Component Type 2)
-├── ComplexityClassifier (简单实现)
-├── DomainClassifier (简单实现)
-└── StrategyRouter (复合实现)
-    └── 内部管理多个 Strategy，每个 Strategy 包含 Pipeline
-        └── Pipeline 包含 Layer 3 细粒度组件
+现有评估流程 (eval/core/pipeline.py)
+├── Add Memory Stage
+├── Cluster Stage
+├── Search Stage  ← 这里可以使用 RetrievalPipeline
+│   └── RetrievalPipeline
+│       ├── StrategyRouter (可选)
+│       │   ├── Strategy A (也是 Pipeline)
+│       │   └── Strategy B (也是 Pipeline)
+│       ├── 或者直接是 Components
+│       └── FinalPostprocessing
+├── Answer Stage
+└── Evaluate Stage
 ```
+
+**关键点**：
+- 现有的 `eval/core/pipeline.py` 保持不变（评估流程编排）
+- 新的 `RetrievalPipeline` 在 Search Stage 内部使用
+- StrategyRouter 是可选的，不需要路由时直接用 Pipeline 组合 Components
 
 **优势**：
-- **灵活性**: 可以任意组合检索步骤
-- **可扩展**: 添加新策略无需修改 StrategyRouter
-- **模块化**: 每个组件职责单一，易于测试
+- **极致灵活**: 任意嵌套深度，无限制
+- **简单一致**: 所有东西都是 Component，理解成本低
+- **易于扩展**: 添加新组件只需实现 `PipelineComponent` 接口
+- **易于测试**: 每个 Component 独立测试，组合后也可以测试
 
 [⬆️ 返回目录](#目录)
 
@@ -1560,14 +1670,60 @@ result = await pipeline.execute(query, context)
 
 ## 10. 总结
 
-这个重构方案通过引入 **Pipeline 抽象层 + 组件注册机制 + 声明式配置**，实现了：
+这个重构方案通过引入**扁平可嵌套架构 + 统一 Component 抽象 + 声明式配置**，实现了：
 
-1. **灵活组合**：任意搭配检索方法（Embedding, BM25, ColBERT, QRHead）
-2. **零代码扩展**：添加新方法无需修改现有代码
-3. **向后兼容**：现有代码通过 Adapter 无缝迁移
-4. **易于实验**：修改配置文件即可测试新 Pipeline
+### 核心创新
 
-**最重要的是**：为集成 ColBERT、QRHead 等新检索方法提供了清晰的路径，而不是在现有代码上"打补丁"。这将大大提升 Parallax 检索系统的灵活性和可维护性。
+1. **一切皆 Component**
+   - Pipeline 本身也是 Component，可以任意嵌套
+   - StrategyRouter 也是 Component，可以灵活组合
+   - 无需预设层次，简单场景扁平化，复杂场景自由嵌套
+
+2. **极致灵活性**
+   - 任意搭配检索方法（Embedding, BM25, ColBERT, QRHead）
+   - Pipeline 可以嵌套 Pipeline，Component 可以包含 Component
+   - 支持条件执行、并行执行、结果复用
+
+3. **零代码扩展**
+   - 新组件只需实现 `PipelineComponent` 接口
+   - 通过 ComponentRegistry 注册即可使用
+   - YAML 配置文件即可组合新 Pipeline
+
+4. **9 大组件分类**
+   - 覆盖 RAG 全流程：Memory Building → Question Classification → Query Preprocessing → Retrieval → Result Expansion → Postprocessing → Prompt Adaptation → Judgment → Answer Generation
+   - 作为推荐分类，帮助用户理解和组织代码
+   - 每个大类下可以有任意多个子类实现
+
+5. **向后兼容**
+   - 现有 `eval/core/pipeline.py` 保持不变
+   - 现有 `StrategyRouter` 可以适配为新架构
+   - 通过 Adapter 包装现有检索逻辑
+
+### 关键优势
+
+**相比固定层次架构**：
+- ✅ 不受层次限制，任意深度嵌套
+- ✅ 简单场景无需过度设计
+- ✅ 复杂场景有足够表达力
+
+**相比函数式组合**：
+- ✅ 统一接口，易于测试和组合
+- ✅ 支持配置文件驱动
+- ✅ 更好的类型安全和代码提示
+
+**相比过度抽象**：
+- ✅ 概念简单：只有 Component 和 Pipeline
+- ✅ 学习成本低：一切皆 Component
+- ✅ 调试友好：清晰的执行流程
+
+### 最重要的是
+
+这个设计为集成 **ColBERT、QRHead** 等新检索方法提供了清晰的路径：
+1. 实现 `BaseRetriever` 接口
+2. 注册到 `ComponentRegistry`
+3. 在 YAML 配置文件中使用
+
+**无需修改任何现有代码**，也无需在现有代码上"打补丁"。这将大大提升 Parallax 检索系统的灵活性和可维护性。
 
 [⬆️ 返回目录](#目录)
 
