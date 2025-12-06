@@ -381,6 +381,14 @@ if __name__ == "__main__":
 
 ---
 
+## 扩展阅读
+
+如果你想了解 Agentic Retrieval 的底层架构设计和未来发展方向，请参阅：
+
+- **[Parallax Agentic Retrieval 设计方案](./agentic_retrieval_design.md)**: 详细的架构设计文档，包含组件抽象、配置系统、实施路线图等
+
+---
+
 **注意事项**：
 - Agentic 检索是实验性功能，可能在未来版本中调整
 - 使用前请确保理解 LLM API 的成本和限制
