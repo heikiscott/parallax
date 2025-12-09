@@ -14,10 +14,15 @@ import numpy as np
 import logging
 import asyncio
 from typing import List, Tuple, Dict, Any, Optional
-from core.nlp.stopwords_utils import filter_stopwords as filter_chinese_stopwords
-from .deep_infra_vectorize_service import get_vectorize_service
+from src.core.nlp.stopwords_utils import filter_stopwords as filter_chinese_stopwords
 
 logger = logging.getLogger(__name__)
+
+
+def get_vectorize_service():
+    """Lazy import to avoid circular dependency."""
+    from retrieval.services.vectorize import get_vectorize_service as _get_service
+    return _get_service()
 
 
 def build_bm25_index(candidates):
@@ -552,12 +557,12 @@ async def agentic_retrieval(
         >>> print(metadata["refined_queries"])  # ["用户最喜欢的菜系？", ...]
     """
     # 导入配置和工具
-    from .agentic_utils import (
+    from agents.agentic_utils import (
         AgenticConfig,
         check_sufficiency,
         generate_multi_queries
     )
-    from .rerank_service import get_rerank_service
+    from retrieval.services.rerank import get_rerank_service
     
     # 使用默认配置或提供的配置
     if config is None:

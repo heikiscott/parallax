@@ -76,7 +76,7 @@ class ParallaxAdapter(BaseAdapter):
             model=llm_config.get("model", "gpt-4o-mini"),
             api_key=llm_config.get("api_key", ""),
             base_url=llm_config.get("base_url", "https://api.openai.com/v1"),
-            temperature=llm_config.get("temperature", 0.3),
+            temperature=llm_config.get("temperature", 0.0),
             max_tokens=int(llm_config.get("max_tokens", 32768)),
         )
         
@@ -500,7 +500,7 @@ class ParallaxAdapter(BaseAdapter):
         if retrieval_mode == "agentic":
             # 🔥 策略路由检索（默认启用）
             if exp_config.enable_question_classification:
-                from eval.adapters.parallax.strategy import route_and_retrieve
+                from src.retrieval.routing import route_and_retrieve
                 top_results, metadata = await route_and_retrieve(
                     query=query,
                     config=exp_config,
@@ -525,6 +525,33 @@ class ParallaxAdapter(BaseAdapter):
                     cluster_index=cluster_index,
                     enable_traversal_stats=True,
                 )
+        elif retrieval_mode == "workflow":
+            # 🔥 LangGraph Workflow 模式（YAML配置驱动）
+            from eval.adapters.parallax.workflow_integration import workflow_search
+
+            workflow_name = search_config.get("workflow_name", exp_config.workflow_name)
+            workflow_config = {
+                "emb_top_k": exp_config.hybrid_emb_candidates,
+                "bm25_top_k": exp_config.hybrid_bm25_candidates,
+                "final_top_k": exp_config.reranker_top_n,
+                "use_reranker": exp_config.use_reranker,
+                "use_multi_query": exp_config.use_multi_query,
+                "llm_config": llm_config,
+                "group_event_cluster_retrieval_config": exp_config.group_event_cluster_retrieval_config,
+            }
+
+            top_results, metadata = await workflow_search(
+                query=query,
+                workflow_name=workflow_name,
+                emb_index=emb_index,
+                bm25=bm25,
+                docs=docs,
+                cluster_index=cluster_index,
+                llm_provider=self.llm_provider,
+                config=workflow_config,
+                top_k=exp_config.emb_recall_top_n,
+                rerank_top_k=exp_config.reranker_top_n,
+            )
         elif retrieval_mode == "lightweight":
             # 轻量级检索
             top_results, metadata = await stage3_memory_retrivel.lightweight_retrieval(
@@ -701,7 +728,7 @@ class ParallaxAdapter(BaseAdapter):
                 "model": llm_cfg.get("model", "gpt-4o-mini"),
                 "api_key": llm_cfg.get("api_key") or os.getenv("LLM_API_KEY", ""),
                 "base_url": llm_cfg.get("base_url") or os.getenv("LLM_BASE_URL", "https://api.openai.com/v1"),
-                "temperature": llm_cfg.get("temperature", 0.3),
+                "temperature": llm_cfg.get("temperature", 0.0),
                 "max_tokens": int(llm_cfg.get("max_tokens", 32768)),
             }
         }
@@ -720,6 +747,10 @@ class ParallaxAdapter(BaseAdapter):
         if "mode" in search_config:
             exp_config.retrieval_mode = search_config["mode"]
             exp_config.use_agentic_retrieval = (exp_config.retrieval_mode == "agentic")
+
+        # 🔥 映射 LangGraph Workflow 配置
+        if "workflow_name" in search_config:
+            exp_config.workflow_name = search_config["workflow_name"]
 
         # 映射群体事件聚类配置（检索增强用）
         if "enable_group_event_cluster" in self.config:

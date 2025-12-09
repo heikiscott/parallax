@@ -16,7 +16,7 @@ from providers.llm.llm_provider import LLMProvider
 from .memory_extractor import MemoryExtractor
 from .memory_extract_request import MemoryExtractRequest
 from memory.schema import MemoryType, MemUnit, Memory, SemanticMemoryItem
-from agents.deep_infra_vectorize_service import get_vectorize_service
+from retrieval.services.vectorize import get_vectorize_service
 from core.observation.logger import get_logger
 
 logger = get_logger(__name__)

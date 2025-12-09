@@ -1,11 +1,11 @@
-"""Base classes for retrieval strategies.
+"""Base types for retrieval routing.
 
-This module defines the abstract base class and data structures for retrieval strategies.
-All concrete strategies should inherit from BaseRetrievalStrategy.
+This module defines the abstract base class and data structures for retrieval policies.
+All concrete policies should inherit from BaseRetrievalStrategy.
 """
 
 from abc import ABC, abstractmethod
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from typing import Any, Dict, List, Optional, Tuple, TYPE_CHECKING
 from enum import Enum
 
@@ -27,14 +27,14 @@ class RetrievalContext:
     """Context object containing all resources needed for retrieval.
 
     This dataclass encapsulates all the indices, providers, and configuration
-    needed to execute a retrieval strategy. It's passed to strategy.retrieve()
-    to avoid tight coupling between strategies and specific resource acquisition.
+    needed to execute a retrieval policy. It's passed to policy.retrieve()
+    to avoid tight coupling between policies and specific resource acquisition.
 
     Attributes:
         emb_index: Embedding index for semantic search
         bm25: BM25 index for keyword search
         docs: List of documents (MemUnits)
-        cluster_index: Optional cluster index for GEC strategies
+        cluster_index: Optional cluster index for GEC policies
         llm_provider: LLM provider for agentic retrieval
         llm_config: LLM configuration dictionary
         config: Experiment configuration
@@ -88,20 +88,20 @@ class RetrievalResult:
 
 
 class BaseRetrievalStrategy(ABC):
-    """Abstract base class for retrieval strategies.
+    """Abstract base class for retrieval policies.
 
-    All retrieval strategies should inherit from this class and implement
-    the retrieve() method. The strategy encapsulates the retrieval logic
+    All retrieval policies should inherit from this class and implement
+    the retrieve() method. The policy encapsulates the retrieval logic
     and can be dynamically selected based on question classification.
 
     Example:
-        class MyCustomStrategy(BaseRetrievalStrategy):
+        class MyCustomPolicy(BaseRetrievalStrategy):
             async def retrieve(self, query: str, context: RetrievalContext) -> RetrievalResult:
                 # Custom retrieval logic
                 results = await my_search(query, context.emb_index)
                 return RetrievalResult(
                     results=results,
-                    metadata={"strategy": "custom"},
+                    metadata={"policy": "custom"},
                     strategy_type=self.strategy_type
                 )
     """
@@ -110,18 +110,18 @@ class BaseRetrievalStrategy(ABC):
         """Initialize with strategy type.
 
         Args:
-            strategy_type: The type of this strategy
+            strategy_type: The type of this policy
         """
         self._strategy_type = strategy_type
 
     @property
     def strategy_type(self) -> StrategyType:
-        """The type of this strategy."""
+        """The type of this policy."""
         return self._strategy_type
 
     @property
     def name(self) -> str:
-        """Human-readable name of this strategy."""
+        """Human-readable name of this policy."""
         return self._strategy_type.value
 
     @abstractmethod
@@ -130,7 +130,7 @@ class BaseRetrievalStrategy(ABC):
         query: str,
         context: RetrievalContext,
     ) -> RetrievalResult:
-        """Execute the retrieval strategy.
+        """Execute the retrieval policy.
 
         Args:
             query: The user's query string

@@ -54,7 +54,7 @@ class OnlineAPIAdapter(BaseAdapter):
             model=llm_config.get("model", "gpt-4o-mini"),
             api_key=llm_config.get("api_key", ""),
             base_url=llm_config.get("base_url", "https://api.openai.com/v1"),
-            temperature=llm_config.get("temperature", 0.3),
+            temperature=llm_config.get("temperature", 0.0),
             max_tokens=int(llm_config.get("max_tokens", 32768)),
         )
 

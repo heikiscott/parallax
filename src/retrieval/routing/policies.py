@@ -1,17 +1,17 @@
-"""Concrete retrieval strategy implementations.
+"""Concrete retrieval policy implementations.
 
-This module contains the actual implementations of retrieval strategies:
-- GECClusterRerankStrategy: LLM-guided cluster selection + Agentic fallback
-- GECInsertAfterHitStrategy: Original retrieval with cluster expansion
-- AgenticOnlyStrategy: Pure Agentic retrieval without cluster expansion
+This module contains the actual implementations of retrieval policies:
+- GECClusterRerankPolicy: LLM-guided cluster selection + Agentic fallback
+- GECInsertAfterHitPolicy: Original retrieval with cluster expansion
+- AgenticOnlyPolicy: Pure Agentic retrieval without cluster expansion
 """
 
 import copy
 import logging
 import time
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any, Dict, Optional
 
-from .base import (
+from .types import (
     BaseRetrievalStrategy,
     StrategyType,
     RetrievalContext,
@@ -69,10 +69,10 @@ def _create_config_with_overrides(config: Any, overrides: Dict[str, Any]) -> _Co
     return _ConfigWrapper(config, overrides)
 
 
-class GECClusterRerankStrategy(BaseRetrievalStrategy):
-    """GEC Cluster Rerank Strategy - LLM selects clusters + Agentic fallback.
+class GECClusterRerankPolicy(BaseRetrievalStrategy):
+    """GEC Cluster Rerank Policy - LLM selects clusters + Agentic fallback.
 
-    This strategy is optimal for event-type questions (temporal, activity, aggregation).
+    This policy is optimal for event-type questions (temporal, activity, aggregation).
     It uses LLM to intelligently select relevant clusters and falls back to
     Agentic retrieval if no suitable clusters are found.
 
@@ -89,7 +89,7 @@ class GECClusterRerankStrategy(BaseRetrievalStrategy):
     """
 
     def __init__(self, config: Optional[Any] = None):
-        """Initialize the strategy.
+        """Initialize the policy.
 
         Args:
             config: Optional ExperimentConfig for customization
@@ -111,19 +111,16 @@ class GECClusterRerankStrategy(BaseRetrievalStrategy):
         Returns:
             RetrievalResult with cluster-enhanced results
         """
-        # Import here to avoid circular dependency
-        from eval.adapters.parallax.stage3_memory_retrivel import (
-            agentic_retrieval,
-        )
+        from src.retrieval.pipelines import agentic_retrieval
 
         start_time = time.time()
 
         # Use context config or instance config
         original_config = context.config or self._config
         if original_config is None:
-            raise ValueError("ExperimentConfig is required for GECClusterRerankStrategy")
+            raise ValueError("ExperimentConfig is required for GECClusterRerankPolicy")
 
-        # 🔥 创建配置包装器，确保不修改原始 config（并发安全）
+        # Create config wrapper to avoid modifying original (concurrent safety)
         config = _create_config_with_overrides(original_config, {
             'expansion_strategy': 'cluster_rerank',
         })
@@ -153,10 +150,10 @@ class GECClusterRerankStrategy(BaseRetrievalStrategy):
         )
 
 
-class GECInsertAfterHitStrategy(BaseRetrievalStrategy):
-    """GEC Insert After Hit Strategy - Original retrieval + cluster expansion.
+class GECInsertAfterHitPolicy(BaseRetrievalStrategy):
+    """GEC Insert After Hit Policy - Original retrieval + cluster expansion.
 
-    This strategy is optimal for reasoning/hypothetical questions that benefit
+    This policy is optimal for reasoning/hypothetical questions that benefit
     from context expansion without LLM cluster selection overhead.
 
     Flow:
@@ -171,7 +168,7 @@ class GECInsertAfterHitStrategy(BaseRetrievalStrategy):
     """
 
     def __init__(self, config: Optional[Any] = None):
-        """Initialize the strategy.
+        """Initialize the policy.
 
         Args:
             config: Optional ExperimentConfig for customization
@@ -193,17 +190,15 @@ class GECInsertAfterHitStrategy(BaseRetrievalStrategy):
         Returns:
             RetrievalResult with context-expanded results
         """
-        from eval.adapters.parallax.stage3_memory_retrivel import (
-            agentic_retrieval,
-        )
+        from src.retrieval.pipelines import agentic_retrieval
 
         start_time = time.time()
 
         original_config = context.config or self._config
         if original_config is None:
-            raise ValueError("ExperimentConfig is required for GECInsertAfterHitStrategy")
+            raise ValueError("ExperimentConfig is required for GECInsertAfterHitPolicy")
 
-        # 🔥 创建配置包装器，确保不修改原始 config（并发安全）
+        # Create config wrapper (concurrent safety)
         config = _create_config_with_overrides(original_config, {
             'expansion_strategy': 'insert_after_hit',
         })
@@ -232,10 +227,10 @@ class GECInsertAfterHitStrategy(BaseRetrievalStrategy):
         )
 
 
-class AgenticOnlyStrategy(BaseRetrievalStrategy):
-    """Agentic Only Strategy - Pure Agentic retrieval without cluster expansion.
+class AgenticOnlyPolicy(BaseRetrievalStrategy):
+    """Agentic Only Policy - Pure Agentic retrieval without cluster expansion.
 
-    This strategy is optimal for attribute/preference questions that require
+    This policy is optimal for attribute/preference questions that require
     precise keyword matching and don't benefit from cluster expansion.
 
     Flow:
@@ -251,7 +246,7 @@ class AgenticOnlyStrategy(BaseRetrievalStrategy):
     """
 
     def __init__(self, config: Optional[Any] = None):
-        """Initialize the strategy.
+        """Initialize the policy.
 
         Args:
             config: Optional ExperimentConfig for customization
@@ -273,18 +268,15 @@ class AgenticOnlyStrategy(BaseRetrievalStrategy):
         Returns:
             RetrievalResult without cluster expansion
         """
-        from eval.adapters.parallax.stage3_memory_retrivel import (
-            agentic_retrieval,
-        )
+        from src.retrieval.pipelines import agentic_retrieval
 
         start_time = time.time()
 
         original_config = context.config or self._config
         if original_config is None:
-            raise ValueError("ExperimentConfig is required for AgenticOnlyStrategy")
+            raise ValueError("ExperimentConfig is required for AgenticOnlyPolicy")
 
-        # 🔥 创建配置包装器，确保不修改原始 config（并发安全）
-        # 禁用 GEC 扩展
+        # Create config wrapper, disable GEC expansion
         config = _create_config_with_overrides(original_config, {
             'enable_group_event_cluster_retrieval': False,
         })
@@ -313,3 +305,9 @@ class AgenticOnlyStrategy(BaseRetrievalStrategy):
             metadata=metadata,
             strategy_type=self.strategy_type,
         )
+
+
+# Aliases for backward compatibility
+GECClusterRerankStrategy = GECClusterRerankPolicy
+GECInsertAfterHitStrategy = GECInsertAfterHitPolicy
+AgenticOnlyStrategy = AgenticOnlyPolicy

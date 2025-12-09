@@ -25,7 +25,7 @@ from infra.adapters.out.search.repository.semantic_memory_es_repository import (
 from infra.adapters.out.search.repository.event_log_es_repository import (
     EventLogEsRepository,
 )
-from agents.deep_infra_vectorize_service import DeepInfraVectorizeServiceInterface
+from retrieval.services.vectorize import DeepInfraVectorizeServiceInterface
 from core.di import get_bean_by_type, service
 from utils.datetime_utils import get_now_with_timezone
 
@@ -72,7 +72,7 @@ class PersonalMemorySyncService:
         )
         
         if vectorize_service is None:
-            from agents.deep_infra_vectorize_service import get_vectorize_service
+            from retrieval.services.vectorize import get_vectorize_service
             self.vectorize_service = get_vectorize_service()
         else:
             self.vectorize_service = vectorize_service

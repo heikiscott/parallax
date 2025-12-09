@@ -64,48 +64,23 @@
   - [集成到 Evaluation Pipeline](#集成到-evaluation-pipeline)
   - [流式执行示例](#流式执行示例)
   - [Checkpoint 恢复示例](#checkpoint-恢复示例)
-  - [5.5 架构分层与目录组织（常见问题解答）](#55-架构分层与目录组织常见问题解答)
-    - [5.5.1 Node 层 vs 组件层：目录组织](#551-node-层-vs-组件层目录组织)
-    - [5.5.2 Evaluation Pipeline 的配置化程度](#552-evaluation-pipeline-的配置化程度)
-    - [5.5.3 添加新检索方式的步骤](#553-添加新检索方式的步骤)
-    - [5.5.4 总结：架构问题快速参考](#554-总结架构问题快速参考)
+- [5.5 架构分层与目录组织（常见问题解答）](#55-架构分层与目录组织常见问题解答)
+  - [5.5.1 Node 层 vs 组件层：目录组织](#551-node-层-vs-组件层目录组织)
+  - [5.5.2 Evaluation Pipeline 的配置化程度](#552-evaluation-pipeline-的配置化程度)
+  - [5.5.3 添加新检索方式的步骤](#553-添加新检索方式的步骤)
+  - [5.5.4 总结：架构问题快速参考](#554-总结架构问题快速参考)
+  - [5.5.5 文件组织与模块分离](#555-文件组织与模块分离phase-1-2-重构完成)
 - [6. 实施路线图](#6-实施路线图)
-  - [Phase 1: 基础框架（1-2周）](#phase-1-基础框架1-2周)
-  - [Phase 2: 包装现有实现（1周）](#phase-2-包装现有实现1周)
-  - [Phase 3: 实现核心组件（2-3周）](#phase-3-实现核心组件2-3周)
-  - [Phase 4: 横向能力集成（1-2周）](#phase-4-横向能力集成1-2周)
-  - [Phase 5: 新检索方法（2-3周）](#phase-5-新检索方法2-3周)
-  - [Phase 6: 配置化与优化（1-2周）](#phase-6-配置化与优化1-2周)
-- [7. 关键文件清单](#7-关键文件清单)
-  - [Phase 1 新增文件（基础框架）](#phase-1-新增文件基础框架)
-  - [Phase 2 新增文件（包装现有实现）](#phase-2-新增文件包装现有实现)
-  - [Phase 3 新增文件（核心组件实现）](#phase-3-新增文件核心组件实现)
-  - [Phase 4 新增文件（横向能力）](#phase-4-新增文件横向能力)
-  - [Phase 5 新增文件（新检索方法）](#phase-5-新增文件新检索方法)
-  - [Phase 6 新增文件（配置化）](#phase-6-新增文件配置化)
-  - [保持不变的文件](#保持不变的文件)
-  - [目录结构总览](#目录结构总览)
-  - [文件创建时间线](#文件创建时间线)
-- [8. 优势总结](#8-优势总结)
-  - [8.1 灵活性](#81-灵活性)
-  - [8.2 扩展性](#82-扩展性)
-  - [8.3 可维护性](#83-可维护性)
-  - [8.4 性能](#84-性能)
-  - [8.5 向后兼容](#85-向后兼容)
-- [9. 风险与缓解](#9-风险与缓解)
-  - [风险 1: 性能开销](#风险-1-性能开销)
-  - [风险 2: 配置复杂度](#风险-2-配置复杂度)
-  - [风险 3: 迁移成本](#风险-3-迁移成本)
-- [10. 总结](#10-总结)
-  - [核心创新](#核心创新)
+  - [Phase 1: 基础框架（1-2周）✅](#phase-1-基础框架1-2周-已完成)
+  - [Phase 2: 核心检索组件（2-3周）✅](#phase-2-核心检索组件2-3周-已完成)
+  - [Phase 3: 包装现有逻辑（Legacy Nodes）✅](#phase-3-包装现有逻辑legacy-nodes-已完成)
+  - [Phase 4: 集成到 Search Stage ✅](#phase-4-集成到-search-stage-已完成)
+  - [Phase 5: 新检索方法（ColBERT, QRHead）](#phase-5-新检索方法colbert-qrhead)
+  - [Phase 6: 横向能力与优化](#phase-6-横向能力与优化)
+- [7. 总结与优势](#7-总结与优势)
+  - [实现的目标](#实现的目标)
   - [关键优势](#关键优势)
-  - [最重要的是](#最重要的是)
-- [11. 相关文档](#11-相关文档)
-  - [用户文档](#用户文档)
-  - [技术文档](#技术文档)
-  - [代码仓库](#代码仓库)
-- [附录](#附录)
-  - [A. 参考资料](#a-参考资料)
+  - [下一步行动](#下一步行动)
 
 ---
 
@@ -390,7 +365,7 @@ LangGraph StateGraph:
 #### 状态定义
 
 ```python
-# src/agents/state.py
+# src/orchestration/state.py
 
 from typing import TypedDict, List, Dict, Any, Optional
 from dataclasses import dataclass
@@ -436,7 +411,7 @@ class RetrievalState(TypedDict):
 #### 节点定义 (Nodes)
 
 ```python
-# src/agents/nodes.py
+# src/orchestration/nodes/__init__.py
 
 from langgraph.graph import StateGraph
 from agents.question_classifier import QuestionClassifier, QuestionType
@@ -1887,7 +1862,7 @@ graph.add_node("retrieval", hybrid_retrieval_node)
 以下是一个完整的检索 Node 示例：
 
 ```python
-# src/agents/nodes/retrieval_nodes.py
+# src/orchestration/nodes/retrieval/retrieval_nodes.py
 
 from typing import Dict, Any, List
 from ..state import RetrievalState
@@ -1936,7 +1911,7 @@ async def hybrid_retrieval_node(state: RetrievalState) -> RetrievalState:
 **在 LangGraph Workflow 中使用**：
 
 ```python
-# src/agents/graphs/retrieval_graph.py
+# src/orchestration/workflow_builder.py (retrieval graph example)
 
 from langgraph.graph import StateGraph
 from ..state import RetrievalState
@@ -2087,7 +2062,7 @@ checkpoint:
 #### 配置加载器实现
 
 ```python
-# src/agents/config_loader.py
+# src/orchestration/config_loader.py
 
 import yaml
 import importlib
@@ -2733,23 +2708,29 @@ async def recoverable_retrieval():
 
 #### 核心设计原则：两层架构
 
-**Node 函数**（`src/agents/nodes/`）是 LangGraph 工作流中的执行单元，但它们**调用**的是底层的**检索组件/服务**（`src/retrieval/`）。
+**Node 函数**（`src/orchestration/nodes/`）是 LangGraph 工作流中的执行单元，但它们**调用**的是底层的**检索组件/服务**（`src/retrieval/`）。
 
 #### 推荐的完整目录结构
 
 ```
-src/agents/                          # LangGraph 编排层
-├── graphs/                          # Workflow 定义
-│   ├── retrieval_graph.py          # 主检索 Workflow
-│   └── memory_building_graph.py    # Memory 构建 Workflow
-├── nodes/                           # Node 函数（薄封装层）
-│   ├── retrieval_nodes.py          # 调用检索组件的 Node
-│   ├── reranker_nodes.py           # 调用 Reranker 的 Node
-│   ├── memory_nodes.py             # 调用 Memory 构建的 Node
-│   └── answer_nodes.py             # 调用 LLM 生成答案的 Node
+src/orchestration/                   # LangGraph 编排层（独立模块）
+├── __init__.py                      # 模块入口，导出主要 API
+├── config_loader.py                 # YAML 配置加载器
+├── context.py                       # ExecutionContext（依赖注入）
 ├── state.py                         # LangGraph State 定义
-├── context.py                       # 执行上下文（依赖注入）
-└── node_utils.py                    # Node 辅助函数
+├── workflow_builder.py              # Workflow 构建器（从 YAML/代码构建 StateGraph）
+└── nodes/                           # Node 函数（薄封装层）
+    ├── __init__.py                  # Node 注册表
+    └── retrieval/                   # 检索相关 Nodes
+        ├── __init__.py
+        ├── classification_nodes.py  # 问题分类 Node
+        └── legacy_nodes.py          # 包装现有 Pipeline 的 Node
+
+src/agents/                          # Agent 业务逻辑（非编排）
+├── question_classifier.py           # 问题分类器
+├── agentic_utils.py                 # Agentic 工具函数
+├── memory_manager.py                # 内存管理
+└── ...                              # 其他 agent 相关业务
 
 src/retrieval/                       # 检索组件层（核心业务逻辑）
 ├── retrievers/                      # 各种检索器实现
@@ -2777,15 +2758,16 @@ src/prompts/                         # Prompt 模板（现有）
 
 | 层次 | 目录 | 职责 | 包含业务逻辑？ |
 |------|------|------|----------------|
-| **编排层** | `src/agents/nodes/` | 从 State 提取参数 → 调用组件 → 更新 State | ❌ 否（薄封装） |
+| **编排层** | `src/orchestration/nodes/` | 从 State 提取参数 → 调用组件 → 更新 State | ❌ 否（薄封装） |
 | **业务层** | `src/retrieval/` | 检索方法的具体实现、算法逻辑 | ✅ 是 |
+| **Agent层** | `src/agents/` | 问题分类、LLM 交互等 Agent 业务逻辑 | ✅ 是 |
 | **资源层** | `src/prompts/` | Prompt 模板统一管理 | ❌ 否（配置） |
 
 #### 示例：Node 层调用组件层
 
 **Node 函数（薄封装）**：
 ```python
-# src/agents/nodes/retrieval_nodes.py
+# src/orchestration/nodes/retrieval/retrieval_nodes.py
 
 from src.retrieval.retrievers.hybrid_retriever import HybridRetriever
 
@@ -2931,8 +2913,11 @@ class BM25ColBERTRetriever:
 
 **Step 2: 添加 Node**（在文件末尾添加）
 ```python
-# src/agents/nodes/retrieval_nodes.py (添加新函数)
+# src/orchestration/nodes/retrieval/colbert_nodes.py (添加新函数)
 
+from src.orchestration.nodes import register_node
+
+@register_node("bm25_colbert_retrieval_node")
 async def bm25_colbert_retrieval_node(state: RetrievalState, context: ExecutionContext):
     """BM25+ColBERT 混合检索 Node"""
     retriever = BM25ColBERTRetriever(
@@ -2944,14 +2929,14 @@ async def bm25_colbert_retrieval_node(state: RetrievalState, context: ExecutionC
     return {"documents": documents, "metadata": {"retrieval_method": "bm25_colbert"}}
 ```
 
-**Step 3: 注册**（1 行代码）
-```python
-# src/agents/nodes/__init__.py
+**Step 3: 导入以触发注册**（在 `__init__.py` 中添加 import）
 
-NODE_REGISTRY = {
-    "hybrid_retrieval_node": hybrid_retrieval_node,
-    "bm25_colbert_retrieval_node": bm25_colbert_retrieval_node,  # 新增
-}
+```python
+# src/orchestration/nodes/retrieval/__init__.py
+
+from .classification_nodes import classify_question_node
+from .legacy_nodes import lightweight_retrieval_node, agentic_retrieval_node
+from .colbert_nodes import bm25_colbert_retrieval_node  # 新增
 ```
 
 **Step 4: 创建配置**（新文件）
@@ -3032,13 +3017,228 @@ workflow:
 
 | 问题 | 答案 |
 |------|------|
+| **问题分类器放哪里？** | `src/retrieval/classification/`（检索路由核心组件） |
 | **检索器应该放哪里？** | `src/retrieval/retrievers/` |
 | **Reranker 应该放哪里？** | `src/retrieval/rerankers/` |
 | **Prompts 应该放哪里？** | `src/prompts/`（现有目录） |
-| **Node 函数应该放哪里？** | `src/agents/nodes/`（薄封装层） |
+| **Node 函数应该放哪里？** | `src/orchestration/nodes/retrieval/`（薄封装层） |
+| **编排配置放哪里？** | `src/orchestration/`（state, context, config_loader, workflow_builder） |
+| **在线服务逻辑放哪里？** | `src/agents/`（memory_manager, fetch_memory_service 等） |
 | **eval 是配置流程吗？** | 部分：Retrieval Workflow 100% YAML，Evaluation Pipeline 通过 `ExperimentConfig` 指定 |
 | **切换检索方法需要改代码吗？** | 否，只需修改 `retrieval_workflow_config` 参数 |
 | **添加新检索方法容易吗？** | 非常容易：新增 2-3 个文件 + 1 个 YAML，零修改现有代码 |
+
+### 5.5.5 文件组织与模块分离（Phase 1-4 重构完成）
+
+#### 重构目标
+
+为了实现清晰的关注点分离（Separation of Concerns），我们将代码组织为三个核心层：
+
+- **`src/orchestration/`**：工作流编排层（Nodes, StateGraph, Workflow Builder）- **独立模块，可编排任意领域**
+- **`src/retrieval/`**：检索系统的核心实现（Retrievers, Rerankers, Expanders, Utils）
+- **`src/agents/`**：Agent 业务逻辑（问题分类器、Agentic 工具等）
+
+#### 新的目录结构
+
+```
+src/
+├── orchestration/                # 工作流编排层（独立模块）
+│   ├── __init__.py               # 模块入口，导出主要 API
+│   ├── config_loader.py          # YAML 配置加载器
+│   ├── context.py                # ExecutionContext（依赖注入）
+│   ├── state.py                  # RetrievalState, MemoryBuildingState, Document
+│   ├── workflow_builder.py       # Workflow 构建器（从 YAML/代码构建 StateGraph）
+│   └── nodes/                    # Node 函数（薄封装）
+│       ├── __init__.py           # Node 注册表（register_node, get_node）
+│       └── retrieval/            # 检索相关 Nodes
+│           ├── __init__.py
+│           ├── classification_nodes.py  # 问题分类 Node
+│           └── legacy_nodes.py          # 包装现有 Pipeline 的 Node
+│
+├── retrieval/                    # 检索系统（核心业务逻辑）
+│   ├── core/                     # 核心类型和工具
+│   │   ├── __init__.py           # 导出 Document 类型
+│   │   ├── types.py              # Document TypedDict 定义
+│   │   └── utils.py              # BM25, RRF 等检索工具函数
+│   ├── classification/           # 问题分类系统 ⭐ NEW
+│   │   ├── __init__.py           # 导出 classify_question, QuestionClassifier 等
+│   │   └── question_classifier.py # 问题分类器（规则+LLM）
+│   ├── services/                 # 外部服务集成
+│   │   ├── __init__.py
+│   │   ├── vectorize.py          # DeepInfra Vectorize Service
+│   │   └── rerank.py             # DeepInfra Rerank Service
+│   ├── retrievers/               # 检索器实现
+│   │   ├── __init__.py
+│   │   ├── embedding_retriever.py
+│   │   ├── bm25_retriever.py
+│   │   └── hybrid_retriever.py
+│   ├── rerankers/                # 重排序器实现
+│   │   ├── __init__.py
+│   │   └── deep_infra_reranker.py
+│   ├── expanders/                # 结果扩展器实现
+│   │   ├── __init__.py
+│   │   ├── cluster_expander.py
+│   │   └── multi_query_expander.py
+│   ├── pipelines/                # 高级检索 Pipeline
+│   │   ├── __init__.py           # 导出 agentic_retrieval, lightweight_retrieval
+│   │   ├── agentic.py            # Agentic 多轮检索 Pipeline
+│   │   ├── lightweight.py        # 轻量级检索 Pipeline
+│   │   ├── rerank.py             # Reranker 搜索工具
+│   │   ├── llm_utils.py          # LLM 工具（sufficiency check, query expansion）
+│   │   └── search_utils.py       # 搜索工具（hybrid search, RRF fusion）
+│   └── strategies/               # 策略路由系统
+│       ├── __init__.py           # 导出 StrategyRouter, create_default_router
+│       ├── base.py               # StrategyType, RetrievalContext, BaseRetrievalStrategy
+│       ├── router.py             # StrategyRouter 实现
+│       ├── strategies.py         # 具体策略实现（GEC, Agentic）
+│       └── integration.py        # route_and_retrieve 等集成函数
+│
+├── agents/                       # Agent 业务逻辑（在线服务接口）
+│   ├── __init__.py               # 导出（向后兼容：重导出 classification）
+│   ├── memory_manager.py         # 记忆管理（在线服务版本）
+│   ├── fetch_memory_service.py   # 记忆获取服务
+│   ├── agentic_utils.py          # Agentic 工具（AgenticConfig, check_sufficiency）
+│   ├── converter.py              # 数据转换
+│   └── dtos/                     # 数据传输对象
+│       └── memory_query.py       # FetchMemoryRequest/Response 等
+│
+config/
+└── workflows/                    # YAML Workflow 配置
+    ├── simple_retrieval.yaml     # 简单检索工作流
+    ├── adaptive_retrieval.yaml   # 自适应检索工作流（含问题分类路由）
+    └── agentic_hybrid.yaml       # Agentic 混合检索工作流
+```
+
+#### 为什么编排层独立于 agents？
+
+1. **领域无关**：编排层可以编排任意领域的工作流（retrieval、memory building、conversation 等）
+2. **关注点分离**：编排逻辑（如何组合节点）与业务逻辑（如何分类问题）分离
+3. **可复用性**：编排基础设施可以被多个子系统共享
+
+#### 关键文件说明
+
+##### 1. `src/retrieval/core/types.py`
+**作用**：定义核心数据类型 `Document`
+
+```python
+from typing import TypedDict, Dict, Any, Optional
+
+class Document(TypedDict, total=False):
+    """Document representation for retrieval system."""
+    id: str
+    content: str
+    score: Optional[float]
+    metadata: Dict[str, Any]
+```
+
+**导入方式**：
+```python
+from src.retrieval.core import Document
+```
+
+##### 2. `src/retrieval/core/utils.py`
+**作用**：检索工具函数（BM25, RRF 等）
+
+**从何处迁移**：
+- 旧位置：`src/agents/retrieval_utils.py`
+- 新位置：`src/retrieval/core/utils.py`
+
+**包含函数**：
+- `build_bm25_index()`
+- `search_with_bm25()`
+- `reciprocal_rank_fusion()`
+- `multi_rrf_fusion()`
+- `lightweight_retrieval()`
+
+**导入方式**：
+```python
+from src.retrieval.core.utils import build_bm25_index, reciprocal_rank_fusion
+```
+
+##### 3. `src/retrieval/services/vectorize.py`
+**作用**：向量化服务（DeepInfra Embedding API）
+
+**从何处迁移**：
+- 旧位置：`src/agents/deep_infra_vectorize_service.py`
+- 新位置：`src/retrieval/services/vectorize.py`
+
+**类名**：`DeepInfraVectorizeService`
+
+##### 4. `src/retrieval/services/rerank.py`
+**作用**：重排序服务（DeepInfra Rerank API）
+
+**从何处迁移**：
+- 旧位置：`src/agents/deep_infra_rerank_service.py`
+- 新位置：`src/retrieval/services/rerank.py`
+
+**类名**：`DeepInfraRerankService`
+
+##### 5. `src/orchestration/state.py`
+**修改**：移除 `Document` 定义，改为从 `retrieval.core` 导入
+
+```python
+from typing import TypedDict, List, Dict, Any, Optional, Annotated
+from operator import add
+from ..retrieval.core import Document  # 从 retrieval.core 导入
+
+class RetrievalState(TypedDict, total=False):
+    """State for retrieval workflow."""
+    query: str
+    documents: List[Document]  # 使用导入的 Document 类型
+    # ...
+```
+
+#### 迁移后的导入模式
+
+| 组件类型 | 旧导入路径 | 新导入路径 |
+|---------|-----------|-----------|
+| **问题分类器** | `from src.agents.question_classifier import classify_question` | `from src.retrieval.classification import classify_question` |
+| **Document 类型** | `from src.agents.state import Document` | `from src.retrieval.core import Document` |
+| **检索工具** | `from src.agents.retrieval_utils import build_bm25_index` | `from src.retrieval.core.utils import build_bm25_index` |
+| **向量化服务** | `from src.agents.deep_infra_vectorize_service import ...` | `from src.retrieval.services.vectorize import ...` |
+| **重排序服务** | `from src.agents.deep_infra_rerank_service import ...` | `from src.retrieval.services.rerank import ...` |
+| **检索器** | N/A（新增） | `from src.retrieval.retrievers import BM25Retriever` |
+| **扩展器** | N/A（新增） | `from src.retrieval.expanders import ClusterExpander` |
+
+> **向后兼容注意**：`src/agents/__init__.py` 重新导出了 `classification` 模块的内容，因此旧代码 `from src.agents import classify_question` 仍然可用，但建议新代码使用新路径。
+
+#### 循环依赖避免策略
+
+**问题**：如果 `src/retrieval/core/__init__.py` 同时导出 `Document` 和 `utils` 函数，可能导致循环依赖。
+
+**解决方案**：
+1. `core/__init__.py` **只导出** `Document` 类型
+2. **不导出** `utils` 模块的函数
+3. 需要使用 utils 函数时，直接导入：`from ..core.utils import build_bm25_index`
+
+**core/__init__.py 内容**：
+```python
+"""Core retrieval system components."""
+
+from .types import Document
+
+# Note: utils are imported directly where needed to avoid initialization issues
+# from .utils import build_bm25_index, etc.
+
+__all__ = ['Document']
+```
+
+#### 重构验证
+
+已完成的验证步骤：
+1. ✅ 所有文件已迁移到新位置
+2. ✅ 所有导入路径已更新（~15 个文件）
+3. ✅ 测试通过（`pytest tests/test_retrieval_components.py`）
+4. ✅ 旧文件已删除（`retrieval_utils.py`, `deep_infra_*.py`）
+
+#### 为什么这样组织？
+
+**优势**：
+1. **关注点分离**：检索逻辑与工作流编排解耦
+2. **独立测试**：`retrieval/` 模块可以独立测试，不依赖 `agents/`
+3. **可复用性**：检索组件可以在其他项目中复用
+4. **清晰的依赖关系**：`agents/` 依赖 `retrieval/`，而非双向依赖
+5. **符合单一职责原则**：每个模块只负责一个功能域
 
 [⬆️ 返回目录](#目录)
 
@@ -3046,429 +3246,517 @@ workflow:
 
 ## 6. 实施路线图
 
-> **架构演进策略**：渐进式重构 + 完整组件抽象 + LangGraph 编排
+> **架构演进策略**：扁平化设计 + LangGraph 编排 + YAML 配置驱动
 >
-> - Phase 1: 基础框架（LangGraph + 组件抽象基类）
-> - Phase 2: 包装现有实现（快速验证 + 向后兼容）
-> - Phase 3: 实现核心组件（Retriever, Reranker, Expander）
-> - Phase 4: 横向能力集成（Evaluation + Observability）
+> - Phase 1: 基础框架（LangGraph + State/Context + YAML 配置）✅ **已完成**
+> - Phase 2: 核心检索组件（Retriever, Reranker, Expander）✅ **已完成**
+> - Phase 2A: 迁移 Pipelines 到 `src/retrieval/pipelines/` ✅ **已完成**
+> - Phase 2B: 迁移 Strategies 到 `src/retrieval/strategies/` ✅ **已完成**
+> - Phase 3: 包装现有逻辑（Legacy Nodes 快速验证）
+> - Phase 4: 集成到 Search Stage（验证可行性）
 > - Phase 5: 新检索方法（ColBERT, QRHead）
-> - Phase 6: 配置化与优化（YAML配置 + 文档）
+> - Phase 6: 横向能力与优化（Evaluation + Observability）
 
 ---
 
-### Phase 1: 基础框架（1-2周）
+### Phase 1: 基础框架（1-2周）✅ **已完成**
 
-**目标**：建立 LangGraph 编排框架 + 组件抽象基础设施
+**目标**：建立 LangGraph 编排框架 + YAML 配置驱动的 Workflow 系统
 
-#### 1.1 创建目录结构
+#### 1.1 创建目录结构 ✅
 
 ```
-src/agents/           # 新架构根目录
-├── components/                # 组件抽象（第3.2章设计）
-│   ├── base.py               # Node, Document, RetrievalResult
-│   ├── retriever.py          # BaseRetriever
-│   ├── reranker.py           # BaseReranker
-│   ├── expander.py           # BaseExpander
-│   ├── classifier.py         # BaseQuestionClassifier
-│   └── evaluator.py          # BaseEvaluator
-├── adapters/                 # 组件 → LangGraph Node 适配器（第3.3章）
-│   └── component_to_node.py  # RetrieverAdapter, RerankerAdapter, ...
-├── middleware/               # 横向能力
-│   ├── evaluation.py         # StageEvaluator
-│   └── observability.py      # ObservabilityMiddleware
-├── state.py                  # RetrievalState 定义
-├── context.py                # ExecutionContext 定义
-├── registry.py               # NodeRegistry
-└── config_loader.py          # GraphConfigLoader
+src/agents/                    # 新架构根目录
+├── graphs/                    # LangGraph workflow 构建
+│   └── workflow_builder.py   # WorkflowBuilder, create_workflow
+├── nodes/                     # Node 函数定义
+│   ├── __init__.py           # @register_node 装饰器 + NODE_REGISTRY
+│   └── retrieval_nodes.py    # classify_question_node, hybrid_retrieval_node, rerank_node
+├── state.py                   # RetrievalState, MemoryBuildingState (TypedDict)
+├── context.py                 # ExecutionContext (依赖注入)
+└── config_loader.py           # ConfigLoader, WorkflowConfig
+
+src/retrieval/                 # 检索组件实现（独立于 LangGraph）
+├── retrievers/
+│   ├── __init__.py
+│   └── embedding_retriever.py  # EmbeddingRetriever, embedding_search
+└── rerankers/
+    ├── __init__.py
+    └── deep_infra_reranker.py  # DeepInfraReranker, deep_infra_rerank
+
+config/workflows/              # YAML workflow 配置
+└── simple_retrieval.yaml      # 示例 workflow
+
+tests/agents/                  # 测试文件
+└── test_simple_workflow.py    # 端到端测试
 ```
 
-#### 1.2 实现组件抽象基类
+#### 1.2 实现 LangGraph State 定义 ✅
 
-**1. 基础抽象** (`src/agents/nodes/base.py`)
+**State** ([src/orchestration/state.py](../../src/orchestration/state.py))
 
 ```python
-from abc import ABC, abstractmethod
-from dataclasses import dataclass
-from typing import List, Dict, Any, Optional
+from typing import TypedDict, List, Dict, Any, Optional, Annotated
+from operator import add
 
-@dataclass
-class Document:
+class Document(TypedDict, total=False):
     """统一的文档表示"""
     id: str
     content: str
-    metadata: Dict[str, Any] = None
-    score: Optional[float] = None
-
-@dataclass
-class RetrievalResult:
-    """统一的检索结果"""
-    documents: List[Document]
+    score: Optional[float]
     metadata: Dict[str, Any]
 
-class Node(ABC):
-    """Pipeline 组件基类 - 所有组件的顶层抽象"""
+class RetrievalState(TypedDict, total=False):
+    """检索 Workflow 状态"""
+    query: str
+    question_type: Optional[str]
 
-    @abstractmethod
-    async def process(self, input_data: Any, context: 'ExecutionContext') -> Any:
-        """处理输入，返回输出"""
-        pass
+    # Document storage
+    documents: List[Document]  # 当前文档
+    all_documents: Annotated[List[Document], add]  # 累积文档（支持 append）
 
-    def get_config(self) -> Dict[str, Any]:
-        """返回组件配置"""
-        return {}
+    # Configuration
+    top_k: int
+    rerank_top_k: int
+
+    # Metadata & Error tracking
+    metadata: Dict[str, Any]
+    error: Optional[str]
+
+class MemoryBuildingState(TypedDict, total=False):
+    """记忆构建 Workflow 状态"""
+    conversation_id: str
+    events: List[Dict[str, Any]]
+    memories: List[Dict[str, Any]]
+    metadata: Dict[str, Any]
 ```
 
-**2. Retriever 抽象** (`src/agents/nodes/retriever.py`)
+**关键设计点**：
+- 使用 `TypedDict` 而非 dataclass，LangGraph 推荐做法
+- `total=False` 允许部分字段可选
+- `Annotated[List[Document], add]` 支持列表累积（用于多轮检索）
+
+#### 1.3 实现执行上下文（依赖注入）✅
+
+**Context** ([src/orchestration/context.py](../../src/orchestration/context.py))
 
 ```python
-from abc import abstractmethod
-from typing import List
-from .base import Node, Document
+from dataclasses import dataclass, field
+from typing import Dict, Any, Optional
+from pathlib import Path
 
-class BaseRetriever(Node):
-    """检索器基类"""
+@dataclass
+class ExecutionContext:
+    """执行上下文 - 提供所有服务和资源的访问"""
+    # 核心服务（必需）
+    memory_index: Any = None
+    vectorize_service: Any = None
+    rerank_service: Any = None
 
-    @abstractmethod
-    async def search(
-        self,
-        query: str,
-        top_k: int,
-        context: 'ExecutionContext'
-    ) -> List[Document]:
-        """执行检索，返回 top_k 文档"""
-        pass
+    # 可选服务
+    cluster_index: Optional[Any] = None
+    bm25_index: Optional[Any] = None
+    llm_provider: Optional[Any] = None
 
-    async def process(self, input_data: Any, context: 'ExecutionContext') -> Any:
-        """Node 接口实现"""
-        query = input_data if isinstance(input_data, str) else input_data["query"]
-        top_k = input_data.get("top_k", 20) if isinstance(input_data, dict) else 20
-        return await self.search(query, top_k, context)
+    # 配置
+    config: Dict[str, Any] = field(default_factory=dict)
+    project_root: Optional[Path] = None
+
+    def get_config_value(self, key: str, default=None):
+        """获取配置值"""
+        return self.config.get(key, default)
+
+    def update_config(self, **kwargs):
+        """更新配置"""
+        self.config.update(kwargs)
+
+    def get_prompt(self, prompt_path: str) -> str:
+        """从 prompts/ 目录加载 prompt 模板"""
+        prompts_dir = self.project_root / "prompts"
+        full_path = prompts_dir / prompt_path
+        with open(full_path, 'r', encoding='utf-8') as f:
+            return f.read()
 ```
 
-**3. Reranker 抽象** (`src/agents/nodes/reranker.py`)
+#### 1.4 实现 YAML 配置加载器 ✅
+
+**ConfigLoader** ([src/orchestration/config_loader.py](../../src/orchestration/config_loader.py))
 
 ```python
-class BaseReranker(Node):
-    """重排序器基类"""
+from dataclasses import dataclass
+from typing import List, Dict, Any, Optional
+from pathlib import Path
+import yaml
 
-    @abstractmethod
-    async def rerank(
-        self,
-        query: str,
-        documents: List[Document],
-        top_k: int,
-        context: 'ExecutionContext'
-    ) -> List[Document]:
-        """重排序文档"""
-        pass
+@dataclass
+class NodeConfig:
+    """单个 Node 的配置"""
+    name: str
+    function: str
+    config: Dict[str, Any]
+
+@dataclass
+class EdgeConfig:
+    """Edge 的配置"""
+    from_node: str
+    to_node: str
+
+@dataclass
+class WorkflowConfig:
+    """完整 Workflow 的配置"""
+    name: str
+    nodes: List[NodeConfig]
+    edges: List[EdgeConfig]
+    global_config: Dict[str, Any]
+
+class ConfigLoader:
+    """YAML 配置加载器"""
+
+    def __init__(self, config_dir: Optional[Path] = None):
+        if config_dir is None:
+            config_dir = Path(__file__).parent.parent.parent / "config" / "workflows"
+        self.config_dir = Path(config_dir)
+
+    def load(self, config_name: str) -> WorkflowConfig:
+        """加载 workflow 配置"""
+        config_path = self.config_dir / f"{config_name}.yaml"
+        with open(config_path, 'r', encoding='utf-8') as f:
+            raw_config = yaml.safe_load(f)
+        return self._parse_config(raw_config)
 ```
 
-**4. Expander 抽象** (`src/agents/nodes/expander.py`)
+**示例配置** ([config/workflows/simple_retrieval.yaml](../../config/workflows/simple_retrieval.yaml))
 
-```python
-class BaseExpander(Node):
-    """结果扩展器基类"""
+```yaml
+workflow:
+  name: "simple_retrieval"
+  description: "Minimal retrieval workflow for testing"
 
-    @abstractmethod
-    async def expand(
-        self,
-        query: str,
-        documents: List[Document],
-        context: 'ExecutionContext'
-    ) -> List[Document]:
-        """扩展检索结果"""
-        pass
+  nodes:
+    - name: "classify_question"
+      function: "classify_question_node"
+      config: {}
+
+    - name: "retrieval"
+      function: "hybrid_retrieval_node"
+      config:
+        top_k: 50
+
+    - name: "rerank"
+      function: "rerank_node"
+      config:
+        top_k: 20
+
+  edges:
+    - from: "START"
+      to: "classify_question"
+    - from: "classify_question"
+      to: "retrieval"
+    - from: "retrieval"
+      to: "rerank"
+    - from: "rerank"
+      to: "END"
+
+global_config:
+  default_top_k: 50
+  default_rerank_top_k: 20
+  enable_logging: true
 ```
 
-#### 1.3 实现适配器
+#### 1.5 实现 Node 注册系统 ✅
 
-**组件 → LangGraph Node 适配器** (`src/agents/component_to_node.py`)
+**Node Registry** ([src/orchestration/nodes/__init__.py](../../src/orchestration/nodes/__init__.py))
 
 ```python
-from typing import Callable
-from ..components.base import Node
+from typing import Dict, Callable, Awaitable
 from ..state import RetrievalState
 from ..context import ExecutionContext
 
-NodeFunction = Callable[[RetrievalState], RetrievalState]
+# Node 函数类型定义
+NodeFunction = Callable[[RetrievalState, ExecutionContext], Awaitable[Dict]]
 
-class RetrieverAdapter:
-    """将 BaseRetriever 适配为 LangGraph Node"""
+# 全局注册表
+NODE_REGISTRY: Dict[str, NodeFunction] = {}
 
-    @staticmethod
-    def to_node(retriever: 'BaseRetriever') -> NodeFunction:
-        async def node_function(state: RetrievalState) -> RetrievalState:
-            # 构建上下文
-            context = ExecutionContext(
-                memory_index=state["memory_index"],
-                cluster_index=state.get("cluster_index"),
-                vectorize_service=state.get("vectorize_service"),
-                rerank_service=state.get("rerank_service"),
-                llm_provider=state.get("llm_provider"),
-            )
+def register_node(name: str):
+    """注册 Node 函数的装饰器"""
+    def decorator(func: NodeFunction) -> NodeFunction:
+        if name in NODE_REGISTRY:
+            raise ValueError(f"Node '{name}' is already registered")
+        NODE_REGISTRY[name] = func
+        return func
+    return decorator
 
-            # 调用 Retriever
-            documents = await retriever.search(
-                query=state["query"],
-                top_k=20,
-                context=context
-            )
-
-            # 更新 State
-            state["documents"] = documents
-            state["metadata"]["retrieval_count"] = len(documents)
-            state["metadata"]["retriever_type"] = retriever.__class__.__name__
-
-            return state
-
-        return node_function
+def get_node(name: str) -> NodeFunction:
+    """根据名称获取 Node 函数"""
+    if name not in NODE_REGISTRY:
+        raise KeyError(f"Node '{name}' not found in registry")
+    return NODE_REGISTRY[name]
 ```
 
-#### 1.4 State 和 Context 定义
-
-**State** (`src/agents/state.py`)
+**使用示例** ([src/orchestration/nodes/retrieval/legacy_nodes.py](../../src/orchestration/nodes/retrieval/legacy_nodes.py))
 
 ```python
-from typing import TypedDict, List, Dict, Any, Optional
+from . import register_node
 
-class RetrievalState(TypedDict):
-    """LangGraph Workflow 的状态定义"""
-    # 输入
-    query: str
-    conversation_id: str
+@register_node("classify_question_node")
+async def classify_question_node(
+    state: RetrievalState,
+    context: ExecutionContext
+) -> Dict[str, Any]:
+    """问题分类 Node"""
+    query = state["query"]
+    # 分类逻辑...
+    return {
+        "question_type": "event_time",
+        "metadata": {"classification_method": "heuristic"}
+    }
 
-    # 上下文
-    memory_index: Any
-    cluster_index: Optional[Any]
-    vectorize_service: Any
-    rerank_service: Any
-    llm_provider: Any
+@register_node("hybrid_retrieval_node")
+async def hybrid_retrieval_node(
+    state: RetrievalState,
+    context: ExecutionContext
+) -> Dict[str, Any]:
+    """混合检索 Node"""
+    from ...retrieval.retrievers import embedding_search
 
-    # 中间结果
-    question_type: Optional[str]
+    query = state["query"]
+    top_k = context.get_config_value("top_k") or state.get("top_k", 50)
 
-    # 输出
-    documents: List[Dict[str, Any]]
-    metadata: Dict[str, Any]
-```
-
-**Context** (`src/agents/context.py`)
-
-```python
-@dataclass
-class ExecutionContext:
-    """Pipeline 组件执行上下文"""
-    memory_index: Any
-    cluster_index: Optional[Any] = None
-    vectorize_service: Optional[Any] = None
-    rerank_service: Optional[Any] = None
-    llm_provider: Optional[Any] = None
-    config: Dict[str, Any] = None
-```
-
-#### 1.5 组件注册表
-
-**NodeRegistry** (`src/agents/registry.py`)
-
-```python
-from typing import Dict, Type
-from .components.base import Node
-
-class NodeRegistry:
-    """组件注册表 - 支持动态注册和创建组件"""
-
-    _registry: Dict[str, Type[Node]] = {}
-
-    @classmethod
-    def register(cls, name: str, component_class: Type[Node]):
-        """注册组件"""
-        cls._registry[name] = component_class
-
-    @classmethod
-    def create(cls, name: str, config: Dict) -> Node:
-        """创建组件实例"""
-        if name not in cls._registry:
-            raise ValueError(f"Unknown component: {name}")
-
-        component_class = cls._registry[name]
-        return component_class(**config)
-
-    @classmethod
-    def list_components(cls) -> List[str]:
-        """列出所有已注册组件"""
-        return list(cls._registry.keys())
-```
-
-#### 1.6 验收标准
-
-- ✅ 组件抽象基类定义完成（`BaseRetriever`, `BaseReranker`, `BaseExpander`）
-- ✅ 适配器实现完成（`RetrieverAdapter`, `RerankerAdapter`, `ExpanderAdapter`）
-- ✅ State 和 Context 定义完成
-- ✅ NodeRegistry 实现完成
-- ✅ 单元测试通过
-
----
-
-### Phase 2: 包装现有实现（1周）
-
-**目标**：将现有检索逻辑快速包装为 Node 函数，验证 LangGraph 可行性
-
-#### 2.1 创建 Node 包装函数
-
-**现有函数 → Node 函数** (`src/agents/nodes/legacy_nodes.py`)
-
-```python
-from ..state import RetrievalState
-
-# Node 1: 包装现有的问题分类
-async def classify_question_node(state: RetrievalState) -> RetrievalState:
-    """包装现有的 QuestionClassifier"""
-    from eval.adapters.parallax.strategy.question_classifier import QuestionClassifier
-
-    classifier = QuestionClassifier()
-    question_type = classifier.classify(state["query"])
-
-    state["question_type"] = question_type
-    state["metadata"]["question_type"] = question_type
-
-    return state
-
-
-# Node 2: 包装现有的 lightweight_retrieval
-async def lightweight_retrieval_node(state: RetrievalState) -> RetrievalState:
-    """包装现有的 lightweight_retrieval 函数"""
-    from src.agents.retrieval_utils import lightweight_retrieval
-
-    results = await lightweight_retrieval(
-        query=state["query"],
-        memory_index=state["memory_index"],
-        vectorize_service=state["vectorize_service"],
-        rerank_service=state["rerank_service"],
-        top_k=20
+    documents = await embedding_search(
+        query=query,
+        memory_index=context.memory_index,
+        vectorize_service=context.vectorize_service,
+        top_k=top_k
     )
 
-    state["documents"] = results["memories"]
-    state["metadata"].update(results.get("metadata", {}))
-    state["retrieval_strategy"] = "lightweight"
-
-    return state
-
-
-# Node 3: 包装现有的 agentic_retrieval
-async def agentic_retrieval_node(state: RetrievalState) -> RetrievalState:
-    """包装现有的 agentic_retrieval 函数"""
-    from src.agents.retrieval_utils import agentic_retrieval
-
-    results = await agentic_retrieval(
-        query=state["query"],
-        memory_index=state["memory_index"],
-        cluster_index=state["cluster_index"],
-        vectorize_service=state["vectorize_service"],
-        rerank_service=state["rerank_service"],
-        llm_provider=state["llm_provider"],
-        top_k=20
-    )
-
-    state["documents"] = results["memories"]
-    state["metadata"].update(results.get("metadata", {}))
-    state["retrieval_strategy"] = "agentic"
-
-    return state
+    return {
+        "documents": documents,
+        "metadata": {"retrieval_method": "embedding", "top_k": top_k}
+    }
 ```
 
-#### 2.2 构建 LangGraph Workflow
+#### 1.6 实现 LangGraph Workflow 构建器 ✅
 
-**Workflow 构建** (`src/agents/graphs/retrieval_workflow.py`)
+**WorkflowBuilder** ([src/orchestration/workflow_builder.py](../../src/orchestration/workflow_builder.py))
 
 ```python
 from langgraph.graph import StateGraph, END
 from ..state import RetrievalState
-from ..nodes.legacy_nodes import (
-    classify_question_node,
-    lightweight_retrieval_node,
-    agentic_retrieval_node,
-)
+from ..nodes import get_node
+from ..config_loader import WorkflowConfig, ConfigLoader
+from ..context import ExecutionContext
 
-def route_by_question_type(state: RetrievalState) -> str:
-    """根据问题类型路由"""
-    question_type = state["question_type"]
+class WorkflowBuilder:
+    """从 YAML 配置构建 LangGraph StateGraph"""
 
-    if question_type in ["FACTUAL_SIMPLE"]:
-        return "lightweight_retrieval"
-    else:
-        return "agentic_retrieval"
+    def __init__(self, context: ExecutionContext):
+        self.context = context
 
+    def build_from_config(self, config: WorkflowConfig) -> StateGraph:
+        """从配置构建 StateGraph"""
+        graph = StateGraph(RetrievalState)
 
-def create_retrieval_workflow():
-    """创建检索 Workflow"""
-    workflow = StateGraph(RetrievalState)
+        # 添加所有 nodes
+        for node_config in config.nodes:
+            node_func = get_node(node_config.function)
 
-    # 添加节点
-    workflow.add_node("classify_question", classify_question_node)
-    workflow.add_node("lightweight_retrieval", lightweight_retrieval_node)
-    workflow.add_node("agentic_retrieval", agentic_retrieval_node)
+            # 创建包装器注入 context
+            async def node_wrapper(state, *, func=node_func, ctx=self.context, cfg=node_config.config):
+                if cfg:
+                    ctx.update_config(**cfg)
+                return await func(state, ctx)
 
-    # 设置路由
-    workflow.set_entry_point("classify_question")
-    workflow.add_conditional_edges(
-        "classify_question",
-        route_by_question_type,
-        {
-            "lightweight_retrieval": "lightweight_retrieval",
-            "agentic_retrieval": "agentic_retrieval",
-        }
-    )
+            graph.add_node(node_config.name, node_wrapper)
 
-    # 结束
-    workflow.add_edge("lightweight_retrieval", END)
-    workflow.add_edge("agentic_retrieval", END)
+        # 添加所有 edges
+        for edge_config in config.edges:
+            if edge_config.from_node == "START":
+                graph.set_entry_point(edge_config.to_node)
+            elif edge_config.to_node == "END":
+                graph.add_edge(edge_config.from_node, END)
+            else:
+                graph.add_edge(edge_config.from_node, edge_config.to_node)
 
-    return workflow
+        return graph.compile()
 
-
-def compile_retrieval_workflow(checkpointer=None):
-    """编译 Workflow"""
-    workflow = create_retrieval_workflow()
-    return workflow.compile(checkpointer=checkpointer)
+def create_workflow(config_name: str, context: ExecutionContext):
+    """便捷函数：从 YAML 配置名创建 workflow"""
+    builder = WorkflowBuilder(context)
+    return builder.build_from_yaml(config_name)
 ```
 
-#### 2.3 集成到 Search Stage
+#### 1.7 验收标准 ✅
 
-**修改 Search Stage** (`eval/core/stages/search_stage.py`)
+- ✅ 目录结构创建完成
+- ✅ LangGraph State 定义完成（RetrievalState, MemoryBuildingState）
+- ✅ ExecutionContext 实现完成（依赖注入）
+- ✅ YAML 配置加载器实现完成
+- ✅ Node 注册系统实现完成（@register_node 装饰器）
+- ✅ WorkflowBuilder 实现完成（YAML → LangGraph StateGraph）
+- ✅ EmbeddingRetriever 和 DeepInfraReranker 实现完成
+- ✅ 端到端测试通过（tests/agents/test_simple_workflow.py）
+
+
+---
+
+### Phase 2: 核心检索组件（2-3周）✅ **已完成**
+
+**目标**：实现更多检索组件，丰富检索能力
+
+#### 2.1 BM25 Retriever ✅
+
+- ✅ 实现 `src/retrieval/retrievers/bm25_retriever.py`
+- ✅ 封装 `retrieval_utils.py` 中的 `search_with_bm25`
+- ✅ 创建 `bm25_retrieval_node`
+
+#### 2.2 Hybrid Retriever ✅
+
+- ✅ 实现混合检索（Embedding + BM25）
+- ✅ 使用 RRF (Reciprocal Rank Fusion) 融合结果
+- ✅ 更新 `hybrid_retrieval_node` 支持真正的混合检索
+
+#### 2.3 Expander 组件 ✅
+
+**ClusterExpander** - 基于聚类扩展结果：
+- ✅ 位置：`src/retrieval/expanders/cluster_expander.py`
+- ✅ 对每个检索到的文档，查找其所属 cluster
+- ✅ 将同 cluster 的相关文档插入结果列表
+
+**MultiQueryExpander** - 多查询扩展：
+- ✅ 位置：`src/retrieval/expanders/multi_query_expander.py`
+- ✅ 使用 LLM 生成 3-5 个改写查询
+- ✅ 并行检索所有查询
+- ✅ 使用 RRF 融合结果
+
+#### 2.4 创建 Agentic Workflow 配置 ✅
+
+- ✅ 创建 `config/workflows/agentic_hybrid.yaml`
+- ✅ 混合检索 → Rerank → 充分性判断 → (可选) 多查询扩展 → 聚类扩展
+- ✅ 支持条件执行（conditional edges）
+
+#### 2.5 Pipeline 迁移（Phase 2A）✅
+
+从 `eval/adapters/parallax/` 迁移核心检索逻辑到 `src/retrieval/pipelines/`：
+- ✅ `agentic.py` - Agentic 多轮检索 Pipeline
+- ✅ `lightweight.py` - 轻量级检索 Pipeline
+- ✅ `rerank.py` - Reranker 搜索工具
+- ✅ `llm_utils.py` - LLM 工具函数
+- ✅ `search_utils.py` - 搜索工具函数
+
+#### 2.6 Strategy 迁移（Phase 2B）✅
+
+从 `eval/adapters/parallax/strategy/` 迁移策略路由系统到 `src/retrieval/strategies/`：
+- ✅ `base.py` - StrategyType, RetrievalContext, BaseRetrievalStrategy
+- ✅ `router.py` - StrategyRouter 实现
+- ✅ `strategies.py` - 具体策略实现（GEC, Agentic）
+- ✅ `integration.py` - route_and_retrieve 等集成函数
+- ✅ 更新 `eval/adapters/parallax/strategy/__init__.py` 为重新导出层
+
+#### 2.7 验收标准 ✅
+
+- ✅ BM25Retriever 实现并测试
+- ✅ HybridRetriever (Embedding + BM25 + RRF) 实现
+- ✅ ClusterExpander 和 MultiQueryExpander 实现
+- ✅ `agentic_hybrid.yaml` workflow 可以成功加载
+- ✅ Pipeline 迁移完成，eval/ 使用新路径
+- ✅ Strategy 迁移完成，eval/ 使用新路径
+- ✅ 98 个测试通过
+
+---
+
+### Phase 3: 包装现有逻辑（Legacy Nodes）✅ 已完成
+
+**目标**：快速包装现有检索逻辑，验证 LangGraph 集成
+
+#### 3.1 创建 Legacy Nodes
+
+**文件**：`src/orchestration/nodes/retrieval/legacy_nodes.py`
+
+包装以下现有函数为 Node：
+1. `lightweight_retrieval_node` - 包装 `retrieval_utils.lightweight_retrieval`
+2. `agentic_retrieval_node` - 包装 `retrieval_utils.agentic_retrieval`
+3. `multi_query_retrieval_node` - 包装 `retrieval_utils.multi_query_retrieval`
+
+#### 3.2 创建带路由的 Workflow
+
+**文件**：`config/workflows/adaptive_retrieval.yaml`
+
+```yaml
+workflow:
+  name: "adaptive_retrieval"
+  nodes:
+    - name: "classify_question"
+      function: "classify_question_node"
+    - name: "lightweight"
+      function: "lightweight_retrieval_node"
+    - name: "agentic"
+      function: "agentic_retrieval_node"
+
+  edges:
+    - from: "START"
+      to: "classify_question"
+    - from: "classify_question"
+      to: "route_by_type"  # Conditional edge
+    - from: "lightweight"
+      to: "END"
+    - from: "agentic"
+      to: "END"
+
+  conditional_edges:
+    - source: "classify_question"
+      router: "route_by_question_type"
+      destinations:
+        FACTUAL_SIMPLE: "lightweight"
+        default: "agentic"
+```
+
+#### 3.3 验收标准
+
+- ✅ Legacy nodes 包装完成
+- ✅ Conditional routing 正常工作
+- ✅ 结果与现有实现一致（差异 < 0.1%）
+
+---
+
+### Phase 4: 集成到 Search Stage ✅ 已完成
+
+**目标**：将 LangGraph Workflow 集成到 Evaluation Pipeline
+
+#### 4.1 修改 Search Stage
+
+**文件**：`eval/core/stages/search_stage.py`
 
 ```python
 from langgraph.checkpoint.postgres.aio import AsyncPostgresSaver
-from src.agents.graphs.retrieval_workflow import compile_retrieval_workflow
-from src.providers.database.database_connection_provider import get_database_connection
+from src.agents.graphs.workflow_builder import create_workflow
+from src.agents.context import ExecutionContext
 
 async def run_search_stage(dataset, config):
-    """Search Stage - 使用 LangGraph 编排"""
+    # 1. 创建执行上下文
+    context = ExecutionContext(
+        memory_index=memory_index,
+        cluster_index=cluster_index,
+        vectorize_service=vectorize_service,
+        rerank_service=rerank_service,
+        llm_provider=llm_provider,
+        project_root=Path(__file__).parent.parent.parent
+    )
 
-    # 1. 创建 PostgreSQL Checkpoint
-    db_connection = await get_database_connection()
-    checkpointer = AsyncPostgresSaver(db_connection)
-
-    # 2. 编译 Workflow
-    retrieval_app = compile_retrieval_workflow(checkpointer=checkpointer)
+    # 2. 创建 workflow（从 YAML 配置）
+    workflow_name = config.get("workflow_name", "adaptive_retrieval")
+    workflow = create_workflow(workflow_name, context)
 
     # 3. 对每个问题执行检索
     for qa in dataset.qa_pairs:
-        thread_id = f"{qa.conversation_id}__search"
+        initial_state = {
+            "query": qa.question,
+            "top_k": 50,
+            "rerank_top_k": 20,
+            "metadata": {}
+        }
 
-        result = await retrieval_app.ainvoke(
-            {
-                "query": qa.question,
-                "conversation_id": qa.conversation_id,
-                "memory_index": memory_index,
-                "cluster_index": cluster_index,
-                "vectorize_service": vectorize_service,
-                "rerank_service": rerank_service,
-                "llm_provider": llm_provider,
-                "metadata": {},
-            },
-            config={"configurable": {"thread_id": thread_id}}
-        )
+        result = await workflow.ainvoke(initial_state)
 
         # 4. 保存结果
         save_search_result(
@@ -3478,1005 +3766,126 @@ async def run_search_stage(dataset, config):
         )
 ```
 
-#### 2.4 验收标准
+#### 4.2 添加 PostgreSQL Checkpoint（可选）
 
-- ✅ LangGraph Workflow 可以成功执行
-- ✅ 结果与现有实现一致（差异 < 0.1%）
-- ✅ PostgreSQL Checkpoint 正常工作
-- ✅ 断点续跑功能验证通过
-- ✅ 所有现有测试通过
-
----
-
-### Phase 3: 实现核心组件（2-3周）
-
-**目标**：实现核心组件抽象，将现有逻辑迁移为组件
-
-#### 3.1 实现 Retriever 组件
-
-**HybridRetriever** (`src/agents/nodes/retriever.py`)
-
+支持断点续跑功能：
 ```python
-class HybridRetriever(BaseRetriever):
-    """混合检索器（Embedding + BM25 + RRF）"""
-
-    def __init__(self, emb_top_k=50, bm25_top_k=50, fusion_mode="rrf", final_top_k=20):
-        self.emb_top_k = emb_top_k
-        self.bm25_top_k = bm25_top_k
-        self.fusion_mode = fusion_mode
-        self.final_top_k = final_top_k
-
-    async def search(self, query, top_k, context):
-        # 1. Embedding 检索
-        emb_results = await context.vectorize_service.search(
-            query, context.memory_index, top_k=self.emb_top_k
-        )
-
-        # 2. BM25 检索
-        bm25_results = await bm25_search(
-            query, context.memory_index, top_k=self.bm25_top_k
-        )
-
-        # 3. Reciprocal Rank Fusion
-        fused_results = reciprocal_rank_fusion(
-            [emb_results, bm25_results],
-            top_k=self.final_top_k
-        )
-
-        return [Document(id=r.id, content=r.content, score=r.score) for r in fused_results]
-```
-
-**AgenticRetriever** (`src/agents/nodes/retriever.py`)
-
-```python
-class AgenticRetriever(BaseRetriever):
-    """
-    Agentic 检索器 - 从现有 agentic_retrieval 迁移而来
-
-    流程：混合检索 → Rerank → 充分性检查 → 多查询扩展 → 聚类扩展
-    """
-
-    def __init__(self, rerank_service, llm_provider, cluster_index):
-        self.hybrid_retriever = HybridRetriever(emb_top_k=50, bm25_top_k=50)
-        self.rerank_service = rerank_service
-        self.llm_provider = llm_provider
-        self.cluster_index = cluster_index
-
-    async def search(self, query, top_k, context):
-        # 1. 混合检索
-        round1_docs = await self.hybrid_retriever.search(query, 50, context)
-
-        # 2. Rerank
-        reranked_docs = await self.rerank_service.rerank(query, round1_docs, top_k=20)
-
-        # 3. 充分性检查
-        from src.agents.agentic_utils import check_sufficiency
-        is_sufficient = await check_sufficiency(query, reranked_docs[:5], self.llm_provider)
-
-        if not is_sufficient:
-            # 4. 多查询扩展
-            from src.agents.agentic_utils import multi_query_expansion
-            expanded_docs = await multi_query_expansion(query, reranked_docs, self.llm_provider)
-            reranked_docs = await self.rerank_service.rerank(query, expanded_docs, top_k=20)
-
-        # 5. 聚类扩展
-        from src.agents.cluster_utils import cluster_expansion
-        final_docs = await cluster_expansion(query, reranked_docs, self.cluster_index)
-
-        return final_docs[:top_k]
-```
-
-#### 3.2 实现 Reranker 组件
-
-**DeepInfraReranker** (`src/agents/nodes/reranker.py`)
-
-```python
-class DeepInfraReranker(BaseReranker):
-    """DeepInfra Rerank 服务"""
-
-    def __init__(self, top_k=20):
-        self.top_k = top_k
-
-    async def rerank(self, query, documents, top_k, context):
-        rerank_service = context.rerank_service
-        return await rerank_service.rerank(query, documents, top_k=top_k)
-```
-
-#### 3.3 实现 Expander 组件
-
-**ClusterExpander** (`src/agents/nodes/expander.py`)
-
-```python
-class ClusterExpander(BaseExpander):
-    """基于聚类的扩展器"""
-
-    def __init__(self, expansion_strategy="insert_after_hit", max_expansion=3):
-        self.strategy = expansion_strategy
-        self.max_expansion = max_expansion
-
-    async def expand(self, query, documents, context):
-        cluster_index = context.cluster_index
-        expanded_docs = []
-
-        for doc in documents:
-            expanded_docs.append(doc)
-            # 扩展同一聚类的文档
-            cluster_neighbors = await cluster_index.get_neighbors(doc.id, self.max_expansion)
-            expanded_docs.extend(cluster_neighbors)
-
-        return expanded_docs
-```
-
-#### 3.4 使用组件更新 Workflow
-
-**组件化 Workflow** (`src/agents/graphs/component_workflow.py`)
-
-```python
-from langgraph.graph import StateGraph, END
-from ..components.retriever import AgenticRetriever, HybridRetriever
-from ..adapters.component_to_node import RetrieverAdapter
-from ..nodes.legacy_nodes import classify_question_node
-
-def create_component_workflow(config):
-    """使用组件创建 Workflow"""
-    workflow = StateGraph(RetrievalState)
-
-    # 1. 创建组件实例
-    agentic_retriever = AgenticRetriever(
-        rerank_service=config.rerank_service,
-        llm_provider=config.llm_provider,
-        cluster_index=config.cluster_index,
-    )
-    lightweight_retriever = HybridRetriever(emb_top_k=30, bm25_top_k=20, final_top_k=20)
-
-    # 2. 组件 → Node
-    agentic_node = RetrieverAdapter.to_node(agentic_retriever)
-    lightweight_node = RetrieverAdapter.to_node(lightweight_retriever)
-
-    # 3. 添加节点
-    workflow.add_node("classify_question", classify_question_node)
-    workflow.add_node("agentic_retrieval", agentic_node)
-    workflow.add_node("lightweight_retrieval", lightweight_node)
-
-    # 4. 路由
-    workflow.set_entry_point("classify_question")
-    workflow.add_conditional_edges("classify_question", route_by_question_type, {...})
-    workflow.add_edge("agentic_retrieval", END)
-    workflow.add_edge("lightweight_retrieval", END)
-
-    return workflow.compile(checkpointer=config.checkpointer)
-```
-
-#### 3.5 验收标准
-
-- ✅ 核心组件实现完成（`HybridRetriever`, `AgenticRetriever`, `ClusterExpander`）
-- ✅ 组件 → Node 适配器正常工作
-- ✅ 组件化 Workflow 与 Phase 2 结果一致
-- ✅ 现有检索逻辑完全迁移为组件
-
----
-
-### Phase 4: 横向能力集成（1-2周）
-
-**目标**：添加评估和可观测性中间件
-
-#### 4.1 评估中间件
-
-**StageEvaluator** (`src/agents/evaluation.py`)
-
-```python
-class StageEvaluator(ABC):
-    """阶段评估器基类"""
-
-    @abstractmethod
-    async def evaluate(
-        self,
-        stage_name: str,
-        input_data: Any,
-        output_data: Any,
-        context: Dict[str, Any]
-    ) -> Dict[str, float]:
-        """返回评估指标"""
-        pass
-
-
-class RetrievalEvaluator(StageEvaluator):
-    """检索评估器"""
-
-    async def evaluate(self, stage_name, input_data, output_data, context):
-        from eval.core.stages.evaluate_stage import calculate_retrieval_metrics
-
-        retrieved_docs = output_data
-        ground_truth_docs = context.get("ground_truth_docs", [])
-
-        metrics = calculate_retrieval_metrics(retrieved_docs, ground_truth_docs)
-
-        return {
-            "precision": metrics["precision"],
-            "recall": metrics["recall"],
-            "f1": metrics["f1"],
-            "mrr": metrics.get("mrr"),
-            "ndcg": metrics.get("ndcg"),
-        }
-
-
-# 包装 Node 添加评估
-def wrap_with_evaluation(node_func, evaluator, stage_name):
-    """在 Node 外包装评估"""
-    async def wrapped_node(state):
-        input_data = state.get("query")
-
-        # 执行 Node
-        output_state = await node_func(state)
-        output_data = output_state.get("documents")
-
-        # 评估
-        if "ground_truth_docs" in state:
-            metrics = await evaluator.evaluate(
-                stage_name,
-                input_data,
-                output_data,
-                context={"ground_truth_docs": state.get("ground_truth_docs")}
-            )
-
-            if "evaluation" not in output_state:
-                output_state["evaluation"] = {}
-            output_state["evaluation"][stage_name] = metrics
-
-        return output_state
-
-    return wrapped_node
-```
-
-#### 4.2 可观测性中间件
-
-**ObservabilityMiddleware** (`src/agents/observability.py`)
-
-```python
-import time
-import logging
-
-logger = logging.getLogger(__name__)
-
-class ObservabilityMiddleware(ABC):
-    """可观测性中间件基类"""
-
-    @abstractmethod
-    async def before_stage(self, stage_name: str, input_data: Any, context: Dict) -> None:
-        pass
-
-    @abstractmethod
-    async def after_stage(self, stage_name: str, input_data: Any, output_data: Any,
-                         duration_ms: float, context: Dict) -> None:
-        pass
-
-    @abstractmethod
-    async def on_error(self, stage_name: str, error: Exception, context: Dict) -> None:
-        pass
-
-
-class AuditLogger(ObservabilityMiddleware):
-    """审计日志"""
-
-    async def before_stage(self, stage_name, input_data, context):
-        logger.info(f"[{stage_name}] Start | Query: {input_data[:100]}")
-
-    async def after_stage(self, stage_name, input_data, output_data, duration_ms, context):
-        logger.info(f"[{stage_name}] End | Duration: {duration_ms:.2f}ms | Docs: {len(output_data)}")
-
-
-class PerformanceTracer(ObservabilityMiddleware):
-    """性能追踪"""
-
-    async def after_stage(self, stage_name, input_data, output_data, duration_ms, context):
-        # 记录到 Prometheus
-        histogram_metric = f"pipeline_stage_duration_{stage_name}"
-        prometheus_client.histogram(histogram_metric, duration_ms)
-
-
-# 包装 Node 添加可观测性
-def wrap_with_observability(node_func, stage_name, middlewares):
-    """在 Node 外包装可观测性"""
-    async def wrapped_node(state):
-        # Before
-        for mw in middlewares:
-            await mw.before_stage(stage_name, state.get("query"), {})
-
-        start_time = time.time()
-
-        try:
-            # Execute
-            output_state = await node_func(state)
-            duration_ms = (time.time() - start_time) * 1000
-
-            # After
-            for mw in middlewares:
-                await mw.after_stage(
-                    stage_name,
-                    state.get("query"),
-                    output_state.get("documents"),
-                    duration_ms,
-                    {}
-                )
-
-            return output_state
-
-        except Exception as e:
-            for mw in middlewares:
-                await mw.on_error(stage_name, e, {})
-            raise
-
-    return wrapped_node
+db_connection = await get_database_connection()
+checkpointer = AsyncPostgresSaver(db_connection)
+workflow = create_workflow(workflow_name, context, checkpointer=checkpointer)
 ```
 
 #### 4.3 验收标准
 
-- ✅ 评估中间件自动计算 Precision, Recall, F1
-- ✅ 可观测性中间件记录日志、性能、错误
-- ✅ 中间件可以通过 wrapper 集成到 Node
+- ✅ Search Stage 使用 LangGraph workflow
+- ✅ 所有现有测试通过
+- ✅ Checkpoint 功能正常（可选）
 
 ---
 
-### Phase 5: 新检索方法（2-3周）
+### Phase 5: 新检索方法（ColBERT, QRHead）
 
-**目标**：基于组件抽象实现 ColBERT、QRHead
+**目标**：基于新架构实现先进检索方法
 
-#### 5.1 ColBERT 检索器
+#### 5.1 ColBERT Retriever
 
-**ColBERTRetriever** (`src/agents/nodes/retriever.py`)
+**实现**：`src/retrieval/retrievers/colbert_retriever.py`
 
-```python
-import torch
+- Late Interaction 机制
+- 预计算文档 embeddings（`scripts/precompute_colbert_embeddings.py`）
+- 缓存到磁盘（pickle）
 
-class ColBERTRetriever(BaseRetriever):
-    """ColBERT Late Interaction 检索器"""
-
-    def __init__(self, model_name="colbert-v2", doc_embeddings_cache_path=None, top_k=100):
-        self.model = self._load_model(model_name)
-        self.doc_embeddings = self._load_cache(doc_embeddings_cache_path)
-        self.top_k = top_k
-
-    def _load_model(self, model_name):
-        from colbert.modeling.checkpoint import Checkpoint
-        return Checkpoint(model_name)
-
-    def _load_cache(self, cache_path):
-        import pickle
-        with open(cache_path, 'rb') as f:
-            return pickle.load(f)
-
-    async def _late_interaction(self, query_emb, doc_embeddings):
-        """ColBERT Late Interaction 计算"""
-        scores = {}
-        for doc_id, doc_emb in doc_embeddings.items():
-            # MaxSim: max_{j} (q_i · d_j) for each query token i
-            token_scores = torch.matmul(query_emb, doc_emb.T)
-            max_scores = token_scores.max(dim=1).values
-            scores[doc_id] = max_scores.sum().item()
-        return scores
-
-    async def search(self, query, top_k, context):
-        # 1. Encode query
-        query_emb = await self.model.encode_query(query)
-
-        # 2. Late interaction
-        scores = await self._late_interaction(query_emb, self.doc_embeddings)
-
-        # 3. Top-k
-        sorted_docs = sorted(scores.items(), key=lambda x: x[1], reverse=True)[:top_k]
-
-        return [
-            Document(id=doc_id, content=self._get_document_content(doc_id), score=score)
-            for doc_id, score in sorted_docs
-        ]
-```
-
-**预计算脚本** (`scripts/precompute_colbert_embeddings.py`)
+**Node**：`src/orchestration/nodes/retrieval/colbert_nodes.py`
 
 ```python
-async def precompute_embeddings(dataset_name: str):
-    """预计算 ColBERT 文档 embeddings"""
-    from src.agents.nodes.advanced_retrieval_nodes import ColBERTRetriever
+@register_node("colbert_retrieval_node")
+async def colbert_retrieval_node(state, context):
+    from ...retrieval.retrievers import colbert_search
 
-    retriever = ColBERTRetriever(model_name="colbert-v2")
-    memories = await load_all_memories(dataset_name)
+    documents = await colbert_search(
+        query=state["query"],
+        doc_embeddings_cache=context.colbert_cache,
+        top_k=state.get("top_k", 100)
+    )
 
-    doc_embeddings = {}
-    for mem in tqdm(memories):
-        doc_embeddings[mem.id] = await retriever.model.encode_document(mem.content)
-
-    # 保存
-    import pickle
-    with open(f"cache/colbert_{dataset_name}.pkl", 'wb') as f:
-        pickle.dump(doc_embeddings, f)
+    return {"documents": documents, "metadata": {"method": "colbert"}}
 ```
 
-#### 5.2 添加到 Workflow
+**配置**：`config/workflows/colbert_retrieval.yaml`
 
-```python
-# 注册 ColBERT 组件
-NodeRegistry.register("ColBERTRetriever", ColBERTRetriever)
+#### 5.2 QRHead Retriever（如果适用）
 
-# 在 Workflow 中使用
-colbert_retriever = ColBERTRetriever(
-    model_name="colbert-v2",
-    doc_embeddings_cache_path="cache/colbert_locomo.pkl",
-    top_k=100
-)
-colbert_node = RetrieverAdapter.to_node(colbert_retriever)
-workflow.add_node("colbert_retrieval", colbert_node)
-```
+参考 ColBERT 类似实现。
 
 #### 5.3 验收标准
 
-- ✅ ColBERT 检索器实现并测试
-- ✅ 预计算脚本可以生成文档 embeddings
-- ✅ ColBERT 集成到 Workflow
-- ✅ 性能对比报告：ColBERT vs Embedding vs QRHead
+- ✅ ColBERT retriever 实现并测试
+- ✅ 预计算脚本生成 embeddings
+- ✅ 性能对比报告：ColBERT vs Embedding vs Hybrid
 
 ---
 
-### Phase 6: 配置化与优化（1-2周）
+### Phase 6: 横向能力与优化
 
-**目标**：YAML 配置系统 + 文档化
+**目标**：添加 Evaluation、Observability、文档
 
-#### 6.1 YAML 配置系统
+#### 6.1 Evaluation 中间件
 
-**配置格式** (`config/graphs/agentic_hybrid.yaml`)
+**自动计算指标**：
+- 在 Node wrapper 中自动计算 Precision, Recall, F1, MRR, NDCG
+- 结果保存到 `state["evaluation"][stage_name]`
 
-```yaml
-graph:
-  name: "agentic_hybrid"
-  state_class: "RetrievalState"
+#### 6.2 Observability
 
-  nodes:
-    - name: "classify_question"
-      type: "function"
-      function: "src.agents.nodes.retrieval_nodes.legacy_nodes.classify_question_node"
+**日志 + 追踪**：
+- 每个 Node 自动记录执行时间
+- 记录 input/output 大小
+- 错误追踪
 
-    - name: "agentic_retrieval"
-      type: "component"
-      component:
-        class: "src.agents.nodes.advanced_retrieval_nodes.AgenticRetriever"
-        config:
-          rerank_service: "${rerank_service}"
-          llm_provider: "${llm_provider}"
-          cluster_index: "${cluster_index}"
-      adapter: "RetrieverAdapter"
+#### 6.3 文档化
 
-    - name: "colbert_retrieval"
-      type: "component"
-      component:
-        class: "src.agents.nodes.advanced_retrieval_nodes.ColBERTRetriever"
-        config:
-          model_name: "colbert-v2"
-          doc_embeddings_cache_path: "cache/colbert_locomo.pkl"
-          top_k: 100
-      adapter: "RetrieverAdapter"
+- 用户指南：如何创建自定义 Workflow
+- 开发者指南：如何添加新 Retriever/Reranker/Expander
+- API 文档
 
-  edges:
-    - type: "entry"
-      to: "classify_question"
+#### 6.4 验收标准
 
-    - type: "conditional"
-      from: "classify_question"
-      router: "route_by_question_type"
-      mapping:
-        agentic_retrieval: "agentic_retrieval"
-        colbert_retrieval: "colbert_retrieval"
-
-    - type: "edge"
-      from: "agentic_retrieval"
-      to: "END"
-
-    - type: "edge"
-      from: "colbert_retrieval"
-      to: "END"
-
-evaluation:
-  enabled: true
-  stages:
-    - "agentic_retrieval"
-    - "colbert_retrieval"
-
-observability:
-  enabled: true
-  middlewares:
-    - "AuditLogger"
-    - "PerformanceTracer"
-```
-
-**配置加载器** (`src/agents/config_loader.py`)
-
-```python
-import yaml
-from langgraph.graph import StateGraph, END
-from .registry import NodeRegistry
-from .adapters.component_to_node import RetrieverAdapter, RerankerAdapter
-
-class GraphConfigLoader:
-    """从 YAML 加载并构建 LangGraph Workflow"""
-
-    @staticmethod
-    def load(config_path: str) -> dict:
-        with open(config_path, 'r') as f:
-            return yaml.safe_load(f)
-
-    @staticmethod
-    async def compile_graph(config_path: str, checkpointer=None):
-        config = GraphConfigLoader.load(config_path)
-        workflow = StateGraph(RetrievalState)
-
-        # 1. 创建节点
-        for node_config in config["graph"]["nodes"]:
-            if node_config["type"] == "function":
-                # 函数节点
-                node_func = import_function(node_config["function"])
-                workflow.add_node(node_config["name"], node_func)
-
-            elif node_config["type"] == "component":
-                # 组件节点
-                component = NodeRegistry.create(
-                    node_config["component"]["class"].split(".")[-1],
-                    node_config["component"]["config"]
-                )
-
-                # 适配为 Node
-                adapter_name = node_config["adapter"]
-                if adapter_name == "RetrieverAdapter":
-                    node_func = RetrieverAdapter.to_node(component)
-                # ... 其他适配器
-
-                workflow.add_node(node_config["name"], node_func)
-
-        # 2. 添加边
-        for edge_config in config["graph"]["edges"]:
-            # ... 同第3.4章
-
-        # 3. 编译
-        return workflow.compile(checkpointer=checkpointer)
-```
-
-#### 6.2 文档化
-
-- 用户文档：如何使用 YAML 配置切换检索策略
-- 开发者文档：如何实现新组件、如何注册组件
-- 性能对比报告：ColBERT vs Embedding vs QRHead
-
-#### 6.3 验收标准
-
-- ✅ YAML 配置可以完整定义 Workflow
-- ✅ 配置加载器正常工作
-- ✅ 多个预设配置文件（agentic_hybrid, colbert, lightweight）
-- ✅ 文档完整
+- ✅ Evaluation 中间件正常工作
+- ✅ Observability 日志完整
+- ✅ 文档齐全
 
 ---
 
-### 关键里程碑时间线
-
-```
-Week 1-2:  Phase 1 - 基础框架
-           └─ 输出：组件抽象 + 适配器 + Registry
-
-Week 3:    Phase 2 - 包装现有实现
-           └─ 输出：LangGraph Workflow 可运行，结果一致
-
-Week 4-6:  Phase 3 - 实现核心组件
-           └─ 输出：HybridRetriever, AgenticRetriever, ClusterExpander
-
-Week 7-8:  Phase 4 - 横向能力集成
-           └─ 输出：评估和可观测性中间件
-
-Week 9-11: Phase 5 - 新检索方法
-           └─ 输出：ColBERT, QRHead 集成
-
-Week 12:   Phase 6 - 配置化与优化
-           └─ 输出：YAML 配置系统，完整文档
-```
-
-**总计**: 约 12 周
-
----
-
-### 关键原则总结
-
-1. **完整的组件抽象**：
-   - 实现第3.2章设计的9大组件类
-   - 每个组件独立可测试、可替换
-
-2. **渐进式迁移**：
-   - Phase 2: 先包装现有函数（快速验证）
-   - Phase 3: 再实现组件抽象（架构改造）
-   - 两种方式并存，灵活选择
-
-3. **LangGraph 编排**：
-   - StateGraph 管理流程
-   - 组件通过适配器转为 Node
-   - PostgreSQL Checkpoint（断点续跑）
-
-4. **横向能力**：
-   - 评估中间件（自动计算指标）
-   - 可观测性中间件（日志、性能、错误）
-   - 通过 wrapper 集成，不侵入组件
-
-5. **配置驱动**：
-   - YAML 定义 Workflow
-   - NodeRegistry 支持动态注册
-   - 零代码扩展新检索方法
-
-[⬆️ 返回目录](#目录)
-
----
-
-## 7. 关键文件清单
-
-### Phase 1 新增文件（基础框架）
-
-**LangGraph State 定义**：
-- `src/agents/state.py` - RetrievalState TypedDict 定义
-  - 定义 LangGraph 中各 Node 共享的状态结构
-  - 包含 query, documents, metadata, question_type 等字段
-
-**执行上下文**：
-- `src/agents/context.py` - ExecutionContext 执行上下文
-  - 包装 memory_index, vectorize_service, rerank_service 等依赖
-  - 提供统一的服务访问接口
-
-**基础 Node 工具函数**：
-- `src/agents/node_utils.py` - Node 辅助函数
-  - 数据转换函数（Document 格式转换）
-  - 常用工具函数（RRF, 去重等）
-
----
-
-### Phase 2 新增文件（包装现有实现）
-
-**LangGraph Nodes**：
-- `src/agents/nodes/retrieval_nodes.py` - 检索相关 Nodes
-  - `classify_question_node()` - 包装 QuestionClassifier
-  - `lightweight_retrieval_node()` - 包装 lightweight_retrieval
-  - `agentic_retrieval_node()` - 包装 agentic_retrieval
-  - `rerank_node()` - 包装 rerank 服务
-
-**LangGraph Workflows**：
-- `src/agents/graphs/retrieval_graph.py` - 检索 Workflow 定义
-  - `create_retrieval_graph()` - 创建 StateGraph
-  - `compile_retrieval_graph()` - 编译为可执行的 CompiledGraph
-  - `route_by_question_type()` - 问题分类路由函数
-
-**修改文件**：
-- `eval/core/stages/search_stage.py` - 集成 LangGraph
-  - 添加 `compile_retrieval_graph()` 调用
-  - 替换原有的检索逻辑
-
----
-
-### Phase 3 新增文件（核心组件实现）
-
-**高级检索 Nodes**：
-- `src/agents/nodes/advanced_retrieval_nodes.py` - 高级检索 Nodes
-  - `hybrid_retrieval_node()` - 混合检索 (Embedding + BM25 + RRF)
-  - `multi_query_expansion_node()` - 多查询扩展
-  - `cluster_expansion_node()` - 聚类扩展
-  - `sufficiency_check_node()` - LLM 充分性判断
-
-**完整 RAG Workflow**：
-- `src/agents/graphs/full_rag_graph.py` - 完整 RAG Workflow
-  - 整合检索、扩展、Rerank、Answer Generation
-  - 支持多轮检索迭代
-
----
-
-### Phase 4 新增文件（横向能力）
-
-**评估 Nodes**：
-- `src/agents/nodes/evaluation_nodes.py` - 评估相关 Nodes
-  - `retrieval_evaluation_node()` - 包装 calculate_retrieval_metrics
-  - `answer_evaluation_node()` - 包装 calculate_answer_metrics
-
-**可观测性工具**：
-- `src/agents/observability.py` - 可观测性工具
-  - `LoggingMiddleware` - 日志记录装饰器
-  - `PerformanceTracker` - 性能追踪
-  - `DataValidator` - 数据验证
-  - `ProvenanceTracker` - 血缘追踪
-
-**Middleware Wrapper**：
-- `src/agents/middleware.py` - Node Middleware 包装器
-  - `with_logging()` - 为 Node 添加日志
-  - `with_performance_tracking()` - 为 Node 添加性能追踪
-  - `with_validation()` - 为 Node 添加数据验证
-
----
-
-### Phase 5 新增文件（新检索方法）
-
-**ColBERT Nodes**：
-- `src/agents/nodes/colbert_nodes.py` - ColBERT 检索 Nodes
-  - `colbert_retrieval_node()` - ColBERT Late Interaction 检索
-  - `colbert_rerank_node()` - ColBERT 精细打分
-
-**ColBERT Workflow**：
-- `src/agents/graphs/colbert_graph.py` - ColBERT 检索 Workflow
-  - 使用预计算的文档 embeddings
-  - 支持高效的 late interaction 检索
-
-**预计算脚本**：
-- `scripts/precompute_colbert_embeddings.py` - 预计算文档 embeddings
-  - 批量处理数据集
-  - 生成缓存文件
-
-**缓存文件**：
-- `cache/colbert_locomo.pkl` - LoCoMo 数据集的 ColBERT embeddings
-- `cache/colbert_[dataset_name].pkl` - 其他数据集的 embeddings
-
----
-
-### Phase 6 新增文件（配置化）
-
-**配置加载器**：
-- `src/agents/graph_config.py` - Graph 配置加载器
-  - `load_graph_config()` - 从 YAML 加载配置
-  - `build_graph_from_config()` - 根据配置构建 Graph
-
-**YAML 配置文件**：
-- `config/graphs/agentic_hybrid.yaml` - Agentic 混合检索配置
-- `config/graphs/colbert.yaml` - ColBERT 检索配置
-- `config/graphs/lightweight.yaml` - 轻量级检索配置
-- `config/graphs/full_agentic_rag.yaml` - 完整 Agentic RAG 配置
-
----
-
-### 保持不变的文件
-
-**现有检索工具**（作为 Nodes 内部实现）：
-- `src/agents/retrieval_utils.py` - agentic_retrieval(), lightweight_retrieval()
-- `src/agents/agentic_utils.py` - multi_query_expansion(), check_sufficiency()
-- `src/agents/deep_infra_vectorize_service.py` - Embedding 服务
-- `src/agents/deep_infra_rerank_service.py` - Rerank 服务
-
-**现有问题分类**（Phase 2 包装使用）：
-- `src/agents/question_classifier.py` - QuestionClassifier
-
-**现有评估逻辑**（Phase 4 包装使用）：
-- `eval/core/stages/evaluate_stage.py` - calculate_retrieval_metrics(), calculate_answer_metrics()
-
----
-
-### 目录结构总览
-
-```
-src/agents/                      # Agents 根目录
-├── graphs/                      # Phase 2+3+5: LangGraph Workflow 定义
-│   ├── retrieval_graph.py      # Phase 2: 基础检索 Workflow
-│   ├── full_rag_graph.py       # Phase 3: 完整 RAG Workflow
-│   └── colbert_graph.py        # Phase 5: ColBERT Workflow
-├── nodes/                       # Phase 2+3+4+5: LangGraph Nodes 实现
-│   ├── retrieval_nodes.py      # Phase 2: 基础检索 Nodes
-│   ├── advanced_retrieval_nodes.py  # Phase 3: 高级检索 Nodes
-│   ├── evaluation_nodes.py     # Phase 4: 评估 Nodes
-│   └── colbert_nodes.py        # Phase 5: ColBERT Nodes
-├── state.py                     # Phase 1: LangGraph State 定义
-├── context.py                   # Phase 1: 执行上下文
-├── node_utils.py                # Phase 1: Node 辅助函数
-├── middleware.py                # Phase 4: Node Middleware
-├── observability.py             # Phase 4: 可观测性工具
-├── graph_config.py              # Phase 6: Graph 配置加载器
-├── retrieval_utils.py           # 现有：保持不变
-├── agentic_utils.py             # 现有：保持不变
-├── question_classifier.py       # 现有：保持不变
-├── deep_infra_vectorize_service.py  # 现有：保持不变
-├── deep_infra_rerank_service.py     # 现有：保持不变
-└── ...
-
-config/graphs/                   # Phase 6: YAML 配置文件
-├── agentic_hybrid.yaml
-├── colbert.yaml
-├── lightweight.yaml
-└── full_agentic_rag.yaml
-
-scripts/                         # Phase 5: 预计算脚本
-└── precompute_colbert_embeddings.py
-
-cache/                           # Phase 5: 缓存文件
-├── colbert_locomo.pkl
-└── colbert_[dataset].pkl
-```
-
----
-
-### 文件创建时间线
-
-```
-Week 1-2 (Phase 1):
-  创建基础框架
-  └─ state.py, context.py, node_utils.py
-
-Week 3 (Phase 2):
-  包装现有实现
-  └─ nodes/retrieval_nodes.py
-     graphs/retrieval_graph.py
-     修改 eval/core/stages/search_stage.py
-
-Week 4-6 (Phase 3):
-  实现高级检索组件
-  └─ nodes/advanced_retrieval_nodes.py
-     graphs/full_rag_graph.py
-
-Week 7-8 (Phase 4):
-  横向能力集成
-  └─ nodes/evaluation_nodes.py
-     middleware.py
-     observability.py
-
-Week 9-11 (Phase 5):
-  新检索方法
-  └─ nodes/colbert_nodes.py
-     graphs/colbert_graph.py
-     scripts/precompute_colbert_embeddings.py
-     cache/colbert_*.pkl
-
-Week 12 (Phase 6):
-  配置化与优化
-  └─ graph_config.py
-     config/graphs/*.yaml
-```
-
-[⬆️ 返回目录](#目录)
-
-
-## 8. 优势总结
-
-### 8.1 灵活性
-- **声明式配置**：修改 YAML 即可切换检索策略，无需改代码
-- **组合自由**：任意组合 Retriever + Reranker + Expander
-- **条件执行**：支持基于前序结果的动态流程（如充分性判断）
-
-### 8.2 扩展性
-- **零代码扩展**：新组件只需实现接口 + 注册到 Registry
-- **插件化**：用户可以自定义组件并注册，无需修改框架代码
-
-### 8.3 可维护性
-- **关注点分离**：检索逻辑、配置、流程编排完全解耦
-- **单一职责**：每个组件只负责一个检索步骤
-- **易于测试**：每个组件可独立单元测试
-
-### 8.4 性能
-- **并行执行**：Pipeline 支持 async/await 并行阶段
-- **缓存友好**：ColBERT 等方法的预计算结果可缓存
-- **懒加载**：组件仅在需要时加载
-
-### 8.5 向后兼容
-- **渐进式迁移**：通过 Adapter 包装现有代码
-- **双轨运行**：新旧系统可以并存
-- **零风险**：新架构不影响现有功能
-
-
-
-[⬆️ 返回目录](#目录)
-
----
-
-## 9. 风险与缓解
-
-### 风险 1: 性能开销
-
-**风险**：引入抽象层可能增加性能开销
-
-**缓解措施**：
-- 使用 `async/await` 并行执行多个阶段
-- 缓存中间结果（如 embeddings、rerank 分数）
-- 性能测试确保开销 < 5%
-
-### 风险 2: 配置复杂度
-
-**风险**：配置文件可能过于复杂，增加学习成本
-
-**缓解措施**：
-- 提供多个预设配置模板（agentic_hybrid, colbert, lightweight）
-- 99% 场景直接使用预设配置
-- 详细文档和示例
-
-### 风险 3: 迁移成本
-
-**风险**：重构现有代码需要大量工作
-
-**缓解措施**：
-- 使用 Adapter 模式，逐步迁移
-- 不强制一次性重写
-- Phase 4 为可选阶段
-
-[⬆️ 返回目录](#目录)
-
----
-
-## 10. 总结
-
-这个重构方案通过采用 **LangGraph StateGraph + 组件适配层 + 统一 Checkpoint**，实现了：
-
-### 核心创新
-
-1. **采用成熟编排引擎**
-   - 使用 LangGraph StateGraph 作为核心编排引擎
-   - 避免重复造轮子，享受成熟生态和工具支持
-   - 内置可视化、调试、流式执行、checkpoint 等功能
-
-2. **统一 Checkpoint 设计**
-   - 全面采用 PostgreSQL AsyncPostgresSaver
-   - 上层评估流程 + 下层检索流程共享数据库连接
-   - 通过 `thread_id` 实现对话级别的细粒度断点续传
-   - 自动持久化，无需手动保存/加载
-
-3. **组件抽象 + 适配层**
-   - 9 大组件分类作为概念指南和代码组织原则
-   - 通过适配器将组件转换为 LangGraph Nodes
-   - 支持现有函数包装和新组件开发
-   - 灵活性高，易于测试和维护
-
-4. **声明式配置**
-   - YAML 配置文件定义完整的检索流程
-   - 支持节点、边、条件路由、checkpoint 等配置
-   - 配置驱动 + 程序化构建双轨支持
-   - 易于实验和快速迭代
-
-5. **向后兼容**
-   - 保留现有 Evaluation Pipeline (5 阶段流程)
-   - StrategyRouter 适配为 LangGraph Node
-   - 现有检索函数通过包装器集成
-   - 渐进式迁移，零风险
+## 7. 总结与优势
+
+### 实现的目标
+
+✅ **扁平化设计**：无复杂的组件抽象层，直接使用 Nodes  
+✅ **LangGraph 编排**：利用 StateGraph 进行 workflow 编排  
+✅ **YAML 配置驱动**：通过配置文件灵活定义检索流程  
+✅ **依赖注入**：ExecutionContext 统一管理服务  
+✅ **可扩展性**：@register_node 装饰器轻松添加新 Node  
+✅ **向后兼容**：Legacy Nodes 包装现有逻辑  
 
 ### 关键优势
 
-**相比自研 Pipeline 方案**：
+1. **灵活性**：修改 YAML 配置即可切换检索策略
+2. **简洁性**：扁平化设计，减少抽象层级
+3. **可测试性**：每个 Node 可独立单元测试
+4. **可观测性**：LangGraph 内置状态追踪
+5. **渐进式迁移**：Phase 1-6 逐步实施，风险可控
 
-- ✅ **零新增依赖**：LangGraph 已在 `pyproject.toml` 中
-- ✅ **生产验证**：Anthropic 官方支持，大量案例
-- ✅ **开箱即用**：PostgreSQL Checkpoint 已集成
-- ✅ **可视化调试**：自动生成流程图
-- ✅ **流式支持**：实时输出中间结果
-- ✅ **易于测试**：每个节点独立测试
+### 下一步行动
 
-### 最重要的是
+**立即开始（当前 Phase 1 ✅ 已完成）**：
+- Phase 2: 实现 BM25Retriever, HybridRetriever, Expanders
+- Phase 3: 包装现有逻辑为 Legacy Nodes
+- Phase 4: 集成到 Search Stage 验证
 
-这个设计为集成 **ColBERT、QRHead** 等新检索方法提供了清晰的路径：
-
-1. 实现 `BaseRetriever` 接口（或直接写 Node 函数）
-2. 通过适配器转换为 LangGraph Node
-3. 在 YAML 配置文件中声明节点和边
-4. 执行 `compile_graph()` 即可使用
-
-**无需修改任何现有代码**，也无需在现有代码上"打补丁"。这将大大提升 Parallax 检索系统的灵活性和可维护性。
-
-[⬆️ 返回目录](#目录)
+**中期目标**：
+- Phase 5: 实现 ColBERT/QRHead
+- Phase 6: 添加 Evaluation 和 Observability
 
 ---
-
----
-
-## 11. 相关文档
-
-### 用户文档
-- **[Agentic Retrieval 使用指南](./agentic_retrieval_guide.md)**: 当前 Agentic 检索功能的快速开始、API 使用、配置说明和最佳实践
-
-### 技术文档
-- **[QRHead CPU 实施总结](./QRHead_CPU_实施总结.md)**: QRHead CPU 集成经验和性能优化
-- **[QRHead 安装指南](./QRHEAD_SETUP.md)**: QRHead 环境配置和安装步骤
-
-### 代码仓库
-- `src/agents/` - Pipeline 核心实现（待创建）
-- `eval/adapters/parallax/` - 现有检索适配器
-- `eval/core/pipeline.py` - 评估流程 Pipeline
-- `config/pipelines/` - Pipeline 配置文件（待创建）
-
-
----
-
-## 附录
-
-### A. 参考资料
-
-- ColBERT 论文：[Efficient Passage Retrieval with Hashing for Open-domain Question Answering](https://arxiv.org/abs/2004.12832)
-- QRHead 论文：[Query-Focused Retrieval Heads for Retrieval-Augmented Generation](https://arxiv.org/abs/2410.xxxxx)
-- Parallax 现有架构文档：`docs/memory/`
 
 [⬆️ 返回目录](#目录)

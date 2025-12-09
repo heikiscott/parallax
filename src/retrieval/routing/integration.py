@@ -1,13 +1,13 @@
-"""Integration helpers for strategy routing in the eval flow.
+"""Integration helpers for retrieval routing.
 
 This module provides helper functions to integrate the strategy router
-into the existing parallax adapter without major refactoring.
+into retrieval workflows.
 """
 
 import logging
 from typing import Any, Dict, List, Optional, Tuple, TYPE_CHECKING
 
-from .base import RetrievalContext, RetrievalResult, StrategyType
+from .types import RetrievalContext, RetrievalResult, StrategyType
 from .router import StrategyRouter, create_default_router, CLASSIFIER_TO_STRATEGY
 
 # Use TYPE_CHECKING for heavy imports
@@ -54,8 +54,8 @@ async def route_and_retrieve(
     classification_enabled = getattr(config, 'enable_question_classification', True)
 
     if not classification_enabled:
-        # Fall back to existing agentic retrieval
-        from eval.adapters.parallax.stage3_memory_retrivel import agentic_retrieval
+        # Fall back to agentic retrieval
+        from src.retrieval.pipelines import agentic_retrieval
         return await agentic_retrieval(
             query=query,
             config=config,
@@ -109,7 +109,7 @@ def get_strategy_for_query(
     Returns:
         Tuple of (strategy_name, classification_info)
     """
-    from agents.question_classifier import classify_question
+    from src.retrieval.classification import classify_question
 
     classification = classify_question(query)
 

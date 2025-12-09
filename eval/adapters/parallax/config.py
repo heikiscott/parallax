@@ -61,10 +61,14 @@ class ExperimentConfig:
         "cluster_rerank_total_max_members": 30,     # 最终返回的 MemUnits 总数上限
     }
 
-    # 🔥 检索模式选择：'agentic' 或 'lightweight'
+    # 🔥 检索模式选择：'agentic', 'lightweight', 或 'workflow'
     # - agentic: 复杂的多轮检索，LLM引导，质量高但速度慢
     # - lightweight: 快速混合检索，BM25+Embedding混排，速度快但质量略低
-    retrieval_mode: str = "agentic"  # 'agentic' | 'lightweight'
+    # - workflow: 使用 LangGraph Workflow（YAML配置驱动，推荐）
+    retrieval_mode: str = "agentic"  # 'agentic' | 'lightweight' | 'workflow'
+
+    # 🔥 LangGraph Workflow 配置（仅在 retrieval_mode='workflow' 时生效）
+    workflow_name: str = "adaptive_retrieval"  # workflow 名称，对应 config/workflows/*.yaml
 
     # ===== 问题分类与策略路由配置 (Question Classification & Strategy Routing) =====
     enable_question_classification: bool = True  # 是否启用问题分类
@@ -124,7 +128,7 @@ class ExperimentConfig:
             "model": os.getenv("LLM_MODEL", "openai/gpt-4.1-mini"),
             "base_url": os.getenv("LLM_BASE_URL", "https://openrouter.ai/api/v1"),
             "api_key": os.getenv("LLM_API_KEY"),
-            "temperature": float(os.getenv("LLM_TEMPERATURE", "0.3")),
+            "temperature": float(os.getenv("LLM_TEMPERATURE", "0.0")),
             "max_tokens": int(os.getenv("LLM_MAX_TOKENS", "16384")),
         },
         "vllm": {

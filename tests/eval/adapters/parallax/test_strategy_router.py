@@ -11,11 +11,11 @@ sys.path.insert(0, str(project_root / "src"))
 sys.path.insert(0, str(project_root / "eval"))
 sys.path.insert(0, str(project_root))
 
-from agents.question_classifier import (
+from src.retrieval.classification import (
     QuestionType,
     RetrievalStrategy as ClassifierStrategy,
 )
-from adapters.parallax.strategy import (
+from src.retrieval.routing import (
     StrategyRouter,
     StrategyType,
     RetrievalContext,
@@ -261,7 +261,7 @@ class TestConfigIsolation:
 
     def test_config_wrapper_does_not_modify_original(self):
         """Test that _ConfigWrapper does not modify the original config."""
-        from adapters.parallax.strategy.strategies import _create_config_with_overrides
+        from src.retrieval.routing.policies import _create_config_with_overrides
 
         # Create a mock config
         class MockConfig:
@@ -296,7 +296,7 @@ class TestConfigIsolation:
 
     def test_multiple_wrappers_are_independent(self):
         """Test that multiple wrappers from the same config are independent."""
-        from adapters.parallax.strategy.strategies import _create_config_with_overrides
+        from src.retrieval.routing.policies import _create_config_with_overrides
 
         class MockConfig:
             group_event_cluster_retrieval_config = {

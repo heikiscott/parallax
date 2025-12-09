@@ -15,7 +15,7 @@ import asyncio
 
 
 from eval.adapters.parallax.config import ExperimentConfig
-from agents import deep_infra_vectorize_service as vectorize_service
+from retrieval.services import vectorize as vectorize_service
 
 
 def ensure_nltk_data():

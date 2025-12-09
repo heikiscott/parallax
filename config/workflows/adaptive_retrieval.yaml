@@ -1,0 +1,83 @@
+# Adaptive Retrieval Workflow
+# Routes queries to different retrieval strategies based on question classification
+#
+# Flow:
+#   START -> classify_question -> [conditional routing]
+#                                    |
+#                     +--------------+--------------+
+#                     |                             |
+#                     v                             v
+#           lightweight_retrieval          agentic_retrieval
+#                     |                             |
+#                     v                             v
+#                  rerank                        rerank
+#                     |                             |
+#                     +-------------+---------------+
+#                                   |
+#                                   v
+#                                  END
+#
+# Routing Logic (based on question_classifier.py):
+# - AGENTIC_ONLY strategy -> lightweight_retrieval (fast, no LLM)
+#   - Attribute questions (identity, preference, location)
+#   - Time calculation questions
+# - GEC_CLUSTER_RERANK strategy -> agentic_retrieval (LLM-guided)
+#   - Event questions (temporal, activity, aggregation)
+# - GEC_INSERT_AFTER_HIT strategy -> agentic_retrieval (needs context)
+#   - Reasoning/hypothetical questions
+#   - General questions
+
+workflow:
+  name: "adaptive_retrieval"
+  description: "Adaptive retrieval workflow that routes queries based on question type"
+
+  nodes:
+    # Node 1: Classify question type
+    - name: "classify_question"
+      function: "classify_question_node"
+      config: {}
+
+    # Node 2a: Lightweight retrieval (fast path, no LLM)
+    # Uses legacy pipeline: src/retrieval/pipelines/lightweight.py
+    - name: "lightweight_retrieval"
+      function: "lightweight_retrieval_node"
+      config:
+        emb_top_k: 50
+        bm25_top_k: 50
+        final_top_k: 20
+
+    # Node 2b: Agentic multi-round retrieval (complex path, LLM-guided)
+    # Uses legacy pipeline: src/retrieval/pipelines/agentic.py
+    - name: "agentic_retrieval"
+      function: "agentic_retrieval_node"
+      config:
+        emb_top_k: 50
+        bm25_top_k: 50
+        use_reranker: true
+        use_multi_query: true
+
+  edges:
+    # Entry point
+    - from: "START"
+      to: "classify_question"
+
+    # Exit points (legacy pipelines include reranking internally)
+    - from: "lightweight_retrieval"
+      to: "END"
+
+    - from: "agentic_retrieval"
+      to: "END"
+
+  conditional_edges:
+    # Route based on question classification
+    - source: "classify_question"
+      router: "route_by_question_type"
+      destinations:
+        lightweight_retrieval: "lightweight_retrieval"
+        agentic_retrieval: "agentic_retrieval"
+
+# Global configuration
+global_config:
+  default_top_k: 20
+  enable_logging: true
+  enable_metrics: true

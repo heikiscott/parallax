@@ -13,7 +13,7 @@ logger = get_logger(__name__)
 
 # Try to import vectorize service
 try:
-    from agents.deep_infra_vectorize_service import get_vectorize_service
+    from retrieval.services.vectorize import get_vectorize_service
     VECTORIZE_SERVICE_AVAILABLE = True
 except ImportError:
     VECTORIZE_SERVICE_AVAILABLE = False

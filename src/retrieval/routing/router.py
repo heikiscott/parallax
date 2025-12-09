@@ -1,20 +1,19 @@
-"""Strategy Router - Routes queries to appropriate retrieval strategies.
+"""Strategy Router - Routes queries to appropriate retrieval policies.
 
 This module provides the StrategyRouter class that uses question classification
-to route queries to the most appropriate retrieval strategy.
+to route queries to the most appropriate retrieval policy.
 """
 
 import logging
-from typing import Any, Dict, Optional, Type
+from typing import Any, Dict, Optional
 
-from agents.question_classifier import (
+from src.retrieval.classification import (
     QuestionClassifier,
     ClassificationResult,
     RetrievalStrategy as ClassifierStrategy,
-    classify_question,
 )
 
-from .base import (
+from .types import (
     BaseRetrievalStrategy,
     StrategyType,
     RetrievalContext,
@@ -40,17 +39,17 @@ STRATEGY_NAME_TO_TYPE: Dict[str, StrategyType] = {
 
 
 class StrategyRouter:
-    """Routes queries to appropriate retrieval strategies based on classification.
+    """Routes queries to appropriate retrieval policies based on classification.
 
     The router uses a QuestionClassifier to analyze queries and determine the
-    best retrieval strategy. It maintains a registry of available strategies
-    and handles strategy selection and fallback logic.
+    best retrieval policy. It maintains a registry of available policies
+    and handles policy selection and fallback logic.
 
     Example:
-        # Create router with strategies
+        # Create router with policies
         router = StrategyRouter()
-        router.register_strategy(StrategyType.GEC_CLUSTER_RERANK, cluster_strategy)
-        router.register_strategy(StrategyType.AGENTIC_ONLY, agentic_strategy)
+        router.register_strategy(StrategyType.GEC_CLUSTER_RERANK, cluster_policy)
+        router.register_strategy(StrategyType.AGENTIC_ONLY, agentic_policy)
 
         # Route and execute
         result = await router.route_and_retrieve(query, context)
@@ -86,21 +85,21 @@ class StrategyRouter:
         strategy_type: StrategyType,
         strategy: BaseRetrievalStrategy,
     ) -> "StrategyRouter":
-        """Register a strategy for a given type.
+        """Register a policy for a given type.
 
         Args:
             strategy_type: The type of strategy
-            strategy: The strategy instance
+            strategy: The policy instance
 
         Returns:
             self for chaining
         """
         self._strategies[strategy_type] = strategy
-        logger.debug(f"Registered strategy: {strategy_type.value}")
+        logger.debug(f"Registered policy: {strategy_type.value}")
         return self
 
     def unregister_strategy(self, strategy_type: StrategyType) -> "StrategyRouter":
-        """Unregister a strategy.
+        """Unregister a policy.
 
         Args:
             strategy_type: The type to unregister
@@ -110,17 +109,17 @@ class StrategyRouter:
         """
         if strategy_type in self._strategies:
             del self._strategies[strategy_type]
-            logger.debug(f"Unregistered strategy: {strategy_type.value}")
+            logger.debug(f"Unregistered policy: {strategy_type.value}")
         return self
 
     def get_strategy(self, strategy_type: StrategyType) -> Optional[BaseRetrievalStrategy]:
-        """Get a registered strategy by type.
+        """Get a registered policy by type.
 
         Args:
             strategy_type: The type to look up
 
         Returns:
-            The strategy instance or None if not registered
+            The policy instance or None if not registered
         """
         return self._strategies.get(strategy_type)
 
@@ -130,7 +129,7 @@ class StrategyRouter:
         return list(self._strategies.keys())
 
     def classify(self, query: str) -> ClassificationResult:
-        """Classify a query to determine the best strategy.
+        """Classify a query to determine the best policy.
 
         Args:
             query: The query to classify
@@ -141,7 +140,7 @@ class StrategyRouter:
         return self._classifier.classify(query)
 
     def select_strategy(self, query: str) -> tuple:
-        """Select the best strategy for a query.
+        """Select the best policy for a query.
 
         Args:
             query: The query to route
@@ -191,20 +190,20 @@ class StrategyRouter:
                 f"-> {classification.strategy.value} (confidence: {classification.confidence:.2f})"
             )
 
-        # Check if we have this strategy registered
+        # Check if we have this policy registered
         if target_type not in self._strategies:
             logger.warning(
-                f"Strategy {target_type.value} not registered, "
+                f"Policy {target_type.value} not registered, "
                 f"falling back to {self._default_strategy_type.value}"
             )
             target_type = self._default_strategy_type
 
             # Double-check that default is registered (safety check)
             if target_type not in self._strategies:
-                # Last resort: use any registered strategy
+                # Last resort: use any registered policy
                 if self._strategies:
                     target_type = next(iter(self._strategies.keys()))
-                    logger.warning(f"Default strategy also not registered, using {target_type.value}")
+                    logger.warning(f"Default policy also not registered, using {target_type.value}")
 
         return target_type, classification, override_applied
 
@@ -213,11 +212,11 @@ class StrategyRouter:
         query: str,
         context: RetrievalContext,
     ) -> RetrievalResult:
-        """Route a query to the appropriate strategy and execute retrieval.
+        """Route a query to the appropriate policy and execute retrieval.
 
-        This is the main entry point for strategy-based retrieval. It:
+        This is the main entry point for policy-based retrieval. It:
         1. Classifies the query
-        2. Selects the appropriate strategy (with optional override)
+        2. Selects the appropriate policy (with optional override)
         3. Executes the retrieval
         4. Adds classification metadata to results
 
@@ -228,19 +227,19 @@ class StrategyRouter:
         Returns:
             RetrievalResult with results and metadata
         """
-        # Select strategy
+        # Select policy
         strategy_type, classification, override_applied = self.select_strategy(query)
 
-        # Get strategy instance
+        # Get policy instance
         strategy = self._strategies.get(strategy_type)
         if strategy is None:
             raise ValueError(
-                f"No strategy registered for type {strategy_type.value}. "
+                f"No policy registered for type {strategy_type.value}. "
                 f"Available: {[s.value for s in self.available_strategies]}"
             )
 
         if self._log_classification:
-            logger.info(f"Executing strategy: {strategy.name}")
+            logger.info(f"Executing policy: {strategy.name}")
 
         # Execute retrieval
         result = await strategy.retrieve(query, context)
@@ -265,14 +264,14 @@ def create_default_router(
     config: Optional[Any] = None,
     enable_classification: bool = True,
 ) -> StrategyRouter:
-    """Create a StrategyRouter with default strategies registered.
+    """Create a StrategyRouter with default policies registered.
 
-    This factory function creates a router with all standard strategies
+    This factory function creates a router with all standard policies
     pre-registered, ready for use. It reads configuration from
     config.question_classification_config if available.
 
     Args:
-        config: Optional ExperimentConfig for strategy configuration.
+        config: Optional ExperimentConfig for policy configuration.
                 Reads question_classification_config for:
                 - default_strategy: Fallback strategy name
                 - strategy_overrides: Dict of question_type -> strategy
@@ -282,10 +281,10 @@ def create_default_router(
     Returns:
         Configured StrategyRouter instance
     """
-    from .strategies import (
-        GECClusterRerankStrategy,
-        GECInsertAfterHitStrategy,
-        AgenticOnlyStrategy,
+    from .policies import (
+        GECClusterRerankPolicy,
+        GECInsertAfterHitPolicy,
+        AgenticOnlyPolicy,
     )
 
     # Read question classification config from ExperimentConfig
@@ -310,22 +309,22 @@ def create_default_router(
         log_classification=log_classification,
     )
 
-    # Register all strategies
+    # Register all policies
     router.register_strategy(
         StrategyType.GEC_CLUSTER_RERANK,
-        GECClusterRerankStrategy(config=config)
+        GECClusterRerankPolicy(config=config)
     )
     router.register_strategy(
         StrategyType.GEC_INSERT_AFTER_HIT,
-        GECInsertAfterHitStrategy(config=config)
+        GECInsertAfterHitPolicy(config=config)
     )
     router.register_strategy(
         StrategyType.AGENTIC_ONLY,
-        AgenticOnlyStrategy(config=config)
+        AgenticOnlyPolicy(config=config)
     )
 
     logger.info(
-        f"Created router with strategies: "
+        f"Created router with policies: "
         f"{[s.value for s in router.available_strategies]}, "
         f"default: {default_strategy_type.value}, "
         f"overrides: {strategy_overrides}"

@@ -1,0 +1,29 @@
+# Simple Retrieval Workflow
+# This is a minimal example workflow for testing the LangGraph infrastructure
+# Uses the lightweight_retrieval pipeline which handles both retrieval and basic ranking
+
+workflow:
+  name: "simple_retrieval"
+  description: "Minimal retrieval workflow for testing"
+
+  nodes:
+    # Node 1: Retrieve documents using lightweight pipeline
+    # This wraps embedding + BM25 hybrid search with RRF fusion
+    - name: "retrieval"
+      function: "lightweight_retrieval_node"
+      config:
+        top_k: 50
+
+  edges:
+    # Simple flow: START -> retrieval -> END
+    - from: "START"
+      to: "retrieval"
+
+    - from: "retrieval"
+      to: "END"
+
+# Global configuration (optional)
+global_config:
+  # Default values that can be overridden at runtime
+  default_top_k: 50
+  enable_logging: true

@@ -1,0 +1,107 @@
+# Agentic Hybrid Retrieval Workflow Configuration
+# This workflow implements a multi-stage agentic RAG pipeline with:
+# 1. Hybrid Retrieval (Embedding + BM25 + RRF)
+# 2. Reranking
+# 3. LLM-based sufficiency check
+# 4. Conditional multi-query expansion
+# 5. Cluster-based expansion
+
+workflow:
+  name: "agentic_hybrid_retrieval"
+  description: "Agentic RAG workflow with hybrid retrieval and conditional expansion"
+
+  nodes:
+    # Node 1: Hybrid Retrieval
+    - name: "hybrid_retrieval"
+      function: "hybrid_retrieval_node"
+      config:
+        emb_top_k: 50
+        bm25_top_k: 50
+        final_top_k: 20
+        fusion_mode: "rrf"
+
+    # Node 2: Round 1 Rerank
+    - name: "round1_rerank"
+      function: "rerank_node"
+      config:
+        top_k: 20
+
+    # Node 3: LLM Sufficiency Check
+    - name: "sufficiency_check"
+      function: "sufficiency_check_node"
+      config:
+        top_n_to_check: 5
+
+    # Node 4: Multi-Query Expansion (for insufficient results)
+    - name: "multi_query_expansion"
+      function: "multi_query_expansion_node"
+      config:
+        num_queries: 3
+        retrieval_top_k: 20
+        final_top_k: 50
+
+    # Node 5: Round 2 Rerank (after multi-query expansion)
+    - name: "round2_rerank"
+      function: "rerank_node"
+      config:
+        top_k: 20
+
+    # Node 6: Cluster Expansion
+    - name: "cluster_expansion"
+      function: "cluster_expansion_node"
+      config:
+        expansion_strategy: "insert_after_hit"
+        max_expansion_per_hit: 3
+        min_cluster_score: 0.5
+
+  edges:
+    # Linear path: START -> hybrid_retrieval -> round1_rerank -> sufficiency_check
+    - from: "START"
+      to: "hybrid_retrieval"
+
+    - from: "hybrid_retrieval"
+      to: "round1_rerank"
+
+    - from: "round1_rerank"
+      to: "sufficiency_check"
+
+    # Insufficient path: multi_query_expansion -> round2_rerank -> cluster_expansion -> END
+    - from: "multi_query_expansion"
+      to: "round2_rerank"
+
+    - from: "round2_rerank"
+      to: "cluster_expansion"
+
+    # Final edge: cluster_expansion -> END (reached from both paths)
+    - from: "cluster_expansion"
+      to: "END"
+
+  conditional_edges:
+    # Route based on sufficiency check result
+    - source: "sufficiency_check"
+      router: "route_by_sufficiency"
+      destinations:
+        sufficient: "cluster_expansion"       # If sufficient, skip to cluster expansion
+        insufficient: "multi_query_expansion" # If not sufficient, do multi-query expansion
+
+# Global configuration
+global_config:
+  default_top_k: 50
+  default_rerank_top_k: 20
+  enable_logging: true
+
+  # Vectorization service
+  vectorize_service:
+    provider: "deep_infra"
+    model: "BAAI/bge-m3"
+
+  # Reranking service
+  rerank_service:
+    provider: "deep_infra"
+    model: "BAAI/bge-reranker-v2-m3"
+
+  # LLM provider for sufficiency checks and query expansion
+  llm_provider:
+    provider: "openai"
+    model: "gpt-4"
+    temperature: 0.0

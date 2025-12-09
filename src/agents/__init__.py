@@ -1,22 +1,31 @@
-"""Agents module - Memory retrieval and question classification utilities."""
+"""Agents module - Memory services for online applications.
 
-from .question_classifier import (
-    QuestionType,
-    RetrievalStrategy,
-    ClassificationResult,
-    QuestionClassifier,
-    LLMQuestionClassifier,
-    classify_question,
-    should_use_group_event_cluster,
+This module provides:
+- MemoryManager: Unified memory management (memorize, retrieve)
+- FetchMemoryService: Memory retrieval by ID
+- Memory models and DTOs
+"""
+
+from .memory_manager import MemoryManager
+from .fetch_memory_service import get_fetch_memory_service, FetchMemoryService
+from .memory_models import (
+    MemoryType,
+    RetrieveMethod,
+    Metadata,
+    BaseMemoryModel,
+    MemoryModel,
 )
 
 __all__ = [
-    # Question Classifier
-    "QuestionType",
-    "RetrievalStrategy",
-    "ClassificationResult",
-    "QuestionClassifier",
-    "LLMQuestionClassifier",
-    "classify_question",
-    "should_use_group_event_cluster",
+    # Memory Manager
+    "MemoryManager",
+    # Fetch Memory Service
+    "get_fetch_memory_service",
+    "FetchMemoryService",
+    # Models
+    "MemoryType",
+    "RetrieveMethod",
+    "Metadata",
+    "BaseMemoryModel",
+    "MemoryModel",
 ]

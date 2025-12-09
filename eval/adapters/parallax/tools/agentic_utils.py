@@ -270,7 +270,7 @@ async def generate_refined_query(
         # 3. 调用 LLM（使用 LLMProvider）
         result_text = await llm_client.generate(
             prompt=prompt,
-            temperature=0.3,  # 稍高温度，增加创造性
+            temperature=0.0,  # 固定温度，确保结果可复现
             max_tokens=150,
         )
         
@@ -392,7 +392,7 @@ async def generate_multi_queries(
         # 3. 调用 LLM（使用 LLMProvider）
         result_text = await llm_provider.generate(
             prompt=prompt,
-            temperature=0.4,  # 稍高温度，增加查询多样性
+            temperature=0.0,  # 固定温度，确保结果可复现
             max_tokens=300,  # 增加 token 数以支持多个查询
         )
         

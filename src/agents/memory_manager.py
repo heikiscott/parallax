@@ -38,9 +38,9 @@ from infra.adapters.out.persistence.document.memory.user_profile import (
 from infra.adapters.out.search.repository.episodic_memory_milvus_repository import (
     EpisodicMemoryMilvusRepository,
 )
-from .deep_infra_vectorize_service import get_vectorize_service
-from .deep_infra_rerank_service import get_rerank_service
-from .retrieval_utils import lightweight_retrieval, build_bm25_index, search_with_bm25
+from retrieval.services.vectorize import get_vectorize_service
+from retrieval.services.rerank import get_rerank_service
+from retrieval.core.utils import lightweight_retrieval, build_bm25_index, search_with_bm25
 import os
 
 logger = logging.getLogger(__name__)
@@ -1384,7 +1384,7 @@ class MemoryManager:
                 
             else:  # rrf
                 # RRF 融合
-                from agents.retrieval_utils import reciprocal_rank_fusion
+                from retrieval.core.utils import reciprocal_rank_fusion
                 
                 fused_results = reciprocal_rank_fusion(
                     embedding_results,

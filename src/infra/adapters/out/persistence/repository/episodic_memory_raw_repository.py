@@ -8,7 +8,7 @@ from core.oxm.mongo.base_repository import BaseRepository
 from infra.adapters.out.persistence.document.memory.episodic_memory import (
     EpisodicMemory,
 )
-from agents.deep_infra_vectorize_service import get_vectorize_service
+from retrieval.services.vectorize import get_vectorize_service
 import time
 
 logger = get_logger(__name__)

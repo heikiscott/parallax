@@ -15,7 +15,8 @@ llm:
   max_tokens: ${LLM_MAX_TOKENS:16384}  # gpt-4o-mini max completion tokens limit
 
 search:
-  mode: "agentic"  # agentic | lightweight
+  mode: "workflow"  # agentic | lightweight | workflow
+  workflow_name: "adaptive_retrieval"  # LangGraph workflow 配置名称
 
 
 enable_group_event_cluster: true

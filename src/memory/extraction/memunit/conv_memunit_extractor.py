@@ -23,7 +23,7 @@ from prompts.memory.en.eval.add.conv_prompts import (
     CONV_BOUNDARY_DETECTION_PROMPT as EVAL_CONV_BOUNDARY_DETECTION_PROMPT,
 )
 from core.observation.logger import get_logger
-from agents.deep_infra_vectorize_service import get_vectorize_service
+from retrieval.services.vectorize import get_vectorize_service
 
 from .raw_data import RawData
 from .memunit_extract_request import MemUnitExtractRequest
