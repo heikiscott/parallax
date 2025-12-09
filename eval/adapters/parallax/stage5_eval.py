@@ -11,7 +11,7 @@ from pydantic import BaseModel, Field
 from tqdm import tqdm
 
 
-from eval.adapters.parallax.config import ExperimentConfig
+from config import load_config
 
 logging.basicConfig(level=logging.CRITICAL)
 
@@ -152,10 +152,10 @@ async def process_single_group(
 
 async def main():
     # --- Configuration ---
-    config = ExperimentConfig()
+    config = load_config("eval/systems/parallax")
     version = config.experiment_name
     num_runs = 3
-    max_workers = int(os.getenv('EVAL_JUDGMENT_MAX_CONCURRENT', '5'))
+    max_workers = config.concurrency.judgment
 
     # 🔥 简化输出
     print(f"\n{'='*60}")
@@ -172,9 +172,10 @@ async def main():
     results_dir.mkdir(parents=True, exist_ok=True)
 
     # --- Client Setup ---
-    llm_config = config.llm_config["openai"]
+    llm_service = config.llm.service
+    llm_cfg = config.llm[llm_service]
     oai_client = AsyncOpenAI(
-        api_key=llm_config["api_key"], base_url=llm_config["base_url"]
+        api_key=llm_cfg.api_key, base_url=llm_cfg.base_url
     )
 
     # --- Data Loading ---

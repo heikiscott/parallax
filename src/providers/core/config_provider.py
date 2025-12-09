@@ -4,7 +4,7 @@ import json
 from typing import Dict, Any, Optional
 
 from core.di.decorators import component
-from utils.project_path import CURRENT_DIR
+from utils.project_path import CURRENT_DIR, PROJECT_DIR
 
 
 @component(name="config_provider")
@@ -13,7 +13,7 @@ class ConfigProvider:
 
     def __init__(self):
         """初始化配置提供者"""
-        self.config_dir = CURRENT_DIR / "config"
+        self.config_dir = PROJECT_DIR / "config" / "src"
         self._cache: Dict[str, Any] = {}
 
     def get_config(self, config_name: str) -> Dict[str, Any]:

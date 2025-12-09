@@ -68,16 +68,19 @@ class ParallaxAdapter(BaseAdapter):
         self.output_dir = Path(output_dir) if output_dir else Path(".")
         
         # 初始化 LLM Provider（共享给所有 stage）
-        # 从 YAML 的 llm 配置中读取
+        # 从 YAML 的 llm 配置中读取（支持嵌套结构 llm.openai 或扁平结构 llm）
         llm_config = config.get("llm", {})
-        
+        llm_service = llm_config.get("service", "openai")
+        # 优先使用嵌套结构 (llm.openai.model)，回退到扁平结构 (llm.model)
+        llm_provider_config = llm_config.get(llm_service, llm_config)
+
         self.llm_provider = LLMProvider(
-            provider_type=llm_config.get("provider", "openai"),
-            model=llm_config.get("model", "gpt-4o-mini"),
-            api_key=llm_config.get("api_key", ""),
-            base_url=llm_config.get("base_url", "https://api.openai.com/v1"),
-            temperature=llm_config.get("temperature", 0.0),
-            max_tokens=int(llm_config.get("max_tokens", 32768)),
+            provider_type=llm_provider_config.get("provider", "openai"),
+            model=llm_provider_config.get("model", "gpt-4.1-mini"),
+            api_key=llm_provider_config.get("api_key", ""),
+            base_url=llm_provider_config.get("base_url", "https://api.openai.com/v1"),
+            temperature=llm_provider_config.get("temperature", 0.0),
+            max_tokens=int(llm_provider_config.get("max_tokens", 32768)),
         )
         
         # 初始化 Event Log Extractor（使用评估专用提示词）
@@ -312,7 +315,7 @@ class ParallaxAdapter(BaseAdapter):
                         progress_counter=None,
                         progress=progress,
                         task_id=conv_task_id,
-                        config=self._convert_config_to_experiment_config(),
+                        config=self._get_config(),
                     )
                     processing_tasks.append((conv_id, task))
                 
@@ -357,8 +360,8 @@ class ParallaxAdapter(BaseAdapter):
         console.print(f"{'='*60}", style="bold cyan")
         
         # 调用 stage2 实现构建索引
-        exp_config = self._convert_config_to_experiment_config()
-        exp_config.num_conv = len(conversations)  # 设置会话数量
+        exp_config = self._get_config()
+        exp_config._data["num_conv"] = len(conversations)  # 设置会话数量
         
         # 🔥 智能跳过逻辑：检查已存在的索引文件
         bm25_need_build = self._check_missing_indexes(
@@ -493,13 +496,21 @@ class ParallaxAdapter(BaseAdapter):
         search_config = self.config.get("search", {})
         retrieval_mode = search_config.get("mode", "agentic")
 
-        exp_config = self._convert_config_to_experiment_config()
+        exp_config = self._get_config()
         # 从 exp_config 获取正确格式的 llm_config
-        llm_config = exp_config.llm_config.get(exp_config.llm_service, {})
+        llm_service = exp_config.llm.service
+        llm_cfg = exp_config.llm[llm_service]
+        llm_config = {
+            "model": llm_cfg.model,
+            "api_key": llm_cfg.api_key,
+            "base_url": llm_cfg.base_url,
+            "temperature": llm_cfg.temperature,
+            "max_tokens": llm_cfg.max_tokens,
+        }
 
         if retrieval_mode == "agentic":
             # 🔥 策略路由检索（默认启用）
-            if exp_config.enable_question_classification:
+            if exp_config.question_classification.enabled:
                 from src.retrieval.routing import route_and_retrieve
                 top_results, metadata = await route_and_retrieve(
                     query=query,
@@ -529,15 +540,15 @@ class ParallaxAdapter(BaseAdapter):
             # 🔥 LangGraph Workflow 模式（YAML配置驱动）
             from eval.adapters.parallax.workflow_integration import workflow_search
 
-            workflow_name = search_config.get("workflow_name", exp_config.workflow_name)
+            workflow_name = search_config.get("workflow_name", exp_config.retrieval.workflow_name)
             workflow_config = {
-                "emb_top_k": exp_config.hybrid_emb_candidates,
-                "bm25_top_k": exp_config.hybrid_bm25_candidates,
-                "final_top_k": exp_config.reranker_top_n,
-                "use_reranker": exp_config.use_reranker,
-                "use_multi_query": exp_config.use_multi_query,
+                "emb_top_k": exp_config.retrieval.hybrid.emb_candidates,
+                "bm25_top_k": exp_config.retrieval.hybrid.bm25_candidates,
+                "final_top_k": exp_config.retrieval.reranker_top_n,
+                "use_reranker": exp_config.retrieval.use_reranker,
+                "use_multi_query": exp_config.retrieval.use_multi_query,
                 "llm_config": llm_config,
-                "group_event_cluster_retrieval_config": exp_config.group_event_cluster_retrieval_config,
+                "group_event_cluster_retrieval_config": exp_config.group_event_cluster_retrieval.to_dict() if hasattr(exp_config.group_event_cluster_retrieval, 'to_dict') else exp_config._data.get("group_event_cluster_retrieval", {}),
             }
 
             top_results, metadata = await workflow_search(
@@ -549,8 +560,8 @@ class ParallaxAdapter(BaseAdapter):
                 cluster_index=cluster_index,
                 llm_provider=self.llm_provider,
                 config=workflow_config,
-                top_k=exp_config.emb_recall_top_n,
-                rerank_top_k=exp_config.reranker_top_n,
+                top_k=exp_config.retrieval.emb_recall_top_n,
+                rerank_top_k=exp_config.retrieval.reranker_top_n,
             )
         elif retrieval_mode == "lightweight":
             # 轻量级检索
@@ -605,7 +616,7 @@ class ParallaxAdapter(BaseAdapter):
             speaker_b = conversation.metadata.get("speaker_b", "Speaker B")
             
             # 🔥 使用 config.response_top_k 而不是硬编码的 10
-            response_top_k = exp_config.response_top_k
+            response_top_k = exp_config.response.top_k
             
             # 构建 context
             retrieved_docs_text = []
@@ -688,13 +699,13 @@ class ParallaxAdapter(BaseAdapter):
         调用 stage4_response.py 的实现
         """
         # 调用 stage4 答案生成实现
-        exp_config = self._convert_config_to_experiment_config()
+        exp_config = self._get_config()
         
         answer = await stage4_response.locomo_response(
             llm_provider=self.llm_provider,
             context=context,
             question=query,
-            experiment_config=exp_config,
+            config=exp_config,
         )
         
         return answer
@@ -708,59 +719,65 @@ class ParallaxAdapter(BaseAdapter):
             "adapter": "Adapter connecting framework to Parallax implementation",
         }
     
-    def _convert_config_to_experiment_config(self):
+    def _get_config(self):
         """
-        将评测框架的 config 转换为 ExperimentConfig 格式
+        获取配置（合并 Parallax 默认配置和 adapter YAML 配置）
+
+        Returns:
+            ConfigDict: 合并后的配置
         """
-        from eval.adapters.parallax.config import ExperimentConfig
+        from config import load_config
         import os
-        
-        exp_config = ExperimentConfig()
-        
-        # 映射 LLM 配置：将 YAML 的 llm 转换为 ExperimentConfig 的 llm_config 格式
+
+        # 加载 Parallax 默认配置
+        config = load_config("eval/systems/parallax")
+
+        # 用 adapter 的 YAML 配置覆盖部分值
+        # 1. LLM 配置
         llm_cfg = self.config.get("llm", {})
-        provider = llm_cfg.get("provider", "openai")
-        
-        exp_config.llm_service = provider
-        exp_config.llm_config = {
-            provider: {
-                "llm_provider": provider,
-                "model": llm_cfg.get("model", "gpt-4o-mini"),
+        if llm_cfg:
+            provider = llm_cfg.get("provider", "openai")
+            # 动态设置 llm.service 和对应的 provider 配置
+            config._data["llm"]["service"] = provider
+            if provider not in config._data["llm"]:
+                config._data["llm"][provider] = {}
+            config._data["llm"][provider].update({
+                "provider": provider,
+                "model": llm_cfg.get("model", config.llm[provider].model if hasattr(config.llm, provider) else "gpt-4o-mini"),
                 "api_key": llm_cfg.get("api_key") or os.getenv("LLM_API_KEY", ""),
                 "base_url": llm_cfg.get("base_url") or os.getenv("LLM_BASE_URL", "https://api.openai.com/v1"),
                 "temperature": llm_cfg.get("temperature", 0.0),
                 "max_tokens": int(llm_cfg.get("max_tokens", 32768)),
-            }
-        }
-        
-        # 映射 Add 阶段配置（只覆盖 YAML 中显式指定的）
+            })
+
+        # 2. Add 阶段配置
         add_config = self.config.get("add", {})
         if "enable_semantic_extraction" in add_config:
-            exp_config.enable_semantic_extraction = add_config["enable_semantic_extraction"]
+            config._data["extraction"]["enable_semantic"] = add_config["enable_semantic_extraction"]
         if "enable_clustering" in add_config:
-            exp_config.enable_clustering = add_config["enable_clustering"]
+            config._data["extraction"]["enable_clustering"] = add_config["enable_clustering"]
         if "enable_profile_extraction" in add_config:
-            exp_config.enable_profile_extraction = add_config["enable_profile_extraction"]
-        
-        # 映射 Search 阶段配置（只覆盖 YAML 中显式指定的）
+            config._data["extraction"]["enable_profile"] = add_config["enable_profile_extraction"]
+
+        # 3. Search 阶段配置
         search_config = self.config.get("search", {})
         if "mode" in search_config:
-            exp_config.retrieval_mode = search_config["mode"]
-            exp_config.use_agentic_retrieval = (exp_config.retrieval_mode == "agentic")
-
-        # 🔥 映射 LangGraph Workflow 配置
+            config._data["retrieval"]["mode"] = search_config["mode"]
+            config._data["retrieval"]["use_agentic"] = (search_config["mode"] == "agentic")
         if "workflow_name" in search_config:
-            exp_config.workflow_name = search_config["workflow_name"]
+            config._data["retrieval"]["workflow_name"] = search_config["workflow_name"]
 
-        # 映射群体事件聚类配置（检索增强用）
+        # 4. 群体事件聚类配置
         if "enable_group_event_cluster" in self.config:
-            exp_config.enable_group_event_cluster = self.config.get("enable_group_event_cluster", False)
+            config._data["group_event_cluster"]["enabled"] = self.config["enable_group_event_cluster"]
         if "group_event_cluster_config" in self.config:
-            exp_config.group_event_cluster_config = self.config.get("group_event_cluster_config", {})
+            config._data["group_event_cluster"].update(self.config["group_event_cluster_config"])
         if "group_event_cluster_retrieval_config" in self.config:
-            exp_config.group_event_cluster_retrieval_config = self.config.get("group_event_cluster_retrieval_config", {})
-        
-        return exp_config
+            config._data["group_event_cluster_retrieval"].update(self.config["group_event_cluster_retrieval_config"])
+
+        # 重新构建 ConfigDict 以应用更改
+        from config import ConfigDict
+        return ConfigDict(config._data)
     
     def build_lazy_index(self, conversations: List[Conversation], output_dir: Any) -> Dict[str, Any]:
         """

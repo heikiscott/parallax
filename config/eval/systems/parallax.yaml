@@ -1,0 +1,150 @@
+# Parallax System Configuration
+# 完整的 Parallax 评估系统配置
+
+name: "parallax"
+version: "1.0"
+description: "Parallax Memory System"
+adapter: "parallax"
+
+# ===== 基础配置 =====
+experiment_name: "locomo_evaluation"
+dataset_path: "data/locomo10.json"
+num_conv: 10  # 对话数量
+
+# ===== LLM 配置 =====
+llm:
+  service: "openai"  # openai | vllm
+  openai:
+    provider: "openai"
+    model: "${LLM_MODEL:gpt-4.1-mini}"
+    api_key: "${OPENAI_API_KEY}"
+    base_url: "${OPENAI_BASE_URL:https://api.openai.com/v1}"
+    temperature: ${LLM_TEMPERATURE:0.0}
+    max_tokens: ${LLM_MAX_TOKENS:16384}
+  vllm:
+    provider: "openai"
+    model: "Qwen3-30B"
+    base_url: "http://0.0.0.0:8000/v1"
+    api_key: "123"
+    temperature: 0
+    max_tokens: 16384
+
+# ===== MemUnit 提取配置 =====
+extraction:
+  enable_semantic: false      # 是否启用语义记忆提取
+  enable_clustering: false    # 是否启用聚类
+  enable_profile: false       # 是否启用 Profile 提取
+
+  clustering:
+    similarity_threshold: 0.65
+    max_time_gap_days: 7.0
+
+  profile:
+    scenario: "assistant"     # group_chat | assistant
+    min_confidence: 0.6
+    min_memunits: 1
+
+# ===== 群体事件聚类配置 (Group Event Cluster) =====
+group_event_cluster:
+  enabled: true
+  llm_provider: "openai"
+  llm_model: null             # null 表示使用主 LLM 配置
+  llm_api_key: null
+  llm_base_url: null
+  llm_temperature: 0.0
+  summary_update_threshold: 5
+  max_clusters_in_prompt: 20
+  max_members_per_cluster_in_prompt: 3
+
+# ===== 群体事件聚类检索配置 =====
+group_event_cluster_retrieval:
+  enabled: true
+  # 可选策略: insert_after_hit, append_to_end, merge_by_score, replace_rerank, cluster_rerank
+  expansion_strategy: "cluster_rerank"
+  # 通用扩展参数
+  max_expansion_per_hit: 3
+  max_total_expansion: 10
+  expansion_budget_ratio: 0.3
+  prefer_time_adjacent: true
+  time_window_hours: null
+  expansion_score_decay: 0.7
+  deduplicate_expanded: true
+  rerank_after_expansion: false
+  rerank_top_n_after_expansion: 20
+  # cluster_rerank 策略专用配置
+  cluster_rerank_max_clusters: 10
+  cluster_rerank_max_members_per_cluster: 15
+  cluster_rerank_total_max_members: 30
+
+# ===== 检索配置 =====
+retrieval:
+  mode: "agentic"             # agentic | lightweight | workflow
+  workflow_name: "adaptive_retrieval"
+
+  use_emb: true
+  use_reranker: true
+  use_agentic: true
+  use_multi_query: true
+  use_hybrid_search: true
+
+  # 召回数量
+  emb_recall_top_n: 40
+  reranker_top_n: 20
+
+  # 混合检索参数
+  hybrid:
+    emb_candidates: 50
+    bm25_candidates: 50
+    rrf_k: 40
+
+  # 轻量级检索参数 (retrieval.mode=lightweight)
+  lightweight:
+    bm25_top_n: 50
+    emb_top_n: 50
+    final_top_n: 20
+
+  # 多查询检索参数 (use_multi_query=true)
+  multi_query:
+    num: 3
+    top_n: 50
+
+# ===== 问题分类配置 =====
+question_classification:
+  enabled: true
+  classifier_type: "rule_based"   # rule_based | llm
+  default_strategy: "gec_insert_after_hit"
+  log_classification: true
+  strategy_overrides: {}
+
+# ===== Reranker 配置 =====
+reranker:
+  batch_size: 20
+  max_retries: 10
+  retry_delay: 0.8
+  timeout: 60.0
+  fallback_threshold: 0.3
+  concurrent_batches: 5
+  instruction: "Determine if the passage contains specific facts, entities (names, dates, locations), or details that directly answer the question."
+
+# ===== Response 生成配置 =====
+response:
+  top_k: 20                   # 从检索结果中选择前 k 个构建 context
+
+# ===== 并发配置 =====
+concurrency:
+  extraction: ${EVAL_EXTRACTION_MAX_CONCURRENT:5}   # Stage1
+  indexing: ${EVAL_INDEXING_MAX_CONCURRENT:5}       # Stage2
+  retrieval: ${EVAL_RETRIEVAL_MAX_CONCURRENT:5}     # Stage3
+  response: ${EVAL_RESPONSE_MAX_CONCURRENT:5}       # Stage4
+  judgment: ${EVAL_JUDGMENT_MAX_CONCURRENT:5}       # Stage5
+
+# ===== 批处理配置 =====
+batch:
+  embedding_size: 256         # Stage2: Embedding API 批次大小
+  response_chunk: 200         # Stage4: 每次处理的 QA 数量
+  response_save_interval: 400 # Stage4: checkpoint 保存间隔
+
+# ===== API 重试配置 =====
+api:
+  max_retries: 20
+  max_concurrent_requests: 10

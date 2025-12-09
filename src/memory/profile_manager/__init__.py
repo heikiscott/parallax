@@ -30,7 +30,7 @@ Usage:
     all_profiles = profile_mgr.get_all_profiles()
 """
 
-from memory.profile_manager.config import ProfileManagerConfig, ScenarioType
+from memory.profile_manager.schema import ProfileManagerConfig, ScenarioType
 from memory.profile_manager.manager import ProfileManager
 from memory.profile_manager.discriminator import (
     ValueDiscriminator,

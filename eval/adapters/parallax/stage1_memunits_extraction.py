@@ -52,7 +52,7 @@ from memory.profile_manager import (
     InMemoryProfileStorage,
 )
 
-from eval.adapters.parallax.config import ExperimentConfig
+from config import load_config
 from datetime import datetime, timedelta
 from pathlib import Path
 
@@ -284,7 +284,7 @@ async def process_single_conversation(
     progress_counter: dict = None,
     progress: Progress = None,
     task_id: int = None,
-    config: ExperimentConfig = None,  # 新增：传入配置
+    config = None,  # 新增：传入配置（ConfigDict 或兼容对象）
 ) -> tuple:
     """处理单个会话并返回结果（新增：聚类和 Profile 提取）
 
@@ -318,40 +318,44 @@ async def process_single_conversation(
         memunit_extractor = ConvMemUnitExtractor(llm_provider=llm_provider, use_eval_prompts=True)
         
         # 条件创建：聚类管理器（每个对话独立）
-        if config and config.enable_clustering:
+        # 使用嵌套路径访问配置 (config.extraction.enable_clustering)
+        enable_clustering = config.get("extraction.enable_clustering", False) if config else False
+        if enable_clustering:
             cluster_storage = InMemoryClusterStorage(
                 enable_persistence=True,
                 persist_dir=Path(save_dir) / "clusters" / f"conv_{conv_id}"
             )
             cluster_config = ClusterManagerConfig(
-                similarity_threshold=config.cluster_similarity_threshold,
-                max_time_gap_days=config.cluster_max_time_gap_days,
+                similarity_threshold=config.get("extraction.clustering.similarity_threshold", 0.65),
+                max_time_gap_days=config.get("extraction.clustering.max_time_gap_days", 7.0),
                 enable_persistence=True,
                 persist_dir=str(Path(save_dir) / "clusters" / f"conv_{conv_id}"),
                 clustering_algorithm="centroid"
             )
             cluster_mgr = ClusterManager(config=cluster_config, storage=cluster_storage)
             cluster_mgr.attach_to_extractor(memunit_extractor)
-        
+
         # 条件创建：Profile 管理器
-        if config and config.enable_profile_extraction and cluster_mgr:
+        enable_profile = config.get("extraction.enable_profile", False) if config else False
+        if enable_profile and cluster_mgr:
             profile_storage = InMemoryProfileStorage(
                 enable_persistence=True,
                 persist_dir=Path(save_dir) / "profiles" / f"conv_{conv_id}",
                 enable_versioning=True
             )
-            
+
             # 动态设置场景类型
-            scenario = ScenarioType.ASSISTANT if config.profile_scenario.lower() == "assistant" else ScenarioType.GROUP_CHAT
-            
+            profile_scenario = config.get("extraction.profile.scenario", "assistant")
+            scenario = ScenarioType.ASSISTANT if profile_scenario.lower() == "assistant" else ScenarioType.GROUP_CHAT
+
             profile_config = ProfileManagerConfig(
                 scenario=scenario,
-                min_confidence=config.profile_min_confidence,
+                min_confidence=config.get("extraction.profile.min_confidence", 0.6),
                 enable_versioning=True,
                 auto_extract=True,
                 batch_size=50,
             )
-            
+
             profile_mgr = ProfileManager(
                 llm_provider=llm_provider,
                 config=profile_config,
@@ -359,15 +363,15 @@ async def process_single_conversation(
                 group_id=f"locomo_conv_{conv_id}",
                 group_name=f"LoComo Conversation {conv_id}"
             )
-            
+
             # 设置最小 MemUnits 阈值
-            profile_mgr._min_memunits_threshold = config.profile_min_memunits
-            
+            profile_mgr._min_memunits_threshold = config.get("extraction.profile.min_memunits", 1)
+
             # 连接组件
             profile_mgr.attach_to_cluster_manager(cluster_mgr)
-        
+
         # 提取 MemUnits（根据配置决定是否启用语义记忆）
-        use_semantic = config.enable_semantic_extraction if config else False
+        use_semantic = config.get("extraction.enable_semantic", False) if config else False
         memunit_list = await memunit_extraction_from_conversation(
             raw_data_list,
             llm_provider=llm_provider,
@@ -421,7 +425,7 @@ async def process_single_conversation(
                     return idx, None
             
             # 🔥 并发提取所有 event logs（使用 Semaphore 控制并发数）
-            max_concurrent = int(os.getenv('EVAL_EXTRACTION_MAX_CONCURRENT', '5'))
+            max_concurrent = config.get("concurrency.extraction", 5) if config else 5
             sem = asyncio.Semaphore(max_concurrent)  # 限制并发数（避免 API 限流）
             
             async def extract_with_semaphore(idx, memunit):
@@ -482,9 +486,9 @@ async def process_single_conversation(
         stats_output = {
             "conv_id": conv_id,
             "memunits": len(memunit_list),
-            "clustering_enabled": config.enable_clustering if config else False,
-            "profile_enabled": config.enable_profile_extraction if config else False,
-            "semantic_enabled": config.enable_semantic_extraction if config else False,
+            "clustering_enabled": config.get("extraction.enable_clustering", False) if config else False,
+            "profile_enabled": config.get("extraction.enable_profile", False) if config else False,
+            "semantic_enabled": config.get("extraction.enable_semantic", False) if config else False,
         }
         
         if cluster_stats:
@@ -521,9 +525,9 @@ async def process_single_conversation(
 async def main():
     """主函数 - 并发处理所有会话"""
 
-    config = ExperimentConfig()
-    llm_service = config.llm_service
-    dataset_path = config.datase_path
+    config = load_config("eval/systems/parallax")
+    llm_service = config.llm.service
+    dataset_path = config.dataset_path
     raw_data_dict = raw_data_load(dataset_path)
 
     CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -542,25 +546,25 @@ async def main():
     console.print("实验配置", style="bold cyan")
     console.print("=" * 60, style="bold cyan")
     console.print(f"实验名称: {config.experiment_name}", style="cyan")
-    console.print(f"数据路径: {config.datase_path}", style="cyan")
+    console.print(f"数据路径: {config.dataset_path}", style="cyan")
     console.print(f"\n功能开关:", style="bold yellow")
-    console.print(f"  - 语义记忆提取: {'✅ 启用' if config.enable_semantic_extraction else '❌ 禁用'}", 
-                  style="green" if config.enable_semantic_extraction else "dim")
-    console.print(f"  - 聚类: {'✅ 启用' if config.enable_clustering else '❌ 禁用'}", 
-                  style="green" if config.enable_clustering else "dim")
-    console.print(f"  - Profile 提取: {'✅ 启用' if config.enable_profile_extraction else '❌ 禁用'}", 
-                  style="green" if config.enable_profile_extraction else "dim")
-    
-    if config.enable_clustering:
+    console.print(f"  - 语义记忆提取: {'✅ 启用' if config.extraction.enable_semantic else '❌ 禁用'}",
+                  style="green" if config.extraction.enable_semantic else "dim")
+    console.print(f"  - 聚类: {'✅ 启用' if config.extraction.enable_clustering else '❌ 禁用'}",
+                  style="green" if config.extraction.enable_clustering else "dim")
+    console.print(f"  - Profile 提取: {'✅ 启用' if config.extraction.enable_profile else '❌ 禁用'}",
+                  style="green" if config.extraction.enable_profile else "dim")
+
+    if config.extraction.enable_clustering:
         console.print(f"\n聚类配置:", style="bold")
-        console.print(f"  - 相似度阈值: {config.cluster_similarity_threshold}", style="dim")
-        console.print(f"  - 最大时间间隔: {config.cluster_max_time_gap_days} 天", style="dim")
-    
-    if config.enable_profile_extraction:
+        console.print(f"  - 相似度阈值: {config.extraction.clustering.similarity_threshold}", style="dim")
+        console.print(f"  - 最大时间间隔: {config.extraction.clustering.max_time_gap_days} 天", style="dim")
+
+    if config.extraction.enable_profile:
         console.print(f"\nProfile 配置:", style="bold")
-        console.print(f"  - 场景: {config.profile_scenario}", style="dim")
-        console.print(f"  - 最小置信度: {config.profile_min_confidence}", style="dim")
-        console.print(f"  - 最小 MemUnits: {config.profile_min_memunits}", style="dim")
+        console.print(f"  - 场景: {config.extraction.profile.scenario}", style="dim")
+        console.print(f"  - 最小置信度: {config.extraction.profile.min_confidence}", style="dim")
+        console.print(f"  - 最小 MemUnits: {config.extraction.profile.min_memunits}", style="dim")
     console.print("=" * 60 + "\n", style="bold cyan")
     
     # 🔥 断点续传：检查已完成的对话
@@ -599,18 +603,17 @@ async def main():
 
     # 创建共享的 LLM Provider 和 MemUnit Extractor 实例（解决连接竞争问题）
     console.print("⚙️ 初始化 LLM Provider...", style="yellow")
-    console.print(f"   模型: {config.llm_config[llm_service]['model']}", style="dim")
-    console.print(
-        f"   Base URL: {config.llm_config[llm_service]['base_url']}", style="dim"
-    )
+    llm_cfg = config.llm[llm_service]
+    console.print(f"   模型: {llm_cfg.model}", style="dim")
+    console.print(f"   Base URL: {llm_cfg.base_url}", style="dim")
 
     shared_llm_provider = LLMProvider(
         provider_type="openai",
-        model=config.llm_config[llm_service]["model"],
-        api_key=config.llm_config[llm_service]["api_key"],
-        base_url=config.llm_config[llm_service]["base_url"],
-        temperature=config.llm_config[llm_service]["temperature"],
-        max_tokens=int(config.llm_config[llm_service]["max_tokens"]),
+        model=llm_cfg.model,
+        api_key=llm_cfg.api_key,
+        base_url=llm_cfg.base_url,
+        temperature=llm_cfg.temperature,
+        max_tokens=int(llm_cfg.max_tokens),
     )
 
     # 创建共享的 Event Log Extractor（使用评估专用提示词）

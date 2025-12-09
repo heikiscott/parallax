@@ -14,8 +14,10 @@ import asyncio
 
 
 
-from eval.adapters.parallax.config import ExperimentConfig
+from config import load_config
 from retrieval.services import vectorize as vectorize_service
+# Import tokenize from src (avoid duplication)
+from retrieval.pipelines.search_utils import tokenize
 
 
 def ensure_nltk_data():
@@ -25,7 +27,7 @@ def ensure_nltk_data():
     except LookupError:
         print("Downloading punkt...")
         nltk.download("punkt", quiet=True)
-    
+
     try:
         nltk.data.find("tokenizers/punkt_tab")
     except LookupError:
@@ -37,7 +39,7 @@ def ensure_nltk_data():
     except LookupError:
         print("Downloading stopwords...")
         nltk.download("stopwords", quiet=True)
-    
+
     # 🔥 验证 stopwords 是否可用
     try:
         from nltk.corpus import stopwords
@@ -94,26 +96,11 @@ def build_searchable_text(doc: dict) -> str:
     return " ".join(str(part) for part in parts if part)
 
 
-def tokenize(text: str, stemmer, stop_words: set) -> list[str]:
-    """
-    NLTK-based tokenization with stemming and stopword removal.
-    """
-    if not text:
-        return []
-
-    tokens = word_tokenize(text.lower())
-
-    processed_tokens = [
-        stemmer.stem(token)
-        for token in tokens
-        if token.isalpha() and len(token) >= 2 and token not in stop_words
-    ]
-
-    return processed_tokens
+# Note: tokenize function is now imported from src/retrieval/pipelines/search_utils.py
 
 
 def build_bm25_index(
-    config: ExperimentConfig, data_dir: Path, bm25_save_dir: Path
+    config, data_dir: Path, bm25_save_dir: Path
 ) -> list[list[float]]:
     # --- NLTK Setup ---
     print("Ensuring NLTK data is available...")
@@ -175,25 +162,25 @@ def build_bm25_index(
             pickle.dump(index_data, f)
 
 
-async def build_emb_index(config: ExperimentConfig, data_dir: Path, emb_save_dir: Path):
+async def build_emb_index(config, data_dir: Path, emb_save_dir: Path):
     """
     构建 Embedding 索引（稳定版）
-    
+
     性能优化策略：
     1. 受控并发：严格遵守 API Semaphore(5) 限制
     2. 保守批次大小：256 个文本/批次（避免超时）
     3. 串行批次提交：分组提交，避免队列堆积
     4. 进度监控：实时显示处理进度和速度
-    
+
     优化效果：
     - 稳定性优先，避免超时和 API 过载
     - API 并发数：5（受 vectorize_service.Semaphore 控制）
     - 批次大小：256（平衡稳定性和效率）
     """
-    # 🔥 优化1：保守的批次大小（避免超时）
-    BATCH_SIZE = 256  # 使用较大批次（单次 API 调用处理更多，减少请求数）
-    MAX_CONCURRENT_BATCHES = int(os.getenv('EVAL_INDEXING_MAX_CONCURRENT', '5'))  # 🔥 严格控制并发数
-    
+    # 从 config 读取批次大小和并发数
+    BATCH_SIZE = config.batch.embedding_size
+    MAX_CONCURRENT_BATCHES = config.concurrency.indexing
+
     import time  # 用于性能统计
 
     # Auto-detect actual memunit files instead of relying on config.num_conv
@@ -372,9 +359,7 @@ async def build_emb_index(config: ExperimentConfig, data_dir: Path, emb_save_dir
 async def main():
     """Main function to build and save the BM25 index."""
     # --- Configuration ---
-    # The directory containing the JSON files
-    config = ExperimentConfig()
-    # 🔥 修正：实际文件在 locomo_eval/ 目录下，而不是 results/ 目录
+    config = load_config("eval/systems/parallax")
     data_dir = Path(__file__).parent / config.experiment_name / "memunits"
     bm25_save_dir = (
         Path(__file__).parent / config.experiment_name / "bm25_index"
@@ -385,7 +370,7 @@ async def main():
     os.makedirs(bm25_save_dir, exist_ok=True)
     os.makedirs(emb_save_dir, exist_ok=True)
     build_bm25_index(config, data_dir, bm25_save_dir)
-    if config.use_emb:
+    if config.retrieval.use_emb:
         await build_emb_index(config, data_dir, emb_save_dir)
     # data_dir = Path("/Users/admin/Documents/Projects/b001-memsys/eval/locomo_eval/results/locomo_evaluation_0/")
 

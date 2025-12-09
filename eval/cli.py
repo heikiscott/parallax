@@ -36,7 +36,7 @@ from eval.core.loaders import load_dataset
 from eval.core.pipeline import Pipeline
 from eval.adapters.registry import create_adapter
 from eval.evaluators.registry import create_evaluator
-from eval.utils.config import load_yaml
+from config import load_yaml
 from core.observation.logger import get_console, setup_logger
 
 from providers.llm.llm_provider import LLMProvider
@@ -109,7 +109,7 @@ async def main():
     evaluation_root = Path(__file__).parent
     
     # 加载数据集配置
-    dataset_config_path = evaluation_root / "config" / "datasets" / f"{args.dataset}.yaml"
+    dataset_config_path = project_root / "config" / "eval" / "datasets" / f"{args.dataset}.yaml"
     if not dataset_config_path.exists():
         console.print(f"[red]❌ Dataset config not found: {dataset_config_path}[/red]")
         return
@@ -118,7 +118,7 @@ async def main():
     console.print(f"  ✅ Loaded dataset config: {args.dataset}")
     
     # 加载系统配置
-    system_config_path = evaluation_root / "config" / "systems" / f"{args.system}.yaml"
+    system_config_path = project_root / "config" / "eval" / "systems" / f"{args.system}.yaml"
     if not system_config_path.exists():
         console.print(f"[red]❌ System config not found: {system_config_path}[/red]")
         return
@@ -186,16 +186,20 @@ async def main():
     console.print(f"  ✅ Created evaluator: {evaluator.get_name()}")
     
     # 创建 LLM Provider（用于答案生成）
+    # 支持嵌套配置结构: llm.service + llm.{service}.* (e.g., llm.openai.model)
     llm_config = system_config.get("llm", {})
+    llm_service = llm_config.get("service", "openai")
+    llm_provider_config = llm_config.get(llm_service, llm_config)  # 优先嵌套，回退扁平
+
     llm_provider = LLMProvider(
-        provider_type=llm_config.get("provider", "openai"),
-        model=llm_config.get("model"),
-        api_key=llm_config.get("api_key"),
-        base_url=llm_config.get("base_url"),
-        temperature=llm_config.get("temperature", 0.0),
-        max_tokens=int(llm_config.get("max_tokens", 32768)),
+        provider_type=llm_provider_config.get("provider", "openai"),
+        model=llm_provider_config.get("model"),
+        api_key=llm_provider_config.get("api_key"),
+        base_url=llm_provider_config.get("base_url"),
+        temperature=llm_provider_config.get("temperature", 0.0),
+        max_tokens=int(llm_provider_config.get("max_tokens", 32768)),
     )
-    console.print(f"  ✅ Created LLM provider: {llm_config.get('model')}")
+    console.print(f"  ✅ Created LLM provider: {llm_provider_config.get('model')}")
     
     # ===== 创建 Pipeline =====
     # 从数据集配置中读取需要过滤的问题类别

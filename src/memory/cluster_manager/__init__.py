@@ -30,7 +30,7 @@ Usage:
     # Clusters are automatically assigned, callbacks notified!
 """
 
-from memory.cluster_manager.config import ClusterManagerConfig
+from memory.cluster_manager.schema import ClusterManagerConfig
 from memory.cluster_manager.manager import ClusterManager
 from memory.cluster_manager.storage import (
     ClusterStorage,

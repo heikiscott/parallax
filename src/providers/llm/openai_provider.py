@@ -330,6 +330,20 @@ class OpenAIProvider(LLMProvider):
                                 logger.warning(f"   💬 错误: {str(e)[:200]}")
                                 raise
 
+                            except openai.BadRequestError as e:
+                                # BadRequestError should NOT be retried - it indicates a problem with the request itself
+                                error_time = time.perf_counter()
+                                duration = error_time - start_time
+                                logger.error(f"❌ [OpenAI-{self.model}] BadRequestError - 请求参数错误，不重试")
+                                logger.error(f"   ⏱️  耗时: {duration:.2f}s")
+                                logger.error(f"   💬 完整错误: {str(e)}")
+                                # 提取并打印详细信息
+                                if hasattr(e, 'body') and e.body:
+                                    logger.error(f"   📋 错误详情: {e.body}")
+                                if hasattr(e, 'message'):
+                                    logger.error(f"   📋 错误消息: {e.message}")
+                                raise LLMError(f"BadRequestError: {str(e)}")
+
                             except (openai.RateLimitError, openai.APIConnectionError, openai.APIError, openai.APITimeoutError) as e:
                                 # Log retry-able errors and let tenacity handle retry
                                 error_time = time.perf_counter()
@@ -358,6 +372,7 @@ class OpenAIProvider(LLMProvider):
                                     else:
                                         logger.info(f"[OpenAI-{self.model}] 重试 {attempt_num}/{retry_attempts}: {error_type}")
                                         logger.info(f"   ⏱️  已耗时: {duration:.2f}s, 将等待 {next_min:.1f}-{next_max:.1f}s 后重试")
+                                        logger.info(f"   💬 错误: {str(e)[:500]}")  # 打印更多错误信息
                                 else:
                                     logger.warning(f"[OpenAI-{self.model}] {error_type} (最后一次尝试 {attempt_num}/{retry_attempts})")
                                     logger.warning(f"   ⏱️  耗时: {duration:.2f}s")

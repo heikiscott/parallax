@@ -9,7 +9,7 @@ import logging
 from datetime import datetime
 from typing import Any, Callable, Dict, List, Optional
 
-from .config import GroupEventClusterConfig
+from .types import GroupEventClusterConfig
 from .schema import ClusterMember, GroupEventCluster, GroupEventClusterIndex
 from .utils import (
     CLUSTER_ASSIGNMENT_PROMPT,

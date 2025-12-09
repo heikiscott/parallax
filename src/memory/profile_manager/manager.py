@@ -9,7 +9,7 @@ from memory.extraction.memory.profile import (
     ProfileMemoryExtractor,
     ProfileMemoryExtractRequest,
 )
-from memory.profile_manager.config import ProfileManagerConfig, ScenarioType
+from memory.profile_manager.schema import ProfileManagerConfig, ScenarioType
 from memory.profile_manager.discriminator import ValueDiscriminator, DiscriminatorConfig
 from memory.profile_manager.storage import ProfileStorage, InMemoryProfileStorage
 from core.observation.logger import get_logger

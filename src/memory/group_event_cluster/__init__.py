@@ -46,7 +46,7 @@ from .schema import (
     GroupEventCluster,
     GroupEventClusterIndex,
 )
-from .config import (
+from .types import (
     GroupEventClusterConfig,
     GroupEventClusterRetrievalConfig,
 )

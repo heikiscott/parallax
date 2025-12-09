@@ -26,8 +26,7 @@ locomo_eval/
 ├── stage4_response.py                 # Stage 4: Generate responses
 ├── stage5_eval.py                     # Stage 5: Evaluate results
 └── tools/                             # Utility tools
-    ├── agentic_utils.py               # Agentic retrieval utilities
-    ├── benchmark_embedding.py         # Embedding performance testing
+    ├── compute_acc.py                 # Accuracy computation utilities
     └── ...
 ```
 

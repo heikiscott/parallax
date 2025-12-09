@@ -15,7 +15,7 @@ logger = logging.getLogger(__name__)
 
 
 
-from eval.adapters.parallax.config import ExperimentConfig
+from config import load_config
 from prompts.memory.en.eval.answer.answer_prompts import ANSWER_PROMPT
 
 # 使用 Memory Layer 的 LLMProvider
@@ -117,16 +117,16 @@ async def locomo_response(
     llm_provider: LLMProvider,  # 改用 LLMProvider
     context: str,
     question: str,
-    experiment_config: ExperimentConfig,
+    config,  # ConfigDict 或兼容对象
 ) -> str:
     """生成回答（使用 LLMProvider）
-    
+
     Args:
         llm_provider: LLM Provider
         context: 检索到的上下文
         question: 用户问题
-        experiment_config: 实验配置
-    
+        config: 实验配置 (ConfigDict)
+
     Returns:
         生成的答案
     """
@@ -135,7 +135,8 @@ async def locomo_response(
     # 初始化 result 变量
     result = ""
 
-    for i in range(experiment_config.max_retries):
+    max_retries = config.get("api.max_retries", 20) if hasattr(config, 'get') else 20
+    for i in range(max_retries):
         try:
             # Use 16384 as default max_tokens (matches gpt-4o-mini's output limit)
             result = await llm_provider.generate(
@@ -160,16 +161,16 @@ async def locomo_response(
                 continue
             break
         except Exception as e:
-            logger.warning(f"Answer generation error (attempt {i+1}/{experiment_config.max_retries}): {e}")
+            logger.warning(f"Answer generation error (attempt {i+1}/{max_retries}): {e}")
             # 如果是最后一次重试，记录错误但返回空字符串而不是抛出异常
-            if i == experiment_config.max_retries - 1:
-                logger.error(f"All {experiment_config.max_retries} retries failed. Returning empty answer.")
+            if i == max_retries - 1:
+                logger.error(f"All {max_retries} retries failed. Returning empty answer.")
                 result = ""
             else:
                 # Aggressive exponential backoff: 5 * 2^i seconds, max 500s (~8 min)
                 # i=0: 5s, i=1: 10s, i=2: 20s, i=3: 40s, i=4: 80s, i=5: 160s, i=6: 320s, i>=7: 500s
                 backoff_time = min(5 * (2 ** i), 500)
-                logger.info(f"Waiting {backoff_time}s before retry {i+2}/{experiment_config.max_retries}...")
+                logger.info(f"Waiting {backoff_time}s before retry {i+2}/{max_retries}...")
                 await asyncio.sleep(backoff_time)
             continue
 
@@ -180,7 +181,7 @@ async def process_qa(
     qa, 
     search_result, 
     llm_provider, 
-    experiment_config,
+    config,
     memunit_map: Dict[str, dict],
     speaker_a: str,
     speaker_b: str
@@ -192,7 +193,7 @@ async def process_qa(
         qa: 问题和答案对
         search_result: 检索结果（包含 unit_ids）
         llm_provider: LLM Provider
-        experiment_config: 实验配置
+        config: 实验配置
         memunit_map: unit_id -> memunit 的映射
         speaker_a: 说话者 A
         speaker_b: 说话者 B
@@ -207,7 +208,7 @@ async def process_qa(
 
     # 🔥 从 unit_ids 构建 context（使用 top_k）
     unit_ids = search_result.get("unit_ids", [])
-    top_k = experiment_config.response_top_k
+    top_k = config.get("response.top_k", 20) if hasattr(config, 'get') else 20
 
     context = build_context_from_unit_ids(
         unit_ids=unit_ids,
@@ -218,7 +219,7 @@ async def process_qa(
     )
 
     answer = await locomo_response(
-        llm_provider, context, query, experiment_config
+        llm_provider, context, query, config
     )
 
     response_duration_ms = (time() - start) * 1000
@@ -254,8 +255,17 @@ async def main(search_path, save_path):
     - 优化后：~8 分钟（并发 50）
     - 加速比：~10x
     """
-    llm_config = ExperimentConfig.llm_config["openai"]
-    experiment_config = ExperimentConfig()
+    config = load_config("eval/systems/parallax")
+    llm_service = config.llm.service
+    llm_cfg = config.llm[llm_service]
+    llm_config = {
+        "model": llm_cfg.model,
+        "api_key": llm_cfg.api_key,
+        "base_url": llm_cfg.base_url,
+        "temperature": llm_cfg.temperature,
+        "max_tokens": llm_cfg.max_tokens,
+    }
+    config = config  # 别名以减少下游改动
     
     # 创建 LLM Provider（替代 AsyncOpenAI）
     llm_provider = LLMProvider(
@@ -267,28 +277,30 @@ async def main(search_path, save_path):
         max_tokens=int(llm_config.get("max_tokens", int(os.getenv("LLM_MAX_TOKENS", "32768")))),
     )
     
-    locomo_df = pd.read_json(experiment_config.datase_path)
+    dataset_path = config.get("dataset_path", "data/locomo10.json") if hasattr(config, 'get') else "data/locomo10.json"
+    locomo_df = pd.read_json(dataset_path)
     with open(search_path) as file:
         locomo_search_results = json.load(file)
 
     num_users = len(locomo_df)
-    
+
     # 🔥 加载 memunits 目录
     memunits_dir = Path(search_path).parent / "memunits"
     if not memunits_dir.exists():
         print(f"Error: MemUnits directory not found: {memunits_dir}")
         return
-    
+
+    response_top_k = config.get("response.top_k", 20) if hasattr(config, 'get') else 20
     print(f"\n{'='*60}")
     print(f"Stage4: LLM Response Generation")
     print(f"{'='*60}")
     print(f"Total conversations: {num_users}")
-    print(f"Response top-k: {experiment_config.response_top_k}")
+    print(f"Response top-k: {response_top_k}")
     print(f"MemUnits directory: {memunits_dir}")
-    
-    # 🔥 优化1：全局并发控制（关键优化）
+
+    # 🔥 优化1：全局并发控制（从 config 读取）
     # 控制同时处理的 QA 对数量，避免 API 限流
-    MAX_CONCURRENT = int(os.getenv('EVAL_RESPONSE_MAX_CONCURRENT', '5'))  # 可根据 API 限制调整（10-100）
+    MAX_CONCURRENT = config.get("concurrency.response", 5) if hasattr(config, 'get') else 5
     semaphore = asyncio.Semaphore(MAX_CONCURRENT)
     
     # 🔥 优化2：收集所有 QA 对（跨 conversation）
@@ -300,7 +312,7 @@ async def main(search_path, save_path):
         """带并发控制的 QA 处理"""
         async with semaphore:
             result = await process_qa(
-                qa, search_result, llm_provider, experiment_config,
+                qa, search_result, llm_provider, config,
                 memunit_map, speaker_a, speaker_b
             )
             return (group_id, result)
@@ -362,9 +374,9 @@ async def main(search_path, save_path):
     completed = 0
     failed = 0
     
-    # 🔥 优化5：分批处理 + 增量保存（避免崩溃丢失数据）
-    CHUNK_SIZE = 200  # 每次处理 200 个任务
-    SAVE_INTERVAL = 400  # 每 400 个任务保存一次
+    # 🔥 优化5：分批处理 + 增量保存（从 config 读取）
+    CHUNK_SIZE = config.get("batch.response_chunk", 200) if hasattr(config, 'get') else 200
+    SAVE_INTERVAL = config.get("batch.response_save_interval", 400) if hasattr(config, 'get') else 400
     
     for chunk_start in range(0, len(all_tasks), CHUNK_SIZE):
         chunk_tasks = all_tasks[chunk_start : chunk_start + CHUNK_SIZE]
@@ -422,11 +434,10 @@ async def main(search_path, save_path):
 
 
 if __name__ == "__main__":
-    config = ExperimentConfig()
-    # 🔥 修正：实际文件在 locomo_eval/ 目录下，而不是 results/ 目录
+    config = load_config("eval/systems/parallax")
     search_result_path = str(
         Path(__file__).parent
-        / config.experiment_name  # 直接使用 experiment_name（即 "locomo_evaluation"）
+        / config.experiment_name
         / "search_results.json"
     )
     save_path = (

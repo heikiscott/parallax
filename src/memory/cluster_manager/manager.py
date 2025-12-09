@@ -5,7 +5,7 @@ import numpy as np
 from typing import Any, Callable, Dict, List, Optional, Tuple
 from pathlib import Path
 
-from memory.cluster_manager.config import ClusterManagerConfig
+from memory.cluster_manager.schema import ClusterManagerConfig
 from memory.cluster_manager.storage import ClusterStorage, InMemoryClusterStorage
 from core.observation.logger import get_logger
 

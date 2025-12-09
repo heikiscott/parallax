@@ -20,7 +20,7 @@ import asyncio
 
 logger = logging.getLogger(__name__)
 
-from eval.adapters.parallax.config import ExperimentConfig
+from config import load_config
 
 # Import retrieval functions from src/retrieval/ (NO duplication)
 # Note: uses short paths because pytest.ini sets pythonpath = . src eval
@@ -194,7 +194,7 @@ def _analyze_evidence_clusters(
 async def main():
     """Main function to perform batch search and save results in nemori format."""
     # --- Configuration ---
-    config = ExperimentConfig()
+    config = load_config("eval/systems/parallax")
     bm25_index_dir = (
         Path(__file__).parent / config.experiment_name / "bm25_index"
     )
@@ -203,7 +203,7 @@ async def main():
     )
     save_dir = Path(__file__).parent / config.experiment_name
 
-    dataset_path = config.datase_path
+    dataset_path = config.dataset_path
     results_output_path = save_dir / "search_results.json"
 
     # Checkpoint file path for resume support
@@ -215,8 +215,16 @@ async def main():
     # Initialize LLM Provider (for Agentic retrieval)
     llm_provider = None
     llm_config = None
-    if config.use_agentic_retrieval:
-        llm_config = config.llm_config.get(config.llm_service, config.llm_config["openai"])
+    llm_service = config.llm.service
+    if config.retrieval.use_agentic:
+        llm_cfg = config.llm[llm_service]
+        llm_config = {
+            "model": llm_cfg.model,
+            "api_key": llm_cfg.api_key,
+            "base_url": llm_cfg.base_url,
+            "temperature": llm_cfg.temperature,
+            "max_tokens": llm_cfg.max_tokens,
+        }
 
         llm_provider = LLMProvider(
             provider_type="openai",
@@ -272,7 +280,7 @@ async def main():
             continue
 
         # --- Load index once per conversation ---
-        if config.use_hybrid_search:
+        if config.retrieval.use_hybrid_search:
             # Load Embedding index
             emb_index_path = emb_index_dir / f"embedding_index_conv_{i}.pkl"
             if not emb_index_path.exists():
@@ -297,7 +305,7 @@ async def main():
 
             logger.debug(f"Loaded both Embedding and BM25 indexes for conversation {i} (Hybrid Search)")
 
-        elif config.use_emb:
+        elif config.retrieval.use_emb:
             # Load Embedding index only
             emb_index_path = emb_index_dir / f"embedding_index_conv_{i}.pkl"
             if not emb_index_path.exists():
@@ -325,7 +333,7 @@ async def main():
 
         # Load cluster index (if enabled)
         cluster_index = None
-        if getattr(config, 'enable_group_event_cluster', False):
+        if config.group_event_cluster.enabled:
             cluster_index_dir = save_dir / "event_clusters"
             cluster_index_path = cluster_index_dir / f"conv_{i}.json"
             if cluster_index_path.exists():
@@ -339,11 +347,11 @@ async def main():
                 logger.debug(f"  📭 No cluster index found at {cluster_index_path}")
 
         # Parallelize per-question retrieval with bounded concurrency
-        max_concurrent = int(os.getenv('EVAL_RETRIEVAL_MAX_CONCURRENT', '5'))
+        max_concurrent = config.concurrency.retrieval
         sem = asyncio.Semaphore(max_concurrent)
 
-        if config.use_agentic_retrieval:
-            logger.info(f"  🚀 Agentic retrieval enabled with HIGH CONCURRENCY: {max_concurrent} concurrent requests")
+        if config.retrieval.use_agentic:
+            logger.info(f"  🚀 Agentic retrieval enabled with concurrency: {max_concurrent}")
 
         async def process_single_qa(qa_pair):
             """Process a single QA pair (supports multiple retrieval modes)."""
@@ -361,7 +369,7 @@ async def main():
                     retrieval_metadata = {}
 
                     # ========== Retrieval mode selection ==========
-                    if config.retrieval_mode == "agentic":
+                    if config.retrieval.mode == "agentic":
                         # Agentic multi-round retrieval
                         top_results, retrieval_metadata = await agentic_retrieval(
                             query=question,
@@ -375,7 +383,7 @@ async def main():
                             enable_traversal_stats=True,
                         )
 
-                    elif config.retrieval_mode == "lightweight":
+                    elif config.retrieval.mode == "lightweight":
                         # Lightweight fast retrieval
                         top_results, retrieval_metadata = await lightweight_retrieval(
                             query=question,
@@ -387,24 +395,24 @@ async def main():
 
                     else:
                         # Traditional retrieval (backward compatible)
-                        if config.use_reranker:
+                        if config.retrieval.use_reranker:
                             # First stage: initial retrieval
-                            if config.use_hybrid_search:
+                            if config.retrieval.use_hybrid_search:
                                 results = await hybrid_search_with_rrf(
                                     query=question,
                                     emb_index=emb_index,
                                     bm25=bm25,
                                     docs=docs,
-                                    top_n=config.emb_recall_top_n,
-                                    emb_candidates=config.hybrid_emb_candidates,
-                                    bm25_candidates=config.hybrid_bm25_candidates,
-                                    rrf_k=config.hybrid_rrf_k
+                                    top_n=config.retrieval.emb_recall_top_n,
+                                    emb_candidates=config.retrieval.hybrid.emb_candidates,
+                                    bm25_candidates=config.retrieval.hybrid.bm25_candidates,
+                                    rrf_k=config.retrieval.hybrid.rrf_k
                                 )
-                            elif config.use_emb:
+                            elif config.retrieval.use_emb:
                                 results = await search_with_emb_index(
                                     query=question,
                                     emb_index=emb_index,
-                                    top_n=config.emb_recall_top_n
+                                    top_n=config.retrieval.emb_recall_top_n
                                 )
                             else:
                                 results = await asyncio.to_thread(
@@ -412,36 +420,36 @@ async def main():
                                     question,
                                     bm25,
                                     docs,
-                                    config.emb_recall_top_n
+                                    config.retrieval.emb_recall_top_n
                                 )
 
                             # Second stage: Reranker
                             top_results = await reranker_search(
                                 query=question,
                                 results=results,
-                                top_n=config.reranker_top_n,
-                                reranker_instruction=config.reranker_instruction,
-                                batch_size=config.reranker_batch_size,
-                                max_retries=config.reranker_max_retries,
-                                retry_delay=config.reranker_retry_delay,
-                                timeout=config.reranker_timeout,
-                                fallback_threshold=config.reranker_fallback_threshold,
+                                top_n=config.retrieval.reranker_top_n,
+                                reranker_instruction=config.reranker.instruction,
+                                batch_size=config.reranker.batch_size,
+                                max_retries=config.reranker.max_retries,
+                                retry_delay=config.reranker.retry_delay,
+                                timeout=config.reranker.timeout,
+                                fallback_threshold=config.reranker.fallback_threshold,
                                 config=config,
                             )
                         else:
                             # Single-stage retrieval (no reranker)
-                            if config.use_hybrid_search:
+                            if config.retrieval.use_hybrid_search:
                                 top_results = await hybrid_search_with_rrf(
                                     query=question,
                                     emb_index=emb_index,
                                     bm25=bm25,
                                     docs=docs,
                                     top_n=20,
-                                    emb_candidates=config.hybrid_emb_candidates,
-                                    bm25_candidates=config.hybrid_bm25_candidates,
-                                    rrf_k=config.hybrid_rrf_k
+                                    emb_candidates=config.retrieval.hybrid.emb_candidates,
+                                    bm25_candidates=config.retrieval.hybrid.bm25_candidates,
+                                    rrf_k=config.retrieval.hybrid.rrf_k
                                 )
-                            elif config.use_emb:
+                            elif config.retrieval.use_emb:
                                 top_results = await search_with_emb_index(
                                     query=question, emb_index=emb_index, top_n=20
                                 )
@@ -452,8 +460,8 @@ async def main():
 
                         retrieval_metadata = {
                             "retrieval_mode": "traditional",
-                            "use_reranker": config.use_reranker,
-                            "use_hybrid_search": config.use_hybrid_search,
+                            "use_reranker": config.retrieval.use_reranker,
+                            "use_hybrid_search": config.retrieval.use_hybrid_search,
                         }
 
                     # ========== Extract unit_ids ==========
@@ -530,7 +538,7 @@ async def main():
             logger.warning(f"⚠️  Failed to save checkpoint: {e}")
 
         # Save Cluster Selection Checkpoint (separate file)
-        cluster_retrieval_cfg = getattr(config, 'group_event_cluster_retrieval_config', {})
+        cluster_retrieval_cfg = config.get("group_event_cluster_retrieval", {}) if config else {}
         if cluster_retrieval_cfg.get('expansion_strategy') == 'cluster_rerank':
             try:
                 cluster_selection_checkpoint = _extract_cluster_selection_data(results_for_conv)

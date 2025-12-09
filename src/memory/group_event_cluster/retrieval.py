@@ -8,7 +8,7 @@ from typing import Any, Dict, List, Optional, Set, Tuple, TYPE_CHECKING
 import logging
 
 from .schema import ClusterMember, GroupEventCluster, GroupEventClusterIndex
-from .config import GroupEventClusterRetrievalConfig
+from .types import GroupEventClusterRetrievalConfig
 from .utils import (
     format_clusters_for_selection,
     parse_cluster_selection_response,

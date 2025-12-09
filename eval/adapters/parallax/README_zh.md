@@ -26,8 +26,7 @@ locomo_eval/
 ├── stage4_response.py                 # 阶段 4：生成回答
 ├── stage5_eval.py                     # 阶段 5：评估结果
 └── tools/                             # 辅助工具
-    ├── agentic_utils.py               # Agentic 检索工具
-    ├── benchmark_embedding.py         # Embedding 性能测试
+    ├── compute_acc.py                 # 准确率计算工具
     └── ...
 ```
 
