@@ -15,11 +15,9 @@ from core.di import get_bean_by_type
 from core.interface.controller.base_controller import BaseController, post
 from core.constants.errors import ErrorCode, ErrorStatus
 from agents.memory_manager import MemoryManager
-from agents.converter import (
-    _handle_conversation_format,
-    convert_dict_to_fetch_mem_request,
-    convert_dict_to_retrieve_mem_request,
-)
+from agents.converter import _handle_conversation_format
+from retrieval.online import retrieve_lightweight as _retrieve_lightweight
+from retrieval.online import retrieve_agentic as _retrieve_agentic
 from agents.dtos.memory_query import ConversationMetaRequest, UserDetail
 from infra.adapters.input.api.mapper.group_chat_converter import (
     convert_simple_message_to_memorize_input,
@@ -361,8 +359,8 @@ class AgenticV3Controller(BaseController):
                 f"current_time={current_time_str}, top_k={top_k}"
             )
             
-            # 2. 调用 memory_manager 的 lightweight 检索
-            result = await self.memory_manager.retrieve_lightweight(
+            # 2. 调用 retrieval.online 的 lightweight 检索（直接使用，不通过 MemoryManager）
+            result = await _retrieve_lightweight(
                 query=query,
                 user_id=user_id,
                 group_id=group_id,
@@ -532,8 +530,8 @@ class AgenticV3Controller(BaseController):
             
             logger.info(f"使用 LLM: {model} @ {base_url}")
             
-            # 3. 调用 memory_manager 的 agentic 检索
-            result = await self.memory_manager.retrieve_agentic(
+            # 3. 调用 retrieval.online 的 agentic 检索（直接使用，不通过 MemoryManager）
+            result = await _retrieve_agentic(
                 query=query,
                 user_id=user_id,
                 group_id=group_id,
