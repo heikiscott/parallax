@@ -263,8 +263,55 @@ async def main():
     builder = WorkflowBuilder(context)
     workflow = builder.build_from_config(workflow_config_obj)
 
+    # ===== 数据过滤 =====
+    # 🔥 Filter by conversation index if specified (same logic as old Pipeline)
+    if args.conv is not None:
+        if 0 <= args.conv < len(dataset.conversations):
+            selected_conv = dataset.conversations[args.conv]
+            dataset.conversations = [selected_conv]
+
+            # Filter QA pairs that belong to this conversation
+            target_conv_id = selected_conv.conversation_id
+            dataset.qa_pairs = [
+                qa for qa in dataset.qa_pairs
+                if qa.metadata.get("conversation_id") == target_conv_id
+            ]
+
+            console.print(
+                f"[dim]🔍 Selected conversation {args.conv}: {target_conv_id} "
+                f"({len(dataset.qa_pairs)} QA pairs)[/dim]\n"
+            )
+        else:
+            console.print(
+                f"[red]❌ Conversation index {args.conv} out of range "
+                f"(0-{len(dataset.conversations)-1})[/red]"
+            )
+            return
+
+    # Filter by question categories (e.g., filter out Category 5 adversarial questions)
+    original_qa_count = len(dataset.qa_pairs)
+
+    if filter_categories:
+        # Convert categories to strings (compatible with both int and str configs)
+        filter_set = {str(cat) for cat in filter_categories}
+
+        # Filter out questions from specified categories
+        dataset.qa_pairs = [
+            qa for qa in dataset.qa_pairs
+            if qa.category not in filter_set
+        ]
+
+        filtered_count = original_qa_count - len(dataset.qa_pairs)
+
+        if filtered_count > 0:
+            filtered_categories_str = ", ".join(sorted(filter_set))
+            console.print(
+                f"[dim]🔍 Filtered out {filtered_count} questions from categories: {filtered_categories_str}[/dim]"
+            )
+            console.print(f"[dim]   Remaining questions: {len(dataset.qa_pairs)}[/dim]\n")
+
     # ===== 运行 Workflow =====
-    console.print(f"\n[bold cyan]Running evaluation workflow...[/bold cyan]")
+    console.print(f"[bold cyan]Running evaluation workflow...[/bold cyan]")
 
     # 创建初始 state
     from eval.workflow_nodes import EvalState
