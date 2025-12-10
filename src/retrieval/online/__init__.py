@@ -6,28 +6,45 @@ This module contains retrieval components that query databases directly
 Used by: API controllers (agentic_v2_controller, agentic_v3_controller)
 
 Architecture:
-- Currently wraps agents.memory_manager.MemoryManager methods
-- Future: Move implementations here, make MemoryManager a thin facade
-
-Submodules:
 - lightweight: Fast retrieval (embedding + BM25 + RRF)
 - agentic: LLM-guided multi-round retrieval
+- vector_store: Low-level vector store operations
 
 Usage:
-    from retrieval.online import OnlineRetriever
+    from retrieval.online import retrieve_lightweight, retrieve_agentic
 
-    retriever = OnlineRetriever()
-    result = await retriever.retrieve_lightweight(query, user_id, group_id)
-    result = await retriever.retrieve_agentic(query, user_id, group_id, llm_provider)
+    # Fast retrieval
+    result = await retrieve_lightweight(query, user_id, group_id)
+
+    # LLM-guided retrieval
+    result = await retrieve_agentic(query, user_id, group_id, llm_provider)
 """
 
+from .lightweight import retrieve_lightweight
+from .agentic import retrieve_agentic
+from .vector_store import retrieve_from_vector_stores
+from .utils import (
+    format_datetime_field,
+    parse_datetime_value,
+    filter_semantic_memories_by_time,
+)
+
+# Backward compatibility: MemoryManager alias
 from agents.memory_manager import MemoryManager
 
-# Re-export MemoryManager as OnlineRetriever for semantic clarity
-# This provides a cleaner interface while maintaining backward compatibility
 OnlineRetriever = MemoryManager
 
 __all__ = [
+    # Main retrieval functions
+    "retrieve_lightweight",
+    "retrieve_agentic",
+    # Low-level functions
+    "retrieve_from_vector_stores",
+    # Utilities
+    "format_datetime_field",
+    "parse_datetime_value",
+    "filter_semantic_memories_by_time",
+    # Backward compatibility
     "OnlineRetriever",
-    "MemoryManager",  # Keep for backward compatibility
+    "MemoryManager",
 ]
