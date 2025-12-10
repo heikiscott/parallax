@@ -6,7 +6,7 @@ This module provides fast retrieval without LLM guidance:
 - RRF fusion of both
 - Profile retrieval via MongoDB
 
-Extracted from agents.memory_manager.MemoryManager.retrieve_lightweight
+Provides the main retrieve_lightweight function for API services.
 """
 
 import logging

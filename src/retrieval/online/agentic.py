@@ -6,7 +6,7 @@ This module provides LLM-guided multi-round retrieval:
 - Round 2: Multi-query expansion (if needed)
 - Final fusion and rerank
 
-Extracted from agents.memory_manager.MemoryManager.retrieve_agentic
+Provides the main retrieve_agentic function for API services.
 """
 
 import asyncio

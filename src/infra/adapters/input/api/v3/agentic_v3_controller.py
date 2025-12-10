@@ -9,16 +9,14 @@ import logging
 from typing import Any, Dict
 from fastapi import HTTPException, Request as FastAPIRequest
 
-from agents.schemas import RetrieveMethod
 from core.di.decorators import controller
 from core.di import get_bean_by_type
 from core.interface.controller.base_controller import BaseController, post
-from core.constants.errors import ErrorCode, ErrorStatus
-from agents.memory_manager import MemoryManager
+from core.constants.errors import ErrorStatus
 from agents.converter import _handle_conversation_format
 from retrieval.online import retrieve_lightweight as _retrieve_lightweight
 from retrieval.online import retrieve_agentic as _retrieve_agentic
-from agents.dtos.memory_query import ConversationMetaRequest, UserDetail
+from services.mem_memorize import memorize as _memorize
 from infra.adapters.input.api.mapper.group_chat_converter import (
     convert_simple_message_to_memorize_input,
 )
@@ -52,11 +50,10 @@ class AgenticV3Controller(BaseController):
             tags=["Agentic Layer V3"],
             default_auth="none",  # 根据实际需求调整认证策略
         )
-        self.memory_manager = MemoryManager()
         self.conversation_meta_repository = conversation_meta_repository
         # 获取 RedisProvider
         self.redis_provider = get_bean_by_type(RedisProvider)
-        logger.info("AgenticV3Controller initialized with MemoryManager and ConversationMetaRepository")
+        logger.info("AgenticV3Controller initialized")
 
     @post(
         "/memorize",
@@ -202,10 +199,10 @@ class AgenticV3Controller(BaseController):
 
             logger.info("转换完成: group_id=%s, group_name=%s", group_id, group_name)
 
-            # 4. 转换为 MemorizeRequest 对象并调用 memory_manager
+            # 4. 转换为 MemorizeRequest 对象并调用 memorize 服务
             logger.info("开始处理记忆请求")
             memorize_request = await _handle_conversation_format(memorize_input)
-            memories = await self.memory_manager.memorize(memorize_request)
+            memories = await _memorize(memorize_request)
 
             # 5. 返回统一格式的响应
             memory_count = len(memories) if memories else 0
@@ -359,7 +356,7 @@ class AgenticV3Controller(BaseController):
                 f"current_time={current_time_str}, top_k={top_k}"
             )
             
-            # 2. 调用 retrieval.online 的 lightweight 检索（直接使用，不通过 MemoryManager）
+            # 2. 调用 retrieval.online 的 lightweight 检索
             result = await _retrieve_lightweight(
                 query=query,
                 user_id=user_id,
@@ -530,7 +527,7 @@ class AgenticV3Controller(BaseController):
             
             logger.info(f"使用 LLM: {model} @ {base_url}")
             
-            # 3. 调用 retrieval.online 的 agentic 检索（直接使用，不通过 MemoryManager）
+            # 3. 调用 retrieval.online 的 agentic 检索
             result = await _retrieve_agentic(
                 query=query,
                 user_id=user_id,

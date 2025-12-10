@@ -3,7 +3,7 @@
 This module contains retrieval components that query databases directly
 (Milvus for vector search, Elasticsearch for keyword search).
 
-Used by: API controllers (agentic_v2_controller, agentic_v3_controller)
+Used by: API controllers (agentic_v3_controller)
 
 Architecture:
 - lightweight: Fast retrieval (embedding + BM25 + RRF)
@@ -29,11 +29,6 @@ from .utils import (
     filter_semantic_memories_by_time,
 )
 
-# Backward compatibility: MemoryManager alias
-from agents.memory_manager import MemoryManager
-
-OnlineRetriever = MemoryManager
-
 __all__ = [
     # Main retrieval functions
     "retrieve_lightweight",
@@ -44,7 +39,4 @@ __all__ = [
     "format_datetime_field",
     "parse_datetime_value",
     "filter_semantic_memories_by_time",
-    # Backward compatibility
-    "OnlineRetriever",
-    "MemoryManager",
 ]

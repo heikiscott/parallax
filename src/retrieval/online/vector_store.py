@@ -5,7 +5,7 @@ This module provides unified vector store retrieval supporting:
 - BM25 search via Elasticsearch
 - RRF fusion of both
 
-Extracted from agents.memory_manager.MemoryManager._retrieve_from_vector_stores
+Core vector store retrieval logic for online API services.
 """
 
 import logging

@@ -1,6 +1,6 @@
 """Utility functions for online retrieval.
 
-Helper methods extracted from MemoryManager for datetime handling
+Helper functions for datetime handling
 and semantic memory filtering.
 """
 
