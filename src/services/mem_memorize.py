@@ -3,8 +3,8 @@ import time
 import json
 import traceback
 from config import load_config
-from memory.orchestrator import MemorizeRequest, MemorizeOfflineRequest
-from memory.orchestrator import ExtractionOrchestrator
+from memory.extraction import MemorizeRequest, MemorizeOfflineRequest
+from memory.extraction import ExtractionOrchestrator
 from memory.schema import MemoryType, MemUnit, Memory, SemanticMemoryItem, SourceType, EventLog
 from memory.extraction.memunit import RawData, StatusResult
 from infra.adapters.out.persistence.document.memory.memunit import DataTypeEnum

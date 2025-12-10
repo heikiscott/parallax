@@ -14,7 +14,7 @@ def _get_llm_config():
     return load_config("src/providers").llm
 
 
-from ..extraction.memunit import (
+from .memunit import (
     ConvMemUnitExtractor,
     ConversationMemUnitExtractRequest,
     RawData,
@@ -22,7 +22,7 @@ from ..extraction.memunit import (
 )
 from ..schema import SourceType
 from ..schema import MemUnit, MemoryType, Memory
-from ..extraction.memory import (
+from .memory import (
     EpisodeMemoryExtractor,
     EpisodeMemoryExtractRequest,
     ProfileMemoryExtractor,

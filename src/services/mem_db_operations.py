@@ -10,7 +10,7 @@
 """
 
 import time
-from memory.orchestrator import MemorizeRequest
+from memory.extraction import MemorizeRequest
 from memory.schema import MemoryType, MemUnit, Memory, ProfileMemory, GroupProfileMemory, SourceType
 from memory.extraction.memunit import RawData
 from memory.extraction.memory.profile.types import (
