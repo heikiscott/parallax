@@ -5,19 +5,29 @@ This module contains retrieval components that query databases directly
 
 Used by: API controllers (agentic_v2_controller, agentic_v3_controller)
 
-Note: Currently delegates to agents.memory_manager.MemoryManager.
-Future refactoring will move the actual implementation here.
+Architecture:
+- Currently wraps agents.memory_manager.MemoryManager methods
+- Future: Move implementations here, make MemoryManager a thin facade
 
-Submodules (planned):
-- lightweight.py: Fast retrieval (embedding + BM25 + RRF)
-- agentic.py: LLM-guided multi-round retrieval
-- keyword.py: Keyword-based retrieval (ES)
-- vector.py: Vector-based retrieval (Milvus)
-- hybrid.py: Hybrid retrieval (keyword + vector)
-- result_grouper.py: Group results by group_id
+Submodules:
+- lightweight: Fast retrieval (embedding + BM25 + RRF)
+- agentic: LLM-guided multi-round retrieval
+
+Usage:
+    from retrieval.online import OnlineRetriever
+
+    retriever = OnlineRetriever()
+    result = await retriever.retrieve_lightweight(query, user_id, group_id)
+    result = await retriever.retrieve_agentic(query, user_id, group_id, llm_provider)
 """
 
-# Re-export from MemoryManager for backward compatibility
-# TODO: Move actual implementation here and make MemoryManager a thin wrapper
+from agents.memory_manager import MemoryManager
 
-__all__ = []
+# Re-export MemoryManager as OnlineRetriever for semantic clarity
+# This provides a cleaner interface while maintaining backward compatibility
+OnlineRetriever = MemoryManager
+
+__all__ = [
+    "OnlineRetriever",
+    "MemoryManager",  # Keep for backward compatibility
+]
