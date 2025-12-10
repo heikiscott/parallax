@@ -34,7 +34,6 @@ setup_environment(check_secrets=["openai_api_key"])
 
 # ===== 现在可以安全地导入 Parallax 组件 =====
 from eval.core.loaders import load_dataset
-from eval.core.pipeline import Pipeline
 from eval.adapters.registry import create_adapter
 from eval.evaluators.registry import create_evaluator
 from config import load_yaml
@@ -82,10 +81,10 @@ async def main():
         help="System name (e.g., parallax)"
     )
     parser.add_argument(
-        "--stages",
-        nargs="+",
+        "--workflow",
+        type=str,
         default=None,
-        help="Stages to run (add, search, answer, evaluate). Default: all"
+        help="Workflow config name (e.g., standard_pipeline, search_only). If not specified, auto-selects based on system config."
     )
     parser.add_argument(
         "--conv",
@@ -202,31 +201,97 @@ async def main():
     )
     console.print(f"  ✅ Created LLM provider: {llm_provider_config.get('model')}")
     
-    # ===== 创建 Pipeline =====
+    # ===== 创建 Workflow =====
     # 从数据集配置中读取需要过滤的问题类别
     filter_categories = dataset_config.get("evaluation", {}).get("filter_category", [])
-    
-    pipeline = Pipeline(
+
+    console.print(f"\n[bold cyan]Building evaluation workflow...[/bold cyan]")
+
+    # 注册 eval nodes（触发装饰器）
+    import eval.workflow_nodes  # noqa
+
+    # 创建 ExecutionContext（包含所有依赖）
+    from src.orchestration.context import ExecutionContext
+    from eval.utils.checkpoint import CheckpointManager
+
+    checkpoint_manager = CheckpointManager(output_dir=output_dir, run_name="default")
+
+    context = ExecutionContext(
         adapter=adapter,
         evaluator=evaluator,
         llm_provider=llm_provider,
         output_dir=output_dir,
-        filter_categories=filter_categories
+        checkpoint_manager=checkpoint_manager,
+        logger=setup_logger(log_dir=output_dir),
+        console=console,
+        project_root=project_root,
     )
-    
-    console.print(f"  ✅ Created pipeline, output: {output_dir}")
+
+    # 加载 workflow 配置
+    from src.orchestration.workflow_builder import WorkflowBuilder
+    from src.orchestration.config_loader import ConfigLoader
+
+    # 选择 workflow：优先使用命令行参数，否则根据系统配置自动选择
+    if args.workflow:
+        workflow_config = args.workflow
+    else:
+        # 根据系统配置决定使用哪个 workflow
+        enable_clustering = system_config.get("enable_group_event_cluster", False)
+        if enable_clustering:
+            workflow_config = "standard_pipeline"  # 包含 cluster 阶段
+        else:
+            workflow_config = "no_cluster"  # 跳过 cluster 阶段
+
+    console.print(f"  📋 Workflow: {workflow_config}")
+    console.print(f"  ✅ Output: {output_dir}")
     if filter_categories:
-        console.print(f"  📋 Filter categories: {filter_categories}")
-    
-    # ===== 运行 Pipeline =====
+        console.print(f"  🔍 Filter categories: {filter_categories}")
+
+    # 获取 enable_clustering 用于 state metadata
+    enable_clustering = system_config.get("enable_group_event_cluster", False)
+
+    # 构建 workflow（使用完整路径）
+    eval_workflows_dir = project_root / "config" / "eval" / "workflows"
+    workflow_file = eval_workflows_dir / f"{workflow_config}.yaml"
+
+    if not workflow_file.exists():
+        raise FileNotFoundError(f"Workflow config not found: {workflow_file}")
+
+    loader = ConfigLoader(config_dir=eval_workflows_dir)
+    workflow_config_obj = loader.load(workflow_config)
+
+    builder = WorkflowBuilder(context)
+    workflow = builder.build_from_config(workflow_config_obj)
+
+    # ===== 运行 Workflow =====
+    console.print(f"\n[bold cyan]Running evaluation workflow...[/bold cyan]")
+
+    # 创建初始 state
+    from eval.workflow_nodes import EvalState
+
+    initial_state = EvalState(
+        dataset=dataset,
+        conversations=dataset.conversations,
+        qa_pairs=dataset.qa_pairs,
+        conv_id=args.conv,
+        filter_categories=filter_categories,
+        metadata={"enable_group_event_cluster": enable_clustering},
+        completed_stages=[],
+    )
+
     try:
-        results = await pipeline.run(
-            dataset=dataset,
-            stages=args.stages,
-            conv_id=args.conv,
-        )
-        
+        # 执行 workflow
+        final_state = await workflow.ainvoke(initial_state)
+
         console.print(f"\n[bold green]✨ Evaluation completed![/bold green]")
+
+        # 打印结果
+        if "eval_results" in final_state and final_state["eval_results"]:
+            eval_results = final_state["eval_results"]
+            if hasattr(eval_results, 'accuracy'):
+                console.print(f"  Accuracy: {eval_results.accuracy:.2%}")
+                console.print(f"  Correct: {eval_results.correct}/{eval_results.total_questions}")
+
         console.print(f"Results saved to: [cyan]{output_dir}[/cyan]\n")
     
     finally:

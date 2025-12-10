@@ -15,30 +15,44 @@ class ExecutionContext:
     This context is passed to node functions to access external services and resources.
     It acts as a dependency injection container, avoiding the need for global state.
 
-    Core Services:
+    Retrieval Services:
         memory_index: Vector database for memory storage
         vectorize_service: Service for generating embeddings
         rerank_service: Service for reranking documents
-
-    Optional Services:
         cluster_index: Cluster-based index for result expansion
         bm25_index: BM25 index for keyword search
         llm_provider: LLM service for answer generation and checks
+
+    Evaluation Services:
+        adapter: System adapter for eval pipeline
+        evaluator: Evaluator for answer quality assessment
+        output_dir: Output directory for results
+        checkpoint_manager: Checkpoint manager for resuming
+        logger: Logger instance
+        console: Rich console for pretty printing
 
     Configuration:
         config: Additional configuration dictionary
         project_root: Path to project root directory
     """
 
-    # Core services (required)
+    # Core services (retrieval workflows)
     memory_index: Any = None
     vectorize_service: Any = None
     rerank_service: Any = None
 
-    # Optional services
+    # Optional services (retrieval workflows)
     cluster_index: Optional[Any] = None
     bm25_index: Optional[Any] = None
     llm_provider: Optional[Any] = None
+
+    # Evaluation workflow services
+    adapter: Optional[Any] = None
+    evaluator: Optional[Any] = None
+    output_dir: Optional[Any] = None
+    checkpoint_manager: Optional[Any] = None
+    logger: Optional[Any] = None
+    console: Optional[Any] = None
 
     # Configuration
     config: Dict[str, Any] = field(default_factory=dict)

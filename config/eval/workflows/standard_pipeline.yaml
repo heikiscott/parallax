@@ -1,0 +1,46 @@
+# Standard Evaluation Pipeline
+# Full 5-stage workflow: Add → Cluster → Search → Answer → Evaluate
+
+workflow:
+  name: "standard_evaluation_pipeline"
+  description: "Complete evaluation flow with all stages"
+
+  nodes:
+    - name: "add"
+      function: "eval_add_stage"
+      config:
+        use_checkpoint: true
+
+    - name: "cluster"
+      function: "eval_cluster_stage"
+      config:
+        use_checkpoint: true
+
+    - name: "search"
+      function: "eval_search_stage"
+      config:
+        use_checkpoint: true
+
+    - name: "answer"
+      function: "eval_answer_stage"
+      config:
+        use_checkpoint: true
+
+    - name: "evaluate"
+      function: "eval_evaluate_stage"
+      config:
+        use_checkpoint: true
+
+  edges:
+    - from: "START"
+      to: "add"
+    - from: "add"
+      to: "cluster"
+    - from: "cluster"
+      to: "search"
+    - from: "search"
+      to: "answer"
+    - from: "answer"
+      to: "evaluate"
+    - from: "evaluate"
+      to: "END"

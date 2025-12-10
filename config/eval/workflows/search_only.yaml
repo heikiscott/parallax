@@ -1,0 +1,32 @@
+# Search Only Pipeline
+# Quick pipeline: Search → Answer → Evaluate (assumes index already built)
+
+workflow:
+  name: "search_only_evaluation_pipeline"
+  description: "Fast evaluation skipping index building"
+
+  nodes:
+    - name: "search"
+      function: "eval_search_stage"
+      config:
+        use_checkpoint: true
+
+    - name: "answer"
+      function: "eval_answer_stage"
+      config:
+        use_checkpoint: true
+
+    - name: "evaluate"
+      function: "eval_evaluate_stage"
+      config:
+        use_checkpoint: true
+
+  edges:
+    - from: "START"
+      to: "search"
+    - from: "search"
+      to: "answer"
+    - from: "answer"
+      to: "evaluate"
+    - from: "evaluate"
+      to: "END"
