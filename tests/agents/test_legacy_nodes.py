@@ -88,8 +88,8 @@ class TestLightweightRetrievalNode:
         # Patch the module in sys.modules before the import happens in the function
         original_modules = {}
         modules_to_mock = [
-            'src.retrieval.pipelines.lightweight',
-            'retrieval.pipelines.lightweight',
+            'src.retrieval.offline.pipelines.lightweight',
+            'retrieval.offline.pipelines.lightweight',
         ]
 
         for mod_name in modules_to_mock:
@@ -125,8 +125,8 @@ class TestLightweightRetrievalNode:
 
         original_modules = {}
         modules_to_mock = [
-            'src.retrieval.pipelines.lightweight',
-            'retrieval.pipelines.lightweight',
+            'src.retrieval.offline.pipelines.lightweight',
+            'retrieval.offline.pipelines.lightweight',
         ]
 
         for mod_name in modules_to_mock:
@@ -216,8 +216,8 @@ class TestAgenticRetrievalNode:
 
         original_modules = {}
         modules_to_mock = [
-            'src.retrieval.pipelines.agentic',
-            'retrieval.pipelines.agentic',
+            'src.retrieval.offline.pipelines.agentic',
+            'retrieval.offline.pipelines.agentic',
         ]
 
         for mod_name in modules_to_mock:
@@ -255,17 +255,17 @@ class TestAgenticRetrievalNode:
 
         original_modules = {}
         modules_to_mock = [
-            'src.retrieval.pipelines.lightweight',
-            'retrieval.pipelines.lightweight',
-            'src.retrieval.pipelines.agentic',
-            'retrieval.pipelines.agentic',
+            'src.retrieval.offline.pipelines.lightweight',
+            'retrieval.offline.pipelines.lightweight',
+            'src.retrieval.offline.pipelines.agentic',
+            'retrieval.offline.pipelines.agentic',
         ]
 
         mock_modules = {
-            'src.retrieval.pipelines.lightweight': mock_lightweight_module,
-            'retrieval.pipelines.lightweight': mock_lightweight_module,
-            'src.retrieval.pipelines.agentic': mock_agentic_module,
-            'retrieval.pipelines.agentic': mock_agentic_module,
+            'src.retrieval.offline.pipelines.lightweight': mock_lightweight_module,
+            'retrieval.offline.pipelines.lightweight': mock_lightweight_module,
+            'src.retrieval.offline.pipelines.agentic': mock_agentic_module,
+            'retrieval.offline.pipelines.agentic': mock_agentic_module,
         }
 
         for mod_name in modules_to_mock:
