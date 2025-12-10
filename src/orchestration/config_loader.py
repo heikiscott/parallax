@@ -1,12 +1,14 @@
 """Configuration loader for LangGraph workflows.
 
 This module handles loading and parsing YAML workflow configurations.
+Uses the unified config loader from config/ for YAML parsing and secrets injection.
 """
 
-import yaml
 from pathlib import Path
 from typing import Dict, Any, List, Optional
 from dataclasses import dataclass
+
+from config.loader import load_yaml
 
 
 @dataclass
@@ -81,9 +83,7 @@ class ConfigLoader:
         if not config_path.exists():
             raise FileNotFoundError(f"Config not found: {config_path}")
 
-        with open(config_path, 'r', encoding='utf-8') as f:
-            raw_config = yaml.safe_load(f)
-
+        raw_config = load_yaml(str(config_path))
         return self._parse_config(raw_config)
 
     def load_from_path(self, config_path: str) -> WorkflowConfig:
@@ -95,14 +95,12 @@ class ConfigLoader:
         Returns:
             WorkflowConfig object
         """
-        config_path = Path(config_path)
+        path = Path(config_path)
 
-        if not config_path.exists():
+        if not path.exists():
             raise FileNotFoundError(f"Config not found: {config_path}")
 
-        with open(config_path, 'r', encoding='utf-8') as f:
-            raw_config = yaml.safe_load(f)
-
+        raw_config = load_yaml(str(path))
         return self._parse_config(raw_config)
 
     def _parse_config(self, raw_config: Dict[str, Any]) -> WorkflowConfig:
