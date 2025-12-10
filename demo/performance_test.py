@@ -17,7 +17,7 @@ from datetime import datetime, timedelta
 from typing import Dict, List
 from dataclasses import dataclass
 
-from agents.memory_manager import MemoryManager
+from memory.extraction import ExtractionOrchestrator
 from memory.extraction.memunit import RawData
 from memory.schema import SourceType, MemoryType, MemUnit
 from utils.datetime_utils import get_now_with_timezone
@@ -35,9 +35,9 @@ class PerformanceResult:
 
 class PerformanceTester:
     """性能测试器"""
-    
+
     def __init__(self):
-        self.memory_manager = MemoryManager()
+        self.orchestrator = ExtractionOrchestrator()
         self.results: List[PerformanceResult] = []
         self.test_messages = self._create_test_messages()
     
@@ -229,7 +229,7 @@ class PerformanceTester:
             print(f"     消息内容: {msg_content_preview}...")
             
             # 只提取 MemUnit，禁用下游记忆提取
-            memunit, status_result = await self.memory_manager.extract_memunit(
+            memunit, status_result = await self.orchestrator.extract_memunit(
                 history_raw_data_list=cumulative_history,
                 new_raw_data_list=single_new_message,  # 只传入一条新消息
                 source_type=SourceType.CONVERSATION,
@@ -362,7 +362,7 @@ class PerformanceTester:
         
         episode_memories = await self._measure_time(
             "Episode Memory 提取",
-            self.memory_manager.extract_memory(
+            self.orchestrator.extract_memory(
                 memunit_list=[memunit],
                 memory_type=MemoryType.EPISODE_SUMMARY,
                 user_ids=["user_001"],
@@ -401,7 +401,7 @@ class PerformanceTester:
         
         profile_memories = await self._measure_time(
             "Profile Memory 提取",
-            self.memory_manager.extract_memory(
+            self.orchestrator.extract_memory(
                 memunit_list=[memunit],
                 memory_type=MemoryType.PROFILE,
                 user_ids=["user_001"],
@@ -439,7 +439,7 @@ class PerformanceTester:
         
         semantic_memories = await self._measure_time(
             "Semantic Memory 提取",
-            self.memory_manager.extract_memory(
+            self.orchestrator.extract_memory(
                 memunit_list=[],
                 memory_type=MemoryType.SEMANTIC_SUMMARY,
                 user_ids=[episode_memory.user_id],
@@ -483,7 +483,7 @@ class PerformanceTester:
         
         event_log = await self._measure_time(
             "Event Log 提取",
-            self.memory_manager.extract_memory(
+            self.orchestrator.extract_memory(
                 memunit_list=[],
                 memory_type=MemoryType.EVENT_LOG,
                 user_ids=[episode_memory.user_id],

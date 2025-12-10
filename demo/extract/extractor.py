@@ -6,11 +6,11 @@
 from typing import Dict, Any, List
 from pathlib import Path
 
-from agents.memory_manager import MemoryManager
-from memory.orchestrator.extraction_orchestrator import MemorizeRequest
+from memory.extraction import ExtractionOrchestrator, MemorizeRequest
 from memory.schema import SourceType
 from memory.extraction.memunit import RawData
 from utils.datetime_utils import from_iso_format
+from services.mem_memorize import memorize as mem_memorize
 
 from demo.config import ExtractModeConfig, MongoDBConfig
 from demo.utils import ensure_mongo_beanie_ready
@@ -18,22 +18,22 @@ from demo.utils import ensure_mongo_beanie_ready
 
 class MemoryExtractor:
     """记忆提取器 - 使用 V3 API"""
-    
+
     def __init__(self, config: ExtractModeConfig, mongo_config: MongoDBConfig):
         """初始化提取器
-        
+
         Args:
             config: 提取配置
             mongo_config: MongoDB 配置
         """
         self.config = config
         self.mongo_config = mongo_config
-        self.manager: MemoryManager | None = None
-    
+        self.orchestrator: ExtractionOrchestrator | None = None
+
     async def initialize(self) -> None:
-        """初始化 MongoDB 和 MemoryManager"""
+        """初始化 MongoDB 和 ExtractionOrchestrator"""
         await ensure_mongo_beanie_ready(self.mongo_config)
-        self.manager = MemoryManager()
+        self.orchestrator = ExtractionOrchestrator()
         self.config.output_dir.mkdir(parents=True, exist_ok=True)
     
     @staticmethod
@@ -90,14 +90,14 @@ class MemoryExtractor:
     
     async def extract_from_events(self, events: List[Dict[str, Any]]) -> int:
         """从事件列表中提取记忆
-        
+
         Args:
             events: 对话事件列表
-            
+
         Returns:
             提取的 MemUnit 数量
         """
-        if not self.manager:
+        if not self.orchestrator:
             raise RuntimeError("请先调用 initialize() 初始化提取器")
         
         print("=" * 80)
@@ -151,9 +151,9 @@ class MemoryExtractor:
                 enable_event_log_extraction=True,
             )
             
-            # 调用 V3 API
+            # 调用 memorize 服务
             try:
-                result = await self.manager.memorize(request)
+                result = await mem_memorize(request)
                 
                 if result:
                     saved_count += 1
