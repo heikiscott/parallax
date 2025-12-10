@@ -3,16 +3,15 @@
 This module contains all retrieval-related functionality:
 - core: Core types and utilities (Document, etc.)
 - classification: Question classification for retrieval routing
-- retrievers: Individual retrieval strategies (embedding, BM25, hybrid)
-- expanders: Query and result expansion (multi-query, cluster)
-- rerankers: Reranking models and utilities
-- pipelines: High-level retrieval pipelines
-- strategies: Strategy routing and orchestration
+- offline: Offline retrieval with in-memory indices (for evaluation)
+- online: Online retrieval with database queries (for API services)
+- routing: Strategy routing and orchestration
 - services: Vectorization and reranking services
 
 Note: Submodules are NOT eagerly imported to avoid dependency issues.
 Import specific modules as needed:
-    from src.retrieval.pipelines import lightweight_retrieval
+    from src.retrieval.offline.pipelines import lightweight_retrieval
+    from src.retrieval.online import retrieve_lightweight
     from src.retrieval.classification import classify_question
 """
 

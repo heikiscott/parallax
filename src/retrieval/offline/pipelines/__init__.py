@@ -8,7 +8,7 @@ Pipelines:
 - agentic: LLM-guided multi-round retrieval with sufficiency checking
 
 Example:
-    from retrieval.pipelines import lightweight_retrieval, agentic_retrieval
+    from retrieval.offline.pipelines import lightweight_retrieval, agentic_retrieval
 
     # Fast retrieval
     results, metadata = await lightweight_retrieval(query, emb_index, bm25, docs, config)

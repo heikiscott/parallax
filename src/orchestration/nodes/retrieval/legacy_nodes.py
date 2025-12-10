@@ -3,7 +3,7 @@
 This module wraps the existing retrieval pipelines (lightweight, agentic) as
 LangGraph nodes to enable gradual migration without breaking existing functionality.
 
-These nodes call the mature pipelines in src/retrieval/pipelines/.
+These nodes call the mature pipelines in src/retrieval/offline/pipelines/.
 """
 
 import logging
@@ -62,7 +62,7 @@ async def lightweight_retrieval_node(
     Returns:
         Dict with retrieved documents and metadata
     """
-    from src.retrieval.pipelines.lightweight import lightweight_retrieval
+    from src.retrieval.offline.pipelines.lightweight import lightweight_retrieval
 
     query = state["query"]
 
@@ -129,7 +129,7 @@ async def agentic_retrieval_node(
     Returns:
         Dict with retrieved documents and metadata
     """
-    from src.retrieval.pipelines.agentic import agentic_retrieval
+    from src.retrieval.offline.pipelines.agentic import agentic_retrieval
 
     query = state["query"]
 

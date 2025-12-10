@@ -17,7 +17,7 @@ import asyncio
 from config import load_config
 from retrieval.services import vectorize as vectorize_service
 # Import tokenize from src (avoid duplication)
-from retrieval.pipelines.search_utils import tokenize
+from retrieval.offline.pipelines.search_utils import tokenize
 
 
 def ensure_nltk_data():

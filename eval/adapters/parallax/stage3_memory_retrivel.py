@@ -24,10 +24,10 @@ from config import load_config
 
 # Import retrieval functions from src/retrieval/ (NO duplication)
 # Note: uses short paths because pytest.ini sets pythonpath = . src eval
-from retrieval.pipelines.agentic import agentic_retrieval
-from retrieval.pipelines.lightweight import lightweight_retrieval
-from retrieval.pipelines.rerank import reranker_search
-from retrieval.pipelines.search_utils import (
+from retrieval.offline.pipelines.agentic import agentic_retrieval
+from retrieval.offline.pipelines.lightweight import lightweight_retrieval
+from retrieval.offline.pipelines.rerank import reranker_search
+from retrieval.offline.pipelines.search_utils import (
     search_with_bm25_index,
     search_with_emb_index,
     hybrid_search_with_rrf,
