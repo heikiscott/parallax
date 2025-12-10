@@ -6,21 +6,26 @@ with optional provider selection feature.
 """
 
 from math import log
-import os
 import time
 import json
 import urllib.request
 import urllib.parse
 import urllib.error
 import aiohttp
-from typing import Optional
+from typing import Optional, List
 import asyncio
 import random
 
 from .protocol import LLMProvider, LLMError
 from core.observation.logger import get_logger
+from config import load_config
 
 logger = get_logger(__name__)
+
+
+def _get_provider_config():
+    """获取 provider 配置"""
+    return load_config("src/providers")
 
 
 class OpenRouterProvider(LLMProvider):
@@ -33,12 +38,13 @@ class OpenRouterProvider(LLMProvider):
 
     def __init__(
         self,
-        model: str = "gpt-4.1-mini",
+        model: str | None = None,
         api_key: str | None = None,
         base_url: str | None = None,
-        temperature: float = 0.3,
-        max_tokens: int | None = 100 * 1024,
-        enable_stats: bool = False,  # 新增：可选的统计功能，默认关闭
+        temperature: float | None = None,
+        max_tokens: int | None = None,
+        enable_stats: bool = False,
+        provider_order: List[str] | None = None,
         **kwargs,
     ):
         """
@@ -46,25 +52,33 @@ class OpenRouterProvider(LLMProvider):
 
         Args:
             model: Model name (e.g., "openai/gpt-4o-mini", "x-ai/grok-4-fast")
-            api_key: OpenRouter API key (defaults to OPENROUTER_API_KEY env var)
-            base_url: OpenRouter base URL (defaults to OpenRouter endpoint)
+            api_key: OpenRouter API key
+            base_url: OpenRouter base URL
             temperature: Sampling temperature
             max_tokens: Maximum tokens to generate
             enable_stats: Enable usage statistics accumulation (default: False)
+            provider_order: Optional list of provider names for routing
             **kwargs: Additional arguments (ignored for now)
         """
-        self.model = model
-        self.temperature = temperature
-        self.max_tokens = max_tokens
-        self.enable_stats = enable_stats  # 新增
+        # 从配置文件加载默认值
+        cfg = _get_provider_config()
+        openrouter_cfg = cfg.openrouter
 
-        # Use OpenRouter API key and base URL
-        self.api_key = api_key or os.getenv("OPENROUTER_API_KEY")
-        self.base_url = base_url or "https://openrouter.ai/api/v1"
+        self.model = model or openrouter_cfg.model
+        self.temperature = temperature if temperature is not None else openrouter_cfg.temperature
+        self.max_tokens = max_tokens if max_tokens is not None else openrouter_cfg.max_tokens
+        self.enable_stats = enable_stats
 
-        # 新增：可选的单次调用统计（默认不开启，不影响现有使用）
+        # API Key 和 Base URL 从配置加载
+        self.api_key = api_key or openrouter_cfg.api_key
+        self.base_url = base_url or openrouter_cfg.base_url
+
+        # Provider 路由顺序（可选）
+        self.provider_order = provider_order or getattr(openrouter_cfg, 'provider_order', None)
+
+        # 可选的单次调用统计
         if self.enable_stats:
-            self.current_call_stats = None  # 存储当前调用的统计信息
+            self.current_call_stats = None
 
     async def generate(
         self,
@@ -90,13 +104,12 @@ class OpenRouterProvider(LLMProvider):
         """
         # 使用 time.perf_counter() 获得更精确的时间测量
         start_time = time.perf_counter()
-        # Prepare request data
-        if os.getenv("LLM_OPENROUTER_PROVIDER", "default") != "default":
-            provider_str = os.getenv('LLM_OPENROUTER_PROVIDER')
-            provider_list = [p.strip() for p in provider_str.split(',')]
-            openrouter_provider = {"order": provider_list, "allow_fallbacks": False}
-        else:
-            openrouter_provider = None
+
+        # 构建 provider 路由配置（如果指定了 provider_order）
+        openrouter_provider = None
+        if self.provider_order:
+            openrouter_provider = {"order": self.provider_order, "allow_fallbacks": False}
+
         # Prepare request data
         data = {
             "model": self.model,

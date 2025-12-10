@@ -1,72 +1,28 @@
 #!/usr/bin/env python3
 """
-统一的环境加载工具
+统一的环境设置工具
 
-提供Python路径设置和.env文件加载功能，确保项目在不同位置运行时都能正确加载环境变量。
+提供 Python 路径设置和时区配置功能。
+
+注意：敏感信息（API Keys、密码等）现在统一从 config/secrets/secrets.yaml 加载，
+不再使用 .env 文件。
 """
 
 import logging
 import os
 import sys
-from typing import Optional
-from dotenv import load_dotenv
 import time
+from typing import Optional, List
 
 from utils.app_meta import set_service_name
-from utils.project_path import PROJECT_DIR
 
-# 这里环境变量还没加载，所以不能使用get_logger
+# 这里配置还没加载，所以不能使用 get_logger
 logger = logging.getLogger(__name__)
 
-# 项目元数据已迁移到app_meta模块中
 
-"""
-- setup_pythonpath不需要。
-  - 对于python scripts/run.py不需要这个，src会被加进来。
-  - 如果真的没有src，setup_pythonpath需要导入load_env.py，然后又要依赖pythonpath，实际也加载不进来。
-  - vscode启动不需要，可以launch.json配置。
-  - 线上用的python run.py也不需要。
-    - 入口点 web 确实会让src找不到，这个要解决一下。
-"""
-
-
-def load_env_file(
-    env_file_name: str = ".env", check_env_var: Optional[str] = None
-) -> bool:
-    """
-    加载.env文件
-
-    Args:
-        env_file_name: .env文件名
-        check_env_var: 检查的环境变量名，用于判断环境是否已加载
-
-    Returns:
-        bool: 是否成功加载环境变量
-    """
-    # 基于load_env.py的位置计算.env文件路径
-    # .env文件在src的父目录
-
-    env_file_path = PROJECT_DIR / env_file_name
-
-    if not env_file_path.exists():
-        logger.warning(".env文件不存在: %s", env_file_path)
-        return False
-
-    try:
-        # Use override=True to force reload environment variables from .env file
-        load_dotenv(env_file_path, override=True)
-        logger.debug("成功加载.env文件: %s", env_file_path)
-    except (IOError, OSError) as e:
-        logger.error("加载.env文件失败: %s", e)
-        return False
-
-    if check_env_var and os.getenv(check_env_var):
-        logger.info("%s 已设置，已加载环境变量", check_env_var)
-        return True
-    else:
-        if check_env_var:
-            logger.error("请确保%s环境变量已设置", check_env_var)
-        return False
+class SecretNotConfiguredError(Exception):
+    """Secret 未配置错误"""
+    pass
 
 
 def reset_timezone():
@@ -89,8 +45,6 @@ def sync_pythonpath_with_syspath():
     2. 排除 .venv 和类似的虚拟环境路径
     3. 保持原有 PYTHONPATH 的优先级
     """
-    import sys
-    import os
     from pathlib import Path
 
     # 获取当前 PYTHONPATH
@@ -140,27 +94,58 @@ def sync_pythonpath_with_syspath():
         logger.debug("已更新 PYTHONPATH: %s", os.environ["PYTHONPATH"])
 
 
+def _check_secrets(required_secrets: List[str]) -> None:
+    """
+    检查必要的 secrets 是否已配置
+
+    Args:
+        required_secrets: 需要检查的 secret 键列表，支持点分隔格式
+            例如: ["openai_api_key", "mongodb.password"]
+
+    Raises:
+        SecretNotConfiguredError: 如果必要的 secret 未配置
+    """
+    from config import load_secrets
+
+    try:
+        secrets = load_secrets()
+    except FileNotFoundError as e:
+        raise SecretNotConfiguredError(str(e)) from e
+
+    missing = []
+    for key in required_secrets:
+        value = secrets.get(key)
+        if value is None or value == "":
+            missing.append(key)
+
+    if missing:
+        raise SecretNotConfiguredError(
+            f"以下必要的 secrets 未配置: {', '.join(missing)}\n"
+            f"请在 config/secrets/secrets.yaml 中设置这些值"
+        )
+
+
 def setup_environment(
-    load_env_file_name: str = ".env",
-    check_env_var: Optional[str] = None,
     service_name: Optional[str] = None,
+    check_secrets: Optional[List[str]] = None,
 ) -> bool:
     """
     统一的环境设置函数
 
+    设置 Python 路径、时区和服务名称。
+    敏感信息现在从 config/secrets/secrets.yaml 加载。
+
     Args:
-        load_env_file_name: .env文件名
-        check_env_var: 检查的环境变量名，用于判断环境是否已加载
-        service_name: 当前启动服务的名称，将被存储在APP_META_DATA中
+        service_name: 当前启动服务的名称，将被存储在 APP_META_DATA 中
+        check_secrets: 需要检查的 secret 键列表，支持点分隔格式
+            例如: ["openai_api_key", "mongodb.password"]
 
     Returns:
-        bool: 是否成功设置环境
-    """
-    # 加载.env文件
-    success = load_env_file(
-        env_file_name=load_env_file_name, check_env_var=check_env_var
-    )
+        bool: 始终返回 True（保持向后兼容）
 
+    Raises:
+        SecretNotConfiguredError: 如果 check_secrets 中指定的 secret 未配置
+    """
     # 同步 PYTHONPATH 和 sys.path
     sync_pythonpath_with_syspath()
 
@@ -172,8 +157,9 @@ def setup_environment(
         set_service_name(service_name)
         logger.debug("已设置服务名称: %s", service_name)
 
-    if not success:
-        logger.error("环境设置失败，程序退出")
-        sys.exit(1)
+    # 检查必要的 secrets
+    if check_secrets:
+        _check_secrets(check_secrets)
 
-    return success
+    logger.info("环境设置完成")
+    return True

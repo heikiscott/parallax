@@ -1,10 +1,11 @@
 """
 Milvus 客户端工厂
 
-基于环境变量提供 Milvus 客户端连接功能。
+提供 Milvus 客户端连接功能。
+
+配置来源: config/src/databases.yaml
 """
 
-import os
 import asyncio
 from typing import Optional, Dict
 from hashlib import md5
@@ -12,45 +13,38 @@ from hashlib import md5
 from pymilvus import MilvusClient
 from core.di.decorators import component
 from core.observation.logger import get_logger
+from config import load_config
 
 logger = get_logger(__name__)
 
 
+def _get_milvus_config():
+    """获取 Milvus 配置"""
+    return load_config("src/databases").milvus
+
+
 def get_milvus_config(prefix: str = "") -> dict:
     """
-    基于环境变量获取 Milvus 配置
+    从 YAML 配置获取 Milvus 配置
+
+    配置来源: config/src/databases.yaml
 
     Args:
-        prefix: 环境变量前缀，例如 prefix="A" 时，将读取 "A_MILVUS_HOST" 等
-               如果不提供，则读取 "MILVUS_HOST" 等
-
-    环境变量：
-    - {PREFIX_}MILVUS_HOST: Milvus 主机，默认 localhost
-    - {PREFIX_}MILVUS_PORT: Milvus 端口，默认 19530
-    - {PREFIX_}MILVUS_USER: 用户名（可选）
-    - {PREFIX_}MILVUS_PASSWORD: 密码（可选）
-    - {PREFIX_}MILVUS_DB_NAME: 数据库名称（可选）
+        prefix: 保留参数，用于未来扩展多 Milvus 实例配置
 
     Returns:
         dict: 配置字典
     """
+    cfg = _get_milvus_config()
 
-    def _env(name: str, default: Optional[str] = None) -> str:
-        if prefix:
-            prefix_upper = prefix.upper()
-            key = f"{prefix_upper}_{name}"
-        else:
-            key = name
-        return os.getenv(key, default) if default is not None else os.getenv(key, "")
-
-    host = _env("MILVUS_HOST", "localhost")
-    port = int(_env("MILVUS_PORT", "19530"))
+    host = cfg.host
+    port = int(cfg.port)
 
     config = {
         "uri": f"http://{host}:{port}",
-        "user": _env("MILVUS_USER"),
-        "password": _env("MILVUS_PASSWORD"),
-        "db_name": _env("MILVUS_DB_NAME"),
+        "user": "",  # 当前配置无认证
+        "password": "",
+        "db_name": "",
     }
 
     logger.info("获取 Milvus 配置 [prefix=%s]:", prefix or "default")

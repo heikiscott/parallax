@@ -7,33 +7,31 @@
     config/
     ├── __init__.py              # 本文件，导出公共 API
     ├── loader.py                # 配置加载工具
+    ├── secrets/                 # 敏感信息配置
+    │   ├── secrets.template.yaml  # 模板文件（提交到 git）
+    │   └── secrets.yaml           # 实际密钥（gitignore）
     ├── eval/                    # 评估相关配置
     │   ├── datasets/            # 数据集配置
-    │   │   ├── locomo.yaml
-    │   │   ├── personamem.yaml
-    │   │   └── longmemeval.yaml
     │   └── systems/             # 系统配置
-    │       └── parallax.yaml
     ├── src/                     # src 相关配置
-    │   └── llm_backends.yaml
-    └── workflows/               # LangGraph 工作流配置
-        └── adaptive_retrieval.yaml
+    └── app.yaml                 # 应用级配置
 
 使用示例:
-    from config import load_config
+    from config import load_config, load_secrets
 
     # 加载系统配置
     config = load_config("eval/systems/parallax")
     print(config.retrieval.mode)
 
-    # 加载数据集配置
-    dataset = load_config("eval/datasets/locomo")
-    print(dataset.data.path)
+    # 直接访问 secrets
+    secrets = load_secrets()
+    print(secrets.openai_api_key)
 """
 
 from config.loader import (
     ConfigDict,
     load_config,
+    load_secrets,
     load_yaml,
     reload_config,
     save_yaml,
@@ -42,6 +40,7 @@ from config.loader import (
 __all__ = [
     "ConfigDict",
     "load_config",
+    "load_secrets",
     "load_yaml",
     "reload_config",
     "save_yaml",

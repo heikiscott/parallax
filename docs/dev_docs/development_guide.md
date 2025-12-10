@@ -399,9 +399,10 @@ REDIS_URL=redis://localhost:6379/0
 import os
 
 # ============= 开发环境初始化 (必须在最上面) =============
-# 1. 设置环境变量和Python路径
+# 1. 设置环境（Python路径、时区等）
+# 敏感信息从 config/secrets/secrets.yaml 加载
 from utils.load_env import setup_environment
-setup_environment(load_env_file_name=".env.development", check_env_var="GEMINI_API_KEY")
+setup_environment()
 
 # 2. 启用Mock模式（开发环境默认启用）
 from core.di.utils import enable_mock_mode
@@ -446,8 +447,9 @@ if __name__ == "__main__":
 import os
 
 # ============= 开发环境初始化 =============
+# 敏感信息从 config/secrets/secrets.yaml 加载
 from utils.load_env import setup_environment
-setup_environment(load_env_file_name=".env.development")
+setup_environment()
 
 from core.di.utils import enable_mock_mode
 if os.getenv("MOCK_MODE", "true").lower() == "true":

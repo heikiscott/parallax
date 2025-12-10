@@ -1,12 +1,19 @@
 from dataclasses import dataclass
 import datetime
 import time
-import os
 from typing import List, Optional
 
+from config import load_config
 from core.observation.logger import get_logger
 
 from providers.llm.llm_provider import LLMProvider
+
+
+def _get_llm_config():
+    """从 YAML 配置文件读取 LLM 配置"""
+    return load_config("src/providers").llm
+
+
 from ..extraction.memunit import (
     ConvMemUnitExtractor,
     ConversationMemUnitExtractRequest,
@@ -58,53 +65,50 @@ class ExtractionOrchestrator:
     """记忆提取编排器 - 负责编排各种记忆提取器"""
 
     def __init__(self):
-        # Conversation MemUnit LLM Provider - 从环境变量读取配置
+        # 从 YAML 配置文件读取 LLM 配置
+        llm_cfg = _get_llm_config()
+
+        # Conversation MemUnit LLM Provider
         self.conv_memcall_llm_provider = LLMProvider(
-            provider_type=os.getenv("LLM_PROVIDER", "openai"),
-            model=os.getenv("LLM_MODEL", "Qwen3-235B"),
-            base_url=os.getenv(
-                "LLM_BASE_URL"
-            ),
-            api_key=os.getenv("LLM_API_KEY", "123"),
-            temperature=float(os.getenv("LLM_TEMPERATURE", "0.3")),
-            max_tokens=int(os.getenv("LLM_MAX_TOKENS", "16384")),
+            provider_type=llm_cfg.provider,
+            model=llm_cfg.model,
+            base_url=llm_cfg.base_url,
+            api_key=llm_cfg.api_key,
+            temperature=float(llm_cfg.temperature),
+            max_tokens=int(llm_cfg.max_tokens),
         )
-        
-        # Event Log Extractor LLM Provider - 从环境变量读取配置
+
+        # Event Log Extractor LLM Provider
         self.event_log_llm_provider = LLMProvider(
-            provider_type=os.getenv("LLM_PROVIDER", "openai"),
-            model=os.getenv("LLM_MODEL", "Qwen3-235B"),
-            base_url=os.getenv("LLM_BASE_URL"),
-            api_key=os.getenv("LLM_API_KEY", "123"),
-            temperature=float(os.getenv("LLM_TEMPERATURE", "0.3")),
-            max_tokens=int(os.getenv("LLM_MAX_TOKENS", "16384")),
+            provider_type=llm_cfg.provider,
+            model=llm_cfg.model,
+            base_url=llm_cfg.base_url,
+            api_key=llm_cfg.api_key,
+            temperature=float(llm_cfg.temperature),
+            max_tokens=int(llm_cfg.max_tokens),
         )
-        
+
         # Event Log Extractor - 延迟初始化
         self._event_log_extractor = None
 
-        # Episode Memory Extractor LLM Provider - 从环境变量读取配置
+        # Episode Memory Extractor LLM Provider
         self.episode_memory_extractor_llm_provider = LLMProvider(
-            provider_type=os.getenv("LLM_PROVIDER", "openai"),
-            model=os.getenv("LLM_MODEL", "Qwen3-235B"),
-            base_url=os.getenv(
-                "LLM_BASE_URL"
-            ),
-            api_key=os.getenv("LLM_API_KEY", "123"),
-            temperature=float(os.getenv("LLM_TEMPERATURE", "0.3")),
-            max_tokens=int(os.getenv("LLM_MAX_TOKENS", "16384")),
+            provider_type=llm_cfg.provider,
+            model=llm_cfg.model,
+            base_url=llm_cfg.base_url,
+            api_key=llm_cfg.api_key,
+            temperature=float(llm_cfg.temperature),
+            max_tokens=int(llm_cfg.max_tokens),
         )
 
-        # Profile Memory Extractor LLM Provider - 从环境变量读取配置
+        # Profile Memory Extractor LLM Provider
         self.profile_memory_extractor_llm_provider = LLMProvider(
-            provider_type=os.getenv("LLM_PROVIDER", "openai"),
-            model=os.getenv("LLM_MODEL", "Qwen3-235B"),
-            base_url=os.getenv(
-                "LLM_BASE_URL"
-            ),
-            api_key=os.getenv("LLM_API_KEY", "123"),
-            temperature=float(os.getenv("LLM_TEMPERATURE", "0.3")),
-            max_tokens=int(os.getenv("LLM_MAX_TOKENS", "16384")),
+            provider_type=llm_cfg.provider,
+            model=llm_cfg.model,
+            base_url=llm_cfg.base_url,
+            api_key=llm_cfg.api_key,
+            temperature=float(llm_cfg.temperature),
+            max_tokens=int(llm_cfg.max_tokens),
         )
 
         

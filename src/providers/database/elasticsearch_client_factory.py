@@ -1,10 +1,12 @@
 """
 Elasticsearch 客户端工厂
 
-基于环境变量提供 Elasticsearch 客户端缓存和管理功能。
+提供 Elasticsearch 客户端缓存和管理功能。
+
+配置来源: config/src/databases.yaml
+敏感信息（密码）来源: .env 文件
 """
 
-import os
 import asyncio
 from typing import Dict, Optional, List, Type, Any
 from hashlib import md5
@@ -14,45 +16,45 @@ from elasticsearch.dsl.async_connections import connections as async_connections
 from core.di.decorators import component
 from core.observation.logger import get_logger
 from core.oxm.es.doc_base import DocBase
+from config import load_config
 
 logger = get_logger(__name__)
 
 
+def _get_es_config():
+    """获取 Elasticsearch 配置"""
+    return load_config("src/databases").elasticsearch
+
+
 def get_default_es_config() -> Dict[str, Any]:
     """
-    基于环境变量获取默认的 Elasticsearch 配置
+    从 YAML 配置获取默认的 Elasticsearch 配置
 
-    环境变量：
-    - ES_HOST: Elasticsearch 主机，默认 localhost
-    - ES_PORT: Elasticsearch 端口，默认 9200
-    - ES_HOSTS: Elasticsearch 主机列表，逗号分隔，优先级高于 ES_HOST
-    - ES_USERNAME: 用户名
-    - ES_PASSWORD: 密码
-    - ES_API_KEY: API密钥
-    - ES_TIMEOUT: 超时时间（秒），默认 120
+    配置来源: config/src/databases.yaml
+    敏感信息（密码）来源: .env 文件（通过 YAML 的 ${VAR} 语法注入）
 
     Returns:
         Dict[str, Any]: 配置字典
     """
-    # 获取主机信息
-    es_hosts_str = os.getenv("ES_HOSTS")
-    if es_hosts_str:
-        # ES_HOSTS 已经包含完整的 URL（https://host:port），直接使用
+    cfg = _get_es_config()
+
+    # 获取主机信息 - 支持单个 hosts 字符串或列表
+    es_hosts_str = cfg.hosts
+    if isinstance(es_hosts_str, list):
+        es_hosts = es_hosts_str
+    elif "," in es_hosts_str:
         es_hosts = [host.strip() for host in es_hosts_str.split(",")]
     else:
-        # 回退到单个主机配置
-        es_host = os.getenv("ES_HOST", "localhost")
-        es_port = int(os.getenv("ES_PORT", "9200"))
-        es_hosts = [f"http://{es_host}:{es_port}"]
+        es_hosts = [es_hosts_str]
 
-    # 认证信息
-    es_username = os.getenv("ES_USERNAME")
-    es_password = os.getenv("ES_PASSWORD")
-    es_api_key = os.getenv("ES_API_KEY")
+    # 认证信息（从 .env 注入）
+    es_username = cfg.username if cfg.username else None
+    es_password = cfg.password if cfg.password else None
+    es_api_key = None  # API Key 可后续在 YAML 中添加
 
     # 连接参数
-    es_timeout = int(os.getenv("ES_TIMEOUT", "120"))
-    es_verify_certs = os.getenv("ES_VERIFY_CERTS", "false").lower() == "true"
+    es_timeout = 120  # 默认超时
+    es_verify_certs = cfg.verify_certs if hasattr(cfg, 'verify_certs') else False
 
     config = {
         "hosts": es_hosts,

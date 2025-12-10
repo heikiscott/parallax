@@ -5,7 +5,6 @@ Answer 阶段
 """
 import asyncio
 import time
-import os
 from typing import List, Optional
 from logging import Logger
 from tqdm import tqdm
@@ -14,6 +13,7 @@ from eval.core.data_models import QAPair, SearchResult, AnswerResult
 from eval.adapters.base import BaseAdapter
 from eval.utils.checkpoint import CheckpointManager
 from core.observation.logger import set_activity_id
+from config import load_config
 
 
 def build_context(search_result: SearchResult) -> str:
@@ -82,10 +82,12 @@ async def run_answer_stage(
     SAVE_INTERVAL = 400  # 每 400 个任务保存一次
     MAX_CONCURRENT = 50  # 最大并发数（semaphore 限制，batch 内并发）
 
-    # Batch processing configuration
-    BATCH_SIZE = int(os.getenv("EVAL_ANSWER_BATCH_SIZE", "20"))  # 每批次处理的请求数
-    BATCH_DELAY = int(os.getenv("EVAL_ANSWER_BATCH_DELAY", "3"))  # batch 间延迟（秒）
-    REQUEST_INTERVAL = float(os.getenv("EVAL_ANSWER_REQUEST_INTERVAL", "1.0"))  # batch 内请求间隔（秒）
+    # Batch processing configuration from config/app.yaml
+    app_config = load_config("app")
+    eval_cfg = app_config.evaluation.answer
+    BATCH_SIZE = int(eval_cfg.batch_size)  # 每批次处理的请求数
+    BATCH_DELAY = int(eval_cfg.batch_delay)  # batch 间延迟（秒）
+    REQUEST_INTERVAL = float(eval_cfg.request_interval)  # batch 内请求间隔（秒）
 
     logger.info(f"Batch processing enabled:")
     logger.info(f"  - Batch size: {BATCH_SIZE}")

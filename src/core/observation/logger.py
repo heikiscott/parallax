@@ -25,6 +25,12 @@ from typing import Optional
 from enum import Enum
 from functools import lru_cache
 
+
+def _get_app_config():
+    """获取应用配置"""
+    from config import load_config
+    return load_config("app")
+
 # ============================================================================
 # 可选依赖：Rich 库用于彩色控制台输出
 # ============================================================================
@@ -209,8 +215,12 @@ class LoggerProvider:
             LoggerProvider._initialized = True
 
     def _init_root_logger(self):
-        """初始化根日志器"""
-        log_level = os.getenv('LOG_LEVEL', 'INFO').upper()
+        """初始化根日志器
+
+        配置来源: config/app.yaml
+        """
+        cfg = _get_app_config()
+        log_level = cfg.log_level.upper()
 
         handler = logging.StreamHandler(sys.stdout)
         handler.addFilter(ActivityIdFilter())

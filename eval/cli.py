@@ -27,9 +27,10 @@ if str(project_root) not in sys.path:
 if str(src_path) not in sys.path:
     sys.path.insert(0, str(src_path))
 
-# 2. 加载环境变量
+# 2. 设置环境并检查必要的 secrets
+# 注意：敏感信息从 config/secrets/secrets.yaml 加载
 from utils.load_env import setup_environment
-setup_environment(load_env_file_name=".env", check_env_var="MONGODB_HOST")
+setup_environment(check_secrets=["openai_api_key"])
 
 # ===== 现在可以安全地导入 Parallax 组件 =====
 from eval.core.loaders import load_dataset

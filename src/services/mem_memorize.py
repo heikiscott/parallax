@@ -2,6 +2,7 @@ import random
 import time
 import json
 import traceback
+from config import load_config
 from memory.orchestrator import MemorizeRequest, MemorizeOfflineRequest
 from memory.orchestrator import ExtractionOrchestrator
 from memory.schema import MemoryType, MemUnit, Memory, SemanticMemoryItem, SourceType, EventLog
@@ -19,6 +20,11 @@ from memory.extraction.memory.group_profile import (
     GroupProfileMemoryExtractRequest,
 )
 from core.di import get_bean_by_type, enable_mock_mode, scan_packages
+
+
+def _get_llm_config():
+    """从 YAML 配置文件读取 LLM 配置"""
+    return load_config("src/providers").llm
 from providers.database.redis_provider import RedisProvider
 from infra.adapters.out.persistence.repository.episodic_memory_raw_repository import (
     EpisodicMemoryRawRepository,
@@ -49,7 +55,6 @@ from services.conversation_data_repo import ConversationDataRepository
 from typing import List, Dict, Optional
 import uuid
 from datetime import datetime, timedelta
-import os
 import asyncio
 from collections import defaultdict
 from utils.datetime_utils import get_now_with_timezone, to_iso_format, from_iso_format
@@ -109,7 +114,6 @@ async def _trigger_clustering(group_id: str, memunit: MemUnit, scene: Optional[s
         from memory.profile_manager import ProfileManager, ProfileManagerConfig, MongoProfileStorage
         from providers.llm.llm_provider import LLMProvider
         from core.di import get_bean_by_type
-        import os
         
         logger.info(f"[聚类] 正在获取 MongoClusterStorage...")
         # 获取 MongoDB 存储
@@ -130,13 +134,15 @@ async def _trigger_clustering(group_id: str, memunit: MemUnit, scene: Optional[s
         profile_storage = get_bean_by_type(MongoProfileStorage)
         logger.info(f"[聚类] MongoProfileStorage 获取成功: {type(profile_storage)}")
         
+        # 从 YAML 配置文件读取 LLM 配置
+        llm_cfg = _get_llm_config()
         llm_provider = LLMProvider(
-            provider_type=os.getenv("LLM_PROVIDER", "openai"),
-            model=os.getenv("LLM_MODEL", "gpt-4"),
-            base_url=os.getenv("LLM_BASE_URL"),
-            api_key=os.getenv("LLM_API_KEY"),
-            temperature=float(os.getenv("LLM_TEMPERATURE", "0.3")),
-            max_tokens=int(os.getenv("LLM_MAX_TOKENS", "16384"))
+            provider_type=llm_cfg.provider,
+            model=llm_cfg.model,
+            base_url=llm_cfg.base_url,
+            api_key=llm_cfg.api_key,
+            temperature=float(llm_cfg.temperature),
+            max_tokens=int(llm_cfg.max_tokens)
         )
         
         # 根据 scene 决定 Profile 提取场景

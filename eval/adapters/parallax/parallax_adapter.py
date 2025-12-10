@@ -6,7 +6,6 @@ Parallax Adapter
 import asyncio
 import json
 import logging
-import os
 import pickle
 import time
 from pathlib import Path
@@ -92,22 +91,9 @@ class ParallaxAdapter(BaseAdapter):
         # 确保 NLTK 数据可用
         stage2_index_building.ensure_nltk_data()
 
-        logger.info(f"Parallax Adapter initialized")
-        logger.info(f"LLM Model: {llm_config.get('model')}")
+        logger.info("Parallax Adapter initialized")
+        logger.info(f"LLM Model: {llm_provider_config.get('model')}")
         logger.info(f"Output Dir: {self.output_dir}")
-
-        # Debug: Print environment configuration
-        llm_api_key = os.getenv("LLM_API_KEY", "")
-        if llm_api_key:
-            logger.debug(f"🔑 LLM_API_KEY loaded: {llm_api_key[:20]}... (len={len(llm_api_key)})")
-        else:
-            logger.debug(f"⚠️  LLM_API_KEY not found in environment!")
-
-        logger.debug(f"Concurrency Config - Extraction: {os.getenv('EVAL_EXTRACTION_MAX_CONCURRENT', '5')}")
-        logger.debug(f"Concurrency Config - Indexing: {os.getenv('EVAL_INDEXING_MAX_CONCURRENT', '5')}")
-        logger.debug(f"Concurrency Config - Retrieval: {os.getenv('EVAL_RETRIEVAL_MAX_CONCURRENT', '5')}")
-        logger.debug(f"Concurrency Config - Response: {os.getenv('EVAL_RESPONSE_MAX_CONCURRENT', '5')}")
-        logger.debug(f"Concurrency Config - Judgment: {os.getenv('EVAL_JUDGMENT_MAX_CONCURRENT', '5')}")
     
     @staticmethod
     def _extract_conv_index(conversation_id: str) -> str:
@@ -744,8 +730,8 @@ class ParallaxAdapter(BaseAdapter):
             config._data["llm"][provider].update({
                 "provider": provider,
                 "model": llm_cfg.get("model", config.llm[provider].model if hasattr(config.llm, provider) else "gpt-4o-mini"),
-                "api_key": llm_cfg.get("api_key") or os.getenv("LLM_API_KEY", ""),
-                "base_url": llm_cfg.get("base_url") or os.getenv("LLM_BASE_URL", "https://api.openai.com/v1"),
+                "api_key": llm_cfg.get("api_key", ""),
+                "base_url": llm_cfg.get("base_url", "https://api.openai.com/v1"),
                 "temperature": llm_cfg.get("temperature", 0.0),
                 "max_tokens": int(llm_cfg.get("max_tokens", 32768)),
             })

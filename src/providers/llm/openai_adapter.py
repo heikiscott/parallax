@@ -1,5 +1,4 @@
 from typing import Dict, Any, List, Union, AsyncGenerator
-import os
 import openai
 from core.di.decorators import service
 from providers.llm.llm_backend_adapter import LLMBackendAdapter
@@ -8,6 +7,12 @@ from providers.llm.completion import (
     ChatCompletionResponse,
 )
 from core.constants.errors import ErrorMessage
+from config import load_config
+
+
+def _get_provider_config():
+    """获取 provider 配置"""
+    return load_config("src/providers")
 
 
 class OpenAIAdapter(LLMBackendAdapter):
@@ -16,8 +21,14 @@ class OpenAIAdapter(LLMBackendAdapter):
     def __init__(self, config: Dict[str, Any]):
         # 保存配置
         self.config = config
-        self.api_key = config.get("api_key") or os.getenv("OPENAI_API_KEY")
-        self.base_url = config.get("base_url") or os.getenv("OPENAI_BASE_URL")
+
+        # 从 YAML 配置加载默认值
+        cfg = _get_provider_config()
+        llm_cfg = cfg.llm
+
+        # API Key 和 Base URL (优先级: 参数 > YAML)
+        self.api_key = config.get("api_key") or llm_cfg.api_key
+        self.base_url = config.get("base_url") or llm_cfg.base_url
         self.timeout = config.get("timeout", 600)
 
         if not self.api_key:

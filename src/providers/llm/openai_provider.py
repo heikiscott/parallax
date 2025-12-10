@@ -5,7 +5,6 @@ This provider uses official OpenAI Python SDK (openai.AsyncOpenAI) with openlimi
 for intelligent rate limiting and token management.
 """
 
-import os
 import time
 import asyncio
 import httpx
@@ -16,8 +15,14 @@ from aiolimiter import AsyncLimiter
 
 from .protocol import LLMProvider, LLMError
 from core.observation.logger import get_logger
+from config import load_config
 
 logger = get_logger(__name__)
+
+# 加载配置（带缓存）
+def _get_provider_config():
+    """获取 provider 配置"""
+    return load_config("src/providers")
 
 
 class OpenAIProvider(LLMProvider):
@@ -48,51 +53,42 @@ class OpenAIProvider(LLMProvider):
         Initialize OpenAI provider.
 
         Args:
-            model: Model name (defaults to LLM_MODEL env var or "gpt-4o-mini")
-            api_key: OpenAI API key (defaults to LLM_API_KEY/OPENAI_API_KEY env var)
-            base_url: OpenAI base URL (defaults to LLM_BASE_URL env var)
-            temperature: Sampling temperature (defaults to LLM_TEMPERATURE env var or 0.0)
-            max_tokens: Maximum tokens to generate (defaults to LLM_MAX_TOKENS env var or 16384)
+            model: Model name (defaults to config)
+            api_key: OpenAI API key (defaults to OPENAI_API_KEY env var)
+            base_url: OpenAI base URL (defaults to config)
+            temperature: Sampling temperature (defaults to config)
+            max_tokens: Maximum tokens to generate (defaults to config)
             enable_stats: Enable usage statistics accumulation (default: False)
             **kwargs: Additional arguments (ignored for now)
 
-        Environment Variables:
-            LLM_MODEL: Model name (default: "gpt-4o-mini")
-            LLM_API_KEY / OPENAI_API_KEY: API key (required)
-            LLM_BASE_URL: Base URL (default: "https://api.openai.com/v1")
-            LLM_TEMPERATURE: Sampling temperature (default: 0.0)
-            LLM_MAX_TOKENS: Max completion tokens (default: 16384)
-            OPENAI_TIMEOUT: API timeout in seconds (default: 40)
-            OPENAI_MAX_RETRIES: SDK-level retry attempts (default: 0, disabled)
-            OPENAI_MAX_CONCURRENT: Physical concurrency limit (default: 20)
-            OPENAI_RPM_LIMIT: Requests per minute rate limit (default: 500)
-            OPENAI_RETRY_MIN_WAIT: Minimum retry wait time in seconds (default: 5)
-            OPENAI_RETRY_MAX_WAIT: Maximum retry wait time in seconds (default: 60)
-            OPENAI_RETRY_ATTEMPTS: Maximum retry attempts (default: 20)
+        Configuration:
+            配置来源: config/src/providers.yaml
+            API Key 来源: config/secrets/secrets.yaml（通过 ${OPENAI_API_KEY} 注入）
         """
-        # Read from environment variables with fallbacks
-        self.model = model or os.getenv("LLM_MODEL", "gpt-4o-mini")
-        self.temperature = temperature if temperature is not None else float(os.getenv("LLM_TEMPERATURE", "0.0"))
-        self.max_tokens = max_tokens if max_tokens is not None else int(os.getenv("LLM_MAX_TOKENS", "16384"))
+        # 加载配置文件
+        cfg = _get_provider_config()
+        llm_cfg = cfg.llm
+        openai_cfg = cfg.openai
+
+        # LLM 基础配置 (优先级: 参数 > YAML)
+        self.model = model or llm_cfg.model
+        self.temperature = temperature if temperature is not None else llm_cfg.temperature
+        self.max_tokens = max_tokens if max_tokens is not None else llm_cfg.max_tokens
         self.enable_stats = enable_stats
 
-        # Use OpenAI official API key and base URL
-        # Try LLM_API_KEY first (from .env), then fall back to OPENAI_API_KEY
-        self.api_key = api_key or os.getenv("LLM_API_KEY") or os.getenv("OPENAI_API_KEY")
-        self.base_url = base_url or os.getenv("LLM_BASE_URL") or "https://api.openai.com/v1"
+        # API Key 从配置读取（secrets.yaml 会自动注入）
+        self.api_key = api_key or llm_cfg.api_key
+        self.base_url = base_url or llm_cfg.base_url
 
-        # Read rate limiting configuration from environment
-        # Increase default timeout to 60s to prevent premature disconnections
-        self.timeout = float(os.getenv("OPENAI_TIMEOUT", "60"))
-        self.max_retries = int(os.getenv("OPENAI_MAX_RETRIES", "0"))  # Disable SDK retries, let eval framework handle it
+        # OpenAI Provider 配置
+        self.timeout = float(openai_cfg.timeout)
+        self.max_retries = int(openai_cfg.max_retries)
 
-        # Provider-level concurrency control (shared across all instances)
-        max_concurrent = int(os.getenv("OPENAI_MAX_CONCURRENT", "20"))
+        # Provider-level concurrency control
+        max_concurrent = int(openai_cfg.max_concurrent)
 
         # Rate limiting configuration
-        # Set to 80% of your OpenAI tier limit to leave safety margin
-        # Common tiers: Free (~60 RPM), Tier 1 (~500 RPM), Tier 2+ (~5000 RPM)
-        rpm_limit = int(os.getenv("OPENAI_RPM_LIMIT", "500"))
+        rpm_limit = int(openai_cfg.rpm_limit)
 
         # Configure httpx client with connection settings optimized for stability
         #
@@ -185,10 +181,13 @@ class OpenAIProvider(LLMProvider):
         Raises:
             LLMError: If generation fails
         """
-        # Read retry configuration from environment
-        retry_min_wait = int(os.getenv("OPENAI_RETRY_MIN_WAIT", "1"))
-        retry_max_wait = int(os.getenv("OPENAI_RETRY_MAX_WAIT", "60"))
-        retry_attempts = int(os.getenv("OPENAI_RETRY_ATTEMPTS", "5"))
+        # Read retry configuration from YAML
+        cfg = _get_provider_config()
+        retry_cfg = cfg.openai.retry
+
+        retry_min_wait = int(retry_cfg.min_wait)
+        retry_max_wait = int(retry_cfg.max_wait)
+        retry_attempts = int(retry_cfg.attempts)
 
         try:
             # Layer 1: Physical concurrency control (outside retry loop)

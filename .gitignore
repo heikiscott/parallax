@@ -62,6 +62,9 @@ ENV/
 env.bak/
 venv.bak/
 
+# Secrets (keep only template)
+config/secrets/secrets.yaml
+
 # IDE Settings
 .vscode/
 .idea/

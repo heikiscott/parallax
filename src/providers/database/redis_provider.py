@@ -2,6 +2,9 @@
 Redis连接提供者
 
 提供Redis连接池管理和基础操作的技术组件
+
+配置来源: config/src/databases.yaml
+敏感信息（密码）来源: .env 文件
 """
 
 import os
@@ -12,8 +15,14 @@ from redis.asyncio.connection import ConnectionPool
 
 from core.di.decorators import component
 from core.observation.logger import get_logger
+from config import load_config
 
 logger = get_logger(__name__)
+
+
+def _get_redis_config():
+    """获取 Redis 配置"""
+    return load_config("src/databases").redis
 
 
 @component(name="redis_provider", primary=True)
@@ -22,12 +31,15 @@ class RedisProvider:
 
     def __init__(self):
         """初始化Redis连接提供者"""
-        # 从环境变量读取Redis配置
-        self.redis_host = os.getenv("REDIS_HOST", "localhost")
-        self.redis_port = int(os.getenv("REDIS_PORT", "6379"))
-        self.redis_db = int(os.getenv("REDIS_DB", "0"))
-        self.redis_password = os.getenv("REDIS_PASSWORD")
-        self.redis_ssl = os.getenv("REDIS_SSL", "false").lower() == "true"
+        # 从 YAML 配置文件读取 Redis 配置
+        cfg = _get_redis_config()
+
+        self.redis_host = cfg.host
+        self.redis_port = int(cfg.port)
+        self.redis_db = int(cfg.db)
+        # 密码从 .env 读取（通过 YAML 的 ${VAR} 语法注入）
+        self.redis_password = cfg.password if cfg.password else None
+        self.redis_ssl = cfg.ssl
 
         # 构建Redis URL
         protocol = "rediss" if self.redis_ssl else "redis"
@@ -38,12 +50,10 @@ class RedisProvider:
                 f"{protocol}://{self.redis_host}:{self.redis_port}/{self.redis_db}"
             )
 
-        # 其他配置使用默认值
-        self.max_connections = int(os.getenv("REDIS_MAX_CONNECTIONS", "60"))
-        self.socket_timeout = int(os.getenv("REDIS_SOCKET_TIMEOUT", "15"))
-        self.socket_connect_timeout = int(
-            os.getenv("REDIS_SOCKET_CONNECT_TIMEOUT", "5")
-        )
+        # 连接池配置（使用默认值，可在 YAML 中扩展）
+        self.max_connections = 60
+        self.socket_timeout = 15
+        self.socket_connect_timeout = 5
 
         # 命名客户端缓存
         self._named_clients = {}

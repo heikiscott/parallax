@@ -1,0 +1,37 @@
+# =============================================================================
+# 应用级配置
+# =============================================================================
+#
+# 此文件包含应用级别的通用配置
+#
+# 使用方法:
+#   from config import load_config
+#   config = load_config("app")
+#   print(config.log_level)
+# =============================================================================
+
+# ===================
+# Environment & Logging
+# ===================
+
+log_level: "INFO"
+env: "dev"
+memory_language: "zh"
+
+# ===================
+# API Server Configuration
+# ===================
+
+api_base_url: "http://localhost:8001"
+
+# ===================
+# Evaluation Configuration / 评估配置
+# ===================
+
+evaluation:
+  # Answer stage batch processing / Answer 阶段批处理配置
+  # Batch 只负责批次管理，超时和并发由 Provider 层控制
+  answer:
+    batch_size: 20              # 每批次处理的请求数（batch间串行，batch内并发）
+    batch_delay: 3              # batch间延迟（秒），用于主动降低请求频率
+    request_interval: 1.0       # batch内请求间隔（秒），控制请求发送速率

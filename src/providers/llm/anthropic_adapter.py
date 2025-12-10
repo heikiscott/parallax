@@ -2,7 +2,6 @@ import json
 import time
 import asyncio
 from typing import Dict, Any, List, Union, AsyncGenerator
-import os
 import httpx
 from core.di.decorators import service
 
@@ -13,6 +12,12 @@ from providers.llm.completion import (
 from providers.llm.message import MessageRole
 from providers.llm.llm_backend_adapter import LLMBackendAdapter
 from core.constants.errors import ErrorMessage
+from config import load_config
+
+
+def _get_provider_config():
+    """获取 provider 配置"""
+    return load_config("src/providers")
 
 
 class AnthropicAdapter(LLMBackendAdapter):
@@ -20,10 +25,16 @@ class AnthropicAdapter(LLMBackendAdapter):
 
     def __init__(self, config: Dict[str, Any]):
         self.config = config
-        self.base_url = config.get("base_url")
-        self.api_key = config.get("api_key") or os.getenv("ANTHROPIC_API_KEY")
-        self.timeout = config.get("timeout", 60)
-        self.max_retries = config.get("max_retries", 3)
+
+        # 从 YAML 配置加载默认值
+        cfg = _get_provider_config()
+        anthropic_cfg = cfg.anthropic
+
+        # API Key 和 Base URL (优先级: 参数 > YAML)
+        self.api_key = config.get("api_key") or anthropic_cfg.api_key
+        self.base_url = config.get("base_url") or anthropic_cfg.base_url
+        self.timeout = config.get("timeout", anthropic_cfg.timeout)
+        self.max_retries = config.get("max_retries", anthropic_cfg.max_retries)
 
         if not self.api_key or not self.base_url:
             raise ValueError(ErrorMessage.INVALID_PARAMETER.value)

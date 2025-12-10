@@ -1,0 +1,27 @@
+# =============================================================================
+# DeepInfra Embedding 配置
+# =============================================================================
+#
+# 此文件包含 DeepInfra Embedding 服务的配置
+# 敏感信息（API Key）通过 ${VAR} 语法从 config/secrets/secrets.yaml 注入
+#
+# 使用方法:
+#   from config import load_config
+#   config = load_config("src/embedding")
+#   print(config.embedding.model)
+# =============================================================================
+
+# ===================
+# DeepInfra Embedding Service - 用于文本向量化
+# ===================
+
+embedding:
+  api_key: "${DEEPINFRA_API_KEY}"
+  base_url: "https://api.deepinfra.com/v1/openai"
+  model: "Qwen/Qwen3-Embedding-4B"
+  timeout: 30
+  max_retries: 3
+  batch_size: 10
+  max_concurrent: 5
+  encoding_format: "float"
+  dimensions: 1024

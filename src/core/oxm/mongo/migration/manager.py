@@ -5,7 +5,6 @@ This module provides a high-level interface for managing MongoDB database migrat
 using Beanie as the underlying migration engine.
 """
 
-import os
 import logging
 import subprocess
 import sys
@@ -15,6 +14,7 @@ from typing import Optional
 
 from utils.project_path import CURRENT_DIR
 from pymongo import MongoClient
+from config import load_config
 
 # Module-level logger for this file
 logger = logging.getLogger(__name__)
@@ -115,25 +115,23 @@ class Backward:
 
     @staticmethod
     def _get_mongodb_uri() -> str:
-        """Get MongoDB URI from environment variables"""
-        base_uri = None
-        if uri := os.getenv("MONGODB_URI"):
-            base_uri = uri
-        else:
-            # Build URI from separate environment variables
-            host = os.getenv("MONGODB_HOST", "localhost")
-            port = os.getenv("MONGODB_PORT", "27017")
-            username = os.getenv("MONGODB_USERNAME", "")
-            password = os.getenv("MONGODB_PASSWORD", "")
-            database = os.getenv("MONGODB_DATABASE", "memsys")
+        """Get MongoDB URI from config/src/databases.yaml"""
+        cfg = load_config("src/databases")
+        mongo_cfg = cfg.mongodb
 
-            if username and password:
-                base_uri = f"mongodb://{username}:{password}@{host}:{port}/{database}"
-            else:
-                base_uri = f"mongodb://{host}:{port}/{database}"
+        host = mongo_cfg.host
+        port = str(mongo_cfg.port)
+        username = mongo_cfg.username or ""
+        password = mongo_cfg.password or ""
+        database = mongo_cfg.database
+
+        if username and password:
+            base_uri = f"mongodb://{username}:{password}@{host}:{port}/{database}"
+        else:
+            base_uri = f"mongodb://{host}:{port}/{database}"
 
         # 追加 URI 参数（如果有）
-        uri_params = os.getenv("MONGODB_URI_PARAMS", "").strip()
+        uri_params = (mongo_cfg.uri_params or "").strip()
         if uri_params:
             separator = '&' if ('?' in base_uri) else '?'
             return f"{base_uri}{separator}{uri_params}"
@@ -141,8 +139,9 @@ class Backward:
 
     @staticmethod
     def _get_mongodb_database() -> str:
-        """Get MongoDB database name from environment"""
-        return os.getenv("MONGODB_DATABASE", "memsys")
+        """Get MongoDB database name from config"""
+        cfg = load_config("src/databases")
+        return cfg.mongodb.database
 
     def _ensure_migrations_dir(self):
         """Ensure migrations directory exists"""

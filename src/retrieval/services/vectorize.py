@@ -8,7 +8,6 @@ This module provides methods to call DeepInfra API for getting text embeddings.
 
 from __future__ import annotations
 
-import os
 import asyncio
 import logging
 from abc import ABC, abstractmethod
@@ -18,8 +17,14 @@ import numpy as np
 from openai import AsyncOpenAI
 
 from core.di import get_bean, service
+from config import load_config
 
 logger = logging.getLogger(__name__)
+
+
+def _get_embedding_config():
+    """获取 embedding 配置"""
+    return load_config("src/embedding")
 
 
 @dataclass
@@ -38,31 +43,36 @@ class DeepInfraConfig:
     dimensions: int = 1024
 
     def __post_init__(self):
-        """初始化后从环境变量加载配置值"""
+        """初始化后从配置文件加载配置值
+
+        配置来源: config/src/embedding.yaml
+        API Key 来源: config/secrets/secrets.yaml（通过 ${DEEPINFRA_API_KEY} 注入）
+        """
+        # 加载 YAML 配置
+        cfg = _get_embedding_config()
+        emb_cfg = cfg.embedding
+
+        # API Key 从配置读取（secrets.yaml 会自动注入）
         if not self.api_key:
-            self.api_key = os.getenv("DEEPINFRA_API_KEY", "")
+            self.api_key = emb_cfg.api_key
+
+        # 其他配置从 YAML 读取
         if not self.base_url:
-            self.base_url = os.getenv(
-                "DEEPINFRA_BASE_URL", "https://api.deepinfra.com/v1/openai"
-            )
+            self.base_url = emb_cfg.base_url
         if not self.model:
-            self.model = os.getenv(
-                "DEEPINFRA_EMBEDDING_MODEL", "Qwen/Qwen3-Embedding-4B"
-            )
-        if self.timeout == 30:  # 使用默认值时才从环境变量读取
-            self.timeout = int(os.getenv("DEEPINFRA_TIMEOUT", "30"))
-        if self.max_retries == 3:  # 使用默认值时才从环境变量读取
-            self.max_retries = int(os.getenv("DEEPINFRA_MAX_RETRIES", "3"))
-        if self.batch_size == 10:  # 使用默认值时才从环境变量读取
-            self.batch_size = int(os.getenv("DEEPINFRA_BATCH_SIZE", "10"))
-        if self.max_concurrent_requests == 5:  # 使用默认值时才从环境变量读取
-            self.max_concurrent_requests = int(
-                os.getenv("DEEPINFRA_MAX_CONCURRENT", "5")
-            )
-        if self.encoding_format == "float":  # 使用默认值时才从环境变量读取
-            self.encoding_format = os.getenv("DEEPINFRA_ENCODING_FORMAT", "float")
-        if self.dimensions == 1024:  # 使用默认值时才从环境变量读取
-            self.dimensions = int(os.getenv("DEEPINFRA_DIMENSIONS", "1024"))
+            self.model = emb_cfg.model
+        if self.timeout == 30:
+            self.timeout = int(emb_cfg.timeout)
+        if self.max_retries == 3:
+            self.max_retries = int(emb_cfg.max_retries)
+        if self.batch_size == 10:
+            self.batch_size = int(emb_cfg.batch_size)
+        if self.max_concurrent_requests == 5:
+            self.max_concurrent_requests = int(emb_cfg.max_concurrent)
+        if self.encoding_format == "float":
+            self.encoding_format = emb_cfg.encoding_format
+        if self.dimensions == 1024:
+            self.dimensions = int(emb_cfg.dimensions)
 
 
 class DeepInfraError(Exception):
@@ -175,16 +185,9 @@ class DeepInfraVectorizeService(DeepInfraVectorizeServiceInterface):
                 config = get_bean("deepinfra_config")
                 logger.info("DeepInfra config source: DI bean 'deepinfra_config'")
             except Exception:
-                # 如果依赖注入失败，从环境变量读取
+                # 如果依赖注入失败，从配置文件读取
                 config = self._load_config_from_env()
-                # 打印.env传入情况（不输出密钥内容）
-                logger.info(
-                    "DeepInfra config source: env | DEEPINFRA_API_KEY set=%s | DEEPINFRA_BASE_URL=%s | DEEPINFRA_EMBEDDING_MODEL=%s | DEEPINFRA_DIMENSIONS=%s",
-                    bool(os.getenv("DEEPINFRA_API_KEY")),
-                    os.getenv("DEEPINFRA_BASE_URL"),
-                    os.getenv("DEEPINFRA_EMBEDDING_MODEL"),
-                    os.getenv("DEEPINFRA_DIMENSIONS"),
-                )
+                logger.info("DeepInfra config source: config/src/embedding.yaml")
 
         # 规范化配置，避免后续请求异常
         # 确保 base_url 包含协议
@@ -193,10 +196,8 @@ class DeepInfraVectorizeService(DeepInfraVectorizeServiceInterface):
             base_url.startswith("http://") or base_url.startswith("https://")
         ):
             base_url = f"https://{base_url}"
-        # 确保模型非空
-        model = config.model or os.getenv(
-            "DEEPINFRA_EMBEDDING_MODEL", "Qwen/Qwen3-Embedding-4B"
-        )
+        # 确保模型非空（配置已在 YAML 中定义）
+        model = config.model
 
         # 写回配置对象
         config.base_url = base_url
@@ -220,19 +221,24 @@ class DeepInfraVectorizeService(DeepInfraVectorizeServiceInterface):
         return self.config.model
 
     def _load_config_from_env(self) -> DeepInfraConfig:
-        """从环境变量加载配置"""
+        """从配置文件加载配置
+
+        配置来源: config/src/embedding.yaml
+        API Key 来源: config/secrets/secrets.yaml（通过 ${DEEPINFRA_API_KEY} 注入）
+        """
+        cfg = _get_embedding_config()
+        emb_cfg = cfg.embedding
+
         return DeepInfraConfig(
-            api_key=os.getenv("DEEPINFRA_API_KEY", ""),
-            base_url=os.getenv(
-                "DEEPINFRA_BASE_URL", "https://api.deepinfra.com/v1/openai"
-            ),
-            model=os.getenv("DEEPINFRA_EMBEDDING_MODEL", "Qwen/Qwen3-Embedding-4B"),
-            timeout=int(os.getenv("DEEPINFRA_TIMEOUT", "30")),
-            max_retries=int(os.getenv("DEEPINFRA_MAX_RETRIES", "3")),
-            batch_size=int(os.getenv("DEEPINFRA_BATCH_SIZE", "10")),
-            max_concurrent_requests=int(os.getenv("DEEPINFRA_MAX_CONCURRENT", "5")),
-            encoding_format=os.getenv("DEEPINFRA_ENCODING_FORMAT", "float"),
-            dimensions=int(os.getenv("DEEPINFRA_DIMENSIONS", "1024")),
+            api_key=emb_cfg.api_key,
+            base_url=emb_cfg.base_url,
+            model=emb_cfg.model,
+            timeout=int(emb_cfg.timeout),
+            max_retries=int(emb_cfg.max_retries),
+            batch_size=int(emb_cfg.batch_size),
+            max_concurrent_requests=int(emb_cfg.max_concurrent),
+            encoding_format=emb_cfg.encoding_format,
+            dimensions=int(emb_cfg.dimensions),
         )
 
     async def __aenter__(self):

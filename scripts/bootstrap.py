@@ -89,14 +89,15 @@ def file_path_to_module_name(target_path: Path, src_path: Path) -> str:
             return target_path.stem
 
 
-async def setup_project_context(env_file=".env", mock_mode=False):
+async def setup_project_context(mock_mode=False):
     """
     设置项目上下文环境 - 完全照抄 run.py 的加载逻辑
     """
     from utils.load_env import setup_environment
 
-    # 设置环境（Python路径和.env文件）
-    setup_environment(load_env_file_name=env_file, check_env_var="MONGODB_HOST")
+    # 设置环境
+    # 注意：敏感信息从 config/secrets/secrets.yaml 加载
+    setup_environment()
 
     # 照抄 run.py 的 Mock 模式检查逻辑
     from core.di.utils import enable_mock_mode
@@ -153,12 +154,6 @@ async def async_main():
         'script_args', nargs=argparse.REMAINDER, help="传递给目标脚本的参数"
     )
     parser.add_argument(
-        "--env-file",
-        type=str,
-        default=".env",
-        help="指定要加载的环境变量文件 (默认: .env)",
-    )
-    parser.add_argument(
         "--mock", action="store_true", help="启用Mock模式 (用于测试和开发)"
     )
 
@@ -168,12 +163,11 @@ async def async_main():
     logger.info("=" * 50)
     logger.info(f"📄 目标脚本: {args.script_path}")
     logger.info(f"📝 脚本参数: {args.script_args}")
-    logger.info(f"📄 Env File: {args.env_file}")
     logger.info(f"🎭 Mock 模式: {'启用' if args.mock else '禁用'}")
     logger.info("=" * 50)
 
     # 设置项目上下文（完全照抄 run.py 的逻辑）
-    await setup_project_context(env_file=args.env_file, mock_mode=args.mock)
+    await setup_project_context(mock_mode=args.mock)
 
     # 验证目标脚本是否存在
     script_path = Path(args.script_path)

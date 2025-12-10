@@ -11,16 +11,11 @@ Task Worker - 异步任务处理器启动脚本
 使用方法:
     arq scripts.task.WorkerSettings
 
-环境变量:
-    REDIS_HOST: Redis主机地址 (默认: localhost)
-    REDIS_PORT: Redis端口 (默认: 6379)
-    REDIS_DB: Redis数据库编号 (默认: 0)
-    REDIS_PASSWORD: Redis密码 (可选)
-    REDIS_SSL: 是否使用SSL (默认: false)
-    REDIS_USERNAME: Redis用户名 (可选)
+配置来源:
+    - Redis 配置: config/src/databases.yaml
+    - 敏感信息: config/secrets/secrets.yaml
 """
 
-import os
 import logging
 import sys
 from pathlib import Path
@@ -46,10 +41,10 @@ if str(project_root) not in sys.path:
     sys.path.insert(0, str(project_root))
 
 # 使用统一的环境加载工具
-# 设置.env文件
+# 注意：敏感信息从 config/secrets/secrets.yaml 加载
 from utils.load_env import setup_environment
 
-setup_environment(check_env_var="REDIS_HOST")
+setup_environment()
 
 # 显示应用启动信息
 logger.info("🚀 启动 %s v%s", APP_NAME, APP_VERSION)
@@ -101,20 +96,28 @@ async def shutdown(_ctx):
 
 
 from core.asynctasks.task_manager import get_task_manager
+from config import load_config
+
+
+def _get_redis_settings() -> RedisSettings:
+    """从配置文件加载 Redis 设置"""
+    cfg = load_config("src/databases")
+    redis_cfg = cfg.redis
+    return RedisSettings(
+        host=redis_cfg.host,
+        port=int(redis_cfg.port),
+        database=int(redis_cfg.db),
+        password=redis_cfg.password or None,
+        ssl=bool(redis_cfg.ssl),
+        username=redis_cfg.username or None,
+    )
 
 
 class WorkerSettings:
     functions = get_task_manager().get_worker_functions()
     on_startup = startup
     on_shutdown = shutdown
-    redis_settings = RedisSettings(
-        host=os.getenv("REDIS_HOST", "localhost"),
-        port=int(os.getenv("REDIS_PORT", "6379")),
-        database=int(os.getenv("REDIS_DB", "0")),
-        password=os.getenv("REDIS_PASSWORD", "123456"),
-        ssl=os.getenv("REDIS_SSL", "false").lower() == "true",
-        username=os.getenv("REDIS_USERNAME"),
-    )
+    redis_settings = _get_redis_settings()
     health_check_interval = 30
     max_jobs = 10
     job_timeout = 300

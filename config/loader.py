@@ -3,7 +3,7 @@
 
 支持:
 1. YAML 配置文件加载
-2. 环境变量替换 (${VAR} 或 ${VAR:default})
+2. 自动加载 secrets.yaml 中的敏感信息
 3. 点访问 (config.retrieval.mode)
 4. 配置缓存（避免重复加载）
 
@@ -18,6 +18,10 @@
     # 加载数据集配置
     dataset = load_config("eval/datasets/locomo")
     print(dataset.data.path)
+
+    # 直接访问 secrets
+    secrets = load_secrets()
+    print(secrets.openai_api_key)
 """
 import os
 import re
@@ -25,6 +29,54 @@ import yaml
 from pathlib import Path
 from typing import Any, Dict, Optional, Union
 from functools import lru_cache
+
+
+# ============================================================================
+# Secrets 加载（全局单例）
+# ============================================================================
+
+_secrets_cache: Optional[Dict[str, Any]] = None
+
+
+def _get_secrets_path() -> Path:
+    """获取 secrets.yaml 文件路径"""
+    return Path(__file__).parent / "secrets" / "secrets.yaml"
+
+
+def _load_secrets_dict() -> Dict[str, Any]:
+    """加载 secrets.yaml 为字典（带缓存）"""
+    global _secrets_cache
+    if _secrets_cache is not None:
+        return _secrets_cache
+
+    secrets_path = _get_secrets_path()
+    if not secrets_path.exists():
+        template_path = secrets_path.parent / "secrets.template.yaml"
+        raise FileNotFoundError(
+            f"Secrets file not found: {secrets_path}\n"
+            f"Please copy the template and fill in your secrets:\n"
+            f"  cp {template_path} {secrets_path}"
+        )
+
+    with open(secrets_path, 'r', encoding='utf-8') as f:
+        _secrets_cache = yaml.safe_load(f) or {}
+
+    return _secrets_cache
+
+
+def load_secrets() -> "ConfigDict":
+    """
+    加载 secrets 配置
+
+    Returns:
+        ConfigDict 对象，支持点访问
+
+    Examples:
+        secrets = load_secrets()
+        print(secrets.openai_api_key)
+        print(secrets.mongodb.password)
+    """
+    return ConfigDict(_load_secrets_dict())
 
 
 class ConfigDict:
@@ -94,36 +146,104 @@ def _get_config_dir() -> Path:
     return Path(__file__).parent
 
 
+def _get_secret_value(key: str) -> Optional[str]:
+    """
+    从 secrets.yaml 获取值
+
+    支持点分隔的 key，如 "mongodb.password"
+    同时支持旧的环境变量风格 key 映射，如 "OPENAI_API_KEY" -> "openai_api_key"
+    """
+    secrets = _load_secrets_dict()
+
+    # 尝试直接查找（支持点分隔）
+    keys = key.split(".")
+    value = secrets
+    try:
+        for k in keys:
+            if isinstance(value, dict):
+                value = value[k]
+            else:
+                return None
+        return str(value) if value is not None else None
+    except (KeyError, TypeError):
+        pass
+
+    # 尝试将环境变量风格转换为小写下划线风格
+    # 例如: OPENAI_API_KEY -> openai_api_key
+    lowercase_key = key.lower()
+    if lowercase_key in secrets:
+        value = secrets[lowercase_key]
+        return str(value) if value is not None else None
+
+    # 环境变量前缀到 secrets key 的映射
+    # 例如: ES_USERNAME -> elasticsearch.username
+    prefix_aliases = {
+        "es": "elasticsearch",
+    }
+
+    # 尝试嵌套结构映射
+    # 例如: MONGODB_PASSWORD -> mongodb.password
+    # 例如: ES_USERNAME -> elasticsearch.username
+    if "_" in lowercase_key:
+        parts = lowercase_key.split("_", 1)
+        if len(parts) == 2:
+            prefix = parts[0]
+            field = parts[1]
+            # 尝试别名映射
+            actual_prefix = prefix_aliases.get(prefix, prefix)
+            if actual_prefix in secrets:
+                nested = secrets[actual_prefix]
+                if isinstance(nested, dict) and field in nested:
+                    value = nested[field]
+                    return str(value) if value is not None else None
+
+    return None
+
+
 def _replace_env_vars(obj: Any) -> Any:
     """
-    递归替换配置中的环境变量
+    递归替换配置中的变量引用
 
     支持格式:
-    - ${VAR_NAME} - 必须存在的环境变量
+    - ${VAR_NAME} - 从 secrets.yaml 获取
     - ${VAR_NAME:default_value} - 带默认值
 
     类型转换:
     - ${VAR:123} -> int 123
     - ${VAR:1.5} -> float 1.5
     - ${VAR:true} -> bool True
+
+    变量名映射（自动转换）:
+    - OPENAI_API_KEY -> secrets.openai_api_key
+    - MONGODB_PASSWORD -> secrets.mongodb.password
     """
     if isinstance(obj, dict):
         return {key: _replace_env_vars(value) for key, value in obj.items()}
     elif isinstance(obj, list):
         return [_replace_env_vars(item) for item in obj]
     elif isinstance(obj, str):
-        pattern = r'\$\{([^:}]+)(?::([^}]+))?\}'
+        # 匹配 ${VAR} 或 ${VAR:default} 格式
+        # 注意：[^}]* 允许默认值为空，如 ${VAR:}
+        pattern = r'\$\{([^:}]+)(?::([^}]*))?\}'
 
         def replacer(match):
             var_name = match.group(1)
             default_value = match.group(2)
 
-            value = os.environ.get(var_name)
+            # 先从 secrets.yaml 获取
+            value = _get_secret_value(var_name)
+
+            # 如果 secrets 中没有，回退到环境变量
+            if value is None:
+                value = os.environ.get(var_name)
+
+            # 如果仍然没有值，使用默认值
             if value is None:
                 if default_value is not None:
+                    # 空字符串也是有效的默认值
                     value = default_value
                 else:
-                    # 环境变量不存在且无默认值，保持原样
+                    # 变量不存在且无默认值，保持原样
                     return match.group(0)
 
             return value

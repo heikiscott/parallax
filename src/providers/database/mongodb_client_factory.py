@@ -2,7 +2,9 @@
 MongoDB 客户端工厂
 
 提供基于配置的 MongoDB 客户端缓存和管理功能。
-支持从环境变量读取配置，提供默认客户端。
+
+配置来源: config/src/databases.yaml
+敏感信息（密码）来源: .env 文件
 """
 
 import os
@@ -18,8 +20,14 @@ from core.di.decorators import component
 from core.observation.logger import get_logger
 from utils.datetime_utils import timezone
 from core.oxm.mongo.document_base import DEFAULT_DATABASE
+from config import load_config
 
 logger = get_logger(__name__)
+
+
+def _get_mongodb_config():
+    """获取 MongoDB 配置"""
+    return load_config("src/databases").mongodb
 
 
 class MongoDBConfig:
@@ -79,32 +87,22 @@ class MongoDBConfig:
     @classmethod
     def from_env(cls, prefix: str = "") -> 'MongoDBConfig':
         """
-        从环境变量创建配置。
+        从 YAML 配置文件创建配置。
 
-        prefix 规则：若提供 prefix，将按 "{prefix}_XXX" 的形式读取变量，否则读取 "XXX"。
-        例如：prefix="a" 则读取 "A_MONGODB_URI"、"A_MONGODB_HOST" 等。
+        配置来源: config/src/databases.yaml
+        敏感信息（密码）来源: .env 文件（通过 YAML 的 ${VAR} 语法注入）
+
+        注意：prefix 参数保留用于未来扩展多数据库配置，当前仅使用默认配置。
         """
+        # 从 YAML 配置读取
+        cfg = _get_mongodb_config()
 
-        def _env(name: str, default: Optional[str] = None) -> Optional[str]:
-            if prefix == DEFAULT_DATABASE:
-                key = name
-            else:
-                prefix_upper = prefix.upper()
-                key = f"{prefix_upper}_{name}" if prefix else name
-            return os.getenv(key, default) if default is not None else os.getenv(key)
-
-        # 优先使用 MONGODB_URI
-        uri = _env("MONGODB_URI")
-        if uri:
-            return cls(uri=uri, database=_env("MONGODB_DATABASE", "memsys"))
-
-        # 分别读取各个配置项
-        host = _env("MONGODB_HOST", "localhost")
-        port = int(_env("MONGODB_PORT", "27017"))
-        username = _env("MONGODB_USERNAME")
-        password = _env("MONGODB_PASSWORD")
-        database = _env("MONGODB_DATABASE", "memsys")
-        uri_params = _env("MONGODB_URI_PARAMS", "")
+        host = cfg.host
+        port = int(cfg.port)
+        username = cfg.username if cfg.username else None
+        password = cfg.password if cfg.password else None
+        database = cfg.database
+        uri_params = cfg.uri_params if hasattr(cfg, 'uri_params') and cfg.uri_params else ""
 
         return cls(
             host=host,

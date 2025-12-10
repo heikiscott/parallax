@@ -507,24 +507,27 @@ class AgenticV3Controller(BaseController):
             
             # 2. 创建 LLM Provider
             from providers.llm.llm_provider import LLMProvider
-            import os
-            
-            # 从请求或环境变量获取配置
-            api_key = llm_config.get("api_key") or os.getenv("OPENROUTER_API_KEY") or os.getenv("OPENAI_API_KEY")
-            base_url = llm_config.get("base_url") or os.getenv("OPENROUTER_BASE_URL", "https://openrouter.ai/api/v1")
-            model = llm_config.get("model") or os.getenv("LLM_MODEL", "qwen/qwen3-235b-a22b-2507")
-            
+            from config import load_config
+
+            # 从 YAML 配置文件读取 LLM 配置作为默认值
+            llm_cfg = load_config("src/providers").llm
+
+            # 从请求覆盖或使用配置文件默认值
+            api_key = llm_config.get("api_key") or llm_cfg.api_key
+            base_url = llm_config.get("base_url") or llm_cfg.base_url
+            model = llm_config.get("model") or llm_cfg.model
+
             if not api_key:
-                raise ValueError("缺少 LLM API Key，请在 llm_config.api_key 中提供或设置环境变量 OPENROUTER_API_KEY/OPENAI_API_KEY")
-            
+                raise ValueError("缺少 LLM API Key，请在 llm_config.api_key 中提供或在 config/src/providers.yaml 中配置")
+
             # 创建 LLM Provider（使用 OpenAI 兼容接口）
             llm_provider = LLMProvider(
-                provider_type="openai",
+                provider_type=llm_cfg.provider,
                 api_key=api_key,
                 base_url=base_url,
                 model=model,
-                temperature=0.3,
-                max_tokens=2048,
+                temperature=float(llm_cfg.temperature),
+                max_tokens=int(llm_cfg.max_tokens),
             )
             
             logger.info(f"使用 LLM: {model} @ {base_url}")

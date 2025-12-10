@@ -1,0 +1,56 @@
+# =============================================================================
+# 数据库配置
+# =============================================================================
+#
+# 此文件包含所有数据库连接配置
+# 敏感信息（密码等）通过 ${VAR} 语法从 config/secrets/secrets.yaml 注入
+#
+# 使用方法:
+#   from config import load_config
+#   config = load_config("src/databases")
+#   print(config.redis.host)
+# =============================================================================
+
+# ===================
+# Redis Configuration - EverMemOS 需要
+# ===================
+
+redis:
+  host: "localhost"
+  port: 6379
+  db: 0
+  ssl: false
+  password: "${REDIS_PASSWORD:}"
+  username: "${REDIS_USERNAME:}"
+
+# ===================
+# MongoDB Configuration - EverMemOS 需要
+# ===================
+
+mongodb:
+  host: "localhost"
+  port: 27017
+  username: "${MONGODB_USERNAME:}"
+  password: "${MONGODB_PASSWORD:}"
+  database: "memsys"
+  uri_params: ""
+
+# ===================
+# Elasticsearch Configuration
+# ===================
+
+elasticsearch:
+  hosts: "http://localhost:9200"
+  username: "${ES_USERNAME:}"
+  password: "${ES_PASSWORD:}"
+  verify_certs: false
+  index_namespace: "memsys"
+
+# ===================
+# Milvus Configuration
+# ===================
+
+milvus:
+  host: "localhost"
+  port: 19530
+  collection_namespace: "memsys"

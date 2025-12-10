@@ -36,13 +36,8 @@ _app_state = None
 _initialized = False
 
 
-def setup_environment_and_app(env_file: str = ".env"):
-    """
-    设置环境和应用
-
-    Args:
-        env_file: 环境变量文件名
-    """
+def setup_environment_and_app():
+    """设置环境和应用"""
     global _initialized
     if _initialized:
         return
@@ -50,8 +45,9 @@ def setup_environment_and_app(env_file: str = ".env"):
     from utils.load_env import setup_environment
     from application_startup import setup_all
 
-    # 加载环境变量
-    setup_environment(load_env_file_name=env_file, check_env_var="GEMINI_API_KEY")
+    # 设置环境
+    # 注意：敏感信息从 config/secrets/secrets.yaml 加载
+    setup_environment()
 
     setup_all()
     _initialized = True

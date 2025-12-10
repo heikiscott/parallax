@@ -23,9 +23,9 @@ post_add_wait_seconds: 180  # 设置为 0 表示不等待，如发现需要可�
 # LLM configuration (for answer generation)
 llm:
   provider: "openai"
-  model: "openai/gpt-4.1-mini"
-  api_key: "${LLM_API_KEY}"
-  base_url: "${LLM_BASE_URL:https://openrouter.ai/api/v1}"
+  model: "gpt-4o-mini"
+  api_key: "${OPENAI_API_KEY}"
+  base_url: "https://api.openai.com/v1"
   temperature: 0
   max_tokens: 32768
 

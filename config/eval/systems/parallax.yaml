@@ -16,18 +16,18 @@ llm:
   service: "openai"  # openai | vllm
   openai:
     provider: "openai"
-    model: "${LLM_MODEL:gpt-4.1-mini}"
+    model: "gpt-4.1-mini"
     api_key: "${OPENAI_API_KEY}"
-    base_url: "${OPENAI_BASE_URL:https://api.openai.com/v1}"
-    temperature: ${LLM_TEMPERATURE:0.0}
-    max_tokens: ${LLM_MAX_TOKENS:16384}
+    base_url: "https://api.openai.com/v1"
+    temperature: 0
+    max_tokens: 32768
   vllm:
     provider: "openai"
     model: "Qwen3-30B"
     base_url: "http://0.0.0.0:8000/v1"
     api_key: "123"
     temperature: 0
-    max_tokens: 16384
+    max_tokens: 32768
 
 # ===== MemUnit 提取配置 =====
 extraction:

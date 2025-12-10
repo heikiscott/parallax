@@ -1,4 +1,3 @@
-import os
 import uuid
 import importlib
 import pkgutil
@@ -13,11 +12,17 @@ from arq.connections import RedisSettings
 from arq.jobs import Job
 from arq.worker import Worker, Function, func as arq_func
 
+from config import load_config
 from core.context.context_manager import ContextManager
 from core.context.context import get_current_user_info
 from core.di.decorators import component
 from core.observation.logger import get_logger
 from core.authorize.enums import Role
+
+
+def _get_redis_config():
+    """从 YAML 配置文件读取 Redis 配置"""
+    return load_config("src/databases").redis
 
 logger = get_logger(__name__)
 
@@ -118,18 +123,19 @@ class TaskManager:
 
     def _get_redis_settings(self) -> RedisSettings:
         """
-        从环境变量获取Redis配置
+        从 YAML 配置文件读取 Redis 配置
 
         Returns:
             RedisSettings: Redis连接配置
         """
+        cfg = _get_redis_config()
         return RedisSettings(
-            host=os.getenv("REDIS_HOST", "localhost"),
-            port=int(os.getenv("REDIS_PORT", "6379")),
-            database=int(os.getenv("REDIS_DB", "0")),
-            password=os.getenv("REDIS_PASSWORD"),
-            ssl=os.getenv("REDIS_SSL", "false").lower() == "true",
-            username=os.getenv("REDIS_USERNAME"),
+            host=cfg.host,
+            port=int(cfg.port),
+            database=int(cfg.db),
+            password=cfg.password if cfg.password else None,
+            ssl=str(cfg.ssl).lower() == "true",
+            username=cfg.username if cfg.username else None,
         )
 
     async def _get_pool(self) -> ArqRedis:

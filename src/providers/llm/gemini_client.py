@@ -1,5 +1,4 @@
 import asyncio
-import os
 from typing import Dict, Any, List, Union, AsyncGenerator, Optional
 from google.genai.client import Client
 from google.genai.types import GenerateContentConfig, ContentDict
@@ -8,6 +7,12 @@ from langchain_core.messages import HumanMessage, AIMessage, SystemMessage, Base
 from core.di.decorators import component
 from providers.core.config_provider import ConfigProvider
 from core.constants.errors import ErrorMessage
+from config import load_config
+
+
+def _get_provider_config():
+    """获取 provider 配置"""
+    return load_config("src/providers")
 
 
 @component(name="gemini_client", primary=True)
@@ -33,12 +38,16 @@ class GeminiClient:
 
         self._config = gemini_backends["gemini"]
 
-        # 获取API密钥，优先级：配置文件 > 环境变量
-        self.api_key = self._config.get("api_key") or os.getenv("GEMINI_API_KEY")
+        # 从 YAML 配置加载默认值
+        cfg = _get_provider_config()
+        gemini_cfg = cfg.gemini
+
+        # 获取 API 密钥（优先级：llm_backends 配置 > providers.yaml）
+        self.api_key = self._config.get("api_key") or gemini_cfg.api_key
         self.default_model = self._config.get("default_model") or self._config.get(
-            "model", "gemini-2.5-flash"
+            "model", gemini_cfg.model
         )
-        self.max_retries = self._config.get("max_retries", 3)
+        self.max_retries = self._config.get("max_retries", gemini_cfg.max_retries)
 
         if not self.api_key:
             raise ValueError(ErrorMessage.INVALID_PARAMETER.value)
@@ -273,12 +282,16 @@ class GeminiClient:
 
         self._config = gemini_backends["gemini"]
 
-        # 更新配置
-        self.api_key = self._config.get("api_key") or os.getenv("GEMINI_API_KEY")
+        # 从 YAML 配置加载默认值
+        cfg = _get_provider_config()
+        gemini_cfg = cfg.gemini
+
+        # 更新配置（优先级：llm_backends 配置 > providers.yaml）
+        self.api_key = self._config.get("api_key") or gemini_cfg.api_key
         self.default_model = self._config.get("default_model") or self._config.get(
-            "model", "gemini-2.5-flash"
+            "model", gemini_cfg.model
         )
-        self.max_retries = self._config.get("max_retries", 3)
+        self.max_retries = self._config.get("max_retries", gemini_cfg.max_retries)
 
         if not self.api_key:
             raise ValueError(ErrorMessage.INVALID_PARAMETER.value)

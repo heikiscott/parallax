@@ -1,0 +1,84 @@
+# =============================================================================
+# LLM Provider 配置
+# =============================================================================
+#
+# 此文件包含 LLM Provider 的运行时配置
+# 敏感信息（API Key）通过 ${VAR} 语法从 config/secrets/secrets.yaml 注入
+#
+# 使用方法:
+#   from config import load_config
+#   config = load_config("src/providers")
+#   print(config.llm.model)
+# =============================================================================
+
+# ===================
+# LLM Configuration - 用于答案生成和评分
+# ===================
+
+llm:
+  provider: "openai"
+  model: "gpt-4o-mini"
+  base_url: "https://api.openai.com/v1"
+  api_key: "${OPENAI_API_KEY}"
+  temperature: 0
+  max_tokens: 16384
+
+# ===================
+# OpenAI Provider Configuration / OpenAI Provider配置
+# ===================
+
+openai:
+  timeout: 60                      # API超时(秒)
+  max_retries: 0                   # SDK层重试次数（让SDK处理临时错误）
+
+  # Tenacity retry configuration / Tenacity重试配置
+  # 使用指数退避策略自动处理速率限制和临时错误
+  retry:
+    min_wait: 1                    # 重试最小等待时间(秒)
+    max_wait: 60                   # 重试最大等待时间(秒)
+    attempts: 5                    # 最大重试次数
+
+  # Multi-layer rate limiting / 多层限流控制
+  # Layer 0: HTTPX连接池 (防止底层TCP连接耗尽，自动配置为 max_concurrent * 4)
+  # Layer 1: 物理并发控制 (防止请求洪峰)
+  max_concurrent: 20               # Provider最大并发数
+
+  # Layer 2: 主动速率限制 (防止 429 错误)
+  # ⚠️ 重要：设置为你的 OpenAI tier 限制的 80% 以留有余地
+  # Free tier: ~60 RPM  -> 建议设置 48
+  # Tier 1: ~500 RPM    -> 建议设置 400
+  # Tier 2: ~5000 RPM   -> 建议设置 4000
+  rpm_limit: 500                   # 每分钟请求数限制 (proactive throttling)
+
+# ===================
+# OpenRouter Provider Configuration
+# ===================
+
+openrouter:
+  api_key: "${OPENROUTER_API_KEY}"
+  base_url: "https://openrouter.ai/api/v1"
+  model: "gpt-4.1-mini"
+  temperature: 0.3
+  max_tokens: 102400
+  # 可选：指定 provider 路由顺序，留空则使用默认路由
+  # provider_order: ["openai", "azure"]
+
+# ===================
+# Gemini Provider Configuration
+# ===================
+
+gemini:
+  api_key: "${GEMINI_API_KEY}"
+  model: "gemini-2.5-flash"
+  max_retries: 3
+
+# ===================
+# Anthropic Provider Configuration
+# ===================
+
+anthropic:
+  api_key: "${ANTHROPIC_API_KEY}"
+  base_url: "https://api.anthropic.com"
+  model: "claude-3-5-sonnet-20241022"
+  timeout: 60
+  max_retries: 3

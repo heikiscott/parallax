@@ -8,7 +8,6 @@ This module provides methods to call DeepInfra API for reranking retrieved memor
 
 from __future__ import annotations
 
-import os
 import asyncio
 import aiohttp
 import logging
@@ -19,8 +18,14 @@ from dataclasses import dataclass, field
 import numpy as np
 
 from core.di import get_bean, service
+from config import load_config
 
 logger = logging.getLogger(__name__)
+
+
+def _get_rerank_config():
+    """获取 rerank 配置"""
+    return load_config("src/rerank")
 
 
 @dataclass
@@ -37,25 +42,32 @@ class DeepInfraRerankConfig:
     max_concurrent_requests: int = 5
 
     def __post_init__(self):
-        """初始化后从环境变量加载配置值"""
+        """初始化后从配置文件加载配置值
+
+        配置来源: config/src/rerank.yaml
+        API Key 来源: config/secrets/secrets.yaml（通过 ${DEEPINFRA_API_KEY} 注入）
+        """
+        # 加载 YAML 配置
+        cfg = _get_rerank_config()
+        rerank_cfg = cfg.rerank
+
+        # API Key 从配置读取（secrets.yaml 会自动注入）
         if not self.api_key:
-            self.api_key = os.getenv("DEEPINFRA_API_KEY", "")
+            self.api_key = rerank_cfg.api_key
+
+        # 其他配置从 YAML 读取
         if not self.base_url:
-            self.base_url = os.getenv(
-                "DEEPINFRA_RERANK_BASE_URL", "https://api.deepinfra.com/v1/inference"
-            )
+            self.base_url = rerank_cfg.base_url
         if not self.model:
-            self.model = os.getenv("DEEPINFRA_RERANK_MODEL", "Qwen/Qwen3-Reranker-4B")
-        if self.timeout == 30:  # 使用默认值时才从环境变量读取
-            self.timeout = int(os.getenv("DEEPINFRA_RERANK_TIMEOUT", "30"))
-        if self.max_retries == 10:  # 使用默认值时才从环境变量读取
-            self.max_retries = int(os.getenv("DEEPINFRA_RERANK_MAX_RETRIES", "10"))
-        if self.batch_size == 10:  # 使用默认值时才从环境变量读取
-            self.batch_size = int(os.getenv("DEEPINFRA_RERANK_BATCH_SIZE", "10"))
-        if self.max_concurrent_requests == 5:  # 使用默认值时才从环境变量读取
-            self.max_concurrent_requests = int(
-                os.getenv("DEEPINFRA_RERANK_MAX_CONCURRENT", "5")
-            )
+            self.model = rerank_cfg.model
+        if self.timeout == 30:
+            self.timeout = int(rerank_cfg.timeout)
+        if self.max_retries == 10:
+            self.max_retries = int(rerank_cfg.max_retries)
+        if self.batch_size == 10:
+            self.batch_size = int(rerank_cfg.batch_size)
+        if self.max_concurrent_requests == 5:
+            self.max_concurrent_requests = int(rerank_cfg.max_concurrent)
 
 
 class DeepInfraRerankError(Exception):
@@ -133,19 +145,22 @@ class DeepInfraRerankService(DeepInfraRerankServiceInterface):
         logger.info(f"Initialized DeepInfra Rerank Service with model: {config.model}")
 
     def _load_config_from_env(self) -> DeepInfraRerankConfig:
-        """从环境变量加载配置"""
+        """从配置文件加载配置
+
+        配置来源: config/src/rerank.yaml
+        API Key 来源: config/secrets/secrets.yaml（通过 ${DEEPINFRA_API_KEY} 注入）
+        """
+        cfg = _get_rerank_config()
+        rerank_cfg = cfg.rerank
+
         return DeepInfraRerankConfig(
-            api_key=os.getenv("DEEPINFRA_API_KEY", ""),
-            base_url=os.getenv(
-                "DEEPINFRA_RERANK_BASE_URL", "https://api.deepinfra.com/v1/inference"
-            ),
-            model=os.getenv("DEEPINFRA_RERANK_MODEL", "Qwen/Qwen3-Reranker-4B"),
-            timeout=int(os.getenv("DEEPINFRA_RERANK_TIMEOUT", "30")),
-            max_retries=int(os.getenv("DEEPINFRA_RERANK_MAX_RETRIES", "10")),
-            batch_size=int(os.getenv("DEEPINFRA_RERANK_BATCH_SIZE", "10")),
-            max_concurrent_requests=int(
-                os.getenv("DEEPINFRA_RERANK_MAX_CONCURRENT", "5")
-            ),
+            api_key=rerank_cfg.api_key,
+            base_url=rerank_cfg.base_url,
+            model=rerank_cfg.model,
+            timeout=int(rerank_cfg.timeout),
+            max_retries=int(rerank_cfg.max_retries),
+            batch_size=int(rerank_cfg.batch_size),
+            max_concurrent_requests=int(rerank_cfg.max_concurrent),
         )
 
     async def __aenter__(self):

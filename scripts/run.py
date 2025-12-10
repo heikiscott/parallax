@@ -46,12 +46,6 @@ def parse_args():
         "--port", type=int, default=1995, help="服务器监听端口 (默认: 1995)"
     )
     parser.add_argument(
-        "--env-file",
-        type=str,
-        default=".env",
-        help="指定要加载的环境变量文件 (默认: .env)",
-    )
-    parser.add_argument(
         "--mock", action="store_true", help="启用Mock模式 (用于测试和开发)"
     )
     parser.add_argument(
@@ -70,14 +64,11 @@ def main():
         service_name = "web"
 
     # 使用统一的环境加载工具
+    # 注意：敏感信息从 config/secrets/secrets.yaml 加载
     from utils.load_env import setup_environment
 
-    # 设置环境（Python路径和.env文件）
-    setup_environment(
-        load_env_file_name=args.env_file,
-        check_env_var="MONGODB_HOST",
-        service_name=service_name,
-    )
+    # 设置环境
+    setup_environment(service_name=service_name)
 
     # 检查是否启用Mock模式：优先检查命令行参数，其次检查环境变量
     from core.di.utils import enable_mock_mode
@@ -96,7 +87,6 @@ def main():
     logger.info("🌟 启动参数:")
     logger.info("  📡 Host: %s", args.host)
     logger.info("  🔌 Port: %s", args.port)
-    logger.info("  📄 Env File: %s", args.env_file)
     logger.info("  🎭 Mock Mode: %s", args.mock)
     logger.info("  🔧 LongJob Mode: %s", args.longjob if args.longjob else "Disabled")
 

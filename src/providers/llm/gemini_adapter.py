@@ -2,7 +2,6 @@ import asyncio
 import time
 import logging
 from typing import Dict, Any, List, Union, AsyncGenerator
-import os
 from google.genai.client import Client
 from core.di.decorators import service
 from google.genai.types import (
@@ -21,8 +20,14 @@ from providers.llm.llm_backend_adapter import LLMBackendAdapter
 
 from langchain_core.messages import HumanMessage, AIMessage, SystemMessage
 from core.constants.errors import ErrorMessage
+from config import load_config
 
 logger = logging.getLogger(__name__)
+
+
+def _get_provider_config():
+    """获取 provider 配置"""
+    return load_config("src/providers")
 
 
 class GeminiAdapter(LLMBackendAdapter):
@@ -30,15 +35,21 @@ class GeminiAdapter(LLMBackendAdapter):
 
     def __init__(self, config: Dict[str, Any]):
         self.config = config
-        self.api_key = config.get("api_key") or os.getenv("GEMINI_API_KEY")
-        self.max_retries = config.get("max_retries", 3)
+
+        # 从 YAML 配置加载默认值
+        cfg = _get_provider_config()
+        gemini_cfg = cfg.gemini
+
+        # API Key (优先级: 参数 > YAML)
+        self.api_key = config.get("api_key") or gemini_cfg.api_key
+        self.max_retries = config.get("max_retries", gemini_cfg.max_retries)
 
         if not self.api_key:
             raise ValueError(ErrorMessage.CONFIGURATION_MISSING.value)
 
         # 使用新的 google.genai API
         self.client = Client(api_key=self.api_key)
-        self.model_name = self.config.get("default_model", "gemini-2.5-flash")
+        self.model_name = self.config.get("default_model", gemini_cfg.model)
 
     async def chat_completion(
         self, request: ChatCompletionRequest
