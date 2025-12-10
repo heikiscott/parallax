@@ -55,7 +55,7 @@ async def route_and_retrieve(
 
     if not classification_enabled:
         # Fall back to agentic retrieval
-        from src.retrieval.pipelines import agentic_retrieval
+        from src.retrieval.offline.pipelines import agentic_retrieval
         return await agentic_retrieval(
             query=query,
             config=config,

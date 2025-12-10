@@ -111,7 +111,7 @@ class GECClusterRerankPolicy(BaseRetrievalStrategy):
         Returns:
             RetrievalResult with cluster-enhanced results
         """
-        from src.retrieval.pipelines import agentic_retrieval
+        from src.retrieval.offline.pipelines import agentic_retrieval
 
         start_time = time.time()
 
@@ -190,7 +190,7 @@ class GECInsertAfterHitPolicy(BaseRetrievalStrategy):
         Returns:
             RetrievalResult with context-expanded results
         """
-        from src.retrieval.pipelines import agentic_retrieval
+        from src.retrieval.offline.pipelines import agentic_retrieval
 
         start_time = time.time()
 
@@ -268,7 +268,7 @@ class AgenticOnlyPolicy(BaseRetrievalStrategy):
         Returns:
             RetrievalResult without cluster expansion
         """
-        from src.retrieval.pipelines import agentic_retrieval
+        from src.retrieval.offline.pipelines import agentic_retrieval
 
         start_time = time.time()
 
