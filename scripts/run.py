@@ -99,7 +99,7 @@ def main():
     # 检查是否是 LongJob 模式
     if args.longjob:
         logger.info("🔧 启动 LongJob 模式: %s", args.longjob)
-        from longjob_runner import run_longjob_mode
+        from core.longjob.runner import run_longjob_mode
 
         asyncio.run(run_longjob_mode(args.longjob))
         sys.exit(0)
