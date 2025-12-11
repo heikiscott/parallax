@@ -208,23 +208,138 @@ async def eval_evaluate_stage_node(state: EvalState, context) -> Dict[str, Any]:
     saver.save_json(eval_data, "eval_results.json")
     context.logger.info(f"Saved evaluation results to eval_results.json")
 
-    # Generate and save report
+    # Generate comprehensive report
+    metadata = state.get("metadata", {})
+    answer_results = state.get("answer_results", [])
+
     report_lines = []
-    report_lines.append("=" * 60)
-    report_lines.append("📊 Evaluation Report")
-    report_lines.append("=" * 60)
+    report_lines.append("=" * 80)
+    report_lines.append("📊 EVALUATION REPORT")
+    report_lines.append("=" * 80)
     report_lines.append("")
-    report_lines.append(f"Total Questions: {eval_results.total_questions}")
-    report_lines.append(f"Correct: {eval_results.correct}")
-    report_lines.append(f"Accuracy: {eval_results.accuracy:.2%}")
+
+    # ========== 1. 核心结果（最醒目位置）==========
+    report_lines.append("╔" + "=" * 78 + "╗")
+    report_lines.append("║" + " " * 28 + "📈 FINAL RESULTS" + " " * 35 + "║")
+    report_lines.append("╠" + "=" * 78 + "╣")
+    report_lines.append(f"║  Accuracy: {eval_results.accuracy:.2%}" + " " * (78 - len(f"  Accuracy: {eval_results.accuracy:.2%}")) + "║")
+    report_lines.append(f"║  Correct: {eval_results.correct}/{eval_results.total_questions}" + " " * (78 - len(f"  Correct: {eval_results.correct}/{eval_results.total_questions}")) + "║")
+    incorrect = eval_results.total_questions - eval_results.correct
+    report_lines.append(f"║  Incorrect: {incorrect}" + " " * (78 - len(f"  Incorrect: {incorrect}")) + "║")
+    report_lines.append("╚" + "=" * 78 + "╝")
     report_lines.append("")
-    report_lines.append("=" * 60)
+
+    # ========== 2. 分类详细结果 ==========
+    report_lines.append("─" * 80)
+    report_lines.append("📋 RESULTS BY CATEGORY")
+    report_lines.append("─" * 80)
+
+    # 统计每个类别的准确率
+    from collections import defaultdict
+    category_stats = defaultdict(lambda: {"total": 0, "correct": 0})
+
+    for detail in eval_results.detailed_results:
+        cat = detail.get("category", "Unknown")
+        if cat is None:
+            cat = "Unknown"
+        category_stats[cat]["total"] += 1
+        if detail.get("is_correct", False):
+            category_stats[cat]["correct"] += 1
+
+    # 按类别排序输出
+    for cat in sorted(category_stats.keys()):
+        stats = category_stats[cat]
+        acc = stats["correct"] / stats["total"] if stats["total"] > 0 else 0
+        report_lines.append(f"  Category {cat}: {stats['correct']}/{stats['total']} ({acc:.1%})")
+
+    report_lines.append("")
+
+    # ========== 3. 运行时间统计 ==========
+    # Time is automatically tracked by WorkflowBuilder's node_wrapper
+    report_lines.append("─" * 80)
+    report_lines.append("⏱️  TIME STATISTICS")
+    report_lines.append("─" * 80)
+
+    def format_time(seconds):
+        if seconds < 60:
+            return f"{seconds:.1f}s"
+        elif seconds < 3600:
+            return f"{seconds/60:.1f}m"
+        else:
+            return f"{seconds/3600:.1f}h"
+
+    total_time = 0
+    # WorkflowBuilder injects timing as "{node_name}_time" in metadata
+    if "add_time" in metadata:
+        report_lines.append(f"  Add Stage:      {format_time(metadata['add_time'])}")
+        total_time += metadata["add_time"]
+    if "cluster_time" in metadata:
+        report_lines.append(f"  Cluster Stage:  {format_time(metadata['cluster_time'])}")
+        total_time += metadata["cluster_time"]
+    if "search_time" in metadata:
+        report_lines.append(f"  Search Stage:   {format_time(metadata['search_time'])}")
+        total_time += metadata["search_time"]
+    if "answer_time" in metadata:
+        report_lines.append(f"  Answer Stage:   {format_time(metadata['answer_time'])}")
+        total_time += metadata["answer_time"]
+    if "evaluate_time" in metadata:
+        report_lines.append(f"  Evaluate Stage: {format_time(metadata['evaluate_time'])}")
+        total_time += metadata["evaluate_time"]
+
+    if total_time > 0:
+        report_lines.append(f"  " + "─" * 40)
+        report_lines.append(f"  Total Time:     {format_time(total_time)}")
+    report_lines.append("")
+
+    # ========== 4. Token 使用统计 ==========
+    if context.token_stats_collector:
+        report_lines.append("─" * 80)
+        report_lines.append("💰 TOKEN USAGE")
+        report_lines.append("─" * 80)
+
+        all_summaries = context.token_stats_collector.get_all_summaries()
+        total_tokens_all = 0
+
+        stage_order = ["add", "cluster", "search", "answer"]
+        for stage in stage_order:
+            if stage in all_summaries:
+                summary = all_summaries[stage]
+                if summary["total_calls"] > 0:
+                    report_lines.append(
+                        f"  {stage.capitalize():8s}: {summary['total_tokens']:,} tokens "
+                        f"({summary['total_calls']} calls, avg {summary['avg_total_tokens']:.0f}/call)"
+                    )
+                    total_tokens_all += summary["total_tokens"]
+
+        report_lines.append(f"  " + "─" * 40)
+        report_lines.append(f"  Total:    {total_tokens_all:,} tokens")
+        report_lines.append("")
+
+    # ========== 5. 错误案例（可选：显示前几个错误） ==========
+    incorrect_cases = [d for d in eval_results.detailed_results if not d.get("is_correct", False)]
+    if incorrect_cases:
+        report_lines.append("─" * 80)
+        report_lines.append(f"❌ INCORRECT CASES ({len(incorrect_cases)} total, showing first 3)")
+        report_lines.append("─" * 80)
+
+        for i, case in enumerate(incorrect_cases[:3], 1):
+            report_lines.append(f"  [{i}] Question ID: {case.get('question_id', 'N/A')}")
+            question = case.get("question", "N/A")
+            if len(question) > 60:
+                question = question[:57] + "..."
+            report_lines.append(f"      Question: {question}")
+            report_lines.append(f"      Category: {case.get('category', 'N/A')}")
+            report_lines.append("")
+
+    report_lines.append("=" * 80)
+    report_lines.append("End of Report")
+    report_lines.append("=" * 80)
 
     report_text = "\n".join(report_lines)
     report_path = Path(context.output_dir) / "report.txt"
     with open(report_path, "w", encoding="utf-8") as f:
         f.write(report_text)
-    context.logger.info(f"Saved report to report.txt")
+    context.logger.info(f"Saved comprehensive report to report.txt")
 
     return {
         "eval_results": eval_results,

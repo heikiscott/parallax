@@ -3,6 +3,7 @@
 This module builds executable LangGraph StateGraph instances from YAML workflow configurations.
 """
 
+import time
 from typing import Callable, Any, Dict, List, Optional
 from langgraph.graph import StateGraph, END
 from functools import partial
@@ -122,13 +123,31 @@ class WorkflowBuilder:
         for node_config in config.nodes:
             node_func = get_node(node_config.function)
 
-            # Create a wrapper that injects context
-            async def node_wrapper(state, *, func=node_func, ctx=self.context, cfg=node_config.config):
+            # Create a wrapper that injects context and tracks execution time
+            async def node_wrapper(state, *, func=node_func, ctx=self.context, cfg=node_config.config, node_name=node_config.name):
                 # Merge node config into context (handle empty config)
                 if cfg:
                     ctx.update_config(**cfg)
+
+                # Track execution time
+                start_time = time.time()
+
                 # Call the actual node function
-                return await func(state, ctx)
+                result = await func(state, ctx)
+
+                # Calculate elapsed time
+                elapsed_time = time.time() - start_time
+
+                # Inject timing info into result metadata (if result has metadata)
+                if isinstance(result, dict) and "metadata" in result:
+                    # Extract node name for timing key (e.g., "eval_add_stage" -> "add_time")
+                    timing_key = f"{node_name.replace('eval_', '').replace('_stage', '').replace('_node', '')}_time"
+                    result["metadata"] = {
+                        **result.get("metadata", {}),
+                        timing_key: elapsed_time
+                    }
+
+                return result
 
             graph.add_node(node_config.name, node_wrapper)
 
