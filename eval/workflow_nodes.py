@@ -254,7 +254,18 @@ async def eval_evaluate_stage_node(state: EvalState, context) -> Dict[str, Any]:
             if cat is None:
                 cat = "Unknown"
             category_stats[cat]["total"] += 1
-            if detail.get("is_correct", False):
+
+            # Check if answer is correct
+            # Support both "is_correct" field and "llm_judgments" field
+            is_correct = detail.get("is_correct", False)
+            if not is_correct and "llm_judgments" in detail:
+                # If using LLM judge, check if majority of judgments are True
+                judgments = detail["llm_judgments"]
+                if isinstance(judgments, dict):
+                    true_count = sum(1 for v in judgments.values() if v)
+                    is_correct = true_count > len(judgments) / 2
+
+            if is_correct:
                 category_stats[cat]["correct"] += 1
 
     # 按类别排序输出
@@ -329,7 +340,20 @@ async def eval_evaluate_stage_node(state: EvalState, context) -> Dict[str, Any]:
 
     # ========== 5. 错误案例（可选：显示前几个错误） ==========
     # 使用前面已经展开的 detailed_list
-    incorrect_cases = [d for d in detailed_list if isinstance(d, dict) and not d.get("is_correct", False)]
+    incorrect_cases = []
+    for d in detailed_list:
+        if isinstance(d, dict):
+            # Check if answer is incorrect using the same logic as above
+            is_correct = d.get("is_correct", False)
+            if not is_correct and "llm_judgments" in d:
+                judgments = d["llm_judgments"]
+                if isinstance(judgments, dict):
+                    true_count = sum(1 for v in judgments.values() if v)
+                    is_correct = true_count > len(judgments) / 2
+
+            if not is_correct:
+                incorrect_cases.append(d)
+
     if incorrect_cases:
         report_lines.append("─" * 80)
         report_lines.append(f"❌ INCORRECT CASES ({len(incorrect_cases)} total, showing first 3)")
