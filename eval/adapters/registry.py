@@ -79,30 +79,35 @@ def _ensure_adapter_loaded(name: str):
         )
 
 
-def create_adapter(name: str, config: dict, output_dir = None) -> BaseAdapter:
+def create_adapter(name: str, config: dict, output_dir = None, enable_token_stats: bool = False) -> BaseAdapter:
     """
     创建适配器实例
-    
+
     Args:
         name: 适配器名称
         config: 配置字典
         output_dir: 输出目录（用于持久化，可选）
-        
+        enable_token_stats: 是否启用 token 统计（可选）
+
     Returns:
         适配器实例
-        
+
     Raises:
         ValueError: 如果适配器未注册
     """
     # 延迟加载：确保适配器已加载
     _ensure_adapter_loaded(name)
-    
-    # 尝试传递 output_dir，如果适配器不支持则回退
+
+    # 尝试传递 output_dir 和 enable_token_stats，如果适配器不支持则回退
     try:
-        return _ADAPTER_REGISTRY[name](config, output_dir=output_dir)
+        return _ADAPTER_REGISTRY[name](config, output_dir=output_dir, enable_token_stats=enable_token_stats)
     except TypeError:
-        # 适配器不接受 output_dir 参数，使用默认方式创建
-        return _ADAPTER_REGISTRY[name](config)
+        # 适配器不接受这些参数，尝试只传递 output_dir
+        try:
+            return _ADAPTER_REGISTRY[name](config, output_dir=output_dir)
+        except TypeError:
+            # 适配器不接受 output_dir 参数，使用默认方式创建
+            return _ADAPTER_REGISTRY[name](config)
 
 
 def list_adapters() -> List[str]:

@@ -20,6 +20,7 @@ from eval.core.stages.search_stage import run_search_stage
 from eval.core.stages.answer_stage import run_answer_stage
 from eval.core.stages.evaluate_stage import run_evaluate_stage
 from src.orchestration.nodes import register_node
+from eval.utils.token_stats import TokenStatsCollector
 
 
 # ============================================================================
@@ -50,78 +51,105 @@ class EvalState(TypedDict, total=False):
 @register_node("eval_add_stage")
 async def eval_add_stage_node(state, context) -> Dict[str, Any]:
     """Stage 1: Add - Build indexes."""
+    # Set current stage for token stats collection
+    TokenStatsCollector.set_current_stage("add")
 
-    result = await run_add_stage(
-        adapter=context.adapter,
-        dataset=state.get("dataset"),
-        output_dir=Path(context.output_dir),
-        checkpoint_manager=context.checkpoint_manager,
-        logger=context.logger,
-        console=context.console,
-        completed_stages=set(state.get("completed_stages", [])),
-    )
+    try:
+        result = await run_add_stage(
+            adapter=context.adapter,
+            dataset=state.get("dataset"),
+            output_dir=Path(context.output_dir),
+            checkpoint_manager=context.checkpoint_manager,
+            logger=context.logger,
+            console=context.console,
+            completed_stages=set(state.get("completed_stages", [])),
+        )
 
-    return {
-        "index": result.get("index"),
-        "completed_stages": ["add"],
-        "metadata": {**state.get("metadata", {}), "add_completed": True}
-    }
+        return {
+            "index": result.get("index"),
+            "completed_stages": ["add"],
+            "metadata": {**state.get("metadata", {}), "add_completed": True}
+        }
+    finally:
+        # Clear stage after completion
+        TokenStatsCollector.set_current_stage(None)
 
 
 @register_node("eval_cluster_stage")
 async def eval_cluster_stage_node(state: EvalState, context) -> Dict[str, Any]:
     """Stage 1.5: Cluster - Group event clustering."""
-    result = await run_cluster_stage(
-        adapter=context.adapter,
-        conversations=state.get("conversations"),
-        output_dir=Path(context.output_dir),
-        checkpoint_manager=context.checkpoint_manager,
-        logger=context.logger,
-        console=context.console,
-        completed_stages=set(state.get("completed_stages", [])),
-    )
+    # Set current stage for token stats collection
+    TokenStatsCollector.set_current_stage("cluster")
 
-    return {
-        "completed_stages": ["cluster"],
-        "metadata": {**state.get("metadata", {}), "cluster_completed": True}
-    }
+    try:
+        result = await run_cluster_stage(
+            adapter=context.adapter,
+            conversations=state.get("conversations"),
+            output_dir=Path(context.output_dir),
+            checkpoint_manager=context.checkpoint_manager,
+            logger=context.logger,
+            console=context.console,
+            completed_stages=set(state.get("completed_stages", [])),
+        )
+
+        return {
+            "completed_stages": ["cluster"],
+            "metadata": {**state.get("metadata", {}), "cluster_completed": True}
+        }
+    finally:
+        # Clear stage after completion
+        TokenStatsCollector.set_current_stage(None)
 
 
 @register_node("eval_search_stage")
 async def eval_search_stage_node(state: EvalState, context) -> Dict[str, Any]:
     """Stage 2: Search - Retrieve memories."""
-    search_results = await run_search_stage(
-        adapter=context.adapter,
-        qa_pairs=state.get("qa_pairs"),
-        index=state.get("index"),
-        conversations=state.get("conversations"),
-        checkpoint_manager=context.checkpoint_manager,
-        logger=context.logger,
-    )
+    # Set current stage for token stats collection
+    TokenStatsCollector.set_current_stage("search")
 
-    return {
-        "search_results": search_results,
-        "completed_stages": ["search"],
-        "metadata": {**state.get("metadata", {}), "search_completed": True}
-    }
+    try:
+        search_results = await run_search_stage(
+            adapter=context.adapter,
+            qa_pairs=state.get("qa_pairs"),
+            index=state.get("index"),
+            conversations=state.get("conversations"),
+            checkpoint_manager=context.checkpoint_manager,
+            logger=context.logger,
+        )
+
+        return {
+            "search_results": search_results,
+            "completed_stages": ["search"],
+            "metadata": {**state.get("metadata", {}), "search_completed": True}
+        }
+    finally:
+        # Clear stage after completion
+        TokenStatsCollector.set_current_stage(None)
 
 
 @register_node("eval_answer_stage")
 async def eval_answer_stage_node(state: EvalState, context) -> Dict[str, Any]:
     """Stage 3: Answer - Generate answers."""
-    answer_results = await run_answer_stage(
-        adapter=context.adapter,
-        qa_pairs=state.get("qa_pairs"),
-        search_results=state.get("search_results"),
-        checkpoint_manager=context.checkpoint_manager,
-        logger=context.logger,
-    )
+    # Set current stage for token stats collection
+    TokenStatsCollector.set_current_stage("answer")
 
-    return {
-        "answer_results": answer_results,
-        "completed_stages": ["answer"],
-        "metadata": {**state.get("metadata", {}), "answer_completed": True}
-    }
+    try:
+        answer_results = await run_answer_stage(
+            adapter=context.adapter,
+            qa_pairs=state.get("qa_pairs"),
+            search_results=state.get("search_results"),
+            checkpoint_manager=context.checkpoint_manager,
+            logger=context.logger,
+        )
+
+        return {
+            "answer_results": answer_results,
+            "completed_stages": ["answer"],
+            "metadata": {**state.get("metadata", {}), "answer_completed": True}
+        }
+    finally:
+        # Clear stage after completion
+        TokenStatsCollector.set_current_stage(None)
 
 
 @register_node("eval_evaluate_stage")

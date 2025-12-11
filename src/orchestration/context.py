@@ -53,6 +53,7 @@ class ExecutionContext:
     checkpoint_manager: Optional[Any] = None
     logger: Optional[Any] = None
     console: Optional[Any] = None
+    token_stats_collector: Optional[Any] = None  # Token usage statistics collector
 
     # Configuration
     config: Dict[str, Any] = field(default_factory=dict)

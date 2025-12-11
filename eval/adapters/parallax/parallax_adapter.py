@@ -62,16 +62,23 @@ class ParallaxAdapter(BaseAdapter):
     - 答案生成（stage4）
     """
     
-    def __init__(self, config: dict, output_dir: Path = None):
+    def __init__(self, config: dict, output_dir: Path = None, enable_token_stats: bool = False):
         super().__init__(config)
         self.output_dir = Path(output_dir) if output_dir else Path(".")
-        
+        self.enable_token_stats = enable_token_stats
+        self.token_stats_collector = None  # 由 Pipeline 注入
+
         # 初始化 LLM Provider（共享给所有 stage）
         # 从 YAML 的 llm 配置中读取（支持嵌套结构 llm.openai 或扁平结构 llm）
         llm_config = config.get("llm", {})
         llm_service = llm_config.get("service", "openai")
         # 优先使用嵌套结构 (llm.openai.model)，回退到扁平结构 (llm.model)
         llm_provider_config = llm_config.get(llm_service, llm_config)
+
+        # 创建 stats callback（稍后注入 collector 时会更新）
+        def stats_callback(stats):
+            if self.token_stats_collector:
+                self.token_stats_collector.record(stats=stats)  # 自动使用 context variable 推断阶段
 
         self.llm_provider = LLMProvider(
             provider_type=llm_provider_config.get("provider", "openai"),
@@ -80,6 +87,8 @@ class ParallaxAdapter(BaseAdapter):
             base_url=llm_provider_config.get("base_url", "https://api.openai.com/v1"),
             temperature=llm_provider_config.get("temperature", 0.0),
             max_tokens=int(llm_provider_config.get("max_tokens", 32768)),
+            enable_stats=enable_token_stats,  # 传递 enable_stats
+            stats_callback=stats_callback if enable_token_stats else None,  # 设置回调
         )
         
         # 初始化 Event Log Extractor（使用评估专用提示词）
@@ -681,21 +690,33 @@ class ParallaxAdapter(BaseAdapter):
     async def answer(self, query: str, context: str, **kwargs) -> str:
         """
         Answer 阶段：生成答案
-        
+
         调用 stage4_response.py 的实现
+
+        注意：Token 统计通过 LLMProvider 的 callback 自动收集，
+        阶段信息从 context variable 中获取
         """
         # 调用 stage4 答案生成实现
         exp_config = self._get_config()
-        
+
         answer = await stage4_response.locomo_response(
             llm_provider=self.llm_provider,
             context=context,
             question=query,
             config=exp_config,
         )
-        
+
         return answer
-    
+
+    def set_token_stats_collector(self, collector):
+        """
+        设置 token 统计收集器（由 Pipeline 注入）
+
+        Args:
+            collector: TokenStatsCollector 实例
+        """
+        self.token_stats_collector = collector
+
     def get_system_info(self) -> Dict[str, Any]:
         """返回系统信息"""
         return {

@@ -170,11 +170,12 @@ async def main():
     # ===== 创建组件 =====
     console.print(f"\n[bold cyan]Initializing components...[/bold cyan]")
     
-    # 创建适配器（传递 output_dir 用于持久化）
+    # 创建适配器（传递 output_dir 用于持久化，启用 token 统计）
     adapter = create_adapter(
         system_config["adapter"],
         system_config,
-        output_dir=output_dir
+        output_dir=output_dir,
+        enable_token_stats=True  # 启用 token 统计
     )
     console.print(f"  ✅ Created adapter: {adapter.get_system_info()['name']}")
     
@@ -213,8 +214,14 @@ async def main():
     # 创建 ExecutionContext（包含所有依赖）
     from src.orchestration.context import ExecutionContext
     from eval.utils.checkpoint import CheckpointManager
+    from eval.utils.token_stats import TokenStatsCollector
 
     checkpoint_manager = CheckpointManager(output_dir=output_dir, run_name="default")
+    token_stats_collector = TokenStatsCollector()  # 创建 token 统计收集器
+
+    # 将 token_stats_collector 注入到 adapter（如果 adapter 支持）
+    if hasattr(adapter, 'set_token_stats_collector'):
+        adapter.set_token_stats_collector(token_stats_collector)
 
     context = ExecutionContext(
         adapter=adapter,
@@ -225,6 +232,7 @@ async def main():
         logger=setup_logger(log_dir=output_dir),
         console=console,
         project_root=project_root,
+        token_stats_collector=token_stats_collector,  # 添加 token 统计收集器
     )
 
     # 加载 workflow 配置
@@ -338,6 +346,17 @@ async def main():
             if hasattr(eval_results, 'accuracy'):
                 console.print(f"  Accuracy: {eval_results.accuracy:.2%}")
                 console.print(f"  Correct: {eval_results.correct}/{eval_results.total_questions}")
+
+        # 生成并输出 Token 统计报告
+        if token_stats_collector:
+            console.print()  # 空行
+            token_report = token_stats_collector.generate_report()
+            console.print(token_report)
+
+            # 保存 token 统计到文件
+            token_stats_file = output_dir / "token_stats.json"
+            token_stats_collector.save_to_json(str(token_stats_file))
+            console.print(f"[dim]Token statistics saved to: {token_stats_file}[/dim]\n")
 
         console.print(f"Results saved to: [cyan]{output_dir}[/cyan]\n")
     
