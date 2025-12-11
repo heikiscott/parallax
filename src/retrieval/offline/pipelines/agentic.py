@@ -38,15 +38,34 @@ from .rerank import reranker_search
 logger = logging.getLogger(__name__)
 
 
-def _get_reranker_config(config: Any, key: str, default: Any) -> Any:
-    """Safely get reranker config value from nested config.reranker.xxx structure."""
-    try:
-        reranker_cfg = getattr(config, 'reranker', None)
-        if reranker_cfg is not None:
-            return getattr(reranker_cfg, key, default)
-    except (AttributeError, TypeError):
-        pass
-    return default
+def _get_reranker_config(config: Any, key: str, default: Any = None) -> Any:
+    """Get reranker config value from nested config.reranker.xxx structure.
+
+    Args:
+        config: Main config object
+        key: Key to retrieve from reranker config
+        default: Default value if key not found. If None, raises error.
+
+    Returns:
+        Config value
+
+    Raises:
+        ValueError: If reranker config missing or key not found (when no default)
+    """
+    reranker_cfg = getattr(config, 'reranker', None)
+    if reranker_cfg is None:
+        raise ValueError(
+            "Missing required config: 'reranker'. "
+            "Please add reranker section to your config file."
+        )
+
+    value = getattr(reranker_cfg, key, None)
+    if value is None and default is None:
+        raise ValueError(
+            f"Missing required config key: 'reranker.{key}'. "
+            "Please set this value in your config file."
+        )
+    return value if value is not None else default
 
 
 def _log_ids(prefix: str, docs: List[Tuple[dict, float]], limit: int = 20):
@@ -105,9 +124,27 @@ async def _apply_cluster_expansion(
         expand_with_cluster,
     )
 
-    # Check if cluster expansion is enabled
-    cluster_retrieval_cfg = getattr(config, 'group_event_cluster_retrieval_config', {})
-    enable_expansion = cluster_retrieval_cfg.get('enable_group_event_cluster_retrieval', False)
+    # Check if cluster expansion is enabled - strict config check
+    cluster_retrieval_cfg = getattr(config, 'group_event_cluster_retrieval', None)
+    if cluster_retrieval_cfg is None:
+        raise ValueError(
+            "Missing required config: 'group_event_cluster_retrieval'. "
+            "Please add group_event_cluster_retrieval section to your config file."
+        )
+
+    # Convert ConfigDict to dict if needed
+    if hasattr(cluster_retrieval_cfg, 'to_dict'):
+        cluster_retrieval_cfg = cluster_retrieval_cfg.to_dict()
+    elif hasattr(cluster_retrieval_cfg, '_data'):
+        cluster_retrieval_cfg = cluster_retrieval_cfg._data
+
+    # Check enabled flag - strict: must use 'enabled' key
+    if 'enabled' not in cluster_retrieval_cfg:
+        raise ValueError(
+            "Missing required config key: 'group_event_cluster_retrieval.enabled'. "
+            "Please set enabled: true/false in your config file."
+        )
+    enable_expansion = cluster_retrieval_cfg['enabled']
 
     if not enable_expansion or cluster_index is None:
         logger.debug(f"  [Cluster] Expansion disabled or no cluster index")
