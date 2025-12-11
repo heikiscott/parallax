@@ -29,11 +29,11 @@ async def run_evaluate_stage(
     Returns:
         评估结果
     """
-    logger.info("Starting Stage 4: Evaluate")
+    logger.info("Starting Evaluate stage")
     
     eval_result = await evaluator.evaluate(answer_results)
     
-    logger.info("✅ Stage 4 completed")
+    logger.info("✅ Evaluate stage completed")
     
     return eval_result
 

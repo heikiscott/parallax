@@ -1,4 +1,4 @@
-"""Stage 3: Memory Retrieval for Evaluation.
+"""Memory Retrieval for Evaluation.
 
 This module is ONLY for evaluation purposes. All retrieval logic is in src/retrieval/.
 This file only handles:

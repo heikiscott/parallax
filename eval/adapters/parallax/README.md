@@ -20,11 +20,12 @@ locomo_eval/
 │   ├── refined_query.txt              # Query refinement
 │   ├── multi_query_generation.txt     # Multi-query generation
 │   └── answer_prompts.py              # Answer generation
-├── stage1_memunits_extraction.py      # Stage 1: Extract MemUnits
-├── stage2_index_building.py           # Stage 2: Build indexes
-├── stage3_memory_retrivel.py          # Stage 3: Retrieve memories
-├── stage4_response.py                 # Stage 4: Generate responses
-├── stage5_eval.py                     # Stage 5: Evaluate results
+├── memunit_extraction.py              # MemUnit extraction
+├── index_builder.py                   # Index building
+├── memory_retrieval.py                # Memory retrieval
+├── response_generator.py              # Response generation
+├── evaluator.py                       # Result evaluation
+├── group_event_clustering.py          # Group event clustering
 └── tools/                             # Utility tools
     ├── compute_acc.py                 # Accuracy computation utilities
     └── ...
@@ -66,20 +67,11 @@ class ExperimentConfig:
 ### 3. Run Complete Pipeline
 
 ```bash
-# Stage 1: Extract MemUnits
-python eval/locomo_eval/stage1_memunits_extraction.py
+# Run the complete evaluation pipeline using the unified CLI
+python -m eval.cli --system parallax --dataset locomo --num-conv 10
 
-# Stage 2: Build indexes
-python eval/locomo_eval/stage2_index_building.py
-
-# Stage 3: Retrieve memories
-python eval/locomo_eval/stage3_memory_retrivel.py
-
-# Stage 4: Generate responses
-python eval/locomo_eval/stage4_response.py
-
-# Stage 5: Evaluate results
-python eval/locomo_eval/stage5_eval.py
+# Or run with workflow mode
+python -m eval.cli --system parallax --dataset locomo --num-conv 10 --workflow standard_pipeline
 ```
 
 ### 4. View Results

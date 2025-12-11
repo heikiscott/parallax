@@ -187,8 +187,8 @@ class ParallaxAdapter(BaseAdapter):
         Add 阶段：提取 MemUnits 并构建索引
         
         调用流程：
-        1. Stage 1: 提取 MemUnits (memunit_extraction.py) - 并发处理
-        2. Stage 2: 构建 BM25 和 Embedding 索引 (index_builder.py)
+        1. 提取 MemUnits (memunit_extraction.py) - 并发处理
+        2. 构建 BM25 和 Embedding 索引 (index_builder.py)
         
         返回：索引元数据（方案 A：延迟加载）
         """
@@ -204,9 +204,9 @@ class ParallaxAdapter(BaseAdapter):
         
         console = Console()
         
-        # ========== Stage 1: MemUnit Extraction (并发处理) ==========
+        # ========== MemUnit Extraction (并发处理) ==========
         console.print(f"\n{'='*60}", style="bold cyan")
-        console.print(f"Stage 1: MemUnit Extraction", style="bold cyan")
+        console.print(f"MemUnit Extraction", style="bold cyan")
         console.print(f"{'='*60}", style="bold cyan")
 
         # 转换数据格式：评测框架 → Parallax
@@ -374,9 +374,9 @@ class ParallaxAdapter(BaseAdapter):
                 console.print(f"   🚀 平均每会话: {elapsed/len(pending_conversations):.2f} 秒", style="cyan")
             console.print("=" * 60, style="dim")
         
-        # ========== Stage 2: Index Building ==========
+        # ========== Index Building ==========
         console.print(f"\n{'='*60}", style="bold cyan")
-        console.print(f"Stage 2: Index Building", style="bold cyan")
+        console.print(f"Index Building", style="bold cyan")
         console.print(f"{'='*60}", style="bold cyan")
         
         # 调用 stage2 实现构建索引

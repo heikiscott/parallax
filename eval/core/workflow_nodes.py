@@ -52,7 +52,7 @@ class EvalState(TypedDict, total=False):
 
 @register_node("eval_add_stage")
 async def eval_add_stage_node(state, context) -> Dict[str, Any]:
-    """Stage 1: Add - Build indexes."""
+    """Add: Build indexes."""
     # 🔥 检查是否应该跳过此阶段
     completed_stages = set(state.get("completed_stages", []))
     if "add" in completed_stages:
@@ -123,7 +123,7 @@ async def eval_cluster_stage_node(state: EvalState, context) -> Dict[str, Any]:
 
 @register_node("eval_search_stage")
 async def eval_search_stage_node(state: EvalState, context) -> Dict[str, Any]:
-    """Stage 2: Search - Retrieve memories."""
+    """Search: Retrieve memories."""
     # 🔥 检查是否应该跳过此阶段
     completed_stages = set(state.get("completed_stages", []))
     if "search" in completed_stages:
@@ -190,7 +190,7 @@ async def eval_search_stage_node(state: EvalState, context) -> Dict[str, Any]:
 
 @register_node("eval_answer_stage")
 async def eval_answer_stage_node(state: EvalState, context) -> Dict[str, Any]:
-    """Stage 3: Answer - Generate answers."""
+    """Answer: Generate answers."""
     # 🔥 检查是否应该跳过此阶段
     completed_stages = set(state.get("completed_stages", []))
     if "answer" in completed_stages:
@@ -264,7 +264,7 @@ async def eval_answer_stage_node(state: EvalState, context) -> Dict[str, Any]:
 
 @register_node("eval_evaluate_stage")
 async def eval_evaluate_stage_node(state: EvalState, context) -> Dict[str, Any]:
-    """Stage 4: Evaluate - Assess answer quality."""
+    """Evaluate: Assess answer quality."""
     # 🔥 检查是否应该跳过此阶段
     completed_stages = set(state.get("completed_stages", []))
     if "evaluate" in completed_stages:

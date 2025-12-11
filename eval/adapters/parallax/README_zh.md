@@ -20,11 +20,12 @@ locomo_eval/
 │   ├── refined_query.txt              # 查询改进
 │   ├── multi_query_generation.txt     # 多查询生成
 │   └── answer_prompts.py              # 回答生成
-├── stage1_memunits_extraction.py      # 阶段 1：提取 MemUnits
-├── stage2_index_building.py           # 阶段 2：构建索引
-├── stage3_memory_retrivel.py          # 阶段 3：检索记忆
-├── stage4_response.py                 # 阶段 4：生成回答
-├── stage5_eval.py                     # 阶段 5：评估结果
+├── memunit_extraction.py              # MemUnit 提取
+├── index_builder.py                   # 索引构建
+├── memory_retrieval.py                # 记忆检索
+├── response_generator.py              # 回答生成
+├── evaluator.py                       # 结果评估
+├── group_event_clustering.py          # 群体事件聚类
 └── tools/                             # 辅助工具
     ├── compute_acc.py                 # 准确率计算工具
     └── ...
@@ -66,20 +67,11 @@ class ExperimentConfig:
 ### 3. 运行完整 Pipeline
 
 ```bash
-# 阶段 1：提取 MemUnits
-python eval/locomo_eval/stage1_memunits_extraction.py
+# 使用统一的 CLI 运行完整评估流程
+python -m eval.cli --system parallax --dataset locomo --num-conv 10
 
-# 阶段 2：构建索引
-python eval/locomo_eval/stage2_index_building.py
-
-# 阶段 3：检索记忆
-python eval/locomo_eval/stage3_memory_retrivel.py
-
-# 阶段 4：生成回答
-python eval/locomo_eval/stage4_response.py
-
-# 阶段 5：评估结果
-python eval/locomo_eval/stage5_eval.py
+# 或者使用 workflow 模式运行
+python -m eval.cli --system parallax --dataset locomo --num-conv 10 --workflow standard_pipeline
 ```
 
 ### 4. 查看结果
