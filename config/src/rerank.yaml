@@ -19,7 +19,7 @@ rerank:
   api_key: "${DEEPINFRA_API_KEY}"
   base_url: "https://api.deepinfra.com/v1/inference"
   model: "Qwen/Qwen3-Reranker-4B"
-  timeout: 30
+  timeout: 60  # 增加到60秒，给API更多响应时间
   max_retries: 10
   batch_size: 10
-  max_concurrent: 5
+  max_concurrent: 3  # 降低并发，减少API压力

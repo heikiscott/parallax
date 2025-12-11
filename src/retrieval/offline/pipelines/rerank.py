@@ -21,9 +21,9 @@ async def reranker_search(
     top_n: int = 20,
     reranker_instruction: Optional[str] = None,
     batch_size: int = 10,
-    max_retries: int = 3,
-    retry_delay: float = 2.0,
-    timeout: float = 30.0,
+    max_retries: int = 5,
+    retry_delay: float = 3.0,
+    timeout: float = 90.0,
     fallback_threshold: float = 0.3,
     config: Any = None,
 ) -> List[Tuple[dict, float]]:
@@ -41,6 +41,7 @@ async def reranker_search(
     - Retry with exponential backoff per batch
     - Auto-fallback to original ranking on low success rate
     - Timeout protection per batch
+    - Cooldown period when API is unstable
 
     Args:
         query: User query
@@ -48,9 +49,9 @@ async def reranker_search(
         top_n: Number of results to return (default 20)
         reranker_instruction: Reranker instruction
         batch_size: Documents per batch (default 10)
-        max_retries: Max retries per batch (default 3)
-        retry_delay: Base retry delay in seconds (default 2.0, exponential backoff)
-        timeout: Timeout per batch in seconds (default 30)
+        max_retries: Max retries per batch (default 5)
+        retry_delay: Base retry delay in seconds (default 3.0, exponential backoff)
+        timeout: Timeout per batch in seconds (default 90)
         fallback_threshold: Fallback if success rate below this (default 0.3)
         config: Experiment config (for concurrency settings)
 
@@ -108,8 +109,15 @@ async def reranker_search(
         batch = doc_texts[i : i + batch_size]
         batches.append((i, batch))
 
+    # Track consecutive failures for cooldown
+    consecutive_failures = 0
+    cooldown_threshold = 3  # After 3 consecutive failures, enter cooldown
+    cooldown_time = 10.0  # Wait 10 seconds during cooldown
+
     async def process_batch_with_retry(start_idx: int, batch_texts: List[str]):
         """Process a single batch with retry and timeout."""
+        nonlocal consecutive_failures
+
         for attempt in range(max_retries):
             try:
                 batch_results = await asyncio.wait_for(
@@ -123,13 +131,26 @@ async def reranker_search(
                 for item in batch_results["results"]:
                     item["global_index"] = start_idx + item["index"]
 
+                # Success - reset consecutive failures
+                consecutive_failures = 0
                 return batch_results["results"]
 
             except asyncio.TimeoutError:
+                consecutive_failures += 1
                 if attempt < max_retries - 1:
+                    # Use longer wait time with exponential backoff
                     wait_time = retry_delay * (2 ** attempt)
+
+                    # If API seems unstable (many consecutive failures), wait longer
+                    if consecutive_failures >= cooldown_threshold:
+                        wait_time = max(wait_time, cooldown_time)
+                        logger.warning(
+                            f"  API unstable ({consecutive_failures} consecutive failures), "
+                            f"entering cooldown for {wait_time:.1f}s"
+                        )
+
                     logger.warning(
-                        f"  Batch at {start_idx} timeout (attempt {attempt + 1}), "
+                        f"  Batch at {start_idx} timeout (attempt {attempt + 1}/{max_retries}), "
                         f"retrying in {wait_time:.1f}s"
                     )
                     await asyncio.sleep(wait_time)
@@ -138,10 +159,20 @@ async def reranker_search(
                     return []
 
             except Exception as e:
+                consecutive_failures += 1
                 if attempt < max_retries - 1:
                     wait_time = retry_delay * (2 ** attempt)
+
+                    # If API seems unstable, wait longer
+                    if consecutive_failures >= cooldown_threshold:
+                        wait_time = max(wait_time, cooldown_time)
+                        logger.warning(
+                            f"  API unstable ({consecutive_failures} consecutive failures), "
+                            f"entering cooldown for {wait_time:.1f}s"
+                        )
+
                     logger.warning(
-                        f"  Batch at {start_idx} failed (attempt {attempt + 1}), "
+                        f"  Batch at {start_idx} failed (attempt {attempt + 1}/{max_retries}), "
                         f"retrying in {wait_time:.1f}s: {e}"
                     )
                     await asyncio.sleep(wait_time)
@@ -149,11 +180,12 @@ async def reranker_search(
                     logger.error(f"  Batch at {start_idx} failed after {max_retries} attempts: {e}")
                     return []
 
-    # Controlled concurrency
+    # Controlled concurrency - reduce when API is unstable
     max_concurrent = getattr(config, 'reranker_concurrent_batches', 2) if config else 2
 
     batch_results_list = []
     successful_batches = 0
+    failed_batches_in_row = 0  # Track failures in current group
 
     # Process in groups
     for group_start in range(0, len(batches), max_concurrent):
@@ -165,16 +197,30 @@ async def reranker_search(
         ]
         group_results = await asyncio.gather(*tasks, return_exceptions=True)
 
+        group_failures = 0
         for result in group_results:
             if isinstance(result, list) and result:
                 batch_results_list.append(result)
                 successful_batches += 1
+                failed_batches_in_row = 0
             else:
                 batch_results_list.append([])
+                group_failures += 1
+                failed_batches_in_row += 1
 
-        # Inter-group delay
+        # Inter-group delay - increase if we're seeing failures
         if group_start + max_concurrent < len(batches):
-            await asyncio.sleep(0.3)
+            if failed_batches_in_row >= 2:
+                # API seems stressed, wait longer between groups
+                wait_time = 5.0
+                logger.info(f"  Increasing inter-group delay to {wait_time}s due to recent failures")
+                await asyncio.sleep(wait_time)
+            elif group_failures > 0:
+                # Some failures, moderate delay
+                await asyncio.sleep(1.0)
+            else:
+                # Normal delay
+                await asyncio.sleep(0.3)
 
     # Step 3: Merge results + fallback strategy
     all_rerank_results = []
