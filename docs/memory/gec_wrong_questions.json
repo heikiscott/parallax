@@ -1,0 +1,367 @@
+[
+  {
+    "query": "When did Caroline meet up with her friends, family, and mentors?",
+    "qid": "locomo_0_qa9",
+    "correct": false,
+    "golden": "The week before 9 June 2023",
+    "generated": "Caroline met up with her friends, family, and mentors for a picnic in a park on June 29, 2023, and later had a \"wicked day out with the gang\" involving biking and sightseeing on the weekend of September 2-3, 2023.",
+    "category": "temporal",
+    "clusters_selected": [
+      "gec_029",
+      "gec_030",
+      "gec_046",
+      "gec_011",
+      "gec_012",
+      "gec_014",
+      "gec_052"
+    ],
+    "cluster_details": {
+      "gec_029": {
+        "topic": "Importance of friendship and compassion during personal transitions",
+        "summary": "On July 6, 2023, Melanie and Caroline discussed the importance of friendship, compassion, and family support during personal transitions, with Caroline sharing how her support network has been essential to her growth. They reflected on recent meaningful moments, including a picnic and a family camping trip, emphasizing love and gratitude.",
+        "member_count": 1,
+        "members_returned": 1
+      },
+      "gec_030": {
+        "topic": "Family support during personal growth and life transitions",
+        "summary": "On July 6, 2023, Melanie and Caroline discussed the importance of friendship, compassion, and family support during personal transitions, with Caroline sharing how her support network has been essential to her growth. They reflected on recent meaningful moments, including a picnic and a family camping trip, emphasizing love and gratitude.",
+        "member_count": 1,
+        "members_returned": 0
+      },
+      "gec_046": {
+        "topic": "Caroline's mentorship of LGBTQ youth",
+        "summary": "Melanie and Caroline discussed their recent activities, with Melanie sharing about a family camping trip and Caroline describing her rewarding experience mentoring LGBTQ youth, including attending a pride event with a transgender teenager mentee. Their conversation highlighted Caroline's commitment to advocacy and the positive impact of community support.",
+        "member_count": 1,
+        "members_returned": 1
+      },
+      "gec_011": {
+        "topic": "Caroline's transgender journey and school advocacy",
+        "summary": "On June 9, 2023, Caroline and Melanie reflected on Caroline’s recent school event where she shared her transgender journey to promote LGBTQ community involvement, expressing mutual admiration for their advocacy and the importance of support systems and family in fostering acceptance and hope.",
+        "member_count": 4,
+        "members_returned": 4
+      },
+      "gec_012": {
+        "topic": "LGBTQ community involvement and support systems",
+        "summary": "Caroline and Melanie consistently discussed LGBTQ community involvement, emphasizing advocacy, support systems, and mental health. Their conversations evolved from personal journeys to active mentorship, artistic expression, and engagement in activist groups, highlighting ongoing commitment and mutual encouragement.",
+        "member_count": 9,
+        "members_returned": 7
+      },
+      "gec_014": {
+        "topic": "Caroline's meaningful family keepsakes",
+        "summary": "On June 27, 2023, Caroline reconnected with Melanie by sharing a photo of a meaningful necklace gifted by her grandmother, symbolizing love, faith, and strength, and also discussed a treasured hand-painted bowl from a friend, highlighting her appreciation for keepsakes tied to family and friendship.",
+        "member_count": 2,
+        "members_returned": 2
+      },
+      "gec_052": {
+        "topic": "Melanie's daughter's birthday celebration",
+        "summary": "On August 14, 2023, Melanie shared with Caroline her joy and gratitude for celebrating her daughter's birthday the previous night with a concert featuring Matt Patterson, highlighting the happiness of family bonding, while Caroline reciprocated by discussing her own uplifting experience at an advocacy event. Both expressed appreciation for meaningful social moments and family connections.",
+        "member_count": 1,
+        "members_returned": 1
+      }
+    },
+    "conv_id": 0
+  },
+  {
+    "query": "When did John have his first firefighter call-out?",
+    "qid": "locomo_2_qa48",
+    "correct": false,
+    "golden": "The sunday before 3` July 2023",
+    "generated": "John had his first firefighter call-out on Sunday, July 23, 2023.",
+    "category": "temporal",
+    "clusters_selected": [
+      "gec_068"
+    ],
+    "cluster_details": {
+      "gec_068": {
+        "topic": "John's involvement in fire-fighting brigade and first emergency call-out",
+        "summary": "Maria and John reflected on their recent volunteer efforts, with Maria sharing her experience baking and donating goods to a homeless shelter, and John describing his involvement in a fire-fighting brigade and their first emergency call-out. Both expressed mutual inspiration and a strong commitment to community service.",
+        "member_count": 1,
+        "members_returned": 1
+      }
+    },
+    "conv_id": 2
+  },
+  {
+    "query": "When did Maria start volunteering at the homeless shelter?",
+    "qid": "locomo_2_qa51",
+    "correct": false,
+    "golden": "Around August 2022",
+    "generated": "Maria started volunteering at the homeless shelter approximately in March 2022, as she mentioned on March 6, 2023, and August 3, 2023, that she began about a year ago, and she was already volunteering by December 17, 2022.",
+    "category": "temporal",
+    "clusters_selected": [
+      "gec_001",
+      "gec_015",
+      "gec_034",
+      "gec_023"
+    ],
+    "cluster_details": {
+      "gec_001": {
+        "topic": "Maria and John's reunion conversation on Dec 17...",
+        "summary": "Maria and John consistently discussed their shared commitment to community service, volunteering, and local activism, supporting each other's efforts in education, homelessness, veterans' aid, and fundraising, while emphasizing family, compassion, and positive impact over time.",
+        "member_count": 22,
+        "members_returned": 15
+      },
+      "gec_015": {
+        "topic": "Maria connecting homeless individuals with support services",
+        "summary": "They discussed Maria’s ongoing dedication to connecting homeless individuals with support services, sharing experiences from shelter volunteering, organizing community meals, and fundraising. Their conversations reflected mutual encouragement and a sustained commitment to compassion and community impact.",
+        "member_count": 13,
+        "members_returned": 8
+      },
+      "gec_034": {
+        "topic": "John's upcoming East Coast trip plans",
+        "summary": "John and Maria discussed John’s upcoming East Coast trip and Maria’s ongoing volunteer work at a homeless shelter, sharing mutual encouragement and emphasizing the importance of small acts of kindness in making a positive impact.",
+        "member_count": 1,
+        "members_returned": 0
+      },
+      "gec_023": {
+        "topic": "John's recent aptitude test results and decision to serve his country",
+        "summary": "On March 6, 2023, Maria and John discussed their travel experiences and shared their commitment to volunteering, with John expressing pride in his recent aptitude test results and decision to serve his country, while Maria highlighted the importance of building trust and compassion through her work at a homeless shelter. Their conversation reflected mutual admiration and a focus on personal growth and community service.",
+        "member_count": 1,
+        "members_returned": 0
+      }
+    },
+    "conv_id": 2
+  },
+  {
+    "query": "How many times has Joanna found new hiking trails?",
+    "qid": "locomo_3_qa19",
+    "correct": false,
+    "golden": "twice",
+    "generated": "Joanna has found new hiking trails at least three times: she discovered one awesome trail on April 16, 2022; multiple new amazing trails (at least two) by May 12, 2022; and planned to explore another new trail with a waterfall on June 4-5, 2022. This means she has found at least four distinct new hiking trails or sets of trails in total.",
+    "category": "multi-hop",
+    "clusters_selected": [
+      "gec_019"
+    ],
+    "cluster_details": {
+      "gec_019": {
+        "topic": "Joanna's hiking experiences",
+        "summary": "They shared a mutual passion for hiking and nature, exchanging trail experiences, photos, and plans to hike together. Their conversations reflected ongoing support, inspiration from nature, and a growing friendship enriched by shared interests and future outdoor adventures.",
+        "member_count": 5,
+        "members_returned": 5
+      }
+    },
+    "conv_id": 3
+  },
+  {
+    "query": "When did Joanna make a chocolate tart with raspberries?",
+    "qid": "locomo_3_qa41",
+    "correct": false,
+    "golden": "5 October, 2022",
+    "generated": "Joanna made the chocolate tart with raspberries shortly before September 14, 2022, as she shared a photo and described it as her favorite dairy-free treat on that day.",
+    "category": "temporal",
+    "clusters_selected": [
+      "gec_012"
+    ],
+    "cluster_details": {
+      "gec_012": {
+        "topic": "Nate's dairy-free dessert experiments",
+        "summary": "Nate and Joanna consistently shared enthusiasm for dairy-free desserts, exchanging recipes, photos, and support. Their culinary experiments evolved from coconut milk ice cream to vegan treats, reflecting a growing mutual passion and collaborative spirit over time.",
+        "member_count": 13,
+        "members_returned": 13
+      }
+    },
+    "conv_id": 3
+  },
+  {
+    "query": "How many times has Nate taken his turtles on a walk?",
+    "qid": "locomo_3_qa53",
+    "correct": false,
+    "golden": "Twice.",
+    "generated": "Nate has taken his turtles on a walk once, specifically on October 25, 2022.",
+    "category": "multi-hop",
+    "clusters_selected": [
+      "gec_006",
+      "gec_040",
+      "gec_041"
+    ],
+    "cluster_details": {
+      "gec_006": {
+        "topic": "Nate's pet turtles",
+        "summary": "Nate and Joanna shared a deep appreciation for Nate’s pet turtles, discussing their care, personalities, and calming presence. Over time, their conversations reflected growing affection, mutual support, and plans to enjoy the turtles together despite Joanna’s allergies.",
+        "member_count": 16,
+        "members_returned": 15
+      },
+      "gec_040": {
+        "topic": "Joanna's practice of writing down cherished memories",
+        "summary": "On November 7, 2022, Nate shared a special day spent with his pets at the park, prompting Joanna to share her practice of writing down cherished memories; together, they decided to record meaningful moments involving their pets and each other to preserve and deepen their connection.",
+        "member_count": 1,
+        "members_returned": 0
+      },
+      "gec_041": {
+        "topic": "Nate and Joanna's shared activity of recording meaningful moments involving pets and each other",
+        "summary": "On November 7, 2022, Nate shared a special day spent with his pets at the park, prompting Joanna to share her practice of writing down cherished memories; together, they decided to record meaningful moments involving their pets and each other to preserve and deepen their connection.",
+        "member_count": 1,
+        "members_returned": 0
+      }
+    },
+    "conv_id": 3
+  },
+  {
+    "query": "How many times has John injured his ankle?",
+    "qid": "locomo_4_qa49",
+    "correct": false,
+    "golden": "two times",
+    "generated": "John has injured his ankle once, suffering a major ankle injury during the 2022-2023 season that required time off and physical therapy.",
+    "category": "multi-hop",
+    "clusters_selected": [
+      "gec_012",
+      "gec_048",
+      "gec_050"
+    ],
+    "cluster_details": {
+      "gec_012": {
+        "topic": "John's lucky basketball sneakers and their symbolic meaning of resilience and personal growth",
+        "summary": "On August 11, 2023, John shared a photo of his lucky basketball sneakers and expressed their symbolic meaning of resilience and personal growth, while Tim acknowledged their significance and invited John to share their stories.",
+        "member_count": 4,
+        "members_returned": 4
+      },
+      "gec_048": {
+        "topic": "John's leg injury and recovery",
+        "summary": "On November 16, 2023, John and Tim exchanged supportive messages about John's leg injury and Tim's exam preparations, sharing their challenges and motivation strategies while encouraging each other.",
+        "member_count": 1,
+        "members_returned": 1
+      },
+      "gec_050": {
+        "topic": "John's injury recovery and health updates",
+        "summary": "On November 21, 2023, Tim reached out to John to check on his injury recovery, prompting John to share his challenging but positive progress and reciprocate the inquiry, marking a brief but meaningful reconnection focused on mutual well-being.",
+        "member_count": 1,
+        "members_returned": 1
+      }
+    },
+    "conv_id": 4
+  },
+  {
+    "query": "When did Tim start playing the violin?",
+    "qid": "locomo_4_qa56",
+    "correct": false,
+    "golden": "August 2023",
+    "generated": "Tim started playing the violin shortly before or around December 6, 2023, as he described beginning to learn it recently during their conversation on that date.",
+    "category": "temporal",
+    "clusters_selected": [
+      "gec_058",
+      "gec_059",
+      "gec_060"
+    ],
+    "cluster_details": {
+      "gec_058": {
+        "topic": "Tim's travel club membership",
+        "summary": "Tim shared with John that he had recently joined a travel club, was studying, and had started learning to play the violin, expressing enthusiasm for classical music and creativity. John responded positively, encouraging Tim and discussing the rewarding experience of learning new skills.",
+        "member_count": 1,
+        "members_returned": 1
+      },
+      "gec_059": {
+        "topic": "Tim's violin learning progress",
+        "summary": "Tim shared with John that he had recently joined a travel club, was studying, and had started learning to play the violin, expressing enthusiasm for classical music and creativity. John responded positively, encouraging Tim and discussing the rewarding experience of learning new skills.",
+        "member_count": 1,
+        "members_returned": 0
+      },
+      "gec_060": {
+        "topic": "Tim's academic studies",
+        "summary": "Tim shared with John that he had recently joined a travel club, was studying, and had started learning to play the violin, expressing enthusiasm for classical music and creativity. John responded positively, encouraging Tim and discussing the rewarding experience of learning new skills.",
+        "member_count": 1,
+        "members_returned": 0
+      }
+    },
+    "conv_id": 4
+  },
+  {
+    "query": "When did Jolene finish her robotics project?",
+    "qid": "locomo_7_qa45",
+    "correct": false,
+    "golden": "May 2023",
+    "generated": "Jolene began her robotics project by February 1, 2023, and was still working on it as of April 9, 2023. There is no explicit record of when she finished the robotics project in the available memories.",
+    "category": "temporal",
+    "clusters_selected": [
+      "gec_011"
+    ],
+    "cluster_details": {
+      "gec_011": {
+        "topic": "Jolene's robotics project experience",
+        "summary": "They discussed Jolene’s challenging yet rewarding robotics project, highlighting her emotional journey from initial difficulty to breakthrough success. Throughout, Deborah offered consistent encouragement, emphasizing perseverance, balance, and mutual support during demanding academic efforts.",
+        "member_count": 6,
+        "members_returned": 6
+      }
+    },
+    "conv_id": 7
+  },
+  {
+    "query": "When did Deborah go to a community meetup?",
+    "qid": "locomo_7_qa71",
+    "correct": false,
+    "golden": "last week of August 2023",
+    "generated": "Deborah went to a community meetup on Friday, September 1, 2023.",
+    "category": "temporal",
+    "clusters_selected": [
+      "gec_073"
+    ],
+    "cluster_details": {
+      "gec_073": {
+        "topic": "Deborah's attendance and reflections on community support events",
+        "summary": "Deborah and Jolene discussed their recent experiences and personal lives, emphasizing the importance of relationships and support from loved ones in managing stress, with Deborah sharing about a community event and yoga friends, and Jolene reflecting on her studies, gaming hobbies, and partner’s encouragement.",
+        "member_count": 1,
+        "members_returned": 1
+      }
+    },
+    "conv_id": 7
+  },
+  {
+    "query": "When did Evan have his sudden heart palpitation incident that really shocked him up?",
+    "qid": "locomo_8_qa13",
+    "correct": false,
+    "golden": "first week of June 2023",
+    "generated": "Evan had his sudden heart palpitation incident on May 30, 2023.",
+    "category": "temporal",
+    "clusters_selected": [
+      "gec_021"
+    ],
+    "cluster_details": {
+      "gec_021": {
+        "topic": "Evan's recent health scare and recovery",
+        "summary": "On November 21, 2023, Sam and Evan discussed recent health challenges Evan faced, sharing mutual support and agreeing to focus on appreciating life’s small joys together. Their conversation emphasized the importance of friendship and valuing the present during difficult times.",
+        "member_count": 1,
+        "members_returned": 1
+      }
+    },
+    "conv_id": 8
+  },
+  {
+    "query": "When did Evan have a drunken night with his friends?",
+    "qid": "locomo_8_qa80",
+    "correct": false,
+    "golden": "January 9, 2023",
+    "generated": "Evan had his drunken night with friends on the evening of January 9, 2024.",
+    "category": "temporal",
+    "clusters_selected": [
+      "gec_049"
+    ],
+    "cluster_details": {
+      "gec_049": {
+        "topic": "Evan's embarrassing social incident involving alcohol",
+        "summary": "Evan told Sam about an embarrassing incident the previous night where he had a pee accident near someone's roses after drinking excessively, expressing regret and receiving understanding from those involved. Sam offered support, emphasizing that everyone makes mistakes.",
+        "member_count": 1,
+        "members_returned": 1
+      }
+    },
+    "conv_id": 8
+  },
+  {
+    "query": "When did Dave start his car maintenance shop?",
+    "qid": "locomo_9_qa8",
+    "correct": false,
+    "golden": "May 1, 2023",
+    "generated": "Dave started his car maintenance shop on May 7, 2023.",
+    "category": "temporal",
+    "clusters_selected": [
+      "gec_013"
+    ],
+    "cluster_details": {
+      "gec_013": {
+        "topic": "Dave's opening of his own car maintenance shop",
+        "summary": "On May 1, 2023, Dave shared with Calvin the achievement of opening his own car maintenance shop, expressing pride and happiness in pursuing his passion for working on classic cars, while Calvin congratulated and encouraged him. Their conversation highlighted Dave’s dedication, the fulfillment of his dreams, and the joy of transforming and maintaining vehicles.",
+        "member_count": 1,
+        "members_returned": 1
+      }
+    },
+    "conv_id": 9
+  }
+]
