@@ -21,6 +21,8 @@ from eval.core.stages.answer_stage import run_answer_stage
 from eval.core.stages.evaluate_stage import run_evaluate_stage
 from src.orchestration.nodes import register_node
 from eval.utils.token_stats import TokenStatsCollector
+from eval.utils.saver import ResultSaver
+import json
 
 
 # ============================================================================
@@ -117,6 +119,20 @@ async def eval_search_stage_node(state: EvalState, context) -> Dict[str, Any]:
             logger=context.logger,
         )
 
+        # Save search results to file
+        saver = ResultSaver(context.output_dir)
+        search_data = [
+            {
+                "query": sr.query,
+                "conversation_id": sr.conversation_id,
+                "results": sr.results,
+                "retrieval_metadata": sr.retrieval_metadata,
+            }
+            for sr in search_results
+        ]
+        saver.save_json(search_data, "search_results.json")
+        context.logger.info(f"Saved search results to search_results.json")
+
         return {
             "search_results": search_results,
             "completed_stages": ["search"],
@@ -142,6 +158,24 @@ async def eval_answer_stage_node(state: EvalState, context) -> Dict[str, Any]:
             logger=context.logger,
         )
 
+        # Save answer results to file
+        saver = ResultSaver(context.output_dir)
+        answer_data = [
+            {
+                "question_id": ar.question_id,
+                "question": ar.question,
+                "answer": ar.answer,
+                "golden_answer": ar.golden_answer,
+                "category": ar.category,
+                "conversation_id": ar.conversation_id,
+                "formatted_context": ar.formatted_context,
+                "metadata": ar.metadata,
+            }
+            for ar in answer_results
+        ]
+        saver.save_json(answer_data, "answer_results.json")
+        context.logger.info(f"Saved answer results to answer_results.json")
+
         return {
             "answer_results": answer_results,
             "completed_stages": ["answer"],
@@ -161,6 +195,36 @@ async def eval_evaluate_stage_node(state: EvalState, context) -> Dict[str, Any]:
         checkpoint_manager=context.checkpoint_manager,
         logger=context.logger,
     )
+
+    # Save evaluation results to file
+    saver = ResultSaver(context.output_dir)
+    eval_data = {
+        "total_questions": eval_results.total_questions,
+        "correct": eval_results.correct,
+        "accuracy": eval_results.accuracy,
+        "detailed_results": eval_results.detailed_results,
+        "metadata": eval_results.metadata,
+    }
+    saver.save_json(eval_data, "eval_results.json")
+    context.logger.info(f"Saved evaluation results to eval_results.json")
+
+    # Generate and save report
+    report_lines = []
+    report_lines.append("=" * 60)
+    report_lines.append("📊 Evaluation Report")
+    report_lines.append("=" * 60)
+    report_lines.append("")
+    report_lines.append(f"Total Questions: {eval_results.total_questions}")
+    report_lines.append(f"Correct: {eval_results.correct}")
+    report_lines.append(f"Accuracy: {eval_results.accuracy:.2%}")
+    report_lines.append("")
+    report_lines.append("=" * 60)
+
+    report_text = "\n".join(report_lines)
+    report_path = Path(context.output_dir) / "report.txt"
+    with open(report_path, "w", encoding="utf-8") as f:
+        f.write(report_text)
+    context.logger.info(f"Saved report to report.txt")
 
     return {
         "eval_results": eval_results,
