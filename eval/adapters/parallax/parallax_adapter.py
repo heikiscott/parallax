@@ -34,10 +34,10 @@ logger = logging.getLogger(__name__)
 
 # 导入 Parallax 实现
 from eval.adapters.parallax import (
-    stage1_memunits_extraction,
-    stage2_index_building,
-    stage3_memory_retrivel,
-    stage4_response,
+    memunit_extraction,
+    index_builder,
+    memory_retrieval,
+    response_generator,
 )
 
 # 导入 Memory Layer 组件
@@ -120,7 +120,7 @@ class ParallaxAdapter(BaseAdapter):
             self.answer_prompt = ANSWER_PROMPT
 
         # 确保 NLTK 数据可用
-        stage2_index_building.ensure_nltk_data()
+        index_builder.ensure_nltk_data()
 
         logger.info("Parallax Adapter initialized")
         logger.info(f"LLM Model: {llm_provider_config.get('model')}")
@@ -187,8 +187,8 @@ class ParallaxAdapter(BaseAdapter):
         Add 阶段：提取 MemUnits 并构建索引
         
         调用流程：
-        1. Stage 1: 提取 MemUnits (stage1_memunits_extraction.py) - 并发处理
-        2. Stage 2: 构建 BM25 和 Embedding 索引 (stage2_index_building.py)
+        1. Stage 1: 提取 MemUnits (memunit_extraction.py) - 并发处理
+        2. Stage 2: 构建 BM25 和 Embedding 索引 (index_builder.py)
         
         返回：索引元数据（方案 A：延迟加载）
         """
@@ -326,7 +326,7 @@ class ParallaxAdapter(BaseAdapter):
                     conversation_tasks[conv_id] = conv_task_id
                     
                     # 🔥 创建处理任务，传入提取后的索引
-                    task = stage1_memunits_extraction.process_single_conversation(
+                    task = memunit_extraction.process_single_conversation(
                         conv_id=conv_index,  # 使用提取后的索引
                         conversation=raw_data_dict[conv_id],  # 数据用原始 ID
                         save_dir=str(memunits_dir),
@@ -415,7 +415,7 @@ class ParallaxAdapter(BaseAdapter):
             # 设置 activity_id: 索引构建阶段
             set_activity_id("add-idx-bm25")
             console.print(f"\n🔨 构建 BM25 索引 ({bm25_to_build} 个会话)...", style="yellow")
-            stage2_index_building.build_bm25_index(
+            index_builder.build_bm25_index(
                 config=exp_config,
                 data_dir=memunits_dir,
                 bm25_save_dir=bm25_index_dir,
@@ -430,7 +430,7 @@ class ParallaxAdapter(BaseAdapter):
                 # 设置 activity_id: Embedding 索引构建阶段
                 set_activity_id("add-idx-emb")
                 console.print(f"\n🔨 构建 Embedding 索引 ({emb_to_build} 个会话)...", style="yellow")
-                await stage2_index_building.build_emb_index(
+                await index_builder.build_emb_index(
                     config=exp_config,
                     data_dir=memunits_dir,
                     emb_save_dir=emb_index_dir,
@@ -502,7 +502,7 @@ class ParallaxAdapter(BaseAdapter):
 
         # 🔥 按需加载聚类索引（如果启用）
         cluster_index = None
-        if self.config.get('enable_group_event_cluster', False):
+        if self.config.get('group_event_cluster', {}).get('enabled', False):
             from memory.group_event_cluster import GroupEventClusterIndex
             clusters_dir = Path(index.get("output_dir", self.output_dir)) / "event_clusters"
             cluster_file = clusters_dir / f"conv_{conv_index}.json"
@@ -545,7 +545,7 @@ class ParallaxAdapter(BaseAdapter):
                 )
             else:
                 # 原始 Agentic 检索（不分类）
-                top_results, metadata = await stage3_memory_retrivel.agentic_retrieval(
+                top_results, metadata = await memory_retrieval.agentic_retrieval(
                     query=query,
                     config=exp_config,
                     llm_provider=self.llm_provider,
@@ -585,7 +585,7 @@ class ParallaxAdapter(BaseAdapter):
             )
         elif retrieval_mode == "lightweight":
             # 轻量级检索
-            top_results, metadata = await stage3_memory_retrivel.lightweight_retrieval(
+            top_results, metadata = await memory_retrieval.lightweight_retrieval(
                 query=query,
                 emb_index=emb_index,
                 bm25=bm25,
@@ -594,7 +594,7 @@ class ParallaxAdapter(BaseAdapter):
             )
         else:
             # 默认使用混合检索
-            top_results = await stage3_memory_retrivel.hybrid_search_with_rrf(
+            top_results = await memory_retrieval.hybrid_search_with_rrf(
                 query=query,
                 emb_index=emb_index,
                 bm25=bm25,
@@ -682,7 +682,7 @@ class ParallaxAdapter(BaseAdapter):
         运行在 Add 阶段之后，Search 阶段之前。
 
         调用流程：
-        - Stage 1.5: 群体事件聚类 (stage1_5_group_event_cluster.py)
+        - 群体事件聚类 (group_event_clustering.py)
 
         Args:
             conversations: 对话列表
@@ -692,10 +692,10 @@ class ParallaxAdapter(BaseAdapter):
         Returns:
             聚类结果字典，包含 cluster_indices
         """
-        from eval.adapters.parallax import stage1_5_group_event_cluster
+        from eval.adapters.parallax import group_event_clustering
 
         # 检查是否启用聚类
-        enable_clustering = self.config.get('enable_group_event_cluster', False)
+        enable_clustering = self.config.get('group_event_cluster', {}).get('enabled', False)
         if not enable_clustering:
             return {"cluster_indices": {}}
 
@@ -703,8 +703,8 @@ class ParallaxAdapter(BaseAdapter):
         memunits_dir = output_dir / "memunits"
         clusters_dir = output_dir / "event_clusters"
 
-        # 调用 stage1_5 执行聚类
-        return await stage1_5_group_event_cluster.run_group_event_clustering(
+        # 调用群体事件聚类模块执行聚类
+        return await group_event_clustering.run_group_event_clustering(
             conversations=conversations,
             memunits_dir=memunits_dir,
             clusters_dir=clusters_dir,
@@ -716,7 +716,7 @@ class ParallaxAdapter(BaseAdapter):
         """
         Answer 阶段：生成答案
 
-        调用 stage4_response.py 的实现
+        调用 response_generator.py 的实现
 
         注意：Token 统计通过 LLMProvider 的 callback 自动收集，
         阶段信息从 context variable 中获取
@@ -724,7 +724,7 @@ class ParallaxAdapter(BaseAdapter):
         # 调用 stage4 答案生成实现
         exp_config = self._get_config()
 
-        answer = await stage4_response.locomo_response(
+        answer = await response_generator.locomo_response(
             llm_provider=self.llm_provider,
             context=context,
             question=query,
@@ -801,8 +801,6 @@ class ParallaxAdapter(BaseAdapter):
             config._data["retrieval"]["workflow_name"] = search_config["workflow_name"]
 
         # 4. 群体事件聚类配置
-        if "enable_group_event_cluster" in self.config:
-            config._data["group_event_cluster"]["enabled"] = self.config["enable_group_event_cluster"]
         if "group_event_cluster_config" in self.config:
             config._data["group_event_cluster"].update(self.config["group_event_cluster_config"])
         if "group_event_cluster_retrieval_config" in self.config:

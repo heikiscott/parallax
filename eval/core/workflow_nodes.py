@@ -88,7 +88,7 @@ async def eval_add_stage_node(state, context) -> Dict[str, Any]:
 
 @register_node("eval_cluster_stage")
 async def eval_cluster_stage_node(state: EvalState, context) -> Dict[str, Any]:
-    """Stage 1.5: Cluster - Group event clustering."""
+    """Cluster: Group event clustering."""
     # 🔥 检查是否应该跳过此阶段
     completed_stages = set(state.get("completed_stages", []))
     if "cluster" in completed_stages:

@@ -1,5 +1,5 @@
 """
-Cluster 阶段 (Stage 1.5)
+Cluster 阶段
 
 负责对 MemUnits 进行 LLM 驱动的事件聚类。
 运行在 Add 阶段之后，Search 阶段之前。
@@ -44,7 +44,7 @@ async def run_cluster_stage(
         checkpoint_manager=checkpoint_manager,
     )
 
-    logger.info("✅ Stage 1.5 completed")
+    logger.info("✅ Cluster stage completed")
 
     # 🔥 移除跨阶段 checkpoint 保存（统一在 cli.py 管理）
     # Checkpoint 将在 workflow 执行完成后由 cli.py 统一保存

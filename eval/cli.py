@@ -244,7 +244,8 @@ async def main():
         workflow_config = args.workflow
     else:
         # 根据系统配置决定使用哪个 workflow
-        enable_clustering = system_config.get("enable_group_event_cluster", False)
+        # 从 group_event_cluster.enabled 字段读取配置
+        enable_clustering = system_config.get("group_event_cluster", {}).get("enabled", False)
         if enable_clustering:
             workflow_config = "standard_pipeline"  # 包含 cluster 阶段
         else:
@@ -256,7 +257,7 @@ async def main():
         console.print(f"  🔍 Filter categories: {filter_categories}")
 
     # 获取 enable_clustering 用于 state metadata
-    enable_clustering = system_config.get("enable_group_event_cluster", False)
+    enable_clustering = system_config.get("group_event_cluster", {}).get("enabled", False)
 
     # 构建 workflow（使用完整路径）
     eval_workflows_dir = project_root / "config" / "eval" / "workflows"
@@ -339,7 +340,7 @@ async def main():
         qa_pairs=dataset.qa_pairs,
         conv_id=args.conv,
         filter_categories=filter_categories,
-        metadata={"enable_group_event_cluster": enable_clustering},
+        metadata={"group_event_cluster": {"enabled": enable_clustering}},
         completed_stages=completed_stages_from_checkpoint,
     )
 

@@ -1,4 +1,4 @@
-"""Stage 1.5: Group Event Clustering
+"""Cluster: Group Event Clustering
 
 对 MemUnits 进行 LLM 驱动的事件聚类。
 运行在 Add 阶段之后，Search 阶段之前。
@@ -51,9 +51,9 @@ async def run_group_event_clustering(
     console = Console()
     clusters_dir.mkdir(parents=True, exist_ok=True)
 
-    # ========== Stage 1.5: Group Event Clustering ==========
+    # ========== Cluster: Group Event Clustering ==========
     console.print(f"\n{'='*60}", style="bold cyan")
-    console.print(f"Stage 1.5: Group Event Clustering", style="bold cyan")
+    console.print(f"Cluster: Group Event Clustering", style="bold cyan")
     console.print(f"{'='*60}", style="bold cyan")
 
     # 获取聚类配置
@@ -63,7 +63,7 @@ async def run_group_event_clustering(
     # 创建 GroupEventClusterConfig
     cluster_config = GroupEventClusterConfig(
         llm_provider=cluster_config_dict.get("llm_provider", "openai"),
-        llm_model=cluster_config_dict.get("llm_model") or llm_cfg.get("model", "gpt-4o-mini"),
+        llm_model=cluster_config_dict.get("llm_model") or llm_cfg.get("model", "gpt-4.1-mini"),
         llm_api_key=cluster_config_dict.get("llm_api_key") or llm_cfg.get("api_key"),
         llm_base_url=cluster_config_dict.get("llm_base_url") or llm_cfg.get("base_url"),
         llm_temperature=cluster_config_dict.get("llm_temperature", 0.0),
