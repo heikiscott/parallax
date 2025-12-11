@@ -148,10 +148,10 @@ async def agentic_retrieval_node(
             # Reranker params
             self.use_reranker = ctx.get_config_value("use_reranker", True)
             self.reranker_instruction = ctx.get_config_value("reranker_instruction", None)
-            self.reranker_batch_size = ctx.get_config_value("reranker_batch_size", 10)
-            self.reranker_max_retries = ctx.get_config_value("reranker_max_retries", 3)
-            self.reranker_retry_delay = ctx.get_config_value("reranker_retry_delay", 2.0)
-            self.reranker_timeout = ctx.get_config_value("reranker_timeout", 30.0)
+            self.reranker_batch_size = ctx.get_config_value("reranker_batch_size", 20)
+            self.reranker_max_retries = ctx.get_config_value("reranker_max_retries", 10)
+            self.reranker_retry_delay = ctx.get_config_value("reranker_retry_delay", 0.8)
+            self.reranker_timeout = ctx.get_config_value("reranker_timeout", 60.0)
             self.reranker_fallback_threshold = ctx.get_config_value("reranker_fallback_threshold", 0.3)
             # Multi-query
             self.use_multi_query = ctx.get_config_value("use_multi_query", True)

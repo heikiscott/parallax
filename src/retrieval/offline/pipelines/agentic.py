@@ -38,6 +38,17 @@ from .rerank import reranker_search
 logger = logging.getLogger(__name__)
 
 
+def _get_reranker_config(config: Any, key: str, default: Any) -> Any:
+    """Safely get reranker config value from nested config.reranker.xxx structure."""
+    try:
+        reranker_cfg = getattr(config, 'reranker', None)
+        if reranker_cfg is not None:
+            return getattr(reranker_cfg, key, default)
+    except (AttributeError, TypeError):
+        pass
+    return default
+
+
 def _log_ids(prefix: str, docs: List[Tuple[dict, float]], limit: int = 20):
     """Log a short list of unit_ids for debugging."""
     ids = [d.get("unit_id", "") for d, _ in docs if d.get("unit_id")]
@@ -147,12 +158,12 @@ async def _apply_cluster_expansion(
                 query=query,
                 results=expanded_results,
                 top_n=cluster_config.rerank_top_n_after_expansion,
-                reranker_instruction=getattr(config, 'reranker_instruction', None),
-                batch_size=getattr(config, 'reranker_batch_size', 10),
-                max_retries=getattr(config, 'reranker_max_retries', 3),
-                retry_delay=getattr(config, 'reranker_retry_delay', 2.0),
-                timeout=getattr(config, 'reranker_timeout', 30.0),
-                fallback_threshold=getattr(config, 'reranker_fallback_threshold', 0.3),
+                reranker_instruction=_get_reranker_config(config, 'instruction', None),
+                batch_size=_get_reranker_config(config, 'batch_size', 20),
+                max_retries=_get_reranker_config(config, 'max_retries', 10),
+                retry_delay=_get_reranker_config(config, 'retry_delay', 0.8),
+                timeout=_get_reranker_config(config, 'timeout', 60.0),
+                fallback_threshold=_get_reranker_config(config, 'fallback_threshold', 0.3),
                 config=config,
             )
             metadata.setdefault("cluster_expansion", {})["reranked"] = True
@@ -286,12 +297,12 @@ async def agentic_retrieval(
             query=query,
             results=round1_top20,
             top_n=5,
-            reranker_instruction=getattr(config, 'reranker_instruction', None),
-            batch_size=getattr(config, 'reranker_batch_size', 10),
-            max_retries=getattr(config, 'reranker_max_retries', 3),
-            retry_delay=getattr(config, 'reranker_retry_delay', 2.0),
-            timeout=getattr(config, 'reranker_timeout', 30.0),
-            fallback_threshold=getattr(config, 'reranker_fallback_threshold', 0.3),
+            reranker_instruction=_get_reranker_config(config, 'instruction', None),
+            batch_size=_get_reranker_config(config, 'batch_size', 20),
+            max_retries=_get_reranker_config(config, 'max_retries', 10),
+            retry_delay=_get_reranker_config(config, 'retry_delay', 0.8),
+            timeout=_get_reranker_config(config, 'timeout', 60.0),
+            fallback_threshold=_get_reranker_config(config, 'fallback_threshold', 0.3),
             config=config,
         )
         metadata["round1_reranked_count"] = len(reranked_top5)
@@ -482,12 +493,12 @@ async def agentic_retrieval(
             query=query,
             results=combined_results,
             top_n=20,
-            reranker_instruction=getattr(config, 'reranker_instruction', None),
-            batch_size=getattr(config, 'reranker_batch_size', 10),
-            max_retries=getattr(config, 'reranker_max_retries', 3),
-            retry_delay=getattr(config, 'reranker_retry_delay', 2.0),
-            timeout=getattr(config, 'reranker_timeout', 30.0),
-            fallback_threshold=getattr(config, 'reranker_fallback_threshold', 0.3),
+            reranker_instruction=_get_reranker_config(config, 'instruction', None),
+            batch_size=_get_reranker_config(config, 'batch_size', 20),
+            max_retries=_get_reranker_config(config, 'max_retries', 10),
+            retry_delay=_get_reranker_config(config, 'retry_delay', 0.8),
+            timeout=_get_reranker_config(config, 'timeout', 60.0),
+            fallback_threshold=_get_reranker_config(config, 'fallback_threshold', 0.3),
             config=config,
         )
     else:

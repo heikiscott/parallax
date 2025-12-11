@@ -21,9 +21,9 @@ async def reranker_search(
     top_n: int = 20,
     reranker_instruction: Optional[str] = None,
     batch_size: int = 10,
-    max_retries: int = 5,
-    retry_delay: float = 3.0,
-    timeout: float = 90.0,
+    max_retries: int = 20,
+    retry_delay: float = 5.0,
+    timeout: float = 120.0,
     fallback_threshold: float = 0.3,
     config: Any = None,
 ) -> List[Tuple[dict, float]]:
@@ -49,9 +49,9 @@ async def reranker_search(
         top_n: Number of results to return (default 20)
         reranker_instruction: Reranker instruction
         batch_size: Documents per batch (default 10)
-        max_retries: Max retries per batch (default 5)
-        retry_delay: Base retry delay in seconds (default 3.0, exponential backoff)
-        timeout: Timeout per batch in seconds (default 90)
+        max_retries: Max retries per batch (default 20)
+        retry_delay: Base retry delay in seconds (default 5.0, exponential backoff)
+        timeout: Timeout per batch in seconds (default 120)
         fallback_threshold: Fallback if success rate below this (default 0.3)
         config: Experiment config (for concurrency settings)
 
@@ -112,7 +112,7 @@ async def reranker_search(
     # Track consecutive failures for cooldown
     consecutive_failures = 0
     cooldown_threshold = 3  # After 3 consecutive failures, enter cooldown
-    cooldown_time = 10.0  # Wait 10 seconds during cooldown
+    cooldown_time = 30.0  # Wait 30 seconds during cooldown
 
     async def process_batch_with_retry(start_idx: int, batch_texts: List[str]):
         """Process a single batch with retry and timeout."""
@@ -138,8 +138,8 @@ async def reranker_search(
             except asyncio.TimeoutError:
                 consecutive_failures += 1
                 if attempt < max_retries - 1:
-                    # Use longer wait time with exponential backoff
-                    wait_time = retry_delay * (2 ** attempt)
+                    # Use longer wait time with exponential backoff, capped at 60s
+                    wait_time = min(retry_delay * (2 ** attempt), 60.0)
 
                     # If API seems unstable (many consecutive failures), wait longer
                     if consecutive_failures >= cooldown_threshold:
@@ -161,7 +161,8 @@ async def reranker_search(
             except Exception as e:
                 consecutive_failures += 1
                 if attempt < max_retries - 1:
-                    wait_time = retry_delay * (2 ** attempt)
+                    # Exponential backoff capped at 60s
+                    wait_time = min(retry_delay * (2 ** attempt), 60.0)
 
                     # If API seems unstable, wait longer
                     if consecutive_failures >= cooldown_threshold:
@@ -180,16 +181,18 @@ async def reranker_search(
                     logger.error(f"  Batch at {start_idx} failed after {max_retries} attempts: {e}")
                     return []
 
-    # Controlled concurrency - reduce when API is unstable
-    max_concurrent = getattr(config, 'reranker_concurrent_batches', 2) if config else 2
+    # Controlled concurrency - start with config value, reduce dynamically on failures
+    initial_concurrent = getattr(config, 'reranker_concurrent_batches', 2) if config else 2
+    current_concurrent = initial_concurrent
 
     batch_results_list = []
     successful_batches = 0
     failed_batches_in_row = 0  # Track failures in current group
 
     # Process in groups
-    for group_start in range(0, len(batches), max_concurrent):
-        group_batches = batches[group_start : group_start + max_concurrent]
+    batch_idx = 0
+    while batch_idx < len(batches):
+        group_batches = batches[batch_idx : batch_idx + current_concurrent]
 
         tasks = [
             process_batch_with_retry(start_idx, batch)
@@ -208,17 +211,27 @@ async def reranker_search(
                 group_failures += 1
                 failed_batches_in_row += 1
 
-        # Inter-group delay - increase if we're seeing failures
-        if group_start + max_concurrent < len(batches):
-            if failed_batches_in_row >= 2:
-                # API seems stressed, wait longer between groups
-                wait_time = 5.0
-                logger.info(f"  Increasing inter-group delay to {wait_time}s due to recent failures")
+        batch_idx += current_concurrent
+
+        # Dynamic concurrency adjustment based on failures
+        if batch_idx < len(batches):
+            if failed_batches_in_row >= 2 and current_concurrent > 1:
+                # Reduce concurrency when API is stressed
+                current_concurrent = 1
+                wait_time = 10.0
+                logger.warning(
+                    f"  Reducing concurrency to {current_concurrent} due to failures, "
+                    f"waiting {wait_time}s"
+                )
                 await asyncio.sleep(wait_time)
             elif group_failures > 0:
                 # Some failures, moderate delay
-                await asyncio.sleep(1.0)
+                await asyncio.sleep(2.0)
             else:
+                # Success - can try to recover concurrency gradually
+                if current_concurrent < initial_concurrent:
+                    current_concurrent = min(current_concurrent + 1, initial_concurrent)
+                    logger.info(f"  Recovering concurrency to {current_concurrent}")
                 # Normal delay
                 await asyncio.sleep(0.3)
 
