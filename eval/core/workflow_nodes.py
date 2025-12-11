@@ -53,6 +53,15 @@ class EvalState(TypedDict, total=False):
 @register_node("eval_add_stage")
 async def eval_add_stage_node(state, context) -> Dict[str, Any]:
     """Stage 1: Add - Build indexes."""
+    # 🔥 检查是否应该跳过此阶段
+    completed_stages = set(state.get("completed_stages", []))
+    if "add" in completed_stages:
+        context.logger.info("✅ Add stage already completed, skipping...")
+        return {
+            "completed_stages": ["add"],
+            "metadata": {**state.get("metadata", {}), "add_completed": True}
+        }
+
     # Set current stage for token stats collection
     TokenStatsCollector.set_current_stage("add")
 
@@ -80,6 +89,15 @@ async def eval_add_stage_node(state, context) -> Dict[str, Any]:
 @register_node("eval_cluster_stage")
 async def eval_cluster_stage_node(state: EvalState, context) -> Dict[str, Any]:
     """Stage 1.5: Cluster - Group event clustering."""
+    # 🔥 检查是否应该跳过此阶段
+    completed_stages = set(state.get("completed_stages", []))
+    if "cluster" in completed_stages:
+        context.logger.info("✅ Cluster stage already completed, skipping...")
+        return {
+            "completed_stages": ["cluster"],
+            "metadata": {**state.get("metadata", {}), "cluster_completed": True}
+        }
+
     # Set current stage for token stats collection
     TokenStatsCollector.set_current_stage("cluster")
 
@@ -106,6 +124,33 @@ async def eval_cluster_stage_node(state: EvalState, context) -> Dict[str, Any]:
 @register_node("eval_search_stage")
 async def eval_search_stage_node(state: EvalState, context) -> Dict[str, Any]:
     """Stage 2: Search - Retrieve memories."""
+    # 🔥 检查是否应该跳过此阶段
+    completed_stages = set(state.get("completed_stages", []))
+    if "search" in completed_stages:
+        context.logger.info("✅ Search stage already completed, skipping...")
+
+        # 从文件加载已有的 search results
+        saver = ResultSaver(context.output_dir)
+        search_data = saver.load_json("search_results.json")
+
+        # 转换回 SearchResult 对象
+        from eval.core.data_models import SearchResult
+        search_results = [
+            SearchResult(
+                query=item["query"],
+                conversation_id=item["conversation_id"],
+                results=item["results"],
+                retrieval_metadata=item.get("retrieval_metadata", {}),
+            )
+            for item in search_data
+        ]
+
+        return {
+            "search_results": search_results,
+            "completed_stages": ["search"],  # 保持已完成状态
+            "metadata": {**state.get("metadata", {}), "search_completed": True}
+        }
+
     # Set current stage for token stats collection
     TokenStatsCollector.set_current_stage("search")
 
@@ -146,6 +191,37 @@ async def eval_search_stage_node(state: EvalState, context) -> Dict[str, Any]:
 @register_node("eval_answer_stage")
 async def eval_answer_stage_node(state: EvalState, context) -> Dict[str, Any]:
     """Stage 3: Answer - Generate answers."""
+    # 🔥 检查是否应该跳过此阶段
+    completed_stages = set(state.get("completed_stages", []))
+    if "answer" in completed_stages:
+        context.logger.info("✅ Answer stage already completed, skipping...")
+
+        # 从文件加载已有的 answer results
+        saver = ResultSaver(context.output_dir)
+        answer_data = saver.load_json("answer_results.json")
+
+        # 转换回 AnswerResult 对象
+        from eval.core.data_models import AnswerResult
+        answer_results = [
+            AnswerResult(
+                question_id=item["question_id"],
+                question=item["question"],
+                answer=item["answer"],
+                golden_answer=item["golden_answer"],
+                category=item.get("category"),
+                conversation_id=item.get("conversation_id", ""),
+                formatted_context=item.get("formatted_context", ""),
+                metadata=item.get("metadata", {}),
+            )
+            for item in answer_data
+        ]
+
+        return {
+            "answer_results": answer_results,
+            "completed_stages": ["answer"],
+            "metadata": {**state.get("metadata", {}), "answer_completed": True}
+        }
+
     # Set current stage for token stats collection
     TokenStatsCollector.set_current_stage("answer")
 
@@ -189,6 +265,31 @@ async def eval_answer_stage_node(state: EvalState, context) -> Dict[str, Any]:
 @register_node("eval_evaluate_stage")
 async def eval_evaluate_stage_node(state: EvalState, context) -> Dict[str, Any]:
     """Stage 4: Evaluate - Assess answer quality."""
+    # 🔥 检查是否应该跳过此阶段
+    completed_stages = set(state.get("completed_stages", []))
+    if "evaluate" in completed_stages:
+        context.logger.info("✅ Evaluate stage already completed, skipping...")
+
+        # 从文件加载已有的 eval results
+        saver = ResultSaver(context.output_dir)
+        eval_data = saver.load_json("eval_results.json")
+
+        # 转换回 EvaluationResult 对象
+        from eval.core.data_models import EvaluationResult
+        eval_results = EvaluationResult(
+            total_questions=eval_data["total_questions"],
+            correct=eval_data["correct"],
+            accuracy=eval_data["accuracy"],
+            detailed_results=eval_data["detailed_results"],
+            metadata=eval_data.get("metadata", {}),
+        )
+
+        return {
+            "eval_results": eval_results,
+            "completed_stages": ["evaluate"],
+            "metadata": {**state.get("metadata", {}), "evaluate_completed": True}
+        }
+
     eval_results = await run_evaluate_stage(
         evaluator=context.evaluator,
         answer_results=state.get("answer_results"),

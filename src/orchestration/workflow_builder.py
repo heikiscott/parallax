@@ -113,7 +113,7 @@ class WorkflowBuilder:
             state_schema = MemoryBuildingState
         elif "evaluation" in config.name.lower():
             # Import eval state schema dynamically
-            from eval.workflow_nodes import EvalState
+            from eval.core.workflow_nodes import EvalState
             state_schema = EvalState
 
         # Create StateGraph

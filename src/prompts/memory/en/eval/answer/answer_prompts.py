@@ -1,5 +1,9 @@
-﻿ANSWER_PROMPT = """
-You are an intelligent memory assistant tasked with retrieving accurate information from episodic memories.
+"""
+Answer Prompt V1 (Original)
+7-step Chain-of-Thought prompt with detailed memory analysis.
+"""
+
+ANSWER_PROMPT_V1 = """You are an intelligent memory assistant tasked with retrieving accurate information from episodic memories.
 
 # CONTEXT:
 You have access to episodic memories from conversations between two speakers. These memories contain
@@ -98,3 +102,7 @@ Question: {question}
 Now, follow the Chain-of-Thought process above to answer the question:
 """
 
+# Backward compatibility
+ANSWER_PROMPT = ANSWER_PROMPT_V1
+
+__all__ = ["ANSWER_PROMPT_V1", "ANSWER_PROMPT"]

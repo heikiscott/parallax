@@ -4,6 +4,7 @@ Parallax Adapter
 适配层，负责将评测框架与 Parallax 实现连接起来。
 """
 import asyncio
+import importlib
 import json
 import logging
 import pickle
@@ -96,7 +97,28 @@ class ParallaxAdapter(BaseAdapter):
             llm_provider=self.llm_provider,
             use_eval_prompts=True  # 评估系统使用 eval/ 提示词
         )
-        
+
+        # 🔥 动态加载 Answer Prompt（从 config 读取模块路径和变量名）
+        response_config = config.get("response", {})
+        answer_prompt_module_path = response_config.get("answer_prompt_module", "prompts.memory.en.eval.answer.answer_prompts_v2")
+        answer_prompt_name = response_config.get("answer_prompt_name", "ANSWER_PROMPT")  # 默认使用通用别名
+
+        logger.info(f"🔍 DEBUG: Config response section: {response_config}")
+        logger.info(f"🔍 DEBUG: Attempting to load prompt: {answer_prompt_module_path}.{answer_prompt_name}")
+
+        try:
+            prompt_module = importlib.import_module(answer_prompt_module_path)
+            self.answer_prompt = getattr(prompt_module, answer_prompt_name)
+            # 检测实际加载的版本
+            prompt_preview = self.answer_prompt[:100] if isinstance(self.answer_prompt, str) else str(self.answer_prompt)[:100]
+            logger.info(f"✅ Loaded Answer Prompt: {answer_prompt_module_path}.{answer_prompt_name}")
+            logger.info(f"🔍 DEBUG: Prompt preview: {prompt_preview}...")
+        except Exception as e:
+            logger.warning(f"⚠️  Failed to load prompt {answer_prompt_module_path}.{answer_prompt_name}: {e}")
+            logger.warning(f"   Falling back to default prompt (answer_prompts_v2.ANSWER_PROMPT)")
+            from prompts.memory.en.eval.answer.answer_prompts_v2 import ANSWER_PROMPT
+            self.answer_prompt = ANSWER_PROMPT
+
         # 确保 NLTK 数据可用
         stage2_index_building.ensure_nltk_data()
 
@@ -124,32 +146,35 @@ class ParallaxAdapter(BaseAdapter):
     def _check_missing_indexes(
         self,
         index_dir: Path,
-        num_conv: int,
+        conversations: List,
         index_type: str = "bm25"
-    ) -> List[int]:
+    ) -> List[str]:
         """
         检查缺失的索引文件
-        
+
         Args:
             index_dir: 索引目录
-            num_conv: 会话总数
+            conversations: 会话列表
             index_type: 索引类型（"bm25" 或 "embedding"）
-        
+
         Returns:
-            缺失索引的会话索引列表
+            缺失索引的会话ID列表
         """
-        missing_indexes = []
-        
-        for i in range(num_conv):
+        missing_conv_ids = []
+
+        for conv in conversations:
+            # 从 conversation_id 提取索引（例如 "locomo_5" -> "5"）
+            conv_index = self._extract_conv_index(conv.conversation_id)
+
             if index_type == "bm25":
-                index_file = index_dir / f"bm25_index_conv_{i}.pkl"
+                index_file = index_dir / f"bm25_index_conv_{conv_index}.pkl"
             else:  # embedding
-                index_file = index_dir / f"embedding_index_conv_{i}.pkl"
-            
+                index_file = index_dir / f"embedding_index_conv_{conv_index}.pkl"
+
             if not index_file.exists():
-                missing_indexes.append(i)
-        
-        return missing_indexes
+                missing_conv_ids.append(conv.conversation_id)
+
+        return missing_conv_ids
     
     async def add(
         self, 
@@ -361,16 +386,16 @@ class ParallaxAdapter(BaseAdapter):
         # 🔥 智能跳过逻辑：检查已存在的索引文件
         bm25_need_build = self._check_missing_indexes(
             index_dir=bm25_index_dir,
-            num_conv=len(conversations),
+            conversations=conversations,
             index_type="bm25"
         )
-        
+
         emb_need_build = []
         use_hybrid = self.config.get("search", {}).get("use_hybrid_search", True)
         if use_hybrid:
             emb_need_build = self._check_missing_indexes(
                 index_dir=emb_index_dir,
-                num_conv=len(conversations),
+                conversations=conversations,
                 index_type="embedding"
             )
         
@@ -704,6 +729,7 @@ class ParallaxAdapter(BaseAdapter):
             context=context,
             question=query,
             config=exp_config,
+            answer_prompt=self.answer_prompt,  # 传递 answer_prompt
         )
 
         return answer

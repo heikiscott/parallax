@@ -129,8 +129,8 @@ reranker:
 # ===== Response 生成配置 =====
 response:
   top_k: 20                   # 从检索结果中选择前 k 个构建 context
-  answer_prompt_module: "prompts.memory.en.eval.answer.answer_prompts_v4"  # Answer Prompt 模块路径
-  answer_prompt_name: "ANSWER_PROMPT_V4"  # 模块中的变量名（也可以用通用别名 ANSWER_PROMPT）
+  answer_prompt_module: "prompts.memory.en.eval.answer.answer_prompts_v3"  # Answer Prompt 模块路径
+  answer_prompt_name: "ANSWER_PROMPT_V3"  # 模块中的变量名（也可以用通用别名 ANSWER_PROMPT）
 
 # ===== 并发配置 =====
 concurrency:

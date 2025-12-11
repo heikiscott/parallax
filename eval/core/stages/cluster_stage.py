@@ -46,9 +46,7 @@ async def run_cluster_stage(
 
     logger.info("✅ Stage 1.5 completed")
 
-    # 保存 checkpoint
-    completed_stages.add("cluster")
-    if checkpoint_manager:
-        checkpoint_manager.save_checkpoint(completed_stages)
+    # 🔥 移除跨阶段 checkpoint 保存（统一在 cli.py 管理）
+    # Checkpoint 将在 workflow 执行完成后由 cli.py 统一保存
 
     return cluster_results

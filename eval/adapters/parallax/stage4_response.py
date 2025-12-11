@@ -15,8 +15,9 @@ logger = logging.getLogger(__name__)
 
 
 
+import importlib
+
 from config import load_config
-from prompts.memory.en.eval.answer.answer_prompts import ANSWER_PROMPT
 
 # 使用 Memory Layer 的 LLMProvider
 from providers.llm.llm_provider import LLMProvider
@@ -118,6 +119,7 @@ async def locomo_response(
     context: str,
     question: str,
     config,  # ConfigDict 或兼容对象
+    answer_prompt: str,  # 新增：传入 prompt
 ) -> str:
     """生成回答（使用 LLMProvider）
 
@@ -126,11 +128,12 @@ async def locomo_response(
         context: 检索到的上下文
         question: 用户问题
         config: 实验配置 (ConfigDict)
+        answer_prompt: Answer Prompt 模板
 
     Returns:
         生成的答案
     """
-    prompt = ANSWER_PROMPT.format(context=context, question=question)
+    prompt = answer_prompt.format(context=context, question=question)
 
     # 初始化 result 变量
     result = ""
@@ -178,13 +181,14 @@ async def locomo_response(
 
 
 async def process_qa(
-    qa, 
-    search_result, 
-    llm_provider, 
+    qa,
+    search_result,
+    llm_provider,
     config,
     memunit_map: Dict[str, dict],
     speaker_a: str,
-    speaker_b: str
+    speaker_b: str,
+    answer_prompt: str,  # 新增：传入 prompt
 ):
     """
     处理单个 QA 对（新版：从 unit_ids 构建 context）
@@ -197,6 +201,7 @@ async def process_qa(
         memunit_map: unit_id -> memunit 的映射
         speaker_a: 说话者 A
         speaker_b: 说话者 B
+        answer_prompt: Answer Prompt 模板
 
     Returns:
         包含问题、答案、类别等信息的字典
@@ -219,7 +224,7 @@ async def process_qa(
     )
 
     answer = await locomo_response(
-        llm_provider, context, query, config
+        llm_provider, context, query, config, answer_prompt
     )
 
     response_duration_ms = (time() - start) * 1000
@@ -266,7 +271,18 @@ async def main(search_path, save_path):
         "max_tokens": llm_cfg.max_tokens,
     }
     config = config  # 别名以减少下游改动
-    
+
+    # 🔥 动态加载 Answer Prompt
+    answer_prompt_module_path = config.get("response.answer_prompt_module", "prompts.memory.en.eval.answer.answer_prompts_v2")
+    try:
+        prompt_module = importlib.import_module(answer_prompt_module_path)
+        ANSWER_PROMPT = prompt_module.ANSWER_PROMPT_V2
+        print(f"✅ Loaded Answer Prompt from: {answer_prompt_module_path}")
+    except Exception as e:
+        print(f"⚠️  Failed to load prompt from {answer_prompt_module_path}: {e}")
+        print(f"   Falling back to default prompt (answer_prompts_v2)")
+        from prompts.memory.en.eval.answer.answer_prompts_v2 import ANSWER_PROMPT_V2 as ANSWER_PROMPT
+
     # 创建 LLM Provider（替代 AsyncOpenAI）
     llm_provider = LLMProvider(
         provider_type="openai",
@@ -313,7 +329,7 @@ async def main(search_path, save_path):
         async with semaphore:
             result = await process_qa(
                 qa, search_result, llm_provider, config,
-                memunit_map, speaker_a, speaker_b
+                memunit_map, speaker_a, speaker_b, ANSWER_PROMPT
             )
             return (group_id, result)
     

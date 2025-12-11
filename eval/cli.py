@@ -209,7 +209,7 @@ async def main():
     console.print(f"\n[bold cyan]Building evaluation workflow...[/bold cyan]")
 
     # 注册 eval nodes（触发装饰器）
-    import eval.workflow_nodes  # noqa
+    import eval.core.workflow_nodes  # noqa
 
     # 创建 ExecutionContext（包含所有依赖）
     from src.orchestration.context import ExecutionContext
@@ -322,7 +322,16 @@ async def main():
     console.print(f"[bold cyan]Running evaluation workflow...[/bold cyan]")
 
     # 创建初始 state
-    from eval.workflow_nodes import EvalState
+    from eval.core.workflow_nodes import EvalState
+
+    # 🔥 从 checkpoint 加载已完成的 stages
+    completed_stages_from_checkpoint = []
+    if checkpoint_manager:
+        checkpoint_data = checkpoint_manager.load_checkpoint()
+        if checkpoint_data:
+            completed_stages_from_checkpoint = checkpoint_data.get("completed_stages", [])
+            if completed_stages_from_checkpoint:
+                console.print(f"[dim]📋 Resuming from checkpoint: {completed_stages_from_checkpoint}[/dim]")
 
     initial_state = EvalState(
         dataset=dataset,
@@ -331,7 +340,7 @@ async def main():
         conv_id=args.conv,
         filter_categories=filter_categories,
         metadata={"enable_group_event_cluster": enable_clustering},
-        completed_stages=[],
+        completed_stages=completed_stages_from_checkpoint,
     )
 
     try:
@@ -339,6 +348,12 @@ async def main():
         final_state = await workflow.ainvoke(initial_state)
 
         console.print(f"\n[bold green]✨ Evaluation completed![/bold green]")
+
+        # 🔥 保存最终的 completed_stages（统一 checkpoint 管理）
+        if checkpoint_manager:
+            final_completed = set(final_state.get("completed_stages", []))
+            checkpoint_manager.save_checkpoint(final_completed)
+            console.print(f"[dim]💾 Checkpoint saved: {sorted(list(final_completed))}[/dim]")
 
         # 打印结果
         if "eval_results" in final_state and final_state["eval_results"]:
