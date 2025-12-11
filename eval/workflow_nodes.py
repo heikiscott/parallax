@@ -238,19 +238,31 @@ async def eval_evaluate_stage_node(state: EvalState, context) -> Dict[str, Any]:
     from collections import defaultdict
     category_stats = defaultdict(lambda: {"total": 0, "correct": 0})
 
-    for detail in eval_results.detailed_results:
-        cat = detail.get("category", "Unknown")
-        if cat is None:
-            cat = "Unknown"
-        category_stats[cat]["total"] += 1
-        if detail.get("is_correct", False):
-            category_stats[cat]["correct"] += 1
+    # detailed_results 可能是字典（按conversation分组）或列表
+    detailed_list = []
+    if isinstance(eval_results.detailed_results, dict):
+        # 如果是字典，展开所有conversation的结果
+        for conv_results in eval_results.detailed_results.values():
+            if isinstance(conv_results, list):
+                detailed_list.extend(conv_results)
+    elif isinstance(eval_results.detailed_results, list):
+        detailed_list = eval_results.detailed_results
+
+    for detail in detailed_list:
+        if isinstance(detail, dict):
+            cat = detail.get("category", "Unknown")
+            if cat is None:
+                cat = "Unknown"
+            category_stats[cat]["total"] += 1
+            if detail.get("is_correct", False):
+                category_stats[cat]["correct"] += 1
 
     # 按类别排序输出
-    for cat in sorted(category_stats.keys()):
-        stats = category_stats[cat]
-        acc = stats["correct"] / stats["total"] if stats["total"] > 0 else 0
-        report_lines.append(f"  Category {cat}: {stats['correct']}/{stats['total']} ({acc:.1%})")
+    if category_stats:
+        for cat in sorted(category_stats.keys()):
+            stats = category_stats[cat]
+            acc = stats["correct"] / stats["total"] if stats["total"] > 0 else 0
+            report_lines.append(f"  Category {cat}: {stats['correct']}/{stats['total']} ({acc:.1%})")
 
     report_lines.append("")
 
@@ -316,7 +328,8 @@ async def eval_evaluate_stage_node(state: EvalState, context) -> Dict[str, Any]:
         report_lines.append("")
 
     # ========== 5. 错误案例（可选：显示前几个错误） ==========
-    incorrect_cases = [d for d in eval_results.detailed_results if not d.get("is_correct", False)]
+    # 使用前面已经展开的 detailed_list
+    incorrect_cases = [d for d in detailed_list if isinstance(d, dict) and not d.get("is_correct", False)]
     if incorrect_cases:
         report_lines.append("─" * 80)
         report_lines.append(f"❌ INCORRECT CASES ({len(incorrect_cases)} total, showing first 3)")
