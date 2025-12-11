@@ -269,7 +269,7 @@ async def run_search_stage(
         检索结果列表
     """
     logger.info(f"\n{'='*60}")
-    logger.info(f"Stage 2/4: Search")
+    logger.info(f"Search stage")
     logger.info(f"{'='*60}")
     
     # 🔥 加载细粒度 checkpoint

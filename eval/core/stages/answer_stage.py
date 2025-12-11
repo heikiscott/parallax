@@ -76,7 +76,7 @@ async def run_answer_stage(
         答案结果列表
     """
     logger.info(f"\n{'='*60}")
-    logger.info(f"Stage 3/4: Answer")
+    logger.info(f"Answer stage")
     logger.info(f"{'='*60}")
 
     SAVE_INTERVAL = 400  # 每 400 个任务保存一次

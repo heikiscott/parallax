@@ -44,7 +44,7 @@ async def run_add_stage(
     )
     
     # 索引元数据（延迟加载，无需持久化）
-    logger.info("✅ Stage 1 completed")
+    logger.info("✅ Add stage completed")
 
     # 🔥 移除跨阶段 checkpoint 保存（统一在 cli.py 管理）
     # Checkpoint 将在 workflow 执行完成后由 cli.py 统一保存
