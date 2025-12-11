@@ -57,7 +57,30 @@ async def eval_add_stage_node(state, context) -> Dict[str, Any]:
     completed_stages = set(state.get("completed_stages", []))
     if "add" in completed_stages:
         context.logger.info("✅ Add stage already completed, skipping...")
+
+        # 🔥 重建 index 元数据（Search Stage 需要用到）
+        output_dir = Path(context.output_dir)
+        dataset = state.get("dataset")
+        conversations = dataset.conversations if dataset else []
+
+        # 检查是否启用混合搜索
+        use_hybrid = True
+        if hasattr(context, 'adapter') and hasattr(context.adapter, 'config'):
+            use_hybrid = context.adapter.config.get("search", {}).get("use_hybrid_search", True)
+
+        index = {
+            "type": "lazy_load",
+            "memunits_dir": str(output_dir / "memunits"),
+            "bm25_index_dir": str(output_dir / "bm25_index"),
+            "emb_index_dir": str(output_dir / "vectors"),
+            "conversation_ids": [conv.conversation_id for conv in conversations],
+            "use_hybrid_search": use_hybrid,
+            "total_conversations": len(conversations),
+            "output_dir": str(output_dir),
+        }
+
         return {
+            "index": index,
             "completed_stages": ["add"],
             "metadata": {**state.get("metadata", {}), "add_completed": True}
         }
@@ -76,8 +99,13 @@ async def eval_add_stage_node(state, context) -> Dict[str, Any]:
             completed_stages=set(state.get("completed_stages", [])),
         )
 
+        # 补充 output_dir 到 index（供后续阶段使用）
+        index = result.get("index", {})
+        if index and "output_dir" not in index:
+            index["output_dir"] = str(context.output_dir)
+
         return {
-            "index": result.get("index"),
+            "index": index,
             "completed_stages": ["add"],
             "metadata": {**state.get("metadata", {}), "add_completed": True}
         }
