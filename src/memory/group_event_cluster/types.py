@@ -225,19 +225,21 @@ class GroupEventClusterRetrievalConfig:
     # 仅当 expansion_strategy="cluster_rerank" 时生效
     # ==========================================================
 
-    cluster_rerank_max_clusters: int = 10
+    cluster_rerank_max_clusters: int = 3
     """
     [Cluster Rerank] LLM 最多可以选择的 Cluster 数量上限。
 
     LLM 会根据查询复杂度智能决定实际选择的数量：
     - 问题很具体时：可能只选 1 个
     - 问题涉及多个事件：可能选 2-3 个
-    - 问题很宽泛/比较性问题：可能选 4+ 个
 
     此配置是硬上限，最终返回的 MemUnits 数量由
     cluster_rerank_total_max_members 控制。
 
-    默认值: 10
+    基于错误分析调整：15%的GEC错误来自选择4-7个clusters导致的信息过载。
+    降低上限到3可以减少噪音，提高准确率。
+
+    默认值: 3 (之前为10，已根据error analysis优化)
     """
 
     cluster_rerank_max_members_per_cluster: int = 15
@@ -313,7 +315,7 @@ class GroupEventClusterRetrievalConfig:
             rerank_after_expansion=data.get("rerank_after_expansion", False),
             rerank_top_n_after_expansion=data.get("rerank_top_n_after_expansion", 20),
             # Cluster Rerank 策略配置
-            cluster_rerank_max_clusters=data.get("cluster_rerank_max_clusters", 10),
+            cluster_rerank_max_clusters=data.get("cluster_rerank_max_clusters", 3),
             cluster_rerank_max_members_per_cluster=data.get("cluster_rerank_max_members_per_cluster", 15),
             cluster_rerank_total_max_members=data.get("cluster_rerank_total_max_members", 30),
             # Hybrid 策略配置

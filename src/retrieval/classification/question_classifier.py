@@ -40,6 +40,9 @@ class QuestionType(Enum):
     # Time calculation - special handling
     TIME_CALCULATION = "time_calculation"  # "How long ago...?" "How long has...?"
 
+    # Counting/listing - requires precise enumeration
+    COUNTING = "counting"  # "How many...?" "List all..."
+
     # Default/unknown
     GENERAL = "general"
 
@@ -118,14 +121,21 @@ class QuestionClassifier:
         r"^how\s+does?\s+\w+\s+spend\s+(time|days?|weekends?)",
     ]
 
-    # Event-aggregation patterns (Multiple events/items)
+    # Event-aggregation patterns (Multiple events/items - experiences/activities)
     EVENT_AGGREGATION_PATTERNS = [
+        r"^what\s+(experiences?|activities)\s+(does?|has|did)\s+\w+\s+(have|do|partake)",
+        r"^what\s+kinds?\s+of\s+\w+\s+(does?|has|did)\s+\w+",
+    ]
+
+    # Counting/listing patterns (Precise enumeration - NOT suitable for clustering)
+    COUNTING_PATTERNS = [
+        r"^how\s+many\s+(times?|books?|events?|people?|places?|days?)\s+",
+        r"^list\s+(all\s+)?(the\s+)?(books?|events?|places?|activities?)",
+        r"^what\s+are\s+all\s+(the\s+)?(books?|events?|places?)",
         r"^what\s+books?\s+has\s+\w+\s+read",
         r"^what\s+places?\s+has\s+\w+\s+(visited|been|camped|traveled)",
         r"^where\s+has\s+\w+\s+(been|visited|camped|traveled)",
         r"^what\s+events?\s+has\s+\w+\s+(attended|participated)",
-        r"^how\s+many\s+(times?|books?|events?)\s+has\s+\w+",
-        r"^list\s+(all\s+)?(the\s+)?(books?|events?|places?|activities?)",
     ]
 
     # Attribute-identity patterns
@@ -184,6 +194,8 @@ class QuestionClassifier:
     def _compile_patterns(self):
         """Compile all regex patterns for efficiency."""
         self._patterns = {
+            # Check COUNTING first - more specific patterns should be checked before general EVENT_AGGREGATION
+            QuestionType.COUNTING: [re.compile(p, re.IGNORECASE) for p in self.COUNTING_PATTERNS],
             QuestionType.EVENT_TEMPORAL: [re.compile(p, re.IGNORECASE) for p in self.EVENT_TEMPORAL_PATTERNS],
             QuestionType.EVENT_ACTIVITY: [re.compile(p, re.IGNORECASE) for p in self.EVENT_ACTIVITY_PATTERNS],
             QuestionType.EVENT_AGGREGATION: [re.compile(p, re.IGNORECASE) for p in self.EVENT_AGGREGATION_PATTERNS],
@@ -246,10 +258,19 @@ class QuestionClassifier:
 
         # Map question types to strategies
         type_to_strategy = {
-            # Event types -> GEC with cluster_rerank (LLM selects clusters + Agentic fallback)
-            QuestionType.EVENT_TEMPORAL: RetrievalStrategy.GEC_CLUSTER_RERANK,
+            # EVENT_TEMPORAL -> Pure Agentic (avoid time confusion from multi-timepoint clusters)
+            # Based on error analysis: 69% of GEC errors involve temporal confusion
+            QuestionType.EVENT_TEMPORAL: RetrievalStrategy.AGENTIC_ONLY,
+
+            # EVENT_ACTIVITY -> Keep GEC cluster_rerank (activity aggregation benefits from clustering)
             QuestionType.EVENT_ACTIVITY: RetrievalStrategy.GEC_CLUSTER_RERANK,
-            QuestionType.EVENT_AGGREGATION: RetrievalStrategy.GEC_CLUSTER_RERANK,
+
+            # EVENT_AGGREGATION -> Downgrade to INSERT_AFTER_HIT (context expansion only)
+            QuestionType.EVENT_AGGREGATION: RetrievalStrategy.GEC_INSERT_AFTER_HIT,
+
+            # COUNTING -> Pure Agentic (precise enumeration, clusters introduce noise)
+            # Based on error analysis: 23% of GEC errors are counting/multi-hop errors
+            QuestionType.COUNTING: RetrievalStrategy.AGENTIC_ONLY,
 
             # Attribute types -> Pure Agentic (no cluster expansion)
             QuestionType.ATTRIBUTE_IDENTITY: RetrievalStrategy.AGENTIC_ONLY,
@@ -269,9 +290,10 @@ class QuestionClassifier:
 
         # Confidence based on pattern match strength
         confidence_map = {
+            QuestionType.COUNTING: 0.95,           # Very clear pattern (how many, list all)
             QuestionType.EVENT_TEMPORAL: 0.9,      # Very clear pattern
             QuestionType.EVENT_ACTIVITY: 0.85,
-            QuestionType.EVENT_AGGREGATION: 0.85,
+            QuestionType.EVENT_AGGREGATION: 0.8,   # Lower confidence - narrower patterns now
             QuestionType.ATTRIBUTE_IDENTITY: 0.9,
             QuestionType.ATTRIBUTE_PREFERENCE: 0.8,
             QuestionType.ATTRIBUTE_LOCATION: 0.85,
@@ -282,9 +304,10 @@ class QuestionClassifier:
 
         # Reasoning for each type
         reasoning_map = {
-            QuestionType.EVENT_TEMPORAL: "Temporal event question - GEC cluster_rerank for event context",
+            QuestionType.COUNTING: "Counting/listing question - Agentic search for precise enumeration",
+            QuestionType.EVENT_TEMPORAL: "Temporal event question - Agentic search to avoid time confusion",
             QuestionType.EVENT_ACTIVITY: "Activity question - GEC cluster_rerank for related activities",
-            QuestionType.EVENT_AGGREGATION: "Aggregation question - GEC cluster_rerank for related events",
+            QuestionType.EVENT_AGGREGATION: "Aggregation question - insert_after_hit for context expansion",
             QuestionType.ATTRIBUTE_IDENTITY: "Identity/attribute question - precise Agentic search preferred",
             QuestionType.ATTRIBUTE_PREFERENCE: "Preference question - Agentic search for specific attributes",
             QuestionType.ATTRIBUTE_LOCATION: "Location question - Agentic search for specific facts",
