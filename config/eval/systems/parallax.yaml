@@ -78,7 +78,7 @@ group_event_cluster_retrieval:
 
 # ===== 检索配置 =====
 retrieval:
-  mode: "agentic"             # agentic | lightweight | workflow
+  mode: "agentic_v2"          # agentic | agentic_v2 | lightweight | workflow
   workflow_name: "adaptive_retrieval"
 
   use_emb: true
@@ -107,6 +107,25 @@ retrieval:
   multi_query:
     num: 3
     top_n: 50
+
+  # ===== Agentic V2 配置 (retrieval.mode=agentic_v2) =====
+  # V2 在 Round 1 就基于问题类型生成 Multi-Query，提升首轮召回率
+  # MemUnit 数量约 37-93 个/conv，平均 ~67 个，参数已针对此规模调优
+  agentic_v2:
+    # Multi-Query 决策配置
+    skip_high_confidence_types: true   # 高置信度简单问题跳过 Multi-Query
+    confidence_threshold: 0.85         # 置信度阈值
+    num_queries: 3                     # 每轮生成的 query 数量
+
+    # Round 1 配置
+    round1_per_query_top_n: 20         # 每个 query 返回的候选数 (3×20≈60)
+    round1_fusion_top_n: 20            # RRF 融合后保留的候选数
+    round1_rerank_top_n: 10            # Sufficiency Check 使用的 Top N
+
+    # Round 2 配置 (Insufficient 时触发)
+    round2_per_query_top_n: 30         # Round 2 每个 query 返回更多候选
+    round2_fusion_top_n: 30            # Round 2 RRF 融合后保留数
+    final_rerank_top_n: 20             # 最终 Rerank 返回的 Top N
 
 # ===== 问题分类配置 =====
 question_classification:

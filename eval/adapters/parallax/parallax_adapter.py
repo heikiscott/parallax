@@ -513,10 +513,12 @@ class ParallaxAdapter(BaseAdapter):
                     cluster_index = None
 
         # 调用 stage3 检索实现
-        search_config = self.config.get("search", {})
-        retrieval_mode = search_config.get("mode", "agentic")
-
         exp_config = self._get_config()
+
+        # 从 exp_config.retrieval.mode 读取检索模式（优先），fallback 到旧的 search_config
+        search_config = self.config.get("search", {})
+        retrieval_mode = getattr(exp_config.retrieval, 'mode', None) or search_config.get("mode", "agentic")
+        logger.info(f"[Search] Using retrieval mode: {retrieval_mode}")
         # 从 exp_config 获取正确格式的 llm_config
         llm_service = exp_config.llm.service
         llm_cfg = exp_config.llm[llm_service]
@@ -528,7 +530,21 @@ class ParallaxAdapter(BaseAdapter):
             "max_tokens": llm_cfg.max_tokens,
         }
 
-        if retrieval_mode == "agentic":
+        if retrieval_mode == "agentic_v2":
+            # 🔥 Agentic V2: Type-aware multi-query at Round 1
+            from src.retrieval.offline.pipelines.agentic_v2 import agentic_retrieval_v2
+            top_results, metadata = await agentic_retrieval_v2(
+                query=query,
+                config=exp_config,
+                llm_provider=self.llm_provider,
+                llm_config=llm_config,
+                emb_index=emb_index,
+                bm25=bm25,
+                docs=docs,
+                cluster_index=cluster_index,
+                enable_traversal_stats=True,
+            )
+        elif retrieval_mode == "agentic":
             # 🔥 策略路由检索（默认启用）
             if exp_config.question_classification.enabled:
                 from src.retrieval.routing import route_and_retrieve

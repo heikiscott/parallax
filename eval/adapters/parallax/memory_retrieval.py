@@ -25,6 +25,7 @@ from config import load_config
 # Import retrieval functions from src/retrieval/ (NO duplication)
 # Note: uses short paths because pytest.ini sets pythonpath = . src eval
 from retrieval.offline.pipelines.agentic import agentic_retrieval
+from retrieval.offline.pipelines.agentic_v2 import agentic_retrieval_v2
 from retrieval.offline.pipelines.lightweight import lightweight_retrieval
 from retrieval.offline.pipelines.rerank import reranker_search
 from retrieval.offline.pipelines.search_utils import (
@@ -369,9 +370,24 @@ async def main():
                     retrieval_metadata = {}
 
                     # ========== Retrieval mode selection ==========
+                    logger.info(f"[Retrieval Mode] Using mode: {config.retrieval.mode}")
                     if config.retrieval.mode == "agentic":
-                        # Agentic multi-round retrieval
+                        # Agentic multi-round retrieval (V1)
                         top_results, retrieval_metadata = await agentic_retrieval(
+                            query=question,
+                            config=config,
+                            llm_provider=llm_provider,
+                            llm_config=llm_config,
+                            emb_index=emb_index,
+                            bm25=bm25,
+                            docs=docs,
+                            cluster_index=cluster_index,
+                            enable_traversal_stats=True,
+                        )
+
+                    elif config.retrieval.mode == "agentic_v2":
+                        # Agentic V2: Type-aware multi-query at Round 1
+                        top_results, retrieval_metadata = await agentic_retrieval_v2(
                             query=question,
                             config=config,
                             llm_provider=llm_provider,
