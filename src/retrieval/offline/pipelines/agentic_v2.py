@@ -104,6 +104,49 @@ def _get_v2_config(config: Any, key: str, default: Any) -> Any:
     return getattr(v2_cfg, key, default)
 
 
+def _get_type_retrieval_config(config: Any, question_type: QuestionType) -> Optional[dict]:
+    """Get type-specific retrieval config from config.retrieval.type_retrieval_configs.
+
+    Args:
+        config: Experiment configuration
+        question_type: Classified question type
+
+    Returns:
+        Dict with type-specific params or None if not configured.
+        Keys: round1_per_query_top_n, round1_fusion_top_n, round1_rerank_top_n,
+              round2_per_query_top_n, round2_fusion_top_n, merge_budget, final_rerank_top_n
+    """
+    retrieval_cfg = getattr(config, 'retrieval', None)
+    if retrieval_cfg is None:
+        return None
+
+    type_configs = getattr(retrieval_cfg, 'type_retrieval_configs', None)
+    if type_configs is None:
+        return None
+
+    # Try to get config for this specific type (e.g., "reasoning_inference")
+    type_key = question_type.value
+    type_config = getattr(type_configs, type_key, None)
+
+    # Fallback to default config
+    if type_config is None:
+        type_config = getattr(type_configs, 'default', None)
+
+    if type_config is None:
+        return None
+
+    # Convert config object to dict
+    if hasattr(type_config, 'to_dict'):
+        return type_config.to_dict()
+    elif hasattr(type_config, '_data'):
+        return type_config._data
+    elif hasattr(type_config, '__dict__'):
+        return {k: v for k, v in type_config.__dict__.items() if not k.startswith('_')}
+    else:
+        # Assume it's already dict-like
+        return dict(type_config)
+
+
 def _log_ids(prefix: str, docs: List[Tuple[dict, float]], limit: int = 20):
     """Log a short list of unit_ids for debugging."""
     ids = [d.get("unit_id", "") for d, _ in docs if d.get("unit_id")]
@@ -426,16 +469,8 @@ async def agentic_retrieval_v2(
     logger.info(f"  [Classify] Type: {classification.question_type.value} "
                 f"(conf={classification.confidence:.2f})")
 
-    # ========== Step 2: Decide Multi-Query Strategy ==========
-    confidence_threshold = _get_v2_config(config, 'confidence_threshold', 0.85)
-    use_mq_round1 = should_use_multi_query(
-        classification.question_type,
-        classification.confidence,
-        threshold=confidence_threshold,
-    )
-
-    metadata["used_multi_query_round1"] = use_mq_round1
-    logger.info(f"  [Strategy] Use Multi-Query at Round 1: {use_mq_round1}")
+    # ========== Step 2: Load Type-Specific Retrieval Config ==========
+    type_config = _get_type_retrieval_config(config, classification.question_type)
 
     # Get config values - support both flat and nested config structures
     # Nested: config.retrieval.hybrid.emb_candidates (from YAML)
@@ -457,26 +492,56 @@ async def agentic_retrieval_v2(
     if retrieval_cfg:
         use_reranker = getattr(retrieval_cfg, 'use_reranker', use_reranker)
 
-    round1_per_query_top_n = _get_v2_config(config, 'round1_per_query_top_n', 20)
-    round1_fusion_top_n = _get_v2_config(config, 'round1_fusion_top_n', 20)
-    round1_rerank_top_n = _get_v2_config(config, 'round1_rerank_top_n', 10)
     num_queries = _get_v2_config(config, 'num_queries', 3)
 
-    # ========== Type-Aware Recall Adjustment ==========
-    # REASONING questions need wider recall for multi-evidence gathering
-    REASONING_TYPES = {
-        QuestionType.REASONING_HYPOTHETICAL,
-        QuestionType.REASONING_INFERENCE,
-    }
-    is_reasoning_question = classification.question_type in REASONING_TYPES
+    # ========== Apply Type-Specific Config (or use defaults) ==========
+    if type_config:
+        # Use type-specific config from YAML
+        round1_per_query_top_n = type_config.get('round1_per_query_top_n', 20)
+        round1_fusion_top_n = type_config.get('round1_fusion_top_n', 20)
+        round1_rerank_top_n = type_config.get('round1_rerank_top_n', 10)
+        round2_per_query_top_n = type_config.get('round2_per_query_top_n', 30)
+        round2_fusion_top_n = type_config.get('round2_fusion_top_n', 30)
+        merge_budget = type_config.get('merge_budget', 35)
+        final_rerank_top_n = type_config.get('final_rerank_top_n', 20)
 
-    if is_reasoning_question:
-        # Increase recall for reasoning questions (need multiple evidence pieces)
-        round1_per_query_top_n = int(round1_per_query_top_n * 1.5)  # 20 -> 30
-        round1_fusion_top_n = int(round1_fusion_top_n * 1.5)        # 20 -> 30
-        logger.info(f"  [Strategy] Reasoning question detected: "
-                    f"increased Round 1 recall (per_query={round1_per_query_top_n}, "
-                    f"fusion={round1_fusion_top_n})")
+        logger.info(f"  [TypeConfig] {classification.question_type.value}: "
+                    f"R1(per={round1_per_query_top_n}, fusion={round1_fusion_top_n}, rerank={round1_rerank_top_n}) "
+                    f"R2(per={round2_per_query_top_n}, fusion={round2_fusion_top_n}) "
+                    f"merge={merge_budget}, final={final_rerank_top_n}")
+
+        metadata["type_config"] = {
+            "type": classification.question_type.value,
+            "round1_per_query_top_n": round1_per_query_top_n,
+            "round1_fusion_top_n": round1_fusion_top_n,
+            "round1_rerank_top_n": round1_rerank_top_n,
+            "round2_per_query_top_n": round2_per_query_top_n,
+            "round2_fusion_top_n": round2_fusion_top_n,
+            "merge_budget": merge_budget,
+            "final_rerank_top_n": final_rerank_top_n,
+        }
+    else:
+        # Fallback to agentic_v2 default config
+        round1_per_query_top_n = _get_v2_config(config, 'round1_per_query_top_n', 20)
+        round1_fusion_top_n = _get_v2_config(config, 'round1_fusion_top_n', 20)
+        round1_rerank_top_n = _get_v2_config(config, 'round1_rerank_top_n', 10)
+        round2_per_query_top_n = _get_v2_config(config, 'round2_per_query_top_n', 30)
+        round2_fusion_top_n = _get_v2_config(config, 'round2_fusion_top_n', 30)
+        merge_budget = round2_fusion_top_n  # fallback: use round2_fusion_top_n as merge budget
+        final_rerank_top_n = _get_v2_config(config, 'final_rerank_top_n', 20)
+
+        logger.info(f"  [TypeConfig] Using default config (type_retrieval_configs not found)")
+
+    # ========== Step 3: Decide Multi-Query Strategy ==========
+    confidence_threshold = _get_v2_config(config, 'confidence_threshold', 0.85)
+    use_mq_round1 = should_use_multi_query(
+        classification.question_type,
+        classification.confidence,
+        threshold=confidence_threshold,
+    )
+
+    metadata["used_multi_query_round1"] = use_mq_round1
+    logger.info(f"  [Strategy] Use Multi-Query at Round 1: {use_mq_round1}")
 
     # ========== Step 3: Round 1 Retrieval ==========
     if use_mq_round1:
@@ -662,10 +727,8 @@ async def agentic_retrieval_v2(
     metadata["missing_info"] = missing_info
     logger.info(f"  [Decision] Insufficient, entering Round 2")
 
-    # Generate queries based on missing_info (reuse V1 logic)
-    round2_per_query_top_n = _get_v2_config(config, 'round2_per_query_top_n', 30)
-    round2_fusion_top_n = _get_v2_config(config, 'round2_fusion_top_n', 30)
-    final_rerank_top_n = _get_v2_config(config, 'final_rerank_top_n', 20)
+    # Note: round2_per_query_top_n, round2_fusion_top_n, merge_budget, final_rerank_top_n
+    # are already set from type_config or defaults in Step 2
 
     logger.info(f"  [LLM] Generating queries based on missing info...")
 
@@ -731,7 +794,8 @@ async def agentic_retrieval_v2(
         )
 
     # ========== Merge Round 1 and Round 2 ==========
-    logger.info(f"  [Merge] Combining Round 1 ({len(round1_results)}) and Round 2 ({len(round2_results)})...")
+    logger.info(f"  [Merge] {classification.question_type.value}: "
+                f"R1={len(round1_results)}, R2={len(round2_results)}, budget={merge_budget}")
 
     round1_ids = {doc.get("unit_id", id(doc)) for doc, _ in round1_results}
     round2_unique = [
@@ -739,16 +803,15 @@ async def agentic_retrieval_v2(
         if doc.get("unit_id", id(doc)) not in round1_ids
     ]
 
-    # Merge strategy: Round 1 results + unique Round 2 results
-    # Use round2_fusion_top_n as the budget for Round 2 contribution (default 30)
-    # This avoids over-expansion that introduces noise for time-sensitive questions
+    # Merge strategy: Round 1 results + unique Round 2 results (capped by merge_budget)
+    # merge_budget is type-specific to control noise for time-sensitive questions
     combined_results = round1_results.copy()
-    needed_from_round2 = round2_fusion_top_n - len(combined_results)
+    needed_from_round2 = merge_budget - len(combined_results)
     needed_from_round2 = max(0, needed_from_round2)  # Ensure non-negative
     round2_slice = round2_unique[:needed_from_round2]
     combined_results.extend(round2_slice)
 
-    logger.info(f"  [Merge] Combined total: {len(combined_results)} documents")
+    logger.info(f"  [Merge] Combined: {len(combined_results)} docs (R1={len(round1_results)} + R2={len(round2_slice)})")
 
     # ========== Final Rerank ==========
     if use_reranker and len(combined_results) > 0:
@@ -799,6 +862,8 @@ async def agentic_retrieval_v2(
         traversal_stats["all_reranked_ids"].update(traversal_stats["round2_rerank_input_ids"])
         _record_traversal_stats(metadata, traversal_stats, final_results, is_multi_round=True)
 
-    logger.info(f"  [Complete] Final: {len(final_results)} docs | Latency: {metadata['total_latency_ms']:.0f}ms")
+    logger.info(f"  [Complete] Final: {len(final_results)} docs | "
+                f"Type: {classification.question_type.value} | "
+                f"Latency: {metadata['total_latency_ms']:.0f}ms")
 
     return final_results, metadata

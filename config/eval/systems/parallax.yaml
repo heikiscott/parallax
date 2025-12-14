@@ -117,15 +117,131 @@ retrieval:
     confidence_threshold: 0.85         # 置信度阈值
     num_queries: 3                     # 每轮生成的 query 数量
 
-    # Round 1 配置
+    # Round 1 默认配置 (会被 type_retrieval_configs 覆盖)
     round1_per_query_top_n: 20         # 每个 query 返回的候选数 (3×20≈60)
     round1_fusion_top_n: 20            # RRF 融合后保留的候选数
     round1_rerank_top_n: 10            # Sufficiency Check 使用的 Top N
 
-    # Round 2 配置 (Insufficient 时触发)
+    # Round 2 默认配置 (会被 type_retrieval_configs 覆盖)
     round2_per_query_top_n: 30         # Round 2 每个 query 返回更多候选
     round2_fusion_top_n: 30            # Round 2 RRF 融合后保留数
     final_rerank_top_n: 20             # 最终 Rerank 返回的 Top N
+
+  # ===== 问题类型召回配置矩阵 =====
+  # 每种问题类型可独立配置各环节的召回数量，实现精细化控制
+  type_retrieval_configs:
+    # --- 简单问题 - 保守配置，减少噪声 ---
+    attribute_identity:
+      round1_per_query_top_n: 20
+      round1_fusion_top_n: 20
+      round1_rerank_top_n: 10
+      round2_per_query_top_n: 30
+      round2_fusion_top_n: 30
+      merge_budget: 30
+      final_rerank_top_n: 20
+
+    attribute_preference:
+      round1_per_query_top_n: 20
+      round1_fusion_top_n: 20
+      round1_rerank_top_n: 10
+      round2_per_query_top_n: 30
+      round2_fusion_top_n: 30
+      merge_budget: 30
+      final_rerank_top_n: 20
+
+    attribute_location:
+      round1_per_query_top_n: 20
+      round1_fusion_top_n: 20
+      round1_rerank_top_n: 10
+      round2_per_query_top_n: 30
+      round2_fusion_top_n: 30
+      merge_budget: 30
+      final_rerank_top_n: 20
+
+    # --- 中等问题 - 适中配置 ---
+    event_activity:
+      round1_per_query_top_n: 20
+      round1_fusion_top_n: 20
+      round1_rerank_top_n: 10
+      round2_per_query_top_n: 30
+      round2_fusion_top_n: 30
+      merge_budget: 35
+      final_rerank_top_n: 20
+
+    general:
+      round1_per_query_top_n: 20
+      round1_fusion_top_n: 20
+      round1_rerank_top_n: 10
+      round2_per_query_top_n: 30
+      round2_fusion_top_n: 30
+      merge_budget: 35
+      final_rerank_top_n: 20
+
+    # --- 时间相关问题 - 需要更多证据 ---
+    event_temporal:
+      round1_per_query_top_n: 25
+      round1_fusion_top_n: 25
+      round1_rerank_top_n: 12
+      round2_per_query_top_n: 35
+      round2_fusion_top_n: 35
+      merge_budget: 40
+      final_rerank_top_n: 20
+
+    event_aggregation:
+      round1_per_query_top_n: 25
+      round1_fusion_top_n: 25
+      round1_rerank_top_n: 12
+      round2_per_query_top_n: 35
+      round2_fusion_top_n: 35
+      merge_budget: 40
+      final_rerank_top_n: 20
+
+    time_calculation:
+      round1_per_query_top_n: 25
+      round1_fusion_top_n: 25
+      round1_rerank_top_n: 12
+      round2_per_query_top_n: 35
+      round2_fusion_top_n: 35
+      merge_budget: 40
+      final_rerank_top_n: 20
+
+    # --- 复杂问题 - 激进配置，更多召回 ---
+    counting:
+      round1_per_query_top_n: 30
+      round1_fusion_top_n: 30
+      round1_rerank_top_n: 15
+      round2_per_query_top_n: 40
+      round2_fusion_top_n: 40
+      merge_budget: 45
+      final_rerank_top_n: 25
+
+    reasoning_hypothetical:
+      round1_per_query_top_n: 30
+      round1_fusion_top_n: 30
+      round1_rerank_top_n: 15
+      round2_per_query_top_n: 40
+      round2_fusion_top_n: 40
+      merge_budget: 45
+      final_rerank_top_n: 25
+
+    reasoning_inference:
+      round1_per_query_top_n: 30
+      round1_fusion_top_n: 30
+      round1_rerank_top_n: 15
+      round2_per_query_top_n: 40
+      round2_fusion_top_n: 40
+      merge_budget: 45
+      final_rerank_top_n: 25
+
+    # --- 默认配置 (fallback) ---
+    default:
+      round1_per_query_top_n: 20
+      round1_fusion_top_n: 20
+      round1_rerank_top_n: 10
+      round2_per_query_top_n: 30
+      round2_fusion_top_n: 30
+      merge_budget: 35
+      final_rerank_top_n: 20
 
 # ===== 问题分类配置 =====
 question_classification:
