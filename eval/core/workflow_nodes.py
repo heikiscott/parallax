@@ -16,7 +16,7 @@ if _src_path not in sys.path:
 
 from eval.core.stages.add_stage import run_add_stage
 from eval.core.stages.cluster_stage import run_cluster_stage
-from eval.core.stages.search_stage import run_search_stage
+from eval.core.stages.search_stage import run_search_stage, run_search_stage_v3
 from eval.core.stages.answer_stage import run_answer_stage
 from eval.core.stages.evaluate_stage import run_evaluate_stage
 from src.orchestration.nodes import register_node
@@ -205,6 +205,92 @@ async def eval_search_stage_node(state: EvalState, context) -> Dict[str, Any]:
         ]
         saver.save_json(search_data, "search_results.json")
         context.logger.info(f"Saved search results to search_results.json")
+
+        # 🔥 立即保存 checkpoint（防止后续阶段中断导致重跑 search）
+        if context.checkpoint_manager:
+            current_completed = set(state.get("completed_stages", []))
+            current_completed.add("search")
+            context.checkpoint_manager.save_checkpoint(current_completed)
+            context.logger.info(f"💾 Checkpoint updated: {sorted(list(current_completed))}")
+
+        return {
+            "search_results": search_results,
+            "completed_stages": ["search"],
+            "metadata": {**state.get("metadata", {}), "search_completed": True}
+        }
+    finally:
+        # Clear stage after completion
+        TokenStatsCollector.set_current_stage(None)
+
+
+# ============================================================================
+# V3 专用: 纯 ColBERT 检索 (完全独立于 V1/V2)
+# ============================================================================
+
+@register_node("eval_search_stage_v3")
+async def eval_search_stage_v3_node(state: EvalState, context) -> Dict[str, Any]:
+    """Search V3: Pure ColBERT retrieval."""
+    # 检查是否应该跳过此阶段
+    completed_stages = set(state.get("completed_stages", []))
+    if "search" in completed_stages:
+        context.logger.info("✅ Search stage already completed, skipping...")
+
+        # 从文件加载已有的 search results
+        saver = ResultSaver(context.output_dir)
+        search_data = saver.load_json("search_results.json")
+
+        # 转换回 SearchResult 对象
+        from eval.core.data_models import SearchResult
+        search_results = [
+            SearchResult(
+                query=item["query"],
+                conversation_id=item["conversation_id"],
+                results=item["results"],
+                retrieval_metadata=item.get("retrieval_metadata", {}),
+            )
+            for item in search_data
+        ]
+
+        return {
+            "search_results": search_results,
+            "completed_stages": ["search"],
+            "metadata": {**state.get("metadata", {}), "search_completed": True}
+        }
+
+    # Set current stage for token stats collection
+    TokenStatsCollector.set_current_stage("search")
+
+    try:
+        # 🔥 调用 V3 专用的 search stage
+        search_results = await run_search_stage_v3(
+            adapter=context.adapter,
+            qa_pairs=state.get("qa_pairs"),
+            index=state.get("index"),
+            conversations=state.get("conversations"),
+            checkpoint_manager=context.checkpoint_manager,
+            logger=context.logger,
+        )
+
+        # Save search results to file
+        saver = ResultSaver(context.output_dir)
+        search_data = [
+            {
+                "query": sr.query,
+                "conversation_id": sr.conversation_id,
+                "results": sr.results,
+                "retrieval_metadata": sr.retrieval_metadata,
+            }
+            for sr in search_results
+        ]
+        saver.save_json(search_data, "search_results.json")
+        context.logger.info(f"Saved search results to search_results.json")
+
+        # 🔥 立即保存 checkpoint（防止后续阶段中断导致重跑 search）
+        if context.checkpoint_manager:
+            current_completed = set(state.get("completed_stages", []))
+            current_completed.add("search")
+            context.checkpoint_manager.save_checkpoint(current_completed)
+            context.logger.info(f"💾 Checkpoint updated: {sorted(list(current_completed))}")
 
         return {
             "search_results": search_results,

@@ -245,14 +245,14 @@ async def generate_type_aware_multi_queries(
     prompt = prompt_template.format(original_query=original_query)
 
     try:
-        response = await llm_provider.chat.completions.create(
-            model=llm_config.get("model", "gpt-4.1-mini"),
-            messages=[{"role": "user", "content": prompt}],
+        # 使用 LLMProvider.generate() 方法 (不是 OpenAI SDK 的 chat.completions.create)
+        content = await llm_provider.generate(
+            prompt=prompt,
             temperature=llm_config.get("temperature", 0),
             max_tokens=llm_config.get("max_tokens", 1024),
+            response_format={"type": "json_object"},  # 请求 JSON 格式
         )
-
-        content = response.choices[0].message.content.strip()
+        content = content.strip()
 
         # Parse JSON response
         # Handle markdown code blocks

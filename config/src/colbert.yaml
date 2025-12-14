@@ -1,0 +1,31 @@
+# ColBERT v2 Model Configuration
+# 用于 Agentic V3 检索的 ColBERT 模型配置
+
+colbert:
+  # 模型选择
+  # jinaai/jina-colbert-v2: 多语言支持，HuggingFace 原生
+  model_name: "jinaai/jina-colbert-v2"
+
+  # 设备配置
+  # cuda: GPU 加速 (推荐)
+  # cpu: CPU 模式 (较慢但无需 GPU)
+  device: "cpu"
+
+  # Tokenization 限制
+  max_query_length: 128    # Query 最大 token 数
+  max_doc_length: 512      # 文档最大 token 数
+
+  # 批处理配置
+  # CPU 模式下建议降低批大小以避免内存问题
+  batch_size: 8
+
+  # 归一化配置
+  # 建议开启，使相似度分数更稳定
+  normalize_embeddings: true
+
+  # 模型加载配置
+  trust_remote_code: true  # Jina ColBERT 需要
+
+  # 缓存配置
+  # 模型缓存目录，默认使用 HuggingFace 缓存
+  # cache_dir: null

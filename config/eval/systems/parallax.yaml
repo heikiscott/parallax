@@ -78,7 +78,7 @@ group_event_cluster_retrieval:
 
 # ===== 检索配置 =====
 retrieval:
-  mode: "agentic_v2"          # agentic | agentic_v2 | lightweight | workflow
+  mode: "agentic_v3"          # agentic | agentic_v2 | agentic_v3 | lightweight | workflow
   workflow_name: "adaptive_retrieval"
 
   use_emb: true
@@ -242,6 +242,102 @@ retrieval:
       round2_fusion_top_n: 30
       merge_budget: 35
       final_rerank_top_n: 20
+
+  # ===== Agentic V3 配置 (retrieval.mode=agentic_v3) =====
+  # V3 使用纯 ColBERT 检索替代 Embedding + BM25 + RRF
+  # 经过 conv7 测试，发现参数需要与 V2 持平才能保证召回率
+  agentic_v3:
+    # Multi-Query 配置 (与 V2 相同)
+    skip_high_confidence_types: true
+    confidence_threshold: 0.85
+    num_queries: 3
+
+    # ColBERT 检索默认配置 (与 V2 完全一致)
+    round1_top_n: 20          # 与 V2 一致
+    round2_top_n: 30          # 与 V2 一致
+    merge_budget: 35          # 与 V2 一致
+    final_top_n: 20           # 与 V2 一致
+    rrf_k: 60                 # RRF 融合参数
+
+  # ===== V3 问题类型召回配置矩阵 =====
+  # 经过 conv7 测试调优，参数与 V2 持平以保证召回率
+  v3_type_retrieval_configs:
+    # --- 简单问题：与 V2 完全一致 ---
+    attribute_identity:
+      round1_top_n: 20
+      round2_top_n: 30
+      merge_budget: 30
+      final_top_n: 20
+
+    attribute_preference:
+      round1_top_n: 20
+      round2_top_n: 30
+      merge_budget: 30
+      final_top_n: 20
+
+    attribute_location:
+      round1_top_n: 20
+      round2_top_n: 30
+      merge_budget: 30
+      final_top_n: 20
+
+    # --- 中等问题：与 V2 完全一致 ---
+    event_activity:
+      round1_top_n: 20
+      round2_top_n: 30
+      merge_budget: 35
+      final_top_n: 20
+
+    general:
+      round1_top_n: 20
+      round2_top_n: 30
+      merge_budget: 35
+      final_top_n: 20
+
+    # --- 时间/聚合问题：与 V2 完全一致 ---
+    event_temporal:
+      round1_top_n: 25
+      round2_top_n: 35
+      merge_budget: 40
+      final_top_n: 20
+
+    event_aggregation:
+      round1_top_n: 25
+      round2_top_n: 35
+      merge_budget: 40
+      final_top_n: 20
+
+    time_calculation:
+      round1_top_n: 25
+      round2_top_n: 35
+      merge_budget: 40
+      final_top_n: 20
+
+    # --- 复杂问题：与 V2 完全一致 ---
+    counting:
+      round1_top_n: 30
+      round2_top_n: 40
+      merge_budget: 45
+      final_top_n: 25
+
+    reasoning_hypothetical:
+      round1_top_n: 30
+      round2_top_n: 40
+      merge_budget: 45
+      final_top_n: 25
+
+    reasoning_inference:
+      round1_top_n: 30
+      round2_top_n: 40
+      merge_budget: 45
+      final_top_n: 25
+
+    # --- 默认配置：与 V2 完全一致 ---
+    default:
+      round1_top_n: 20
+      round2_top_n: 30
+      merge_budget: 35
+      final_top_n: 20
 
 # ===== 问题分类配置 =====
 question_classification:

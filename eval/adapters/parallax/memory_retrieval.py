@@ -26,6 +26,7 @@ from config import load_config
 # Note: uses short paths because pytest.ini sets pythonpath = . src eval
 from retrieval.offline.pipelines.agentic import agentic_retrieval
 from retrieval.offline.pipelines.agentic_v2 import agentic_retrieval_v2
+from retrieval.offline.pipelines.agentic_v3 import agentic_retrieval_v3
 from retrieval.offline.pipelines.lightweight import lightweight_retrieval
 from retrieval.offline.pipelines.rerank import reranker_search
 from retrieval.offline.pipelines.search_utils import (
@@ -76,6 +77,93 @@ def ensure_nltk_data():
 # ============================================================================
 # Eval-specific helper functions (NOT in src/retrieval/)
 # ============================================================================
+
+def _build_searchable_text_for_colbert(doc: dict) -> str:
+    """Build searchable text from a document for ColBERT encoding.
+
+    Priority:
+    1. If event_log exists, use atomic_facts
+    2. Otherwise, use subject + summary + narrative
+    """
+    parts = []
+
+    # Use event_log atomic_facts if available
+    if doc.get("event_log") and doc["event_log"].get("atomic_fact"):
+        atomic_facts = doc["event_log"]["atomic_fact"]
+        if isinstance(atomic_facts, list):
+            for fact in atomic_facts:
+                if isinstance(fact, dict) and "fact" in fact:
+                    parts.append(fact["fact"])
+                elif isinstance(fact, str):
+                    parts.append(fact)
+            return " ".join(parts)
+
+    # Fallback to narrative/summary/subject
+    if doc.get("subject"):
+        parts.append(doc["subject"])
+    if doc.get("summary"):
+        parts.append(doc["summary"])
+    if doc.get("narrative"):
+        parts.append(doc["narrative"])
+
+    return " ".join(parts)
+
+
+async def _build_colbert_index_for_conv(
+    memunit_file: Path,
+    save_path: Path,
+) -> list:
+    """Build ColBERT index for a single conversation.
+
+    Args:
+        memunit_file: Path to memunit JSON file
+        save_path: Path to save the ColBERT index
+
+    Returns:
+        The built ColBERT index (list of dicts with doc and embeddings)
+    """
+    import time
+    from retrieval.services.colbert_service import get_colbert_service
+
+    logger.info(f"  Loading memunits from: {memunit_file}")
+    with open(memunit_file, "r", encoding="utf-8") as f:
+        docs = json.load(f)
+
+    if not docs:
+        logger.warning(f"No documents found in {memunit_file}")
+        return []
+
+    # Prepare texts for encoding
+    texts = [_build_searchable_text_for_colbert(doc) for doc in docs]
+    logger.info(f"  Encoding {len(texts)} documents with ColBERT...")
+
+    # Get ColBERT service and encode
+    colbert_service = get_colbert_service()
+    start_time = time.time()
+    embeddings = await colbert_service.encode_documents(texts)
+    encoding_time = time.time() - start_time
+
+    logger.info(f"  Encoding completed in {encoding_time:.1f}s "
+                f"({encoding_time/len(texts)*1000:.0f}ms/doc)")
+
+    # Build index structure
+    colbert_index = []
+    for doc, emb in zip(docs, embeddings):
+        colbert_index.append({
+            "doc": doc,
+            "embeddings": emb,
+        })
+
+    # Save index
+    save_path.parent.mkdir(parents=True, exist_ok=True)
+    with open(save_path, "wb") as f:
+        pickle.dump(colbert_index, f)
+
+    actual_size_mb = save_path.stat().st_size / (1024 * 1024)
+    logger.info(f"  Saved ColBERT index: {actual_size_mb:.2f} MB")
+
+    return colbert_index
+
 
 def _extract_cluster_selection_data(results_for_conv: List[dict]) -> dict:
     """Extract Cluster Selection info from retrieval results for checkpoint.
@@ -189,7 +277,223 @@ def _analyze_evidence_clusters(
 
 
 # ============================================================================
-# Main evaluation entry point
+# V3 专用入口 - 纯 ColBERT 检索 (完全独立于 V1/V2)
+# ============================================================================
+
+async def main_v3():
+    """V3 专用入口 - 纯 ColBERT 检索。
+
+    与 main() 完全独立，不加载 BM25/Embedding 索引，不使用 Cluster。
+    """
+    # --- Configuration ---
+    config = load_config("eval/systems/parallax")
+    colbert_index_dir = (
+        Path(__file__).parent / config.experiment_name / "colbert_index"
+    )
+    memunits_dir = (
+        Path(__file__).parent / config.experiment_name / "memunits"
+    )
+    save_dir = Path(__file__).parent / config.experiment_name
+
+    dataset_path = config.dataset_path
+    results_output_path = save_dir / "search_results.json"
+    checkpoint_path = save_dir / "search_results_checkpoint.json"
+
+    logger.info("=" * 60)
+    logger.info("🚀 V3 Mode: Pure ColBERT Retrieval")
+    logger.info("=" * 60)
+
+    # Initialize LLM Provider
+    llm_provider = None
+    llm_config = None
+    llm_service = config.llm.service
+    if config.retrieval.use_agentic:
+        llm_cfg = config.llm[llm_service]
+        llm_config = {
+            "model": llm_cfg.model,
+            "api_key": llm_cfg.api_key,
+            "base_url": llm_cfg.base_url,
+            "temperature": llm_cfg.temperature,
+            "max_tokens": llm_cfg.max_tokens,
+        }
+
+        llm_provider = LLMProvider(
+            provider_type="openai",
+            model=llm_config["model"],
+            api_key=llm_config["api_key"],
+            base_url=llm_config["base_url"],
+            temperature=llm_config.get("temperature", 0.0),
+            max_tokens=int(llm_config.get("max_tokens", 32768)),
+        )
+        logger.info(f"✅ LLM Provider initialized: {llm_config['model']}")
+
+    # Load the dataset
+    logger.info(f"Loading dataset from: {dataset_path}")
+    with open(dataset_path, "r", encoding="utf-8") as f:
+        dataset = json.load(f)
+
+    # Resume support
+    all_search_results = {}
+    processed_conversations = set()
+
+    if checkpoint_path.exists():
+        logger.info(f"🔄 Found checkpoint file: {checkpoint_path}")
+        try:
+            with open(checkpoint_path, "r", encoding="utf-8") as f:
+                all_search_results = json.load(f)
+            processed_conversations = set(all_search_results.keys())
+            logger.info(f"✅ Loaded {len(processed_conversations)} conversations from checkpoint")
+        except Exception as e:
+            logger.warning(f"⚠️  Failed to load checkpoint: {e}")
+            all_search_results = {}
+            processed_conversations = set()
+    else:
+        logger.info("🆕 No checkpoint found, starting from scratch")
+
+    # Iterate through the dataset
+    for i, conversation_data in enumerate(dataset):
+        conv_id = f"locomo_exp_user_{i}"
+
+        if conv_id in processed_conversations:
+            logger.info(f"\n⏭️  Skipping Conversation ID: {conv_id} (already processed)")
+            continue
+
+        print(f"\n--- Processing Conversation ID: {conv_id} ({i+1}/{len(dataset)}) ---")
+
+        if "qa" not in conversation_data:
+            logger.warning(f"Warning: No 'qa' key found in conversation #{i}. Skipping.")
+            continue
+
+        # --- Load ColBERT index ONLY (V3 专属) ---
+        colbert_index_path = colbert_index_dir / f"colbert_index_conv_{i}.pkl"
+        if not colbert_index_path.exists():
+            # Auto-build ColBERT index if not exists
+            memunit_file = memunits_dir / f"memunit_list_conv_{i}.json"
+            if not memunit_file.exists():
+                logger.error(
+                    f"Error: MemUnit file not found at {memunit_file}. "
+                    f"Skipping conversation."
+                )
+                continue
+
+            logger.info(f"  🔨 ColBERT index not found, building automatically...")
+            try:
+                colbert_index = await _build_colbert_index_for_conv(
+                    memunit_file=memunit_file,
+                    save_path=colbert_index_path,
+                )
+                logger.info(f"  ✅ Built ColBERT index: {len(colbert_index)} documents")
+            except Exception as e:
+                logger.error(f"Failed to build ColBERT index: {e}")
+                import traceback
+                traceback.print_exc()
+                continue
+        else:
+            with open(colbert_index_path, "rb") as f:
+                colbert_index = pickle.load(f)
+            logger.info(f"  ✅ Loaded ColBERT index: {len(colbert_index)} documents")
+
+        # Parallelize per-question retrieval
+        max_concurrent = config.concurrency.retrieval
+        sem = asyncio.Semaphore(max_concurrent)
+        logger.info(f"  🚀 ColBERT retrieval with concurrency: {max_concurrent}")
+
+        async def process_single_qa_v3(qa_pair):
+            """Process a single QA pair with ColBERT retrieval."""
+            question = qa_pair.get("question")
+            if not question:
+                return None
+            if qa_pair.get("category") == 5:
+                logger.debug(f"Skipping question {question} because it is category 5")
+                return None
+
+            qa_start_time = time.time()
+
+            try:
+                async with sem:
+                    # V3: Pure ColBERT retrieval
+                    top_results, retrieval_metadata = await agentic_retrieval_v3(
+                        query=question,
+                        config=config,
+                        llm_provider=llm_provider,
+                        llm_config=llm_config,
+                        colbert_index=colbert_index,
+                        enable_traversal_stats=True,
+                    )
+
+                    # Extract unit_ids
+                    unit_ids = []
+                    if top_results:
+                        for doc, score in top_results:
+                            unit_id = doc.get('unit_id')
+                            if unit_id:
+                                unit_ids.append(unit_id)
+
+                    qa_latency_ms = (time.time() - qa_start_time) * 1000
+
+                    result = {
+                        "query": question,
+                        "unit_ids": unit_ids,
+                        "unit_cluster_info": [],  # V3 不使用 cluster
+                        "original_qa": qa_pair,
+                        "evidence_cluster_analysis": None,  # V3 不使用 cluster
+                        "retrieval_metadata": {
+                            **retrieval_metadata,
+                            "qa_latency_ms": qa_latency_ms,
+                            "target_unit_ids_count": len(top_results) if top_results else 0,
+                            "actual_unit_ids_count": len(unit_ids),
+                        }
+                    }
+
+                    return result
+
+            except Exception as e:
+                logger.error(f"Error processing question '{question}': {e}")
+                import traceback
+                traceback.print_exc()
+                return None
+
+        tasks = [
+            asyncio.create_task(process_single_qa_v3(qa_pair))
+            for qa_pair in conversation_data["qa"]
+        ]
+        results_for_conv = [
+            res for res in await asyncio.gather(*tasks) if res is not None
+        ]
+
+        all_search_results[conv_id] = results_for_conv
+
+        # Save checkpoint after each conversation
+        try:
+            logger.debug(f"💾 Saving checkpoint after conversation {conv_id}...")
+            with open(checkpoint_path, "w", encoding="utf-8") as f:
+                json.dump(all_search_results, f, indent=2, ensure_ascii=False)
+            logger.info(f"✅ Checkpoint saved: {len(all_search_results)} conversations")
+        except Exception as e:
+            logger.warning(f"⚠️  Failed to save checkpoint: {e}")
+
+    # Save all results
+    print(f"\n{'='*60}")
+    print(f"🎉 All conversations processed!")
+    print(f"{'='*60}")
+    print(f"\nSaving final results to: {results_output_path}")
+    with open(results_output_path, "w", encoding="utf-8") as f:
+        json.dump(all_search_results, f, indent=2, ensure_ascii=False)
+
+    print(f"✅ V3 ColBERT retrieval complete!")
+    print(f"   Total conversations: {len(all_search_results)}")
+
+    # Remove checkpoint file after completion
+    if checkpoint_path.exists():
+        try:
+            checkpoint_path.unlink()
+            logger.info(f"🗑️  Checkpoint file removed (task completed)")
+        except Exception as e:
+            logger.warning(f"⚠️  Failed to remove checkpoint: {e}")
+
+
+# ============================================================================
+# V1/V2 入口 - Hybrid 检索 (BM25 + Embedding)
 # ============================================================================
 
 async def main():
@@ -201,6 +505,9 @@ async def main():
     )
     emb_index_dir = (
         Path(__file__).parent / config.experiment_name / "vectors"
+    )
+    memunits_dir = (
+        Path(__file__).parent / config.experiment_name / "memunits"
     )
     save_dir = Path(__file__).parent / config.experiment_name
 
@@ -335,8 +642,8 @@ async def main():
         # Load cluster index (if enabled)
         cluster_index = None
         if config.group_event_cluster.enabled:
-            cluster_index_dir = save_dir / "event_clusters"
-            cluster_index_path = cluster_index_dir / f"conv_{i}.json"
+            cluster_index_subdir = save_dir / "event_clusters"
+            cluster_index_path = cluster_index_subdir / f"conv_{i}.json"
             if cluster_index_path.exists():
                 try:
                     cluster_index = GroupEventClusterIndex.load_from_file(cluster_index_path)
@@ -594,4 +901,9 @@ async def main():
 
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    # 根据配置自动选择入口
+    config = load_config("eval/systems/parallax")
+    if config.retrieval.mode == "agentic_v3":
+        asyncio.run(main_v3())
+    else:
+        asyncio.run(main())

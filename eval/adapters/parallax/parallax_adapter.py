@@ -850,3 +850,196 @@ class ParallaxAdapter(BaseAdapter):
             "use_hybrid_search": True,
             "total_conversations": len(conversations),
         }
+
+    # ========================================================================
+    # V3 专用: 纯 ColBERT 检索 (完全独立于 V1/V2 的 search 方法)
+    # ========================================================================
+
+    async def search_v3(
+        self, query: str, conversation_id: str, index: Any, **kwargs
+    ) -> SearchResult:
+        """
+        V3 专用检索方法 - 纯 ColBERT 检索
+
+        完全独立于 search() 方法，不加载 BM25/Embedding 索引。
+
+        Args:
+            query: 查询字符串
+            conversation_id: 对话 ID
+            index: 索引信息字典
+            **kwargs: 其他参数
+
+        Returns:
+            SearchResult 包含检索结果
+        """
+        import pickle
+        from retrieval.offline.pipelines.agentic_v3 import agentic_retrieval_v3
+
+        logger.info(f"[Search V3] Pure ColBERT retrieval for: {query[:50]}...")
+
+        exp_config = self._get_config()
+        conv_index = self._extract_conv_index(conversation_id)
+
+        # V3 索引路径
+        output_dir = Path(index.get("output_dir", self.output_dir))
+        colbert_index_dir = output_dir / "colbert_index"
+        memunits_dir = output_dir / "memunits"
+
+        # 加载或构建 ColBERT 索引
+        colbert_index_path = colbert_index_dir / f"colbert_index_conv_{conv_index}.pkl"
+
+        if not colbert_index_path.exists():
+            # 自动构建 ColBERT 索引
+            memunit_file = memunits_dir / f"memunit_list_conv_{conv_index}.json"
+            if not memunit_file.exists():
+                logger.error(f"MemUnit file not found: {memunit_file}")
+                return SearchResult(
+                    query=query,
+                    conversation_id=conversation_id,
+                    results=[],
+                    retrieval_metadata={"error": f"MemUnit file not found: {memunit_file.name}"}
+                )
+
+            logger.info(f"  🔨 ColBERT index not found, building...")
+            try:
+                colbert_index = await self._build_colbert_index_v3(memunit_file, colbert_index_path)
+                logger.info(f"  ✅ Built ColBERT index: {len(colbert_index)} documents")
+            except Exception as e:
+                logger.error(f"Failed to build ColBERT index: {e}")
+                import traceback
+                traceback.print_exc()
+                return SearchResult(
+                    query=query,
+                    conversation_id=conversation_id,
+                    results=[],
+                    retrieval_metadata={"error": f"Failed to build ColBERT index: {e}"}
+                )
+        else:
+            with open(colbert_index_path, "rb") as f:
+                colbert_index = pickle.load(f)
+            logger.debug(f"  ✅ Loaded ColBERT index: {len(colbert_index)} documents")
+
+        # 获取 LLM config
+        llm_service = exp_config.llm.service
+        llm_cfg = exp_config.llm[llm_service]
+        llm_config = {
+            "model": llm_cfg.model,
+            "api_key": llm_cfg.api_key,
+            "base_url": llm_cfg.base_url,
+            "temperature": llm_cfg.temperature,
+            "max_tokens": llm_cfg.max_tokens,
+        }
+
+        # 调用 V3 agentic retrieval
+        try:
+            top_results, retrieval_metadata = await agentic_retrieval_v3(
+                query=query,
+                config=exp_config,
+                llm_provider=self.llm_provider,
+                llm_config=llm_config,
+                colbert_index=colbert_index,
+                enable_traversal_stats=True,
+            )
+        except Exception as e:
+            logger.error(f"V3 retrieval error: {e}")
+            import traceback
+            traceback.print_exc()
+            return SearchResult(
+                query=query,
+                conversation_id=conversation_id,
+                results=[],
+                retrieval_metadata={"error": str(e)}
+            )
+
+        # 转换结果格式 (与 V2 保持一致，只保存必要字段)
+        results = []
+        if top_results:
+            for doc, score in top_results:
+                # 获取 origin 信息
+                unit_id = doc.get("unit_id", "")
+                origin = retrieval_metadata.get("origin_map", {}).get(unit_id, "round1")
+
+                results.append({
+                    "content": doc.get("narrative", ""),
+                    "score": float(score),
+                    "metadata": {
+                        "subject": doc.get("subject", ""),
+                        "summary": doc.get("summary", ""),
+                        "unit_id": unit_id,
+                        "origin": origin,
+                    }
+                })
+
+        # 构建 formatted_context
+        formatted_context = ""
+        if top_results:
+            for i, (doc, score) in enumerate(top_results, 1):
+                narrative = doc.get("narrative", "")
+                unit_id = doc.get("unit_id", f"unit_{i}")
+                formatted_context += f"[Memory {i}] (ID: {unit_id}, Score: {score:.4f})\n{narrative}\n\n"
+
+        retrieval_metadata["formatted_context"] = formatted_context
+
+        return SearchResult(
+            query=query,
+            conversation_id=conversation_id,
+            results=results,
+            retrieval_metadata=retrieval_metadata
+        )
+
+    async def _build_colbert_index_v3(self, memunit_file: Path, save_path: Path) -> list:
+        """构建 ColBERT 索引 (V3 专用)"""
+        import pickle
+        import time
+        from retrieval.services.colbert_service import get_colbert_service
+
+        with open(memunit_file, "r", encoding="utf-8") as f:
+            docs = json.load(f)
+
+        if not docs:
+            logger.warning(f"No documents found in {memunit_file}")
+            return []
+
+        # 构建可搜索文本
+        texts = []
+        for doc in docs:
+            # 优先使用 event_log 的 atomic_facts
+            if doc.get("event_log") and doc["event_log"].get("atomic_fact"):
+                atomic_facts = doc["event_log"]["atomic_fact"]
+                if isinstance(atomic_facts, list):
+                    parts = []
+                    for fact in atomic_facts:
+                        if isinstance(fact, dict) and "fact" in fact:
+                            parts.append(fact["fact"])
+                        elif isinstance(fact, str):
+                            parts.append(fact)
+                    texts.append(" ".join(parts))
+                    continue
+            # Fallback to narrative
+            text = doc.get("narrative", "")
+            texts.append(text)
+
+        logger.info(f"  Encoding {len(texts)} documents with ColBERT...")
+
+        # 获取 ColBERT 服务并编码
+        colbert_service = get_colbert_service()
+        start_time = time.time()
+        embeddings = await colbert_service.encode_documents(texts)
+        encode_time = time.time() - start_time
+        logger.info(f"  Encoding completed in {encode_time:.2f}s")
+
+        # 构建索引
+        colbert_index = []
+        for doc, emb in zip(docs, embeddings):
+            colbert_index.append({
+                "doc": doc,
+                "embeddings": emb,
+            })
+
+        # 保存索引
+        save_path.parent.mkdir(parents=True, exist_ok=True)
+        with open(save_path, "wb") as f:
+            pickle.dump(colbert_index, f)
+        logger.info(f"  Saved ColBERT index to: {save_path}")
+
+        return colbert_index

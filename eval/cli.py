@@ -244,12 +244,18 @@ async def main():
         workflow_config = args.workflow
     else:
         # 根据系统配置决定使用哪个 workflow
-        # 从 group_event_cluster.enabled 字段读取配置
-        enable_clustering = system_config.get("group_event_cluster", {}).get("enabled", False)
-        if enable_clustering:
-            workflow_config = "standard_pipeline"  # 包含 cluster 阶段
+        retrieval_mode = system_config.get("retrieval", {}).get("mode", "")
+
+        if retrieval_mode == "agentic_v3":
+            # V3 模式: 使用独立的 ColBERT pipeline
+            workflow_config = "colbert_pipeline"
         else:
-            workflow_config = "no_cluster"  # 跳过 cluster 阶段
+            # V1/V2 模式: 根据 cluster 配置选择
+            enable_clustering = system_config.get("group_event_cluster", {}).get("enabled", False)
+            if enable_clustering:
+                workflow_config = "standard_pipeline"  # 包含 cluster 阶段
+            else:
+                workflow_config = "no_cluster"  # 跳过 cluster 阶段
 
     console.print(f"  📋 Workflow: {workflow_config}")
     console.print(f"  ✅ Output: {output_dir}")
@@ -257,7 +263,11 @@ async def main():
         console.print(f"  🔍 Filter categories: {filter_categories}")
 
     # 获取 enable_clustering 用于 state metadata
-    enable_clustering = system_config.get("group_event_cluster", {}).get("enabled", False)
+    retrieval_mode = system_config.get("retrieval", {}).get("mode", "")
+    if retrieval_mode == "agentic_v3":
+        enable_clustering = False
+    else:
+        enable_clustering = system_config.get("group_event_cluster", {}).get("enabled", False)
 
     # 构建 workflow（使用完整路径）
     eval_workflows_dir = project_root / "config" / "eval" / "workflows"
