@@ -209,7 +209,7 @@ async def main():
     console.print(f"\n[bold cyan]Building evaluation workflow...[/bold cyan]")
 
     # 注册 eval nodes（触发装饰器）
-    import eval.core.workflow_nodes  # noqa
+    import eval.core.nodes  # noqa
 
     # 创建 ExecutionContext（包含所有依赖）
     from src.orchestration.context import ExecutionContext
@@ -333,7 +333,7 @@ async def main():
     console.print(f"[bold cyan]Running evaluation workflow...[/bold cyan]")
 
     # 创建初始 state
-    from eval.core.workflow_nodes import EvalState
+    from eval.core.nodes import EvalState
 
     # 🔥 从 checkpoint 加载已完成的 stages
     completed_stages_from_checkpoint = []
