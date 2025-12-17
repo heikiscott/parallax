@@ -53,6 +53,8 @@ from .cross_attention_utils import (
     multi_cross_attention_rrf_fusion,
     merge_round_results,
     build_origin_map,
+    smart_score_truncate,
+    get_truncation_config,
 )
 from .llm_utils import (
     check_sufficiency,
@@ -440,8 +442,20 @@ async def agentic_retrieval_v4(
     if is_sufficient:
         logger.info(f"  [Decision] Sufficient! Returning Round 1 Cross-Attention results")
 
-        final_results = round1_results[:final_top_n]
+        # Get type-specific truncation config
+        question_type_str = classification.question_type.value
+        truncation_config = get_truncation_config(question_type_str)
 
+        # Apply smart truncation before final_top_n limit
+        candidates = round1_results[:final_top_n]
+        final_results, truncation_meta = smart_score_truncate(
+            candidates,
+            min_results=truncation_config["min_results"],
+            max_results=truncation_config["max_results"],
+            score_ratio=truncation_config["score_ratio"],
+        )
+
+        metadata["truncation"] = truncation_meta
         metadata["final_count"] = len(final_results)
         metadata["total_latency_ms"] = (time.time() - start_time) * 1000
 
@@ -529,9 +543,20 @@ async def agentic_retrieval_v4(
 
     logger.info(f"  [Merge] Combined: {len(combined_results)} docs")
 
-    # Final selection
-    final_results = combined_results[:final_top_n]
+    # Get type-specific truncation config
+    question_type_str = classification.question_type.value
+    truncation_config = get_truncation_config(question_type_str)
 
+    # Apply smart truncation before final_top_n limit
+    candidates = combined_results[:final_top_n]
+    final_results, truncation_meta = smart_score_truncate(
+        candidates,
+        min_results=truncation_config["min_results"],
+        max_results=truncation_config["max_results"],
+        score_ratio=truncation_config["score_ratio"],
+    )
+
+    metadata["truncation"] = truncation_meta
     metadata["final_count"] = len(final_results)
     metadata["total_latency_ms"] = (time.time() - start_time) * 1000
     metadata["origin_map"] = build_origin_map(round1_ids, round2_added_ids)
