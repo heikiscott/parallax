@@ -4,7 +4,7 @@ from typing import Dict, Any, List, Optional, AsyncGenerator, Union
 
 from core.di.decorators import component
 from core.observation.logger import get_logger
-from providers.core.config_provider import ConfigProvider
+from config import load_config, reload_config as config_reload
 
 from providers.llm.message import ChatMessage
 from providers.llm.completion import (
@@ -19,6 +19,11 @@ from providers.llm.gemini_adapter import GeminiAdapter
 logger = get_logger(__name__)
 
 
+def _get_llm_backends_config() -> Dict[str, Any]:
+    """获取 llm_backends 配置（返回原始字典）"""
+    return load_config("services/llm_backends").to_dict()
+
+
 @component(name="openai_compatible_client", primary=True)
 class OpenAICompatibleClient:
     """
@@ -26,15 +31,10 @@ class OpenAICompatibleClient:
     该客户端作为一个外观（Facade），管理多个LLM后端适配器。
     """
 
-    def __init__(self, config_provider: ConfigProvider):
-        """
-        初始化客户端。
-        Args:
-            config_provider: 配置提供者，用于加载 llm_backends.yaml。
-        """
-        self.config_provider = config_provider
+    def __init__(self):
+        """初始化客户端"""
         self._adapters: Dict[str, LLMBackendAdapter] = {}
-        self._config: Dict[str, Any] = self.config_provider.get_config("llm_backends")
+        self._config: Dict[str, Any] = _get_llm_backends_config()
         self._init_locks: Dict[str, asyncio.Lock] = {}  # 每个后端一个锁
         self._lock_creation_lock = asyncio.Lock()  # 用于创建锁的锁
 
@@ -226,7 +226,7 @@ class OpenAICompatibleClient:
 
     def reload_config(self):
         """重新加载配置并清空现有适配器实例和锁"""
-        self._config = self.config_provider.get_config("llm_backends")
+        self._config = config_reload("services/llm_backends").to_dict()
         self._adapters.clear()
         self._init_locks.clear()
 

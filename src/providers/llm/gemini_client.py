@@ -5,9 +5,8 @@ from google.genai.types import GenerateContentConfig, ContentDict
 from google.genai.types import ThinkingConfig
 from langchain_core.messages import HumanMessage, AIMessage, SystemMessage, BaseMessage
 from core.di.decorators import component
-from providers.core.config_provider import ConfigProvider
 from core.constants.errors import ErrorMessage
-from config import load_config
+from config import load_config, reload_config as config_reload
 
 
 def _get_provider_config():
@@ -15,21 +14,18 @@ def _get_provider_config():
     return load_config("services/providers")
 
 
+def _get_llm_backends_config() -> Dict[str, Any]:
+    """获取 llm_backends 配置（返回原始字典）"""
+    return load_config("services/llm_backends").to_dict()
+
+
 @component(name="gemini_client", primary=True)
 class GeminiClient:
     """Google Gemini API 客户端 - 直接返回原始响应"""
 
-    def __init__(self, config_provider: ConfigProvider):
-        """
-        初始化Gemini客户端
-
-        Args:
-            config_provider: 配置提供者，用于加载llm_backends配置
-        """
-        self.config_provider = config_provider
-        self._llm_config: Dict[str, Any] = self.config_provider.get_config(
-            "llm_backends"
-        )
+    def __init__(self):
+        """初始化Gemini客户端"""
+        self._llm_config: Dict[str, Any] = _get_llm_backends_config()
 
         # 获取Gemini后端配置
         gemini_backends = self._llm_config.get("llm_backends", {})
@@ -273,7 +269,7 @@ class GeminiClient:
 
     def reload_config(self):
         """重新加载配置"""
-        self._llm_config = self.config_provider.get_config("llm_backends")
+        self._llm_config = config_reload("services/llm_backends").to_dict()
 
         # 获取Gemini后端配置
         gemini_backends = self._llm_config.get("llm_backends", {})

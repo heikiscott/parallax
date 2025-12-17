@@ -15,12 +15,11 @@ from hashlib import md5
 import bson
 from aiokafka import AIOKafkaConsumer
 
-from providers.core.config_provider import ConfigProvider
 from core.di.decorators import component
 from core.observation.logger import get_logger
 from utils.project_path import CURRENT_DIR
 from utils.datetime_utils import from_iso_format, to_timestamp
-from core.di.utils import get_bean_by_type
+from config import load_raw_file
 
 logger = get_logger(__name__)
 
@@ -202,8 +201,7 @@ class KafkaConsumerFactory:
         # 创建 SSL 上下文
         ssl_context = None
         if ca_file_path:
-            config_provider = get_bean_by_type(ConfigProvider)
-            ca_file_content = config_provider.get_raw_config(ca_file_path)
+            ca_file_content = load_raw_file(ca_file_path)
             ssl_context = ssl.create_default_context(purpose=ssl.Purpose.SERVER_AUTH)
             ssl_context.load_verify_locations(cadata=ca_file_content)
 

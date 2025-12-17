@@ -389,3 +389,31 @@ def save_yaml(config: Union[Dict[str, Any], ConfigDict], file_path: str):
         yaml.dump(config, f, default_flow_style=False, allow_unicode=True, indent=2)
 
 
+def load_raw_file(name: str) -> str:
+    """
+    读取配置目录下的原始文件内容
+
+    Args:
+        name: 相对于 config/ 目录的文件路径，如 "services/ca-cert.pem"
+
+    Returns:
+        文件的原始文本内容
+
+    Examples:
+        from config import load_raw_file
+
+        # 读取 SSL 证书
+        cert_content = load_raw_file("services/kafka/ca-cert.pem")
+    """
+    config_dir = _get_config_dir()
+    file_path = config_dir / name
+
+    if not file_path.exists():
+        raise FileNotFoundError(
+            f"File not found: {name}\n"
+            f"Expected path: {file_path}"
+        )
+
+    return file_path.read_text(encoding='utf-8')
+
+

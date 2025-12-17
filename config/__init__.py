@@ -42,6 +42,7 @@
 from config.loader import (
     ConfigDict,
     load_config,
+    load_raw_file,
     load_secrets,
     load_yaml,
     reload_config,
@@ -51,6 +52,7 @@ from config.loader import (
 __all__ = [
     "ConfigDict",
     "load_config",
+    "load_raw_file",
     "load_secrets",
     "load_yaml",
     "reload_config",
