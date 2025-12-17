@@ -60,26 +60,51 @@ async def cross_attention_score(
     TODO: 替换为真正的交叉注意力实现
     """
     # ============================================================
-    # 桩函数：使用 ColBERT 计算分数，用于测试 V4 流程
-    # 后续替换为真正的交叉注意力实现
+    # 【桩函数开始】使用 ColBERT 计算分数，用于测试 V4 流程
+    # ML 团队替换时：删除此函数全部内容，实现真正的交叉注意力
     # ============================================================
+    import hashlib
     from retrieval.services.colbert_service import get_colbert_service
+
+    # 桩函数内部缓存
+    if not hasattr(cross_attention_score, '_cache'):
+        cross_attention_score._cache = {}
 
     if not contexts or not context_ids:
         return []
 
     colbert_service = get_colbert_service()
+    cache = cross_attention_score._cache
 
     # 编码 query
     query_emb = await colbert_service.encode_query(query)
 
-    # 编码所有 contexts 并计算分数
-    doc_embeddings = await colbert_service.encode_documents(contexts)
+    # 获取或计算 context embeddings（使用缓存加速）
+    doc_embeddings = []
+    contexts_to_encode = []
+    contexts_to_encode_indices = []
+
+    for i, content in enumerate(contexts):
+        content_hash = hashlib.md5(content.encode('utf-8')).hexdigest()
+        if content_hash in cache:
+            doc_embeddings.append(cache[content_hash])
+        else:
+            doc_embeddings.append(None)
+            contexts_to_encode.append(content)
+            contexts_to_encode_indices.append(i)
+
+    # 批量编码未缓存的 contexts
+    if contexts_to_encode:
+        new_embeddings = await colbert_service.encode_documents(contexts_to_encode)
+        for idx, emb in zip(contexts_to_encode_indices, new_embeddings):
+            content_hash = hashlib.md5(contexts[idx].encode('utf-8')).hexdigest()
+            cache[content_hash] = emb
+            doc_embeddings[idx] = emb
 
     # 计算 MaxSim 分数
     results = []
     for ctx_id, doc_emb in zip(context_ids, doc_embeddings):
-        if len(doc_emb) == 0:
+        if doc_emb is None or len(doc_emb) == 0:
             score = 0.0
         else:
             score = colbert_service.compute_maxsim(query_emb, doc_emb)
@@ -89,6 +114,9 @@ async def cross_attention_score(
     results.sort(key=lambda x: x[1], reverse=True)
 
     return results
+    # ============================================================
+    # 【桩函数结束】
+    # ============================================================
 
 
 # =============================================================================
