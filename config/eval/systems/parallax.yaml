@@ -78,7 +78,7 @@ group_event_cluster_retrieval:
 
 # ===== 检索配置 =====
 retrieval:
-  mode: "agentic_v3"          # agentic | agentic_v2 | agentic_v3 | lightweight | workflow
+  mode: "agentic_v4"          # agentic | agentic_v2 | agentic_v3 | agentic_v4 | lightweight | workflow
   workflow_name: "adaptive_retrieval"
 
   use_emb: true
@@ -333,6 +333,102 @@ retrieval:
       final_top_n: 25
 
     # --- 默认配置：与 V2 完全一致 ---
+    default:
+      round1_top_n: 20
+      round2_top_n: 30
+      merge_budget: 35
+      final_top_n: 20
+
+  # ===== Agentic V4 配置 (retrieval.mode=agentic_v4) =====
+  # V4 使用交叉注意力检索替代 ColBERT
+  # 注意：交叉注意力的 cross_attention_score() 函数需要由 ML 团队实现
+  agentic_v4:
+    # Multi-Query 配置
+    skip_high_confidence_types: true
+    confidence_threshold: 0.85
+    num_queries: 3
+
+    # 检索默认参数
+    round1_top_n: 20
+    round2_top_n: 30
+    merge_budget: 35
+    final_top_n: 20
+    rrf_k: 60
+
+  # ===== V4 问题类型召回配置矩阵 =====
+  # V4 独立配置，可以单独调参
+  v4_type_retrieval_configs:
+    # --- 简单问题 ---
+    attribute_identity:
+      round1_top_n: 20
+      round2_top_n: 30
+      merge_budget: 30
+      final_top_n: 20
+
+    attribute_preference:
+      round1_top_n: 20
+      round2_top_n: 30
+      merge_budget: 30
+      final_top_n: 20
+
+    attribute_location:
+      round1_top_n: 20
+      round2_top_n: 30
+      merge_budget: 30
+      final_top_n: 20
+
+    # --- 中等问题 ---
+    event_activity:
+      round1_top_n: 20
+      round2_top_n: 30
+      merge_budget: 35
+      final_top_n: 20
+
+    general:
+      round1_top_n: 20
+      round2_top_n: 30
+      merge_budget: 35
+      final_top_n: 20
+
+    # --- 时间/聚合问题 ---
+    event_temporal:
+      round1_top_n: 25
+      round2_top_n: 35
+      merge_budget: 40
+      final_top_n: 20
+
+    event_aggregation:
+      round1_top_n: 25
+      round2_top_n: 35
+      merge_budget: 40
+      final_top_n: 20
+
+    time_calculation:
+      round1_top_n: 25
+      round2_top_n: 35
+      merge_budget: 40
+      final_top_n: 20
+
+    # --- 复杂问题 ---
+    counting:
+      round1_top_n: 30
+      round2_top_n: 40
+      merge_budget: 45
+      final_top_n: 25
+
+    reasoning_hypothetical:
+      round1_top_n: 30
+      round2_top_n: 40
+      merge_budget: 45
+      final_top_n: 25
+
+    reasoning_inference:
+      round1_top_n: 30
+      round2_top_n: 40
+      merge_budget: 45
+      final_top_n: 25
+
+    # --- 默认配置 ---
     default:
       round1_top_n: 20
       round2_top_n: 30

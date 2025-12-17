@@ -246,8 +246,11 @@ async def main():
         # 根据系统配置决定使用哪个 workflow
         retrieval_mode = system_config.get("retrieval", {}).get("mode", "")
 
-        if retrieval_mode == "agentic_v3":
-            # V3 模式: 使用 agentic_v3 pipeline
+        if retrieval_mode == "agentic_v4":
+            # V4 模式: 使用 agentic_v4 pipeline (Cross-Attention)
+            workflow_config = "agentic_v4"
+        elif retrieval_mode == "agentic_v3":
+            # V3 模式: 使用 agentic_v3 pipeline (Pure ColBERT)
             workflow_config = "agentic_v3"
         else:
             # V1/V2 模式: 根据 cluster 配置选择
@@ -264,7 +267,7 @@ async def main():
 
     # 获取 enable_clustering 用于 state metadata
     retrieval_mode = system_config.get("retrieval", {}).get("mode", "")
-    if retrieval_mode == "agentic_v3":
+    if retrieval_mode in ("agentic_v3", "agentic_v4"):
         enable_clustering = False
     else:
         enable_clustering = system_config.get("group_event_cluster", {}).get("enabled", False)

@@ -1043,3 +1043,177 @@ class ParallaxAdapter(BaseAdapter):
         logger.info(f"  Saved ColBERT index to: {save_path}")
 
         return colbert_index
+
+    # ========================================================================
+    # V4 专用: 交叉注意力检索 (完全独立于 V3 的 ColBERT)
+    # ========================================================================
+
+    async def search_v4(
+        self, query: str, conversation_id: str, index: Any, **kwargs
+    ) -> SearchResult:
+        """
+        V4 专用检索方法 - 交叉注意力检索
+
+        完全独立于 search_v3() 方法，不需要 ColBERT embeddings。
+        构建 V4 专用索引文件（仅包含文档内容，不包含 embeddings）。
+
+        Args:
+            query: 查询字符串
+            conversation_id: 对话 ID
+            index: 索引信息字典
+            **kwargs: 其他参数
+
+        Returns:
+            SearchResult 包含检索结果
+        """
+        import pickle
+        from retrieval.offline.pipelines.agentic_v4 import agentic_retrieval_v4
+
+        logger.info(f"[Search V4] Cross-Attention retrieval for: {query[:50]}...")
+
+        exp_config = self._get_config()
+        conv_index = self._extract_conv_index(conversation_id)
+
+        # V4 索引路径
+        output_dir = Path(index.get("output_dir", self.output_dir))
+        v4_index_dir = output_dir / "v4_index"
+        memunits_dir = output_dir / "memunits"
+
+        # 加载或构建 V4 索引
+        v4_index_path = v4_index_dir / f"v4_index_conv_{conv_index}.pkl"
+
+        if not v4_index_path.exists():
+            # 自动构建 V4 索引
+            memunit_file = memunits_dir / f"memunit_list_conv_{conv_index}.json"
+            if not memunit_file.exists():
+                logger.error(f"MemUnit file not found: {memunit_file}")
+                return SearchResult(
+                    query=query,
+                    conversation_id=conversation_id,
+                    results=[],
+                    retrieval_metadata={"error": f"MemUnit file not found: {memunit_file.name}"}
+                )
+
+            logger.info(f"  🔨 V4 index not found, building...")
+            try:
+                doc_index = await self._build_v4_index(memunit_file, v4_index_path)
+                logger.info(f"  ✅ Built V4 index: {len(doc_index)} documents")
+            except Exception as e:
+                logger.error(f"Failed to build V4 index: {e}")
+                import traceback
+                traceback.print_exc()
+                return SearchResult(
+                    query=query,
+                    conversation_id=conversation_id,
+                    results=[],
+                    retrieval_metadata={"error": f"Failed to build V4 index: {e}"}
+                )
+        else:
+            with open(v4_index_path, "rb") as f:
+                doc_index = pickle.load(f)
+            logger.debug(f"  ✅ Loaded V4 index: {len(doc_index)} documents")
+
+        # 获取 LLM config
+        llm_service = exp_config.llm.service
+        llm_cfg = exp_config.llm[llm_service]
+        llm_config = {
+            "model": llm_cfg.model,
+            "api_key": llm_cfg.api_key,
+            "base_url": llm_cfg.base_url,
+            "temperature": llm_cfg.temperature,
+            "max_tokens": llm_cfg.max_tokens,
+        }
+
+        # 调用 V4 agentic retrieval
+        try:
+            top_results, retrieval_metadata = await agentic_retrieval_v4(
+                query=query,
+                config=exp_config,
+                llm_provider=self.llm_provider,
+                llm_config=llm_config,
+                doc_index=doc_index,
+                enable_traversal_stats=True,
+            )
+        except Exception as e:
+            logger.error(f"V4 retrieval error: {e}")
+            import traceback
+            traceback.print_exc()
+            return SearchResult(
+                query=query,
+                conversation_id=conversation_id,
+                results=[],
+                retrieval_metadata={"error": str(e)}
+            )
+
+        # 转换结果格式
+        results = []
+        if top_results:
+            for doc, score in top_results:
+                # 获取 origin 信息
+                unit_id = doc.get("unit_id", "")
+                origin = retrieval_metadata.get("origin_map", {}).get(unit_id, "round1")
+
+                results.append({
+                    "content": doc.get("narrative", ""),
+                    "score": float(score),
+                    "metadata": {
+                        "subject": doc.get("subject", ""),
+                        "summary": doc.get("summary", ""),
+                        "unit_id": unit_id,
+                        "origin": origin,
+                    }
+                })
+
+        # 构建 formatted_context (V4)
+        formatted_context = ""
+        if top_results:
+            for i, (doc, score) in enumerate(top_results, 1):
+                narrative = doc.get("narrative", "")
+                unit_id = doc.get("unit_id", f"unit_{i}")
+                formatted_context += f"[Memory {i}] (ID: {unit_id}, Score: {score:.4f})\n{narrative}\n\n"
+
+        retrieval_metadata["formatted_context"] = formatted_context
+
+        return SearchResult(
+            query=query,
+            conversation_id=conversation_id,
+            results=results,
+            retrieval_metadata=retrieval_metadata
+        )
+
+    async def _build_v4_index(self, memunit_file: Path, save_path: Path) -> list:
+        """构建 V4 索引 (V4 专用)
+
+        V4 索引不包含 embeddings，只包含文档内容。
+        交叉注意力分数在检索时实时计算。
+
+        Args:
+            memunit_file: MemUnit JSON 文件路径
+            save_path: 索引保存路径
+
+        Returns:
+            doc_index: [{"doc": {...}}, ...]
+        """
+        import pickle
+
+        with open(memunit_file, "r", encoding="utf-8") as f:
+            docs = json.load(f)
+
+        if not docs:
+            logger.warning(f"No documents found in {memunit_file}")
+            return []
+
+        # 构建索引 (V4 不需要 embeddings，只需要 doc)
+        doc_index = []
+        for doc in docs:
+            doc_index.append({
+                "doc": doc,
+            })
+
+        # 保存索引
+        save_path.parent.mkdir(parents=True, exist_ok=True)
+        with open(save_path, "wb") as f:
+            pickle.dump(doc_index, f)
+        logger.info(f"  Saved V4 index to: {save_path}")
+
+        return doc_index
