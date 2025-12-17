@@ -461,7 +461,245 @@ class ParallaxAdapter(BaseAdapter):
         console.print(f"{'='*60}\n", style="dim")
         
         return index_metadata
-    
+
+    async def add_v4(
+        self,
+        conversations: List[Conversation],
+        output_dir: Path = None,
+        checkpoint_manager=None,
+        **kwargs
+    ) -> Dict[str, Any]:
+        """
+        V4 Add 阶段：细粒度 MemUnit 提取
+
+        V4 使用细粒度切分策略：
+        - 每个 MemUnit 对应 1-2 轮对话（一问一答）
+        - 使用一次性 LLM 调用切分整个对话
+        - 比 V3 的话题级切分粒度更细
+
+        调用流程：
+        1. 细粒度 MemUnit 提取 (memunit_extraction_v4.py)
+        2. 构建 V4 索引（无 embeddings）
+
+        返回：索引元数据
+        """
+        from eval.adapters.parallax.memunit_extraction_v4 import process_single_conversation_v4
+
+        output_dir = Path(output_dir) if output_dir else self.output_dir
+        output_dir.mkdir(parents=True, exist_ok=True)
+
+        memunits_dir = output_dir / "memunits"
+        memunits_dir.mkdir(parents=True, exist_ok=True)
+        v4_index_dir = output_dir / "v4_index"
+        v4_index_dir.mkdir(parents=True, exist_ok=True)
+
+        console = Console()
+
+        # ========== V4 MemUnit Extraction (细粒度) ==========
+        console.print(f"\n{'='*60}", style="bold cyan")
+        console.print(f"V4 Fine-grained MemUnit Extraction", style="bold cyan")
+        console.print(f"{'='*60}", style="bold cyan")
+
+        # 转换数据格式
+        raw_data_dict = {}
+        for conv in conversations:
+            conv_id = conv.conversation_id
+            raw_data = []
+
+            for idx, msg in enumerate(conv.messages):
+                if msg.timestamp is not None:
+                    timestamp_str = to_iso_format(msg.timestamp)
+                else:
+                    from datetime import datetime, timedelta
+                    base_time = datetime(2023, 1, 1, 0, 0, 0)
+                    pseudo_time = base_time + timedelta(seconds=idx * 30)
+                    timestamp_str = to_iso_format(pseudo_time)
+
+                message_dict = {
+                    "speaker_id": msg.speaker_id,
+                    "user_name": msg.speaker_name or msg.speaker_id,
+                    "speaker_name": msg.speaker_name or msg.speaker_id,
+                    "content": msg.content,
+                    "timestamp": timestamp_str,
+                }
+
+                for optional_field in ["dia_id", "img_url", "blip_caption", "query"]:
+                    if optional_field in msg.metadata and msg.metadata[optional_field] is not None:
+                        message_dict[optional_field] = msg.metadata[optional_field]
+
+                raw_data.append(message_dict)
+
+            raw_data_dict[conv_id] = raw_data
+
+        # 检查已完成的会话
+        completed_convs = set()
+        if checkpoint_manager:
+            all_conv_indices = [self._extract_conv_index(conv.conversation_id) for conv in conversations]
+            completed_indices = checkpoint_manager.load_add_progress(memunits_dir, all_conv_indices)
+            for conv in conversations:
+                if self._extract_conv_index(conv.conversation_id) in completed_indices:
+                    completed_convs.add(conv.conversation_id)
+
+        pending_conversations = [
+            conv for conv in conversations
+            if conv.conversation_id not in completed_convs
+        ]
+
+        console.print(f"\n📊 总会话数: {len(conversations)}", style="bold cyan")
+        console.print(f"✅ 已完成: {len(completed_convs)}", style="bold green")
+        console.print(f"⏳ 待处理: {len(pending_conversations)}", style="bold yellow")
+
+        if len(pending_conversations) == 0:
+            console.print(f"\n🎉 所有会话已完成，跳过 V4 MemUnit 提取！", style="bold green")
+        else:
+            total_messages = sum(len(raw_data_dict[c.conversation_id]) for c in pending_conversations)
+            console.print(f"📝 待处理消息数: {total_messages}", style="bold blue")
+            console.print(f"🚀 开始 V4 细粒度提取...\n", style="bold green")
+
+            start_time = time.time()
+
+            with Progress(
+                SpinnerColumn(),
+                TextColumn("[progress.description]{task.description}"),
+                BarColumn(),
+                MofNCompleteColumn(),
+                TextColumn("•"),
+                TaskProgressColumn(),
+                TextColumn("•"),
+                TimeElapsedColumn(),
+                TextColumn("•"),
+                TimeRemainingColumn(),
+                TextColumn("•"),
+                TextColumn("[bold blue]{task.fields[status]}"),
+                console=console,
+                transient=False,
+                refresh_per_second=1,
+            ) as progress:
+                main_task = progress.add_task(
+                    "[bold cyan]🎯 V4 总进度",
+                    total=len(conversations),
+                    completed=len(completed_convs),
+                    status="处理中",
+                )
+
+                conversation_tasks = {}
+                for conv_id in completed_convs:
+                    conv_index = self._extract_conv_index(conv_id)
+                    conv_task_id = progress.add_task(
+                        f"[green]Conv-{conv_index}",
+                        total=len(raw_data_dict.get(conv_id, [])),
+                        completed=len(raw_data_dict.get(conv_id, [])),
+                        status="✅ (已跳过)",
+                    )
+                    conversation_tasks[conv_id] = conv_task_id
+
+                processing_tasks = []
+                for conv in pending_conversations:
+                    conv_id = conv.conversation_id
+                    conv_index = self._extract_conv_index(conv_id)
+                    conv_task_id = progress.add_task(
+                        f"[yellow]Conv-{conv_index}",
+                        total=len(raw_data_dict[conv_id]),
+                        completed=0,
+                        status="等待",
+                    )
+                    conversation_tasks[conv_id] = conv_task_id
+
+                    task = process_single_conversation_v4(
+                        conv_id=conv_index,
+                        conversation=raw_data_dict[conv_id],
+                        save_dir=str(memunits_dir),
+                        llm_provider=self.llm_provider,
+                        event_log_extractor=self.event_log_extractor,
+                        progress_counter=None,
+                        progress=progress,
+                        task_id=conv_task_id,
+                        config=self._get_config(),
+                    )
+                    processing_tasks.append((conv_id, task))
+
+                async def run_with_completion(conv_id, task):
+                    result = await task
+                    progress.update(
+                        conversation_tasks[conv_id],
+                        status="✅",
+                        completed=progress.tasks[conversation_tasks[conv_id]].total,
+                    )
+                    progress.update(main_task, advance=1)
+                    return result
+
+                results = []
+                for conv_id, task in processing_tasks:
+                    result = await run_with_completion(conv_id, task)
+                    results.append(result)
+
+                progress.update(main_task, status="✅ 完成")
+
+            end_time = time.time()
+            elapsed = end_time - start_time
+
+            successful_convs = sum(1 for _, memunit_list in results if memunit_list)
+            total_memunits = sum(len(memunit_list) for _, memunit_list in results)
+
+            console.print("\n" + "=" * 60, style="dim")
+            console.print("📊 V4 MemUnit 提取完成统计:", style="bold")
+            console.print(f"   ✅ 成功处理: {successful_convs}/{len(pending_conversations)}", style="green")
+            console.print(f"   📝 总 memunits (细粒度): {total_memunits}", style="blue")
+            console.print(f"   ⏱️  总耗时: {elapsed:.2f} 秒", style="yellow")
+            if len(pending_conversations) > 0:
+                console.print(f"   🚀 平均每会话: {elapsed/len(pending_conversations):.2f} 秒", style="cyan")
+            console.print("=" * 60, style="dim")
+
+        # ========== Build V4 Index ==========
+        console.print(f"\n{'='*60}", style="bold cyan")
+        console.print(f"V4 Index Building", style="bold cyan")
+        console.print(f"{'='*60}", style="bold cyan")
+
+        # 构建 V4 索引（无 embeddings）
+        indexes_built = 0
+        indexes_skipped = 0
+
+        for conv in conversations:
+            conv_index = self._extract_conv_index(conv.conversation_id)
+            v4_index_path = v4_index_dir / f"v4_index_conv_{conv_index}.pkl"
+            memunit_file = memunits_dir / f"memunit_list_conv_{conv_index}.json"
+
+            if v4_index_path.exists():
+                indexes_skipped += 1
+                continue
+
+            if not memunit_file.exists():
+                console.print(f"[yellow]⚠️ MemUnit file not found: {memunit_file.name}[/yellow]")
+                continue
+
+            await self._build_v4_index(memunit_file, v4_index_path)
+            indexes_built += 1
+
+        console.print(f"\n📊 V4 索引构建统计:")
+        console.print(f"   新构建: {indexes_built}")
+        console.print(f"   已存在 (跳过): {indexes_skipped}")
+
+        # 返回索引元数据
+        index_metadata = {
+            "type": "lazy_load",
+            "pipeline_version": "v4",
+            "granularity": "fine-grained",
+            "memunits_dir": str(memunits_dir),
+            "v4_index_dir": str(v4_index_dir),
+            "output_dir": str(output_dir),
+            "conversation_ids": [conv.conversation_id for conv in conversations],
+            "total_conversations": len(conversations),
+        }
+
+        console.print(f"\n{'='*60}", style="dim")
+        console.print(f"✅ V4 Add 阶段完成", style="bold green")
+        console.print(f"   📁 MemUnits (细粒度): {memunits_dir}", style="dim")
+        console.print(f"   📁 V4 索引: {v4_index_dir}", style="dim")
+        console.print(f"   💡 使用延迟加载策略", style="cyan")
+        console.print(f"{'='*60}\n", style="dim")
+
+        return index_metadata
+
     async def search(self, query: str, conversation_id: str, index: Any, **kwargs) -> SearchResult:
         """
         Search 阶段：检索相关 MemUnits
