@@ -182,3 +182,30 @@ def from_iso_format(create_time, target_timezone: ZoneInfo = None) -> datetime.d
             "[DateTimeUtils] from_iso_format - Error converting time: %s", str(e)
         )
         return get_now_with_timezone()
+
+
+def format_datetime_for_prompt(dt: datetime.datetime) -> str:
+    """
+    将datetime对象格式化为适合LLM prompt的字符串格式
+
+    Args:
+        dt: datetime对象
+
+    Returns:
+        格式如 "May 08, 2023(Monday) at 01:56 PM"
+    """
+    if dt is None:
+        return "Unknown time"
+
+    try:
+        # 确保有时区信息
+        if dt.tzinfo is None:
+            dt = dt.replace(tzinfo=timezone)
+
+        # 格式化: "May 08, 2023(Monday) at 01:56 PM"
+        return dt.strftime("%B %d, %Y(%A) at %I:%M %p")
+    except Exception as e:
+        logger.error(
+            "[DateTimeUtils] format_datetime_for_prompt - Error formatting time: %s", str(e)
+        )
+        return "Unknown time"

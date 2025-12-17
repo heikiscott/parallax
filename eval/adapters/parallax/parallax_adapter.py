@@ -470,16 +470,22 @@ class ParallaxAdapter(BaseAdapter):
         **kwargs
     ) -> Dict[str, Any]:
         """
-        V4 Add 阶段：细粒度 MemUnit 提取
+        V4 Add 阶段：优化的细粒度 MemUnit 提取
 
-        V4 使用细粒度切分策略：
-        - 每个 MemUnit 对应 1-2 轮对话（一问一答）
-        - 使用一次性 LLM 调用切分整个对话
-        - 比 V3 的话题级切分粒度更细
+        V4 使用优化的批量处理策略，大幅减少 LLM 调用次数：
+        - 按 Session 切分对话（每个 Session 1次 LLM 调用）
+        - 批量生成 Narrative（默认 25 个 units/次）
+        - 批量生成 EventLog（默认 25 个 units/次）
+
+        对比 V3 的 LLM 调用次数：
+        - V3: O(消息数 + 2×MemUnit数) ≈ 600次（419条消息）
+        - V4: O(Session数 + 2×ceil(MemUnit数/25)) ≈ 27次
 
         调用流程：
-        1. 细粒度 MemUnit 提取 (memunit_extraction_v4.py)
-        2. 构建 V4 索引（无 embeddings）
+        1. 按 Session 切分 → 细粒度 MemUnits
+        2. 批量生成 Narratives
+        3. 批量生成 EventLogs
+        4. 构建 V4 索引
 
         返回：索引元数据
         """
@@ -523,7 +529,7 @@ class ParallaxAdapter(BaseAdapter):
                     "timestamp": timestamp_str,
                 }
 
-                for optional_field in ["dia_id", "img_url", "blip_caption", "query"]:
+                for optional_field in ["dia_id", "img_url", "blip_caption", "query", "session"]:
                     if optional_field in msg.metadata and msg.metadata[optional_field] is not None:
                         message_dict[optional_field] = msg.metadata[optional_field]
 
