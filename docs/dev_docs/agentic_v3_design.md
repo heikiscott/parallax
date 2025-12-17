@@ -437,7 +437,7 @@ async def agentic_retrieval_v3(
 
 ### 6.1 ColBERT 模型配置
 
-**文件**: `config/src/colbert.yaml`
+**文件**: `config/services/colbert.yaml`
 
 ```yaml
 colbert:
@@ -701,7 +701,7 @@ Query → Classification → Multi-Query → ColBERT Search
 
 ### Phase 1: ColBERT 基础设施
 
-1. 创建 `config/src/colbert.yaml`
+1. 创建 `config/services/colbert.yaml`
 2. 实现 `src/retrieval/services/colbert_service.py`
 3. 单元测试：模型加载、编码、MaxSim 计算
 

@@ -7,7 +7,7 @@
 #
 # 使用方法:
 #   from config import load_config
-#   config = load_config("src/providers")
+#   config = load_config("services/providers")
 #   print(config.llm.model)
 # =============================================================================
 

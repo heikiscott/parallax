@@ -27,7 +27,7 @@ logger = logging.getLogger(__name__)
 
 def _get_provider_config():
     """获取 provider 配置"""
-    return load_config("src/providers")
+    return load_config("services/providers")
 
 
 class GeminiAdapter(LLMBackendAdapter):

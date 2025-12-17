@@ -3,7 +3,7 @@ Redis连接提供者
 
 提供Redis连接池管理和基础操作的技术组件
 
-配置来源: config/src/databases.yaml
+配置来源: config/services/databases.yaml
 敏感信息（密码）来源: .env 文件
 """
 
@@ -22,7 +22,7 @@ logger = get_logger(__name__)
 
 def _get_redis_config():
     """获取 Redis 配置"""
-    return load_config("src/databases").redis
+    return load_config("services/databases").redis
 
 
 @component(name="redis_provider", primary=True)

@@ -11,7 +11,7 @@ from providers.llm.llm_provider import LLMProvider
 
 def _get_llm_config():
     """从 YAML 配置文件读取 LLM 配置"""
-    return load_config("src/providers").llm
+    return load_config("services/providers").llm
 
 
 from .memunit import (

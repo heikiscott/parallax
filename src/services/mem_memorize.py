@@ -24,7 +24,7 @@ from core.di import get_bean_by_type, enable_mock_mode, scan_packages
 
 def _get_llm_config():
     """从 YAML 配置文件读取 LLM 配置"""
-    return load_config("src/providers").llm
+    return load_config("services/providers").llm
 from providers.database.redis_provider import RedisProvider
 from infra.adapters.out.persistence.repository.episodic_memory_raw_repository import (
     EpisodicMemoryRawRepository,

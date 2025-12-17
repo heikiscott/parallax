@@ -22,7 +22,7 @@ logger = get_logger(__name__)
 # 加载配置（带缓存）
 def _get_provider_config():
     """获取 provider 配置"""
-    return load_config("src/providers")
+    return load_config("services/providers")
 
 
 class OpenAIProvider(LLMProvider):
@@ -62,7 +62,7 @@ class OpenAIProvider(LLMProvider):
             **kwargs: Additional arguments (ignored for now)
 
         Configuration:
-            配置来源: config/src/providers.yaml
+            配置来源: config/services/providers.yaml
             API Key 来源: config/secrets/secrets.yaml（通过 ${OPENAI_API_KEY} 注入）
         """
         # 加载配置文件

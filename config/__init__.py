@@ -7,14 +7,25 @@
     config/
     ├── __init__.py              # 本文件，导出公共 API
     ├── loader.py                # 配置加载工具
+    ├── app.yaml                 # 应用级配置
     ├── secrets/                 # 敏感信息配置
     │   ├── secrets.template.yaml  # 模板文件（提交到 git）
     │   └── secrets.yaml           # 实际密钥（gitignore）
-    ├── eval/                    # 评估相关配置
-    │   ├── datasets/            # 数据集配置
-    │   └── systems/             # 系统配置
-    ├── src/                     # src 相关配置
-    └── app.yaml                 # 应用级配置
+    ├── services/                # 服务/组件配置
+    │   ├── providers.yaml       # LLM Provider 配置
+    │   ├── databases.yaml       # 数据库配置
+    │   ├── embedding.yaml       # Embedding 服务配置
+    │   ├── rerank.yaml          # Rerank 服务配置
+    │   ├── colbert.yaml         # ColBERT 模型配置
+    │   └── llm_backends.yaml    # LLM 后端配置
+    ├── workflows/               # 工作流配置
+    │   ├── agentic_hybrid.yaml
+    │   ├── adaptive_retrieval.yaml
+    │   └── simple_retrieval.yaml
+    └── eval/                    # 评估相关配置
+        ├── datasets/            # 数据集配置
+        ├── systems/             # 系统配置
+        └── workflows/           # 评估专用工作流
 
 使用示例:
     from config import load_config, load_secrets

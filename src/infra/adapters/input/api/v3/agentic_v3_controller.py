@@ -505,7 +505,7 @@ class AgenticV3Controller(BaseController):
             from config import load_config
 
             # 从 YAML 配置文件读取 LLM 配置作为默认值
-            llm_cfg = load_config("src/providers").llm
+            llm_cfg = load_config("services/providers").llm
 
             # 从请求覆盖或使用配置文件默认值
             api_key = llm_config.get("api_key") or llm_cfg.api_key
@@ -513,7 +513,7 @@ class AgenticV3Controller(BaseController):
             model = llm_config.get("model") or llm_cfg.model
 
             if not api_key:
-                raise ValueError("缺少 LLM API Key，请在 llm_config.api_key 中提供或在 config/src/providers.yaml 中配置")
+                raise ValueError("缺少 LLM API Key，请在 llm_config.api_key 中提供或在 config/services/providers.yaml 中配置")
 
             # 创建 LLM Provider（使用 OpenAI 兼容接口）
             llm_provider = LLMProvider(

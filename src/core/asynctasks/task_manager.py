@@ -22,7 +22,7 @@ from core.authorize.enums import Role
 
 def _get_redis_config():
     """从 YAML 配置文件读取 Redis 配置"""
-    return load_config("src/databases").redis
+    return load_config("services/databases").redis
 
 logger = get_logger(__name__)
 

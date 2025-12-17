@@ -3,7 +3,7 @@ Milvus 客户端工厂
 
 提供 Milvus 客户端连接功能。
 
-配置来源: config/src/databases.yaml
+配置来源: config/services/databases.yaml
 """
 
 import asyncio
@@ -20,14 +20,14 @@ logger = get_logger(__name__)
 
 def _get_milvus_config():
     """获取 Milvus 配置"""
-    return load_config("src/databases").milvus
+    return load_config("services/databases").milvus
 
 
 def get_milvus_config(prefix: str = "") -> dict:
     """
     从 YAML 配置获取 Milvus 配置
 
-    配置来源: config/src/databases.yaml
+    配置来源: config/services/databases.yaml
 
     Args:
         prefix: 保留参数，用于未来扩展多 Milvus 实例配置

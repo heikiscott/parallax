@@ -25,7 +25,7 @@ logger = logging.getLogger(__name__)
 
 def _get_rerank_config():
     """获取 rerank 配置"""
-    return load_config("src/rerank")
+    return load_config("services/rerank")
 
 
 @dataclass
@@ -44,7 +44,7 @@ class DeepInfraRerankConfig:
     def __post_init__(self):
         """初始化后从配置文件加载配置值
 
-        配置来源: config/src/rerank.yaml
+        配置来源: config/services/rerank.yaml
         API Key 来源: config/secrets/secrets.yaml（通过 ${DEEPINFRA_API_KEY} 注入）
         """
         # 加载 YAML 配置
@@ -147,7 +147,7 @@ class DeepInfraRerankService(DeepInfraRerankServiceInterface):
     def _load_config_from_env(self) -> DeepInfraRerankConfig:
         """从配置文件加载配置
 
-        配置来源: config/src/rerank.yaml
+        配置来源: config/services/rerank.yaml
         API Key 来源: config/secrets/secrets.yaml（通过 ${DEEPINFRA_API_KEY} 注入）
         """
         cfg = _get_rerank_config()

@@ -7,7 +7,7 @@
 #
 # 使用方法:
 #   from config import load_config
-#   config = load_config("src/rerank")
+#   config = load_config("services/rerank")
 #   print(config.rerank.model)
 # =============================================================================
 

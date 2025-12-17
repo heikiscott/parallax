@@ -43,7 +43,7 @@ except ImportError:
 def _get_colbert_config():
     """Load ColBERT configuration from YAML."""
     if _HAS_DI:
-        return load_config("src/colbert")
+        return load_config("services/colbert")
     return None
 
 
@@ -52,7 +52,7 @@ def _get_colbert_config():
 class ColBERTConfig:
     """ColBERT model configuration.
 
-    Configuration is loaded from config/src/colbert.yaml
+    Configuration is loaded from config/services/colbert.yaml
     """
     model_name: str = "jinaai/jina-colbert-v2"
     device: str = "cpu"

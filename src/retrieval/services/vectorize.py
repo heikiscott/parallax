@@ -24,7 +24,7 @@ logger = logging.getLogger(__name__)
 
 def _get_embedding_config():
     """获取 embedding 配置"""
-    return load_config("src/embedding")
+    return load_config("services/embedding")
 
 
 @dataclass
@@ -45,7 +45,7 @@ class DeepInfraConfig:
     def __post_init__(self):
         """初始化后从配置文件加载配置值
 
-        配置来源: config/src/embedding.yaml
+        配置来源: config/services/embedding.yaml
         API Key 来源: config/secrets/secrets.yaml（通过 ${DEEPINFRA_API_KEY} 注入）
         """
         # 加载 YAML 配置
@@ -187,7 +187,7 @@ class DeepInfraVectorizeService(DeepInfraVectorizeServiceInterface):
             except Exception:
                 # 如果依赖注入失败，从配置文件读取
                 config = self._load_config_from_env()
-                logger.info("DeepInfra config source: config/src/embedding.yaml")
+                logger.info("DeepInfra config source: config/services/embedding.yaml")
 
         # 规范化配置，避免后续请求异常
         # 确保 base_url 包含协议
@@ -223,7 +223,7 @@ class DeepInfraVectorizeService(DeepInfraVectorizeServiceInterface):
     def _load_config_from_env(self) -> DeepInfraConfig:
         """从配置文件加载配置
 
-        配置来源: config/src/embedding.yaml
+        配置来源: config/services/embedding.yaml
         API Key 来源: config/secrets/secrets.yaml（通过 ${DEEPINFRA_API_KEY} 注入）
         """
         cfg = _get_embedding_config()

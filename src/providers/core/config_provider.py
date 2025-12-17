@@ -13,7 +13,7 @@ class ConfigProvider:
 
     def __init__(self):
         """初始化配置提供者"""
-        self.config_dir = PROJECT_DIR / "config" / "src"
+        self.config_dir = PROJECT_DIR / "config" / "services"
         self._cache: Dict[str, Any] = {}
 
     def get_config(self, config_name: str) -> Dict[str, Any]:

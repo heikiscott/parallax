@@ -3,7 +3,7 @@ MongoDB 客户端工厂
 
 提供基于配置的 MongoDB 客户端缓存和管理功能。
 
-配置来源: config/src/databases.yaml
+配置来源: config/services/databases.yaml
 敏感信息（密码）来源: .env 文件
 """
 
@@ -27,7 +27,7 @@ logger = get_logger(__name__)
 
 def _get_mongodb_config():
     """获取 MongoDB 配置"""
-    return load_config("src/databases").mongodb
+    return load_config("services/databases").mongodb
 
 
 class MongoDBConfig:
@@ -89,7 +89,7 @@ class MongoDBConfig:
         """
         从 YAML 配置文件创建配置。
 
-        配置来源: config/src/databases.yaml
+        配置来源: config/services/databases.yaml
         敏感信息（密码）来源: .env 文件（通过 YAML 的 ${VAR} 语法注入）
 
         注意：prefix 参数保留用于未来扩展多数据库配置，当前仅使用默认配置。

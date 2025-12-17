@@ -12,7 +12,7 @@ Task Worker - 异步任务处理器启动脚本
     arq scripts.task.WorkerSettings
 
 配置来源:
-    - Redis 配置: config/src/databases.yaml
+    - Redis 配置: config/services/databases.yaml
     - 敏感信息: config/secrets/secrets.yaml
 """
 
@@ -101,7 +101,7 @@ from config import load_config
 
 def _get_redis_settings() -> RedisSettings:
     """从配置文件加载 Redis 设置"""
-    cfg = load_config("src/databases")
+    cfg = load_config("services/databases")
     redis_cfg = cfg.redis
     return RedisSettings(
         host=redis_cfg.host,

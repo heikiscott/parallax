@@ -3,7 +3,7 @@ Elasticsearch 客户端工厂
 
 提供 Elasticsearch 客户端缓存和管理功能。
 
-配置来源: config/src/databases.yaml
+配置来源: config/services/databases.yaml
 敏感信息（密码）来源: .env 文件
 """
 
@@ -23,14 +23,14 @@ logger = get_logger(__name__)
 
 def _get_es_config():
     """获取 Elasticsearch 配置"""
-    return load_config("src/databases").elasticsearch
+    return load_config("services/databases").elasticsearch
 
 
 def get_default_es_config() -> Dict[str, Any]:
     """
     从 YAML 配置获取默认的 Elasticsearch 配置
 
-    配置来源: config/src/databases.yaml
+    配置来源: config/services/databases.yaml
     敏感信息（密码）来源: .env 文件（通过 YAML 的 ${VAR} 语法注入）
 
     Returns:

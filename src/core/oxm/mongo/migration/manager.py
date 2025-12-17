@@ -115,8 +115,8 @@ class Backward:
 
     @staticmethod
     def _get_mongodb_uri() -> str:
-        """Get MongoDB URI from config/src/databases.yaml"""
-        cfg = load_config("src/databases")
+        """Get MongoDB URI from config/services/databases.yaml"""
+        cfg = load_config("services/databases")
         mongo_cfg = cfg.mongodb
 
         host = mongo_cfg.host
@@ -140,7 +140,7 @@ class Backward:
     @staticmethod
     def _get_mongodb_database() -> str:
         """Get MongoDB database name from config"""
-        cfg = load_config("src/databases")
+        cfg = load_config("services/databases")
         return cfg.mongodb.database
 
     def _ensure_migrations_dir(self):
