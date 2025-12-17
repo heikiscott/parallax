@@ -7,7 +7,7 @@
 import os
 import logging
 from typing import Set, Optional
-from utils.project_path import CURRENT_DIR
+from utils.project_path import PROJECT_DIR
 
 logger = logging.getLogger(__name__)
 
@@ -29,7 +29,7 @@ class StopwordsManager:
 
     def _get_default_stopwords_path(self) -> str:
         """获取默认停用词表文件路径"""
-        return str(CURRENT_DIR / "config" / "stopwords" / "hit_stopwords.txt")
+        return str(PROJECT_DIR / "config" / "services" / "hit_stopwords.txt")
 
     def load_stopwords(self) -> Set[str]:
         """加载停用词表

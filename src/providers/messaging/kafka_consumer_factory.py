@@ -17,9 +17,9 @@ from aiokafka import AIOKafkaConsumer
 
 from core.di.decorators import component
 from core.observation.logger import get_logger
-from utils.project_path import CURRENT_DIR
+from utils.project_path import PROJECT_DIR
 from utils.datetime_utils import from_iso_format, to_timestamp
-from config import load_raw_file
+from pathlib import Path
 
 logger = get_logger(__name__)
 
@@ -28,13 +28,13 @@ def get_ca_file_path(ca_file_path: str) -> Optional[str]:
     """
     获取 CA 证书文件的完整路径
 
-    基于 CURRENT_DIR + /config/kafka/ca/ 构造路径
+    基于 PROJECT_DIR + /config/ 构造路径
 
     Returns:
         Optional[str]: CA 证书文件路径，如果不存在则返回 None
     """
-    # CURRENT_DIR 指向 src 目录，向上一级到项目根目录，再进入 config 目录
-    ca_full_path = CURRENT_DIR / "config" / ca_file_path
+    # PROJECT_DIR 指向项目根目录
+    ca_full_path = PROJECT_DIR / "config" / ca_file_path
 
     if ca_full_path.exists():
         logger.info("使用默认 CA 证书文件: %s", ca_full_path)
@@ -201,7 +201,8 @@ class KafkaConsumerFactory:
         # 创建 SSL 上下文
         ssl_context = None
         if ca_file_path:
-            ca_file_content = load_raw_file(ca_file_path)
+            # ca_file_path 是经过 get_ca_file_path() 验证的绝对路径
+            ca_file_content = Path(ca_file_path).read_text(encoding='utf-8')
             ssl_context = ssl.create_default_context(purpose=ssl.Purpose.SERVER_AUTH)
             ssl_context.load_verify_locations(cadata=ca_file_content)
 
