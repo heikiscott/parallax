@@ -351,12 +351,13 @@ async def _apply_cluster_expansion(
         return final_results, metadata
 
     try:
+        all_docs_map = {doc.get("unit_id"): doc for doc in docs if doc.get("unit_id")}
         expanded_results, expansion_meta = await expand_with_cluster(
-            query=query,
-            base_results=final_results,
+            original_results=final_results,
             cluster_index=cluster_index,
-            retrieval_config=retrieval_config,
-            all_docs=docs,
+            config=retrieval_config,
+            all_docs_map=all_docs_map,
+            query=query,
             llm_provider=llm_provider,
             llm_config=llm_config,
         )
