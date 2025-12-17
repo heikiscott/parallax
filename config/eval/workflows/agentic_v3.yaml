@@ -1,12 +1,12 @@
-# ColBERT Pipeline (Agentic V3)
+# Agentic V3 Evaluation Pipeline
 # V3 专属流程: Add → Search → Answer → Evaluate
 # - 不包含 Cluster 阶段
 # - Add 阶段只提取 MemUnit，不构建 BM25/Embedding 索引（由 retrieval.mode 控制）
 # - Search 阶段使用 ColBERT 检索，按需构建 ColBERT 索引
 
 workflow:
-  name: "colbert_evaluation_pipeline"
-  description: "Agentic V3 - Pure ColBERT retrieval without clustering"
+  name: "agentic_v3_evaluation_pipeline"
+  description: "Agentic V3 - ColBERT retrieval without clustering"
 
   nodes:
     - name: "add"

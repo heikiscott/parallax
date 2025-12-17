@@ -247,8 +247,8 @@ async def main():
         retrieval_mode = system_config.get("retrieval", {}).get("mode", "")
 
         if retrieval_mode == "agentic_v3":
-            # V3 模式: 使用独立的 ColBERT pipeline
-            workflow_config = "colbert_pipeline"
+            # V3 模式: 使用 agentic_v3 pipeline
+            workflow_config = "agentic_v3"
         else:
             # V1/V2 模式: 根据 cluster 配置选择
             enable_clustering = system_config.get("group_event_cluster", {}).get("enabled", False)
