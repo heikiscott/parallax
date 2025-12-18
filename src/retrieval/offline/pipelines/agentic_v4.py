@@ -54,7 +54,6 @@ from .cross_attention_utils import (
     merge_round_results,
     build_origin_map,
     smart_score_truncate,
-    get_truncation_config,
 )
 from .llm_utils import (
     check_sufficiency,
@@ -87,6 +86,74 @@ def _get_v4_config(config: Any, key: str, default: Any) -> Any:
     if v4_cfg is None:
         return default
     return getattr(v4_cfg, key, default)
+
+
+def _get_smart_truncate_config(config: Any) -> dict:
+    """Get smart truncate global config from config.retrieval.agentic_v4.smart_truncate.
+
+    Returns:
+        Dict with enabled, min_results, max_results, score_ratio, gap_threshold.
+    """
+    defaults = {
+        "enabled": True,
+        "min_results": 8,
+        "max_results": 40,
+        "score_ratio": 0.5,
+        "gap_threshold": 0.30,
+    }
+
+    retrieval_cfg = getattr(config, 'retrieval', None)
+    if retrieval_cfg is None:
+        return defaults
+
+    v4_cfg = getattr(retrieval_cfg, 'agentic_v4', None)
+    if v4_cfg is None:
+        return defaults
+
+    truncate_cfg = getattr(v4_cfg, 'smart_truncate', None)
+    if truncate_cfg is None:
+        return defaults
+
+    return {
+        "enabled": getattr(truncate_cfg, 'enabled', defaults["enabled"]),
+        "min_results": getattr(truncate_cfg, 'min_results', defaults["min_results"]),
+        "max_results": getattr(truncate_cfg, 'max_results', defaults["max_results"]),
+        "score_ratio": getattr(truncate_cfg, 'score_ratio', defaults["score_ratio"]),
+        "gap_threshold": getattr(truncate_cfg, 'gap_threshold', defaults["gap_threshold"]),
+    }
+
+
+def _get_truncation_params_for_type(config: Any, type_config: Optional[dict], global_truncate_cfg: dict) -> dict:
+    """Get truncation parameters for a specific question type.
+
+    Priority: type_config > global smart_truncate config > defaults.
+
+    Args:
+        config: Experiment configuration
+        type_config: Type-specific retrieval config (may contain truncate_min, truncate_max, truncate_score_ratio)
+        global_truncate_cfg: Global smart_truncate config from agentic_v4
+
+    Returns:
+        Dict with min_results, max_results, score_ratio, gap_threshold.
+    """
+    # Start with global config
+    params = {
+        "min_results": global_truncate_cfg["min_results"],
+        "max_results": global_truncate_cfg["max_results"],
+        "score_ratio": global_truncate_cfg["score_ratio"],
+        "gap_threshold": global_truncate_cfg["gap_threshold"],
+    }
+
+    # Override with type-specific config if available
+    if type_config:
+        if "truncate_min" in type_config:
+            params["min_results"] = type_config["truncate_min"]
+        if "truncate_max" in type_config:
+            params["max_results"] = type_config["truncate_max"]
+        if "truncate_score_ratio" in type_config:
+            params["score_ratio"] = type_config["truncate_score_ratio"]
+
+    return params
 
 
 def _get_type_retrieval_config_v4(config: Any, question_type: QuestionType) -> Optional[dict]:
@@ -442,18 +509,23 @@ async def agentic_retrieval_v4(
     if is_sufficient:
         logger.info(f"  [Decision] Sufficient! Returning Round 1 Cross-Attention results")
 
-        # Get type-specific truncation config
-        question_type_str = classification.question_type.value
-        truncation_config = get_truncation_config(question_type_str)
+        # Get smart truncation config from config file
+        global_truncate_cfg = _get_smart_truncate_config(config)
+        truncation_params = _get_truncation_params_for_type(config, type_config, global_truncate_cfg)
 
-        # Apply smart truncation before final_top_n limit
+        # Apply smart truncation before final_top_n limit (if enabled)
         candidates = round1_results[:final_top_n]
-        final_results, truncation_meta = smart_score_truncate(
-            candidates,
-            min_results=truncation_config["min_results"],
-            max_results=truncation_config["max_results"],
-            score_ratio=truncation_config["score_ratio"],
-        )
+        if global_truncate_cfg["enabled"]:
+            final_results, truncation_meta = smart_score_truncate(
+                candidates,
+                min_results=truncation_params["min_results"],
+                max_results=truncation_params["max_results"],
+                score_ratio=truncation_params["score_ratio"],
+                gap_threshold=truncation_params["gap_threshold"],
+            )
+        else:
+            final_results = candidates
+            truncation_meta = {"reason": "disabled", "original_count": len(candidates), "final_count": len(candidates)}
 
         metadata["truncation"] = truncation_meta
         metadata["final_count"] = len(final_results)
@@ -543,18 +615,23 @@ async def agentic_retrieval_v4(
 
     logger.info(f"  [Merge] Combined: {len(combined_results)} docs")
 
-    # Get type-specific truncation config
-    question_type_str = classification.question_type.value
-    truncation_config = get_truncation_config(question_type_str)
+    # Get smart truncation config from config file
+    global_truncate_cfg = _get_smart_truncate_config(config)
+    truncation_params = _get_truncation_params_for_type(config, type_config, global_truncate_cfg)
 
-    # Apply smart truncation before final_top_n limit
+    # Apply smart truncation before final_top_n limit (if enabled)
     candidates = combined_results[:final_top_n]
-    final_results, truncation_meta = smart_score_truncate(
-        candidates,
-        min_results=truncation_config["min_results"],
-        max_results=truncation_config["max_results"],
-        score_ratio=truncation_config["score_ratio"],
-    )
+    if global_truncate_cfg["enabled"]:
+        final_results, truncation_meta = smart_score_truncate(
+            candidates,
+            min_results=truncation_params["min_results"],
+            max_results=truncation_params["max_results"],
+            score_ratio=truncation_params["score_ratio"],
+            gap_threshold=truncation_params["gap_threshold"],
+        )
+    else:
+        final_results = candidates
+        truncation_meta = {"reason": "disabled", "original_count": len(candidates), "final_count": len(candidates)}
 
     metadata["truncation"] = truncation_meta
     metadata["final_count"] = len(final_results)

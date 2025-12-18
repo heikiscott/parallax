@@ -375,12 +375,15 @@ def smart_score_truncate(
     3. Detect score gaps and truncate at significant drops
     4. Never exceed max_results
 
+    Note: All parameters should be passed from config (config.retrieval.agentic_v4.smart_truncate
+    and config.retrieval.v4_type_retrieval_configs). The default values here are fallbacks only.
+
     Args:
         results: List of (doc, score) tuples, sorted by score descending.
-        min_results: Minimum number of results to return (default 5).
-        max_results: Maximum number of results to return (default 30).
-        score_ratio: Minimum score as ratio of top score (default 0.5).
-        gap_threshold: Significant drop threshold for gap detection (default 0.25).
+        min_results: Minimum number of results to return.
+        max_results: Maximum number of results to return.
+        score_ratio: Minimum score as ratio of top score.
+        gap_threshold: Significant drop threshold for gap detection.
 
     Returns:
         Tuple of:
@@ -458,46 +461,3 @@ def smart_score_truncate(
                 f"score range: {metadata.get('final_score_range', 'N/A')}")
 
     return final_results, metadata
-
-
-# Type-specific truncation configs
-# min=8, max=40 for most types, gap_threshold=0.3 (set in function default)
-TYPE_TRUNCATION_CONFIGS = {
-    # Aggregation questions need more context
-    "event_aggregation": {"min_results": 10, "max_results": 45, "score_ratio": 0.45},
-    "counting": {"min_results": 10, "max_results": 45, "score_ratio": 0.45},
-
-    # Temporal/Activity - often lose points here, need more context
-    "event_temporal": {"min_results": 8, "max_results": 40, "score_ratio": 0.45},
-    "event_activity": {"min_results": 8, "max_results": 40, "score_ratio": 0.45},
-
-    # Reasoning questions need broader context
-    "reasoning_hypothetical": {"min_results": 8, "max_results": 40, "score_ratio": 0.45},
-    "reasoning_inference": {"min_results": 8, "max_results": 40, "score_ratio": 0.45},
-
-    # Attribute questions - still need decent context
-    "attribute_identity": {"min_results": 8, "max_results": 35, "score_ratio": 0.5},
-    "attribute_preference": {"min_results": 8, "max_results": 35, "score_ratio": 0.5},
-    "attribute_location": {"min_results": 8, "max_results": 35, "score_ratio": 0.5},
-
-    # Time calculation - moderate
-    "time_calculation": {"min_results": 8, "max_results": 35, "score_ratio": 0.5},
-
-    # General/default - conservative
-    "general": {"min_results": 8, "max_results": 40, "score_ratio": 0.5},
-}
-
-
-def get_truncation_config(question_type: str) -> dict:
-    """Get truncation config for a question type.
-
-    Args:
-        question_type: Question type string (e.g., "event_aggregation").
-
-    Returns:
-        Dict with min_results, max_results, score_ratio.
-    """
-    return TYPE_TRUNCATION_CONFIGS.get(
-        question_type,
-        TYPE_TRUNCATION_CONFIGS["general"]
-    )
