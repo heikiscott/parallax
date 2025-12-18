@@ -2,9 +2,11 @@
 
 Provides LLM-guided retrieval capabilities:
 1. Sufficiency Check: Determine if retrieval results are sufficient
-2. Query Refinement: Generate improved queries
-3. Multi-Query Generation: Generate multiple complementary queries
-4. Document Formatting: Format documents for LLM input
+2. Retrieval Evaluation: C-RAG style three-way classification (correct/ambiguous/incorrect)
+3. Query Refinement: Generate improved queries
+4. Multi-Query Generation: Generate multiple complementary queries
+5. Corrective Query Generation: Generate queries to redirect failed retrieval
+6. Document Formatting: Format documents for LLM input
 """
 
 import json
@@ -15,6 +17,8 @@ from typing import List, Tuple, Optional
 from prompts.memory.en.eval.search.sufficiency_check_prompts import SUFFICIENCY_CHECK_PROMPT
 from prompts.memory.en.eval.search.refined_query_prompts import REFINED_QUERY_PROMPT
 from prompts.memory.en.eval.search.multi_query_prompts import MULTI_QUERY_GENERATION_PROMPT
+from prompts.memory.en.eval.search.retrieval_evaluator_prompts import RETRIEVAL_EVALUATOR_PROMPT
+from prompts.memory.en.eval.search.corrective_query_prompts import CORRECTIVE_QUERY_PROMPT
 
 
 def format_documents_for_llm(
@@ -392,6 +396,209 @@ async def generate_multi_queries(
         return [original_query], "Timeout: used original query"
     except Exception as e:
         print(f"  ❌ Multi-query generation failed: {e}")
+        import traceback
+        traceback.print_exc()
+        return [original_query], f"Error: {str(e)}"
+
+
+def parse_evaluator_response(response: str) -> dict:
+    """Parse C-RAG three-way evaluation JSON response.
+
+    Args:
+        response: Raw LLM response string
+
+    Returns:
+        Parsed JSON dictionary with evaluation fields
+    """
+    try:
+        # Extract JSON (LLM may add extra text before/after)
+        start_idx = response.find("{")
+        end_idx = response.rfind("}") + 1
+
+        if start_idx == -1 or end_idx == 0:
+            raise ValueError("No JSON object found in response")
+
+        json_str = response[start_idx:end_idx]
+        result = json.loads(json_str)
+
+        # Validate required field
+        if "evaluation_type" not in result:
+            raise ValueError("Missing 'evaluation_type' field")
+
+        # Normalize evaluation_type
+        eval_type = result["evaluation_type"].lower().strip()
+        if eval_type not in ["correct", "ambiguous", "incorrect"]:
+            raise ValueError(f"Invalid evaluation_type: {eval_type}")
+
+        result["evaluation_type"] = eval_type
+
+        # Set defaults
+        result.setdefault("confidence", 0.8)
+        result.setdefault("reasoning", "No reasoning provided")
+        result.setdefault("missing_information", [])
+        result.setdefault("incorrect_aspects", [])
+        result.setdefault("correct_direction", "")
+
+        return result
+
+    except (json.JSONDecodeError, ValueError) as e:
+        print(f"  ⚠️  Failed to parse evaluator response: {e}")
+        print(f"  Raw response: {response[:200]}...")
+
+        # Conservative fallback: assume correct (same as old "sufficient")
+        return {
+            "evaluation_type": "correct",
+            "confidence": 0.5,
+            "reasoning": f"Failed to parse: {str(e)}",
+            "missing_information": [],
+            "incorrect_aspects": [],
+            "correct_direction": ""
+        }
+
+
+async def evaluate_retrieval(
+    query: str,
+    results: List[Tuple[dict, float]],
+    llm_provider,
+    llm_config: dict,
+    max_docs: int = 10
+) -> Tuple[str, float, str, List[str], List[str], str]:
+    """Evaluate retrieval quality using C-RAG three-way classification.
+
+    This is an enhanced version of check_sufficiency that distinguishes between:
+    - CORRECT: Documents are relevant and sufficient
+    - AMBIGUOUS: Documents are relevant but incomplete (needs supplementary retrieval)
+    - INCORRECT: Documents are irrelevant/wrong direction (needs corrective retrieval)
+
+    Args:
+        query: User query
+        results: Retrieval results (Top K)
+        llm_provider: LLM Provider instance
+        llm_config: LLM configuration dict
+        max_docs: Maximum documents to evaluate
+
+    Returns:
+        (evaluation_type, confidence, reasoning, missing_info, incorrect_aspects, correct_direction)
+
+        evaluation_type: "correct" | "ambiguous" | "incorrect"
+        confidence: 0.0-1.0
+        reasoning: Brief explanation
+        missing_info: List of missing information (for ambiguous)
+        incorrect_aspects: Why retrieval is wrong (for incorrect)
+        correct_direction: What should be retrieved (for incorrect)
+    """
+    try:
+        # Format documents
+        retrieved_docs = format_documents_for_llm(
+            results,
+            max_docs=max_docs,
+            use_episode=True
+        )
+
+        # Build prompt
+        prompt = RETRIEVAL_EVALUATOR_PROMPT.format(
+            query=query,
+            retrieved_docs=retrieved_docs
+        )
+
+        # Call LLM
+        result_text = await llm_provider.generate(
+            prompt=prompt,
+            temperature=0.0,
+            max_tokens=500,
+        )
+
+        # Parse response
+        result = parse_evaluator_response(result_text)
+
+        return (
+            result["evaluation_type"],
+            result["confidence"],
+            result["reasoning"],
+            result.get("missing_information", []),
+            result.get("incorrect_aspects", []),
+            result.get("correct_direction", "")
+        )
+
+    except asyncio.TimeoutError:
+        print(f"  ❌ Retrieval evaluation timeout (30s)")
+        return "correct", 0.5, "Timeout: LLM took too long", [], [], ""
+    except Exception as e:
+        print(f"  ❌ Retrieval evaluation failed: {e}")
+        import traceback
+        traceback.print_exc()
+        return "correct", 0.5, f"Error: {str(e)}", [], [], ""
+
+
+async def generate_corrective_queries(
+    original_query: str,
+    results: List[Tuple[dict, float]],
+    incorrect_aspects: List[str],
+    correct_direction: str,
+    llm_provider,
+    llm_config: dict,
+    max_docs: int = 5,
+    num_queries: int = 3
+) -> Tuple[List[str], str]:
+    """Generate corrective queries when retrieval is evaluated as INCORRECT.
+
+    Unlike generate_multi_queries (which fills missing info for ambiguous results),
+    this function generates queries to REDIRECT retrieval away from incorrect results.
+
+    Args:
+        original_query: Original query
+        results: Round 1 results (incorrect/off-topic)
+        incorrect_aspects: Why results are wrong (from evaluator)
+        correct_direction: What should be retrieved instead (from evaluator)
+        llm_provider: LLM Provider instance
+        llm_config: LLM configuration
+        max_docs: Maximum documents to show in prompt
+        num_queries: Number of corrective queries to generate
+
+    Returns:
+        (queries_list, reasoning)
+    """
+    try:
+        # Format documents (showing what was WRONG)
+        retrieved_docs = format_documents_for_llm(
+            results,
+            max_docs=max_docs,
+            use_episode=True
+        )
+
+        # Format incorrect aspects
+        incorrect_str = ", ".join(incorrect_aspects) if incorrect_aspects else "N/A"
+
+        # Build prompt
+        prompt = CORRECTIVE_QUERY_PROMPT.format(
+            original_query=original_query,
+            retrieved_docs=retrieved_docs,
+            incorrect_aspects=incorrect_str,
+            correct_direction=correct_direction if correct_direction else "N/A"
+        )
+
+        # Call LLM
+        result_text = await llm_provider.generate(
+            prompt=prompt,
+            temperature=0.0,
+            max_tokens=300,
+        )
+
+        # Parse and validate (reuse multi_query parser)
+        queries, reasoning = parse_multi_query_response(result_text, original_query)
+
+        print(f"  [Corrective] Generated {len(queries)} corrective queries:")
+        for i, q in enumerate(queries, 1):
+            print(f"    Query {i}: {q[:80]}{'...' if len(q) > 80 else ''}")
+        print(f"  [Corrective] Strategy: {reasoning}")
+
+        return queries, reasoning
+
+    except asyncio.TimeoutError:
+        print(f"  ❌ Corrective query generation timeout (30s)")
+        return [original_query], "Timeout: used original query"
+    except Exception as e:
+        print(f"  ❌ Corrective query generation failed: {e}")
         import traceback
         traceback.print_exc()
         return [original_query], f"Error: {str(e)}"
