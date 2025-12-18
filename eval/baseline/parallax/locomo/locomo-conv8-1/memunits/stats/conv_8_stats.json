@@ -1,0 +1,9 @@
+{
+  "conv_id": "8",
+  "memunits": 265,
+  "sessions": 25,
+  "pipeline_version": "v4_optimized",
+  "granularity": "fine-grained",
+  "batch_size_narrative": 25,
+  "batch_size_eventlog": 25
+}
