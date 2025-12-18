@@ -1,12 +1,14 @@
-"""Agentic Retrieval V4 - Cross-Attention with Type-Aware Multi-Query and C-RAG Evaluation.
+"""Agentic Retrieval V4 - Cross-Attention with Adaptive Routing and C-RAG Evaluation.
 
-This module implements cross-attention based agentic retrieval with C-RAG style
-three-way retrieval evaluation (correct/ambiguous/incorrect).
+This module implements cross-attention based agentic retrieval with:
+- Adaptive routing based on query complexity (SIMPLE/MODERATE/COMPLEX)
+- C-RAG style three-way evaluation (correct/ambiguous/incorrect)
 
 Key features:
 - Uses Cross-Attention instead of ColBERT MaxSim
 - No index building required (real-time scoring)
-- C-RAG three-way evaluation replaces binary sufficiency check
+- **Adaptive routing**: Skip C-RAG for SIMPLE queries, force Round 2 for COMPLEX
+- C-RAG three-way evaluation for MODERATE queries
 - Corrective retrieval for incorrect results (redirects wrong direction)
 
 Flow:
@@ -14,38 +16,45 @@ Flow:
 Query
   │
   ▼
-Question Classification
+Question Classification + Complexity Level
   │
-  ├─── Simple (ATTRIBUTE_*) + High Confidence
+  ├─── SIMPLE (ATTRIBUTE_* + High Confidence)
   │         │
   │         ▼
-  │    Single Query Cross-Attention → Top 10
+  │    Single Query Cross-Attention → Top N
+  │         │
+  │         ▼
+  │    **SKIP C-RAG** → Return Round 1 directly (saves ~300ms)
   │
-  └─── Complex (EVENT_*, COUNTING, REASONING_*)
+  ├─── MODERATE (EVENT_*, TIME_CALCULATION)
+  │         │
+  │         ▼
+  │    Type-Aware Multi-Query → Cross-Attention → RRF Fusion
+  │         │
+  │         ▼
+  │    C-RAG Three-Way Evaluation
+  │         │
+  │         ├─── CORRECT → Return Round 1
+  │         ├─── AMBIGUOUS → Round 2 Supplementary → Merge R1+R2
+  │         └─── INCORRECT → Round 2 Corrective → Return R2 only
+  │
+  └─── COMPLEX (COUNTING, AGGREGATION, REASONING_*)
             │
             ▼
-       Type-Aware Multi-Query (2-3) → Parallel Cross-Attention → RRF Fusion
+       Type-Aware Multi-Query → Cross-Attention → RRF Fusion
             │
             ▼
-       C-RAG Three-Way Evaluation
+       C-RAG Evaluation (but **FORCE Round 2** even if CORRECT)
             │
-            ├─── CORRECT → Return Round 1 Results
-            │
-            ├─── AMBIGUOUS → Round 2 Supplementary Retrieval
-            │         │      (fill missing info, merge R1+R2)
-            │         ▼
-            │    Cross-Attention Search → Merge R1+R2 → Return Final
-            │
-            └─── INCORRECT → Round 2 Corrective Retrieval
-                      │      (redirect wrong direction, R2 only)
-                      ▼
-                 Cross-Attention Search → Return R2 Only (discard R1)
+            ▼
+       Round 2 Supplementary → Merge R1+R2 → Higher recall
 ```
 
 Design Philosophy:
+- SIMPLE queries: High-confidence attribute queries rarely need refinement
+- MODERATE queries: Standard C-RAG flow with optional Round 2
+- COMPLEX queries: Multi-hop/counting need comprehensive retrieval, force Round 2
 - C-RAG evaluation distinguishes "incomplete" from "wrong direction"
-- AMBIGUOUS: Round 1 is on-topic but missing info → merge both rounds
-- INCORRECT: Round 1 is off-topic → discard R1, use only corrective R2
 - Backward compatible: metadata["is_sufficient"] maps to (eval_type == "correct")
 """
 
@@ -73,6 +82,7 @@ from retrieval.classification.question_classifier import (
     QuestionClassifier,
     QuestionType,
     ClassificationResult,
+    ComplexityLevel,
 )
 from prompts.memory.en.eval.search.type_aware_multi_query_prompts import (
     should_use_multi_query,
@@ -101,14 +111,21 @@ def _get_smart_truncate_config(config: Any) -> dict:
     """Get smart truncate global config from config.retrieval.agentic_v4.smart_truncate.
 
     Returns:
-        Dict with enabled, min_results, max_results, score_ratio, gap_threshold.
+        Dict with enabled, min_results, max_results, score_ratio, gap_threshold, gap_start_idx.
+
+    Conservative defaults (robustness over aggressiveness):
+    - min_results: 12 (was 8) - keep more results by default
+    - score_ratio: 0.4 (was 0.5) - more relaxed score filter
+    - gap_threshold: 0.40 (was 0.30) - larger gap needed to trigger truncation
+    - gap_start_idx: 15 - only detect gaps after first 15 results
     """
     defaults = {
         "enabled": True,
-        "min_results": 8,
+        "min_results": 12,
         "max_results": 40,
-        "score_ratio": 0.5,
-        "gap_threshold": 0.30,
+        "score_ratio": 0.4,
+        "gap_threshold": 0.40,
+        "gap_start_idx": 15,
     }
 
     retrieval_cfg = getattr(config, 'retrieval', None)
@@ -129,6 +146,7 @@ def _get_smart_truncate_config(config: Any) -> dict:
         "max_results": getattr(truncate_cfg, 'max_results', defaults["max_results"]),
         "score_ratio": getattr(truncate_cfg, 'score_ratio', defaults["score_ratio"]),
         "gap_threshold": getattr(truncate_cfg, 'gap_threshold', defaults["gap_threshold"]),
+        "gap_start_idx": getattr(truncate_cfg, 'gap_start_idx', defaults["gap_start_idx"]),
     }
 
 
@@ -143,7 +161,7 @@ def _get_truncation_params_for_type(config: Any, type_config: Optional[dict], gl
         global_truncate_cfg: Global smart_truncate config from agentic_v4
 
     Returns:
-        Dict with min_results, max_results, score_ratio, gap_threshold.
+        Dict with min_results, max_results, score_ratio, gap_threshold, gap_start_idx.
     """
     # Start with global config
     params = {
@@ -151,6 +169,7 @@ def _get_truncation_params_for_type(config: Any, type_config: Optional[dict], gl
         "max_results": global_truncate_cfg["max_results"],
         "score_ratio": global_truncate_cfg["score_ratio"],
         "gap_threshold": global_truncate_cfg["gap_threshold"],
+        "gap_start_idx": global_truncate_cfg.get("gap_start_idx", 15),
     }
 
     # Override with type-specific config if available
@@ -161,6 +180,8 @@ def _get_truncation_params_for_type(config: Any, type_config: Optional[dict], gl
             params["max_results"] = type_config["truncate_max"]
         if "truncate_score_ratio" in type_config:
             params["score_ratio"] = type_config["truncate_score_ratio"]
+        if "truncate_gap_start_idx" in type_config:
+            params["gap_start_idx"] = type_config["truncate_gap_start_idx"]
 
     return params
 
@@ -219,6 +240,161 @@ def _log_ids(prefix: str, docs: List[Tuple[dict, float]], limit: int = 20):
     short = ids[:limit]
     suffix = " ..." if len(ids) > limit else ""
     logger.info(f"  {prefix}: {', '.join(short)}{suffix}")
+
+
+# =============================================================================
+# Smart Truncation Helper (extracted to reduce code duplication)
+# =============================================================================
+
+def _apply_smart_truncation(
+    results: List[Tuple[dict, float]],
+    final_top_n: int,
+    config: Any,
+    type_config: Optional[dict],
+) -> Tuple[List[Tuple[dict, float]], dict]:
+    """Apply smart truncation to results.
+
+    Extracted as helper to reduce code duplication across SIMPLE/CORRECT/AMBIGUOUS/INCORRECT paths.
+
+    Args:
+        results: List of (doc, score) tuples to truncate
+        final_top_n: Maximum number of results before truncation
+        config: Experiment configuration
+        type_config: Type-specific retrieval config
+
+    Returns:
+        (truncated_results, truncation_metadata)
+    """
+    global_truncate_cfg = _get_smart_truncate_config(config)
+    truncation_params = _get_truncation_params_for_type(config, type_config, global_truncate_cfg)
+
+    candidates = results[:final_top_n]
+
+    if global_truncate_cfg["enabled"]:
+        final_results, truncation_meta = smart_score_truncate(
+            candidates,
+            min_results=truncation_params["min_results"],
+            max_results=truncation_params["max_results"],
+            score_ratio=truncation_params["score_ratio"],
+            gap_threshold=truncation_params["gap_threshold"],
+            gap_start_idx=truncation_params["gap_start_idx"],
+        )
+    else:
+        final_results = candidates
+        truncation_meta = {
+            "reason": "disabled",
+            "original_count": len(candidates),
+            "final_count": len(candidates),
+        }
+
+    return final_results, truncation_meta
+
+
+def _finalize_metadata(
+    metadata: dict,
+    final_results: List[Tuple[dict, float]],
+    truncation_meta: dict,
+    start_time: float,
+    round1_ids: set,
+    round2_ids: set,
+    traversal_stats: Optional[dict] = None,
+    is_multi_round: bool = False,
+    extra_stats: Optional[dict] = None,
+) -> None:
+    """Finalize metadata with common fields.
+
+    Mutates metadata dict in place.
+
+    Args:
+        metadata: Metadata dict to update
+        final_results: Final results list
+        truncation_meta: Truncation metadata
+        start_time: Start time for latency calculation
+        round1_ids: Set of Round 1 unit IDs
+        round2_ids: Set of Round 2 unit IDs (empty set if no Round 2)
+        traversal_stats: Optional traversal statistics dict
+        is_multi_round: Whether this was a multi-round retrieval
+        extra_stats: Optional extra stats to merge into traversal_stats
+    """
+    metadata["truncation"] = truncation_meta
+    metadata["final_count"] = len(final_results)
+    metadata["total_latency_ms"] = (time.time() - start_time) * 1000
+    metadata["origin_map"] = build_origin_map(round1_ids, round2_ids)
+
+    if traversal_stats is not None:
+        stats = {
+            "total_docs": traversal_stats["total_docs"],
+            "round1_scored": len(traversal_stats.get("round1_scored_ids", set())),
+            "final_returned": len(final_results),
+            "is_multi_round": is_multi_round,
+        }
+        if is_multi_round:
+            stats["round2_scored"] = len(traversal_stats.get("round2_scored_ids", set()))
+        if extra_stats:
+            stats.update(extra_stats)
+        metadata["traversal_stats"] = stats
+
+
+async def _execute_round2_retrieval(
+    queries: List[str],
+    doc_index: List[Dict[str, Any]],
+    top_n: int,
+    rrf_k: int,
+    enable_traversal_stats: bool,
+    traversal_stats: dict,
+) -> List[Tuple[dict, float]]:
+    """Execute Round 2 retrieval with multiple queries.
+
+    Extracted as helper to reduce code duplication between AMBIGUOUS and INCORRECT paths.
+
+    Args:
+        queries: List of queries to execute
+        doc_index: Document index
+        top_n: Number of results per query
+        rrf_k: RRF fusion parameter
+        enable_traversal_stats: Whether to collect traversal statistics
+        traversal_stats: Traversal stats dict to update (mutated in place)
+
+    Returns:
+        List of (doc, score) tuples after RRF fusion
+    """
+    logger.info(f"  [Round 2] Executing {len(queries)} Cross-Attention queries...")
+
+    round2_tasks = [
+        cross_attention_search(
+            query=q,
+            doc_index=doc_index,
+            top_n=top_n,
+            return_traversal_stats=enable_traversal_stats,
+        )
+        for q in queries
+    ]
+    raw_results = await asyncio.gather(*round2_tasks)
+
+    # Parse results and collect stats
+    if enable_traversal_stats:
+        multi_results = []
+        for result in raw_results:
+            if isinstance(result, tuple):
+                docs_result, stats = result
+                multi_results.append(docs_result)
+                traversal_stats["round2_scored_ids"].update(stats.get("scored_ids", set()))
+            else:
+                multi_results.append(result)
+    else:
+        multi_results = raw_results
+
+    # RRF fusion
+    logger.info(f"  [Round 2] RRF fusion...")
+    round2_results = multi_cross_attention_rrf_fusion(multi_results, k=rrf_k)
+    round2_results = round2_results[:top_n]
+
+    if enable_traversal_stats:
+        traversal_stats["round2_returned_ids"] = set(
+            doc.get("unit_id", "") for doc, _ in round2_results
+        )
+
+    return round2_results
 
 
 # =============================================================================
@@ -368,9 +544,10 @@ async def agentic_retrieval_v4(
     metadata["question_type"] = classification.question_type.value
     metadata["classification_confidence"] = classification.confidence
     metadata["classification_reasoning"] = classification.reasoning
+    metadata["complexity_level"] = classification.complexity_level.value
 
     logger.info(f"  [Classify] Type: {classification.question_type.value} "
-                f"(conf={classification.confidence:.2f})")
+                f"(conf={classification.confidence:.2f}, complexity={classification.complexity_level.value})")
 
     # ========== Step 2: Load Type-Specific Config ==========
     type_config = _get_type_retrieval_config_v4(config, classification.question_type)
@@ -409,6 +586,7 @@ async def agentic_retrieval_v4(
         classification.question_type,
         classification.confidence,
         threshold=confidence_threshold,
+        complexity_level=classification.complexity_level,
     )
 
     metadata["used_multi_query_round1"] = use_mq_round1
@@ -495,7 +673,46 @@ async def agentic_retrieval_v4(
         metadata["total_latency_ms"] = (time.time() - start_time) * 1000
         return [], metadata
 
-    # ========== Step 5: C-RAG Three-Way Retrieval Evaluation ==========
+    # ========== Step 5: Adaptive Routing Based on Complexity Level ==========
+    #
+    # SIMPLE: Skip C-RAG evaluation entirely, return Round 1 directly
+    #         - Saves ~300ms latency and LLM cost
+    #         - For high-confidence attribute queries (identity, location, preference)
+    #
+    # MODERATE: Standard C-RAG flow
+    #           - Round 1 → eval → maybe Round 2
+    #
+    # COMPLEX: Force Round 2 regardless of evaluation
+    #          - For counting, aggregation, reasoning questions
+    #          - Higher recall is critical
+
+    if classification.complexity_level == ComplexityLevel.SIMPLE:
+        # ========== SIMPLE PATH: Skip C-RAG, return Round 1 directly ==========
+        logger.info(f"  [Adaptive] SIMPLE complexity - skipping C-RAG evaluation")
+
+        final_results, truncation_meta = _apply_smart_truncation(
+            round1_results, final_top_n, config, type_config
+        )
+
+        # SIMPLE-specific metadata
+        metadata["evaluation_type"] = "skipped_simple"
+        metadata["is_sufficient"] = True
+        metadata["adaptive_path"] = "simple_skip_eval"
+
+        round1_ids = {doc.get("unit_id", "") for doc, _ in round1_results}
+        _finalize_metadata(
+            metadata, final_results, truncation_meta, start_time,
+            round1_ids=round1_ids, round2_ids=set(),
+            traversal_stats=traversal_stats if enable_traversal_stats else None,
+            is_multi_round=False,
+            extra_stats={"skipped_eval": True} if enable_traversal_stats else None,
+        )
+
+        logger.info(f"  [Complete] SIMPLE path - Final: {len(final_results)} docs | "
+                    f"Latency: {metadata['total_latency_ms']:.0f}ms (saved C-RAG eval)")
+        return final_results, metadata
+
+    # ========== MODERATE/COMPLEX: Continue with C-RAG Evaluation ==========
     sufficiency_check_count = min(10, len(round1_results))
     docs_for_check = round1_results[:sufficiency_check_count]
 
@@ -518,42 +735,29 @@ async def agentic_retrieval_v4(
 
     logger.info(f"  [LLM] Result: {eval_type.upper()} (confidence: {confidence:.2f})")
 
+    # ========== COMPLEX: Force Round 2 even if eval_type is "correct" ==========
+    if classification.complexity_level == ComplexityLevel.COMPLEX and eval_type == "correct":
+        logger.info(f"  [Adaptive] COMPLEX complexity - forcing Round 2 for higher recall")
+        eval_type = "ambiguous"  # Treat as ambiguous to trigger supplementary retrieval
+        missing_info = ["Additional context needed for complex multi-hop query"]
+        metadata["forced_round2"] = True
+        metadata["original_eval_type"] = "correct"
+
     # ========== PATH 1: CORRECT - Return Round 1 Results ==========
     if eval_type == "correct":
         logger.info(f"  [Decision] CORRECT! Returning Round 1 Cross-Attention results")
 
-        # Get smart truncation config from config file
-        global_truncate_cfg = _get_smart_truncate_config(config)
-        truncation_params = _get_truncation_params_for_type(config, type_config, global_truncate_cfg)
-
-        # Apply smart truncation before final_top_n limit (if enabled)
-        candidates = round1_results[:final_top_n]
-        if global_truncate_cfg["enabled"]:
-            final_results, truncation_meta = smart_score_truncate(
-                candidates,
-                min_results=truncation_params["min_results"],
-                max_results=truncation_params["max_results"],
-                score_ratio=truncation_params["score_ratio"],
-                gap_threshold=truncation_params["gap_threshold"],
-            )
-        else:
-            final_results = candidates
-            truncation_meta = {"reason": "disabled", "original_count": len(candidates), "final_count": len(candidates)}
-
-        metadata["truncation"] = truncation_meta
-        metadata["final_count"] = len(final_results)
-        metadata["total_latency_ms"] = (time.time() - start_time) * 1000
+        final_results, truncation_meta = _apply_smart_truncation(
+            round1_results, final_top_n, config, type_config
+        )
 
         round1_ids = {doc.get("unit_id", "") for doc, _ in round1_results}
-        metadata["origin_map"] = build_origin_map(round1_ids, set())
-
-        if enable_traversal_stats:
-            metadata["traversal_stats"] = {
-                "total_docs": traversal_stats["total_docs"],
-                "round1_scored": len(traversal_stats["round1_scored_ids"]),
-                "final_returned": len(final_results),
-                "is_multi_round": False,
-            }
+        _finalize_metadata(
+            metadata, final_results, truncation_meta, start_time,
+            round1_ids=round1_ids, round2_ids=set(),
+            traversal_stats=traversal_stats if enable_traversal_stats else None,
+            is_multi_round=False,
+        )
 
         logger.info(f"  [Complete] Latency: {metadata['total_latency_ms']:.0f}ms")
         return final_results, metadata
@@ -565,8 +769,8 @@ async def agentic_retrieval_v4(
         metadata["round2_strategy"] = "supplementary"
         logger.info(f"  [Decision] AMBIGUOUS, entering Round 2 (supplementary retrieval)")
 
+        # Generate supplementary queries
         logger.info(f"  [LLM] Generating queries based on missing info...")
-
         refined_queries, query_strategy = await generate_multi_queries(
             original_query=query,
             results=docs_for_check,
@@ -576,96 +780,43 @@ async def agentic_retrieval_v4(
             max_docs=sufficiency_check_count,
             num_queries=3,
         )
-
         metadata["round2_queries"] = refined_queries
         metadata["round2_query_strategy"] = query_strategy
 
-        # Parallel cross-attention retrieval for Round 2 queries
-        logger.info(f"  [Round 2] Executing {len(refined_queries)} Cross-Attention queries...")
-
-        round2_tasks = [
-            cross_attention_search(
-                query=q,
-                doc_index=doc_index,
-                top_n=round2_top_n,
-                return_traversal_stats=enable_traversal_stats,
-            )
-            for q in refined_queries
-        ]
-        raw_round2_results = await asyncio.gather(*round2_tasks)
-
-        # Parse results
-        if enable_traversal_stats:
-            round2_multi_results = []
-            for result in raw_round2_results:
-                if isinstance(result, tuple):
-                    docs_result, stats = result
-                    round2_multi_results.append(docs_result)
-                    traversal_stats["round2_scored_ids"].update(stats.get("scored_ids", set()))
-                else:
-                    round2_multi_results.append(result)
-        else:
-            round2_multi_results = raw_round2_results
-
-        # RRF fusion of Round 2 results
-        logger.info(f"  [Round 2] RRF fusion...")
-        round2_results = multi_cross_attention_rrf_fusion(round2_multi_results, k=rrf_k)
-        round2_results = round2_results[:round2_top_n]
-
+        # Execute Round 2
+        round2_results = await _execute_round2_retrieval(
+            queries=refined_queries,
+            doc_index=doc_index,
+            top_n=round2_top_n,
+            rrf_k=rrf_k,
+            enable_traversal_stats=enable_traversal_stats,
+            traversal_stats=traversal_stats,
+        )
         metadata["round2_count"] = len(round2_results)
-
-        if enable_traversal_stats:
-            traversal_stats["round2_returned_ids"] = set(
-                doc.get("unit_id", "") for doc, _ in round2_results
-            )
 
         # Merge Round 1 and Round 2 (AMBIGUOUS: both rounds are relevant)
         logger.info(f"  [Merge] R1={len(round1_results)}, R2={len(round2_results)}, budget={merge_budget}")
-
         combined_results, round1_ids, round2_added_ids = merge_round_results(
             round1_results=round1_results,
             round2_results=round2_results,
             merge_budget=merge_budget,
         )
-
         logger.info(f"  [Merge] Combined: {len(combined_results)} docs")
 
-        # Get smart truncation config from config file
-        global_truncate_cfg = _get_smart_truncate_config(config)
-        truncation_params = _get_truncation_params_for_type(config, type_config, global_truncate_cfg)
-
-        # Apply smart truncation before final_top_n limit (if enabled)
-        candidates = combined_results[:final_top_n]
-        if global_truncate_cfg["enabled"]:
-            final_results, truncation_meta = smart_score_truncate(
-                candidates,
-                min_results=truncation_params["min_results"],
-                max_results=truncation_params["max_results"],
-                score_ratio=truncation_params["score_ratio"],
-                gap_threshold=truncation_params["gap_threshold"],
-            )
-        else:
-            final_results = candidates
-            truncation_meta = {"reason": "disabled", "original_count": len(candidates), "final_count": len(candidates)}
-
-        metadata["truncation"] = truncation_meta
-        metadata["final_count"] = len(final_results)
-        metadata["total_latency_ms"] = (time.time() - start_time) * 1000
-        metadata["origin_map"] = build_origin_map(round1_ids, round2_added_ids)
-
-        if enable_traversal_stats:
-            metadata["traversal_stats"] = {
-                "total_docs": traversal_stats["total_docs"],
-                "round1_scored": len(traversal_stats["round1_scored_ids"]),
-                "round2_scored": len(traversal_stats["round2_scored_ids"]),
-                "final_returned": len(final_results),
-                "is_multi_round": True,
-            }
+        # Apply truncation and finalize
+        final_results, truncation_meta = _apply_smart_truncation(
+            combined_results, final_top_n, config, type_config
+        )
+        _finalize_metadata(
+            metadata, final_results, truncation_meta, start_time,
+            round1_ids=round1_ids, round2_ids=round2_added_ids,
+            traversal_stats=traversal_stats if enable_traversal_stats else None,
+            is_multi_round=True,
+        )
 
         logger.info(f"  [Complete] Final: {len(final_results)} docs | "
                     f"Type: {classification.question_type.value} | "
                     f"Latency: {metadata['total_latency_ms']:.0f}ms")
-
         return final_results, metadata
 
     # ========== PATH 3: INCORRECT - Corrective Retrieval (redirect wrong direction) ==========
@@ -678,8 +829,8 @@ async def agentic_retrieval_v4(
     logger.info(f"  [Incorrect] Wrong aspects: {incorrect_aspects}")
     logger.info(f"  [Incorrect] Correct direction: {correct_direction}")
 
+    # Generate corrective queries
     logger.info(f"  [LLM] Generating corrective queries...")
-
     corrective_queries, query_strategy = await generate_corrective_queries(
         original_query=query,
         results=docs_for_check,
@@ -690,89 +841,38 @@ async def agentic_retrieval_v4(
         max_docs=sufficiency_check_count,
         num_queries=3,
     )
-
     metadata["round2_queries"] = corrective_queries
     metadata["round2_query_strategy"] = query_strategy
 
-    # Parallel cross-attention retrieval for corrective queries
-    logger.info(f"  [Round 2] Executing {len(corrective_queries)} corrective Cross-Attention queries...")
-
-    round2_tasks = [
-        cross_attention_search(
-            query=q,
-            doc_index=doc_index,
-            top_n=round2_top_n,
-            return_traversal_stats=enable_traversal_stats,
-        )
-        for q in corrective_queries
-    ]
-    raw_round2_results = await asyncio.gather(*round2_tasks)
-
-    # Parse results
-    if enable_traversal_stats:
-        round2_multi_results = []
-        for result in raw_round2_results:
-            if isinstance(result, tuple):
-                docs_result, stats = result
-                round2_multi_results.append(docs_result)
-                traversal_stats["round2_scored_ids"].update(stats.get("scored_ids", set()))
-            else:
-                round2_multi_results.append(result)
-    else:
-        round2_multi_results = raw_round2_results
-
-    # RRF fusion of Round 2 results
-    logger.info(f"  [Round 2] RRF fusion...")
-    round2_results = multi_cross_attention_rrf_fusion(round2_multi_results, k=rrf_k)
-    round2_results = round2_results[:round2_top_n]
-
+    # Execute Round 2
+    round2_results = await _execute_round2_retrieval(
+        queries=corrective_queries,
+        doc_index=doc_index,
+        top_n=round2_top_n,
+        rrf_k=rrf_k,
+        enable_traversal_stats=enable_traversal_stats,
+        traversal_stats=traversal_stats,
+    )
     metadata["round2_count"] = len(round2_results)
-
-    if enable_traversal_stats:
-        traversal_stats["round2_returned_ids"] = set(
-            doc.get("unit_id", "") for doc, _ in round2_results
-        )
 
     # CRITICAL: For INCORRECT, do NOT merge with Round 1 (it's wrong direction)
     # Use Round 2 results only to avoid polluting with off-topic documents
     logger.info(f"  [Corrective] Using Round 2 only (R1 was incorrect direction)")
 
-    # Get smart truncation config from config file
-    global_truncate_cfg = _get_smart_truncate_config(config)
-    truncation_params = _get_truncation_params_for_type(config, type_config, global_truncate_cfg)
+    # Apply truncation and finalize (Round 2 only, no Round 1)
+    final_results, truncation_meta = _apply_smart_truncation(
+        round2_results, final_top_n, config, type_config
+    )
 
-    # Apply smart truncation on Round 2 results only
-    candidates = round2_results[:final_top_n]
-    if global_truncate_cfg["enabled"]:
-        final_results, truncation_meta = smart_score_truncate(
-            candidates,
-            min_results=truncation_params["min_results"],
-            max_results=truncation_params["max_results"],
-            score_ratio=truncation_params["score_ratio"],
-            gap_threshold=truncation_params["gap_threshold"],
-        )
-    else:
-        final_results = candidates
-        truncation_meta = {"reason": "disabled", "original_count": len(candidates), "final_count": len(candidates)}
-
-    metadata["truncation"] = truncation_meta
-    metadata["final_count"] = len(final_results)
-    metadata["total_latency_ms"] = (time.time() - start_time) * 1000
-
-    # Origin map: all from Round 2 (Round 1 excluded)
     round2_ids = {doc.get("unit_id", "") for doc, _ in round2_results}
-    metadata["origin_map"] = build_origin_map(set(), round2_ids)
     metadata["merge_strategy"] = "round2_only"
-
-    if enable_traversal_stats:
-        metadata["traversal_stats"] = {
-            "total_docs": traversal_stats["total_docs"],
-            "round1_scored": len(traversal_stats["round1_scored_ids"]),
-            "round2_scored": len(traversal_stats["round2_scored_ids"]),
-            "final_returned": len(final_results),
-            "is_multi_round": True,
-            "round1_excluded": True,  # Flag indicating R1 was discarded
-        }
+    _finalize_metadata(
+        metadata, final_results, truncation_meta, start_time,
+        round1_ids=set(), round2_ids=round2_ids,  # R1 excluded
+        traversal_stats=traversal_stats if enable_traversal_stats else None,
+        is_multi_round=True,
+        extra_stats={"round1_excluded": True} if enable_traversal_stats else None,
+    )
 
     logger.info(f"  [Complete] Final: {len(final_results)} docs (R2 only) | "
                 f"Type: {classification.question_type.value} | "

@@ -362,18 +362,22 @@ def build_origin_map(
 
 def smart_score_truncate(
     results: List[Tuple[dict, float]],
-    min_results: int = 8,
+    min_results: int = 12,
     max_results: int = 40,
-    score_ratio: float = 0.5,
-    gap_threshold: float = 0.30,
+    score_ratio: float = 0.4,
+    gap_threshold: float = 0.40,
+    gap_start_idx: int = 15,
 ) -> Tuple[List[Tuple[dict, float]], dict]:
     """Smart truncation based on score distribution to reduce noise.
 
-    Strategy:
-    1. Always keep at least min_results
-    2. Filter by score_ratio threshold (score >= top_score * ratio)
-    3. Detect score gaps and truncate at significant drops
+    Robust Strategy (conservative approach):
+    1. Always keep at least min_results (default 12, up from 8)
+    2. Only start gap detection after gap_start_idx (default 15) to avoid premature truncation
+    3. Use relaxed score_ratio (default 0.4, down from 0.5) and gap_threshold (default 0.40, up from 0.30)
     4. Never exceed max_results
+
+    The key insight is: it's better to include some noise than to miss relevant documents.
+    LLM can filter noise, but it can't recover missing information.
 
     Note: All parameters should be passed from config (config.retrieval.agentic_v4.smart_truncate
     and config.retrieval.v4_type_retrieval_configs). The default values here are fallbacks only.
@@ -384,6 +388,7 @@ def smart_score_truncate(
         max_results: Maximum number of results to return.
         score_ratio: Minimum score as ratio of top score.
         gap_threshold: Significant drop threshold for gap detection.
+        gap_start_idx: Only detect gaps after this index (to protect top results).
 
     Returns:
         Tuple of:
@@ -412,20 +417,25 @@ def smart_score_truncate(
             "final_count": min_results,
         }
 
-    # Step 1: Apply score ratio threshold
+    # Step 1: Apply score ratio threshold (relaxed)
     score_threshold = top_score * score_ratio
     ratio_filtered = [r for r in results if r[1] >= score_threshold]
 
-    # Step 2: Detect score gap (significant drop)
+    # Step 2: Detect score gap (only after gap_start_idx to be conservative)
+    # This prevents cutting off potentially relevant documents too early
     gap_cutoff_idx = len(ratio_filtered)  # Default: no gap found
-    for i in range(1, len(ratio_filtered)):
-        prev_score = ratio_filtered[i - 1][1]
-        curr_score = ratio_filtered[i][1]
-        if prev_score > 0:
-            drop_rate = (prev_score - curr_score) / prev_score
-            if drop_rate > gap_threshold:
-                gap_cutoff_idx = i
-                break
+
+    # Only look for gaps after gap_start_idx
+    search_start = max(1, gap_start_idx)
+    if len(ratio_filtered) > search_start:
+        for i in range(search_start, len(ratio_filtered)):
+            prev_score = ratio_filtered[i - 1][1]
+            curr_score = ratio_filtered[i][1]
+            if prev_score > 0:
+                drop_rate = (prev_score - curr_score) / prev_score
+                if drop_rate > gap_threshold:
+                    gap_cutoff_idx = i
+                    break
 
     # Apply gap cutoff
     gap_filtered = ratio_filtered[:gap_cutoff_idx]
@@ -451,6 +461,7 @@ def smart_score_truncate(
         "score_threshold": score_threshold,
         "ratio_filtered_count": len(ratio_filtered),
         "gap_cutoff_idx": gap_cutoff_idx if gap_cutoff_idx < len(ratio_filtered) else None,
+        "gap_start_idx": gap_start_idx,
     }
 
     # Log score range
