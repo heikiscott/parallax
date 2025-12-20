@@ -339,31 +339,96 @@ def run_evaluation(dataset: str, output_dir: Path, conv_id: int = None):
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Run LoCoMo evaluation in different modes",
+        description="""
+LoCoMo Evaluation Runner - Unified script for running memory evaluations
+
+This script provides a streamlined interface for running LoCoMo (Long Context Memory)
+evaluations with different dataset sizes and configurations. It supports checkpoint-based
+resume and stage-level result management.
+        """,
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
-Examples:
-  # Basic usage
-  %(prog)s --mini           Run mini dataset for quick validation
-  %(prog)s -m               Same as --mini (short form)
-  %(prog)s --q10            Run first 10 questions from conv0
-  %(prog)s --q20            Run first 20 questions from conv0
-  %(prog)s --q30            Run first 30 questions from conv0
-  %(prog)s --q50            Run first 50 questions from conv0
-  %(prog)s --all            Run all conversations
-  %(prog)s -a               Same as --all (short form)
-  %(prog)s --conv 4         Run single conversation (index 4)
-  %(prog)s -c 4             Same as --conv (short form)
+EVALUATION MODES:
+  The script supports multiple evaluation modes for different testing scenarios:
 
-  # Resume from checkpoint
-  %(prog)s -c 1 --resume    Resume conversation 1 from last checkpoint
-  %(prog)s -c 1 -r          Same as above (short form)
+  --mini, -m              Quick validation with minimal dataset (fast iteration)
+  --q10/q20/q30/q50       Run first N questions from conv0 (progressive testing)
+  --all, -a               Full evaluation on all conversations (complete benchmark)
+  --conv N, -c N          Run specific conversation by index (targeted testing)
 
-  # Truncate results (keep only specified stages)
+PIPELINE STAGES:
+  Evaluations run through 4 stages in sequence:
+
+  1. add       - Process conversations and create memory units (MemUnits)
+  2. search    - Retrieve relevant memories for each question
+  3. answer    - Generate answers using LLM with retrieved context
+  4. evaluate  - Compare answers with ground truth and compute metrics
+
+OUTPUT DIRECTORY STRUCTURE:
+  Results are saved with automatic versioning:
+
+  eval/results/
+  ├── locomo-conv8/        # First run
+  ├── locomo-conv8-1/      # Second run
+  └── locomo-conv8-2/      # Third run (most recent)
+
+  Each directory contains:
+  - memunits/              - Memory units and statistics
+  - v4_index/              - Vector index (if using v4 mode)
+  - search_results.json    - Retrieval results
+  - answer_results.json    - Generated answers
+  - eval_results.json      - Evaluation metrics
+  - checkpoint_default.json - Progress tracking
+  - report.txt             - Human-readable summary
+  - *.log                  - Execution logs
+
+EXAMPLES:
+  # Quick validation
+  %(prog)s --mini
+  %(prog)s -m
+
+  # Progressive testing with different dataset sizes
+  %(prog)s --q10           # First 10 questions (3 sessions)
+  %(prog)s --q20           # First 20 questions (9 sessions)
+  %(prog)s --q30           # First 30 questions (9 sessions)
+  %(prog)s --q50           # First 50 questions (12 sessions)
+
+  # Full evaluation
+  %(prog)s --all           # All conversations
+  %(prog)s -a              # Same (short form)
+
+  # Targeted conversation testing
+  %(prog)s --conv 4        # Run conversation 4
+  %(prog)s -c 4            # Same (short form)
+
+  # Resume from checkpoint (skip completed stages)
+  %(prog)s -c 1 --resume
+  %(prog)s -c 1 -r         # Same (short form)
+
+  # Stage truncation workflow (advanced)
+  # Useful for rerunning later stages with different configurations
+
+  # 1. Truncate to early stages (creates new directory)
   %(prog)s -c 8 --truncate-to add,search
-                            Truncate conv8 results to keep only add and search stages
+
+  # 2. Truncate and immediately resume (one-step rerun)
   %(prog)s -c 8 --truncate-to add,search --resume
-                            Truncate and then resume from that point
+
+  # 3. Truncate to single stage
+  %(prog)s -c 8 --truncate-to add
+
+  # Common workflow: Test configuration changes
+  # Run full pipeline once
+  %(prog)s -c 8
+
+  # Truncate to search stage and rerun with new answer config
+  %(prog)s -c 8 --truncate-to add,search --resume
+
+NOTES:
+  - Results are automatically versioned, previous runs are never overwritten
+  - Checkpoint system enables resuming from any stage
+  - Truncation creates new directories, preserving original results
+  - Logs and metrics are saved for every run for reproducibility
         """
     )
 
@@ -372,45 +437,46 @@ Examples:
     group.add_argument(
         "-m", "--mini",
         action="store_true",
-        help="Run mini dataset validation"
+        help="Run mini dataset for quick validation (fastest, for development)"
     )
     group.add_argument(
         "--q10",
         action="store_true",
-        help="Run first 10 questions from conv0 (3 sessions)"
+        help="Run first 10 questions from conv0 (3 sessions, ~5 min)"
     )
     group.add_argument(
         "--q20",
         action="store_true",
-        help="Run first 20 questions from conv0 (9 sessions)"
+        help="Run first 20 questions from conv0 (9 sessions, ~10 min)"
     )
     group.add_argument(
         "--q30",
         action="store_true",
-        help="Run first 30 questions from conv0 (9 sessions)"
+        help="Run first 30 questions from conv0 (9 sessions, ~15 min)"
     )
     group.add_argument(
         "--q50",
         action="store_true",
-        help="Run first 50 questions from conv0 (12 sessions)"
+        help="Run first 50 questions from conv0 (12 sessions, ~20 min)"
     )
     group.add_argument(
         "-a", "--all",
         action="store_true",
-        help="Run full evaluation on all conversations"
+        help="Run full evaluation on all conversations (complete benchmark)"
     )
     group.add_argument(
         "-c", "--conv",
         type=int,
         metavar="CONV_ID",
-        help="Run specific conversation by index (0-based)"
+        help="Run specific conversation by index (0-based). Example: -c 8 for conv8"
     )
 
     # Add resume option
     parser.add_argument(
         "-r", "--resume",
         action="store_true",
-        help="Resume from the most recent checkpoint instead of creating a new run"
+        help="Resume from the most recent checkpoint, skipping completed stages. "
+             "Finds the highest-numbered directory (e.g., locomo-conv8-5) and continues from there."
     )
 
     # Add truncate option
@@ -418,9 +484,10 @@ Examples:
         "--truncate-to",
         type=str,
         metavar="STAGES",
-        help="Truncate results to keep only specified stages (comma-separated). "
-             "Example: add,search. Valid stages: add,search,answer,evaluate. "
-             "Can be used alone (truncate only) or with --resume (truncate then continue)"
+        help="Truncate results to keep only specified stages (comma-separated: add,search,answer,evaluate). "
+             "Creates a new versioned directory with only the specified stage outputs, allowing you to "
+             "rerun later stages with different configurations. Use with --resume to immediately continue. "
+             "Example: --truncate-to add,search creates a new dir with only add+search results."
     )
 
     args = parser.parse_args()
