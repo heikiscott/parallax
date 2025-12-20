@@ -580,6 +580,7 @@ async def agentic_retrieval_v4(
     num_queries = _get_v4_config(config, 'num_queries', 3)
     confidence_threshold = _get_v4_config(config, 'confidence_threshold', 0.85)
     rrf_k = _get_v4_config(config, 'rrf_k', 60)
+    eval_top_n = _get_v4_config(config, 'eval_top_n', 5)  # Number of docs for C-RAG evaluation
 
     # ========== Step 3: Decide Multi-Query Strategy ==========
     use_mq_round1 = should_use_multi_query(
@@ -713,7 +714,7 @@ async def agentic_retrieval_v4(
         return final_results, metadata
 
     # ========== MODERATE/COMPLEX: Continue with C-RAG Evaluation ==========
-    sufficiency_check_count = min(10, len(round1_results))
+    sufficiency_check_count = min(eval_top_n, len(round1_results))
     docs_for_check = round1_results[:sufficiency_check_count]
 
     logger.info(f"  [LLM] Evaluating retrieval quality on Top {sufficiency_check_count}...")

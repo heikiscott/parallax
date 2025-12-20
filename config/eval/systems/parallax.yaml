@@ -350,10 +350,11 @@ retrieval:
 
     # 检索默认参数
     round1_top_n: 20
-    round2_top_n: 30
-    merge_budget: 35
-    final_top_n: 20
+    round2_top_n: 40           # 从 30 增加到 40
+    merge_budget: 40           # 从 35 增加到 40
+    final_top_n: 25            # 从 20 增加到 25
     rrf_k: 60
+    eval_top_n: 5              # C-RAG 评估文档数 (从硬编码的 10 改为 5)
 
     # 智能截断配置 (减少 Answer 阶段噪声)
     smart_truncate:
@@ -369,9 +370,9 @@ retrieval:
     # --- 简单问题 ---
     attribute_identity:
       round1_top_n: 20
-      round2_top_n: 30
-      merge_budget: 30
-      final_top_n: 20
+      round2_top_n: 40  # 从 30 改为 40
+      merge_budget: 40  # 从 30 改为 40
+      final_top_n: 25  # 从 20 改为 25
       # 智能截断: 简单问题
       truncate_min: 10
       truncate_max: 40
@@ -379,18 +380,18 @@ retrieval:
 
     attribute_preference:
       round1_top_n: 20
-      round2_top_n: 30
-      merge_budget: 30
-      final_top_n: 20
+      round2_top_n: 40  # 从 30 改为 40
+      merge_budget: 40  # 从 30 改为 40
+      final_top_n: 25  # 从 20 改为 25
       truncate_min: 10
       truncate_max: 40
       truncate_score_ratio: 0.45
 
     attribute_location:
       round1_top_n: 20
-      round2_top_n: 30
-      merge_budget: 30
-      final_top_n: 20
+      round2_top_n: 40  # 从 30 改为 40
+      merge_budget: 40  # 从 30 改为 40
+      final_top_n: 25  # 从 20 改为 25
       truncate_min: 10
       truncate_max: 40
       truncate_score_ratio: 0.45
@@ -398,9 +399,9 @@ retrieval:
     # --- 中等问题 ---
     event_activity:
       round1_top_n: 20
-      round2_top_n: 30
-      merge_budget: 35
-      final_top_n: 20
+      round2_top_n: 40  # 从 30 改为 40
+      merge_budget: 40  # 从 35 改为 40
+      final_top_n: 25  # 从 20 改为 25
       # 时间/活动问题容易丢分，需要更多上下文
       truncate_min: 12
       truncate_max: 50
@@ -408,9 +409,9 @@ retrieval:
 
     general:
       round1_top_n: 20
-      round2_top_n: 30
-      merge_budget: 35
-      final_top_n: 20
+      round2_top_n: 40  # 从 30 改为 40
+      merge_budget: 40  # 从 35 改为 40
+      final_top_n: 25  # 从 20 改为 25
       truncate_min: 12
       truncate_max: 50
       truncate_score_ratio: 0.4
@@ -418,9 +419,9 @@ retrieval:
     # --- 时间/聚合问题 ---
     event_temporal:
       round1_top_n: 25
-      round2_top_n: 35
-      merge_budget: 40
-      final_top_n: 20
+      round2_top_n: 40  # 从 35 改为 40
+      merge_budget: 45  # 从 40 改为 45
+      final_top_n: 25  # 从 20 改为 25
       # 时间问题容易丢分，需要更多上下文
       truncate_min: 12
       truncate_max: 50
@@ -428,9 +429,9 @@ retrieval:
 
     event_aggregation:
       round1_top_n: 25
-      round2_top_n: 35
-      merge_budget: 40
-      final_top_n: 20
+      round2_top_n: 40  # 从 35 改为 40
+      merge_budget: 45  # 从 40 改为 45
+      final_top_n: 25  # 从 20 改为 25
       # 聚合问题需要更多上下文
       truncate_min: 15
       truncate_max: 55
@@ -438,9 +439,9 @@ retrieval:
 
     time_calculation:
       round1_top_n: 25
-      round2_top_n: 35
-      merge_budget: 40
-      final_top_n: 20
+      round2_top_n: 40  # 从 35 改为 40
+      merge_budget: 45  # 从 40 改为 45
+      final_top_n: 25  # 从 20 改为 25
       truncate_min: 12
       truncate_max: 45
       truncate_score_ratio: 0.4
@@ -449,8 +450,8 @@ retrieval:
     counting:
       round1_top_n: 30
       round2_top_n: 40
-      merge_budget: 45
-      final_top_n: 25
+      merge_budget: 50  # 从 45 改为 50
+      final_top_n: 30  # 从 25 改为 30
       # 计数问题需要更多上下文
       truncate_min: 15
       truncate_max: 55
@@ -459,8 +460,8 @@ retrieval:
     reasoning_hypothetical:
       round1_top_n: 30
       round2_top_n: 40
-      merge_budget: 45
-      final_top_n: 25
+      merge_budget: 50  # 从 45 改为 50
+      final_top_n: 30  # 从 25 改为 30
       # 推理问题需要更广的上下文
       truncate_min: 12
       truncate_max: 50
@@ -469,8 +470,8 @@ retrieval:
     reasoning_inference:
       round1_top_n: 30
       round2_top_n: 40
-      merge_budget: 45
-      final_top_n: 25
+      merge_budget: 50  # 从 45 改为 50
+      final_top_n: 30  # 从 25 改为 30
       truncate_min: 12
       truncate_max: 50
       truncate_score_ratio: 0.35
@@ -479,9 +480,9 @@ retrieval:
     # 截断参数不需要在这里配置，会自动使用 agentic_v4.smart_truncate 的默认值
     default:
       round1_top_n: 20
-      round2_top_n: 30
-      merge_budget: 35
-      final_top_n: 20
+      round2_top_n: 40  # 从 30 改为 40
+      merge_budget: 40  # 从 35 改为 40
+      final_top_n: 25  # 从 20 改为 25
 
 # ===== 问题分类配置 =====
 question_classification:
