@@ -1,14 +1,14 @@
-"""Agentic Retrieval V4 - Cross-Attention with Adaptive Routing and C-RAG Evaluation.
+"""Agentic Retrieval V4 - Cross-Attention with C-RAG Evaluation.
 
 This module implements cross-attention based agentic retrieval with:
-- Adaptive routing based on query complexity (SIMPLE/MODERATE/COMPLEX)
+- Type-aware multi-query generation based on question classification
 - C-RAG style three-way evaluation (correct/ambiguous/incorrect)
 
 Key features:
 - Uses Cross-Attention instead of ColBERT MaxSim
 - No index building required (real-time scoring)
-- **Adaptive routing**: Skip C-RAG for SIMPLE queries, force Round 2 for COMPLEX
-- C-RAG three-way evaluation for MODERATE queries
+- C-RAG three-way evaluation (CORRECT/AMBIGUOUS/INCORRECT)
+- Type-specific retrieval parameters (v4_type_retrieval_configs)
 - Corrective retrieval for incorrect results (redirects wrong direction)
 
 Flow:
@@ -16,45 +16,24 @@ Flow:
 Query
   │
   ▼
-Question Classification + Complexity Level
+Question Classification → Type-specific parameters
   │
-  ├─── SIMPLE (ATTRIBUTE_* + High Confidence)
-  │         │
-  │         ▼
-  │    Single Query Cross-Attention → Top N
-  │         │
-  │         ▼
-  │    **SKIP C-RAG** → Return Round 1 directly (saves ~300ms)
+  ▼
+Type-Aware Multi-Query → Cross-Attention → RRF Fusion
   │
-  ├─── MODERATE (EVENT_*, TIME_CALCULATION)
-  │         │
-  │         ▼
-  │    Type-Aware Multi-Query → Cross-Attention → RRF Fusion
-  │         │
-  │         ▼
-  │    C-RAG Three-Way Evaluation
-  │         │
-  │         ├─── CORRECT → Return Round 1
-  │         ├─── AMBIGUOUS → Round 2 Supplementary → Merge R1+R2
-  │         └─── INCORRECT → Round 2 Corrective → Return R2 only
+  ▼
+C-RAG Three-Way Evaluation
   │
-  └─── COMPLEX (COUNTING, AGGREGATION, REASONING_*)
-            │
-            ▼
-       Type-Aware Multi-Query → Cross-Attention → RRF Fusion
-            │
-            ▼
-       C-RAG Evaluation (but **FORCE Round 2** even if CORRECT)
-            │
-            ▼
-       Round 2 Supplementary → Merge R1+R2 → Higher recall
+  ├─── CORRECT → Return Round 1
+  ├─── AMBIGUOUS → Round 2 Supplementary → Merge R1+R2
+  └─── INCORRECT → Round 2 Corrective → Return R2 only
 ```
 
 Design Philosophy:
-- SIMPLE queries: High-confidence attribute queries rarely need refinement
-- MODERATE queries: Standard C-RAG flow with optional Round 2
-- COMPLEX queries: Multi-hop/counting need comprehensive retrieval, force Round 2
+- Question type determines retrieval parameters (top_n, merge_budget, etc.)
 - C-RAG evaluation distinguishes "incomplete" from "wrong direction"
+- Supplementary retrieval (AMBIGUOUS): merge R1+R2 for higher recall
+- Corrective retrieval (INCORRECT): discard R1, use only R2 (change direction)
 - Backward compatible: metadata["is_sufficient"] maps to (eval_type == "correct")
 """
 
@@ -82,7 +61,6 @@ from retrieval.classification.question_classifier import (
     QuestionClassifier,
     QuestionType,
     ClassificationResult,
-    ComplexityLevel,
 )
 from prompts.memory.en.eval.search.type_aware_multi_query_prompts import (
     should_use_multi_query,
@@ -544,10 +522,9 @@ async def agentic_retrieval_v4(
     metadata["question_type"] = classification.question_type.value
     metadata["classification_confidence"] = classification.confidence
     metadata["classification_reasoning"] = classification.reasoning
-    metadata["complexity_level"] = classification.complexity_level.value
 
     logger.info(f"  [Classify] Type: {classification.question_type.value} "
-                f"(conf={classification.confidence:.2f}, complexity={classification.complexity_level.value})")
+                f"(conf={classification.confidence:.2f})")
 
     # ========== Step 2: Load Type-Specific Config ==========
     type_config = _get_type_retrieval_config_v4(config, classification.question_type)
@@ -587,7 +564,6 @@ async def agentic_retrieval_v4(
         classification.question_type,
         classification.confidence,
         threshold=confidence_threshold,
-        complexity_level=classification.complexity_level,
     )
 
     metadata["used_multi_query_round1"] = use_mq_round1
@@ -674,46 +650,7 @@ async def agentic_retrieval_v4(
         metadata["total_latency_ms"] = (time.time() - start_time) * 1000
         return [], metadata
 
-    # ========== Step 5: Adaptive Routing Based on Complexity Level ==========
-    #
-    # SIMPLE: Skip C-RAG evaluation entirely, return Round 1 directly
-    #         - Saves ~300ms latency and LLM cost
-    #         - For high-confidence attribute queries (identity, location, preference)
-    #
-    # MODERATE: Standard C-RAG flow
-    #           - Round 1 → eval → maybe Round 2
-    #
-    # COMPLEX: Force Round 2 regardless of evaluation
-    #          - For counting, aggregation, reasoning questions
-    #          - Higher recall is critical
-
-    if classification.complexity_level == ComplexityLevel.SIMPLE:
-        # ========== SIMPLE PATH: Skip C-RAG, return Round 1 directly ==========
-        logger.info(f"  [Adaptive] SIMPLE complexity - skipping C-RAG evaluation")
-
-        final_results, truncation_meta = _apply_smart_truncation(
-            round1_results, final_top_n, config, type_config
-        )
-
-        # SIMPLE-specific metadata
-        metadata["evaluation_type"] = "skipped_simple"
-        metadata["is_sufficient"] = True
-        metadata["adaptive_path"] = "simple_skip_eval"
-
-        round1_ids = {doc.get("unit_id", "") for doc, _ in round1_results}
-        _finalize_metadata(
-            metadata, final_results, truncation_meta, start_time,
-            round1_ids=round1_ids, round2_ids=set(),
-            traversal_stats=traversal_stats if enable_traversal_stats else None,
-            is_multi_round=False,
-            extra_stats={"skipped_eval": True} if enable_traversal_stats else None,
-        )
-
-        logger.info(f"  [Complete] SIMPLE path - Final: {len(final_results)} docs | "
-                    f"Latency: {metadata['total_latency_ms']:.0f}ms (saved C-RAG eval)")
-        return final_results, metadata
-
-    # ========== MODERATE/COMPLEX: Continue with C-RAG Evaluation ==========
+    # ========== Step 5: C-RAG Evaluation ==========
     sufficiency_check_count = min(eval_top_n, len(round1_results))
     docs_for_check = round1_results[:sufficiency_check_count]
 
@@ -735,14 +672,6 @@ async def agentic_retrieval_v4(
     metadata["is_sufficient"] = (eval_type == "correct")
 
     logger.info(f"  [LLM] Result: {eval_type.upper()} (confidence: {confidence:.2f})")
-
-    # ========== COMPLEX: Force Round 2 even if eval_type is "correct" ==========
-    if classification.complexity_level == ComplexityLevel.COMPLEX and eval_type == "correct":
-        logger.info(f"  [Adaptive] COMPLEX complexity - forcing Round 2 for higher recall")
-        eval_type = "ambiguous"  # Treat as ambiguous to trigger supplementary retrieval
-        missing_info = ["Additional context needed for complex multi-hop query"]
-        metadata["forced_round2"] = True
-        metadata["original_eval_type"] = "correct"
 
     # ========== PATH 1: CORRECT - Return Round 1 Results ==========
     if eval_type == "correct":

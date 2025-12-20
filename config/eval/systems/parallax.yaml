@@ -367,7 +367,7 @@ retrieval:
   # ===== V4 问题类型召回配置矩阵 =====
   # V4 独立配置，可以单独调参
   v4_type_retrieval_configs:
-    # --- 简单问题 ---
+    # --- 属性查询问题 ---
     attribute_identity:
       round1_top_n: 20
       round2_top_n: 40  # 从 30 改为 40
@@ -396,7 +396,7 @@ retrieval:
       truncate_max: 40
       truncate_score_ratio: 0.45
 
-    # --- 中等问题 ---
+    # --- 事件查询问题 ---
     event_activity:
       round1_top_n: 20
       round2_top_n: 40  # 从 30 改为 40
@@ -446,7 +446,7 @@ retrieval:
       truncate_max: 45
       truncate_score_ratio: 0.4
 
-    # --- 复杂问题 ---
+    # --- 计数/聚合/推理问题 ---
     counting:
       round1_top_n: 30
       round2_top_n: 40

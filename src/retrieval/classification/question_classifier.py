@@ -20,28 +20,6 @@ import logging
 logger = logging.getLogger(__name__)
 
 
-class ComplexityLevel(Enum):
-    """Complexity level for adaptive routing in agentic retrieval.
-
-    SIMPLE: High-confidence simple queries that can skip C-RAG evaluation.
-            - Single-round retrieval is usually sufficient
-            - Skip LLM evaluation, return Round 1 directly
-            - Saves ~300ms latency and LLM cost
-
-    MODERATE: Standard complexity queries that need C-RAG evaluation.
-              - May need Round 2 based on evaluation
-              - Standard flow: Round 1 → C-RAG eval → maybe Round 2
-
-    COMPLEX: Multi-hop or reasoning queries that need aggressive retrieval.
-             - Force Round 2 even if Round 1 looks sufficient
-             - Higher recall budget, more queries
-             - May allow Round 3 for very complex cases
-    """
-    SIMPLE = "simple"
-    MODERATE = "moderate"
-    COMPLEX = "complex"
-
-
 class QuestionType(Enum):
     """Classification of question types for retrieval routing."""
 
@@ -89,7 +67,6 @@ class ClassificationResult:
     strategy: RetrievalStrategy
     confidence: float  # 0.0 - 1.0
     reasoning: str
-    complexity_level: ComplexityLevel = ComplexityLevel.MODERATE  # Adaptive routing level
 
     # Additional metadata
     detected_patterns: List[str] = None  # Patterns that triggered classification
@@ -107,7 +84,6 @@ class ClassificationResult:
             "strategy": self.strategy.value,
             "confidence": self.confidence,
             "reasoning": self.reasoning,
-            "complexity_level": self.complexity_level.value,
             "detected_patterns": self.detected_patterns,
             "entities": self.entities,
         }
@@ -260,7 +236,6 @@ class QuestionClassifier:
                     strategy=RetrievalStrategy.GEC_INSERT_AFTER_HIT,
                     confidence=0.6,
                     reasoning="Career/education question - using insert_after_hit for context expansion",
-                    complexity_level=ComplexityLevel.MODERATE,
                     detected_patterns=detected_patterns,
                 )
 
@@ -270,7 +245,6 @@ class QuestionClassifier:
             strategy=RetrievalStrategy.GEC_INSERT_AFTER_HIT,
             confidence=0.3,
             reasoning="No specific pattern matched - using insert_after_hit for safe context expansion",
-            complexity_level=ComplexityLevel.MODERATE,  # Default to MODERATE for safety
             detected_patterns=detected_patterns,
         )
 
@@ -342,46 +316,13 @@ class QuestionClassifier:
             QuestionType.GENERAL: "General question - insert_after_hit for safe context expansion",
         }
 
-        # Complexity level for adaptive routing in V4
-        # SIMPLE: Skip C-RAG evaluation, return Round 1 directly (saves ~300ms)
-        # MODERATE: Standard C-RAG flow (Round 1 → eval → maybe Round 2)
-        # COMPLEX: Force Round 2, higher recall budget
-        type_to_complexity = {
-            # SIMPLE: High-confidence attribute queries - single retrieval usually sufficient
-            QuestionType.ATTRIBUTE_IDENTITY: ComplexityLevel.SIMPLE,
-            QuestionType.ATTRIBUTE_LOCATION: ComplexityLevel.SIMPLE,
-            QuestionType.ATTRIBUTE_PREFERENCE: ComplexityLevel.SIMPLE,
-
-            # MODERATE: Event queries may need Round 2 refinement
-            QuestionType.EVENT_TEMPORAL: ComplexityLevel.MODERATE,
-            QuestionType.EVENT_ACTIVITY: ComplexityLevel.MODERATE,
-            QuestionType.TIME_CALCULATION: ComplexityLevel.MODERATE,
-
-            # COMPLEX: Multi-hop, counting, reasoning - need comprehensive retrieval
-            QuestionType.COUNTING: ComplexityLevel.COMPLEX,
-            QuestionType.EVENT_AGGREGATION: ComplexityLevel.COMPLEX,
-            QuestionType.REASONING_HYPOTHETICAL: ComplexityLevel.COMPLEX,
-            QuestionType.REASONING_INFERENCE: ComplexityLevel.COMPLEX,
-
-            # Default to MODERATE for unknown types
-            QuestionType.GENERAL: ComplexityLevel.MODERATE,
-        }
-
         confidence = confidence_map.get(question_type, 0.5)
-        complexity = type_to_complexity.get(question_type, ComplexityLevel.MODERATE)
-
-        # Adjust complexity based on confidence:
-        # - High confidence SIMPLE stays SIMPLE
-        # - Low confidence SIMPLE upgrades to MODERATE (be safer)
-        if complexity == ComplexityLevel.SIMPLE and confidence < 0.85:
-            complexity = ComplexityLevel.MODERATE
 
         return ClassificationResult(
             question_type=question_type,
             strategy=type_to_strategy.get(question_type, RetrievalStrategy.GEC_INSERT_AFTER_HIT),
             confidence=confidence,
             reasoning=reasoning_map.get(question_type, "Unknown pattern"),
-            complexity_level=complexity,
             detected_patterns=detected_patterns,
         )
 

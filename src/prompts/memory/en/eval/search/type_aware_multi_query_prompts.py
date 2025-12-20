@@ -13,9 +13,9 @@ Design Philosophy:
 - Temporal questions get special treatment for time-related variations
 """
 
-from typing import Set, Optional
+from typing import Set
 
-from retrieval.classification.question_classifier import QuestionType, ComplexityLevel
+from retrieval.classification.question_classifier import QuestionType
 
 
 # =============================================================================
@@ -32,7 +32,6 @@ def should_use_multi_query(
     question_type: QuestionType,
     confidence: float,
     threshold: float = 0.85,
-    complexity_level: Optional[ComplexityLevel] = None,
 ) -> bool:
     """Determine whether to use multi-query generation for a question.
 
@@ -40,24 +39,14 @@ def should_use_multi_query(
         question_type: Classified question type
         confidence: Classification confidence score (0.0-1.0)
         threshold: Minimum confidence to skip multi-query for simple types
-        complexity_level: Optional complexity level for more direct control
 
     Returns:
         True if multi-query should be used, False to skip
 
     Logic:
-        - SIMPLE complexity: Skip multi-query (single query is sufficient)
-        - COMPLEX complexity: Always use multi-query (need comprehensive coverage)
-        - MODERATE or None: Use existing type-based logic
+        - High-confidence ATTRIBUTE_IDENTITY/LOCATION: Skip multi-query (single query is sufficient)
+        - All other types: Use multi-query for better coverage
     """
-    # If complexity level is provided, use it for direct control
-    if complexity_level is not None:
-        if complexity_level == ComplexityLevel.SIMPLE:
-            return False  # SIMPLE queries skip multi-query
-        if complexity_level == ComplexityLevel.COMPLEX:
-            return True   # COMPLEX queries always use multi-query
-
-    # Fallback to type-based logic for MODERATE or when complexity not provided
     if question_type in SKIP_MULTI_QUERY_TYPES and confidence >= threshold:
         return False
     return True
