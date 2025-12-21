@@ -483,6 +483,8 @@ retrieval:
       truncate_score_ratio: 0.35
       force_round2: true
       crag_top_n: 50  # C-RAG评估文档数
+      # 专用 Answer Prompt（计数和频率推理）
+      answer_prompt_module: "prompts.memory.en.eval.answer.answer_prompts_counting"
 
     reasoning_hypothetical:
       round1_top_n: 30
