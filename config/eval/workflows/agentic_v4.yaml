@@ -1,7 +1,8 @@
 # Agentic V4 Evaluation Pipeline
-# V4 专属流程: Add → Search → Answer → Evaluate
+# V4 专属流程: Add → Classify → Search → Answer → Evaluate
 # - 不包含 Cluster 阶段
 # - Add 阶段使用细粒度 MemUnit 切分（1-2 轮对话为一个 MemUnit）
+# - Classify 阶段批量分类所有问题，结果附加到 qa.metadata["classification"]
 # - Search 阶段使用交叉注意力检索 (Cross-Attention)
 
 workflow:
@@ -11,6 +12,11 @@ workflow:
   nodes:
     - name: "add"
       function: "eval_add_stage_v4"
+      config:
+        use_checkpoint: true
+
+    - name: "classify"
+      function: "eval_classify_stage"
       config:
         use_checkpoint: true
 
@@ -33,6 +39,8 @@ workflow:
     - from: "START"
       to: "add"
     - from: "add"
+      to: "classify"
+    - from: "classify"
       to: "search"
     - from: "search"
       to: "answer"

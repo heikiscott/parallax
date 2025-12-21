@@ -1368,6 +1368,9 @@ class ParallaxAdapter(BaseAdapter):
             "max_tokens": llm_cfg.max_tokens,
         }
 
+        # 获取预计算的分类结果（由 Classify Stage 附加到 qa.metadata）
+        classification = kwargs.get("classification")
+
         # 调用 V4 agentic retrieval
         try:
             top_results, retrieval_metadata = await agentic_retrieval_v4(
@@ -1377,6 +1380,7 @@ class ParallaxAdapter(BaseAdapter):
                 llm_config=llm_config,
                 doc_index=doc_index,
                 enable_traversal_stats=True,
+                classification=classification,  # 传递预计算的分类
             )
         except Exception as e:
             logger.error(f"V4 retrieval error: {e}")

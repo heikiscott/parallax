@@ -57,12 +57,7 @@ from .llm_utils import (
     generate_corrective_queries,
 )
 
-from retrieval.classification.question_classifier import (
-    QuestionClassifier,
-    LLMQuestionClassifier,
-    QuestionType,
-    ClassificationResult,
-)
+from retrieval.classification.question_classifier import QuestionType
 from prompts.memory.en.eval.search.type_aware_multi_query_prompts import (
     should_use_multi_query,
     get_prompt_for_type,
@@ -465,6 +460,7 @@ async def agentic_retrieval_v4(
     llm_config: dict,
     doc_index: List[Dict[str, Any]],
     enable_traversal_stats: bool = False,
+    classification: Optional[Dict[str, Any]] = None,
 ) -> Tuple[List[Tuple[dict, float]], dict]:
     """Agentic Retrieval V4 - Cross-Attention with type-aware multi-query.
 
@@ -479,6 +475,8 @@ async def agentic_retrieval_v4(
         doc_index: Document index with structure:
             [{"doc": {...}}, ...] where doc contains "narrative" field
         enable_traversal_stats: Enable detailed traversal statistics
+        classification: Pre-computed classification from Classify Stage
+            Dict with keys: question_type, strategy, confidence, reasoning
 
     Returns:
         (final_results, metadata)
@@ -520,35 +518,28 @@ async def agentic_retrieval_v4(
     logger.info(f"Agentic Retrieval V4 (Cross-Attention): {query[:60]}...")
     logger.info(f"{'='*60}")
 
-    # ========== Step 1: Question Classification ==========
-    use_llm_classification = _get_v4_config(config, 'use_llm_classification', True)
-
-    if use_llm_classification:
-        logger.info(f"  [Classify] Using LLM classifier (GPT-4o-mini)")
-        classifier = LLMQuestionClassifier(
-            llm_provider=llm_provider,
-            llm_config={
-                "temperature": _get_v4_config(config, 'classification_temperature', 0.0),
-                "max_tokens": _get_v4_config(config, 'classification_max_tokens', 150),
-            }
+    # ========== Step 1: Use Pre-computed Classification ==========
+    # Classification is done in Classify Stage, passed via classification parameter
+    # V4 uses cross-attention for all question types - no strategy field needed
+    if not classification:
+        raise ValueError(
+            "classification parameter is required for V4 pipeline. "
+            "Ensure Classify Stage runs before Search Stage."
         )
-        classification = await classifier.classify(query)
-    else:
-        logger.info(f"  [Classify] Using rule-based classifier")
-        classifier = QuestionClassifier()
-        classification = classifier.classify(query)
+
+    question_type = QuestionType(classification["question_type"])
+    confidence = classification["confidence"]
+    reasoning = classification["reasoning"]
 
     # Store classification results in metadata (will be saved to search_results.json)
-    metadata["question_type"] = classification.question_type.value
-    metadata["classification_confidence"] = classification.confidence
-    metadata["classification_reasoning"] = classification.reasoning
-    metadata["classification_strategy"] = classification.strategy.value
+    metadata["question_type"] = question_type.value
+    metadata["classification_confidence"] = confidence
+    metadata["classification_reasoning"] = reasoning
 
-    logger.info(f"  [Classify] Type: {classification.question_type.value} "
-                f"(strategy={classification.strategy.value}, conf={classification.confidence:.2f})")
+    logger.info(f"  [Classify] Type: {question_type.value} (conf={confidence:.2f})")
 
     # ========== Step 2: Load Type-Specific Config ==========
-    type_config = _get_type_retrieval_config_v4(config, classification.question_type)
+    type_config = _get_type_retrieval_config_v4(config, question_type)
 
     if type_config:
         round1_top_n = type_config.get('round1_top_n', 12)
@@ -556,11 +547,11 @@ async def agentic_retrieval_v4(
         merge_budget = type_config.get('merge_budget', 20)
         final_top_n = type_config.get('final_top_n', 12)
 
-        logger.info(f"  [TypeConfig] {classification.question_type.value}: "
+        logger.info(f"  [TypeConfig] {question_type.value}: "
                     f"R1={round1_top_n}, R2={round2_top_n}, merge={merge_budget}, final={final_top_n}")
 
         metadata["type_config"] = {
-            "type": classification.question_type.value,
+            "type": question_type.value,
             "round1_top_n": round1_top_n,
             "round2_top_n": round2_top_n,
             "merge_budget": merge_budget,
@@ -580,12 +571,15 @@ async def agentic_retrieval_v4(
     rrf_k = _get_v4_config(config, 'rrf_k', 60)
 
     # Get type-specific crag_top_n or fallback to global default
-    crag_top_n = type_config.get('crag_top_n', _get_v4_config(config, 'crag_top_n', 10))
+    if type_config:
+        crag_top_n = type_config.get('crag_top_n', _get_v4_config(config, 'crag_top_n', 10))
+    else:
+        crag_top_n = _get_v4_config(config, 'crag_top_n', 10)
 
     # ========== Step 3: Decide Multi-Query Strategy ==========
     use_mq_round1 = should_use_multi_query(
-        classification.question_type,
-        classification.confidence,
+        question_type,
+        confidence,
         threshold=confidence_threshold,
     )
 
@@ -599,7 +593,7 @@ async def agentic_retrieval_v4(
 
         queries, query_reasoning = await generate_type_aware_multi_queries(
             original_query=query,
-            question_type=classification.question_type,
+            question_type=question_type,
             llm_provider=llm_provider,
             llm_config=llm_config,
             num_queries=num_queries,
@@ -686,7 +680,7 @@ async def agentic_retrieval_v4(
         llm_provider=llm_provider,
         llm_config=llm_config,
         max_docs=sufficiency_check_count,
-        question_type=classification.question_type,  # Pass question type for prompt selection
+        question_type=question_type,  # Pass question type for prompt selection
     )
 
     # Store evaluation results in metadata
@@ -697,7 +691,7 @@ async def agentic_retrieval_v4(
     metadata["is_sufficient"] = (eval_type == "correct")
 
     # Record which prompt version was used
-    prompt_template = select_evaluator_prompt(classification.question_type)
+    prompt_template = select_evaluator_prompt(question_type)
     if prompt_template == RETRIEVAL_EVALUATOR_SIMPLE_PROMPT:
         metadata["crag_prompt_version"] = "simple"
     elif prompt_template == RETRIEVAL_EVALUATOR_TEMPORAL_PROMPT:
@@ -710,10 +704,10 @@ async def agentic_retrieval_v4(
     logger.info(f"  [LLM] Result: {eval_type.upper()} (confidence: {confidence:.2f})")
 
     # ========== Force Multi-Round for Specific Question Types ==========
-    force_round2 = type_config.get('force_round2', False)
+    force_round2 = type_config.get('force_round2', False) if type_config else False
 
     if force_round2 and eval_type == "correct":
-        logger.info(f"  [Override] Config requires Round 2 for {classification.question_type.value}")
+        logger.info(f"  [Override] Config requires Round 2 for {question_type.value}")
         eval_type = "ambiguous"
         metadata["forced_round2"] = True
         metadata["forced_round2_reason"] = "type_config.force_round2=true"
@@ -792,7 +786,7 @@ async def agentic_retrieval_v4(
         )
 
         logger.info(f"  [Complete] Final: {len(final_results)} docs | "
-                    f"Type: {classification.question_type.value} | "
+                    f"Type: {question_type.value} | "
                     f"Latency: {metadata['total_latency_ms']:.0f}ms")
         return final_results, metadata
 
@@ -852,7 +846,7 @@ async def agentic_retrieval_v4(
     )
 
     logger.info(f"  [Complete] Final: {len(final_results)} docs (R2 only) | "
-                f"Type: {classification.question_type.value} | "
+                f"Type: {question_type.value} | "
                 f"Latency: {metadata['total_latency_ms']:.0f}ms")
 
     return final_results, metadata

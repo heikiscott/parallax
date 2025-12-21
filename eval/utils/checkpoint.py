@@ -34,6 +34,7 @@ class CheckpointManager:
         self.checkpoint_file = self.output_dir / f"checkpoint_{run_name}.json"
         
         # 细粒度检查点（每个阶段一个，记录阶段内进度）
+        self.classification_checkpoint = self.output_dir / f"classification_results_checkpoint.json"
         self.search_checkpoint = self.output_dir / f"search_results_checkpoint.json"
         self.answer_checkpoint = self.output_dir / f"answer_results_checkpoint.json"
         
@@ -174,7 +175,64 @@ class CheckpointManager:
         return None
     
     # ==================== 细粒度 Checkpoint 方法 ====================
-    
+
+    def save_classification_progress(self, results: Dict[str, Any], processed: int, total: int):
+        """
+        保存 Classify 阶段的细粒度进度
+
+        Args:
+            results: 当前累积的分类结果
+            processed: 已处理的问题数
+            total: 总问题数
+        """
+        try:
+            checkpoint_data = {
+                "processed_count": processed,
+                "total_count": total,
+                "results": results,
+            }
+            with open(self.classification_checkpoint, 'w', encoding='utf-8') as f:
+                json.dump(checkpoint_data, f, indent=2, ensure_ascii=False)
+
+            logger.info(f"💾 Classification checkpoint saved: {processed}/{total}")
+
+        except Exception as e:
+            logger.error(f"⚠️ Failed to save classification checkpoint: {e}")
+
+    def load_classification_progress(self) -> Dict[str, Any]:
+        """
+        加载 Classify 阶段的细粒度进度
+
+        Returns:
+            Checkpoint 数据，包含 results dict，如果不存在则返回空结构
+        """
+        if not self.classification_checkpoint.exists():
+            logger.info("🆕 No classification checkpoint found, starting from scratch")
+            return {"results": {}, "processed_count": 0, "total_count": 0}
+
+        try:
+            logger.info(f"🔄 Found classification checkpoint file: {self.classification_checkpoint}")
+            with open(self.classification_checkpoint, 'r', encoding='utf-8') as f:
+                checkpoint_data = json.load(f)
+
+            results = checkpoint_data.get("results", {})
+            logger.info(f"✅ Loaded {len(results)} classifications from checkpoint")
+
+            return checkpoint_data
+
+        except Exception as e:
+            logger.warning(f"⚠️ Failed to load classification checkpoint: {e}")
+            return {"results": {}, "processed_count": 0, "total_count": 0}
+
+    def delete_classification_checkpoint(self):
+        """删除 Classify 阶段的细粒度检查点"""
+        if self.classification_checkpoint.exists():
+            try:
+                self.classification_checkpoint.unlink()
+                logger.info("🗑️ Classification checkpoint file removed (task completed)")
+            except Exception as e:
+                logger.error(f"⚠️ Failed to remove classification checkpoint: {e}")
+
     def save_add_progress(self, completed_convs: set, memunits_dir: Path):
         """
         保存 Add 阶段的细粒度进度（记录已完成的会话 ID）

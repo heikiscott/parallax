@@ -14,6 +14,7 @@ class EvalState(TypedDict, total=False):
 
     # Results
     index: Optional[Dict[str, Any]]
+    classification_results: Optional[Dict[str, Any]]  # Classify stage output
     search_results: Optional[List[Any]]
     answer_results: Optional[List[Any]]
     eval_results: Optional[Any]

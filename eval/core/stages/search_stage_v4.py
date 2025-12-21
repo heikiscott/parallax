@@ -91,8 +91,16 @@ async def run_search_stage_v4(
         async with semaphore:
             conv_id = qa.metadata.get("conversation_id", "0")
             conversation = conv_id_to_conv.get(conv_id)
-            # 🔥 关键：调用 search_v4 而不是 search
-            result = await adapter.search_v4(qa.question, conv_id, index, conversation=conversation)
+            # 从 metadata 获取预计算的分类结果（由 Classify Stage 附加）
+            classification = qa.metadata.get("classification")
+            # 🔥 关键：调用 search_v4 并传递分类结果
+            result = await adapter.search_v4(
+                qa.question,
+                conv_id,
+                index,
+                conversation=conversation,
+                classification=classification,
+            )
             pbar.update(1)
             return result
 

@@ -161,7 +161,7 @@ def truncate_results(source_dir: Path, keep_stages: list[str], new_dir: Path):
     print(f"   Target: {new_dir}")
     print(f"   Keeping stages: {', '.join(keep_stages)}")
 
-    all_stages = ["add", "search", "answer", "evaluate"]
+    all_stages = ["add", "classify", "search", "answer", "evaluate"]
 
     # Validate stage names
     for stage in keep_stages:
@@ -208,7 +208,14 @@ def truncate_results(source_dir: Path, keep_stages: list[str], new_dir: Path):
             shutil.copytree(event_clusters_src, event_clusters_dst, dirs_exist_ok=True)
             print(f"   ✓ Copied: event_clusters/")
 
-    # 2. Copy search stage output
+    # 2. Copy classify stage output
+    if "classify" in keep_stages:
+        classify_file = source_dir / "classification_results.json"
+        if classify_file.exists():
+            shutil.copy2(classify_file, new_dir / "classification_results.json")
+            print(f"   ✓ Copied: classification_results.json")
+
+    # 3. Copy search stage output
     if "search" in keep_stages:
         search_file = source_dir / "search_results.json"
         if search_file.exists():
@@ -222,14 +229,14 @@ def truncate_results(source_dir: Path, keep_stages: list[str], new_dir: Path):
             shutil.copytree(cluster_selection_src, cluster_selection_dst, dirs_exist_ok=True)
             print(f"   ✓ Copied: cluster_selection/")
 
-    # 3. Copy answer stage output
+    # 4. Copy answer stage output
     if "answer" in keep_stages:
         answer_file = source_dir / "answer_results.json"
         if answer_file.exists():
             shutil.copy2(answer_file, new_dir / "answer_results.json")
             print(f"   ✓ Copied: answer_results.json")
 
-    # 4. Copy evaluate stage output
+    # 5. Copy evaluate stage output
     if "evaluate" in keep_stages:
         eval_file = source_dir / "eval_results.json"
         if eval_file.exists():
@@ -246,7 +253,7 @@ def truncate_results(source_dir: Path, keep_stages: list[str], new_dir: Path):
             shutil.copy2(token_stats_file, new_dir / "token_stats.json")
             print(f"   ✓ Copied: token_stats.json")
 
-    # 5. Create new checkpoint file with only kept stages
+    # 6. Create new checkpoint file with only kept stages
     checkpoint_src = source_dir / "checkpoint_default.json"
     if checkpoint_src.exists():
         with open(checkpoint_src, 'r', encoding='utf-8') as f:

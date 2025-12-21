@@ -163,13 +163,24 @@ class QuestionClassifier:
         r"^where\s+is\s+\w+['\u2019]?s?\s+(hometown|home|birthplace)",
     ]
 
-    # Reasoning/hypothetical patterns
-    REASONING_PATTERNS = [
+    # Reasoning/hypothetical patterns (speculation about possibilities)
+    REASONING_HYPOTHETICAL_PATTERNS = [
         r"^would\s+\w+\s+(likely|still|ever|probably|pursue|want|choose|prefer)",
         r"^if\s+\w+\s+(had|didn['\u2019]t|hadn['\u2019]t|were|wasn['\u2019]t)",
         r"^could\s+\w+\s+(have|be)\s+",
         r"^might\s+\w+\s+(have|be)\s+",
         r"^do\s+you\s+think\s+\w+\s+would",
+    ]
+
+    # Reasoning/inference patterns (questions about actual reasons/causes)
+    REASONING_INFERENCE_PATTERNS = [
+        r"^why\s+did\s+\w+",
+        r"^why\s+does\s+\w+",
+        r"^why\s+is\s+\w+",
+        r"^how\s+come\s+\w+",
+        r"^what\s+caused\s+\w+",
+        r"^what\s+led\s+(to|up\s+to)\s+",
+        r"^how\s+did\s+\w+\s+(become|get|start|decide)",
     ]
 
     # Time calculation patterns
@@ -202,7 +213,8 @@ class QuestionClassifier:
             QuestionType.ATTRIBUTE_IDENTITY: [re.compile(p, re.IGNORECASE) for p in self.ATTRIBUTE_IDENTITY_PATTERNS],
             QuestionType.ATTRIBUTE_PREFERENCE: [re.compile(p, re.IGNORECASE) for p in self.ATTRIBUTE_PREFERENCE_PATTERNS],
             QuestionType.ATTRIBUTE_LOCATION: [re.compile(p, re.IGNORECASE) for p in self.ATTRIBUTE_LOCATION_PATTERNS],
-            QuestionType.REASONING_HYPOTHETICAL: [re.compile(p, re.IGNORECASE) for p in self.REASONING_PATTERNS],
+            QuestionType.REASONING_HYPOTHETICAL: [re.compile(p, re.IGNORECASE) for p in self.REASONING_HYPOTHETICAL_PATTERNS],
+            QuestionType.REASONING_INFERENCE: [re.compile(p, re.IGNORECASE) for p in self.REASONING_INFERENCE_PATTERNS],
             QuestionType.TIME_CALCULATION: [re.compile(p, re.IGNORECASE) for p in self.TIME_CALCULATION_PATTERNS],
         }
         self._career_patterns = [re.compile(p, re.IGNORECASE) for p in self.CAREER_PATTERNS]
@@ -248,6 +260,86 @@ class QuestionClassifier:
             detected_patterns=detected_patterns,
         )
 
+    # =============================================================================
+    # Strategy Mapping (shared between _create_result and _get_strategy)
+    # =============================================================================
+
+    # Map question types to strategies
+    TYPE_TO_STRATEGY = {
+        # EVENT_TEMPORAL -> Pure Agentic (avoid time confusion from multi-timepoint clusters)
+        # Based on error analysis: 69% of GEC errors involve temporal confusion
+        QuestionType.EVENT_TEMPORAL: RetrievalStrategy.AGENTIC_ONLY,
+
+        # EVENT_ACTIVITY -> Keep GEC cluster_rerank (activity aggregation benefits from clustering)
+        QuestionType.EVENT_ACTIVITY: RetrievalStrategy.GEC_CLUSTER_RERANK,
+
+        # EVENT_AGGREGATION -> Downgrade to INSERT_AFTER_HIT (context expansion only)
+        QuestionType.EVENT_AGGREGATION: RetrievalStrategy.GEC_INSERT_AFTER_HIT,
+
+        # COUNTING -> Pure Agentic (precise enumeration, clusters introduce noise)
+        # Based on error analysis: 23% of GEC errors are counting/multi-hop errors
+        QuestionType.COUNTING: RetrievalStrategy.AGENTIC_ONLY,
+
+        # Attribute types -> Pure Agentic (no cluster expansion)
+        QuestionType.ATTRIBUTE_IDENTITY: RetrievalStrategy.AGENTIC_ONLY,
+        QuestionType.ATTRIBUTE_PREFERENCE: RetrievalStrategy.AGENTIC_ONLY,
+        QuestionType.ATTRIBUTE_LOCATION: RetrievalStrategy.AGENTIC_ONLY,
+
+        # Reasoning -> INSERT_AFTER_HIT (context expansion without LLM cluster selection)
+        QuestionType.REASONING_HYPOTHETICAL: RetrievalStrategy.GEC_INSERT_AFTER_HIT,
+        QuestionType.REASONING_INFERENCE: RetrievalStrategy.GEC_INSERT_AFTER_HIT,
+
+        # Time calculation -> Pure Agentic (precise data needed)
+        QuestionType.TIME_CALCULATION: RetrievalStrategy.AGENTIC_ONLY,
+
+        # Default -> INSERT_AFTER_HIT (safe fallback with context)
+        QuestionType.GENERAL: RetrievalStrategy.GEC_INSERT_AFTER_HIT,
+    }
+
+    # Confidence based on pattern match strength
+    CONFIDENCE_MAP = {
+        QuestionType.COUNTING: 0.95,           # Very clear pattern (how many, list all)
+        QuestionType.EVENT_TEMPORAL: 0.9,      # Very clear pattern
+        QuestionType.EVENT_ACTIVITY: 0.85,
+        QuestionType.EVENT_AGGREGATION: 0.8,   # Lower confidence - narrower patterns now
+        QuestionType.ATTRIBUTE_IDENTITY: 0.9,
+        QuestionType.ATTRIBUTE_PREFERENCE: 0.8,
+        QuestionType.ATTRIBUTE_LOCATION: 0.85,
+        QuestionType.REASONING_HYPOTHETICAL: 0.75,
+        QuestionType.REASONING_INFERENCE: 0.75,
+        QuestionType.TIME_CALCULATION: 0.8,
+        QuestionType.GENERAL: 0.5,
+    }
+
+    # Reasoning for each type
+    REASONING_MAP = {
+        QuestionType.COUNTING: "Counting/listing question - Agentic search for precise enumeration",
+        QuestionType.EVENT_TEMPORAL: "Temporal event question - Agentic search to avoid time confusion",
+        QuestionType.EVENT_ACTIVITY: "Activity question - GEC cluster_rerank for related activities",
+        QuestionType.EVENT_AGGREGATION: "Aggregation question - insert_after_hit for context expansion",
+        QuestionType.ATTRIBUTE_IDENTITY: "Identity/attribute question - precise Agentic search preferred",
+        QuestionType.ATTRIBUTE_PREFERENCE: "Preference question - Agentic search for specific attributes",
+        QuestionType.ATTRIBUTE_LOCATION: "Location question - Agentic search for specific facts",
+        QuestionType.REASONING_HYPOTHETICAL: "Hypothetical question - insert_after_hit for context expansion",
+        QuestionType.REASONING_INFERENCE: "Inference question - insert_after_hit for context expansion",
+        QuestionType.TIME_CALCULATION: "Time calculation - needs precise temporal data",
+        QuestionType.GENERAL: "General question - insert_after_hit for safe context expansion",
+    }
+
+    def _get_strategy(self, question_type: QuestionType) -> RetrievalStrategy:
+        """Get retrieval strategy for a question type.
+
+        This method is used by LLMQuestionClassifier to derive strategy from
+        question type for non-V4 pipelines.
+
+        Args:
+            question_type: The classified question type
+
+        Returns:
+            RetrievalStrategy for this question type
+        """
+        return self.TYPE_TO_STRATEGY.get(question_type, RetrievalStrategy.GEC_INSERT_AFTER_HIT)
+
     def _create_result(
         self,
         question_type: QuestionType,
@@ -255,74 +347,13 @@ class QuestionClassifier:
         question: str,
     ) -> ClassificationResult:
         """Create a classification result with appropriate strategy."""
-
-        # Map question types to strategies
-        type_to_strategy = {
-            # EVENT_TEMPORAL -> Pure Agentic (avoid time confusion from multi-timepoint clusters)
-            # Based on error analysis: 69% of GEC errors involve temporal confusion
-            QuestionType.EVENT_TEMPORAL: RetrievalStrategy.AGENTIC_ONLY,
-
-            # EVENT_ACTIVITY -> Keep GEC cluster_rerank (activity aggregation benefits from clustering)
-            QuestionType.EVENT_ACTIVITY: RetrievalStrategy.GEC_CLUSTER_RERANK,
-
-            # EVENT_AGGREGATION -> Downgrade to INSERT_AFTER_HIT (context expansion only)
-            QuestionType.EVENT_AGGREGATION: RetrievalStrategy.GEC_INSERT_AFTER_HIT,
-
-            # COUNTING -> Pure Agentic (precise enumeration, clusters introduce noise)
-            # Based on error analysis: 23% of GEC errors are counting/multi-hop errors
-            QuestionType.COUNTING: RetrievalStrategy.AGENTIC_ONLY,
-
-            # Attribute types -> Pure Agentic (no cluster expansion)
-            QuestionType.ATTRIBUTE_IDENTITY: RetrievalStrategy.AGENTIC_ONLY,
-            QuestionType.ATTRIBUTE_PREFERENCE: RetrievalStrategy.AGENTIC_ONLY,
-            QuestionType.ATTRIBUTE_LOCATION: RetrievalStrategy.AGENTIC_ONLY,
-
-            # Reasoning -> INSERT_AFTER_HIT (context expansion without LLM cluster selection)
-            QuestionType.REASONING_HYPOTHETICAL: RetrievalStrategy.GEC_INSERT_AFTER_HIT,
-            QuestionType.REASONING_INFERENCE: RetrievalStrategy.GEC_INSERT_AFTER_HIT,
-
-            # Time calculation -> Pure Agentic (precise data needed)
-            QuestionType.TIME_CALCULATION: RetrievalStrategy.AGENTIC_ONLY,
-
-            # Default -> INSERT_AFTER_HIT (safe fallback with context)
-            QuestionType.GENERAL: RetrievalStrategy.GEC_INSERT_AFTER_HIT,
-        }
-
-        # Confidence based on pattern match strength
-        confidence_map = {
-            QuestionType.COUNTING: 0.95,           # Very clear pattern (how many, list all)
-            QuestionType.EVENT_TEMPORAL: 0.9,      # Very clear pattern
-            QuestionType.EVENT_ACTIVITY: 0.85,
-            QuestionType.EVENT_AGGREGATION: 0.8,   # Lower confidence - narrower patterns now
-            QuestionType.ATTRIBUTE_IDENTITY: 0.9,
-            QuestionType.ATTRIBUTE_PREFERENCE: 0.8,
-            QuestionType.ATTRIBUTE_LOCATION: 0.85,
-            QuestionType.REASONING_HYPOTHETICAL: 0.75,
-            QuestionType.TIME_CALCULATION: 0.8,
-            QuestionType.GENERAL: 0.5,
-        }
-
-        # Reasoning for each type
-        reasoning_map = {
-            QuestionType.COUNTING: "Counting/listing question - Agentic search for precise enumeration",
-            QuestionType.EVENT_TEMPORAL: "Temporal event question - Agentic search to avoid time confusion",
-            QuestionType.EVENT_ACTIVITY: "Activity question - GEC cluster_rerank for related activities",
-            QuestionType.EVENT_AGGREGATION: "Aggregation question - insert_after_hit for context expansion",
-            QuestionType.ATTRIBUTE_IDENTITY: "Identity/attribute question - precise Agentic search preferred",
-            QuestionType.ATTRIBUTE_PREFERENCE: "Preference question - Agentic search for specific attributes",
-            QuestionType.ATTRIBUTE_LOCATION: "Location question - Agentic search for specific facts",
-            QuestionType.REASONING_HYPOTHETICAL: "Hypothetical question - insert_after_hit for context expansion",
-            QuestionType.TIME_CALCULATION: "Time calculation - needs precise temporal data",
-            QuestionType.GENERAL: "General question - insert_after_hit for safe context expansion",
-        }
-
-        confidence = confidence_map.get(question_type, 0.5)
+        confidence = self.CONFIDENCE_MAP.get(question_type, 0.5)
 
         return ClassificationResult(
             question_type=question_type,
-            strategy=type_to_strategy.get(question_type, RetrievalStrategy.GEC_INSERT_AFTER_HIT),
+            strategy=self.TYPE_TO_STRATEGY.get(question_type, RetrievalStrategy.GEC_INSERT_AFTER_HIT),
             confidence=confidence,
-            reasoning=reasoning_map.get(question_type, "Unknown pattern"),
+            reasoning=self.REASONING_MAP.get(question_type, "Unknown pattern"),
             detected_patterns=detected_patterns,
         )
 
@@ -332,72 +363,10 @@ class LLMQuestionClassifier:
 
     Uses an LLM to classify questions when rule-based classification
     is uncertain or for complex questions.
+
+    NOTE: The prompt is imported from prompts/memory/en/eval/classify/single_classification_prompts.py
+    to ensure consistency with batch classification used in Classify Stage.
     """
-
-    CLASSIFICATION_PROMPT = """You are a question classifier for a memory retrieval system.
-
-## Task
-Classify the following question to determine the best retrieval strategy.
-
-## Question
-{question}
-
-## Question Categories
-
-### 1. EVENT_TEMPORAL (Use: Group Event Cluster)
-Questions about when specific events happened.
-Examples:
-- "When did Caroline go to the LGBTQ support group?"
-- "When did Melanie paint a sunrise?"
-- "When is Caroline going to the conference?"
-
-### 2. EVENT_ACTIVITY (Use: Group Event Cluster)
-Questions about activities someone does/did.
-Examples:
-- "What activities does Melanie partake in?"
-- "What does Melanie do to destress?"
-
-### 3. EVENT_AGGREGATION (Use: Group Event Cluster)
-Questions requiring aggregation of multiple events/items.
-Examples:
-- "What books has Melanie read?"
-- "Where has Melanie camped?"
-
-### 4. ATTRIBUTE_IDENTITY (Use: Agentic Retrieval)
-Questions about fixed attributes, identity, or status.
-Examples:
-- "What is Caroline's identity?"
-- "What is Caroline's relationship status?"
-
-### 5. ATTRIBUTE_PREFERENCE (Use: Agentic Retrieval)
-Questions about preferences or likes/dislikes.
-Examples:
-- "What do Melanie's kids like?"
-- "What is Caroline's favorite book?"
-
-### 6. ATTRIBUTE_LOCATION (Use: Agentic Retrieval)
-Questions about locations, origins, or places.
-Examples:
-- "Where did Caroline move from?"
-- "Where does Melanie live?"
-
-### 7. REASONING_HYPOTHETICAL (Use: Insert After Hit)
-Hypothetical or conditional questions requiring inference.
-Examples:
-- "Would Caroline pursue writing as a career option?"
-- "Would Caroline likely have Dr. Seuss books?"
-
-### 8. TIME_CALCULATION (Use: Agentic Retrieval)
-Questions requiring time calculations or duration.
-Examples:
-- "How long has Caroline had her friends?"
-- "How long ago was Caroline's birthday?"
-
-## Response Format (JSON)
-{{"category": "EVENT_TEMPORAL", "strategy": "gec_cluster_rerank", "confidence": 0.9, "reasoning": "Brief explanation"}}
-
-Valid strategies: "gec_cluster_rerank", "gec_insert_after_hit", "agentic_only"
-Respond with JSON only."""
 
     def __init__(self, llm_provider=None, llm_config: Optional[Dict[str, Any]] = None):
         """Initialize with LLM provider.
@@ -423,7 +392,11 @@ Respond with JSON only."""
             logger.warning("LLM provider not configured, falling back to rule-based classifier")
             return QuestionClassifier().classify(question)
 
-        prompt = self.CLASSIFICATION_PROMPT.format(question=question)
+        # Import prompt from centralized location
+        from prompts.memory.en.eval.classify.single_classification_prompts import (
+            get_single_classification_prompt
+        )
+        prompt = get_single_classification_prompt(question)
 
         try:
             response = await self._call_llm(prompt)
@@ -465,7 +438,7 @@ Respond with JSON only."""
         try:
             data = json.loads(response)
 
-            # Map category to QuestionType
+            # Map category to QuestionType - ALL 11 categories
             category_map = {
                 "EVENT_TEMPORAL": QuestionType.EVENT_TEMPORAL,
                 "EVENT_ACTIVITY": QuestionType.EVENT_ACTIVITY,
@@ -474,19 +447,23 @@ Respond with JSON only."""
                 "ATTRIBUTE_PREFERENCE": QuestionType.ATTRIBUTE_PREFERENCE,
                 "ATTRIBUTE_LOCATION": QuestionType.ATTRIBUTE_LOCATION,
                 "REASONING_HYPOTHETICAL": QuestionType.REASONING_HYPOTHETICAL,
+                "REASONING_INFERENCE": QuestionType.REASONING_INFERENCE,
                 "TIME_CALCULATION": QuestionType.TIME_CALCULATION,
+                "COUNTING": QuestionType.COUNTING,
+                "GENERAL": QuestionType.GENERAL,
             }
 
-            # Map strategy string to enum
-            strategy_map = {
-                "gec_cluster_rerank": RetrievalStrategy.GEC_CLUSTER_RERANK,
-                "gec_insert_after_hit": RetrievalStrategy.GEC_INSERT_AFTER_HIT,
-                "agentic_only": RetrievalStrategy.AGENTIC_ONLY,
-            }
+            # Derive strategy from question_type (for non-V4 pipelines)
+            # V4 doesn't use this, but V1/V2/V3 might
+            question_type = category_map.get(
+                data.get("category", "").upper(),
+                QuestionType.GENERAL
+            )
+            strategy = QuestionClassifier()._get_strategy(question_type)
 
             return ClassificationResult(
-                question_type=category_map.get(data.get("category", ""), QuestionType.GENERAL),
-                strategy=strategy_map.get(data.get("strategy", ""), RetrievalStrategy.GEC_INSERT_AFTER_HIT),
+                question_type=question_type,
+                strategy=strategy,
                 confidence=float(data.get("confidence", 0.5)),
                 reasoning=data.get("reasoning", "LLM classification"),
                 detected_patterns=["llm_classification"],

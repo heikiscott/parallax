@@ -5,6 +5,7 @@ Nodes are organized by stage:
 - common.py: Shared utilities
 - add_node.py: Add stage (index building) for V1/V2/V3
 - add_node_v4.py: Add stage for V4 (fine-grained MemUnit extraction)
+- classify_node.py: Classify stage (batch question classification)
 - cluster_node.py: Cluster stage (group event clustering)
 - search_node.py: Search stage for V1/V2 (BM25 + Embedding hybrid)
 - search_node_v3.py: Search stage for V3 (Pure ColBERT)
@@ -18,6 +19,7 @@ from eval.core.nodes.state import EvalState
 # Import nodes to trigger @register_node decorators
 from eval.core.nodes.add_node import eval_add_stage_node
 from eval.core.nodes.add_node_v4 import eval_add_stage_v4_node
+from eval.core.nodes.classify_node import eval_classify_stage_node
 from eval.core.nodes.cluster_node import eval_cluster_stage_node
 from eval.core.nodes.search_node import eval_search_stage_node
 from eval.core.nodes.search_node_v3 import eval_search_stage_v3_node
@@ -29,6 +31,7 @@ __all__ = [
     "EvalState",
     "eval_add_stage_node",
     "eval_add_stage_v4_node",
+    "eval_classify_stage_node",
     "eval_cluster_stage_node",
     "eval_search_stage_node",
     "eval_search_stage_v3_node",
