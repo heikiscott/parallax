@@ -446,16 +446,16 @@ retrieval:
       crag_top_n: 15  # C-RAG评估文档数
 
     event_aggregation:
-      round1_top_n: 25  # Conv8-14配置
-      round2_top_n: 40
-      merge_budget: 45
-      final_top_n: 25
+      round1_top_n: 50
+      round2_top_n: 100
+      merge_budget: 150
+      final_top_n: 100
       # 聚合问题需要更多上下文
-      truncate_min: 15
-      truncate_max: 55
+      truncate_min: 80
+      truncate_max: 150
       truncate_score_ratio: 0.35
       force_round2: true
-      crag_top_n: 12  # C-RAG评估文档数
+      crag_top_n: 50  # C-RAG评估文档数
 
     time_calculation:
       round1_top_n: 25  # Conv8-14配置
