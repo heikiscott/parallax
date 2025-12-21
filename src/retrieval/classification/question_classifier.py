@@ -70,13 +70,10 @@ class ClassificationResult:
 
     # Additional metadata
     detected_patterns: List[str] = None  # Patterns that triggered classification
-    entities: List[str] = None           # Detected entities (names, etc.)
 
     def __post_init__(self):
         if self.detected_patterns is None:
             self.detected_patterns = []
-        if self.entities is None:
-            self.entities = []
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -85,7 +82,6 @@ class ClassificationResult:
             "confidence": self.confidence,
             "reasoning": self.reasoning,
             "detected_patterns": self.detected_patterns,
-            "entities": self.entities,
         }
 
 

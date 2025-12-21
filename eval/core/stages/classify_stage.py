@@ -297,7 +297,6 @@ def _parse_batch_response(
                     "confidence": float(item.get("confidence", 0.5)),
                     "reasoning": item.get("reasoning", "LLM batch classification"),
                     "detected_patterns": ["llm_batch_classification"],
-                    "entities": [],
                 })
             else:
                 # Fallback for missing items - should not happen with improved prompt

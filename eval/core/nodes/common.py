@@ -59,7 +59,6 @@ def load_answer_results(output_dir: Path) -> List[AnswerResult]:
             category=item.get("category"),
             conversation_id=item.get("conversation_id", ""),
             formatted_context=item.get("formatted_context", ""),
-            metadata=item.get("metadata", {}),
         )
         for item in answer_data
     ]
@@ -77,7 +76,6 @@ def save_answer_results(output_dir: Path, answer_results: List[AnswerResult], lo
             "category": ar.category,
             "conversation_id": ar.conversation_id,
             "formatted_context": ar.formatted_context,
-            "metadata": ar.metadata,
         }
         for ar in answer_results
     ]
