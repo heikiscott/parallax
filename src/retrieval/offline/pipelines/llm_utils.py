@@ -18,7 +18,13 @@ from prompts.memory.en.eval.search.sufficiency_check_prompts import SUFFICIENCY_
 from prompts.memory.en.eval.search.refined_query_prompts import REFINED_QUERY_PROMPT
 from prompts.memory.en.eval.search.multi_query_prompts import MULTI_QUERY_GENERATION_PROMPT
 from prompts.memory.en.eval.search.retrieval_evaluator_prompts import RETRIEVAL_EVALUATOR_PROMPT
+from prompts.memory.en.eval.search.retrieval_evaluator_simple import RETRIEVAL_EVALUATOR_SIMPLE_PROMPT
+from prompts.memory.en.eval.search.retrieval_evaluator_temporal import RETRIEVAL_EVALUATOR_TEMPORAL_PROMPT
+from prompts.memory.en.eval.search.retrieval_evaluator_complex import RETRIEVAL_EVALUATOR_COMPLEX_PROMPT
 from prompts.memory.en.eval.search.corrective_query_prompts import CORRECTIVE_QUERY_PROMPT
+
+# Import QuestionType for prompt selection
+from retrieval.classification.question_classifier import QuestionType
 
 
 def format_documents_for_llm(
@@ -456,12 +462,69 @@ def parse_evaluator_response(response: str) -> dict:
         }
 
 
+def select_evaluator_prompt(question_type: QuestionType) -> str:
+    """Select the appropriate C-RAG evaluator prompt based on question type.
+
+    Simple questions (single-point facts):
+    - attribute_identity, attribute_preference, attribute_location
+    - event_activity, general
+    → Use binary classification (simpler, more direct)
+
+    Temporal questions (time-focused reasoning):
+    - event_temporal, time_calculation
+    → Use temporal-focused three-way classification
+
+    Complex questions (multi-step aggregation/reasoning):
+    - event_aggregation, counting, reasoning_hypothetical, reasoning_inference
+    → Use complex three-way classification
+
+    Args:
+        question_type: QuestionType enum
+
+    Returns:
+        The appropriate prompt template
+    """
+    # Simple questions - binary classification
+    simple_types = {
+        QuestionType.ATTRIBUTE_IDENTITY,
+        QuestionType.ATTRIBUTE_PREFERENCE,
+        QuestionType.ATTRIBUTE_LOCATION,
+        QuestionType.EVENT_ACTIVITY,
+        QuestionType.GENERAL,
+    }
+
+    # Temporal questions - time-focused evaluation
+    temporal_types = {
+        QuestionType.EVENT_TEMPORAL,
+        QuestionType.TIME_CALCULATION,
+    }
+
+    # Complex questions - multi-step reasoning
+    complex_types = {
+        QuestionType.EVENT_AGGREGATION,
+        QuestionType.COUNTING,
+        QuestionType.REASONING_HYPOTHETICAL,
+        QuestionType.REASONING_INFERENCE,
+    }
+
+    if question_type in simple_types:
+        return RETRIEVAL_EVALUATOR_SIMPLE_PROMPT
+    elif question_type in temporal_types:
+        return RETRIEVAL_EVALUATOR_TEMPORAL_PROMPT
+    elif question_type in complex_types:
+        return RETRIEVAL_EVALUATOR_COMPLEX_PROMPT
+    else:
+        # Fallback to original V4 prompt for unknown types
+        return RETRIEVAL_EVALUATOR_PROMPT
+
+
 async def evaluate_retrieval(
     query: str,
     results: List[Tuple[dict, float]],
     llm_provider,
     llm_config: dict,
-    max_docs: int = 10
+    max_docs: int = 10,
+    question_type: Optional[QuestionType] = None
 ) -> Tuple[str, float, str, List[str], List[str], str]:
     """Evaluate retrieval quality using C-RAG three-way classification.
 
@@ -470,12 +533,18 @@ async def evaluate_retrieval(
     - AMBIGUOUS: Documents are relevant but incomplete (needs supplementary retrieval)
     - INCORRECT: Documents are irrelevant/wrong direction (needs corrective retrieval)
 
+    The prompt used for evaluation is selected based on question type:
+    - Simple questions (attribute_*, event_activity, general): Binary classification
+    - Temporal questions (event_temporal, time_calculation): Time-focused evaluation
+    - Complex questions (event_aggregation, counting, reasoning_*): Multi-step reasoning
+
     Args:
         query: User query
         results: Retrieval results (Top K)
         llm_provider: LLM Provider instance
         llm_config: LLM configuration dict
         max_docs: Maximum documents to evaluate
+        question_type: QuestionType enum for prompt selection (optional)
 
     Returns:
         (evaluation_type, confidence, reasoning, missing_info, incorrect_aspects, correct_direction)
@@ -495,8 +564,14 @@ async def evaluate_retrieval(
             use_episode=True
         )
 
+        # Select prompt based on question type
+        if question_type:
+            prompt_template = select_evaluator_prompt(question_type)
+        else:
+            prompt_template = RETRIEVAL_EVALUATOR_PROMPT  # Fallback to default
+
         # Build prompt
-        prompt = RETRIEVAL_EVALUATOR_PROMPT.format(
+        prompt = prompt_template.format(
             query=query,
             retrieved_docs=retrieved_docs
         )

@@ -433,10 +433,30 @@ Respond with JSON only."""
             return QuestionClassifier().classify(question)
 
     async def _call_llm(self, prompt: str) -> str:
-        """Call the LLM with the classification prompt."""
-        # Implementation depends on the LLM provider interface
-        # This is a placeholder - actual implementation would use the provider's API
-        raise NotImplementedError("LLM provider interface not implemented")
+        """Call the LLM with the classification prompt.
+
+        Uses OpenAI API with GPT-4o-mini for cost-effective classification.
+
+        Args:
+            prompt: Formatted classification prompt with question
+
+        Returns:
+            LLM response string (JSON format)
+
+        Raises:
+            Exception: If LLM call fails (caught by classify() for fallback)
+        """
+        try:
+            response = await self.llm_provider.generate(
+                prompt=prompt,
+                temperature=self.llm_config.get("temperature", 0.0),
+                max_tokens=self.llm_config.get("max_tokens", 150),
+                response_format={"type": "json_object"},  # OpenAI JSON mode
+            )
+            return response.strip()
+        except Exception as e:
+            logger.error(f"LLM classification API call failed: {e}")
+            raise  # Re-raise to trigger fallback in classify()
 
     def _parse_llm_response(self, response: str, question: str) -> ClassificationResult:
         """Parse LLM response into ClassificationResult."""

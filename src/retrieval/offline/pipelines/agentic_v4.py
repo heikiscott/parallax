@@ -59,6 +59,7 @@ from .llm_utils import (
 
 from retrieval.classification.question_classifier import (
     QuestionClassifier,
+    LLMQuestionClassifier,
     QuestionType,
     ClassificationResult,
 )
@@ -66,6 +67,10 @@ from prompts.memory.en.eval.search.type_aware_multi_query_prompts import (
     should_use_multi_query,
     get_prompt_for_type,
 )
+from prompts.memory.en.eval.search.retrieval_evaluator_simple import RETRIEVAL_EVALUATOR_SIMPLE_PROMPT
+from prompts.memory.en.eval.search.retrieval_evaluator_temporal import RETRIEVAL_EVALUATOR_TEMPORAL_PROMPT
+from prompts.memory.en.eval.search.retrieval_evaluator_complex import RETRIEVAL_EVALUATOR_COMPLEX_PROMPT
+from retrieval.offline.pipelines.llm_utils import select_evaluator_prompt
 
 logger = logging.getLogger(__name__)
 
@@ -516,15 +521,31 @@ async def agentic_retrieval_v4(
     logger.info(f"{'='*60}")
 
     # ========== Step 1: Question Classification ==========
-    classifier = QuestionClassifier()
-    classification: ClassificationResult = classifier.classify(query)
+    use_llm_classification = _get_v4_config(config, 'use_llm_classification', True)
 
+    if use_llm_classification:
+        logger.info(f"  [Classify] Using LLM classifier (GPT-4o-mini)")
+        classifier = LLMQuestionClassifier(
+            llm_provider=llm_provider,
+            llm_config={
+                "temperature": _get_v4_config(config, 'classification_temperature', 0.0),
+                "max_tokens": _get_v4_config(config, 'classification_max_tokens', 150),
+            }
+        )
+        classification = await classifier.classify(query)
+    else:
+        logger.info(f"  [Classify] Using rule-based classifier")
+        classifier = QuestionClassifier()
+        classification = classifier.classify(query)
+
+    # Store classification results in metadata (will be saved to search_results.json)
     metadata["question_type"] = classification.question_type.value
     metadata["classification_confidence"] = classification.confidence
     metadata["classification_reasoning"] = classification.reasoning
+    metadata["classification_strategy"] = classification.strategy.value
 
     logger.info(f"  [Classify] Type: {classification.question_type.value} "
-                f"(conf={classification.confidence:.2f})")
+                f"(strategy={classification.strategy.value}, conf={classification.confidence:.2f})")
 
     # ========== Step 2: Load Type-Specific Config ==========
     type_config = _get_type_retrieval_config_v4(config, classification.question_type)
@@ -557,7 +578,9 @@ async def agentic_retrieval_v4(
     num_queries = _get_v4_config(config, 'num_queries', 3)
     confidence_threshold = _get_v4_config(config, 'confidence_threshold', 0.85)
     rrf_k = _get_v4_config(config, 'rrf_k', 60)
-    eval_top_n = _get_v4_config(config, 'eval_top_n', 5)  # Number of docs for C-RAG evaluation
+
+    # Get type-specific crag_top_n or fallback to global default
+    crag_top_n = type_config.get('crag_top_n', _get_v4_config(config, 'crag_top_n', 10))
 
     # ========== Step 3: Decide Multi-Query Strategy ==========
     use_mq_round1 = should_use_multi_query(
@@ -651,9 +674,10 @@ async def agentic_retrieval_v4(
         return [], metadata
 
     # ========== Step 5: C-RAG Evaluation ==========
-    sufficiency_check_count = min(eval_top_n, len(round1_results))
+    sufficiency_check_count = min(crag_top_n, len(round1_results))
     docs_for_check = round1_results[:sufficiency_check_count]
 
+    metadata["crag_top_n"] = crag_top_n  # Record the C-RAG evaluation document count
     logger.info(f"  [LLM] Evaluating retrieval quality on Top {sufficiency_check_count}...")
 
     eval_type, confidence, reasoning, missing_info, incorrect_aspects, correct_direction = await evaluate_retrieval(
@@ -662,6 +686,7 @@ async def agentic_retrieval_v4(
         llm_provider=llm_provider,
         llm_config=llm_config,
         max_docs=sufficiency_check_count,
+        question_type=classification.question_type,  # Pass question type for prompt selection
     )
 
     # Store evaluation results in metadata
@@ -671,7 +696,29 @@ async def agentic_retrieval_v4(
     # Backward compatibility: map to is_sufficient
     metadata["is_sufficient"] = (eval_type == "correct")
 
+    # Record which prompt version was used
+    prompt_template = select_evaluator_prompt(classification.question_type)
+    if prompt_template == RETRIEVAL_EVALUATOR_SIMPLE_PROMPT:
+        metadata["crag_prompt_version"] = "simple"
+    elif prompt_template == RETRIEVAL_EVALUATOR_TEMPORAL_PROMPT:
+        metadata["crag_prompt_version"] = "temporal"
+    elif prompt_template == RETRIEVAL_EVALUATOR_COMPLEX_PROMPT:
+        metadata["crag_prompt_version"] = "complex"
+    else:
+        metadata["crag_prompt_version"] = "default"
+
     logger.info(f"  [LLM] Result: {eval_type.upper()} (confidence: {confidence:.2f})")
+
+    # ========== Force Multi-Round for Specific Question Types ==========
+    force_round2 = type_config.get('force_round2', False)
+
+    if force_round2 and eval_type == "correct":
+        logger.info(f"  [Override] Config requires Round 2 for {classification.question_type.value}")
+        eval_type = "ambiguous"
+        metadata["forced_round2"] = True
+        metadata["forced_round2_reason"] = "type_config.force_round2=true"
+        if not missing_info:
+            missing_info = ["Type-specific verification required (configured force_round2=true)"]
 
     # ========== PATH 1: CORRECT - Return Round 1 Results ==========
     if eval_type == "correct":
