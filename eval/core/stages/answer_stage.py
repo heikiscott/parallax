@@ -175,10 +175,13 @@ OPTIONS:
 IMPORTANT: This is a multiple-choice question. You MUST analyze the context and select the BEST option. In your FINAL ANSWER, return ONLY the option letter like (a), (b), (c), or (d), nothing else."""
                 
                 # 直接调用 adapter 的 answer 方法
+                # 传递 question_type 以支持类型感知的 Answer Prompt 选择
+                question_type = search_result.retrieval_metadata.get("question_type")
                 answer = await adapter.answer(
                     query=query,
                     context=context,
                     conversation_id=search_result.conversation_id,
+                    question_type=question_type,
                 )
                 
                 answer = answer.strip()

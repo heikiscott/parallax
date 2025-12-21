@@ -980,16 +980,34 @@ class ParallaxAdapter(BaseAdapter):
 
         注意：Token 统计通过 LLMProvider 的 callback 自动收集，
         阶段信息从 context variable 中获取
+
+        Args:
+            query: 用户问题
+            context: 检索到的上下文
+            **kwargs: 额外参数，支持:
+                - question_type: 问题类型，用于选择专用 prompt
         """
         # 调用 stage4 答案生成实现
         exp_config = self._get_config()
+
+        # 🔥 根据 question_type 动态选择 Answer Prompt
+        question_type = kwargs.get("question_type")
+        if question_type:
+            try:
+                answer_prompt = response_generator.get_answer_prompt(question_type, exp_config)
+                logger.debug(f"Using prompt for question_type: {question_type}")
+            except Exception as e:
+                logger.warning(f"Failed to get prompt for {question_type}, using default: {e}")
+                answer_prompt = self.answer_prompt
+        else:
+            answer_prompt = self.answer_prompt
 
         answer = await response_generator.locomo_response(
             llm_provider=self.llm_provider,
             context=context,
             question=query,
             config=exp_config,
-            answer_prompt=self.answer_prompt,  # 传递 answer_prompt
+            answer_prompt=answer_prompt,
         )
 
         return answer

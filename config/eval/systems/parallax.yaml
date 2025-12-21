@@ -444,6 +444,8 @@ retrieval:
       truncate_score_ratio: 0.35
       force_round2: false
       crag_top_n: 15  # C-RAG评估文档数
+      # 专用 Answer Prompt（覆盖全局默认）
+      answer_prompt_module: "prompts.memory.en.eval.answer.answer_prompts_temporal"
 
     event_aggregation:
       round1_top_n: 50
@@ -467,6 +469,8 @@ retrieval:
       truncate_score_ratio: 0.4
       force_round2: false
       crag_top_n: 10  # C-RAG评估文档数
+      # 专用 Answer Prompt（覆盖全局默认）
+      answer_prompt_module: "prompts.memory.en.eval.answer.answer_prompts_temporal"
 
     # --- 计数/聚合/推理问题 ---
     counting:

@@ -6,7 +6,7 @@ import os
 import sys
 from pathlib import Path
 from time import time
-from typing import List, Dict, Optional
+from typing import List, Dict, Optional, Any
 
 import pandas as pd
 from tqdm import tqdm
@@ -21,6 +21,83 @@ from config import load_config
 
 # 使用 Memory Layer 的 LLMProvider
 from providers.llm.llm_provider import LLMProvider
+
+
+# ============================================================================
+# Prompt 缓存和加载
+# ============================================================================
+
+# 全局 prompt 缓存，避免重复 import
+_prompt_cache: Dict[str, str] = {}
+
+
+def load_prompt_module(module_path: str) -> str:
+    """
+    动态加载 prompt 模块并返回 ANSWER_PROMPT。
+
+    Args:
+        module_path: prompt 模块路径，如 "prompts.memory.en.eval.answer.answer_prompts_v3"
+
+    Returns:
+        ANSWER_PROMPT 字符串
+    """
+    if module_path in _prompt_cache:
+        return _prompt_cache[module_path]
+
+    try:
+        prompt_module = importlib.import_module(module_path)
+        # 尝试多种常见的 prompt 变量名
+        for attr_name in ["ANSWER_PROMPT", "ANSWER_PROMPT_V3", "ANSWER_PROMPT_V2", "ANSWER_PROMPT_TEMPORAL"]:
+            if hasattr(prompt_module, attr_name):
+                prompt = getattr(prompt_module, attr_name)
+                _prompt_cache[module_path] = prompt
+                return prompt
+        raise AttributeError(f"No ANSWER_PROMPT found in {module_path}")
+    except Exception as e:
+        logger.warning(f"Failed to load prompt from {module_path}: {e}")
+        raise
+
+
+def get_answer_prompt(question_type: Optional[str], config: Any) -> str:
+    """
+    根据问题类型获取对应的 Answer Prompt。
+
+    优先级：
+    1. 类型配置中的 answer_prompt_module（如果存在）
+    2. 全局默认 response.answer_prompt_module
+
+    Args:
+        question_type: 问题类型，如 "event_temporal", "attribute_identity"
+        config: 配置对象
+
+    Returns:
+        Answer Prompt 字符串
+    """
+    # 默认 prompt 模块路径
+    default_module = config.get(
+        "response.answer_prompt_module",
+        "prompts.memory.en.eval.answer.answer_prompts_v3"
+    ) if hasattr(config, 'get') else "prompts.memory.en.eval.answer.answer_prompts_v3"
+
+    # 如果有问题类型，尝试从类型配置中获取专用 prompt
+    if question_type:
+        try:
+            # 获取 v4_type_retrieval_configs
+            retrieval_cfg = getattr(config, 'retrieval', None)
+            if retrieval_cfg:
+                type_configs = getattr(retrieval_cfg, 'v4_type_retrieval_configs', None)
+                if type_configs:
+                    type_config = getattr(type_configs, question_type, None)
+                    if type_config:
+                        type_prompt_module = getattr(type_config, 'answer_prompt_module', None)
+                        if type_prompt_module:
+                            logger.debug(f"Using type-specific prompt for {question_type}: {type_prompt_module}")
+                            return load_prompt_module(type_prompt_module)
+        except Exception as e:
+            logger.debug(f"Failed to get type-specific prompt for {question_type}: {e}")
+
+    # 回退到默认 prompt
+    return load_prompt_module(default_module)
 
 
 # 🔥 Context 构建模板（从 stage3 迁移过来）
@@ -188,20 +265,20 @@ async def process_qa(
     memunit_map: Dict[str, dict],
     speaker_a: str,
     speaker_b: str,
-    answer_prompt: str,  # 新增：传入 prompt
+    default_answer_prompt: str,  # 默认 prompt（作为回退）
 ):
     """
     处理单个 QA 对（新版：从 unit_ids 构建 context）
 
     Args:
         qa: 问题和答案对
-        search_result: 检索结果（包含 unit_ids）
+        search_result: 检索结果（包含 unit_ids 和 retrieval_metadata）
         llm_provider: LLM Provider
         config: 实验配置
         memunit_map: unit_id -> memunit 的映射
         speaker_a: 说话者 A
         speaker_b: 说话者 B
-        answer_prompt: Answer Prompt 模板
+        default_answer_prompt: 默认 Answer Prompt 模板
 
     Returns:
         包含问题、答案、类别等信息的字典
@@ -210,6 +287,17 @@ async def process_qa(
     query = qa.get("question")
     gold_answer = qa.get("answer")
     qa_category = qa.get("category")
+
+    # 🔥 从 retrieval_metadata 获取 question_type
+    retrieval_metadata = search_result.get("retrieval_metadata", {})
+    question_type = retrieval_metadata.get("question_type")
+
+    # 🔥 根据 question_type 获取对应的 Answer Prompt
+    try:
+        answer_prompt = get_answer_prompt(question_type, config)
+    except Exception as e:
+        logger.warning(f"Failed to get prompt for type {question_type}, using default: {e}")
+        answer_prompt = default_answer_prompt
 
     # 🔥 从 unit_ids 构建 context（使用 top_k）
     unit_ids = search_result.get("unit_ids", [])
@@ -240,8 +328,9 @@ async def process_qa(
         "golden_answer": gold_answer,
         "search_context": context,  # 保存构建的 context
         "unit_ids_used": unit_ids[:top_k],  # 🔥 记录实际使用的 unit_ids
+        "question_type": question_type,  # 🔥 记录问题类型
         "response_duration_ms": response_duration_ms,
-        "search_duration_ms": search_result.get("retrieval_metadata", {}).get("total_latency_ms", 0),
+        "search_duration_ms": retrieval_metadata.get("total_latency_ms", 0),
     }
 
 
@@ -272,16 +361,35 @@ async def main(search_path, save_path):
     }
     config = config  # 别名以减少下游改动
 
-    # 🔥 动态加载 Answer Prompt
-    answer_prompt_module_path = config.get("response.answer_prompt_module", "prompts.memory.en.eval.answer.answer_prompts_v2")
+    # 🔥 动态加载默认 Answer Prompt
+    default_prompt_module_path = config.get("response.answer_prompt_module", "prompts.memory.en.eval.answer.answer_prompts_v3")
     try:
-        prompt_module = importlib.import_module(answer_prompt_module_path)
-        ANSWER_PROMPT = prompt_module.ANSWER_PROMPT_V2
-        print(f"✅ Loaded Answer Prompt from: {answer_prompt_module_path}")
+        DEFAULT_ANSWER_PROMPT = load_prompt_module(default_prompt_module_path)
+        print(f"✅ Loaded default Answer Prompt from: {default_prompt_module_path}")
     except Exception as e:
-        print(f"⚠️  Failed to load prompt from {answer_prompt_module_path}: {e}")
-        print(f"   Falling back to default prompt (answer_prompts_v2)")
-        from prompts.memory.en.eval.answer.answer_prompts_v2 import ANSWER_PROMPT_V2 as ANSWER_PROMPT
+        print(f"⚠️  Failed to load prompt from {default_prompt_module_path}: {e}")
+        print(f"   Falling back to built-in default prompt (answer_prompts_v3)")
+        from prompts.memory.en.eval.answer.answer_prompts_v3 import ANSWER_PROMPT_V3 as DEFAULT_ANSWER_PROMPT
+
+    # 🔥 预加载类型特定的 prompt（可选，用于启动时验证配置）
+    type_prompts_loaded = []
+    try:
+        retrieval_cfg = getattr(config, 'retrieval', None)
+        if retrieval_cfg:
+            type_configs = getattr(retrieval_cfg, 'v4_type_retrieval_configs', None)
+            if type_configs:
+                for type_name in dir(type_configs):
+                    if not type_name.startswith('_'):
+                        type_config = getattr(type_configs, type_name, None)
+                        if type_config:
+                            type_prompt_module = getattr(type_config, 'answer_prompt_module', None)
+                            if type_prompt_module:
+                                load_prompt_module(type_prompt_module)
+                                type_prompts_loaded.append(type_name)
+        if type_prompts_loaded:
+            print(f"✅ Pre-loaded type-specific prompts for: {', '.join(type_prompts_loaded)}")
+    except Exception as e:
+        print(f"⚠️  Error pre-loading type-specific prompts: {e}")
 
     # 创建 LLM Provider（替代 AsyncOpenAI）
     llm_provider = LLMProvider(
@@ -329,7 +437,7 @@ async def main(search_path, save_path):
         async with semaphore:
             result = await process_qa(
                 qa, search_result, llm_provider, config,
-                memunit_map, speaker_a, speaker_b, ANSWER_PROMPT
+                memunit_map, speaker_a, speaker_b, DEFAULT_ANSWER_PROMPT
             )
             return (group_id, result)
     
