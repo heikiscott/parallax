@@ -1,30 +1,26 @@
 <div align="center">
 
-<h1>
-  <img src="docs/assets/figs/logo.png" alt="Parallax Logo" height="40" style="vertical-align: middle; margin-right: 12px;"/>
-  Parallax
-</h1>
+<h1>Parallax</h1>
+
+<p><strong>Long-term memory that makes AI actually understand you.</strong></p>
 
 <p>
   <a href="https://everm.ai/" target="_blank">
     <img alt="Website" src="https://img.shields.io/badge/Website-everm.ai-4A90E2?style=flat-square&logo=link&logoColor=white" />
   </a>
+  <a href="https://github.com/perix-ai/parallax/releases">
+    <img alt="Release" src="https://img.shields.io/badge/release-v1.1.0-4A90E2?style=flat-square" />
+  </a>
+  <img alt="License" src="https://img.shields.io/badge/License-Apache%202.0-00B894?style=flat-square&logo=apache&logoColor=white" />
+  <img alt="Python" src="https://img.shields.io/badge/Python-3.12-0084FF?style=flat-square&logo=python&logoColor=white" />
 </p>
 
-<p><strong>Let every interaction be driven by understanding.</strong> · Enterprise-Grade Intelligent Memory System</p>
-
 <p>
-  <img alt="Python" src="https://img.shields.io/badge/Python-3.10+-0084FF?style=flat-square&logo=python&logoColor=white" />
-  <img alt="License" src="https://img.shields.io/badge/License-Apache%202.0-00B894?style=flat-square&logo=apache&logoColor=white" />
-  <img alt="Docker" src="https://img.shields.io/badge/Docker-Supported-4A90E2?style=flat-square&logo=docker&logoColor=white" />
   <img alt="FastAPI" src="https://img.shields.io/badge/FastAPI-Latest-26A69A?style=flat-square&logo=fastapi&logoColor=white" />
   <img alt="MongoDB" src="https://img.shields.io/badge/MongoDB-7.0+-00C853?style=flat-square&logo=mongodb&logoColor=white" />
   <img alt="Elasticsearch" src="https://img.shields.io/badge/Elasticsearch-8.x-0084FF?style=flat-square&logo=elasticsearch&logoColor=white" />
-  <img alt="Milvus" src="https://img.shields.io/badge/Milvus-2.4+-00A3E0?style=flat-square" />
-  <img alt="Redis" src="https://img.shields.io/badge/Redis-7.x-26A69A?style=flat-square&logo=redis&logoColor=white" />
-   <a href="https://github.com/heikiscott/parallax/releases">
-    <img alt="Release" src="https://img.shields.io/badge/release-v1.0.0-4A90E2?style=flat-square" />
-  </a>
+  <img alt="Milvus" src="https://img.shields.io/badge/Milvus-2.5+-00A3E0?style=flat-square" />
+  <img alt="Docker" src="https://img.shields.io/badge/Docker-Supported-4A90E2?style=flat-square&logo=docker&logoColor=white" />
 </p>
 
 <p>
@@ -33,396 +29,181 @@
 
 </div>
 
-<table>
-<tr>
-<td width="100%" style="border: none;">
+---
 
-**[2025-11-02] 🎉 🎉 🎉 Parallax v1.0.0 Released!**
+## What's New
 
-- ✨ **Stable Version**: AI Memory System officially open sourced  
-- 📚 **Complete Documentation**: Quick start guide and comprehensive API documentation  
-- 📈 **Benchmark Testing**: LoCoMo dataset benchmark evaluation pipeline
-- 🖥️ **Demo Tools**: Get started quickly with easy-to-use demos
+**v1.1.0** — Evaluation & Retrieval Enhancements
 
-</td>
-</tr>
-</table>
+- **Smarter retrieval**: Type-aware answer prompts for temporal, counting, and aggregation queries
+- **V4 evaluation pipeline**: Independent classification stage, C-RAG three-way evaluation, batch MemUnit extraction
+- **Improved accuracy**: Optimized retrieval budgets and smart score truncation for cleaner context
+- **New benchmarks**: Added LongMemEval and PersonaMem dataset support alongside LoCoMo
+
+<details>
+<summary>Previous releases</summary>
+
+**v1.0.0** (2025-11-02) — Initial open-source release
+- AI Memory System officially open sourced
+- Complete documentation and API reference
+- LoCoMo benchmark evaluation pipeline
+- Interactive demo tools
+
+</details>
 
 ---
 
-## 🎯 Core Vision  
-Build AI memory that never forgets, making every conversation built on previous understanding.
+## Why Parallax?
 
----
+Most AI memory systems store isolated fragments. Parallax builds **coherent narratives** — it connects conversation pieces into thematic storylines, proactively surfaces relevant context, and maintains living user profiles that evolve with every interaction.
 
-## 💡 Unique Advantages
+On the **LoCoMo** benchmark, our method achieves **92.3% reasoning accuracy** under LLM-Judge evaluation, outperforming comparable approaches.
 
 <table>
   <tr>
     <td width="33%" valign="top">
-      <h3>🔗 Coherent Narrative</h3>
-      <p><strong>Beyond "fragments," connecting "stories"</strong>: Automatically linking conversation pieces to build clear thematic context, enabling AI to "truly understand."</p>
-      <blockquote>
-        When facing multi-threaded conversations, it naturally distinguishes between "Project A progress discussion" and "Team B strategy planning," maintaining coherent contextual logic within each theme.<br/><br/>
-        From scattered phrases to complete narratives, AI no longer just "understands one sentence" but "understands the whole story."
-      </blockquote>
+      <h3>Coherent Narrative</h3>
+      <p>Automatically links conversation fragments by theme and storyline. Distinguishes "Project A progress" from "Team B strategy" and maintains coherent context within each thread.</p>
     </td>
     <td width="33%" valign="top">
-      <h3>🧠 Evidence-Based Perception</h3>
-      <p><strong>Beyond "retrieval," intelligent "perception"</strong>: Proactively capturing deep connections between memories and tasks, enabling AI to "think thoroughly" at critical moments.</p>
-      <blockquote>
-        Imagine: When a user asks for "food recommendations," the AI proactively recalls "you had dental surgery two days ago" as a key piece of information, automatically adjusting suggestions to avoid unsuitable options.<br/><br/>
-        This is <strong>Contextual Awareness</strong> — enabling AI thinking to be truly built on understanding rather than isolated responses.
-      </blockquote>
+      <h3>Evidence-Based Perception</h3>
+      <p>Proactively captures deep connections between memories and tasks. When a user asks for food recommendations, it recalls "dental surgery two days ago" and adjusts suggestions accordingly.</p>
     </td>
     <td width="33%" valign="top">
-      <h3>💾 Living Profiles</h3>
-      <p><strong>Beyond "records," dynamic "growth"</strong>: Real-time user profile updates that get to know you better with each conversation, enabling AI to "recognize you authentically."</p>
-      <blockquote>
-        Every interaction subtly updates the AI's understanding of you — preferences, style, and focus points all continuously evolve.<br/><br/>
-        As interactions deepen, it doesn't just "remember what you said," but is "learning who you are."
-      </blockquote>
+      <h3>Living Profiles</h3>
+      <p>User profiles update in real-time with each conversation — preferences, habits, and focus areas continuously evolve. It doesn't just remember what you said; it learns who you are.</p>
     </td>
   </tr>
 </table>
 
 ---
 
-## 📑 Table of Contents
+## How It Works
 
+Parallax operates in two stages: **Memory Construction** and **Memory Perception**, forming a cognitive loop that continuously absorbs, consolidates, and applies past information.
 
-<div align="center">
-<table>
-<tr>
-<td width="50%" valign="top">
+```mermaid
+graph LR
+    A["Conversation"] --> B["MemUnit\nExtraction"]
+    B --> C["Memory\nIntegration"]
+    C --> D["Storage &\nIndexing"]
+    D --> E["MongoDB\nES · Milvus"]
 
- - [📖 Project Introduction](#-project-introduction)
- - [🎯 System Framework](#-system-framework)
- - [📁 Project Structure](#-project-structure)
-- [🚀 Quick Start](#-quick-start)
-  - [Prerequisites](#prerequisites)
-  - [Installation](#installation)
-  - [How to Use](#how-to-use)
-  - [More Details](#more-details)
+    F["User Query"] --> G["Hybrid Retrieval\n(RRF)"]
+    G --> H["Reranking"]
+    H --> I{"Sufficient?"}
+    I -- Yes --> J["Context\nFusion"]
+    I -- No --> K["Agentic\nMulti-Round"]
+    K --> G
+    J --> L["Response with\nMemory Evidence"]
 
-</td>
-<td width="50%" valign="top">
+    style A fill:#4A90E2,stroke:#357ABD,color:#fff
+    style F fill:#00B894,stroke:#00997A,color:#fff
+    style L fill:#6C5CE7,stroke:#5A4BD1,color:#fff
+    style E fill:#FD79A8,stroke:#E84393,color:#fff
+```
 
-- [📚 Documentation](#-documentation)
-  - [Developer Docs](#developer-docs)
-  - [API Documentation](#api-documentation)
-  - [Core Framework](#core-framework)
-- [🏗️ Architecture Design](#️-architecture-design)
-- [🤝 Contributing](#-contributing)
-- [🌟 Join Us](#-join-us)
-- [🙏 Acknowledgments](#-acknowledgments)
+### Memory Construction
 
-</td>
-</tr>
-</table>
-</div>
+Builds structured, retrievable long-term memory from raw conversations.
+
+1. **MemUnit Extraction** — Identify key information and generate atomic memory units
+2. **Memory Integration** — Organize by theme and participants into episodes, profiles, preferences, relationships, semantic knowledge, and core memories
+3. **Storage & Indexing** — Persist to MongoDB, build keyword (Elasticsearch) and semantic (Milvus) indexes
+
+### Memory Perception
+
+Recalls relevant memories through multi-strategy retrieval and intelligent fusion.
+
+- **Hybrid Retrieval (RRF)** — Parallel semantic + keyword search fused via Reciprocal Rank Fusion
+- **Intelligent Reranking** — Deep relevance reordering with batch processing and exponential backoff
+- **Agentic Multi-Round Recall** — LLM-guided complementary queries that fill retrieval blind spots
+- **Lightweight Fast Mode** — Skip LLM calls for latency-sensitive scenarios
 
 ---
 
-## 📖 Project Introduction
-
-**Parallax** is an open-source project designed to provide long-term memory capabilities to conversational AI agents. It extracts, structures, and retrieves information from conversations, enabling agents to maintain context, recall past interactions, and progressively build user profiles. This results in more personalized, coherent, and intelligent conversations.
-
-> 📄 **Paper Coming Soon** - Our technical paper is in preparation. Stay tuned!
-
-## 🎯 System Framework
-
-Parallax operates along two main tracks: **memory construction** and **memory perception**. Together they form a cognitive loop that continuously absorbs, consolidates, and applies past information, so every response is grounded in real context and long-term memory.
-
-<p align="center">
-  <img src="docs/assets/figs/overview.png" alt="Overview" />
-</p>
-
-### 🧩 Memory Construction
-
-Memory construction layer: builds structured, retrievable long-term memory from raw conversation data.
-
-- **Core elements**
-  - ⚛️ **Atomic memory unit MemUnit**: the core structured unit distilled from conversations for downstream organization and reference
-  - 🗂️ **Multi-level memory**: integrate related fragments by theme and storyline to form reusable, hierarchical memories
-  - 🏷️ **Multiple memory types**: covering episodes, profiles, preferences, relationships, semantic knowledge, basic facts, and core memories
-
-- **Workflow**
-  1. **MemUnit extraction**: identify key information in conversations to generate atomic memories
-  2. **Memory construction**: integrate by theme and participants to form episodes and profiles
-  3. **Storage and indexing**: persist data and build keyword and semantic indexes to support fast recall
-
-### 🔎 Memory Perception
-
-Memory perception layer: quickly recalls relevant memories through multi-round reasoning and intelligent fusion, achieving precise contextual awareness.
-
-#### 🎯 Intelligent Retrieval Tools
-
-- **🧪 Hybrid Retrieval (RRF Fusion)**  
-  Parallel execution of semantic and keyword retrieval, seamlessly fused using Reciprocal Rank Fusion algorithm
-
-- **📊 Intelligent Reranking (Reranker)**  
-  Batch concurrent processing with exponential backoff retry, maintaining stability under high throughput  
-  Reorders candidate memories by deep relevance, prioritizing the most critical information
-
-#### 🤖 Agentic Intelligent Retrieval
-
-- **🎓 LLM-Guided Multi-Round Recall**  
-  For insufficient cases, generate 2-3 complementary queries, retrieve and fuse in parallel
-  Automatically identifies missing information, proactively filling retrieval blind spots
-
-- **🔀 Multi-Query Parallel Strategy**  
-  When a single query cannot fully express intent, generate multiple complementary perspective queries  
-  Enhance coverage of complex intents through multi-path RRF fusion
-
-- **⚡ Lightweight Fast Mode**  
-  For latency-sensitive scenarios, skip LLM calls and use RRF-fused hybrid retrieval  
-  Flexibly balance between speed and quality
-
-#### 🧠 Reasoning Fusion
-
-- **Context Integration**: Concatenate recalled multi-level memories (episodes, profiles, preferences) with current conversation
-- **Traceable Reasoning**: Model generates responses based on explicit memory evidence, avoiding hallucination
-
-💡 Through the cognitive loop of **"Structured Memory → Multi-Strategy Recall → Intelligent Retrieval → Contextual Reasoning"**, the AI always "thinks with memory", achieving true contextual awareness.
-
-## 📁 Project Structure
-
-<details>
-<summary>Expand/Collapse Directory Structure</summary>
-
-```
-memsys-opensource/
-├── src/                              # Source code directory
-│   ├── agents/                # Agentic layer - unified memory interface
-│   ├── memory/                 # Memory layer - memory extraction
-│   │   ├── memunit_extractor/        # MemUnit extractor
-│   │   ├── memory_extractor/         # Memory extractor
-│   │   └── prompts/                  # LLM prompt templates
-│   ├── retrieval_layer/              # Retrieval layer - memory retrieval
-│   ├── services/                    # Business layer - business logic
-│   ├── infrastructure/                  # Infrastructure layer
-│   ├── core/                         # Core functionality (DI/lifecycle/middleware)
-│   ├── component/                    # Components (LLM adapters, etc.)
-│   └── utils/                 # Common utilities
-├── demo/                             # Demo code
-├── data/                             # Sample conversation data
-├── evaluation/                       # Evaluation scripts
-│   └── src/                          # Evaluation framework source code
-├── docs/data_format/                      # Data format definitions
-├── docs/                             # Documentation
-├── config.json                       # Configuration file
-├── env.template                      # Environment variable template
-├── pyproject.toml                    # Project configuration
-└── README.md                         # Project description
-```
-
-</details>
-
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 
-- Python 3.10+
-- uv (recommended package manager)
-- Docker 20.10+ and Docker Compose 2.0+
-- **At least 4GB of available RAM** (for Elasticsearch and Milvus)
+- Python 3.12, [uv](https://github.com/astral-sh/uv)
+- Docker 20.10+ & Docker Compose 2.0+
+- At least 4GB RAM (for Elasticsearch and Milvus)
 
-### Installation
-
-#### Using Docker for Dependency Services ⭐
-
-Use Docker Compose to start all dependency services (MongoDB, Elasticsearch, Milvus, Redis) with one command:
+### Setup
 
 ```bash
-# 1. Clone the repository
-git clone https://github.com/heikiscott/parallax.git
-cd Parallax
+# Clone and enter the project
+git clone https://github.com/perix-ai/parallax.git
+cd parallax
 
-# 2. Start Docker services
+# Start infrastructure (MongoDB, Elasticsearch, Milvus, Redis)
 docker-compose up -d
 
-# 3. Verify service status
-docker-compose ps
-
-# 4. Install uv (if not already installed)
-curl -LsSf https://astral.sh/uv/install.sh | sh
-
-# 5. Install project dependencies
+# Install dependencies
 uv sync
 
-# 6. Configure environment variables
-cp env.template .env
-# Edit the .env file and fill in the necessary configurations:
-#   - LLM_API_KEY: Enter your LLM API Key (for memory extraction)
-#   - DEEPINFRA_API_KEY: Enter your DeepInfra API Key (for Embedding and Rerank)
+# Configure environment
+cp config/secrets/secrets.template.yaml config/secrets/secrets.yaml
+# Edit secrets.yaml — set your LLM_API_KEY and DEEPINFRA_API_KEY
 ```
 
-**Docker Services**:
-| Service | Host Port | Container Port | Purpose |
-|---------|-----------|----------------|---------|
-| **MongoDB** | 27017 | 27017 | Primary database for storing memory units and profiles |
-| **Elasticsearch** | 19200 | 9200 | Keyword search engine (BM25) |
-| **Milvus** | 19530 | 19530 | Vector database for semantic retrieval |
-| **Redis** | 6379 | 6379 | Cache service |
+<details>
+<summary>Docker service details</summary>
 
-> 💡 **Connection Tips**:
-> - Use **host ports** when connecting (e.g., `localhost:19200` for Elasticsearch)
-> - MongoDB credentials: `admin` / `memsys123` (local development only)
-> - Stop services: `docker-compose down` | View logs: `docker-compose logs -f`
+| Service | Port | Purpose |
+|---------|------|---------|
+| MongoDB | 27017 | Primary database for memory units and profiles |
+| Elasticsearch | 19200 | Keyword search engine (BM25) |
+| Milvus | 19530 | Vector database for semantic retrieval |
+| Redis | 6379 | Cache |
 
-> 📖 MongoDB detailed installation guide: [MongoDB Installation Guide](docs/usage/MONGODB_GUIDE.md)
+</details>
 
----
-
-### How to Use
-
-Parallax offers multiple usage methods. Choose the one that best suits your needs:
-
----
-
-#### 🎯 Run Demo: Memory Extraction and Interactive Chat
-
-The demo showcases the end-to-end functionality of Parallax.
-
----
-
-**🚀 Quick Start: Simple Demo (Recommended)** ⭐
-
-The fastest way to experience Parallax! Just 2 steps to see memory storage and retrieval in action:
+### Try the Demo
 
 ```bash
-# Step 1: Start the API server (in terminal 1)
+# Terminal 1: Start the API server
 uv run python src/bootstrap.py src/run.py --port 8001
 
-# Step 2: Run the simple demo (in terminal 2)
+# Terminal 2: Run the quick demo
 uv run python src/bootstrap.py demo/simple_demo.py
 ```
 
-**What it does:**
-- Stores 4 conversation messages about sports hobbies
-- Waits 10 seconds for indexing
-- Searches for relevant memories with 3 different queries
-- Shows complete workflow with friendly explanations
+The demo stores a few conversation messages, waits for indexing, then retrieves relevant memories with different queries — showing the full store → index → search workflow.
 
-**Perfect for:** First-time users, quick testing, understanding core concepts
+### Full Experience
 
-See the demo code at [`demo/simple_demo.py`](demo/simple_demo.py)
-
----
-
-We also provide a full-featured experience:
-
-**Prerequisites: Start the API Server**
+For a complete walkthrough with memory extraction and interactive chat:
 
 ```bash
-# Terminal 1: Start the API server (required)
-uv run python src/bootstrap.py src/run.py --port 8001
-```
-
-> 💡 **Tip**: Keep the API server running throughout. All following operations should be performed in another terminal.
-
----
-
-**Step 1: Extract Memories**
-
-Run the memory extraction script to process sample conversation data and build the memory database:
-
-```bash
-# Terminal 2: Run the extraction script
+# Extract memories from sample conversations
 uv run python src/bootstrap.py demo/extract_memory.py
-```
 
-This script performs the following actions:
-- Calls `demo.tools.clear_all_data.clear_all_memories()` so the demo starts from an empty MongoDB/Elasticsearch/Milvus/Redis state. Ensure the dependency stack launched by `docker-compose` is running before executing the script, otherwise the wipe step will fail.
-- Loads `data/assistant_chat_zh.json`, appends `scene="assistant"` to each message, and streams every entry to `http://localhost:8001/api/v3/agentic/memorize`. Update the `base_url`, `data_file`, or `profile_scene` constants in `demo/extract_memory.py` if you host the API on another endpoint or want to ingest a different scenario.
-- Writes through the HTTP API only: MemUnits, episodes, and profiles are created inside your databases, not under `demo/memunit_outputs/`. Inspect MongoDB (and Milvus/Elasticsearch) to verify ingestion or proceed directly to the chat demo.
-
-> **💡 Tip**: For detailed configuration instructions and usage guide, please refer to the [Demo Documentation](demo/README.md).
-
-**Step 2: Chat with Memory**
-
-After extracting memories, start the interactive chat demo:
-
-```bash
-# Terminal 2: Run the chat program (ensure API server is still running)
+# Start interactive chat with memory
 uv run python src/bootstrap.py demo/chat_with_memory.py
 ```
 
-This program loads `.env` via `python-dotenv`, verifies that at least one LLM key (`LLM_API_KEY`, `OPENROUTER_API_KEY`, or `OPENAI_API_KEY`) is available, and connects to MongoDB through `demo.utils.ensure_mongo_beanie_ready` to enumerate groups that already contain MemUnits. Each user query invokes `api/v3/agentic/retrieve_lightweight` unless you explicitly select the Agentic mode, in which case the orchestrator switches to `api/v3/agentic/retrieve_agentic` and warns about the additional LLM latency.
-
-**Interactive Workflow:**
-1. **Select Language**: Choose a zh or en terminal UI.
-2. **Select Scenario Mode**: Assistant (one-on-one) or Group Chat (multi-speaker analysis).
-3. **Select Conversation Group**: Groups are read live from MongoDB via `query_all_groups_from_mongodb`; run the extraction step first so the list is non-empty.
-4. **Select Retrieval Mode**: `rrf`, `embedding`, `bm25`, or LLM-guided Agentic retrieval.
-5. **Start Chatting**: Pose questions, inspect the retrieved memories that are displayed before each response, and use `help`, `clear`, `reload`, or `exit` to manage the session.
+See the [Demo Guide](demo/README.md) for detailed instructions.
 
 ---
 
-#### 📊 Run Evaluation: Performance Testing
+## API
 
-The evaluation framework provides a unified, modular way to benchmark memory systems on standard datasets (LoCoMo, LongMemEval, PersonaMem).
-
-
-**Full Evaluation**:
+Start the API server, then use the V3 endpoints:
 
 ```bash
-# Evaluate parallax on LoCoMo benchmark
-uv run python -m evaluation.cli --dataset locomo --system parallax
-
-# Evaluate on other datasets
-uv run python -m evaluation.cli --dataset longmemeval --system parallax
-uv run python -m evaluation.cli --dataset personamem --system parallax
-
-# Use --run-name to distinguish multiple runs (useful for A/B testing)
-uv run python -m evaluation.cli --dataset locomo --system parallax --run-name baseline
-uv run python -m evaluation.cli --dataset locomo --system parallax --run-name experiment1
-
-# Resume from checkpoint if interrupted (automatic)
-# Just re-run the same command - it will detect and resume from checkpoint
-uv run python -m evaluation.cli --dataset locomo --system parallax
-```
-
-**View Results**:
-
-```bash
-# Results are saved to evaluation/results/{dataset}-{system}[-{run-name}]/
-cat evaluation/results/locomo-parallax/report.txt          # Summary metrics
-cat evaluation/results/locomo-parallax/eval_results.json   # Detailed per-question results
-cat evaluation/results/locomo-parallax/pipeline.log        # Execution logs
-```
-
-The evaluation pipeline consists of 4 stages (add → search → answer → evaluate) with automatic checkpointing and resume support.
-
-> **⚙️ Evaluation Configuration**:
-> - **Data Preparation**: Place datasets in `evaluation/data/` (see `evaluation/README.md`)
-> - **Environment**: Configure `.env` with LLM API keys (see `env.template`)
-> - **Installation**: Run `uv sync --group evaluation` to install dependencies
-> - **Custom Config**: Copy and modify YAML files in `evaluation/config/systems/` or `evaluation/config/datasets/`
-> - **Advanced Usage**: See `evaluation/README.md` for checkpoint management, stage-specific runs, and system comparisons
-
----
-
-#### 🔌 Call API Endpoints
-
-**Prerequisites: Start the API Server**
-
-Before calling the API, make sure the API server is running:
-
-```bash
-# Start the API server
 uv run python src/bootstrap.py src/run.py --port 8001
 ```
 
-> 💡 **Tip**: Keep the API server running throughout. All following API calls should be performed in another terminal.
-
----
-
-Use V3 API to store single message memory:
+| Endpoint | Description |
+|----------|-------------|
+| `POST /api/v3/agentic/memorize` | Store a single message |
+| `POST /api/v3/agentic/retrieve_lightweight` | Fast retrieval (Embedding + BM25 + RRF) |
+| `POST /api/v3/agentic/retrieve_agentic` | Intelligent retrieval (LLM-guided multi-round) |
 
 <details>
-<summary>Example: Store single message memory</summary>
+<summary>Example: Store a message</summary>
 
 ```bash
 curl -X POST http://localhost:8001/api/v3/agentic/memorize \
@@ -441,40 +222,8 @@ curl -X POST http://localhost:8001/api/v3/agentic/memorize \
 
 </details>
 
-> ℹ️ `scene` is a required field, only supports `assistant` or `group_chat`, used to specify memory extraction strategy.
-> ℹ️ By default, all memory types are extracted and stored
-
-**API Features**:
-
-- **`/api/v3/agentic/memorize`**: Store single message memory
-- **`/api/v3/agentic/retrieve_lightweight`**: Lightweight memory retrieval (Embedding + BM25 + RRF)
-- **`/api/v3/agentic/retrieve_agentic`**: Agentic memory retrieval (LLM-guided multi-round intelligent retrieval)
-
-For more API details, please refer to [Agentic V3 API Documentation](docs/api_docs/agentic_v3_api.md).
-
----
-
-**🔍 Retrieve Memories**
-
-Parallax provides two retrieval modes: **Lightweight** (fast) and **Agentic** (intelligent).
-
-**Lightweight Retrieval**
-
-| Parameter | Required | Description |
-|-----------|----------|-------------|
-| `query` | Yes* | Natural language query (*optional for profile data source) |
-| `user_id` | No | User ID |
-| `data_source` | Yes | `episode` / `event_log` / `semantic_memory` / `profile` |
-| `memory_scope` | Yes | `personal` (user_id only) / `group` (group_id only) / `all` (both) |
-| `retrieval_mode` | Yes | `embedding` / `bm25` / `rrf` (recommended) |
-| `group_id` | No | Group ID |
-| `current_time` | No | Filter valid semantic_memory (format: YYYY-MM-DD) |
-| `top_k` | No | Number of results (default: 5) |
-
-**Example 1: Personal Memory**
-
 <details>
-<summary>Example: Personal Memory Retrieval</summary>
+<summary>Example: Retrieve memories</summary>
 
 ```bash
 curl -X POST http://localhost:8001/api/v3/agentic/retrieve_lightweight \
@@ -490,236 +239,155 @@ curl -X POST http://localhost:8001/api/v3/agentic/retrieve_lightweight \
 
 </details>
 
-**Example 2: Group Memory**
+Full API reference: [Agentic V3 API Documentation](docs/api_docs/agentic_v3_api.md)
 
-<details>
-<summary>Example: Group Memory Retrieval</summary>
+---
+
+## Evaluation
+
+Benchmark against standard datasets with the built-in evaluation framework:
 
 ```bash
-curl -X POST http://localhost:8001/api/v3/agentic/retrieve_lightweight \
-  -H "Content-Type: application/json" \
-  -d '{
-    "query": "Discuss project progress",
-    "group_id": "project_team_001",
-    "data_source": "episode",
-    "memory_scope": "group",
-    "retrieval_mode": "rrf"
-  }'
+# Install evaluation dependencies
+uv sync --group eval
+
+# Run evaluation
+uv run python -m eval.cli --dataset locomo --system parallax
+uv run python -m eval.cli --dataset longmemeval --system parallax
+uv run python -m eval.cli --dataset personamem --system parallax
+```
+
+The pipeline runs 4 stages (add → search → answer → evaluate) with automatic checkpointing and resume. See the [Evaluation Guide](eval/README.md) for details.
+
+---
+
+## Architecture
+
+```mermaid
+graph TB
+    subgraph API["API Layer"]
+        REST["FastAPI\nREST Endpoints"]
+    end
+
+    subgraph Agentic["Agentic Layer"]
+        direction LR
+        VEC["Vectorization"]
+        RET["Retrieval\n(RRF / Agentic)"]
+        RANK["Reranking"]
+    end
+
+    subgraph Memory["Memory Layer"]
+        direction LR
+        MU["MemUnit\nExtraction"]
+        ME["Memory\nExtraction"]
+        PM["Profile\nManagement"]
+    end
+
+    subgraph Services["Business Layer"]
+        direction LR
+        MEM["Memorization"]
+        SYNC["DB Sync"]
+        OPS["Data Operations"]
+    end
+
+    subgraph Infra["Infrastructure"]
+        direction LR
+        MONGO[(MongoDB)]
+        ES[(Elasticsearch)]
+        MILVUS[(Milvus)]
+        REDIS[(Redis)]
+    end
+
+    subgraph Providers["External Providers"]
+        direction LR
+        LLM["LLM\nOpenAI · Anthropic\nGemini"]
+        EMB["Embedding\n& Rerank"]
+    end
+
+    REST --> Agentic
+    REST --> Memory
+    Agentic --> Services
+    Memory --> Services
+    Services --> Infra
+    Agentic --> Providers
+    Memory --> Providers
+
+    style API fill:#4A90E2,stroke:#357ABD,color:#fff
+    style Agentic fill:#00B894,stroke:#00997A,color:#fff
+    style Memory fill:#6C5CE7,stroke:#5A4BD1,color:#fff
+    style Services fill:#FDCB6E,stroke:#F0B429,color:#333
+    style Infra fill:#FD79A8,stroke:#E84393,color:#fff
+    style Providers fill:#81ECEC,stroke:#00CEC9,color:#333
+```
+
+<details>
+<summary>Project directory structure</summary>
+
+```
+parallax/
+├── src/
+│   ├── agents/              # Agentic layer — retrieval, reranking, vectorization
+│   ├── memory/              # Memory layer — MemUnit & memory extraction, prompts
+│   ├── services/            # Business layer — memorization, sync, DB operations
+│   ├── infrastructure/      # Adapters — API controllers, MongoDB/ES/Milvus persistence
+│   ├── orchestration/       # Workflow orchestration
+│   ├── providers/           # External services — LLM (OpenAI/Anthropic/Gemini), databases
+│   ├── core/                # Framework — DI container, middleware, queue, cache, auth
+│   └── utils/               # Shared utilities
+├── demo/                    # Interactive demos and sample data
+├── eval/                    # Evaluation framework and benchmarks
+├── config/                  # YAML configuration files
+└── docs/                    # Documentation
 ```
 
 </details>
 
 ---
 
-**Agentic Retrieval**
+## Documentation
 
-LLM-guided multi-round intelligent search with automatic query refinement and result reranking.
-
-<details>
-<summary>Example: Agentic Retrieval</summary>
-
-```bash
-curl -X POST http://localhost:8001/api/v3/agentic/retrieve_agentic \
-  -H "Content-Type: application/json" \
-  -d '{
-    "query": "What foods might the user like?",
-    "user_id": "user_001",
-    "group_id": "chat_group_001",
-    "top_k": 20,
-    "llm_config": {
-      "model": "gpt-4o-mini",
-      "api_key": "your_api_key"
-    }
-  }'
-```
-
-</details>
-
-> ⚠️ Agentic retrieval requires LLM API key and takes longer, but provides higher quality results for queries requiring multiple memory sources and complex logic.
-
-> 📖 Full Documentation: [Agentic V3 API](docs/api_docs/agentic_v3_api.md) | Testing Tool: `demo/tools/test_retrieval_comprehensive.py`
+| | |
+|---|---|
+| [Quick Start Guide](docs/dev_docs/getting_started.md) | Installation and setup |
+| [API Usage Guide](docs/dev_docs/api_usage_guide.md) | Endpoints and data formats |
+| [Development Guide](docs/dev_docs/development_guide.md) | Architecture and best practices |
+| [Demo Guide](demo/README.md) | Interactive examples |
+| [Evaluation Guide](eval/README.md) | Benchmarking on standard datasets |
+| [Agentic V3 API](docs/api_docs/agentic_v3_api.md) | Full API reference |
 
 ---
 
-#### 📦 Batch Store Group Chat Memory
+## Contributing
 
-Parallax supports a standardized group chat data format ([GroupChatFormat](docs/data_format/group_chat/group_chat_format.md)). You can use scripts for batch storage:
+We welcome contributions of all kinds — bug reports, feature requests, and code improvements.
 
-```bash
-# Use script for batch storage (Chinese data)
-uv run python src/bootstrap.py src/run_memorize.py \
-  --input data/group_chat_zh.json \
-  --api-url http://localhost:8001/api/v3/agentic/memorize \
-  --scene group_chat 
+Please read the [Contributing Guide](CONTRIBUTING.md) before getting started.
 
-# Or use English data
-uv run python src/bootstrap.py src/run_memorize.py \
-  --input data/group_chat_en.json \
-  --api-url http://localhost:8001/api/v3/agentic/memorize \
-  --scene group_chat
+---
 
-# Validate file format
-uv run python src/bootstrap.py src/run_memorize.py \
-  --input data/group_chat_en.json \
-  --scene group_chat \
-  --validate-only
-```
-
-> ℹ️ **Scene Parameter Explanation**: The `scene` parameter is required and specifies the memory extraction strategy:
-> - Use `assistant` for one-on-one conversations with AI assistant
-> - Use `group_chat` for multi-person group discussions
-> 
-> **Note**: In your data files, you may see `scene` values like `work` or `company` - these are internal scene descriptors in the data format. The `--scene` command-line parameter uses different values (`assistant`/`group_chat`) to specify which extraction pipeline to apply.
-
-**GroupChatFormat Example**:
-
-```json
-{
-  "version": "1.0.0",
-  "conversation_meta": {
-    "group_id": "group_001",
-    "name": "Project Discussion Group",
-    "user_details": {
-      "user_101": {
-        "full_name": "Alice",
-        "role": "Product Manager"
-      }
-    }
-  },
-  "conversation_list": [
-    {
-      "message_id": "msg_001",
-      "create_time": "2025-02-01T10:00:00+08:00",
-      "sender": "user_101",
-      "content": "Good morning everyone"
-    }
-  ]
-}
-```
-
-For complete format specifications, please refer to [Group Chat Format Specification](docs/data_format/group_chat/group_chat_format.md).
-
-### More Details
-
-For detailed installation, configuration, and usage instructions, please refer to:
-- 📚 [Quick Start Guide](docs/dev_docs/getting_started.md) - Complete installation and configuration steps
-- 📖 [API Usage Guide](docs/dev_docs/api_usage_guide.md) - API endpoints and data format details
-- 🔧 [Development Guide](docs/dev_docs/development_guide.md) - Architecture design and development best practices
-- 🚀 [Bootstrap Usage](docs/dev_docs/bootstrap_usage.md) - Script runner usage instructions
-- 📝 [Group Chat Format Specification](docs/data_format/group_chat/group_chat_format.md) - Standardized data format
-
-## 📚 Documentation
-
-### Developer Docs
-- [Quick Start Guide](docs/dev_docs/getting_started.md) - Installation, configuration, and startup
-- [Development Guide](docs/dev_docs/development_guide.md) - Architecture design and best practices
-- [Bootstrap Usage](docs/dev_docs/bootstrap_usage.md) - Script runner
-
-### API Documentation
-- [Agentic V3 API](docs/api_docs/agentic_v3_api.md) - Agentic layer API
-
-### Core Framework
-- [Dependency Injection Framework](src/core/di/README.md) - DI container usage guide
-
-### Demos & Evaluation
-- [📖 Demo Guide](demo/README.md) - Interactive examples and memory extraction demos
-- [📊 Data Guide](data/README.md) - Sample conversation data and format specifications
-- [📊 Evaluation Guide](evaluation/README.md) - Testing Parallax-based methods on standard benchmarks
-
-## 🏗️ Architecture Design
-
-Parallax adopts a layered architecture design, mainly including:
-
-- **Agentic Layer**: Memory extraction, vectorization, retrieval, and reranking
-- **Memory Layer**: MemUnit extraction, episodic memory management
-- **Retrieval Layer**: Multi-modal retrieval and result ranking
-- **Business Layer**: Business logic and data operations
-- **Infrastructure Layer**: Database, cache, message queue adapters, etc.
-- **Core Framework**: Dependency injection, middleware, queue management, etc.
-
-For more architectural details, please refer to the [Development Guide](docs/dev_docs/development_guide.md).
-
-## 🤝 Contributing
-
-We welcome all forms of contributions! Whether it's reporting bugs, proposing new features, or submitting code improvements.
-
-Before contributing, please read our [Contributing Guide](CONTRIBUTING.md) to learn about:
-- Development environment setup
-- Code standards and best practices
-- Git commit conventions (Gitemoji)
-- Pull Request process
-
-## 🌟 Join Us
-
-<!-- 
-This section can include:
-- Community communication channels (Discord, Slack, WeChat groups, etc.)
-- Technical discussion forums
-- Regular meeting information
-- Contact email
--->
-
-We are building a vibrant open-source community!
-
-### Contact
+## Community
 
 <p>
-  <a href="https://github.com/heikiscott/parallax/issues"><img alt="GitHub Issues" src="https://img.shields.io/badge/GitHub-Issues-blue?style=flat-square&logo=github"></a>
-  <a href="https://github.com/heikiscott/parallax/discussions"><img alt="GitHub Discussions" src="https://img.shields.io/badge/GitHub-Discussions-blue?style=flat-square&logo=github"></a>
-  <a href="mailto:heikiscott@gmail.com"><img alt="Email" src="https://img.shields.io/badge/Email-Contact_Us-blue?style=flat-square&logo=gmail"></a>
-  <a href="https://www.reddit.com/r/parallax/"><img alt="Reddit" src="https://img.shields.io/badge/Reddit-r/parallax-orange?style=flat-square&logo=reddit"></a>
-  <a href="https://x.com/parallax"><img alt="X" src="https://img.shields.io/badge/X-@parallax-black?style=flat-square&logo=x"></a>
+  <a href="https://github.com/perix-ai/parallax/issues"><img alt="GitHub Issues" src="https://img.shields.io/badge/GitHub-Issues-blue?style=flat-square&logo=github"></a>
+  <a href="https://github.com/perix-ai/parallax/discussions"><img alt="GitHub Discussions" src="https://img.shields.io/badge/GitHub-Discussions-blue?style=flat-square&logo=github"></a>
+  <a href="mailto:heikiscott@gmail.com"><img alt="Email" src="https://img.shields.io/badge/Email-Contact-blue?style=flat-square&logo=gmail"></a>
 </p>
 
-### Contributors
+## Acknowledgments
 
-Thanks to all the developers who have contributed to this project!
+- [Memos](https://github.com/usememos/memos) — Inspiration for memory system design from their standardized open-source note-taking service.
+- [Nemori](https://github.com/nemori-ai/nemori) — Inspiration from their self-organising long-term memory substrate for agentic LLM workflows.
 
-<!-- Can use GitHub Contributors auto-generation -->
-<!-- <a href="https://github.com/your-org/memsys_opensource/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=your-org/memsys_opensource" />
-</a> -->
+## License
 
-## 📖 Citation
-
-If you use Parallax in your research, please cite our paper (coming soon):
-
-```
-Coming soon
-```
-
-## 📄 License
-
-This project is licensed under the [Apache License 2.0](LICENSE). This means you are free to use, modify, and distribute this project, with the following key conditions:
-- You must include a copy of the Apache 2.0 license
-- You must state any significant changes made to the code
-- You must retain all copyright, patent, trademark, and attribution notices
-- If a NOTICE file is included, you must include it in your distribution
-
-## 🙏 Acknowledgments
-
-<!-- 
-This section can include:
-- Projects that inspired us
-- Open-source libraries used
-- Supporting organizations or individuals
--->
-
-Thanks to the following projects and communities for their inspiration and support:
-
-- [Memos](https://github.com/usememos/memos) - Thank you to the Memos project for providing a comprehensive, standardized open-source note-taking service that has provided valuable inspiration for our memory system design.
-
-- [Nemori](https://github.com/nemori-ai/nemori) - Thank you to the Nemori project for providing a self-organising long-term memory substrate for agentic LLM workflows that has provided valuable inspiration for our memory system design.
+[Apache License 2.0](LICENSE)
 
 ---
 
 <div align="center">
 
-**If this project helps you, please give us a ⭐️**
+**If Parallax helps your work, please give us a star!**
 
-Made with ❤️ by the Parallax Team
+Made with care by the Parallax Team
 
 </div>
-
-
-
